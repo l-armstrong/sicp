@@ -2030,19 +2030,16 @@ Acknowledgments
 	For example, the application of the 
 	<kbd>parse</kbd> function to the program string
 	above produces a data structure that properly
-	reflects the structure of the program: a sequential composition
+	reflects the structure of the program: a sequence consisting of
 	of a constant declaration associating the name
 	<kbd>size</kbd>  with the value 2
 	and a multiplication.
 	<div class='snippet' id='javascript_77_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAHAQwCcBnAUwAoAiAYwHsA7MgF1DIEsAvC0AXlDYA3KACsoAFQceFYTQCUwoA')">parse("const size = 2; 5 * size;");
 </pre><pre class='prettyprintoutput'>
-list("sequential_composition",
-     list("constant_declaration", 
-          list("name", "size"), 
-          list("literal", 2)),
-     list("application", 
-          list("name", "*"), 
-          list(list("literal", 5), list("name", "size"))))</pre></div></div>
+list("sequence",
+     list(list("constant_declaration", list("name", "size"), list("literal", 2)),
+          list("application", list("name", "*"), 
+               list(list("literal", 5), list("name", "size")))))</pre></div></div>
 	The syntax functions used by the evaluator access the tagged list
 	representation produced by 
 	<kbd>parse</kbd>.
@@ -2498,9 +2495,12 @@ null</pre></div></div>
     Conditional expressions are parsed as follows:
     <blockquote class='blockquote'>
 	
-$\ll \textit{predicate}\ \texttt{?}\ \textit{consequent-expression}\ \texttt{:}\ \textit{alternative-expression}   \gg\ \ = $\newline
-\vspace{-8mm}
+$\ll \textit{predicate}\ \texttt{?}\ \textit{consequent-expression}\ \texttt{:}\ \textit{alternative-expression}   \gg\ \ = $
 	
+	<div class='pdfonly'>
+\newline
+\vspace{-8mm}
+	</div>
 	<kbd class='snippet'>list("conditional_expression", 
      $\ll predicate \gg$,
      $\ll consequent$-$expression \gg$,
@@ -2508,11 +2508,18 @@ $\ll \textit{predicate}\ \texttt{?}\ \textit{consequent-expression}\ \texttt{:}\
     </blockquote>
 
     Similarly, conditional statements are parsed as follows:
-	<blockquote class='blockquote'>
+    <blockquote class='blockquote'>
+      <div class='pdfonly'>
 	
 $\ll \textbf{\texttt{if}}\ \texttt{(} \textit{predicate} \texttt{)}\ \textit{consequent-block}\ \textbf{\texttt{else}}\ \textit{alternative-block} \gg\ \ =$\newline
 \vspace{-8mm}
 	
+      </div>
+      <div class='webonly'>
+	
+$\ll \textbf{if}\ \texttt{(} \textit{predicate} \texttt{)}\ \textit{consequent-block}\ \textbf{else}\ \textit{alternative-block} \gg\ \ =$
+	
+      </div>
 	<kbd class='snippet'>list("conditional_statement", 
      $\ll predicate \gg$,
      $\ll consequent$-$block \gg$,
@@ -2543,6 +2550,7 @@ $\ll \textbf{\texttt{if}}\ \texttt{(} \textit{predicate} \texttt{)}\ \textit{con
     A lambda expression whose body is an expression is parsed as if the
     body consisted of a block containing a single return statement whose
     return expression is the body of the lambda expression.
+    <div class='pdfonly'>
     
 \begin{eqnarray*}      
 & \ll \texttt{(}\textit{parameter}_1\texttt{, }\ldots\texttt{, } \textit{parameter}_n \texttt{) =>}\ \textit{expression} \gg \\
@@ -2550,12 +2558,29 @@ $\ll \textbf{\texttt{if}}\ \texttt{(} \textit{predicate} \texttt{)}\ \textit{con
 & \ll \texttt{(}\textit{parameter}_1\texttt{, }\ldots\texttt{, } \textit{parameter}_n \texttt{) => \{}\ \textbf{\texttt{return}} \ \textit{expression}\texttt{;}\ \texttt{\}} \gg
 \end{eqnarray*}
 	
+    </div>
+    <div class='webonly'>
+    
+\begin{eqnarray*}      
+& \ll \texttt{(}\textit{parameter}_1\texttt{, }\ldots\texttt{, } \textit{parameter}_n \texttt{) =>}\ \textit{expression} \gg \\
+& = \\
+& \ll \texttt{(}\textit{parameter}_1\texttt{, }\ldots\texttt{, } \textit{parameter}_n \texttt{) => \{}\ \textbf{return} \ \textit{expression}\texttt{;}\ \texttt{\}} \gg
+\end{eqnarray*}
+	
+    </div>
 	      A lambda expression whose body is a block is parsed as follows:
 	      <blockquote class='blockquote'>
+		<div class='pdfonly'>
 	      
 $\ll \texttt{(}\textit{parameter}_1\texttt{, }\ldots\texttt{, } \textit{parameter}_n \texttt{) =>}\ \textit{block} \gg\ \ =$ \newline
 \vspace{-8mm}
 	
+		</div>
+		<div class='webonly'>
+	      
+$\ll \texttt{(}\textit{parameter}_1\texttt{, }\ldots\texttt{, } \textit{parameter}_n \texttt{) =>}\ \textit{block} \gg\ \ =$
+	
+		</div>
 	<kbd class='snippet'>list("lambda_expression",
      list(list("name", $\textit{parameter}_1$), ..., list("name", $\textit{parameter}_n$)),
      $\ll block \gg$)</kbd>
@@ -2585,73 +2610,63 @@ $\ll \texttt{(}\textit{parameter}_1\texttt{, }\ldots\texttt{, } \textit{paramete
       <div class='permalink'>
         <a name='h7' class='permalink'></a><h2>
     
-    Sequential composition
+    Sequences
   </h2></div>
 
   <div class='permalink'>
 <a name='p11' class='permalink'></a><p>
-    The sequential composition of two statements is
-    parsed as follows:
-    
-      \begin{eqnarray*}
-      &	  \ll \textit{statement}_1 \ \textit{statement}_2   \gg \\
-      &	  = \\
-      &	  \texttt{list("sequential_composition", }
-      \ll \textit{statement}_1 \gg \texttt{, } 
-      \ll \textit{statement}_2 \gg \texttt{)}
-      \end{eqnarray*}
-    
-    The syntax predicate is
-    <kbd>is_sequential_composition</kbd>
-    and the selectors are
-    <kbd>first_statement</kbd> and
-    <kbd>second_statement</kbd>.
+	    A sequence statement packages a sequence of statements into a
+	    single statement and is parsed as follows:
+	
+	  \begin{eqnarray*}
+&	  \ll \textit{statement}_1 \cdots \textit{statement}_n   \gg \\
+&	  = \\
+&	  \texttt{list("sequence", list(}
+\ll \textit{statement}_1 \gg \texttt{, } \ldots \texttt{, }
+\ll \textit{statement}_n \gg \texttt{))}
+	  \end{eqnarray*}
+	
+	The predicate is <kbd>is_sequence</kbd>
+	the selector is <kbd>sequence_statements</kbd>,
+	and we include a constructor
+	<kbd>make_sequence</kbd>.
+	We retrieve the first of a list of statements using
+	<kbd>first_statement</kbd> and
+	the remaining statements using
+	<kbd>rest_statements</kbd>, and test
+	whether the list is empty or contains only one element using
+	the predicates 
+	<kbd>is_empty_sequence</kbd> and 
+	<kbd>is_last_statement</kbd>,
+	respectively.<a class='superscript' id='footnote-link-4' href='#footnote-4'style="color:blue">[4]</a>
+	    <div class='snippet' id='javascript_77_29_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajoGFkZuAEciOTJuEUYKCVddfQMTMwsUiJ5+IXy8gsVQACI0zOzuJs1ouITKWnoJNgBrdVas8lz8wsZtPUMy83pa0RaM8ZympSmKGe7CUj7ksfbmfLYKbgkXRnrC2cMS41NFr24fEXYqAVvXLtj9xL9UAEOz5U7sC5XeQ-GbFebPCreXzbXb-XpJegmMFnSHXGGzR4LCqfb4ov49A4YyqXKQUACepzW7XxcNKCMsLBIRAEpIaqIpgOSVgEbGxEMuLhZczZ5Q5zC5PI+tl50005Pw4hI+VAEgZxwmoCCoBsRjSIiaGEiyiMWStKAArJFOtFeEwpCK6SIrPqciJdYy2hM1dFNdr-WxDlrDaAfaNxVCdn69Uygy63R6vSwafSA+tcuHIzM-q7GO62J7haKKODzhLoQWMUW06WMyDTdWcXXRA3+k3cCWy56sR343ie3Qm0A')">function make_sequence(stmts) {
+    return list("sequence", stmts);
+}
+function first_statement(stmts) {
+   return head(stmts);
+}
+function rest_statements(stmts) {
+   return tail(stmts);
+}
+function is_empty_sequence(stmts) {
+   return is_null(stmts);
+}
+function is_last_statement(stmts) {
+   return is_null(tail(stmts));
+}
+</pre></div></div>
 	    
-	    Two statements are combined into a sequential composition
-	    by simply juxtaposing them, similar to infix
-	    notation for expressions except that there is no operator!
-	    The function <kbd>parse</kbd>
-	    treats sequential composition to be right-associative:
-	    <div class='snippet' id='javascript_77_29_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAHAQwCcBnAUwAoAiDAblG0YGZ6aBKeoA')">parse("1; 2; 3;");
-</pre><pre class='prettyprintoutput'>
-list("sequential_composition",
-     list("literal_value", 1),
-     list("sequential_composition",
-          list("literal_value", 2),
-          list("literal_value", 2)))</pre></div></div>
   </p></div>
 
   
       <div class='permalink'>
         <a name='h8' class='permalink'></a><h2>
     
-    Empty statement
-  </h2></div>
-
-  <div class='permalink'>
-<a name='p12' class='permalink'></a><p>
-    The empty statement is
-    parsed as follows:
-    
-      \begin{eqnarray*}
-\ll \ \   \gg  & = & \texttt{list("empty_statement")}
-      \end{eqnarray*}
-    
-    The syntax predicate is
-    <kbd>is_empty_statement</kbd>.
-  </p></div>
-
-  
-  
-      <div class='permalink'>
-        <a name='h9' class='permalink'></a><h2>
-    
     Blocks
   </h2></div>
 
-
 <div class='permalink'>
-<a name='p13' class='permalink'></a><p>
+<a name='p12' class='permalink'></a><p>
     Blocks are parsed as follows:    
 	
 	  \begin{eqnarray*}
@@ -2668,14 +2683,15 @@ list("sequential_composition",
 
   
       <div class='permalink'>
-        <a name='h10' class='permalink'></a><h2>
+        <a name='h9' class='permalink'></a><h2>
     
     Return statements
   </h2></div>
 
   <div class='permalink'>
-<a name='p14' class='permalink'></a><p>
-    Return statements are parsed as follows:    
+<a name='p13' class='permalink'></a><p>
+    Return statements are parsed as follows:
+    <div class='pdfonly'>
 	
 	  \begin{eqnarray*}
 	  \ll \textbf{\texttt{return}}\ \textit{expression} \texttt{;} \gg
@@ -2683,7 +2699,17 @@ list("sequential_composition",
 	  \texttt{list("return_statement",}\ \ll \textit{expression} \gg \texttt{)}
 	  \end{eqnarray*}
 	
-	The syntax predicate is <kbd>is_return_statement</kbd>
+    </div>
+    <div class='webonly'>
+	
+	  \begin{eqnarray*}
+	  \ll \textbf{return}\ \textit{expression} \texttt{;} \gg
+	  & = &
+	  \texttt{list("return_statement",}\ \ll \textit{expression} \gg \texttt{)}
+	  \end{eqnarray*}
+	
+    </div>
+    The syntax predicate is <kbd>is_return_statement</kbd>
 	and the selector is <kbd>return_expression</kbd>.
 	    
 	    
@@ -2691,13 +2717,13 @@ list("sequential_composition",
 
   
       <div class='permalink'>
-        <a name='h11' class='permalink'></a><h2>
+        <a name='h10' class='permalink'></a><h2>
     
     Assignments
   </h2></div>
 
   <div class='permalink'>
-<a name='p15' class='permalink'></a><p>
+<a name='p14' class='permalink'></a><p>
     Assignments are parsed as follows:
 	
 	  \begin{eqnarray*}
@@ -2720,14 +2746,15 @@ list("sequential_composition",
 
   
       <div class='permalink'>
-        <a name='h12' class='permalink'></a><h2>
+        <a name='h11' class='permalink'></a><h2>
     
     Constant and variable declarations
   </h2></div>
 
     <div class='permalink'>
-<a name='p16' class='permalink'></a><p>
-  Constant and variable declarations are parsed as follows:
+<a name='p15' class='permalink'></a><p>
+      Constant and variable declarations are parsed as follows:
+      <div class='pdfonly'>
 	
 	  \begin{eqnarray*}
 &  \ll \textbf{\texttt{const}}\ \textit{name}\ \ \texttt{=}\ \ \textit{expression}\texttt{;} \gg \\
@@ -2738,6 +2765,19 @@ list("sequential_composition",
 & \texttt{list("variable_declaration", } \ll \textit{name} \gg \texttt{, }\ll \textit{expression} \gg \texttt{)}
 	  \end{eqnarray*}
 	
+      </div>
+      <div class='webonly'>
+	
+	  \begin{eqnarray*}
+&  \ll \textbf{const}\ \textit{name}\ \ \texttt{=}\ \ \textit{expression}\texttt{;} \gg \\
+& = \\
+& \texttt{list("constant_declaration", } \ll \textit{name} \gg \texttt{, }\ll \textit{expression} \gg \texttt{)}\\[3mm]
+&  \ll \textbf{let}\ \textit{name} \ \ \texttt{=}\ \ \textit{expression}\texttt{;} \gg \\
+& = \\
+& \texttt{list("variable_declaration", } \ll \textit{name} \gg \texttt{, }\ll \textit{expression} \gg \texttt{)}
+	  \end{eqnarray*}
+	
+      </div>
 	The syntax predicate
 	<kbd>is_declaration</kbd>
 	returns true for all three kinds of declaration, and
@@ -2778,13 +2818,13 @@ function declaration_value_expression(component) {
 
       
       <div class='permalink'>
-        <a name='h13' class='permalink'></a><h2>
+        <a name='h12' class='permalink'></a><h2>
     
 	Derived expressions
       </h2></div>
       
       <div class='permalink'>
-<a name='p17' class='permalink'></a><p>
+<a name='p16' class='permalink'></a><p>
 	
 	
 	
@@ -2815,7 +2855,7 @@ function declaration_value_expression(component) {
       </p></div>
       
       <div class='permalink'>
-<a name='p18' class='permalink'></a><p>
+<a name='p17' class='permalink'></a><p>
 	We include syntax procedures that extract the parts of a
 	<kbd>cond</kbd>expression, and a procedure
 	<kbd>cond->if</kbd> that transforms 
@@ -2823,7 +2863,7 @@ function declaration_value_expression(component) {
 	<kbd>if</kbd> expressions. A case analysis begins with
 	<kbd>cond</kbd> and has a list of predicate-action
 	clauses.  A clause is an <kbd>else</kbd> clause if its
-	predicate is the symbol	<kbd>else</kbd>.<a class='superscript' id='footnote-link-4' href='#footnote-4'style="color:green">[4]</a>
+	predicate is the symbol	<kbd>else</kbd>.<a class='superscript' id='footnote-link-5' href='#footnote-5'style="color:green">[5]</a>
 	<div class='snippet' id='javascript_77_35_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (cond? exp) (tagged-list? exp \'cond))
 
@@ -2855,12 +2895,12 @@ function declaration_value_expression(component) {
       </p></div>
 
       <div class='permalink'>
-<a name='p19' class='permalink'></a><p>
+<a name='p18' class='permalink'></a><p>
 	Expressions (such as <kbd>cond</kbd>) that we choose
 	to implement as syntactic transformations are called <EM>derived
 	expressions</EM>. <kbd>Let</kbd> expressions are also
 	derived expressions (see
-	exercise&nbsp;<REF NAME="ex:implement-let"><a class="superscript" id="4.1.2-ex-link-4.9" href="./4.1.2.html#ex_4.9">4.9</a></REF>).<a class='superscript' id='footnote-link-5' href='#footnote-5'style="color:green">[5]</a>
+	exercise&nbsp;<REF NAME="ex:implement-let"><a class="superscript" id="4.1.2-ex-link-4.9" href="./4.1.2.html#ex_4.9">4.9</a></REF>).<a class='superscript' id='footnote-link-6' href='#footnote-6'style="color:green">[6]</a>
 	
 	
 	
@@ -2873,13 +2913,13 @@ function declaration_value_expression(component) {
 
       
       <div class='permalink'>
-        <a name='h14' class='permalink'></a><h2>
+        <a name='h13' class='permalink'></a><h2>
     
 	Derived components
       </h2></div>
       
       <div class='permalink'>
-<a name='p20' class='permalink'></a><p>
+<a name='p19' class='permalink'></a><p>
 	
 	
 	
@@ -2889,11 +2929,18 @@ function declaration_value_expression(component) {
 	implemented directly.
 	One example is function declaration, which is
 	parsed as follows:
-	      <blockquote class='blockquote'>
+	<blockquote class='blockquote'>
+	  <div class='pdfonly'>
 	      
 $\ll \textbf{\texttt{function}}\ \textit{name} \texttt{(}\textit{parameter}_1\texttt{, }\ldots\texttt{, } \textit{parameter}_n \texttt{)} \ \textit{block} \ \gg\ \ =$ \newline
 \vspace{-8mm}
 	
+	  </div>
+	  <div class='webonly'>
+	      
+$\ll \textbf{function}\ \textit{name} \texttt{(}\textit{parameter}_1\texttt{, }\ldots\texttt{, } \textit{parameter}_n \texttt{)} \ \textit{block} \ \gg\ \ =$ 
+	
+	  </div>
 	<kbd class='snippet'>list("function_declaration",
      $\ll \textit{name} \gg$,
      list($\ll \textit{parameter}_1 \gg $, ..., $\ll \textit{parameter}_n \gg$),
@@ -2906,7 +2953,7 @@ $\ll \textbf{\texttt{function}}\ \textit{name} \texttt{(}\textit{parameter}_1\te
      <kbd>function_declaration_parameters</kbd> and
      <kbd>function_declaration_body</kbd>.
 	We implement a function declaration as a constant declaration whose
-	value expression is a lambda expression.<a class='superscript' id='footnote-link-6' href='#footnote-6'style="color:blue">[6]</a>
+	value expression is a lambda expression.<a class='superscript' id='footnote-link-7' href='#footnote-7'style="color:blue">[7]</a>
      The evaluator uses 
 	<kbd>function_decl_to_constant_decl</kbd>
 	to transform a function declaration into a constant declaration.
@@ -2924,7 +2971,7 @@ $\ll \textbf{\texttt{function}}\ \textit{name} \texttt{(}\textit{parameter}_1\te
       </p></div>
       
       <div class='permalink'>
-<a name='p21' class='permalink'></a><p>
+<a name='p20' class='permalink'></a><p>
 	Similarly, we define operator combinations in terms of
 	function applications. The boolean negation operator is represented by
 	<kbd>"!"</kbd>.	
@@ -2991,7 +3038,7 @@ $\ll \textbf{\texttt{function}}\ \textit{name} \texttt{(}\textit{parameter}_1\te
 	
       </p></div>
       <div class='permalink'>
-<a name='p22' class='permalink'></a><p>
+<a name='p21' class='permalink'></a><p>
 	Components (such as function declarations and operator combinations) that we
 	choose
 	to implement as syntactic transformations are called <EM>derived
@@ -3447,10 +3494,11 @@ $\ll \textbf{\texttt{function}}\ \textit{name} \texttt{(}\textit{parameter}_1\te
 	<kbd>let*</kbd>. We could approximate
 	the semantics of
 	<kbd>let*</kbd> in JavaScript by stipulating
-	that a sequential composition whose first statement is a 
+	that a sequence whose first statement is a 
 	<kbd>let*</kbd> declaration implicitly
-	introduces a new block around the sequential composition.
-	For example, the program
+	introduces a new block whose body includes the declaration and all
+	subsequent statements of the statement sequence in which the
+	declaration occurs. For example, the program
 	<div class='snippet' id='javascript_77_43_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 display(1);
 let* x = 2;
@@ -3579,12 +3627,19 @@ display(1);
 }
 </pre></div></div>
 	<kbd>while</kbd> loops are parsed as follows:
-    <blockquote class='blockquote'>
+	<blockquote class='blockquote'>
+	  <div class='pdfonly'>
 	
 	  $\ll \textbf{\texttt{while}} \ \texttt{(}\ \textit{predicate}\ \texttt{)}\ \textit{block}  \gg \ \ =$ \newline
 	  \vspace{-8mm}
 	
-	<kbd class='snippet'>list("while_loop", $\ll \textit{predicate} \gg$, $\ll \textit{block} \gg$)</kbd>
+	  </div>
+	  <div class='webonly'>
+	
+	  $\ll \textbf{while} \ \texttt{(}\ \textit{predicate}\ \texttt{)}\ \textit{block}  \gg \ \ =$ 
+	
+	  </div>
+	  <kbd class='snippet'>list("while_loop", $\ll \textit{predicate} \gg$, $\ll \textit{block} \gg$)</kbd>
     </blockquote>
 
     <OL type="a">
@@ -3703,12 +3758,19 @@ display(1);
 }
 </pre></div></div>
 	<kbd>for</kbd> loops are parsed as follows:
-    <blockquote class='blockquote'>
+	<blockquote class='blockquote'>
+	  <div class='pdfonly'>
 	
 	  $\ll \textbf{\texttt{for}} \ \texttt{(}\ \textit{init-statement}\texttt{; } \textit{predicate}\texttt{; }\textit{update-statement}\texttt{)}\ \textit{block}  \gg \ \ =$ \newline
 	  \vspace{-8mm}
 	
-	<kbd class='snippet'>list("for_loop",
+	  </div>
+	  <div class='webonly'>
+	
+	  $\ll \textbf{for} \ \texttt{(}\ \textit{init-statement}\texttt{; } \textit{predicate}\texttt{; }\textit{update-statement}\texttt{)}\ \textit{block}  \gg \ \ =$ 
+	
+	  </div>
+	  <kbd class='snippet'>list("for_loop",
      $\ll \textit{init-statement} \gg$, 
      $\ll \textit{predicate} \gg$, 
      $\ll \textit{update-statement}\gg$, 
@@ -3819,20 +3881,20 @@ display(1);
 	and the evaluation of declaration and assignment in
 	section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.2-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>,
 	this exercise addresses the question what should be the result of
-	evaluating a JavaScript program containing sequential compositions,
+	evaluating a JavaScript program containing sequences,
 	declarations, blocks, expression statements, conditional
 	statements and assignments <EM>outside of</EM> any function
 	body. For such a program, JavaScript
 	statically
         distinguishes between <EM>value-producing</EM> and
-	<EM>non-value-producing statements</EM>.<a class='superscript' id='footnote-link-7' href='#footnote-7'style="color:blue">[7]</a>
+	<EM>non-value-producing statements</EM>.<a class='superscript' id='footnote-link-8' href='#footnote-8'style="color:blue">[8]</a>
 	All declarations are
 	non-value-producing, and all 
 	expression statements, conditional statements and assignments are
 	value-producing.
 	A block is value-producing if its body statement
 	is value-producing, and then its value is the value of its body
-	statement. A sequential composition is value-producing if any of
+	statement. A sequence is value-producing if any of
 	its component statements is value-producing, and then its value is
 	the value of its <EM>last</EM> value-producing component statement.
 	The value of an expression statement is the value of the expression.
@@ -3850,21 +3912,13 @@ display(1);
 	    According to this specification, what are the values of the
 	    following programs?
 	    <UL>
-	      <LI>
-		<div class='snippet' id='javascript_77_51_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-1; 2; 3;</pre></div></div>
+	      <LI><kbd>1; 2; 3;</kbd>
 	      </LI>
-	      <LI>
-		<div class='snippet' id='javascript_77_52_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-1; { if (true) { } else { 2; } }</pre></div></div>
+	      <LI><kbd>1; { if (true) { } else { 2; } }</kbd>
 	      </LI>
-	      <LI>
-		<div class='snippet' id='javascript_77_53_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-1; const x = 2;</pre></div></div>
+	      <LI><kbd>1; const x = 2;</kbd>
 	      </LI>
-	      <LI>
-		<div class='snippet' id='javascript_77_54_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-1; { let x = 2; { x = x + 3; } }</pre></div></div>
+	      <LI><kbd>1; { let x = 2; { x = x + 3; } }</kbd>
 	      </LI>
 	    </UL>
 	  </LI>
@@ -3976,8 +4030,23 @@ display(1);
     </FOOTNOTE></span></div>
     
     
+    <div class='footnote'><span style="color:blue">
+      <a class='footnote-number' id='footnote-4' href='#footnote-link-4' style="color:blue">[4] </a>
+    <FOOTNOTE>
+    These
+	    selectors for a list of statements are not intended
+	    as a data abstraction.
+	    They are introduced as mnemonic names for the
+	    basic list operations in order to make it easier to understand the
+	    explicit-control evaluator in
+	    section&nbsp;<REF NAME="sec:eceval"><a class="superscript" id="4.1.2-sec-link-5.4" href="./5.4.html">5.4</a></REF>.
+	    
+            
+    </FOOTNOTE></span></div>
+    
+    
     <div class='footnote'><span style="color:green">
-      <a class='footnote-number' id='footnote-4' href='#footnote-link-4' style="color:green">[4] </a>
+      <a class='footnote-number' id='footnote-5' href='#footnote-link-5' style="color:green">[5] </a>
     <FOOTNOTE>
     The
 	value of a <kbd>cond</kbd> expression when all the
@@ -3988,7 +4057,7 @@ display(1);
     
     
     <div class='footnote'><span style="color:green">
-      <a class='footnote-number' id='footnote-5' href='#footnote-link-5' style="color:green">[5] </a>
+      <a class='footnote-number' id='footnote-6' href='#footnote-link-6' style="color:green">[6] </a>
     <FOOTNOTE>
     Practical Lisp
 	systems provide a mechanism that allows a user to add new derived
@@ -4010,7 +4079,7 @@ display(1);
     
     
     <div class='footnote'><span style="color:blue">
-      <a class='footnote-number' id='footnote-6' href='#footnote-link-6' style="color:blue">[6] </a>
+      <a class='footnote-number' id='footnote-7' href='#footnote-link-7' style="color:blue">[7] </a>
     <FOOTNOTE>
     In 
 	    actual JavaScript, there are two differences between the two
@@ -4022,7 +4091,7 @@ display(1);
     
     
     <div class='footnote'><span style="color:blue">
-      <a class='footnote-number' id='footnote-7' href='#footnote-link-7' style="color:blue">[7] </a>
+      <a class='footnote-number' id='footnote-8' href='#footnote-link-8' style="color:blue">[8] </a>
     <FOOTNOTE>
     Here 
 	<QUOTE>statically</QUOTE> means that

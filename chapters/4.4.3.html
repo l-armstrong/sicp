@@ -2162,7 +2162,7 @@ married("Mickey", who)</pre></div></div>
     interrelated rules can lead to loops that are much harder to anticipate, and
     the appearance of a loop can depend on the order of clauses in an
     <kbd>and</kbd> (see
-    exercise&nbsp;<REF NAME="ex:query-simple-loop"><a class="superscript" id="4.4.3-ex-link-4.65" href="./4.4.3.html#ex_4.65">4.65</a></REF>) or on low-level details
+    exercise&nbsp;<REF NAME="ex:query-simple-loop"><a class="superscript" id="4.4.3-ex-link-4.66" href="./4.4.3.html#ex_4.66">4.66</a></REF>) or on low-level details
     concerning the order in which the system processes queries.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
     
   </p></div>
@@ -2254,7 +2254,7 @@ and(not(job(x, list("computer", "programmer"))),
       JavaScript
     
     predicate can't work if some of its arguments are unbound.  See
-    exercise&nbsp;<REF NAME="ex:not-query-filter"><a class="superscript" id="4.4.3-ex-link-4.78" href="./4.4.4.html#ex_4.78">4.78</a></REF>.
+    exercise&nbsp;<REF NAME="ex:not-query-filter"><a class="superscript" id="4.4.3-ex-link-4.79" href="./4.4.4.html#ex_4.79">4.79</a></REF>.
   </p></div>
 
   <div class='permalink'>
@@ -2282,7 +2282,7 @@ and(not(job(x, list("computer", "programmer"))),
 
   
     <div class="permalink">
-    <a name="ex_4.65" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.65">Exercise 4.65 </a></b> 
+    <a name="ex_4.66" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.66">Exercise 4.66 </a></b> 
   
     
     Louis Reasoner mistakenly deletes the
@@ -2317,7 +2317,7 @@ outanked_by(list("Bitdiddle", "Ben"), who)</pre></div></div>
 
   
     <div class="permalink">
-    <a name="ex_4.66" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.66">Exercise 4.66 </a></b> 
+    <a name="ex_4.67" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.67">Exercise 4.67 </a></b> 
   
     
     Cy D. Fect, looking forward to the day when he will rise in the
@@ -2348,7 +2348,7 @@ wheel(list("Warbucks", "Oliver"))</pre></div></div>
 
   
     <div class="permalink">
-    <a name="ex_4.67" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.67">Exercise 4.67 </a></b> 
+    <a name="ex_4.68" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.68">Exercise 4.68 </a></b> 
   
     
     Ben has been generalizing the query system to provide statistics about the
@@ -2384,7 +2384,7 @@ sum(amount,
     accumulation function.  Just as Ben completes the implementation and is
     about to try it out, Cy walks by, still puzzling over the
     <kbd>wheel</kbd> query result in
-    exercise&nbsp;<REF NAME="ex:multiple-query"><a class="superscript" id="4.4.3-ex-link-4.66" href="./4.4.3.html#ex_4.66">4.66</a></REF>.  When Cy shows Ben the
+    exercise&nbsp;<REF NAME="ex:multiple-query"><a class="superscript" id="4.4.3-ex-link-4.67" href="./4.4.3.html#ex_4.67">4.67</a></REF>.  When Cy shows Ben the
     system's response, Ben groans, <QUOTE>Oh, no, my simple accumulation
     scheme won't work!</QUOTE>
     <p></p>
@@ -2401,13 +2401,13 @@ sum(amount,
 
   
     <div class="permalink">
-    <a name="ex_4.68" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.68">Exercise 4.68 </a></b> 
+    <a name="ex_4.69" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.69">Exercise 4.69 </a></b> 
   
     
     
     Devise a way to install a loop detector in the query system so as to
     avoid the kinds of simple loops illustrated in the text and in
-    exercise&nbsp;<REF NAME="ex:query-simple-loop"><a class="superscript" id="4.4.3-ex-link-4.65" href="./4.4.3.html#ex_4.65">4.65</a></REF>.  The general idea is
+    exercise&nbsp;<REF NAME="ex:query-simple-loop"><a class="superscript" id="4.4.3-ex-link-4.66" href="./4.4.3.html#ex_4.66">4.66</a></REF>.  The general idea is
     that the system should maintain some sort of history of its current chain of
     deductions and should not begin processing a query that it is already
     working on.  Describe what kind of information (patterns and frames)
@@ -2427,7 +2427,7 @@ sum(amount,
 
   
     <div class="permalink">
-    <a name="ex_4.69" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.69">Exercise 4.69 </a></b> 
+    <a name="ex_4.70" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.70">Exercise 4.70 </a></b> 
   
     
     Define rules to implement the <kbd>reverse</kbd> operation
@@ -2465,11 +2465,11 @@ sum(amount,
     
       
     <div class="permalink">
-    <a name="ex_4.70" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.70">Exercise 4.70 </a></b> 
+    <a name="ex_4.71" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.71">Exercise 4.71 </a></b> 
   
 	
 	Let us modify the data base and the rules of
-	exercise&nbsp;<REF NAME="ex:genesis"><a class="superscript" id="4.4.3-ex-link-4.64" href="./4.4.1.html#ex_4.64">4.64</a></REF> to add 
+	exercise&nbsp;<REF NAME="ex:genesis"><a class="superscript" id="4.4.3-ex-link-4.65" href="./4.4.1.html#ex_4.65">4.65</a></REF> to add 
 	<QUOTE>great</QUOTE> to a grandson relationship. This should enable the
 	system to deduce that Irad is the great-grandson of Adam, or that Jabal
 	and Jubal are the great-great-great-great-great-grandsons of Adam.
@@ -2594,7 +2594,7 @@ list(pair("great", rel), x, y)</pre></div></div>
     <CITATION>deKleer et al.&nbsp;1977</CITATION>.  
     Another technique, which does not lead to such serious control problems, is
     to put in special knowledge, such as detectors for particular kinds of loops
-    (exercise&nbsp;<REF NAME="ex:query-loop-detector"><a class="superscript" id="4.4.3-ex-link-4.68" href="./4.4.3.html#ex_4.68">4.68</a></REF>).  However, there can
+    (exercise&nbsp;<REF NAME="ex:query-loop-detector"><a class="superscript" id="4.4.3-ex-link-4.69" href="./4.4.3.html#ex_4.69">4.69</a></REF>).  However, there can
     be no general scheme for reliably preventing a system from going down
     infinite paths in performing deductions.  Imagine a diabolical rule of
     the form <QUOTE>To show $P(x)$ is true, show that
