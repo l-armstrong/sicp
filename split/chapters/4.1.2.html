@@ -2382,7 +2382,7 @@ list("literal", null)</pre></div></div>
 	is its actual JavaScript value.
 	The selector for retrieving the value is
 	<kbd>literal_value</kbd>.
-	<div class='snippet' id='javascript_77_23_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAbASwBcBTAJwEMCB9ANxoFcyAKAByooGc2AiAHZMCBANx8AlBNH4AZkwEBjEkQD2A0MXLU6jAi1aLVAW3bqyAkhNABvUPdC4HoCmRJMKGgBZkqAE1YSKiICQxMzAQsraVwAXyA')">function literal_value(component) {    
+	<div class='snippet' id='javascript_77_23_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AGyooFMAnAQwYH0A3LoiwAUZGgFsADnRYkKASlABvUCtC5VoNiwpE29ABYsOAEyEUOVBiPFSSM+XIDcuAL74mrTj34NBQiRxsAM7CAEQkRAwMjqFyTkA')">function literal_value(component) {    
     return head(tail(component));
 }
 </pre></div></div>
@@ -2957,12 +2957,12 @@ $\ll \textbf{function}\ \textit{name} \texttt{(}\textit{parameter}_1\texttt{, }\
      The evaluator uses 
 	<kbd>function_decl_to_constant_decl</kbd>
 	to transform a function declaration into a constant declaration.
-	<div class='snippet' id='javascript_77_36_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH1jzq7mATAUzIBsAhgCdBHEgAoyNALYAHOjxIUAlKADeASFA7QuXaGE8KRYfSbMKggObWeXZvyYUpshSSUUANKABEbSloSbj4hUXFfFQBuXABfQlJAulAA8RCBETEg5kYATxkAIxp+V3lFZTV1fV0jEzNQPMLi5hoCZhJBGR4JJ0YKZiMCUvdPHwwVCZj41KCUxLTeDPDsuUyuih5hRmHy1Q1qnVrTel7+wZ2PZR9sSbiE9lmZzkWwrM4irlyLz0qDw2NjqBTgMeENpGVLt5QABmW7TeaPBHPUKWGjMaQkPqCZTpErgkYVfYGI71GSCADWPHRdCxOJemXEEj+BhZOiewXpy04HS63wqXmZrIMZMpjk6BS4gmYPAAHnIjIxGEEmULVQZ2biGSs1sZNtt8bsVAK1SaNZy3sEPl8DZC4UA')">function function_decl_to_constant_decl(component) {
+	<div class='snippet' id='javascript_77_36_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH1jzq7mATAUzIBsAhgCdBHEgAoyNALYAHOjxIUAlKADeASFA7QuXaGE8KRYfSbMKggObWeXZvyYUpshSSUUANKABEbSloSbj4hUXFfFQBuXABfQlJAulAA8RCBETEg5kYATxkAIxp+V3lFZTV1fV0jEzNQPMLi5hoCZhJBGR4JJ0YKZiMCUvdPHwwVaLiE9iCUxLTeDPDsuUyuih5hRmHy1Q1qnVrTel7+wZ2PZR9sSfjU2fvORbCsziKuXIvPSoPDY2PQKcBjwhtIypdvKAAMy3aZJeiPYLPSw0ZjSEh9QTKdIlMEjCr7AxHeoyQQAax4aLomOxz0y4gkvwMzJ0iJx9OyHS6XwqXiZLIMpIpjk6BS4gmYPAAHnIjIxGEFGQLlQY2XTlpxVqJ1pttnjdio+SrjWrQhy3jQPjzVBMYrEgA')">function function_decl_to_constant_decl(component) {
     return make_constant_declaration(
                make_name(function_declaration_symbol(component)),
                make_lambda_expression(
                    function_declaration_parameters(component),
-                   function_declaration_body(component));
+                   function_declaration_body(component)));
 }
 </pre></div></div>
 	Implementing the evaluation of function declarations
