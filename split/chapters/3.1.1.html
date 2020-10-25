@@ -2278,15 +2278,16 @@ balance = balance - amount;</pre></div></div></td></tr></table>
           <td></td>
           <td><span style="color:blue">
 	The function <kbd>withdraw</kbd> also uses a
-	<EM>sequential composition</EM> to cause two statements to be evaluated
+	<EM>statement sequence</EM> to cause two statements to be evaluated
 	in the case where the <kbd>if</kbd> test is
 	true: first decrementing  <kbd>balance</kbd>
 	and then returning the value of
 	<kbd>balance</kbd>.  
-	In general, executing the statement
-	<kbd class='snippet'>$\textit{stmt}_{1}$ $\textit{stmt}_{2}$</kbd>
+	In general, executing a sequence
+	<kbd class='snippet'>$\textit{stmt}_{1}\ \textit{stmt}_{2}\ \ldots \textit{stmt}_{n}$</kbd>
         causes the statements $\textit{stmt}_{1}$
-	and $\textit{stmt}_{2}$ to be evaluated in
+	through
+	$\textit{stmt}_{n}$ to be evaluated in
 	sequence.<a class='superscript' id='footnote-link-4' href='#footnote-4'style="color:blue">[4]</a>
 	<span class='comment'>
 	  In JavaScript, the return value of functions is determined by
@@ -2299,8 +2300,8 @@ balance = balance - amount;</pre></div></div></td></tr></table>
 1; const x = 2;</pre></div></div>
 	  evaluates to the value 1. We decide to ignore the subtleties of the
 	  JavaScript top level here. The return value of non-top-level sequences
-	  are determined by the placement of return statements, which will
-	  be explained later.
+	  are determined by the placement of return statements, which we will
+	  explain later.
 	</span>
       </span></td></tr></table>
   </p></div>
@@ -3297,8 +3298,9 @@ function make_account(balance, p) {
     <FOOTNOTE>
     We have already used 
         
-        sequential composition implicitly in our programs, because in
-	JavaScript the body of a function can be a sequence of statements, not
+        sequences implicitly in our programs, because in
+	JavaScript the body block
+	of a function can contain a sequence of statements, not
 	just a single return statement,
 	as discussed in
 	section&nbsp;<REF NAME="sec:block-structure"><a class="superscript" id="3.1.1-sec-link-1.1.8" href="./1.1.8.html">1.1.8</a></REF>.
