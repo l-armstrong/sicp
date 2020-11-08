@@ -1996,47 +1996,44 @@ Acknowledgments
 <a name='p1' class='permalink'></a><p>
 	Section&nbsp;<REF NAME="sec:env-apply-proc"><a class="superscript" id="3.2.4-sec-link-3.2.2" href="./3.2.2.html">3.2.2</a></REF> describes the application
 	of simple functions according to the environment model, but fails to
-	handle proper blocks that contain contains constant or
-	variable declarations, as the bodies of the functions
+	handle blocks that contain constant or
+	variable declarations, as in the bodies of functions such as
 	<kbd>new_withdraw</kbd> and 
 	<kbd>make_account</kbd>
-	of section&nbsp;<REF NAME="sec:local-state-variables"><a class="superscript" id="3.2.4-sec-link-3.1.1" href="./3.1.1.html">3.1.1</a></REF>,
-	in the function <kbd>make_rand</kbd> 
-	of section&nbsp;<REF NAME="sec:benefits-of-assignment"><a class="superscript" id="3.2.4-sec-link-3.1.2" href="./3.1.2.html">3.1.2</a></REF>
-	and in both versions of the factorial function 
-	of section&nbsp;<REF NAME="sec:costs-of-assignment"><a class="superscript" id="3.2.4-sec-link-3.1.3" href="./3.1.3.html">3.1.3</a></REF>.
-	The declaration of local names within blocks is treated similarly to
-	declarations of global names, as for
-	example the name <kbd>square</kbd> in
-	section&nbsp;<REF NAME="sec:env-model-rules"><a class="superscript" id="3.2.4-sec-link-3.2.1" href="./3.2.1.html">3.2.1</a></REF>. We explained
-	that the names declared in the program are added to the program
-	frame. More precisely, before the program gets evaluated, we identify
-	the names that are declared in the program at top level (outside of any
-	block). These names are all added to the program frame, and then the
-	program gets evaluated with respect to the program environment.
-	Initially, before the program runs, these names refer to a special value
-	$\textit{unassigned}$, and any attempt to
-	access the value of a name that refers to
-	$\textit{unassigned}$ leads to an error.
-	Constant and variable declarations can then be handled like
-	assignments in section&nbsp;<REF NAME="sec:env-local-state"><a class="superscript" id="3.2.4-sec-link-3.2.3" href="./3.2.3.html">3.2.3</a></REF>.
-      </p></div>
-      <div class='permalink'>
-<a name='p2' class='permalink'></a><p>
-	In order to evaluate a block in a given environment, we extend the
+	of section&nbsp;<REF NAME="sec:local-state-variables"><a class="superscript" id="3.2.4-sec-link-3.1.1" href="./3.1.1.html">3.1.1</a></REF>, and
+	the branches of conditional statements introduced in
+	section&nbsp;<REF NAME="sec:lambda"><a class="superscript" id="3.2.4-sec-link-1.3.2" href="./1.3.2.html">1.3.2</a></REF>. In JavaScript, blocks
+	can appear wherever a statement is allowed, which means they
+	can be nested as follows:
+	<div class='snippet' id='javascript_58_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQCY0BYBQuBjAewDsBnAF1AA9QBeUDAblwG9dRPQAbAUytoNsLLqHajRxcgPqgAbCImdBNUAGpQARkWcAvhy4raG7bn1H1WloVKVQAWwCeAfQBG3IgQDWsgA4BDACcyXgAKACJWK1AKQIBXXiZQbABWJN1wgEoWABMASzJfbn9HUIK3D29QpwrPL0zs3HzC4tL3OrciHNKa9u8GpiA')">const x = 2;
+{
+    let x = 4;
+    {
+        const x = 6;
+        x = x + 1;
+    }
+    x = x + 1;
+}
+x = x + 1;
+</pre></div></div>
+	Each block opens a new scope for all names declared in the block.
+	In order to evaluate a block in a given environment, we extend that
 	environment by a new frame that contains all names declared locally
-	(outside of nested blocks) in the block body. These names intially refer
-	to the value $\textit{unassigned}$, when the
-	evaluation of the body commences. The evaluation of the local constant
-	and variable declarations then reassigns the names to the left of the
-	<kbd>=</kbd> sign, as if the declaration was
+	(outside of nested blocks) in the block body. These names are initially 
+	bound to a special value $\textit{unassigned}$,
+	and any attempt to access the value of a name that refers to
+	$\textit{unassigned}$ leads to an error.
+	The evaluation of a local constant
+	or variable declaration then reassigns the name to the left of the
+	<kbd>=</kbd> sign to the result of
+	evaluating the expression to the right, as if the declaration were
 	an assignment.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
       </p></div>
     
   
   
   <div class='permalink'>
-<a name='p3' class='permalink'></a><p>
+<a name='p2' class='permalink'></a><p>
     Section&nbsp;<REF NAME="sec:black-box"><a class="superscript" id="3.2.4-sec-link-1.1.8" href="./1.1.8.html">1.1.8</a></REF> introduced the idea that
     
       
@@ -2050,7 +2047,7 @@ Acknowledgments
     
     to compute square roots:
             
-    <div class='snippet' id='javascript_58_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQCY0BYBQuAzAVwDsBjAFwEsB7E0AQwCMBnACgA8BKUAb11CDQAJwCmFIsPodQAPgC8oAAygA-KBkAuUAFoOAblwBffMXLU6oFgEciDMZx78hI8ZOmgAVBsMnCpSlp6BgA3UWEGAHNRTgAaAE8nASExCSlQTlAAalBE0DAMX1MAi3obYQpHPmTBM0DLSJoaABMAfVESGiJIgAs2SKJRFhYklxdU90ZWNhs7BwGhkd0NHgAeZTQlJQBGQxcTFzrS0CoAWwAHYRow-sHh0bHBCfTQ8KiYheHYjXzQT5G9kIDkIjkErNYKq0qBRwrdFlxnI9XGl6I0Wu1Ot0+v8uDUkYJ1P88fjtOUKFCYcI2GdLtcPncRlxAYJgU83OkyRTYdsmcZ8GS2ABWJlAA')">function sqrt(x) {
+    <div class='snippet' id='javascript_58_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQCY0BYBQuAzAVwDsBjAFwEsB7E0AQwCMBnACgA8BKUAb11CDQAJwCmFIsPodQAPgC8oAAygA-KBkAuUAFoOAblwBffMXLU6oFgEciDMZx78hI8ZOmgAVBsMnCpSlp6BgA3UWEGAHNRTgAaAE8nASExCSlQTlAAalBE0DAMX1MAi3obYQpHPmTBM0DLSJoaABMAfVESGiJIgAs2SKJRFhYklxdU90ZWNhs7BwGhkd0NHgAeZTQlJQBGQxcTFzrS0CoAWwAHYRow-sHh0bHBCfTQ8KiYheHYjXzQT5G9kIDkIjkErNYKq0qBRwrdFlxnI9XGl6I0Wu1Ot0+v8uDUkYJ1P88fjtOUKFCYcI2GdLtcPncRlxAYJgU83OkyRTYdsmcZ8GS2ABWJlAA')">function sqrt(x) {
     function good_enough(guess) {
         return abs(square(guess) - x) < 0.001;
     }
@@ -2065,10 +2062,6 @@ Acknowledgments
     return sqrt_iter(1);
 }
 </pre></div></div>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p4' class='permalink'></a><p>
     Now we can use the environment model to see why these internal
     definitions behave as desired.
     
@@ -2111,7 +2104,7 @@ Acknowledgments
   </p></div>
 
   <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
+<a name='p3' class='permalink'></a><p>
     Observe the structure of the environment.
     The name
     <kbd>sqrt</kbd> is a symbol in
@@ -2149,7 +2142,7 @@ Acknowledgments
 	in the body is
       
     
-    <div class='snippet' id='javascript_58_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_58_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function good_enough(guess) {
     return abs(square(guess) - x) < 0.001;
 }</pre></div></div>
@@ -2202,7 +2195,7 @@ function good_enough(guess) {
   </p></div>
 
   <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
+<a name='p4' class='permalink'></a><p>
     After the local
     
       
@@ -2283,7 +2276,7 @@ function good_enough(guess) {
 	Also, E3 and E4 both have E2 as their enclosing environment, because the 
 	<kbd>sqrt_iter</kbd>
 	and 
-	<kbd>good_enough</kbd>
+	<kbd>good_enough</kbd> functions
 	both have E2 as their environment part.
       
     
@@ -2305,7 +2298,7 @@ function good_enough(guess) {
   </p></div>
 
   <div class='permalink'>
-<a name='p7' class='permalink'></a><p>
+<a name='p5' class='permalink'></a><p>
     The environment model thus explains the two key properties that make local
     
       
@@ -2368,7 +2361,23 @@ function good_enough(guess) {
       </LI>
     </UL>
   </p></div>
-
+  
+    
+    
+      <div class='permalink'>
+<a name='p6' class='permalink'></a><p>
+	Equipped with a way to handle declarations within blocks, we can
+	revisit declarations of names at the top level. We explained
+	that the names declared at the top level are added to the program
+	frame. A better explanation is that the whole program is placed in
+	an implicit block, which is evaluated in the global environment.
+	The treatment of blocks described above then specifies that
+	the global environment is extended by a frame that contains the
+	bindings of all names declared in the block. The resulting
+	environment is the environment we call <EM>program environment</EM>.
+      </p></div>
+    
+  
   
     <div class="permalink">
     <a name="ex_3.11" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_3.11">Exercise 3.11 </a></b> 
@@ -2395,7 +2404,7 @@ function good_enough(guess) {
     
     of section&nbsp;<REF NAME="sec:local-state-variables"><a class="superscript" id="3.2.4-sec-link-3.1.1" href="./3.1.1.html">3.1.1</a></REF>:
             
-    <div class='snippet' id='javascript_58_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQCY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0myybSKAFACMmAGybk2ASlABvXKEWhi5anVAB3KhQAWAEwBOTDQKYM+JCjPlLboKgVDCxEsm1AA+ALygzFq3IKdsEi4pKgPqGu7gC0vub8ANxBwbYGbBREBvRRksmpoAC+oGyiAM7uNgVK6ZnZoABEkCRlRAQEVGRUbJbKpHplDfmphSlFYyqUtPR6bAAONGXapgmW1mO2uW4RoFvuANTx-sOKo7aTajNUZXNMFGQ6AgzrBbVZ9AwRXj4NWrqGxgaG2qoAA-JptPojBpgdUAFyML4-WYLJYUIEg1LglGLbSwkEIhoAVRILBINA09HSAEciGwyhQEcx2FweP4hmMzjUMu9QHprrd7jpkqNcLwWhRfDwdszONxePwBABWAAMUmS8oEDRxaIaUgE2DVGp4Wr+UMB+oAbEagA')">function make_account(balance) {
+    <div class='snippet' id='javascript_58_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQCY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0myybSKAFACMmAGybk2ASlABvXKEWhi5anVAB3KhQAWAEwBOTDQKYM+JCjPlLboKgVDCxEsm1AA+ALygzFq3IKdsEi4pKgPqGu7gC0vub8ANxBwbYGbBREBvRRksmpoAC+oGyiAM7uNgVK6ZnZoABEkCRlRAQEVGRUbJbKpHplDfmphSlFYyqUtPR6bAAONGXapgmW1mO2uW4RoFvuANTx-sPBtVk5LnmKY6O2k2ozVGVzTBRkOgIM6wVn9QwRXh8DS0ukMxgaG2qoAA-JptPojBpIdUAFyMAFA2YLJYUCFQ1KwrGLbTIqFohoAVRILBINA09HSAEciGwyhQ0cx2FweP4hjcxr9Hs9Xu9kqNcLwWhRfDwdpzONxePwBABWAAMUmSioEDSJOIaUgE2A1Wp4OpBCPBhoAbCagA')">function make_account(balance) {
     function withdraw(amount) {
         if (balance >= amount) {
             balance = balance - amount;
@@ -2406,6 +2415,7 @@ function good_enough(guess) {
     }
     function deposit(amount) {
         balance = balance + amount;
+        return balance;  
     }
     function dispatch(m) {
         return m === "withdraw"
@@ -2419,13 +2429,13 @@ function good_enough(guess) {
 </pre></div></div>
     Show the environment structure generated by the sequence of
     interactions
-    <div class='snippet' id='javascript_58_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQCY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0myybSKAFACMmAGybk2ASlABvXKEWhi5anVAB3KhQAWAEwBOTDQKYM+JCjPlLboKgVDCxEsm1AA+ALygzFq3IKdsEi4pKgPqGu7gC0vub8ANxBwbYGbBREBvRRksmpoAC+oGyiAM7uNgVK6ZnZoABEkCRlRAQEVGRUbJbKpHplDfmphSlFYyqUtPR6bAAONGXapgmW1mO2uW4RoFvuANTx-sOKo7aTajNUZXNMFGQ6AgzrBbVZ9AwRXj4NWrqGxgaG2qoAA-JptPojBpgdUAFyML4-WYLJYUIEg1LglGLbSwkEIhoAVRILBINA09HSAEciGwyhQEcx2FweP4hmMzjUMu9QHprrd7jpkqNcLwWhRfDwdszONxePwBABWAAMUmS8oEDRxaIaUgE2DVGp4Wr+UMB+oAbEagA')">const acc = make_account(50);
+    <div class='snippet' id='javascript_58_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQCY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0myybSKAFACMmAGybk2ASlABvXKEWhi5anVAB3KhQAWAEwBOTDQKYM+JCjPlLboKgVDCxEsm1AA+ALygzFq3IKdsEi4pKgPqGu7gC0vub8ANxBwbYGbBREBvRRksmpoAC+oGyiAM7uNgVK6ZnZoABEkCRlRAQEVGRUbJbKpHplDfmphSlFYyqUtPR6bAAONGXapgmW1mO2uW4RoFvuANTx-sPBtVk5LnmKY6O2k2ozVGVzTBRkOgIM6wVn9QwRXh8DS0ukMxgaG2qoAA-JptPojBpIdUAFyMAFA2YLJYUCFQ1KwrGLbTIqFohoAVRILBINA09HSAEciGwyhQ0cx2FweP4hjcxr9Hs9Xu9kqNcLwWhRfDwdpzONxePwBABWAAMUmSioEDSJOIaUgE2A1Wp4OpBCPBhoAbCagA')">const acc = make_account(50);
 acc("deposit")(40);
 acc("withdraw")(60);
 </pre></div></div>
     Where is the local state for <kbd>acc</kbd> kept?
     Suppose we define another account
-    <div class='snippet' id='javascript_58_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_58_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 const acc2 = make_account(100);</pre></div></div>
     How are the local states for the two accounts kept distinct?  Which parts
     of the environment structure are shared between

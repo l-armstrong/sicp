@@ -2000,10 +2000,6 @@ Acknowledgments
         </UL>
       
     
-  </p></div>
-
-  <div class='permalink'>
-<a name='p2' class='permalink'></a><p>
     The environment model of evaluation replaces the substitution model in
     specifying what it means to apply a compound
     
@@ -2014,7 +2010,7 @@ Acknowledgments
   </p></div>
 
   <div class='permalink'>
-<a name='p3' class='permalink'></a><p>
+<a name='p2' class='permalink'></a><p>
     In the environment model of evaluation, a
     
       
@@ -2062,7 +2058,14 @@ Acknowledgments
     return x * x;
 }
 </pre></div></div>
-    evaluated in the global environment.  The
+    evaluated in the
+    
+      
+      
+	program
+      
+    
+    environment.  The
     
       
       function declaration
@@ -2090,11 +2093,18 @@ Acknowledgments
       
     
     and binds <kbd>square</kbd> to the resulting value, all
-    in the global environment.
+    in the
+    
+      
+      
+	program
+      
+    
+    environment.
   </p></div>
 
   <div class='permalink'>
-<a name='p4' class='permalink'></a><p>
+<a name='p3' class='permalink'></a><p>
     
       
       
@@ -2109,14 +2119,8 @@ Acknowledgments
     
       
       
-	In general, <kbd>const</kbd>,
-	<kbd>function</kbd> and
-	<kbd>let</kbd>
-	create declarations by	adding bindings to frames.
-	For declarations at the top level of the program, outside of any block,
-	we introduce a <EM>program environment</EM>,
-	consisting of a single frame—the <EM>program
-	frame</EM>—directly inside the global environment. To reduce
+	The global environment encloses the program environment.
+	To reduce
 	clutter, after this figure, we will not	display	the global environment
 	(as it is always the same), but we are reminded of its existence by the
 	pointer from the program environment upward. 
@@ -2161,7 +2165,7 @@ Acknowledgments
       
       function.
     
-    A new binding, which associates the
+    A&nbsp;new binding, which associates the
     
       
       function
@@ -2196,20 +2200,25 @@ Acknowledgments
     
     
       <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
+<a name='p4' class='permalink'></a><p>
+	In general, <kbd>const</kbd>,
+	<kbd>function</kbd> and
+	<kbd>let</kbd>
+	create declarations by	adding bindings to frames.
 	We consider function declarations as equivalent to constant
-	declarations,<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
-	and assignment is forbidden on constants. Our environment model
-	therefore needs to distinguish symbols that refer to constants
+	declarations;<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
+	observe the equal signs after the colons in
+	figure&nbsp;<REF NAME="fig:evaluating-square"><a class="superscript" id="3.2.1-fig-link-3.2" href="./3.2.1.html#fig_3.2">3.2</a></REF>.
+	Assignment is forbidden on constants, so our environment model
+	needs to distinguish symbols that refer to constants
 	from symbols that refer to variables. We shall indicate that
 	a symbol is a constant by writing an equal sign after the colon
-	that follows the symbol. Observe the equal signs after the colons in
-	figure&nbsp;<REF NAME="fig:evaluating-square"><a class="superscript" id="3.2.1-fig-link-3.2" href="./3.2.1.html#fig_3.2">3.2</a></REF>.
+	that follows the symbol. 
       </p></div>
     
   
   <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
+<a name='p5' class='permalink'></a><p>
     Now that we have seen how
     
       
@@ -2240,7 +2249,7 @@ Acknowledgments
   </p></div>
 
   <div class='permalink'>
-<a name='p7' class='permalink'></a><p>
+<a name='p6' class='permalink'></a><p>
     To show how this rule is followed,
     
       
@@ -2252,7 +2261,7 @@ Acknowledgments
     expression
     
       
-      <kbd>square(5);</kbd>
+      <kbd>square(5)</kbd>
       
     
     in the
@@ -2346,7 +2355,7 @@ Acknowledgments
   </p></div>
 
   <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
+<a name='p7' class='permalink'></a><p>
     The environment model of
     
       
@@ -2380,6 +2389,9 @@ Acknowledgments
 	object being applied.
 	
 	
+	The result of the application is the result of evaluating
+	the return expression of the first return statement encountered
+	while evaluating the function body.
       </LI>
       <LI>
 	A
@@ -2413,7 +2425,7 @@ Acknowledgments
   </p></div>
 
   <div class='permalink'>
-<a name='p9' class='permalink'></a><p>
+<a name='p8' class='permalink'></a><p>
     
     
       
@@ -2430,28 +2442,37 @@ Acknowledgments
     
       
       
-	Evaluating the statement $\textit{name}$
+	Finally, we specify the behavior of assignment, the operation that
+	forced us to introduce the environment model in the first place.
+	Evaluating the statement
+	$\textit{name}$
 	<kbd>=</kbd>
 	$\textit{value}$
-	<kbd>;</kbd>
-	in some environment locates the binding of the name in the environment.
-	For this, one finds the first frame in the environment that contains a
-	binding for the name. If the name is unbound in the environment, then
-	the assignment signals a <QUOTE>variable undefined</QUOTE> error.
+	<kbd>;</kbd>	
+	in some environment
+	locates the binding of the name in the environment.
+	That is, one finds the first frame in the environment that contains a
+	binding for the variable name.
+	If the binding is a variable binding—indicated in the frame with
+	a single
+	colon after the name—that binding is changed to reflect the new
+	value of the variable. 
+	If the name is unbound in the environment, then the
+	assignment signals a <kbd>variable undefined</kbd>
+	error.
 	Otherwise, if the binding in the frame is a constant
-	binding—indicated in the frame with an equal sign after colon
-	that follows the name—the assignment signals an
-	<QUOTE>assignment to constant</QUOTE> error.
-	At last, if the binding in the frame is a
-	variable binding—indicated in the frame with a single colon
-	after the name—that binding is changed to reflect the new value
-	of the variable.
+	binding—indicated
+	in the frame with an equal sign after colon that follows the
+	name—the assignment signals an
+	<kbd>assignment to constant</kbd> error.
+	If the name is unbound in the environment, then
+	the assignment signals a <QUOTE>variable undeclared</QUOTE> error.
       
     
   </p></div>
 
   <div class='permalink'>
-<a name='p10' class='permalink'></a><p>
+<a name='p9' class='permalink'></a><p>
     These evaluation rules, though considerably more complex than the
     substitution model, are still reasonably straightforward.  Moreover,
     the evaluation model, though abstract, provides a correct description
@@ -2474,14 +2495,10 @@ Acknowledgments
 		subexpressions in a combination
 		
 		
-		are evaluated.  Thus, to be precise, we should specify an
-		evaluation order in step 1 (e.g., left to right or right to
-		left).  However, this order is considered to be an
-		implementation detail in some languages, such as Scheme.
-		In Scheme, one should never write programs that
-		depend on some particular order. For instance, a sophisticated
-		Scheme compiler might optimize a program by varying the order
-		in which subexpressions are evaluated.
+		are evaluated. To eleminate such ambiguities, JavaScript
+		specifies left-to-right evaluation of the
+		subexpressions of combinations and of the argument expressions
+		of applications.
     </FOOTNOTE></div>
 
     
@@ -2500,6 +2517,7 @@ Acknowledgments
     <FOOTNOTE>
     We mentioned in
 	footnote&nbsp;<REF NAME="foot:function-decl-vs-lambda"><a class="superscript" id="3.2.1-foot-link-2" href="./1.3.2.html#footnote-2">2</a></REF>
+	in chapter 1
 	that the full JavaScript language allows assignment to
 	names that are declared with function declarations.
     </FOOTNOTE></div>

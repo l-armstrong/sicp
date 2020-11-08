@@ -2061,7 +2061,7 @@ Acknowledgments
     Until now, all our
     
       <span style="color:green">procedures</span>
-      <span style="color:blue">functions</span>
+      <span style="color:blue">JavaScript functions</span>
     
     could be viewed as specifications for computing mathematical functions.
     A call to a
@@ -2101,11 +2101,11 @@ Acknowledgments
       </span>    </td>
           <td></td>
           <td><span style="color:blue">
-	So far, all our names (declared as parameters or as constants using
-	<kbd>const</kbd> or
-	<kbd>function</kbd>) were <EM>immutable</EM>;
-	once a function is applied or a declaration is evaluated, the declared
-	name did not change its value. To implement functions like
+	So far, all our names were <EM>immutable</EM>. 
+	When a function was applied, the values that its parameters
+	referred to never changed, and once a declaration was evaluated,
+	the declared name never changed its value.
+        To implement functions like
 	<kbd>withdraw</kbd>, we introduce <EM>variable
 	declarations</EM> using the keyword
 	<kbd>let</kbd>, in addition to constant
@@ -2196,10 +2196,6 @@ balance = balance - amount;</pre></div></div></td></tr></table>
         The syntax of such <EM>assignments</EM> is
     <kbd class='snippet'>$name$ = $new$-$value$;</kbd>
       </span></td></tr></table>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
     Here
     
       <span style="color:green">
@@ -2209,12 +2205,15 @@ balance = balance - amount;</pre></div></div></td></tr></table>
 	$\textit{name}$
       </span>
     
-    is a symbol and
+    is a symbol 
     
       <span style="color:green">
+	and	
 	$\langle \textit{new-value} \rangle$
       </span>
       <span style="color:blue">
+	declared with <kbd>let</kbd> or
+	a parameter and
 	$\textit{new-value}$
       </span>
     
@@ -2249,7 +2248,7 @@ balance = balance - amount;</pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
+<a name='p5' class='permalink'></a><p>
     
     <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
@@ -2307,7 +2306,7 @@ balance = balance - amount;</pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
-<a name='p7' class='permalink'></a><p>
+<a name='p6' class='permalink'></a><p>
     Although <kbd>withdraw</kbd> works as desired, the
     variable <kbd>balance</kbd> presents a problem.  As
     specified above, <kbd>balance</kbd> is a name defined
@@ -2344,7 +2343,7 @@ balance = balance - amount;</pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
+<a name='p7' class='permalink'></a><p>
     We can make <kbd>balance</kbd> internal to
     <kbd>withdraw</kbd> by rewriting the definition as
     follows:
@@ -2374,10 +2373,6 @@ balance = balance - amount;</pre></div></div></td></tr></table>
 }
 const new_withdraw = make_withdraw_100();
 </pre></div></div></td></tr></table>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p9' class='permalink'></a><p>
     <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
         <tr>
@@ -2414,14 +2409,14 @@ const new_withdraw = make_withdraw_100();
 	function—returned as the result of evaluating the body of the
 	<kbd>make_withdraw_100</kbd>
 	function—behaves in precisely the same way as
-	<kbd>withdraw</kbd> but whose variable
+	<kbd>withdraw</kbd>, but its variable
 	<kbd>balance</kbd> is not accessible by any
 	other function.<a class='superscript' id='footnote-link-7' href='#footnote-7'style="color:blue">[7]</a>
       </span></td></tr></table>
   </p></div>
 
   <div class='permalink'>
-<a name='p10' class='permalink'></a><p>
+<a name='p8' class='permalink'></a><p>
     Combining 
     
       <span style="color:green">
@@ -2513,12 +2508,11 @@ const new_withdraw = make_withdraw_100();
   </p></div>
 
   <div class='permalink'>
-<a name='p11' class='permalink'></a><p>
+<a name='p9' class='permalink'></a><p>
     
       <span style="color:blue">
-	As variables we shall consider not only names declared with
-	<kbd>let</kbd>, but also parameters
-	of functions.
+	Parameters of functions as well as names declared with
+	<kbd>let</kbd> are variables.
       </span>
     
     The following
@@ -2539,7 +2533,7 @@ const new_withdraw = make_withdraw_100();
       </span>
     
     specifies the initial amount of money in the
-    account.<span style="color:green"><a class='superscript' id='footnote-link-8' href='#footnote-8'style="color:green">[8]</a></span>
+    account.<a class='superscript' id='footnote-link-8' href='#footnote-8'>[8]</a>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -2562,10 +2556,6 @@ const new_withdraw = make_withdraw_100();
     };
 }
 </pre></div></div></td></tr></table>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p12' class='permalink'></a><p>
     
       <span style="color:green"><kbd>Make-withdraw</kbd></span>
       <span style="color:blue">
@@ -2624,10 +2614,6 @@ const W2 = make_withdraw(100);
             <td><div class='snippet' id='javascript_51_15_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQHcKyALAEwBODDgAoARgwA2DUiwCUoAN7ZQq0AJZkCA2gzpViZUAF4AfEpVqrFPKHFSZJFqFPHQeg0TILlVv2olpWRNQQMdnAFp3fUMAbkt-Kw0tHVCHWXjE0ABfUBZJAGdnXyy1ZO1aACJIIgKCPDwKEgoWL1BCIj4CyszE7ISc+P7sEhoCowB1DBDGVk5ufiFRDAAGFbl40drJgCYZ5nYuXkFhEVX1+OwpkQBWC9wJnZEAdnurp4AWN+uvjaA')">W1(40);
 </pre><pre class='prettyprintoutput'>
 10</pre></div></div></td></tr></table>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p13' class='permalink'></a><p>
     Observe that <kbd>W1</kbd> and 
     <kbd>W2</kbd> are completely independent objects, each
     with its own local state variable <kbd>balance</kbd>.
@@ -2635,7 +2621,7 @@ const W2 = make_withdraw(100);
   </p></div>
 
   <div class='permalink'>
-<a name='p14' class='permalink'></a><p>
+<a name='p10' class='permalink'></a><p>
     We can also create objects that handle deposits as well as
     withdrawals, and thus we can represent simple bank accounts.  Here is
     a
@@ -2692,7 +2678,7 @@ const W2 = make_withdraw(100);
   </p></div>
 
   <div class='permalink'>
-<a name='p15' class='permalink'></a><p>
+<a name='p11' class='permalink'></a><p>
     Each call to <kbd>make_account</kbd> sets up an
     environment with a local state variable <kbd>balance</kbd>.
     Within this environment, <kbd>make_account</kbd> defines
@@ -2727,7 +2713,7 @@ const W2 = make_withdraw(100);
   </p></div>
 
   <div class='permalink'>
-<a name='p16' class='permalink'></a><p>
+<a name='p12' class='permalink'></a><p>
     
       <span style="color:green">
 	<kbd>Make-account</kbd>
@@ -2786,10 +2772,6 @@ const W2 = make_withdraw(100);
             <td><div class='snippet' id='javascript_51_21_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQZJKuLIAoARgwA2DUiwCUoAN7ZQ80IVKUaoAO4UyACwAmAJwZq+DOjyJkpshddAU8oQSLEkWoAHwBeUCbMWZcm0ChUXFQL2DnVwBab1NeAG4AwOs9FjICPVoI8UTk0ABfUBZhAGdXKzyFVPTM0AAiSCISgjw8ChIKFnNFYh0Sutzk-KSCkaVyalodFgAHKhLNYzjzSxHrbJcw0A3XAGpY30HA6oyspxyR4etxlSmKEpmGMhItPjpVvJPaujCPLzqNNp9IY6mtkgB+dSaXQGNRgwIALnov3+0zmCzIoMqNkhaPmmnhySRLD0eioejeABp6gBVIhMIhUNS0VIARwILBKZFAURijFYHC4vjqEiOoxSaVOoB090ezy0iWG2G4TW5nBIW357HVvj4GAADPrRbh1XwAdDgWoRXwAKxGxLYU3moGw60ANntJq4ZrxGOtABZPY7vc6YSCJHwPaKgA')">acc("withdraw")(60);
 </pre><pre class='prettyprintoutput'>
 30</pre></div></div></td></tr></table>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p17' class='permalink'></a><p>
     Each call to <kbd>acc</kbd> returns the locally defined
     <kbd>deposit</kbd> or <kbd>withdraw</kbd>
     
@@ -2947,7 +2929,7 @@ const W2 = make_withdraw(100);
     
       <span style="color:green">special symbol <kbd>how-many-calls</kbd>,
       </span>
-      <span style="color:blue">string <kbd>"how_many_calls"</kbd>,
+      <span style="color:blue">string <kbd>"how many calls"</kbd>,
       </span>
     
     then <kbd>mf</kbd> returns the value of the counter.  If
@@ -2991,7 +2973,7 @@ const W2 = make_withdraw(100);
             <td><div class='snippet' id='javascript_51_29_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (s 'how-many-calls?)</pre><pre class='prettyprintoutput'>
 1</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_51_29_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChslALYCGA1gKYD6BA9gHYCWALtQE5kAmoAZgK60DGjenVDNQAIzKgA7iyaMytCQE9QAZ0Y92ixmuz86G9aAC8hUpRoNmbdgApijABYU1ARxaMAlAG5cauwwABiDffzsAIidqaSoiWmUKfiIAGxS1CN8gA')">s("how_many_calls");
+            <td><div class='snippet' id='javascript_51_29_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChslALYCGA1gKYD6BA9gHYCWALtQE5kAmoAZgK60DGjenVDNQAIzKgA7iyaMytCQE9QAZ0Y92ixmuz86G9aAC8hUpRoNmbdgApijABYU1ARxaMAlAG5cauwwABiDffzsAIidqaXNaVX4iABsktQjfIA')">s("how many calls");
 </pre><pre class='prettyprintoutput'>
 1</pre></div></div></td></tr></table>
     
@@ -3000,16 +2982,16 @@ const W2 = make_withdraw(100);
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#solution_51_2_div" data-toggle="collapse">Solution</button></div>
       <div class="solution_content collapse" id="solution_51_2_div"><SOLUTION>
     
-      <div class='snippet' id='javascript_51_30_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsGMB7AOwGcAXUE0AXlAFsBDAawFMB9O4gSzIICcWAEwAUjMgAs2JAI58yASgDc2EsIwAGdUuyCuJAA4AbBgE9hqgETiCAdw4MiJtngaHDJC-O2qArNt0GxmaW1naMjs6u7p5KQA')">const s = make_monitored(math_sqrt);
+      <div class='snippet' id='javascript_51_30_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsGMB7AOwGcAXUE0AXlAFsBDAawFMB9O4gSzIICcWAEwAUjMgAs2JAI58yASgDc2EsIwAGdUuyCuJAA4AbBgE9hqgETiCAd3oMiJ0HgaHDJC-O2qArNt0GxmaW1naMjs6u7p5KQA')">const s = make_monitored(math_sqrt);
 s(100);
-display(s("how_many_calls"));
+display(s("how many calls"));
 s(5);
-display(s("how_many_calls"));
+display(s("how many calls"));
 </pre></div></div>
-      <div class='snippet' id='javascript_51_31_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfTporKoCcWAJgAo8ASlABvbKBmgANizKgSVYmRa9QAXlAAGANygQFItwoM5FAF6DQPPdNmFSlGvTxCSdAeKmz-oBR4oJ7e2lo6AEQAFlQA7hwMRACebCQWcgDOkb6OAQH8ZAS8tCpqGvp5AQC+oCxZLIHBoQLhUfyZisqqRGQ5klX5MmW9Gtp6lUMFisWlPeq8k0O19Z0DU-4jC+NbYwDUoBhLG6CFs6AeXj7HNVXVVWcl7pX32CpEmUqZ44ysHFw8fjCRhkaJsTIAR14ZFElUyQgwul0sOwAgomQADnIGMkhPCYvFEik0hlsqIUfCAKwotGY7G4-GxBKMYnpORZHKwoA')">function make_monitored(f) {
+      <div class='snippet' id='javascript_51_31_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfTporKoCcWAJgAo8ASlABvbKBmgANizKgSVYmRa9QAXlAAGANygQFItwoM5FAF6DQPPdNmFSlGvTxCSdAeKmz-oBR4oJ7e2lo6AEQAFlQA7vQMRACeyhZyAM6Rvo4BAfxkBLy0Kmoa+rkBAL6gLJksgcGhAuFR-BmKyqpEZNmSlXkypT0a2noVg-mKRSXd6rwTgzV1Hf2T-sPzY5ujANSgGIvroAUzoB5ePkfVlVWVp8XuFXfYKkQZShljjKwcXDz8YSMMjRNgZACOvDIogqGSEGF0uhh2AEFAyAAc5AxkkI4TF4okUmk5Jlssi4QBWZGojFYnF42IJRhEkjpLKiGFAA')">function make_monitored(f) {
     let counter = 0; //initialized to 0
     function mf(cmd) {
-        if (cmd === "how_many_calls") {
+        if (cmd === "how many calls") {
             return counter;
         } else if (cmd === "reset count") {
             counter = 0;
@@ -3300,7 +3282,8 @@ function make_account(balance, p) {
         
         sequences implicitly in our programs, because in
 	JavaScript the body block
-	of a function can contain a sequence of statements, not
+	of a function can contain a sequence of function declarations
+	followed by a return statement, not
 	just a single return statement,
 	as discussed in
 	section&nbsp;<REF NAME="sec:block-structure"><a class="superscript" id="3.1.1-sec-link-1.1.8" href="./1.1.8.html">1.1.8</a></REF>.
@@ -3355,19 +3338,26 @@ function make_account(balance, p) {
     </FOOTNOTE></span></div>
     
     
-    <div class='footnote'><span style="color:green">
-      <a class='footnote-number' id='footnote-8' href='#footnote-link-8' style="color:green">[8] </a>
+    <div class='footnote'>
+      <a class='footnote-number' id='footnote-8' href='#footnote-link-8' >[8] </a>
     <FOOTNOTE>
     
     
     In contrast with
-    <kbd>new-withdraw</kbd>
+    
+      <span style="color:green">
+	<kbd>new-withdraw</kbd>
+      </span>
+      <span style="color:blue">
+	<kbd>make_withdraw_100</kbd>
+      </span>
+    
     above, we do not have to use
     <kbd>let</kbd>
     to make <kbd>balance</kbd> a local variable, since
     formal parameters are already
     local.
-    </FOOTNOTE></span></div>
+    </FOOTNOTE></div>
     
     
 </div></div>

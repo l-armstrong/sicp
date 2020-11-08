@@ -2148,10 +2148,6 @@ Acknowledgments
 (define W1 (make-withdraw 100))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_57_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 const W1 = make_withdraw(100);</pre></div></div></td></tr></table> 
-  </p></div>
-
-  <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
     We begin, as usual, by setting up an environment E1 in which the
     <span style="color:green">formal</span> parameter
     <kbd>balance</kbd> is bound to the argument 100.  Within
@@ -2164,10 +2160,11 @@ const W1 = make_withdraw(100);</pre></div></div></td></tr></table>
     
     namely the
     
-      <span style="color:green"><kbd>lambda</kbd></span>
-      <span style="color:blue">lambda</span>
+      <span style="color:green"><kbd>lambda</kbd> expression. This</span>
+      <span style="color:blue">return statement whose return expression is
+      a lambda expression. The evaluation of this lambda expression</span>
     
-    expression.  This constructs a new
+    constructs a new
     
       <span style="color:green">procedure</span>
       <span style="color:blue">function</span>
@@ -2258,7 +2255,7 @@ const W1 = make_withdraw(100);</pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
+<a name='p5' class='permalink'></a><p>
     Now we can analyze what happens when <kbd>W1</kbd>
     is applied to an argument:
     <table width="100%">
@@ -2271,10 +2268,6 @@ const W1 = make_withdraw(100);</pre></div></div></td></tr></table>
             <td><div class='snippet' id='javascript_57_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 W1(50);</pre><pre class='prettyprintoutput'>
 50</pre></div></div></td></tr></table>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p7' class='permalink'></a><p>
     We begin by constructing a frame in which
     <kbd>amount</kbd>, the
     <span style="color:green">formal</span> parameter of
@@ -2311,10 +2304,6 @@ if (balance >= amount) {
 } else {
     return "insufficient funds";
 }</pre></div></div></td></tr></table>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
     The resulting environment structure is shown in
     
       <span style="color:green">
@@ -2370,7 +2359,7 @@ if (balance >= amount) {
   </p></div>
 
   <div class='permalink'>
-<a name='p9' class='permalink'></a><p>
+<a name='p6' class='permalink'></a><p>
     When the
     
       <span style="color:green"><kbd>set!</kbd></span>
@@ -2447,7 +2436,7 @@ if (balance >= amount) {
   </p></div>
 
   <div class='permalink'>
-<a name='p10' class='permalink'></a><p>
+<a name='p7' class='permalink'></a><p>
     Observe what happens when we create a second <QUOTE>withdraw</QUOTE> object
     by making another call to
     
@@ -2461,12 +2450,8 @@ if (balance >= amount) {
           <tr>
             <td><div class='snippet' id='javascript_57_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define W2 (make-withdraw 100))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_57_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQCY0oFA4GYCuAdgMYAuAlgPbGgC2AhgNYCmA+gO6XkAWAJgCdGnABQAjRgBtGZVgEpQAbxyg1oQa3KFBdRvWolyoALwA+ZavXXK+UBOmzSrUGZOh9h4uUUrr-9UkZOVNQIKcXAFoPAyMAbisA601tXTDHOQSk0ABfUFYpAGcXP2z1FJ06ACJKYkLCfHxKUkpWb1AiYn5CqqyknMTchIGcUlpC4wB1AEZQpjYuHgFhMWmABjX5BJnRAFZNhLG6qYw5lg5uPiERUXWDnEmMUQAOA6A')">
+            <td><div class='snippet' id='javascript_57_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQCY0oFA4GYCuAdgMYAuAlgPbGgC2AhgNYCmA+gO6XkAWAJgCdGnABQAjRgBtGZVgEpQAbxyg1oQa3KFBdRvWolyoALwA+ZavXXK+UBOmzSrUGZOh9h4uUUrr-9UkZOVNQIKcXAFoPAyMAbisA601tXTDHOQSk0ABfUFYpAGcXP2z1FJ06ACJKYkLCfHxKUkpWb1AiYn5CqqyknMTchIGcUlpC4wB1AEZQpjYuHgFhMWmABjX5BJnRAFZNhLG6qYw5lg5uPiERUXWDnEmMUQAOA6A')">const W2 = make_withdraw(100);
 </pre></div></div></td></tr></table>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p11' class='permalink'></a><p>
     This produces the environment structure of
     
       <span style="color:green">
@@ -2533,7 +2518,7 @@ if (balance >= amount) {
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./3.2.3.html#fig_3.20">Figure 3.20 </a></b>
 	    Using
-	    <kbd>const W2 = make_withdraw(100)</kbd>
+	    <kbd>const W2 = make_withdraw(100);</kbd>
 	    to create a second object.
 	  </div>
     </FIGURE>
@@ -2628,7 +2613,7 @@ if (balance >= amount) {
       </span>    </td>
           <td></td>
           <td><span style="color:blue">
-	The outer lambda expression is immediately invoked, after it
+	The outer lambda expression is invoked immediately after it
 	is evaluated. Its only purpose it to create a local variable
 	<kbd>balance</kbd>, and
 	initialize it to <kbd>initial_amount</kbd>.

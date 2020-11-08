@@ -2092,10 +2092,6 @@ Acknowledgments
     to an argument:
     <div class='snippet' id='javascript_57_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 const W1 = make_withdraw(100);</pre></div></div> 
-  </p></div>
-
-  <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
     We begin, as usual, by setting up an environment E1 in which the
      parameter
     <kbd>balance</kbd> is bound to the argument 100.  Within
@@ -2109,9 +2105,10 @@ const W1 = make_withdraw(100);</pre></div></div>
     namely the
     
       
-      lambda
+      return statement whose return expression is
+      a lambda expression. The evaluation of this lambda expression
     
-    expression.  This constructs a new
+    constructs a new
     
       
       function
@@ -2183,16 +2180,12 @@ const W1 = make_withdraw(100);</pre></div></div>
   </p></div>
 
   <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
+<a name='p5' class='permalink'></a><p>
     Now we can analyze what happens when <kbd>W1</kbd>
     is applied to an argument:
     <div class='snippet' id='javascript_57_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 W1(50);</pre><pre class='prettyprintoutput'>
 50</pre></div></div>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p7' class='permalink'></a><p>
     We begin by constructing a frame in which
     <kbd>amount</kbd>, the
      parameter of
@@ -2220,10 +2213,6 @@ if (balance >= amount) {
 } else {
     return "insufficient funds";
 }</pre></div></div>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
     The resulting environment structure is shown in
     
       
@@ -2260,7 +2249,7 @@ if (balance >= amount) {
   </p></div>
 
   <div class='permalink'>
-<a name='p9' class='permalink'></a><p>
+<a name='p6' class='permalink'></a><p>
     When the
     
       
@@ -2319,7 +2308,7 @@ if (balance >= amount) {
   </p></div>
 
   <div class='permalink'>
-<a name='p10' class='permalink'></a><p>
+<a name='p7' class='permalink'></a><p>
     Observe what happens when we create a second <QUOTE>withdraw</QUOTE> object
     by making another call to
     
@@ -2327,12 +2316,8 @@ if (balance >= amount) {
       <kbd>make_withdraw</kbd>:
       
     
-    <div class='snippet' id='javascript_57_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQCY0oFA4GYCuAdgMYAuAlgPbGgC2AhgNYCmA+gO6XkAWAJgCdGnABQAjRgBtGZVgEpQAbxyg1oQa3KFBdRvWolyoALwA+ZavXXK+UBOmzSrUGZOh9h4uUUrr-9UkZOVNQIKcXAFoPAyMAbisA601tXTDHOQSk0ABfUFYpAGcXP2z1FJ06ACJKYkLCfHxKUkpWb1AiYn5CqqyknMTchIGcUlpC4wB1AEZQpjYuHgFhMWmABjX5BJnRAFZNhLG6qYw5lg5uPiERUXWDnEmMUQAOA6A')">
+    <div class='snippet' id='javascript_57_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQCY0oFA4GYCuAdgMYAuAlgPbGgC2AhgNYCmA+gO6XkAWAJgCdGnABQAjRgBtGZVgEpQAbxyg1oQa3KFBdRvWolyoALwA+ZavXXK+UBOmzSrUGZOh9h4uUUrr-9UkZOVNQIKcXAFoPAyMAbisA601tXTDHOQSk0ABfUFYpAGcXP2z1FJ06ACJKYkLCfHxKUkpWb1AiYn5CqqyknMTchIGcUlpC4wB1AEZQpjYuHgFhMWmABjX5BJnRAFZNhLG6qYw5lg5uPiERUXWDnEmMUQAOA6A')">const W2 = make_withdraw(100);
 </pre></div></div>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p11' class='permalink'></a><p>
     This produces the environment structure of
     
       
@@ -2379,7 +2364,7 @@ if (balance >= amount) {
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./3.2.3.html#fig_3.10">Figure 3.10 </a></b>
 	    Using
-	    <kbd>const W2 = make_withdraw(100)</kbd>
+	    <kbd>const W2 = make_withdraw(100);</kbd>
 	    to create a second object.
 	  </div>
     </FIGURE>
@@ -2441,7 +2426,7 @@ if (balance >= amount) {
     
       
       
-	The outer lambda expression is immediately invoked, after it
+	The outer lambda expression is invoked immediately after it
 	is evaluated. Its only purpose it to create a local variable
 	<kbd>balance</kbd>, and
 	initialize it to <kbd>initial_amount</kbd>.
