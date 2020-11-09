@@ -2156,7 +2156,7 @@ Acknowledgments
       
     
     The structure <kbd>x</kbd> has been modified and would
-    now be printed as
+    now be equivalent to
     
       
       
@@ -2404,7 +2404,7 @@ Acknowledgments
     with an empty&nbsp;<kbd>x</kbd>.)
     
     
-    <div class='snippet' id='javascript_60_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAbAQwGcyB9ABwYoCcAKADwCUoAN7ZQE0NwCmZAt1oUmrIgTp1eZLhqGDxkgwH5Q-fQYkAueszacem7QMGCA3NgC+uQqUo1QDdnZpIgATVgBbAi0yKj5+ABpQAE9hMQMmWVYtCg1GFg4uOMFElLcDGTkFEzd3IA')">function append_mutator(x, y) {
+    <div class='snippet' id='javascript_60_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAbAQwGcyB9ABwYoCcAKADwCUoAN7ZQE0NwCmZAt1oUmrIgTp1eZLhqGDxkg5ID8ofvsMGAXPWZtOPTdoGDBAbmwBfXIVKUaoBnZ2aSIAE1YAWwItMio+fgAaUABPYTEDJllWLQoNRhYOLnjBJNT3Axk5BVN3DyA')">function append_mutator(x, y) {
     set_tail(last_pair(x), y);
     return x;
 }
@@ -2422,36 +2422,35 @@ Acknowledgments
     that returns the last pair in its argument:
     
             
-    <div class='snippet' id='javascript_60_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAbAQwGcyB9ABwYoCcAKADwCUoAN7ZQE0NwCmZAt1oUmrIgTp1eZLhqGDxkgwH5Q-fQYkAueszacem7QMGCA3NgC+uRiw5c+dJTJeTAAaACYQlBCAFhCAVmcXIA')">function last_pair(x) {
+    <div class='snippet' id='javascript_60_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAbAQwGcyB9ABwYoCcAKADwCUoAN7ZQE0NwCmZAt1oUmrIgTp1eZLhqGDxkg5ID8ofvsMGAXPWZtOPTdoGDBAbmwBfXIxYcufOiUyXkwAGgAmUJRQgBZQgFYXVyA')">function last_pair(x) {
     return is_null(tail(x))
-        ? x
-        : last_pair(tail(x));
+           ? x
+           : last_pair(tail(x));
 }
 </pre></div></div>
     Consider the interaction
-    <div class='snippet' id='javascript_60_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQBDABwYFMiATACgA8AaUATwCUoAN7ZQE0ACdmZAlNoUAzgH0iBADYbug8ZP2SA-AL0H9ALlAM6FKRwAWzOpy6C+jFuw5kb213yFBAG5sAF9cQlJKGlANOiUyFWtbHVFTaVl5RVV1LW9fHV0zCWMudItY+MTkux8KP0FgsIjicmpaD1Y2FQBbAh8yKjteAWExfSVZFTrtOISkm2G3UZD9GTkFUC4Q8OwSGgSt0ABeWOUyDgAiOku+S4AjS+CgA')">const x = list("a", "b");
+    <div class='snippet' id='javascript_60_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQBDABwYFMiATACgA8AaUATwCUoAN7ZQE0ACdmZAlNoUAzgH0iBADYbug8ZP2SA-AL0H9ALlAM6FKRwAWzOpy6C+jFuw5kb213yFBAG5sAF9cQlJKGlANOiUyFWtbHVFTaVl5RVV1LW9fHV0zA2MudOLLOISkmzsfCj9BYLCI4nJqWg9WNhUAWwIfMio7XgFhMX0lWRV67SrE5JG3MZD9GTkFUC4Q8OwSGgSt0ABeWOUyDgAiOku+S4AjS+CgA')">const x = list("a", "b");
 </pre></div></div>
-    <div class='snippet' id='javascript_60_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQBDABwYFMiATACgA8AaUATwCUoAN7ZQE0ACdmZAlNoUAzgH0iBADYbug8ZP2SA-AL0H9ALlAM6FKRwAWzOpy6C+jFuw5kb213yFBAG5sAF9cQlJKGlANOiUyFWtbHVFTaVl5RVV1LW9fHV0zCWMudItY+MTkux8KP0FgsIjicmpaD1Y2FQBbAh8yKjteAWExfSVZFTrtOISkm2G3UZD9GTkFUC4Q8OwSGgSt0ABeWOUyDgAiOku+S4AjS6a9g7IBE7OEq5Jb0Eu2J5BIA')">const y = list("c", "d");
+    <div class='snippet' id='javascript_60_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQBDABwYFMiATACgA8AaUATwCUoAN7ZQE0ACdmZAlNoUAzgH0iBADYbug8ZP2SA-AL0H9ALlAM6FKRwAWzOpy6C+jFuw5kb213yFBAG5sAF9cQlJKGlANOiUyFWtbHVFTaVl5RVV1LW9fHV0zA2MudOLLOISkmzsfCj9BYLCI4nJqWg9WNhUAWwIfMio7XgFhMX0lWRV67SrE5JG3MZD9GTkFUC4Q8OwSGgSt0ABeWOUyDgAiOku+S4AjS+a9g7IBE7OEq5Jb0Eu2J5BIA')">const y = list("c", "d");
 </pre></div></div>
-    <div class='snippet' id='javascript_60_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQBDABwYFMiATACgA8AaUATwCUoAN7ZQE0ACdmZAlNoUAzgH0iBADYbug8ZP2SA-AL0H9ALlAM6FKRwAWzOpy6C+jFuw5kb213yFBAG5sAF9cQlJKGlANOiUyFWtbHVFTaVl5RVV1LW9fHV0zCWMudItY+MTkux8KP0FgsIjicmpaD1Y2FQBbAh8yKjteAWExfSVZFTrtOISkm2G3UZD9GTkFUC4Q8OwSGgSt0ABeWOUyDgAiOku+S4AjS6a9g7IBE7OEq5Jb0Eu2J4hF5EQ4ALw+nS8IyEQSAA')">const z = append(x, y);
+    <div class='snippet' id='javascript_60_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQBDABwYFMiATACgA8AaUATwCUoAN7ZQE0ACdmZAlNoUAzgH0iBADYbug8ZP2SA-AL0H9ALlAM6FKRwAWzOpy6C+jFuw5kb213yFBAG5sAF9cQlJKGlANOiUyFWtbHVFTaVl5RVV1LW9fHV0zA2MudOLLOISkmzsfCj9BYLCI4nJqWg9WNhUAWwIfMio7XgFhMX0lWRV67SrE5JG3MZD9GTkFUC4Q8OwSGgSt0ABeWOUyDgAiOku+S4AjS+a9g7IBE7OEq5Jb0Eu2J4hF5EQ4ALw+XS8oyEQSAA')">const z = append(x, y);
 </pre></div></div>
-    <div class='snippet' id='javascript_60_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQBDABwYFMiATACgA8AaUATwCUoAN7ZQE0ACdmZAlNoUAzgH0iBADYbug8ZP2SA-AL0H9ALlAM6FKRwAWzOpy6C+jFuw5kb213yFBAG5sAF9cQlJKGlANOiUyFWtbHVFTaVl5RVV1LW9fHV0zCWMudItY+MTkux8KP0FgsIjicmpaD1Y2FQBbAh8yKjteAWExfSVZFTrtOISkm2G3UZD9GTkFUC4Q8OwSGgSt0ABeWOUyDgAiOku+S4AjS6a9g7IBE7OEq5Jb0Eu2J4hF5EQ4ALw+nS8IyEQNBQSAA')">z;
+    <div class='snippet' id='javascript_60_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQBDABwYFMiATACgA8AaUATwCUoAN7ZQE0ACdmZAlNoUAzgH0iBADYbug8ZP2SA-AL0H9ALlAM6FKRwAWzOpy6C+jFuw5kb213yFBAG5sAF9cQlJKGlANOiUyFWtbHVFTaVl5RVV1LW9fHV0zA2MudOLLOISkmzsfCj9BYLCI4nJqWg9WNhUAWwIfMio7XgFhMX0lWRV67SrE5JG3MZD9GTkFUC4Q8OwSGgSt0ABeWOUyDgAiOku+S4AjS+a9g7IBE7OEq5Jb0Eu2J4hF5EQ4ALw+XS8oyEQNBQSAA')">z;
 </pre><pre class='prettyprintoutput'>
 ["a", ["b", ["c", ["d, null]]]]</pre></div></div>
-    <div class='snippet' id='javascript_60_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQBDABwYFMiATACgA8AaUATwCUoAN7ZQE0ACdmZAlNoUAzgH0iBADYbug8ZP2SA-AL0H9ALlAM6FKRwAWzOpy6C+jFuw5kb213yFBAG5sAF9cQlJKGlANOiUyFWtbHVFTaVl5RVV1LW9fHV0zCWMudItY+MTkux8KP0FgsIjicmpaD1Y2FQBbAh8yKjteAWExfSVZFTrtOISkm2G3UZD9GTkFUC4Q8OwSGgSt0ABeWOUyDgAiOku+S4AjS6a9g7IBE7OEq5Jb0Eu2J4hF5EQ4ALw+nS8IyEQNBQJmOiCQA')">tail(x);
+    <div class='snippet' id='javascript_60_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQBDABwYFMiATACgA8AaUATwCUoAN7ZQE0ACdmZAlNoUAzgH0iBADYbug8ZP2SA-AL0H9ALlAM6FKRwAWzOpy6C+jFuw5kb213yFBAG5sAF9cQlJKGlANOiUyFWtbHVFTaVl5RVV1LW9fHV0zA2MudOLLOISkmzsfCj9BYLCI4nJqWg9WNhUAWwIfMio7XgFhMX0lWRV67SrE5JG3MZD9GTkFUC4Q8OwSGgSt0ABeWOUyDgAiOku+S4AjS+a9g7IBE7OEq5Jb0Eu2J4hF5EQ4ALw+XS8oyEQNBQNmOiCQA')">tail(x);
+</pre><pre class='prettyprintoutput'>
+response</pre></div></div>
+    <div class='snippet' id='javascript_60_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQBDABwYFMiATACgA8AaUATwCUoAN7ZQE0ACdmZAlNoUAzgH0iBADYbug8ZP2SA-AL0H9ALlAM6FKRwAWzOpy6C+jFuw5kb213yFBAG5sAF9cQlJKGlANOiUyFWtbHVFTaVl5RVV1LW9fHV0zA2MudOLLOISkmzsfCj9BYLCI4nJqWg9WNhUAWwIfMio7XgFhMX0lWRV67SrE5JG3MZD9GTkFUC4Q8OwSGgSt0ABeWOUyDgAiOku+S4AjS+a9g7IBE7OEq5Jb0Eu2J4hF5EQ4ALw+XS8oyEQNBQNmOiB+xBbwA7hCmN0+gM6EMRgFgkA')">const w = append_mutator(x, y);
 </pre></div></div>
-    $\langle \textit{response} \rangle$<br>
-    <div class='snippet' id='javascript_60_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQBDABwYFMiATACgA8AaUATwCUoAN7ZQE0ACdmZAlNoUAzgH0iBADYbug8ZP2SA-AL0H9ALlAM6FKRwAWzOpy6C+jFuw5kb213yFBAG5sAF9cQlJKGlANOiUyFWtbHVFTaVl5RVV1LW9fHV0zCWMudItY+MTkux8KP0FgsIjicmpaD1Y2FQBbAh8yKjteAWExfSVZFTrtOISkm2G3UZD9GTkFUC4Q8OwSGgSt0ABeWOUyDgAiOku+S4AjS6a9g7IBE7OEq5Jb0Eu2J4hF5EQ4ALw+nS8IyEQNBQJmOiB+xBbwA7hCmF1ev06INhgFgkA')">const w = append_mutator(x, y);
-</pre></div></div>
-    <div class='snippet' id='javascript_60_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQBDABwYFMiATACgA8AaUATwCUoAN7ZQE0ACdmZAlNoUAzgH0iBADYbug8ZP2SA-AL0H9ALlAM6FKRwAWzOpy6C+jFuw5kb213yFBAG5sAF9cQlJKGlANOiUyFWtbHVFTaVl5RVV1LW9fHV0zCWMudItY+MTkux8KP0FgsIjicmpaD1Y2FQBbAh8yKjteAWExfSVZFTrtOISkm2G3UZD9GTkFUC4Q8OwSGgSt0ABeWOUyDgAiOku+S4AjS6a9g7IBE7OEq5Jb0Eu2J4hF5EQ4ALw+nS8IyEQNBQJmOiB+xBbwA7hCmF1ev06INhgFnqigkA')">w;
+    <div class='snippet' id='javascript_60_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQBDABwYFMiATACgA8AaUATwCUoAN7ZQE0ACdmZAlNoUAzgH0iBADYbug8ZP2SA-AL0H9ALlAM6FKRwAWzOpy6C+jFuw5kb213yFBAG5sAF9cQlJKGlANOiUyFWtbHVFTaVl5RVV1LW9fHV0zA2MudOLLOISkmzsfCj9BYLCI4nJqWg9WNhUAWwIfMio7XgFhMX0lWRV67SrE5JG3MZD9GTkFUC4Q8OwSGgSt0ABeWOUyDgAiOku+S4AjS+a9g7IBE7OEq5Jb0Eu2J4hF5EQ4ALw+XS8oyEQNBQNmOiB+xBbwA7hCmN0+gM6EMRgFnqigkA')">w;
 </pre><pre class='prettyprintoutput'>
 ["a", ["b", ["c", ["d", null]]]]</pre></div></div>
-    <div class='snippet' id='javascript_60_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQBDABwYFMiATACgA8AaUATwCUoAN7ZQE0ACdmZAlNoUAzgH0iBADYbug8ZP2SA-AL0H9ALlAM6FKRwAWzOpy6C+jFuw5kb213yFBAG5sAF9cQlJKGlANOiUyFWtbHVFTaVl5RVV1LW9fHV0zCWMudItY+MTkux8KP0FgsIjicmpaD1Y2FQBbAh8yKjteAWExfSVZFTrtOISkm2G3UZD9GTkFUC4Q8OwSGgSt0ABeWOUyDgAiOku+S4AjS6a9g7IBE7OEq5Jb0Eu2J4hF5EQ4ALw+nS8IyEQNBQJmOiB+xBbwA7hCmF1ev06INhgFnqj4QVXEEgA')">tail(x);
-</pre></div></div>
-    $\langle \textit{response} \rangle$<br>
-    <p></p>
+    <div class='snippet' id='javascript_60_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQBDABwYFMiATACgA8AaUATwCUoAN7ZQE0ACdmZAlNoUAzgH0iBADYbug8ZP2SA-AL0H9ALlAM6FKRwAWzOpy6C+jFuw5kb213yFBAG5sAF9cQlJKGlANOiUyFWtbHVFTaVl5RVV1LW9fHV0zA2MudOLLOISkmzsfCj9BYLCI4nJqWg9WNhUAWwIfMio7XgFhMX0lWRV67SrE5JG3MZD9GTkFUC4Q8OwSGgSt0ABeWOUyDgAiOku+S4AjS+a9g7IBE7OEq5Jb0Eu2J4hF5EQ4ALw+XS8oyEQNBQNmOiB+xBbwA7hCmN0+gM6EMRgFnqj4QVXEEgA')">tail(x);
+</pre><pre class='prettyprintoutput'>
+response</pre></div></div>
     What are the missing
-    $\langle \textit{response} \rangle$s?
+    $\textit{response}$s?
     Draw box-and-pointer diagrams to explain your answer.
   
       <div class="Solution">
@@ -2489,14 +2488,14 @@ Acknowledgments
     
     defined in exercise&nbsp;<REF NAME="ex:append"><a class="superscript" id="3.3.1-ex-link-3.12" href="./3.3.1.html#ex_3.12">3.12</a></REF>:
             
-    <div class='snippet' id='javascript_60_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAbAQwGcyB9ABwYoCcAKADwCUoAN7ZQE0NwCmZAt1oUmrIgTp1eZLhqGDxkgwH5Q-fQYkAueszacem7QMGCA3NgC+uQqUo1QAWwYAa2lWEgBPEjppJ1EzUCZZVi0KDUYWDi4+IQAaE1d4mTkFEzdPbBIaFlAAL1AAXgDg0IiomLolMl4AIgZuvO6AI37QbpJu5xcgA')">function make_cycle(x) {
+    <div class='snippet' id='javascript_60_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAbAQwGcyB9ABwYoCcAKADwCUoAN7ZQE0NwCmZAt1oUmrIgTp1eZLhqGDxkg5ID8ofvsMGAXPWZtOPTdoGDBAbmwBfXIVKUaoAFsGAGtpVhIATxI6aWdRc1AmWVYtCg1GFg4uPiEAGlM3BJk5BVN3L2wSGhZQAC9QAF5AkLDI6Ni6JTJeACIGHvyegCMB0B6SHpdXIA')">function make_cycle(x) {
     set_tail(last_pair(x), x);
     return x;
 }
 </pre></div></div>
     Draw a box-and-pointer diagram that shows the structure
     <kbd>z</kbd> created by
-    <div class='snippet' id='javascript_60_15_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAbAQwGcyB9ABwYoCcAKADwCUoAN7ZQE0NwCmZAt1oUmrIgTp1eZLhqGDxkgwH5Q-fQYkAueszacem7QMGCA3NgC+uQqUo1QAWwYAa2lWEgBPEjppJ1EzUCZZVi0KDUYWDi4+IQAaE1d4mTkFEzdPbBIaFlAAL1AAXgDg0IiomLolMl4AIgZuvO6AI37QbpJu5xcgA')">const z = make_cycle(list("a", "b", "c"));
+    <div class='snippet' id='javascript_60_15_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAbAQwGcyB9ABwYoCcAKADwCUoAN7ZQE0NwCmZAt1oUmrIgTp1eZLhqGDxkg5ID8ofvsMGAXPWZtOPTdoGDBAbmwBfXIVKUaoAFsGAGtpVhIATxI6aWdRc1AmWVYtCg1GFg4uPiEAGlM3BJk5BVN3L2wSGhZQAC9QAF5AkLDI6Ni6JTJeACIGHvyegCMB0B6SHpdXIA')">const z = make_cycle(list("a", "b", "c"));
 </pre></div></div>
     What happens if we try to compute
     
@@ -2526,7 +2525,7 @@ Acknowledgments
     is quite useful, although obscure:
     
     
-    <div class='snippet' id='javascript_60_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsGMB7AOwGcAXUAN1AF5QAbAS3IAoAiAQzYBpQ2AjHnzxsAlAG5cAMwCuRPGUbFQAWwCe5AKYAnNSwAeo0AG9soc6FnzFy+gQIAHA7zVHTFj6EZTQLZgH0iGXp6A1E3M08o7U0yGW0iUDVJKPMAX1BNehJNE0jUi0JSCjJNFQdaUDIORlDDFIKLHLJ-atrnJIl8xpi4hIZ7J1Ly3nrujzTuyY9e+MS7Rw6gkK7J-GJyUAB3SvUtXRZKCSA')">function mystery(x) {
+    <div class='snippet' id='javascript_60_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsGMB7AOwGcAXUAN1AF5QAbAS3IAoAiAQzYBpQ2AjHnzxC2AEzYBKANy4AZgFcieMo2KgAtgE9yAUwBOWlgA9JoAN7ZQ10IuWr19AgQAOJ3lrOWbP0IzmgLMwA+kQK9PQmkl5WvnH6umQK+kSgWrJx1gC+oLr0JLoWsZk2hKQUZLoaLrSgZByMkaYZJTYFZMH1je5pMsWtCUkpDM5uldW8zf0+Wf2zPoPJqU6uPWERfbP4xOSgAO612nqGLJQyQA')">function mystery(x) {
     function loop(x, y) {
         if (is_null(x)) {
             return y;
@@ -2569,11 +2568,11 @@ Acknowledgments
     
     Explain what <kbd>mystery</kbd> does in general.  Suppose
     <kbd>v</kbd> is defined by
-    <div class='snippet' id='javascript_60_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsGMB7AOwGcAXUAN1AF5QAbAS3IAoAiAQzYBpQ2AjHnzxsAlAG4gA')">const v = list("a", "b", "c");
+    <div class='snippet' id='javascript_60_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsGMB7AOwGcAXUAN1AF5QAbAS3IAoAiAQzYBpQ2AjHnzxC2AEzYBKANxA')">const v = list("a", "b", "c", "d");
 </pre></div></div>
     Draw the box-and-pointer diagram that represents the list to which
     <kbd>v</kbd> is bound.  Suppose that we now evaluate
-    <div class='snippet' id='javascript_60_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsGMB7AOwGcAXUAN1AF5QAbAS3IAoAiAQzYBpQ2AjHnzxsAlAG5cAMwCuRPGUbFQAWwCe5AKYAnNSwAeo0AG9soc6FnzFy+gQIAHA7zVHTFj6EZTQLZgH0iGXp6A1E3M08o7U0yGW0iUDVJKPMAX1BNehJNE0jUi0JSCjJNFQdaUDIORlDDFIKLHLJ-atrnJIl8xpi4hIZ7J1Ly3nrujzTuyY9e+MS7Rw6gkK7J-GJyUAB3SvUtXRZKCSA')">const w = mystery(v);
+    <div class='snippet' id='javascript_60_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsGMB7AOwGcAXUAN1AF5QAbAS3IAoAiAQzYBpQ2AjHnzxC2AEzYBKANy4AZgFcieMo2KgAtgE9yAUwBOWlgA9JoAN7ZQ10IuWr19AgQAOJ3lrOWbP0IzmgLMwA+kQK9PQmkl5WvnH6umQK+kSgWrJx1gC+oLr0JLoWsZk2hKQUZLoaLrSgZByMkaYZJTYFZMH1je5pMsWtCUkpDM5uldW8zf0+Wf2zPoPJqU6uPWERfbP4xOSgAO612nqGLJQyQA')">const w = mystery(v);
 </pre></div></div>
     Draw box-and-pointer diagrams that show the structures
     <kbd>v</kbd> and <kbd>w</kbd> after
@@ -2621,10 +2620,6 @@ Acknowledgments
     <div class='snippet' id='javascript_60_19_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsGMB7AOwGcAXUAD1AF5QAbAS3IAoAiAQzYBpQ2AjNgEoA3PmLlQAL0y1QABw6MATi0q9KooA')">const x = list("a", "b");
 const z1 = pair(x, x);
 </pre></div></div>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
     As shown in
     
       
@@ -2699,7 +2694,7 @@ const z1 = pair(x, x);
   </p></div>
 
   <div class='permalink'>
-<a name='p9' class='permalink'></a><p>
+<a name='p8' class='permalink'></a><p>
     In contrast to
     
       
@@ -2712,10 +2707,6 @@ const z1 = pair(x, x);
     the structure created by
     <div class='snippet' id='javascript_60_20_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsGMB7AOwGcAXUALwCZQBeUABwEMBLAJwAoAbV8zgETMBAGlACARgICUY3vyGjxU6dIDcQA')">const z2 = pair(list("a", "b"), list("a", "b"));
 </pre></div></div>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p10' class='permalink'></a><p>
     In this structure, the pairs in the two
     
       
@@ -2731,7 +2722,7 @@ const z1 = pair(x, x);
     
   </p></div>
   <div class='permalink'>
-<a name='p11' class='permalink'></a><p>
+<a name='p9' class='permalink'></a><p>
     When thought of as a list, <kbd>z1</kbd> and
     <kbd>z2</kbd> both represent <QUOTE>the same</QUOTE> list:
     <div class='snippet' id='javascript_60_21_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsBsBLAZwBcAKQ0sgIgENqAaUagI2oEom7Hm32BuIA')">list(list("a", "b"), "a", "b")
@@ -2771,7 +2762,7 @@ const z1 = pair(x, x);
   </p></div>
 
   <div class='permalink'>
-<a name='p12' class='permalink'></a><p>
+<a name='p10' class='permalink'></a><p>
     Even though <kbd>z1</kbd> and
     <kbd>z2</kbd> are <QUOTE>the same</QUOTE> structure,
     applying
@@ -2835,7 +2826,7 @@ const z1 = pair(x, x);
   </p></div>
 
   <div class='permalink'>
-<a name='p13' class='permalink'></a><p>
+<a name='p11' class='permalink'></a><p>
     
     
     
@@ -2878,7 +2869,7 @@ const z1 = pair(x, x);
   </p></div>
 
   <div class='permalink'>
-<a name='p14' class='permalink'></a><p>
+<a name='p12' class='permalink'></a><p>
     
     As will be seen in the following sections, we can exploit sharing to
     greatly extend the repertoire of data structures that can be
@@ -3063,7 +3054,7 @@ const z1 = pair(x, x);
   
 
   <div class='permalink'>
-<a name='p15' class='permalink'></a><p>
+<a name='p13' class='permalink'></a><p>
     When we introduced compound data, we observed in
     section&nbsp;<REF NAME="sec:data?"><a class="superscript" id="3.3.1-sec-link-2.1.3" href="./2.1.3.html">2.1.3</a></REF> that pairs can be represented purely
     in terms of
@@ -3074,27 +3065,19 @@ const z1 = pair(x, x);
             
             
             
-    <div class='snippet' id='javascript_60_28_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAHAQwoCcAKADwBpQBPASlABvbKFGhCpSjVAATCgGdGZEgAtWAWwHCxO0MwCmZAs1rrQAXkugARCv0MZ1kbpcB+UO2cudALlBnLcxsyJgAbJ29vdx4vSLE-fWZmKjZ1bmsAVSIZfTwKIn0ZUCo6RIYpWgBaSvomZms+AG5YgF9YgyMTWQUlVUaASBdsNolyalo7B1YALy12w2NaadZbe0cm4fxiMekQilCZuZ0OxdBl6z3wjbbsEhp5Mg8LWpZWTG4AJg3JmQ4moA')">function pair(x, y) {
+    <div class='snippet' id='javascript_60_28_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAHAQwoCcAKADwBpQBPASlABvbKFGhCpSjVAATCgGdGZEgAtWAWwHCxO0MwCmZAs1rrQAXkugARCv0MZ1kbpcB+UO2cudALlBnLcxsyJgAbJ29ddx4vSNA-fWZmKjZ1bmsAVSIZfTwKIn0ZUCo6RIYpWgBaSvomZms+AG5YgF9YgyMTWQUlVUaASBdsNolyalo7B1YALy09Q2NaadZbe0cm0BHiMekQilCZuY7F0GXrPfCNtuwSGnkyDwtallZMbgAmJuxJmQ4moA')">function pair(x, y) {
     function dispatch(m) {
         return m === "head"
             ? x
             : m === "tail"
-              ? y
-              : error(m, "Undefined operation -- pair");
+            ? y
+            : error(m, "Undefined operation -- pair");
     }
     return dispatch;	      
 }
-function head(z) {
-    return z("head");
-}
-function tail(z) {
-    return z("tail");
-}
+function head(z) { return z("head"); }
+function tail(z) { return z("tail"); }
 </pre></div></div>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p16' class='permalink'></a><p>
     The same observation is true for mutable data.  We can implement
     mutable data objects as
     
@@ -3124,23 +3107,18 @@ function tail(z) {
             
             
             
-    <div class='snippet' id='javascript_60_29_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAHAQwoCcAKADwBpQBPASlABvbKFGhCpSjVABnAKZkA+u1YA3AcLFbQ7UAF5QqgNwixAX1OiJ5arXlKeajZe099hk1otbmCgs1oAW30APhdtUWC9aNAAIgALOQYAE1jwiIB+HXTtAC5QKJjYsiYAGzSIyqyeHIj8woNY+0VElIrKqtkFZVrK+v0i5pKKct6OrOaajun8uWZmKjZA7ljiZLk8CiI5ZNAqOjmGKVoAWhP6JmZYvhNvMXxiG2lW5NYAL2cfPwDQN9YEpKpG7YCwPSS2UDDUrvT5iXxkfy0P7FMrXW64azHLpKF7vbjbADuilUDFKBDksNEyOaL2urEJxNJ5OBXwRPze6LBTzs3SheNADJJZIpQhc1N5qL49LkRKFzM8cO+SM5JBoMjIOncjBYrEw3AATMCaYCONwUMDcewbkA')">function pair(x, y) {
-    function set_x(v) {
-        x = v;
-    }
-    function set_y(v) {
-        y = v;
-    }
-    return m =>
-           m === "head"
-           ? x
-           : m === "tail"
-             ? y
-             : m === "set_head"
-               ? set_x
-               : m === "set_tail"
-                 ? set_y
-                 : error(m, "undefined operation -- pair");
+    <div class='snippet' id='javascript_60_29_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAHAQwoCcAKADwBpQBPASlABvbKFGhCpSjVABnAKZkA+u1YA3AYNDtQAXlCqA3KAC+IsRPLVa8pTzUbeu-UdNjQzBQWa0AtroB8oH46IaAARAAWcgwAJmFmbomJAPxaCUkZAFxBuqFhZEwANvEZpaCpPOllYtnBeTaKUbEl1SmyCspVrbW5emENBRTFXdWpDZWtidlyzMxUbD7cYcQxcngURHIxoFR0MwxStAC0R-RMzGF8BtiuYvjEltJNMawAXhrpHmRetK+skdE4lcbrgLIdQINCm8Pm4vj9QH98kVLtdTPdJFZ2kpnm9uJsAO6KVQMQoEOQwsSIhrPS6sAlEklk4GwzzeBGo0EPcEDIq40D04mk8lCdJUjqQ2kCxnk64s75s14c7AkGgyMhaJyMFisTDcABMwOpgI43BQwJx7CuQA')">function pair(x, y) {
+    function set_x(v) { x = v; }
+    function set_y(v) { y = v; }
+    return m => m === "head"
+                ? x
+                : m === "tail"
+                ? y
+                : m === "set_head"
+                ? set_x
+                : m === "set_tail"
+                ? set_y
+                : error(m, "undefined operation -- pair");
 }
     
 function head(z) {
@@ -3164,7 +3142,7 @@ function set_tail(z, new_value) {
   </p></div>
 
   <div class='permalink'>
-<a name='p17' class='permalink'></a><p>
+<a name='p14' class='permalink'></a><p>
     Assignment is all that is needed, theoretically, to account for the
     behavior of mutable data.  As soon as we admit
     
@@ -3181,11 +3159,11 @@ function set_tail(z, new_value) {
   
     Draw environment diagrams to illustrate the evaluation of the sequence
     of expressions
-    <div class='snippet' id='javascript_60_30_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAHAQwoCcAKADwBpQBPASlABvbKFGhCpSjVABnAKZkA+u1YA3AcLFbQ7UAF5QqgNwixAX1OiJ5arXlKeajZe099hk1otbmCgs1oAW30APhdtUWC9aNAAIgALOQYAE1jwiIB+HXTtAC5QKJjYsiYAGzSIyqyeHIj8woNY+0VElIrKqtkFZVrK+v0i5pKKct6OrOaajun8uWZmKjZA7ljiZLk8CiI5ZNAqOjmGKVoAWhP6JmZYvhNvMXxiG2lW5NYAL2cfPwDQN9YEpKpG7YCwPSS2UDDUrvT5iXxkfy0P7FMrXW64azHLpKF7vbjbADuilUDFKBDksNEyOaL2urEJxNJ5OBXwRPze6LBTzs3SheNADJJZIpQhc1N5qL49LkRKFzM8cO+SM5JBoMjIOncjBYrEw3AATMDVUR1b8tZcONx2MCaYDWHyPtxMAB2G5AA')">const x = pair(1, 2);
+    <div class='snippet' id='javascript_60_30_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAHAQwoCcAKADwBpQBPASlABvbKFGhCpSjVABnAKZkA+u1YA3AYNDtQAXlCqA3KAC+IsRPLVa8pTzUbeu-UdNjQzBQWa0AtroB8oH46IaAARAAWcgwAJmFmbomJAPxaCUkZAFxBuqFhZEwANvEZpaCpPOllYtnBeTaKUbEl1SmyCspVrbW5emENBRTFXdWpDZWtidlyzMxUbD7cYcQxcngURHIxoFR0MwxStAC0R-RMzGF8BtiuYvjEltJNMawAXhrpHmRetK+skdE4lcbrgLIdQINCm8Pm4vj9QH98kVLtdTPdJFZ2kpnm9uJsAO6KVQMQoEOQwsSIhrPS6sAlEklk4GwzzeBGo0EPcEDIq40D04mk8lCdJUjqQ2kCxnk64s75s14c7AkGgyMhaJyMFisTDcABMwJVRDVCM15w43HYwOpgNYkOh3EwAHYrkA')">const x = pair(1, 2);
 const z = pair(x, x);
 set_head(tail(z), 17);
 </pre></div></div>
-    <div class='snippet' id='javascript_60_31_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAHAQwoCcAKADwBpQBPASlABvbKFGhCpSjVABnAKZkA+u1YA3AcLFbQ7UAF5QqgNwixAX1OiJ5arXlKeajZe099hk1otbmCgs1oAW30APhdtUWC9aNAAIgALOQYAE1jwiIB+HXTtAC5QKJjYsiYAGzSIyqyeHIj8woNY+0VElIrKqtkFZVrK+v0i5pKKct6OrOaajun8uWZmKjZA7ljiZLk8CiI5ZNAqOjmGKVoAWhP6JmZYvhNvMXxiG2lW5NYAL2cfPwDQN9YEpKpG7YCwPSS2UDDUrvT5iXxkfy0P7FMrXW64azHLpKF7vbjbADuilUDFKBDksNEyOaL2urEJxNJ5OBXwRPze6LBTzs3SheNADJJZIpQhc1N5qL49LkRKFzM8cO+SM5JBoMjIOncjBYrEw3AATMDVUR1b8tZcONx2MCaYDWHyPtxMAB2YHYXHWoxAA')">head(x);
+    <div class='snippet' id='javascript_60_31_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAHAQwoCcAKADwBpQBPASlABvbKFGhCpSjVABnAKZkA+u1YA3AYNDtQAXlCqA3KAC+IsRPLVa8pTzUbeu-UdNjQzBQWa0AtroB8oH46IaAARAAWcgwAJmFmbomJAPxaCUkZAFxBuqFhZEwANvEZpaCpPOllYtnBeTaKUbEl1SmyCspVrbW5emENBRTFXdWpDZWtidlyzMxUbD7cYcQxcngURHIxoFR0MwxStAC0R-RMzGF8BtiuYvjEltJNMawAXhrpHmRetK+skdE4lcbrgLIdQINCm8Pm4vj9QH98kVLtdTPdJFZ2kpnm9uJsAO6KVQMQoEOQwsSIhrPS6sAlEklk4GwzzeBGo0EPcEDIq40D04mk8lCdJUjqQ2kCxnk64s75s14c7AkGgyMhaJyMFisTDcABMwJVRDVCM15w43HYwOpgNYkOh3EwAHZgdgcVaDEA')">head(x);
 </pre><pre class='prettyprintoutput'>
 17</pre></div></div>
     using the 

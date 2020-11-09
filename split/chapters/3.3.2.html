@@ -2142,6 +2142,7 @@ Acknowledgments
 	  
 	  <br>
           returns an empty queue (a queue containing no items).
+	  <div class='pdfonly'>\vspace{6pt}</div>
       </LI>
       <LI>
         two selectors:
@@ -2150,11 +2151,12 @@ Acknowledgments
           
 	    <span style="color:green"><kbd>(empty-queue? queue)</kbd></span>
 	    <span style="color:blue">
-	      <kbd>empty_queue(</kbd>$\textit{queue}$<kbd>)</kbd>
+	      <kbd>is_empty_queue(</kbd>$\textit{queue}$<kbd>)</kbd>
 	    </span>
 	  
 	  <br>
           tests if the queue is empty.
+	  <div class='pdfonly'>\vspace{6pt}</div>
 	  <br>
           
           
@@ -2166,6 +2168,7 @@ Acknowledgments
 	  <br>
           returns the object at the front of the queue, signaling an error if
 	  the queue is empty; it does not modify the queue.
+	  <div class='pdfonly'>\vspace{6pt}</div>
       </LI>
       <LI>
         two mutators:
@@ -2181,6 +2184,7 @@ Acknowledgments
 	  <br>
           inserts the item at the rear of the queue and returns the modified
           queue as its value.
+	  <div class='pdfonly'>\vspace{6pt}</div>
 	  <br>
           
           
@@ -2356,10 +2360,6 @@ function set_rear_ptr(queue, item) {
     return is_null(front_ptr(queue));
 }
 </pre></div></div></td></tr></table>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p9' class='permalink'></a><p>
     The
     
       <span style="color:green"><kbd>make-queue</kbd></span>
@@ -2388,10 +2388,6 @@ function set_rear_ptr(queue, item) {
     return pair(null, null);
 }
 </pre></div></div></td></tr></table>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p10' class='permalink'></a><p>
     To select the item at the front of the queue, we return the
     
       <span style="color:green"><kbd>car</kbd></span>
@@ -2409,16 +2405,16 @@ function set_rear_ptr(queue, item) {
   (if (empty-queue? queue)
       (error "FRONT called with an empty queue" queue)
       (car (front-ptr queue))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_61_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToEwChsDMBXAOwGMAXASwHsjQ8AnGsgfQAcz6AKARwIFN+ASlABvbKAmh6fMgXq0AFnwCGAEx78hAbmwBffMXLVa05fTYcNAvsLGSpMubTLKKAGyva9B0pRqgAZxlmBiYLLl5rABpQCjI+AFtbcUkgliU1Tz4YuMTBHX1CX2NA4NNzdgjNbNj4pNEUiTTmF3csnLr87x8jfwoA5kT2AE9mSP4s5PtpWXlYgaICNw9QohZKya79Hr9aVZZxvkmG6cc5-sGEkbHqycb7UAB+UD56Riro0AAifZvrUBIymWfFUoAA7nEFKBlLQhmRhqBDl9BPd7AAuUAZdS-DaHQRbXAkGgBMiI0AAXlArFcXGpFC4AEYophBDEUF1focePkgA')">function front_queue(queue) {
+            <td><div class='snippet' id='javascript_61_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToEwChsDMBXAOwGMAXASwHsjQ8AnGsgfQAcz6AKARwIFN+ASlABvbKAmh6fMgXq0AFnwCGAEx78hAbmwBffMXLVa05fTYcNAvsLGSpMubTLKKAGyva9B0pRqgAZxlmBiYLLl5rABpQCjI+AFtbcUkgliU1Tz4YuMTBHX1CX2NA4NNzdgjNbNj4pNEUiTTmF3csnLr87x8jfwoA5kT2AE9mSP4s5PtpWXlYgaICNw9QohZKya79Hr9aVZZxvkmG6cc5-sGEkbHqycb7ewB+UD56Riro0AAifZvrUBIymWfFUoAA7nEFKBlLQhmRhqBDl9BPcHhIAFygDLqX4bQ6CLa4Eg0AJkRGgAC8oFYri4NIoXAAjFFMIIYigur9Djx8kA')">function front_queue(queue) {
     return is_empty_queue(queue)
-        ? error(queue, "front_queue called with an empty queue")
-        : head(front_ptr(queue));
+           ? error(queue, "front_queue called with an empty queue")
+           : head(front_ptr(queue));
 }
 </pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
-<a name='p11' class='permalink'></a><p>
+<a name='p9' class='permalink'></a><p>
     To insert an item in a queue, we follow the method whose result is
     indicated in
     
@@ -2505,7 +2501,7 @@ function set_rear_ptr(queue, item) {
   </p></div>
 
   <div class='permalink'>
-<a name='p12' class='permalink'></a><p>
+<a name='p10' class='permalink'></a><p>
     To delete the item at the front of the queue, we merely modify the
     front pointer so that it now points at the second item in the queue,
     which can be found by following the
@@ -2602,7 +2598,8 @@ function set_rear_ptr(queue, item) {
 (insert-queue! q1 'a)</pre><pre class='prettyprintoutput'>
             ((a) a)</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_61_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToEwChsDMBXAOwGMAXASwHsjQ8AnGsgfQAcz6AKARwIFN+ASlABvbKAmh6fMgXq0AFnwCGAEx78hAbmwBffMXLVa05fTYcNAvsLGSpMubTLKKAGyva9B0pRqgAZxlmBiYLLl5rABpQCjI+AFtbcUkgliU1Tz4YuMTBHX1CX2NA4NNzdgjNbNj4pNEUiTTmF3csnLr87x8jfwoA5kT2AE9mSP4s5PtpWXlYgaICNw9QohZKya79Hr9aCiIg+hZxvnbavIb7EhoAslAiPgB3Nld6UABeUFZXzlyEmMWyy69goeFAvwGQzIoxOm0u9lSwVW60sJwBTxeFHowIRTTKKgqqOq6Oe3yxOIkulAfDcQXhuOarQ85XCkxJmOxOlxeJYLI2aPuGLJnMaoH000ccxOBVwRV6tASygA1nwxtVOFNJDMnF8foC3AClm4trhrgc7twAIwfUCKlVq6wanTYfaHY7qq0xABEyi9+SAA')">insert_queue(q1, "a");
-</pre></div></div></td></tr></table>
+</pre><pre class='prettyprintoutput'>
+[["a", null], ["a", null]]</pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -2611,7 +2608,8 @@ function set_rear_ptr(queue, item) {
 (insert-queue! q1 'b)</pre><pre class='prettyprintoutput'>
             ((a b) b)</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_61_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToEwChsDMBXAOwGMAXASwHsjQ8AnGsgfQAcz6AKARwIFN+ASlABvbKAmh6fMgXq0AFnwCGAEx78hAbmwBffMXLVa05fTYcNAvsLGSpMubTLKKAGyva9B0pRqgAZxlmBiYLLl5rABpQCjI+AFtbcUkgliU1Tz4YuMTBHX1CX2NA4NNzdgjNbNj4pNEUiTTmF3csnLr87x8jfwoA5kT2AE9mSP4s5PtpWXlYgaICNw9QohZKya79Hr9aCiIg+hZxvnbavIb7EhoAslAiPgB3Nld6UABeUFZXzlyEmMWyy69goeFAvwGQzIoxOm0u9lSwVW60sJwBTxeFHowIRTTKKgqqOq6Oe3yxOIkulAfDcQXhuOarQ85XCkxJmOxOlxeJYLI2aPuGLJnMaoH000ccxOBVwRV6tASygA1nwxtVOFNJDMnF8foC3AClm4trhrgc7twAIwfUCKlVq6wanTYfaHY7qq0xABEyi9XRdBz4RwdE09oC9ACM-VogA')">insert_queue(q1, "b");
-</pre></div></div></td></tr></table>
+</pre><pre class='prettyprintoutput'>
+[["a", ["b", null]], ["a", null]]</pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -2620,7 +2618,8 @@ function set_rear_ptr(queue, item) {
 (delete-queue! q1)</pre><pre class='prettyprintoutput'>
             ((b) b)</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_61_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToEwChsDMBXAOwGMAXASwHsjQ8AnGsgfQAcz6AKARwIFN+ASlABvbKAmh6fMgXq0AFnwCGAEx78hAbmwBffMXLVa05fTYcNAvsLGSpMubTLKKAGyva9B0pRqgAZxlmBiYLLl5rABpQCjI+AFtbcUkgliU1Tz4YuMTBHX1CX2NA4NNzdgjNbNj4pNEUiTTmF3csnLr87x8jfwoA5kT2AE9mSP4s5PtpWXlYgaICNw9QohZKya79Hr9aCiIg+hZxvnbavIb7EhoAslAiPgB3Nld6UABeUFZXzlyEmMWyy69goeFAvwGQzIoxOm0u9lSwVW60sJwBTxeFHowIRTTKKgqqOq6Oe3yxOIkulAfDcQXhuOarQ85XCkxJmOxOlxeJYLI2aPuGLJnMaoH000ccxOBVwRV6tASygA1nwxtVOFNJDMnF8foC3AClm4trhrgc7twAIwfUCKlVq6wanTYfaHY7qq0xABEyi9XRdBz4RwdE09oC9ACM-c65btQKoaTJVbCTpqJKDwf1BgkRiHTqm0wig4wqtFwwm3Em86ASMplnxVKBHnEFKBlLQocNQCdo6KqTS6XZuc1kayBUzOKP+dVBLOudztVLqvPKd0K1WU5b8kA')">delete_queue(q1);
-</pre></div></div></td></tr></table>
+</pre><pre class='prettyprintoutput'>
+[["b", null], ["b", null]]</pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -2629,7 +2628,8 @@ function set_rear_ptr(queue, item) {
 (delete-queue! q1)</pre><pre class='prettyprintoutput'>
             (() b)</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_61_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToEwChsDMBXAOwGMAXASwHsjQ8AnGsgfQAcz6AKARwIFN+ASlABvbKAmh6fMgXq0AFnwCGAEx78hAbmwBffMXLVa05fTYcNAvsLGSpMubTLKKAGyva9B0pRqgAZxlmBiYLLl5rABpQCjI+AFtbcUkgliU1Tz4YuMTBHX1CX2NA4NNzdgjNbNj4pNEUiTTmF3csnLr87x8jfwoA5kT2AE9mSP4s5PtpWXlYgaICNw9QohZKya79Hr9aCiIg+hZxvnbavIb7EhoAslAiPgB3Nld6UABeUFZXzlyEmMWyy69goeFAvwGQzIoxOm0u9lSwVW60sJwBTxeFHowIRTTKKgqqOq6Oe3yxOIkulAfDcQXhuOarQ85XCkxJmOxOlxeJYLI2aPuGLJnMaoH000ccxOBVwRV6tASygA1nwxtVOFNJDMnF8foC3AClm4trhrgc7twAIwfUCKlVq6wanTYfaHY7qq0xABEyi9XRdBz4RwdE09oC9ACM-c65btQKoaTJVbCTpqJKDwf1BgkRiHTqm0wig4wqtFwwm3Em86ASMplnxVKBHnEFKBlLQocNQCdo6KqTS6XZuc1kayBUzOKP+dVBLOudztVLqvPKd0K1WU5b-ev4nmeFutEA')">delete_queue(q1);
-</pre></div></div></td></tr></table>
+</pre><pre class='prettyprintoutput'>
+[null, ["b", null]]</pre></div></div></td></tr></table>
     <QUOTE>It's all wrong!</QUOTE> he complains.
     <QUOTE>The interpreter's response shows that the last item is inserted
     into the queue twice.  And when I delete both items, the second
@@ -2694,8 +2694,8 @@ function set_rear_ptr(queue, item) {
     
     will have the form
     <kbd class='snippet'>function make_queue() {
-    function front_ptr(...) {...}
-    function rear_ptr(...) {...}
+    let front_ptr = ...;
+    let rear_ptr = ...;
     $\langle definitions$ $of$ $internal$ $functions\rangle$
     function dispatch(m) {...}
     return dispatch;
