@@ -2050,7 +2050,7 @@ Acknowledgments
     
       
       
-	So far, all our names were <EM>immutable</EM>. 
+	So far, all our names have been <EM>immutable</EM>. 
 	When a function was applied, the values that its parameters
 	referred to never changed, and once a declaration was evaluated,
 	the declared name never changed its value.
@@ -2126,7 +2126,7 @@ balance = balance - amount;</pre></div></div>
       
       
 	declared with <kbd>let</kbd> or
-	a parameter and
+	as a parameter and
 	$\textit{new-value}$
       
     
@@ -2968,8 +2968,15 @@ function make_account(balance, p) {
     above, we do not have to use
     <kbd>let</kbd>
     to make <kbd>balance</kbd> a local variable, since
-    formal parameters are already
-    local.
+    
+      
+    
+    parameters are already
+    local. This will be clearer after the discussion of the environment
+    model of evaluation in
+    section&nbsp;<REF NAME="sec:environment-model"><a class="superscript" id="3.1.1-sec-link-3.2" href="./3.2.html">3.2</a></REF>.
+    (See also
+    exercise&nbsp;<REF NAME="ex:local-state-variable"><a class="superscript" id="3.1.1-ex-link-3.10" href="./3.2.3.html#ex_3.10">3.10</a></REF>.)
     </FOOTNOTE></div>
 
     

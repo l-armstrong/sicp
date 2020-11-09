@@ -2821,7 +2821,11 @@ function compile_lambda_expression(exp, target, linkage) {
       <span style="color:green">procedure,</span>
       <span style="color:blue">function,</span>
     
-    extended to include the bindings of the formal parameters to the arguments
+    extended to include the bindings of the
+    
+      <span style="color:green">formal</span>
+    
+    parameters to the arguments
     with which the
     
       <span style="color:green">procedure</span>
@@ -2884,7 +2888,7 @@ function compile_lambda_expression(exp, target, linkage) {
       (compile-sequence (lambda-body exp) 'val 'return))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_118_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_lambda_body(exp, fun_entry) {
-    let formals  = lambda_parameter_symbols(exp);
+    let params  = lambda_parameter_symbols(exp);
     return append_instruction_sequences(
         make_instruction_sequence(
             list("env", "fun", "argl"),
@@ -2893,7 +2897,7 @@ function compile_lambda_body(exp, fun_entry) {
                  assign("env", list(op("compiled_function_env"), 
                                     reg("fun"))),
                  assign("env", list(op("extend_environment"), 
-                                    constant(formals),
+                                    constant(params),
                                     reg("argl"), 
                                     reg("env"))))),
         compile(lambda_body(exp), "val", "return_undefined"));
