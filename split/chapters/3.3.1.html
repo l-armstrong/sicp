@@ -3443,7 +3443,7 @@ z2</pre><pre class='prettyprintoutput'>
 (define (car z) (z 'car))
 
 (define (cdr z) (z 'cdr))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_60_28_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAHAQwoCcAKADwBpQBPASlABvbKFGhCpSjVAATCgGdGZEgAtWAWwHCxO0MwCmZAs1rrQAXkugARCv0MZ1kbpcB+UO2cudALlBnLcxsyJgAbJ29ddx4vSNA-fWZmKjZ1bmsAVSIZfTwKIn0ZUCo6RIYpWgBaSvomZms+AG5YgF9YgyMTWQUlVUaASBdsNolyalo7B1YALy09Q2NaadZbe0cm0BHiMekQilCZuY7F0GXrPfCNtuwSGnkyDwtallZMbgAmJuxJmQ4moA')">function pair(x, y) {
+            <td><div class='snippet' id='javascript_60_28_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAHAQwoCcAKADwBpQBPASlABvbKFGhCpSjVAATCgGdGZEgAtWAWwHCxO0MwCmZAs1rrQAXkugARCv0MZ1kbpcB+UO2cudALlBnLcxsyJgAbJ29ddx4vSNA-fWZmKjZ1bmsAVSIZfTwKIn0ZUCo6RIYpWgBaSvomZms+AG5YgF9YgyMTWQUlVUaASBdsNp18YnJqWjsHVgAvLT1DY1pZ1lt7RybQEbExyUnQEIpQuYWO5dBV6yPwrbbsEhp5Mg8LWpZWTG4AJibsaZkHCaQA')">function pair(x, y) {
     function dispatch(m) {
         return m === "head"
             ? x
@@ -3453,7 +3453,9 @@ z2</pre><pre class='prettyprintoutput'>
     }
     return dispatch;	      
 }
+    
 function head(z) { return z("head"); }
+    
 function tail(z) { return z("tail"); }
 </pre></div></div></td></tr></table>
     The same observation is true for mutable data.  We can implement
@@ -3512,7 +3514,7 @@ function tail(z) { return z("tail"); }
 (define (set-cdr! z new-value)
   ((z 'set-cdr!) new-value)
   z)</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_60_29_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAHAQwoCcAKADwBpQBPASlABvbKFGhCpSjVABnAKZkA+u1YA3AYNDtQAXlCqA3KAC+IsRPLVa8pTzUbeu-UdNjQzBQWa0AtroB8oH46IaAARAAWcgwAJmFmbomJAPxaCUkZAFxBuqFhZEwANvEZpaCpPOllYtnBeTaKUbEl1SmyCspVrbW5emENBRTFXdWpDZWtidlyzMxUbD7cYcQxcngURHIxoFR0MwxStAC0R-RMzGF8BtiuYvjEltJNMawAXhrpHmRetK+skdE4lcbrgLIdQINCm8Pm4vj9QH98kVLtdTPdJFZ2kpnm9uJsAO6KVQMQoEOQwsSIhrPS6sAlEklk4GwzzeBGo0EPcEDIq40D04mk8lCdJUjqQ2kCxnk64s75s14c7AkGgyMhaJyMFisTDcABMwOpgI43BQwJx7CuQA')">function pair(x, y) {
+            <td><div class='snippet' id='javascript_60_29_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAHAQwoCcAKADwBpQBPASlABvbKFGhCpSjVABnAKZkA+u1YA3AYNDtQAXlCqA3KAC+IsRPLVa8pTzUbeu-UdNjQzBQWa0AtroB8oH46IaAARAAWcgwAJmFmbomJAPxaCUkZAFxBuqFhZEwANvEZpaCpPOllYtnBeTaKUbEl1SmyCspVrbW5emENBRTFXdWpDZWtidlyzMxUbD7cYcQxcngURHIxoFR0MwxStAC0R-RMzGF8BtiuYvjEltJNMawAXg4eZF60r6yR0XEriZcBZDqBBoU3h9PN5QL98kVLi4QQ8wQ1nm9uJsAO6KVQMQoEOQadLw9EAy6sHF4glEq7pT7fOHXUz3SRWdpKCGY0DU-GE4lCUl-AaIvhUuS4-l065uRmw14s3AkGgyMhaJyMFisTDcABM9PJsQ43BQ9Ix7CuQA')">function pair(x, y) {
     function set_x(v) { x = v; }
     function set_y(v) { y = v; }
     return m => m === "head"
@@ -3526,13 +3528,9 @@ function tail(z) { return z("tail"); }
                 : error(m, "undefined operation -- pair");
 }
     
-function head(z) {
-    return z("head");
-}
+function head(z) { return z("head"); }
 
-function tail(z) {
-    return z("tail");
-}
+function tail(z) { return z("tail"); }
 
 function set_head(z, new_value) {
     z("set_head")(new_value);
@@ -3574,7 +3572,7 @@ function set_tail(z, new_value) {
 (set-car! (cdr z) 17)
 
 (car x)</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_60_30_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAHAQwoCcAKADwBpQBPASlABvbKFGhCpSjVABnAKZkA+u1YA3AYNDtQAXlCqA3KAC+IsRPLVa8pTzUbeu-UdNjQzBQWa0AtroB8oH46IaAARAAWcgwAJmFmbomJAPxaCUkZAFxBuqFhZEwANvEZpaCpPOllYtnBeTaKUbEl1SmyCspVrbW5emENBRTFXdWpDZWtidlyzMxUbD7cYcQxcngURHIxoFR0MwxStAC0R-RMzGF8BtiuYvjEltJNMawAXhrpHmRetK+skdE4lcbrgLIdQINCm8Pm4vj9QH98kVLtdTPdJFZ2kpnm9uJsAO6KVQMQoEOQwsSIhrPS6sAlEklk4GwzzeBGo0EPcEDIq40D04mk8lCdJUjqQ2kCxnk64s75s14c7AkGgyMhaJyMFisTDcABMwJVRDVCM15w43HYwOpgNYkOh3EwAHYrkA')">const x = pair(1, 2);
+            <td><div class='snippet' id='javascript_60_30_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAHAQwoCcAKADwBpQBPASlABvbKFGhCpSjVABnAKZkA+u1YA3AYNDtQAXlCqA3KAC+IsRPLVa8pTzUbeu-UdNjQzBQWa0AtroB8oH46IaAARAAWcgwAJmFmbomJAPxaCUkZAFxBuqFhZEwANvEZpaCpPOllYtnBeTaKUbEl1SmyCspVrbW5emENBRTFXdWpDZWtidlyzMxUbD7cYcQxcngURHIxoFR0MwxStAC0R-RMzGF8BtiuYvjEltJNMawAXg4eZF60r6yR0XEriZcBZDqBBoU3h9PN5QL98kVLi4QQ8wQ1nm9uJsAO6KVQMQoEOQadLw9EAy6sHF4glEq7pT7fOHXUz3SRWdpKCGY0DU-GE4lCUl-AaIvhUuS4-l065uRmw14s3AkGgyMhaJyMFisTDcABM9JVRDVcM15w43HY9PJsVY3Pe3EwAHYrkA')">const x = pair(1, 2);
 const z = pair(x, x);
 set_head(tail(z), 17);
 </pre></div></div></td></tr></table>
@@ -3585,7 +3583,7 @@ set_head(tail(z), 17);
             <td><div class='snippet' id='javascript_60_31_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (car x)</pre><pre class='prettyprintoutput'>
             17</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_60_31_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAHAQwoCcAKADwBpQBPASlABvbKFGhCpSjVABnAKZkA+u1YA3AYNDtQAXlCqA3KAC+IsRPLVa8pTzUbeu-UdNjQzBQWa0AtroB8oH46IaAARAAWcgwAJmFmbomJAPxaCUkZAFxBuqFhZEwANvEZpaCpPOllYtnBeTaKUbEl1SmyCspVrbW5emENBRTFXdWpDZWtidlyzMxUbD7cYcQxcngURHIxoFR0MwxStAC0R-RMzGF8BtiuYvjEltJNMawAXhrpHmRetK+skdE4lcbrgLIdQINCm8Pm4vj9QH98kVLtdTPdJFZ2kpnm9uJsAO6KVQMQoEOQwsSIhrPS6sAlEklk4GwzzeBGo0EPcEDIq40D04mk8lCdJUjqQ2kCxnk64s75s14c7AkGgyMhaJyMFisTDcABMwJVRDVCM15w43HYwOpgNYkOh3EwAHZgdgcVaDEA')">head(x);
+            <td><div class='snippet' id='javascript_60_31_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAHAQwoCcAKADwBpQBPASlABvbKFGhCpSjVABnAKZkA+u1YA3AYNDtQAXlCqA3KAC+IsRPLVa8pTzUbeu-UdNjQzBQWa0AtroB8oH46IaAARAAWcgwAJmFmbomJAPxaCUkZAFxBuqFhZEwANvEZpaCpPOllYtnBeTaKUbEl1SmyCspVrbW5emENBRTFXdWpDZWtidlyzMxUbD7cYcQxcngURHIxoFR0MwxStAC0R-RMzGF8BtiuYvjEltJNMawAXg4eZF60r6yR0XEriZcBZDqBBoU3h9PN5QL98kVLi4QQ8wQ1nm9uJsAO6KVQMQoEOQadLw9EAy6sHF4glEq7pT7fOHXUz3SRWdpKCGY0DU-GE4lCUl-AaIvhUuS4-l065uRmw14s3AkGgyMhaJyMFisTDcABM9JVRDVcM15w43HY9PJsVY3Pe3EwAHZ6dgMVaDEA')">head(x);
 </pre><pre class='prettyprintoutput'>
 17</pre></div></div></td></tr></table>
     using the 
