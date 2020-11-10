@@ -3176,12 +3176,28 @@ concurrent_execute( s(ignore => { x = x * x;     }),
     operations on that mutex may proceed until the mutex is
     released.<a class='superscript' id='footnote-link-6' href='#footnote-6'>[6]</a>
     In our implementation, each serializer has an associated mutex.  Given a
+    
+      <span style="color:green">
+	procedure
+	<kbd>p</kbd>, 	
+      </span>
+      <span style="color:blue">
+	function
+	<kbd>f</kbd>,
+      </span>
+    
+    the serializer returns a
     <span style="color:green">procedure</span>
     <span style="color:blue">function</span>
-    <kbd>p</kbd>, the serializer returns a
-    <span style="color:green">procedure</span>
-    <span style="color:blue">function</span>
-    that acquires the mutex, runs <kbd>p</kbd>,
+    that acquires the mutex, runs
+    
+      <span style="color:green">
+	<kbd>p</kbd>,
+      </span>
+      <span style="color:blue">
+	<kbd>f</kbd>,
+      </span>
+    
     and then releases the mutex.  This ensures that only one of the
     
       <span style="color:green">procedures</span>

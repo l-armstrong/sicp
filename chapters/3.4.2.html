@@ -2846,11 +2846,22 @@ concurrent_execute( s(ignore => { x = x * x;     }),
     released.<a class='superscript' id='footnote-link-6' href='#footnote-6'>[6]</a>
     In our implementation, each serializer has an associated mutex.  Given a
     
-    function
-    <kbd>p</kbd>, the serializer returns a
+      
+      
+	function
+	<kbd>f</kbd>,
+      
+    
+    the serializer returns a
     
     function
-    that acquires the mutex, runs <kbd>p</kbd>,
+    that acquires the mutex, runs
+    
+      
+      
+	<kbd>f</kbd>,
+      
+    
     and then releases the mutex.  This ensures that only one of the
     
       
