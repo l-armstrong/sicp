@@ -2032,11 +2032,6 @@ Acknowledgments
 }
 </pre></div></div></td></tr></table>
     
-
-</p></div>
-
-  <div class='permalink'>
-<a name='p4' class='permalink'></a><p>
     The second program performs the same computation using the sequence
     operations of
     section&nbsp;<REF NAME="sec:sequences-conventional-interfaces"><a class="superscript" id="3.5.1-sec-link-2.2.3" href="./2.2.3.html">2.2.3</a></REF>:
@@ -2060,7 +2055,7 @@ Acknowledgments
   </p></div>
 
   <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
+<a name='p4' class='permalink'></a><p>
     In carrying out the computation, the first program needs to store only
     the sum being accumulated.  In contrast, the filter in the second
     program cannot do any testing until 
@@ -2078,7 +2073,7 @@ Acknowledgments
   </p></div>
 
   <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
+<a name='p5' class='permalink'></a><p>
     The inefficiency in using lists becomes painfully apparent if we use
     the sequence paradigm to compute the second prime in the interval from
     10,000 to 1,000,000 by evaluating the expression
@@ -2092,10 +2087,6 @@ Acknowledgments
             <td><div class='snippet' id='javascript_69_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 head(tail(filter(is_prime,
                  enumerate_interval(10000, 1000000))));</pre></div></div></td></tr></table>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p7' class='permalink'></a><p>
     This expression does find the second prime, but the computational overhead
     is outrageous. We construct a list of almost a million integers, filter
     this list by testing each element for primality, and then ignore almost
@@ -2105,7 +2096,7 @@ head(tail(filter(is_prime,
   </p></div>
 
   <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
+<a name='p6' class='permalink'></a><p>
     Streams are a clever idea that allows one to use sequence
     manipulations without incurring the costs of manipulating sequences as
     lists.  With streams we can achieve the best of both worlds: We can
@@ -2144,7 +2135,7 @@ head(tail(filter(is_prime,
         </tr>
         <tr><td><span style="color:green">
       <div class='permalink'>
-<a name='p9' class='permalink'></a><p>
+<a name='p7' class='permalink'></a><p>
         On the surface, streams are just lists with different names for the
 	procedures that manipulate them.  There is a constructor,
         
@@ -2169,7 +2160,7 @@ head(tail(filter(is_prime,
       </p></div>
 
       <div class='permalink'>
-<a name='p10' class='permalink'></a><p>
+<a name='p8' class='permalink'></a><p>
         Thus we can make and use streams, in just the same way as we can make
         and use lists, to represent aggregate data arranged in a sequence.  In
         particular, we can build stream analogs of the list operations from
@@ -2199,7 +2190,7 @@ head(tail(filter(is_prime,
       </p></div>
 
       <div class='permalink'>
-<a name='p11' class='permalink'></a><p>
+<a name='p9' class='permalink'></a><p>
         <kbd>Stream-for-each</kbd> is useful for viewing
 	streams:
             
@@ -2214,7 +2205,7 @@ head(tail(filter(is_prime,
       </p></div>
 
       <div class='permalink'>
-<a name='p12' class='permalink'></a><p>
+<a name='p10' class='permalink'></a><p>
         To make the stream implementation automatically and transparently
         interleave the construction of a stream with its use, we will arrange
         for the <kbd>cdr</kbd> of a stream to be evaluated
@@ -2237,7 +2228,7 @@ head(tail(filter(is_prime,
       </p></div>
 
       <div class='permalink'>
-<a name='p13' class='permalink'></a><p>
+<a name='p11' class='permalink'></a><p>
         
         
         Our implementation of streams will be based on a special form called
@@ -2260,7 +2251,7 @@ head(tail(filter(is_prime,
       </p></div>
 
       <div class='permalink'>
-<a name='p14' class='permalink'></a><p>
+<a name='p12' class='permalink'></a><p>
         
         <kbd>Cons-stream</kbd> is a special form defined so
 	that
@@ -2272,7 +2263,7 @@ head(tail(filter(is_prime,
       </p></div>
 
       <div class='permalink'>
-<a name='p15' class='permalink'></a><p>
+<a name='p13' class='permalink'></a><p>
         What this means is that we will construct streams using pairs.  However,
         rather than placing the value of the rest of the stream
         into the <kbd>cdr</kbd> of the
@@ -2288,7 +2279,7 @@ head(tail(filter(is_prime,
       </p></div>
 
       <div class='permalink'>
-<a name='p16' class='permalink'></a><p>
+<a name='p14' class='permalink'></a><p>
         <kbd>Stream-car</kbd> selects the
 	<kbd>car</kbd> of the pair;
 	<kbd>stream-cdr</kbd> selects the
@@ -2306,7 +2297,7 @@ head(tail(filter(is_prime,
       </h2></div>
 
       <div class='permalink'>
-<a name='p17' class='permalink'></a><p>
+<a name='p15' class='permalink'></a><p>
         To see how this implementation behaves, let us analyze the
         <QUOTE>outrageous</QUOTE> prime computation we saw above, reformulated
 	in terms of streams:
@@ -2318,12 +2309,12 @@ head(tail(filter(is_prime,
       </p></div>
 
       <div class='permalink'>
-<a name='p18' class='permalink'></a><p>
+<a name='p16' class='permalink'></a><p>
         We will see that it does indeed work efficiently.
       </p></div>
 
       <div class='permalink'>
-<a name='p19' class='permalink'></a><p>
+<a name='p17' class='permalink'></a><p>
         We begin by calling
 	<kbd>stream-enumerate-interval</kbd> with the
 	arguments 10,000 and 1,000,000.
@@ -2347,7 +2338,7 @@ head(tail(filter(is_prime,
       </p></div>
 
       <div class='permalink'>
-<a name='p20' class='permalink'></a><p>
+<a name='p18' class='permalink'></a><p>
         That is, <kbd>stream-enumerate-interval</kbd> returns
 	a stream represented as a pair whose <kbd>car</kbd>
         is 10,000 and whose <kbd>cdr</kbd> is a promise to
@@ -2367,7 +2358,7 @@ head(tail(filter(is_prime,
       </p></div>
 
       <div class='permalink'>
-<a name='p21' class='permalink'></a><p>
+<a name='p19' class='permalink'></a><p>
         <kbd>Stream-filter</kbd> tests the
 	<kbd>stream-car</kbd> of the stream (the
 	<kbd>car</kbd> of the pair, which is 10,000).
@@ -2383,7 +2374,7 @@ head(tail(filter(is_prime,
       </p></div>
 
       <div class='permalink'>
-<a name='p22' class='permalink'></a><p>
+<a name='p20' class='permalink'></a><p>
         <kbd>Stream-filter</kbd> now looks at the
 	<kbd>stream-car</kbd> of this stream,
         10,001, sees that this is not prime either, forces another
@@ -2407,7 +2398,7 @@ head(tail(filter(is_prime,
       </p></div>
 
       <div class='permalink'>
-<a name='p23' class='permalink'></a><p>
+<a name='p21' class='permalink'></a><p>
         This result is now passed to <kbd>stream-cdr</kbd> in
 	our original expression.  This forces the delayed
 	<kbd>stream-filter</kbd>, which in turn keeps forcing
@@ -2426,7 +2417,7 @@ head(tail(filter(is_prime,
       </p></div>
 
       <div class='permalink'>
-<a name='p24' class='permalink'></a><p>
+<a name='p22' class='permalink'></a><p>
         <kbd>Stream-car</kbd> returns 10,009, and the
 	computation is complete. Only as many integers were tested for primality
 	as were necessary to find the second prime, and the interval was
@@ -2434,7 +2425,7 @@ head(tail(filter(is_prime,
       </p></div>
 
       <div class='permalink'>
-<a name='p25' class='permalink'></a><p>
+<a name='p23' class='permalink'></a><p>
         In general, we can think of delayed evaluation as 
         
         <QUOTE>demand-driven</QUOTE>
@@ -2456,7 +2447,7 @@ head(tail(filter(is_prime,
       </h2></div>
 
       <div class='permalink'>
-<a name='p26' class='permalink'></a><p>
+<a name='p24' class='permalink'></a><p>
         
         Although <kbd>delay</kbd> and
 	<kbd>force</kbd> may seem like mysterious operations,
@@ -2473,7 +2464,7 @@ head(tail(filter(is_prime,
       </p></div>
 
       <div class='permalink'>
-<a name='p27' class='permalink'></a><p>
+<a name='p25' class='permalink'></a><p>
         <kbd>Force</kbd> simply calls the procedure
         (of no arguments) produced by <kbd>delay</kbd>,
 	so we can implement <kbd>force</kbd> as
@@ -2485,7 +2476,7 @@ head(tail(filter(is_prime,
       </p></div>
 
       <div class='permalink'>
-<a name='p28' class='permalink'></a><p>
+<a name='p26' class='permalink'></a><p>
         
         
         This implementation suffices for <kbd>delay</kbd> and
@@ -2517,7 +2508,7 @@ head(tail(filter(is_prime,
       </p></div>
 
       <div class='permalink'>
-<a name='p29' class='permalink'></a><p>
+<a name='p27' class='permalink'></a><p>
         <kbd>Delay</kbd> is then defined so that
 	<kbd>(delay ^exp^)</kbd> is equivalent to
         <div class='snippet' id='javascript_69_21_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
@@ -2628,7 +2619,7 @@ head(tail(filter(is_prime,
           <td></td>
           <td><span style="color:blue">
       <div class='permalink'>
-<a name='p30' class='permalink'></a><p>
+<a name='p28' class='permalink'></a><p>
 	In their most basic form, streams are similar to lists. The empty stream
 	is <kbd>null</kbd>, a non-empty stream is a
 	pair, and the <kbd>head</kbd> of the pair is a
@@ -2644,8 +2635,8 @@ head(tail(filter(is_prime,
       </p></div>
 
       <div class='permalink'>
-<a name='p31' class='permalink'></a><p>
-	In order to access the data item of a non-empty stream, we just use
+<a name='p29' class='permalink'></a><p>
+	In order to access the first data item of a non-empty stream, we just use
 	<kbd>head</kbd> as with lists. In order
 	to access the tail of a stream
 	<kbd>s</kbd>, we need to <EM>apply</EM> 
@@ -2657,10 +2648,6 @@ head(tail(filter(is_prime,
 }
 </pre></div></div>
         
-      </p></div>
-
-      <div class='permalink'>
-<a name='p32' class='permalink'></a><p>
 	The tail of a stream is <QUOTE>wrapped</QUOTE> in a function. It is a
 	<EM>delayed expression</EM>, a <QUOTE>promise</QUOTE> to evaluate an
 	expression at some future time.
@@ -2673,7 +2660,7 @@ head(tail(filter(is_prime,
       </p></div>
 
       <div class='permalink'>
-<a name='p33' class='permalink'></a><p>
+<a name='p30' class='permalink'></a><p>
         We can make and use streams, in just the same way as we can make
         and use lists, to represent aggregate data arranged in a sequence.  In
         particular, we can build stream analogs of the list operations from
@@ -2701,10 +2688,6 @@ function stream_for_each(fun, s) {
 }
 </pre></div></div>
         
-      </p></div>
-
-      <div class='permalink'>
-<a name='p34' class='permalink'></a><p>
 	The function
         <kbd>stream_for_each</kbd> is useful for
 	viewing streams:
@@ -2716,7 +2699,7 @@ function stream_for_each(fun, s) {
       </p></div>
 
       <div class='permalink'>
-<a name='p35' class='permalink'></a><p>
+<a name='p31' class='permalink'></a><p>
 	The function that represents the tail of a stream is evaluated when it
 	is accessed, using <kbd>stream_tail</kbd>.
 	This design choice is reminiscent of our discussion of rational numbers
@@ -2743,7 +2726,7 @@ function stream_for_each(fun, s) {
       </h2></div>
 
       <div class='permalink'>
-<a name='p36' class='permalink'></a><p>
+<a name='p32' class='permalink'></a><p>
         To see how this data structure behaves, let us analyze the
         <QUOTE>outrageous</QUOTE> prime computation we saw above, reformulated
 	in terms of streams:
@@ -2756,12 +2739,12 @@ function stream_for_each(fun, s) {
       </p></div>
 
       <div class='permalink'>
-<a name='p37' class='permalink'></a><p>
+<a name='p33' class='permalink'></a><p>
         We will see that it does indeed work efficiently.
       </p></div>
 
       <div class='permalink'>
-<a name='p38' class='permalink'></a><p>
+<a name='p34' class='permalink'></a><p>
         We begin by calling
 	<kbd>stream_enumerate_interval</kbd> with
         the arguments 10,000 and 1,000,000.  The function
@@ -2787,7 +2770,7 @@ function stream_for_each(fun, s) {
       </p></div>
 
       <div class='permalink'>
-<a name='p39' class='permalink'></a><p>
+<a name='p35' class='permalink'></a><p>
         That is, <kbd>stream_enumerate_interval</kbd>
         returns a stream represented as a pair whose
 	<kbd>head</kbd>
@@ -2813,7 +2796,7 @@ function stream_for_each(fun, s) {
       </p></div>
 
       <div class='permalink'>
-<a name='p40' class='permalink'></a><p>
+<a name='p36' class='permalink'></a><p>
         The function <kbd>stream_filter</kbd> tests the
 	<kbd>head</kbd> of the stream (which is 10,000). Since
 	this is not prime, <kbd>stream_filter</kbd>
@@ -2826,7 +2809,7 @@ function stream_for_each(fun, s) {
       </p></div>
 
       <div class='permalink'>
-<a name='p41' class='permalink'></a><p>
+<a name='p37' class='permalink'></a><p>
 	The function <kbd>stream_filter</kbd> now
 	looks at the <kbd>head</kbd> of this stream,
         10,001, sees that this is not prime either, forces another 
@@ -2850,7 +2833,7 @@ pair(head(stream),
       </p></div>
 
       <div class='permalink'>
-<a name='p42' class='permalink'></a><p>
+<a name='p38' class='permalink'></a><p>
         This result is now passed to
 	<kbd>stream_tail</kbd> in our original
 	expression.  This forces the delayed
@@ -2870,7 +2853,7 @@ pair(head(stream),
       </p></div>
 
       <div class='permalink'>
-<a name='p43' class='permalink'></a><p>
+<a name='p39' class='permalink'></a><p>
 	The function <kbd>head</kbd> returns 10,009, and the
 	computation is complete.  Only as many integers were tested for
 	primality as were necessary to find the second prime, and the interval
@@ -2878,7 +2861,7 @@ pair(head(stream),
       </p></div>
 
       <div class='permalink'>
-<a name='p44' class='permalink'></a><p>
+<a name='p40' class='permalink'></a><p>
         In general, we can think of delayed evaluation as 
         
         <QUOTE>demand-driven</QUOTE> programming, whereby each stage in the
@@ -2900,7 +2883,7 @@ pair(head(stream),
       </h2></div>
 
       <div class='permalink'>
-<a name='p45' class='permalink'></a><p>
+<a name='p41' class='permalink'></a><p>
         
 	When we construct stream pairs, we delay the evaluation of their tail
 	expressions by wrapping these expressions in a function. We force their
@@ -2908,7 +2891,7 @@ pair(head(stream),
       </p></div>
 
       <div class='permalink'>
-<a name='p46' class='permalink'></a><p>
+<a name='p42' class='permalink'></a><p>
         
         
         This implementation suffices for streams to work as advertised, but
@@ -2927,25 +2910,25 @@ pair(head(stream),
         (of no arguments) and returns a memoized version of the function.
 	The first time the memoized function is run, it saves the computed
 	result.	On subsequent evaluations, it simply returns the result.
-        <div class='snippet' id='javascript_69_37_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AWwFMGaAKYkgSlAG8BIUENC5hoADZMKoAIbiATkxkATAJ4B9eaVABeUATkBnJgG5RwydMWGi46XtLKmBKiSbKzYxRSLz6bHh0APj5zMXCIsSoCUDYAQjlFFQ0tblDIjMzQa1t7fVIAzyzi4USlNU1tPQotUzCSrO9fehy7IoaIgF9QJnFjdI7GqWbsphs2+sGhTtxBDM6zGcJSSlp6QwBHIhlFdQAWAIGhMjpDKzHc3VA90AAqa5M5oXrlKkMAB3EZVTYAIgZclRPlQyDJqHRQKD5PIqO5QDQiBRflx2qMfH5RuMKItcCcSGdGCwaOpNttdjc9MxWGxSTsmPsUbhXh8vj8qcTaeSAijQCBQIYABY0ADuhlA-0BnzQaF+TLen2+bHZJK2dP23JMvLAyhoY1AJBo0kFIvFALsQPE0t+QA')">function memo(fun) {	    
+        <div class='snippet' id='javascript_69_37_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AWwFMGaAKYkgSlAG8BIUENC5hoADZMKoAIbiATkxkATAJ4B9eaVABeUATkBnJgG5RwydMWGi46XtLKmBKiSbKzYxRSLz6bHh0APj5zMXCxKgJQNgBCOUUVDS1uUIj0iOtbe31SAM8MwtkFJTVNbT0KLVMwosypX3osuwK6oQBfUCZxYzS2+p8-UGaKVrb22vT2swnCUkpaekMARyIZRXUAFgC+oTI6QysmGztdUE3QACpzk0FhWuUqQwAHcRlVNgAiBmyqV6oyDJqHRQID5PIqO5QDQiBRPlwxt5GsNjtkZrh9iRDowWDR1Cs1hsLnpmKw2AT1kwtgjcI8Xm8PqS8RSiQEEaAQKBDAALGgAd0MoG+v1eaDQn1pT1e7zYTPxq0pWzZJg5YGUNGOoBINGkPP5Qp+dj+4jFnyAA')">function memo(fun) {	    
     let already_run = false;
     let result = undefined;
     return () => {
-                     if (!already_run) {
-                         result = fun();
-                         already_run = true;
-                         return result;
-                     } else {
-                         return result;
-                     }
-	         };
+               if (!already_run) {
+                   result = fun();
+                   already_run = true;
+                   return result;
+               } else {
+                   return result;
+               }
+           };
 }
 </pre></div></div>
         
       </p></div>
 
       <div class='permalink'>
-<a name='p47' class='permalink'></a><p>
+<a name='p43' class='permalink'></a><p>
 	We can make use of <kbd>memo</kbd> whenever
 	we construct a stream pair. For example, instead of 
         <div class='snippet' id='javascript_69_38_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwoCcBTAQwFsB9T9gBwAUBADSMAlKADeuUHNBsKRZvSoNuJIgBstghuNnyj8gPyhNOw8aMAuUP3ZVmwwQAsOAEz3jxIq9YC5QUkAXgA+RhYOHj4hUUi2Lm4KR119HwBuXABffDI6JlBOAE9uJkTOUBD7R2cAFjFgqoiHJ0EMRtCIiy1MvIKKItLy6O4AJir-EaTYwQ81fi12YrESsqiucSzcaZ42AkE13fGxbC2djb3WA6PLk9AzrJBQCndzIk4AI1ZmUAxQNSMVw0ADu9AoIKoZFYuGe3zI7CIDFYLzeDC4KI8rCWxVYHlhYBonwAVqxKACGKACDRmNCPC9IdCgA')">function stream_map(f, s) {
@@ -2959,7 +2942,7 @@ pair(head(stream),
 	we can define an optimized function
 	<kbd>stream_map</kbd>	as
 	follows:<a class='superscript' id='footnote-link-10' href='#footnote-10'style="color:blue">[10]</a>
-	<div class='snippet' id='javascript_69_39_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AWwFMGaAKYkgSlAG8BIUENC5hoADZMKoAIbiATkxkATAJ4B9eaVABeUATkBnJgG5RwydMWGi46XtLKmBKiSbKzYxRSLz6bHh0APj5zMXCIsSoCUDYAQjlFFQ0tblDIjMzQa1t7fVIAzyzi4USlNU1tPQotUzCSrO9fehy7IoaIgF9QJnFjdI7GqWbsphs2+sGhTtxBDM6zGcJSSlp6QxqlBnUGGQAHdRo96gYqAC93DgAaUEMeXnqmv1AqQ3USW3E2O8mIgH5QB9xOJfuEAFygPYyKjyDhsAAW5W+XC4V1BxWYrDYsUCIQ2SW2uwORxO50u6KmmQIN3xW3UFGhXzuPBRi3wZDoG0YGlpMgYukh0NhABYbgFdCEoTC2BgxbjAZ9WezOdIGDzNnz1AAmXT1XmE-ZsZSvPbiGSqG5q9T6rhmXD6zTONhWh1am7YW32jXbRQEZ3qgna92ekCgCiIhUMABGTHkoAwL0Mt3hNAA7vQKKmqGQmLhQzGyDIiP1w0xbnyy04zap3HmwDQowArJiURP6GjyHPKMNZnPKkhcl3e9QoXViB1Ew7HKinC7KI0m6uWgNbT1ewO+-3W4coYNmB2boeB3egD1mUOlyMxuMJ17JtP0OjiVSgOh9-MtosliOtaQ0GIEB2ZCuAA5nWYYRlW5ruK+TYttId6YjQZLKEAA')">function stream_map_optimized(f, s) {
+	<div class='snippet' id='javascript_69_39_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AWwFMGaAKYkgSlAG8BIUENC5hoADZMKoAIbiATkxkATAJ4B9eaVABeUATkBnJgG5RwydMWGi46XtLKmBKiSbKzYxRSLz6bHh0APj5zMXCxKgJQNgBCOUUVDS1uUIj0iOtbe31SAM8MwtkFJTVNbT0KLVMwosypX3osuwK6oQBfUCZxYzS2+p8-UGaKVrb22vT2swnCUkpaekMqpQZ1BhkAB3UaTeoGKgAvdw4AGlBDHl5a70bQKkN1EltxNkvJiIB+UGfxcQ-wgAuUCbGRUeQcNgAC1Kby4XFOALqzFYbBigRCy0Saw2212+yOJyR-TaBHOWNW6goYNelx48Jm+DIdGWjA0FJkDF0ILBEIALOcAroQqDwWwMIKMT8XgymSzpAx2StOeoAEy6WocnFbNjKB6bcQyVTnRXqLVcMy4LWaZxsU3W1XnbAWq3KtaKAh2pXYtVOl0gUAUGHShgAIyY8lAGHuhguUJoAHd6BQE1QyExcAHw2QZERekGmBdOYWnIbVO5M2AaKGAFZMSgx-Q0eTp5SB1PpuUkVn2t3qFAasTW3E7PZUA7HZS6-Vlk3e1Yu10+j1es19lB+szWle9n0b0DOswBgsh8OR6MPOOJ+h0cSqUB0TtZ+u5-PBkYP6IEZtkVwAc0rQNg1LI13AfWt62kS8URoQllCAA')">function stream_map_optimized(f, s) {
     return is_null(s)
            ? null
            : pair(f(head(s)),
@@ -2975,7 +2958,7 @@ pair(head(stream),
     <a name="ex_3.53" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_3.53">Exercise 3.53 </a></b> 
   
 	
-	Define a function <kbd>stream_combine</kbd>
+	Declare a function <kbd>stream_combine</kbd>
 	that takes a binary function and two streams as arguments and returns
 	a stream whose elements are the results of applying the function
 	pairwise to the corresponding elements of the argument streams.
@@ -2984,6 +2967,12 @@ function stream_combine(f, s1, s2) {
     ...
 }</pre></div></div>
 	
+	Similar to <kbd>stream_map_optimized</kbd>,
+	declare a function
+	<kbd>stream_combine_optimized</kbd> by
+	modifying your
+	<kbd>stream_combine</kbd>
+	such that the result stream employs memoization.
       
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_69_4_div" data-toggle="collapse">Add solution</button></div>
@@ -3003,16 +2992,17 @@ function stream_combine(f, s1, s2) {
 	<kbd>display</kbd> returns its argument
 	after displaying it.
 	What does the interpreter print in response to evaluating each
-	expression in the following sequence?<a class='superscript' id='footnote-link-11' href='#footnote-11'style="color:blue">[11]</a>
-	<div class='snippet' id='javascript_69_41_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwoCcBTAQwFsB9Vkozq2bsKrblRKjmAN3YAbABRyaAdwA0oABZUA5poCUoAN65QZ0GwpFm9ZStAA+Lbs2nz78wH5Q-OXLce7gBcoAAO7FTMSqpqAYHxZgqGALxOTGxcvPyCwqLikkKyinagANSg2BpxCTW1dQnaevr6ANyguAC++HKsFKAAHqDJjCwcPJzsoQrV8QAmVAyhcuwAnhrpY1kCQiJiElJFCgAMGthHzS24G5lsBAr9GhitV6M3rHcPoADsrUA')">let x = stream_map(
-            display, stream_enumerate_interval(0, 10));
+	statement in the following sequence?<a class='superscript' id='footnote-link-11' href='#footnote-11'style="color:blue">[11]</a>
+	<div class='snippet' id='javascript_69_41_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwoCcBTAQwFsB9Vkozq2bsKrblRKjmAN3YAbABRyaAdwA0oABZUA5poCUoAN65QZ0GwpFm9ZStAA+Lbs2nz78wH5Q-OXLce7gBcoAAO7FTMSqpqAYHxZgqGALxOTGxcvPyCwqLikkKyinagANSg2BpxCTW1dQnaevr6ANyguAC++HKsFKAAHqDJjCwcPJzsoQoAJlQMoXLsAJ4a6WNZAkIiYhJSRQoADBrYB80t+GuZbAQK-RoYrRejV6w3d6AA7K1AA')">let x = stream_map(display, stream_enumerate_interval(0, 10));
+
 stream_ref(x, 5);
+
 stream_ref(x, 7);
 </pre></div></div>
-	What does the evaluator print if 
+	What does the interpreter print if 
 	<kbd>stream_map_optimized</kbd>
 	is used instead of <kbd>stream_map</kbd>?
-	<div class='snippet' id='javascript_69_42_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AWwFMGaAKYkgSlAG8BIUENC5hoADZMKoAIbiATkxkATAJ4B9eaVABeUATkBnJgG5RwydMWGi46XtLKmBKiSbKzYxRSLz6bHh0APj5zMXCIsSoCUDYAQjlFFQ0tblDIjMzQa1t7fVIAzyzi4USlNU1tPQotUzCSrO9fehy7IoaIgF9QJnFjdI7GqWbsphs2+sGhTtxBDM6zGcJSSlp6QxqlBnUGGQAHdRo96gYqAC93DgAaUEMeXnqmv1AqQ3USW3E2O8mIgH5QB9xOJfuEAFygPYyKjyDhsAAW5W+XC4V1BxWYrDYsUCIQ2SW2uwORxO50u6KmmQIN3xW3UFGhXzuPBRi3wnFWdFuAEciDJFGwAB73R7DZ6C0AAKlAgrZy3I1C5hl2wLGFHUyioADdXjRYWkHl4xfQXCRlBrtbr9TcAExcNkcxUm1zmzU6wx6tgkG4UNUW916kVGnzPQy8-lMNi+jb+q08EIkClCAGJ4oQt1UJyGKN+jMe+Q3bhJ4QA6PqvN64tCCGm12W-Nen25+t60AAalA2HtuBmjrWoAzWbYMhuACMg8InvRR6AAKSyXQ6PQABjlfa5r3Ue3kVGYXonQingMXemVckkMYr+u7S3X602Mm2TA+zHkMl96lcvvkWrkbHENAAO43PCVAAObwgeowhvQAGAaAISgRBxYpp8xYQlCML-kBaKUjiuh4g+T4vkwb4fl+pG-l8cHtp2NxVnhjGgEhkH2iISyWDKui3EROz7Icxy7mSyhsFWmqGHs4gyKoNK8c+RCvu+TCfiQ35UWwy43Ngy6srgtKPpozhCjcGDdvp2yKAQxmgAA7PaQA')">let x = stream_map_optimized(
+	<div class='snippet' id='javascript_69_42_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AWwFMGaAKYkgSlAG8BIUENC5hoADZMKoAIbiATkxkATAJ4B9eaVABeUATkBnJgG5RwydMWGi46XtLKmBKiSbKzYxRSLz6bHh0APj5zMXCxKgJQNgBCOUUVDS1uUIj0iOtbe31SAM8MwtkFJTVNbT0KLVMwosypX3osuwK6oQBfUCZxYzS2+p8-UGaKVrb22vT2swnCUkpaekMqpQZ1BhkAB3UaTeoGKgAvdw4AGlBDHl5a70bQKkN1EltxNkvJiIB+UGfxcQ-wgAuUCbGRUeQcNgAC1Kby4XFOALqzFYbBigRCy0Saw2212+yOJyR-TaBHOWNW6goYNelx48Jm+E4CzoFwAjkQZIo2AAPK43BpDHmgABUoB5jLm5GorMMGz+TGW6mUVAAbg8aBDUtcvIL6C4SMplWqNVrzgAmLiM5ky-WuI0q9WGTVsEjnCiKijGp2a-m6wZLDlcphsD1Kx2mnghEjEoTfGN1YERpyGUOe72m87cWPCb5hr0R53yHNCYEGh0mouu93pwua0AAalA2CtuAmNsWoGTirYMnOACM-cJbkN+6AAKSyXQ6PQABklHdZD3Um3kVGYrqHQhH9HoM70crkknDlZd3AX81tFxWMjWTGezHkMg96lcHvkqrkbHENAA7ucoSoABzKEt2GPUJD-UAQkAkCc3jF4c2BUFwW-P9ERJMQAl0TEbzvB8mCfF830Iz9Xh-X9G2bc4S0wuj0lg0CrREWZLHFXRr2xdYth2PZ10JZQ2BLFVDE2cQZFUck8PUe8iEfZ8mFfEh3zIthZ3ObBZwZXAKVvTRnF5c4MFbXS1kUAhDNAAB2K0gA')">let x = stream_map_optimized(
             display, stream_enumerate_interval(0, 10));
 stream_ref(x, 5);
 stream_ref(x, 7);
@@ -3031,17 +3021,16 @@ stream_ref(x, 7);
     <a name="ex_3.55" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_3.55">Exercise 3.55 </a></b> 
   
         
-        Consider the program
-	<div class='snippet' id='javascript_69_43_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAAmflUNLUpael9-QLsHJxJwilMLa1THV1FxSWl6ZjYubiyzFOD2QQA+UBJC91aAfiaW1vEALlBcqktTSuyatPCXLu7xDqqcoLSp6dA+pICBtLDQObHHUABqUGxo9UJSeN0BoYZuVnCAIwL3Yu970ABSUFZQAF4-0AADDFNOcdPR7OYAA7sKh6HguYRdF70eh-H76IwmaobEIuYFnbQJRgULisPTmTgkIhw9isLLmPxZdg2IzcQw0ADu4QAFlQAObcp5FTwlUDsjmgRq8gVLdpNIjGWXuPqQ1hUJzi0JK5ZibiCH6NMyk8mU6mcWn0xnmlmGNmcg5HcLanUu12u6WC6KgU4Ei7ghgUmyU5xCsTIpofSK-f5An1kOhmUAGXiBBiQwysACev1AAE5VHEwf17Oms+YjZwydwGKGfKCidY0xnM+WSZXyVQmdWKBNa+4qARQNwIVTjN3+H3xGpQJxDAxOKAB0PUTHJ91G6XM9wAOTb8IAIjQR-3J2W09n88Rbo3ze43MrlnHp9dN7LFbJDK77-JFDVtrM-ATKAAC0RzPt0GjuJB4ivi236fua1bhMmqabicGi4CYFCMNSOaxr6RasGQZDUnwtYMLh6JyIcFF6Kozwit4tH4vGJCJvOTA5vBBiQtwzrdERJF6E6bruPBpo0nSnAMiQTI2tw2DhBEAITqorGJtm6Lwb4hhdhCnBBhkjCcEwJy4Op2EAF5cW2H46V2cgGkokYYNG6IAuEHFmfBXAENwmbhAA7GZsGtsa3CWdEQA')">let sum = 0;
+        Consider the sequence of statements
+	<div class='snippet' id='javascript_69_43_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAAmflUNLUpael9-QLsHJxJwilMLa1THV1FxSWl6ZjYubiyzFOD2QQA+UBJC91aAfiaW1vEALlBcqktTSuyatPCXLu7xDqqcoLSp6dA+pICBtLDQObHHUABqUGxo9UJSeN0BoYZuVnCAIwL3Yu970ABSUFZQAF4-0AADDFNOcdPR7OYAA7sKh6HguYRdF70eh-H76IwmaobEIuYFnbQJRgULisPTmTgkIhw9isLLmPxZdg2IzcQw0ADu4QAFlQAObcp5FTwlUDsjmgRq8gVLdpNIjGWXuPqQ1hUJzi0JK5ZibiCH6NMyk8mU6mcWn0xnmlmGNmcg5HcLanUu12u6WC6KgU4Ei7ghgUmyU5xCsTIpofSK-f5An1kOhmUAGXiBBiQwysACev1AAE5VHEwf17Oms+YjZwydwGKGfKCidY0xnM+WSZXyVQmdWKBNa+4qARQNwIVTjN3+H3xGpQJxDAxOKAB0PUTHJ91G6XM9wAOTb8IAIjQR-3J2W09n88Rbo3ze43MrlnHp9dN7LFbJDK77-JFDVtrM-ATKAAC0RzPt0GjuJB4ivi236fua1bhMmqabicGi4CYFCMNSOaxr6RasGQZDUnwtYMLh6JyIcFF6Kozwit4tH4vGJCJvOTA5vBBiQrcxHUuE8GmjSdKcAyJBMja3DYOEEQAhOqi4KxibZui8G+IYXYQpwQYZIwnBMCcSkJthABeXFth+GldnIBpKJGGDRuiAKCQZRnwVwBDcJm4QAOxGbBrbGtwpnREAA')">let sum = 0;
 
 function accum(x) {
     sum = x + sum;
     return sum;
 }
 
-const seq = stream_map(
-                accum, 
-                stream_enumerate_interval(1, 20));
+const seq = stream_map(accum, stream_enumerate_interval(1, 20));
+
 const y = stream_filter(is_even, seq);
 
 const z = stream_filter(x => x % 5 === 0, seq);
@@ -3163,13 +3152,7 @@ display_stream(z);
         
         
         Friedman and Wise (1976). In their implementation,
-	
-	  <span style="color:green">
-	    <kbd>cons</kbd>
-	  </span>
-	  <span style="color:blue">
-	    <kbd>pair</kbd>
-	  </span>
+	<kbd>cons</kbd>
 	always delays evaluating its
 	arguments, so that lists automatically behave as streams.  The
 	memoizing optimization is also known as 
@@ -3249,7 +3232,10 @@ display_stream(z);
         
         
         Friedman and Wise (1976). In their
-        implementation, <kbd>cons</kbd>
+        implementation,
+	<kbd>cons</kbd> (the Lisp
+	equivalent of our
+	<kbd>pair</kbd> function)
 	always delays evaluating its arguments, so
         that lists automatically behave as streams.  The memoizing
         optimization is also known as 

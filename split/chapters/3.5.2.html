@@ -1999,10 +1999,8 @@ Acknowledgments
             <td><div class='snippet' id='javascript_70_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (integers-starting-from n)
   (cons-stream n (integers-starting-from (+ n 1))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_70_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0KkigUwHNmAnAZwH0uKAhh2olWPAhxoBbABQkAlKADeuUGtAdmFIh3oAHAVQ5yANKvUXL6mYoC8APgZM2nXvyEixE6XNABqUABGeXMrMPkAblwAX3wyOn5QbykebAAGUFsnFnZuPkFhRi9JWXTI3GYANwEAG3zNAVlk1LSTUAw0yKA')">function integers_starting_from(n) {
-    return pair(n,
-                () => integers_starting_from(n + 1)
-               );
+            <td><div class='snippet' id='javascript_70_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0KkigUwHNmAnAZwH0uKAhh2olWPAhxoBbABQkAlKADeuUGtAdmFIh3oAHAVQ5yANKBmKAvAD4GTNp178hIsROlzQAalABGefIA3LgAvvhkdPyg7lI82AAMoJZ2LOzcfILCjG6SsglBuMwAbgIANhmaArIxcfFmGPFBQA')">function integers_starting_from(n) {
+    return pair(n, () => integers_starting_from(n + 1));
 }
 </pre></div></div></td></tr></table>
         
@@ -2012,13 +2010,9 @@ Acknowledgments
           <tr>
             <td><div class='snippet' id='javascript_70_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define integers (integers-starting-from 1))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_70_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0KkigUwHNmAnAZwH0uKAhh2olWPAhxoBbABQkAlKADeuUGtAdmFIh3oAHAVQ5yANKvUXL6mYoC8APgZM2nXvyEixE6XNABqUABGeXMrMPkAblwAX3wyOn4nFnZuUFskl24+QWFGL0lZYKjcZgA3AQAbbM0BWUZk1xNQDAAGSKA')">const integers = integers_starting_from(1);
+            <td><div class='snippet' id='javascript_70_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0KkigUwHNmAnAZwH0uKAhh2olWPAhxoBbABQkAlKADeuUGtAdmFIh3oAHAVQ5yANKBmKAvAD4GTNp178hIsROlzQAalABGefIA3LgAvvhkdPx2LOzcoJbRDtx8gsKMbpKy-sG4zABuAgA2KZoCsowxjmYYAAxBQA')">const integers = integers_starting_from(1);
 </pre></div></div></td></tr></table>
     
-  </p></div>
-
-  <div class='permalink'>
-<a name='p2' class='permalink'></a><p>
     This makes sense because <kbd>integers</kbd> will be a
     pair whose
     
@@ -2037,45 +2031,48 @@ Acknowledgments
   </p></div>
 
   <div class='permalink'>
-<a name='p3' class='permalink'></a><p>
+<a name='p2' class='permalink'></a><p>
     Using <kbd>integers</kbd> we can define other infinite
     streams, such as the stream of integers that are not divisible by 7:
     
         
-    
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_70_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+(define (divisible? x y) (= (remainder x y) 0))</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_70_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0ATKgNyaoCMAbAKYAKAB4AaUAE8AlKADeoAE4CKRRfRGgApFNABeA6AAMAblABffEzadu-YQBZsEgOzSTQA')">function is_divisible(x, y) { return x % y === 0; }
+</pre></div></div></td></tr></table>
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_70_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define no-sevens
   (stream-filter (lambda (x) (not (divisible? x 7)))
                  integers))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_70_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0KkigUwHNmAnAZwH0uKAhh2olWPAhxoBbABQkAlKADeuUGtAdmFIh3oAHAVQ5yANKvUXL6mYoC8APgZM2nXvyEixE6XNABqUABGeXMrMPkAblwAX3wyOn4nFnZuUFskl24+QWFGL0lZYKjCUkpaeipeABMqADdKqgAjABtmGQAPE1AAT0UVC01tXVB20ABSHrTbdIAGKNjceJJEkho+ZlrmZbTQ0H5NASlxKmaWY1GHUABCBmq6hpa2ztAAdnkzMM-1RmTXSPwNgJmtkDrJVutNssutgUJEgA')">const no_sevens =
+            <td><div class='snippet' id='javascript_70_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0KkigUwHNmAnAZwH0uKAhh2olWPAhxoBbABQkAlKADeuUGtAdmFIh3oAHAVQ5yANKBmKAvAD4GTNp178hIsROlzQAalABGefIA3LgAvvhkdPx2LOzcoJbRDtx8gsKMbpKy-sGEpJS09FS8ACZUAG5FVABGADbMMgAeZgCeikoaWjr0DaAApKDN8ZYJAAyBoGG4ESRRJDR8zGXMM-Gq6vyaAlLiVDUsxj02oACEDCXllbX1TaAA7PIma+rPL8+MMY5B+IsCNSmbsjmCyWMzM2BQQSAA')">const no_sevens =
     stream_filter(x => ! is_divisible(x, 7),
                   integers);
 </pre></div></div></td></tr></table>
     
-  </p></div>
-
-  <div class='permalink'>
-<a name='p4' class='permalink'></a><p>
     Then we can find integers not divisible by 7 simply by accessing
     elements of this stream:
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_70_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_70_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (stream-ref no-sevens 100)</pre><pre class='prettyprintoutput'>
 117</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_70_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0KkigUwHNmAnAZwH0uKAhh2olWPAhxoBbABQkAlKADeuUGtAdmFIh3oAHAVQ5yANKvUXL6mYoC8APgZM2nXvyEixE6XNABqUABGeXMrMPkAblwAX3wyOn4nFnZuUFskl24+QWFGL0lZYKjCUkpaeipeABMqADdKqgAjABtmGQAPE1AAT0UVC01tXVB20ABSHrTbdIAGKNjceJJEkho+ZlrmZbTQ0H5NASlxKmaWY1GHUABCBmq6hpa2ztAAdnkzMM-1RmTXSPx9sxDjxNAQ5GsuBstlwuoEZjNIkA')">stream_ref(no_sevens, 100);
+            <td><div class='snippet' id='javascript_70_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0KkigUwHNmAnAZwH0uKAhh2olWPAhxoBbABQkAlKADeuUGtAdmFIh3oAHAVQ5yANKBmKAvAD4GTNp178hIsROlzQAalABGefIA3LgAvvhkdPx2LOzcoJbRDtx8gsKMbpKy-sGEpJS09FS8ACZUAG5FVABGADbMMgAeZgCeikoaWjr0DaAApKDN8ZYJAAyBoGG4ESRRJDR8zGXMM-Gq6vyaAlLiVDUsxj02oACEDCXllbX1TaAA7PIma+rPL8+MMY5B+BvMWzyaBDk8y4i2WXDMvhGIyCQA')">stream_ref(no_sevens, 100);
 </pre><pre class='prettyprintoutput'>
 117</pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
+<a name='p3' class='permalink'></a><p>
     In analogy with <kbd>integers</kbd>, we can define the
     infinite stream of Fibonacci numbers:
     
@@ -2084,27 +2081,24 @@ Acknowledgments
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_70_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_70_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (fibgen a b)
   (cons-stream a (fibgen b (+ a b))))
 
 (define fibs (fibgen 0 1))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_70_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0AqgIwHMBTEgCgEMAaUJgEpQAb1ygJoAE5sKRKfQAO3KlJ79OwgLwA+Bs3Zcm-bqADUAwYIDcuAL74ydAM4V9TZ6C3vDnAAz8AIw2+GwAbtwANgD6rjLcALacjB78GH42QA')">function fibgen(a, b) {
+            <td><div class='snippet' id='javascript_70_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0AqgIwHMBTEgCgEMAaUJgEpQAb1ygJoAE5sKRKfQAO3KlJ79OwgLwA+Bs3Zcm-bqADUAwYIDcuAL74ydAM4V9TZ6C3vDnAAz8AIw2+GwAbtwANgD6rjLcALacjB78GH42QA')">function fibgen(a, b) {
     return pair(a, () => fibgen(b, a + b));
 }
 
 const fibs = fibgen(0, 1);
 </pre></div></div></td></tr></table>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
     
-      <span style="color:green"><kbd>Fibs</kbd></span>
-      <span style="color:blue">The function <kbd>fibs</kbd>
+      <span style="color:green"><kbd>Fibs</kbd> is</span>
+      <span style="color:blue">The function <kbd>fib_gen</kbd>
+      returns
       </span>
     
-    is a pair whose
+    a pair whose
     
       <span style="color:green"><kbd>car</kbd></span>
       <span style="color:blue"><kbd>head</kbd></span>
@@ -2143,7 +2137,7 @@ const fibs = fibgen(0, 1);
   </p></div>
 
   <div class='permalink'>
-<a name='p7' class='permalink'></a><p>
+<a name='p4' class='permalink'></a><p>
     
     For a look at a more exciting infinite stream, we can generalize the
     
@@ -2177,7 +2171,7 @@ const fibs = fibgen(0, 1);
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_70_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_70_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (sieve stream)
   (cons-stream
    (stream-car stream)
@@ -2187,7 +2181,7 @@ const fibs = fibgen(0, 1);
            (stream-cdr stream)))))
 
 (define primes (sieve (integers-starting-from 2)))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_70_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0ATKgNyaoCMAbAKYAKAB4AaUAE8AlKADeuUEtAAnARSIr6I0AFIpoALzHQABgDcuAL75i5anQYkKAgOYCVLRhQCGK6iSuzAQqNAC2QiSyCsqq6pr0AA4+VCqRYoqxWdlCsoYAfE4u7p7M3n4BQSHhkaAA1KAAjNKZ2W3SljaEpJS09IxUAhzC3mo+YdGtcRpaoMmpQgAWAj6sQqMrExltO6C5RoUDQyMUY2HBVHwuaVO7d206BaAAhExsnNz8wuK39393y1W61Om2k0m2-0hSg242YvkuwLOYN+UOyLShHWsuDIdG8cxUVDCAkYRlAR2GQiozjcHi8vn8VKqoQi2DBllwQx8fDKIPGQkSBKJjAkGFMHSAA')">function sieve(stream) {
+            <td><div class='snippet' id='javascript_70_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0ATKgNyaoCMAbAKYAKAB4AaUAE8AlKADeoAE4CKRRfRGgApFNABeA6AAMAblABffMXLU6DEhQEBzAYpaMKAQ0XUST5gSKNAC2QiSycrig0UoqavQADp5UimESQrJ6AHz2ji5uzB7evv6BIWGgANSgAIzS0ia4loSklLT0jFQCHMIeyp7BEVExyqrqoEkpQgAWAp6sQn1zg2LDMesb0Rn6OZ3dvRT9wQFUfI6pa5tX15ua2aAAhExsnNz8wuKXN98-67Pzi0Oy3qq1+YI2SwGzC8p0BR3qX3B12kiJuDSauDIdA8E0UVGCAkY+lAex6QioDmcrncXh8FNKQVC2HqjVw3U8fEKQIGQgSeIJjAkGCMDSAA')">function sieve(stream) {
     return pair(head(stream),
                 () => sieve(stream_filter(
                               x => !is_divisible(x,
@@ -2198,25 +2192,21 @@ const fibs = fibgen(0, 1);
 }
 const primes = sieve(integers_starting_from(2));
 </pre></div></div></td></tr></table>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
     Now to find a particular prime we need only ask for it:
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_70_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_70_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (stream-ref primes 50)</pre><pre class='prettyprintoutput'>
 233</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_70_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0ATKgNyaoCMAbAKYAKAB4AaUAE8AlKADeuUEtAAnARSIr6I0AFIpoALzHQABgDcuAL75i5anQYkKAgOYCVLRhQCGK6iSuzAQqNAC2QiSyCsqq6pr0AA4+VCqRYoqxWdlCsoYAfE4u7p7M3n4BQSHhkaAA1KAAjNKZ2W3SljaEpJS09IxUAhzC3mo+YdGtcRpaoMmpQgAWAj6sQqMrExltO6C5RoUDQyMUY2HBVHwuaVO7d206BaAAhExsnNz8wuK39393y1W61Om2k0m2-0hSg242YvkuwLOYN+UOyLShHWsuDIdG8cxUVDCAkYRlAR2GQiozjcHi8vn8VKqoQi2DBllwMPOagIQkSBKJjAkGFMHSAA')">stream_ref(primes, 50);
+            <td><div class='snippet' id='javascript_70_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0ATKgNyaoCMAbAKYAKAB4AaUAE8AlKADeoAE4CKRRfRGgApFNABeA6AAMAblABffMXLU6DEhQEBzAYpaMKAQ0XUST5gSKNAC2QiSycrig0UoqavQADp5UimESQrJ6AHz2ji5uzB7evv6BIWGgANSgAIzS0ia4loSklLT0jFQCHMIeyp7BEVExyqrqoEkpQgAWAp6sQn1zg2LDMesb0Rn6OZ3dvRT9wQFUfI6pa5tX15ua2aAAhExsnNz8wuKXN98-67Pzi0Oy3qq1+YI2SwGzC8p0BR3qX3B12kiJuDSauDIdA8E0UVGCAkY+lAex6QioDmcrncXh8FNKQVC2HqjVwkOOygIQgSeIJjAkGCMDSAA')">stream_ref(primes, 50);
 </pre><pre class='prettyprintoutput'>
 233</pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
-<a name='p9' class='permalink'></a><p>
+<a name='p5' class='permalink'></a><p>
     It is interesting to contemplate the signal-processing system set up
     by <kbd>sieve</kbd>, shown in the
     
@@ -2285,7 +2275,7 @@ const primes = sieve(integers_starting_from(2));
   
 
   <div class='permalink'>
-<a name='p10' class='permalink'></a><p>
+<a name='p6' class='permalink'></a><p>
     The <kbd>integers</kbd> and
     <kbd>fibs</kbd> streams above were defined by specifying
     <QUOTE>generating</QUOTE>
@@ -2303,14 +2293,10 @@ const primes = sieve(integers_starting_from(2));
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_70_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_70_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define ones (cons-stream 1 ones))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_70_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuBjAewDsBnAF1FIFMzQBeUABwEMBLAJwAoBGAGlDcAlIwB81EnWEBufDQBurADYB9SpxqsAtt1plBGAAyygA')">const ones = pair(1, () => ones);
+            <td><div class='snippet' id='javascript_70_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuBjAewDsBnAF1FIFMzQBeUABwEMBLAJwAoBGAGlDcAlIwB81EnWEBufDQBurADYB9SpxqsAtt1plBGAAyygA')">const ones = pair(1, () => ones);
 </pre></div></div></td></tr></table>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p11' class='permalink'></a><p>
     This works much like the definition of a recursive
     
       <span style="color:green">procedure:</span>
@@ -2336,7 +2322,7 @@ const primes = sieve(integers_starting_from(2));
   </p></div>
 
   <div class='permalink'>
-<a name='p12' class='permalink'></a><p>
+<a name='p7' class='permalink'></a><p>
     We can do more interesting things by manipulating streams with
     operations such as
     
@@ -2351,17 +2337,13 @@ const primes = sieve(integers_starting_from(2));
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_70_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_70_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (add-streams s1 s2)
   (stream-map + s1 s2))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_70_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0AWwFMGaAKYkgSlAG8BIUENC5hoADZMKoAIbiATkxkATAJ4B9eaVABeUATkBnJgG5RwydMWGi46XtLKmBKiSbKzYxRSLz6bHh0APj5zMXCIsSoCUDYAQjlFFQ0tblDIjMzQa1t7fVIAzyzi4USlNU1tPQotUzCSrO9fehy7IoaIgF9QJnFjdI7GqWbsphs2+sGhTtxBDM6zGcJSSlp6QxqlBnUyGgYAI1cmDgAaUEMARjPDbB5eeqa-UCpDdRJbcTZLngAyH+fXu9xJ8blxJsIAPygIHicFCABcALeHy+Fx4AB90UiYV9bnDQFCmPJ5DR5GwYWcAESkJgADwADkxKO5ZPIAOZEZgkaQAWh5502Mm2uwOR0pYIyiPpMioZIIbAAFuVUVwTkqVLiuKqRINmKw2AFdCENklhXtDm5TgLTeoKDKQWiTvipi6TVtbfbNVquIt8JxVnRZMplOo3ULDKjrrcBkJHutBWbRZa2LSrqBadHgumLqAANTp7DXNOg324XYkDagOhjXSgaWythpw1Z6uGH1luiVigAdxohlr9bJhdigRCPb77fLXYVihrehUIbDDAjrbO47bZiYADc5KGE2wKDOmGMzhgAAw+oA')">function add_streams(s1, s2) {
+            <td><div class='snippet' id='javascript_70_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0AWwFMGaAKYkgSlAG8BIUENC5hoADZMKoAIbiATkxkATAJ4B9eaVABeUATkBnJgG5RwydMWGi46XtLKmBKiSbKzYxRSLz6bHh0APj5zMXCxKgJQNgBCOUUVDS1uUIj0iOtbe31SAM8MwtkFJTVNbT0KLVMwosypX3osuwK6oQBfUCZxYzS2+p8-UGaKVrb22vT2swnCUkpaekMqpQZ1MhoGACNXJg4AGlBDAEZDw2weXlrvRtAqQ3USW3E2E54AMne7h6fxF-OuJNhAB+UC-cRAoQALm+j2er2OPAAPkjYeDXhdIaBQUx5PIaPI2ODDgAiUhMAAeAAcmJR3LJ5ABzIjMEjSAC07KOKxkaw2212JMBGRhVJkVEJBDYAAtSgiuPtZSoMVwFSJ+kJmKw2AFdCFlok+Zsdm4DtzDeoKOL-oj9liNQ6xAbVpbrSrVVwZvhOAs6LJlMp1M7eYYEWcLn0hDchsGjQLTWwKadQBSI8EU8dQABqFPYM7JgFe3AbEjLUB0JiGXSgMUStjJ3XpiuGT3FuhligAdxoVb0tcJeZigRCXZ7rZLHelikr1ZUgdjoebh1HLbMTAAbnIgzyGGwKFOmJXDhgAAyeoA')">function add_streams(s1, s2) {
     return stream_combine((x1, x2) => x1 + x2, s1, s2);
 }
 </pre></div></div></td></tr></table>
-  </p></div>
-      
-  <div class='permalink'>
-<a name='p13' class='permalink'></a><p>
     Now we can define the integers as follows:
     
         
@@ -2369,14 +2351,10 @@ const primes = sieve(integers_starting_from(2));
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_70_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_70_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define integers (cons-stream 1 (add-streams ones integers)))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_70_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0AWwFMGaAKYkgSlAG8BIUENC5hoADZMKoAIbiATkxkATAJ4B9eaVABeUATkBnJgG5RwydMWGi46XtLKmBKiSbKzYxRSLz6bHh0APj5zMXCIsSoCUDYAQjlFFQ0tblDIjMzQa1t7fVIAzyzi4USlNU1tPQotUzCSrO9fehy7IoaIgF9QJnFjdI7GqWbsphs2+sGhTtxBDM6zGcJSSlp6QxqlBnUyGgYAI1cmDgAaUEMARjPDbB5eeqa-UCpDdRJbcTZLngAyH+fXu9xJ8blxJsIAPygIHicFCABcALeHy+Fx4AB90UiYV9bnDQFCmPJ5DR5GwYWcAESkJgADwADkxKO5ZPIAOZEZgkaQAWh5502Mm2uwOR0pYIyiPpMioZIIbAAFuVUVwTkqVLiuKqRINmKw2AFdCENklhXtDm5TgLTeoKDKQWiTvipi6TVtbfbNVquIt8JxVnRZMplOo3ULDKjrrcBkJHutBWbRZa2LSrqBadHgumLqAANTp7DXNOg324XYkDagOhjXSgaWythpw1Z6uGH34cuV1wUJhsomGWv1slNwIhFQhsMMCOts7d3v9rVmXBMABuclDCbYc778kMZwwAAYfUA')">const integers = pair(1, () => add_streams(ones, integers));
+            <td><div class='snippet' id='javascript_70_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0AWwFMGaAKYkgSlAG8BIUENC5hoADZMKoAIbiATkxkATAJ4B9eaVABeUATkBnJgG5RwydMWGi46XtLKmBKiSbKzYxRSLz6bHh0APj5zMXCxKgJQNgBCOUUVDS1uUIj0iOtbe31SAM8MwtkFJTVNbT0KLVMwosypX3osuwK6oQBfUCZxYzS2+p8-UGaKVrb22vT2swnCUkpaekMqpQZ1MhoGACNXJg4AGlBDAEZDw2weXlrvRtAqQ3USW3E2E54AMne7h6fxF-OuJNhAB+UC-cRAoQALm+j2er2OPAAPkjYeDXhdIaBQUx5PIaPI2ODDgAiUhMAAeAAcmJR3LJ5ABzIjMEjSAC07KOKxkaw2212JMBGRhVJkVEJBDYAAtSgiuPtZSoMVwFSJ+kJmKw2AFdCFlok+Zsdm4DtzDeoKOL-oj9liNQ6xAbVpbrSrVVwZvhOAs6LJlMp1M7eYYEWcLn0hDchsGjQLTWwKadQBSI8EU8dQABqFPYM7JgFe3AbEjLUB0JiGXSgMUStjJ3XpiuGT34Etl1wUJiM3FVvS1wkNwIhFSB2Oh5uHTvd3uqsy4JgANzkQZ5DDY0578kMhwwAAZPUA')">const integers = pair(1, () => add_streams(ones, integers));
 </pre></div></div></td></tr></table>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p14' class='permalink'></a><p>
     This defines <kbd>integers</kbd> to be a stream whose
     first element is 1 and the rest of which is the sum of
     <kbd>ones</kbd> and <kbd>integers</kbd>.
@@ -2390,7 +2368,7 @@ const primes = sieve(integers_starting_from(2));
   </p></div>
 
   <div class='permalink'>
-<a name='p15' class='permalink'></a><p>
+<a name='p8' class='permalink'></a><p>
     We can define the Fibonacci numbers in the same style:
     
         
@@ -2398,23 +2376,19 @@ const primes = sieve(integers_starting_from(2));
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_70_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_70_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define fibs
   (cons-stream 0
                (cons-stream 1
                             (add-streams (stream-cdr fibs)
                                          fibs))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_70_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0AWwFMGaAKYkgSlAG8BIUENC5hoADZMKoAIbiATkxkATAJ4B9eaVABeUATkBnJgG5RwydMWGi46XtLKmBKiSbKzYxRSLz6bHh0APj5zMXCIsSoCUDYAQjlFFQ0tblDIjMzQa1t7fVIAzyzi4USlNU1tPQotUzCSrO9fehy7IoaIgF9QJnFjdI7GqWbsphs2+sGhTtxBDM6zGcJSSlp6QxqlBnUyGgYAI1cmDgAaUEMARjPDbB5eeqa-UCpDdRJbcTZLngAyH+fXu9xJ8blxJsIAPygIHicFCABcALeHy+Fx4AB90UiYV9bnDQFCmPJ5DR5GwYWcAESkJgADwADkxKO5ZPIAOZEZgkaQAWh5502Mm2uwOR0pYIyiPpMioZIIbAAFuVUVwTkqVLiuKqRINmKw2AFdCENklhXtDm5TgLTeoKDKQWiTvipi6TVtbfbNVquIt8JxVnRZMplOo3ULDKjrrcBkJHutBWbRZa2LSrqBadHgumLqAANTp7DXNOg324XYkDb6Kj7Qy6UDS2VsAAMTpdsUCIQbZKuzrbQkNWZUIbDDAjvb7GRHHqonxcNdV44nETnhi1i-CPvwTAAbnJQwmONXDGdsE2fUA')">const fibs = pair(0,
+            <td><div class='snippet' id='javascript_70_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0AWwFMGaAKYkgSlAG8BIUENC5hoADZMKoAIbiATkxkATAJ4B9eaVABeUATkBnJgG5RwydMWGi46XtLKmBKiSbKzYxRSLz6bHh0APj5zMXCxKgJQNgBCOUUVDS1uUIj0iOtbe31SAM8MwtkFJTVNbT0KLVMwosypX3osuwK6oQBfUCZxYzS2+p8-UGaKVrb22vT2swnCUkpaekMqpQZ1MhoGACNXJg4AGlBDAEZDw2weXlrvRtAqQ3USW3E2E54AMne7h6fxF-OuJNhAB+UC-cRAoQALm+j2er2OPAAPkjYeDXhdIaBQUx5PIaPI2ODDgAiUhMAAeAAcmJR3LJ5ABzIjMEjSAC07KOKxkaw2212JMBGRhVJkVEJBDYAAtSgiuPtZSoMVwFSJ+kJmKw2AFdCFlok+Zsdm4DtzDeoKOL-oj9liNQ6xAbVpbrSrVVwZvhOAs6LJlMp1M7eYYEWcLn0hDchsGjQLTWwKadQBSI8EU8dQABqFPYM7JgFe3AbEjLfRULaGXSgMUStgABjtjqEuvTtcJp3tzeErZCKkDsdDXe7hVjrqoLxclYVw5H6SnhlVs-CnvwTAAbnIgzyGBwK4ZDth656gA')">const fibs = pair(0,
                   () => pair(1,
                              () => add_streams(
                                      stream_tail(fibs),
                                      fibs))
                  );
 </pre></div></div></td></tr></table>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p16' class='permalink'></a><p>
     This definition says that <kbd>fibs</kbd> is a stream
     beginning with 0 and 1, such that the rest of the stream can be generated
     by adding <kbd>fibs</kbd> to itself shifted by one place:
@@ -2445,7 +2419,7 @@ const primes = sieve(integers_starting_from(2));
   </p></div>
 
   <div class='permalink'>
-<a name='p17' class='permalink'></a><p>
+<a name='p9' class='permalink'></a><p>
     
       <span style="color:green">
 	<kbd>Scale-stream</kbd>
@@ -2465,34 +2439,30 @@ const primes = sieve(integers_starting_from(2));
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_70_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_70_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (scale-stream stream factor)
   (stream-map (lambda (x) (* x factor)) stream))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_70_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0AZzIEMAbAUwH0GKAnd5gFsAFD35CANKALNKNXgEpQAb1yh1ofhSK96YgYM6DmAB2EAPUAF4AfKEsAqabIryJajZ6-eN+oQoBuXABffDI6HlAKAHcaBmtQE2YqXmFsKWElWyjYhkDccJJIhipzdnirRhYObj4DYRi4qRR89gA3NlrxERKyhikMAAZAoA')">function scale_stream(stream, factor) {
+            <td><div class='snippet' id='javascript_70_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0AZzIEMAbAUwH0GKAnd5gFsAFD35CANKALNKNXgEpQAb1yh1ofhSK96YgYM6DmAB2EAPUAF4AfKEsAqabIryJajZ6-eN+oQoBuXABffDI6HlAKAHcaBmtQE2YqXmFsKWElWyjYhkDccJJIhipzdnirRhYObj4DYRi4qRR89gA3NlrxERKyhikMAAZAoA')">function scale_stream(stream, factor) {
     return stream_map(x => x * factor,
                       stream);
 }
 </pre></div></div></td></tr></table>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p18' class='permalink'></a><p>
     For example,
     
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_70_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_70_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define double (cons-stream 1 (scale-stream double 2)))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_70_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0AZzIEMAbAUwH0GKAnd5gFsAFD35CANKALNKNXgEpQAb1yh1ofhSK96YgYM6DmAB2EAPUAF4AfKEsAqabIryJajZ6-eN+oQoBuXABffDI6HlAAExoiACMOa1ATZipeYQBGKWElW0YWDm4+A2EY+I4pbAVA-HYANzYi8REyhPYpDAAGQKA')">const double = pair(1, () => scale_stream(double, 2));
+            <td><div class='snippet' id='javascript_70_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0AZzIEMAbAUwH0GKAnd5gFsAFD35CANKALNKNXgEpQAb1yh1ofhSK96YgYM6DmAB2EAPUAF4AfKEsAqabIryJajZ6-eN+oQoBuXABffDI6HlAAExoiACMOa1ATZipeYQBGKWElW0YWDm4+A2EY+I4pbAVA-HYANzYi8REyhPYpDAAGQKA')">const double = pair(1, () => scale_stream(double, 2));
 </pre></div></div></td></tr></table>
     produces the stream of powers of 2:
     $1, 2, 4, 8, 16, 32,$ ….
   </p></div>
 
   <div class='permalink'>
-<a name='p19' class='permalink'></a><p>
+<a name='p10' class='permalink'></a><p>
     An alternate definition of the stream of primes can be given by
     starting with the integers and filtering them by testing for
     primality.  We will need the first prime, 2, to get started:
@@ -2502,21 +2472,17 @@ const primes = sieve(integers_starting_from(2));
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_70_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_70_15_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define primes
   (cons-stream
    2
    (stream-filter prime? (integers-starting-from 3))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_70_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUFQYB9ACZUAbvqoAjADY9eAGlABPQSPETOUmUtABSZ6AAvMGgAAyqGoSklLT0VCQUnADmnOyGDBQc1CRJBgTsNAC23CSuouKS0vQADqxU7CX25e4tLdyCgQB8egnJqemZ7Nm5+UUloADUoACM-M2trfwRmtE6cYbV7FSFPKXC81oxulSJDdUMZQseXvTMbFzcABacrEbc5-yC3STzV+IA-KAKOwiJxfn9QAAuPSGEzmBhWWyNUDPV7vC5zCELQEEVjWBhgrGtaEnVLcDJcViFAyZKjWdGfVTuDTuSreUlnLY7C7LXBkOgZUCbbacBhBIV1BrYJpEq7tILdCkvakEOmnbjg2VY-QGYU7RyarV-eKJFJpAwZLLxEYFYooT6GrFLfCcUx4i3A5XvLmixwYUJLIA')">const primes = pair(2,
+            <td><div class='snippet' id='javascript_70_15_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUFQYB9ACZUAbvqoAjADY9eAGlABPQUImcpMpaACkz0AC8QaAADMqgGoSklLT0VCQUnADmnOyGDBQc1CRJBgTsNAC23CSuouKS0vQADqxU7CWO3IIBAHx6Ccmp6Zns2bn5RSWgANSgAIz8-KqRWjG6+gbV7FSFPKXC5WJzOnGJDdUMZeIn7p70zGxc3AAWnKxG3IdToO0kW6efoAD8oBTsRE4Hy+JwAXHpDCZzAwrLZGqA7g8nkd+MCQSdfgRWNYGED0SDwVR9twMlxWIUDJkqNZkVNVCcNCdKl4iaknis1kcZvgyHQMqBlqtOAxAgK6g1sPY0fiTs1Au1SfcKQRqcTpTKNYtBWtHOqNfj4okUmkDBksvEBgViigpnr8dN8JxTNjTf8leyhQxHBgQtMgA')">const primes = pair(2,
                     () => stream_filter(
                               is_prime, 
                               integers_starting_from(3))
                    );
 </pre></div></div></td></tr></table>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p20' class='permalink'></a><p>
     This definition is not so straightforward as it appears, because we will
     test whether a number $n$ is prime by checking
     whether $n$ is divisible by a prime (not by just
@@ -2527,14 +2493,14 @@ const primes = sieve(integers_starting_from(2));
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_70_15_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_70_16_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (prime? n)
   (define (iter ps)
     (cond ((> (square (stream-car ps)) n) true)
           ((divisible? n (stream-car ps)) false)
           (else (iter (stream-cdr ps)))))
   (iter primes))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_70_15_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUFQYB9ACZUAbvqoAjADY9eAGlABPQSPETOUmUtABSZ6AAvMGgAAyqGoSklLT0VCQUnADmnOyGDBQc1CRJBgTsNAC23CSuouKS0vQADqxU7CX25e4tLdyCgQB8egnJqemZ7Nm5+UUloADUoACM-M2trfwRmtE6cYbV7FSFPKXC81oxulSJDdUMZQseXvTMbFzcABacrEbc5-yC3STzV+IA-KAKOwiJxfn9QAAuPSGEzmBhWWyNUDPV7vC5zCELQEEVjWBhgrGtaEnVLcDJcViFAyZKjWdGfVTuDTuSreUlnLY7C7LMh0DKgTbbTgMIKCuoNbBNIlXdpBboUl7Ugh007ccEyrH6AxCnaODWav7xRIpNIGDJZeIjArFFCfA1Ypb4bW6njTUIe0J25RAA')">function is_prime(n) {
+            <td><div class='snippet' id='javascript_70_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUFQYB9ACZUAbvqoAjADY9eAGlABPQUImcpMpaACkz0AC8QaAADMqgGoSklLT0VCQUnADmnOyGDBQc1CRJBgTsNAC23CSuouKS0vQADqxU7CWO3IIBAHx6Ccmp6Zns2bn5RSWgANSgAIz8-KqRWjG6+gbV7FSFPKXC5WJzOnGJDdUMZeIn7p70zGxc3AAWnKxG3IdToO0kW6efoAD8oBTsRE4Hy+JwAXHpDCZzAwrLZGqA7g8nkd+MCQSdfgRWNYGED0SDwVR9twMlxWIUDJkqNZkVNVCcNCdKl4iaknis1kcZrgyHQMqBlqtOAxAgK6g1sPY0fiTs1Au1SfcKQRqcTpTKNYtBWtHOqNfj4okUmkDBksvEBgViigpnr8dN8FqOTxxiE3SEbcogA')">function is_prime(n) {
     function iter(ps) {
         return square(head(ps)) > n
                ? true
@@ -2545,10 +2511,6 @@ const primes = sieve(integers_starting_from(2));
     return iter(primes);
 }
 </pre></div></div></td></tr></table>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p21' class='permalink'></a><p>
     This is a recursive definition, since <kbd>primes</kbd>
     is defined in terms of the
     
@@ -2585,9 +2547,9 @@ const primes = sieve(integers_starting_from(2));
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_70_16_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_70_17_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define s (cons-stream 1 (add-streams s s)))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_70_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0AWwFMGaAKYkgSlAG8BIUENC5hoADZMKoAIbiATkxkATAJ4B9eaVABeUATkBnJgG5RwydMWGi46XtLKmBKiSbKzYxRSLz6bHh0APj5zMXCIsSoCUDYAQjlFFQ0tblDIjMzQa1t7fVIAzyzi4USlNU1tPQotUzCSrO9fehy7IoaIgF9QJnFjdI7GqWbsphs2+sGhTtxBDM6zGcJSSlp6QxqlBnUyGgYAI1cmDgAaUEMARjPDbB5eeqa-UCpDdRJbcTZLngAyH+fXu9xJ8blxJsIAPygIHicFCABcALeHy+Fx4AB90UiYV9bnDQFCmPJ5DR5GwYWcAESkJgADwADkxKO5ZPIAOZEZgkaQAWh5502Mm2uwOR0pYIyiPpMioZIIbAAFuVUVwTkqVLiuKqRINmKw2AFdCENklhXtDm5TgLTeoKDKQWiTvipi6TVtbfbNVquIt8JxVnRZMplOo3ULDKjrrcBkJHutBWbRZa2LSrqBadHgumLqAANTp7DXNOg324XYkDbnXSgaWythpw1ZlQhsMMCOGa5asy4JgANzkoYTXzOGAADD6gA')">const s = pair(1, () => add_streams(s, s));
+            <td><div class='snippet' id='javascript_70_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0AWwFMGaAKYkgSlAG8BIUENC5hoADZMKoAIbiATkxkATAJ4B9eaVABeUATkBnJgG5RwydMWGi46XtLKmBKiSbKzYxRSLz6bHh0APj5zMXCxKgJQNgBCOUUVDS1uUIj0iOtbe31SAM8MwtkFJTVNbT0KLVMwosypX3osuwK6oQBfUCZxYzS2+p8-UGaKVrb22vT2swnCUkpaekMqpQZ1MhoGACNXJg4AGlBDAEZDw2weXlrvRtAqQ3USW3E2E54AMne7h6fxF-OuJNhAB+UC-cRAoQALm+j2er2OPAAPkjYeDXhdIaBQUx5PIaPI2ODDgAiUhMAAeAAcmJR3LJ5ABzIjMEjSAC07KOKxkaw2212JMBGRhVJkVEJBDYAAtSgiuPtZSoMVwFSJ+kJmKw2AFdCFlok+Zsdm4DtzDeoKOL-oj9liNQ6xAbVpbrSrVVwZvhOAs6LJlMp1M7eYYEWcLn0hDchsGjQLTWwKadQBSI8EU8dQABqFPYM7JgFe3AbEjLI66UBiiVsZO69MqQOx0OGM6qsy4JgANzkQZ5DFehwwAAZPUA')">const s = pair(1, () => add_streams(s, s));
 </pre></div></div></td></tr></table>
   
       <div class="Solution">
@@ -2674,12 +2636,12 @@ const primes = sieve(integers_starting_from(2));
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_70_17_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_70_18_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (partial-sum s)
   (cons-stream (stream-car s)
                (add-streams (stream-cdr s)
                             (partial-sum s))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_70_17_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_70_18_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function partial_sums(s) {
     return pair(head(s),
                 () => add_streams(stream_tail(s),
@@ -2750,7 +2712,7 @@ function partial_sums(s) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_70_18_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_70_19_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (merge s1 s2)
   (cond ((stream-null? s1) s2)
         ((stream-null? s2) s1)
@@ -2765,7 +2727,7 @@ function partial_sums(s) {
                   (cons-stream s1car
                                (merge (stream-cdr s1)
                                       (stream-cdr s2)))))))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_70_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0KkigUwHNmAnAZwH0uKAhh2olWPAhxoBbABQkAlKADeuUGtAdmFIh3oAHAVQ5yANKvUXL6mYoC8APgZM2nXvyEixE6XNABqUABGeXMrMPkAblwAX3xicmo6UC4yAQAbZj4KTQFZfhypE1ACAUoaDkUVC01tXWTs5lyeKQE9GQAPUAdQToAqYtKKcrMw0bD8xqlImLjSSlp6KU52GS5Aoq5sStCGAlAZKl4SIjS01eDt0Zqdek2oi2jQZjSuZl39w55j09Wty7DrnU1vd1I9nq9lDsLGQ6PxkoEABaNAAmXVASIEyPO01GMJIcM2GNRtnRKN+OIBWhu8KJoAAPMlsESoWNQAB+UAGIznIkjVn8mxdRxLDgrCZNQRUM5reQbP4ssYALhpKNAjkJKIVrI5XOMGsxfP5ArswuWzHOGwaEsM0r+ISNlmVup5KMNDtGgu6IrFVqkPEl0uCloK-pt5PkFLUsViuDxcL0NC4VGoADdMowWOxuGiMy5uFkPIwvJJZMEonGKKApCdqHoMrwaAR-QjNG8SSl0plxbIE0nU+nnFmuEUUJEAJCx2GV6tpWv1niN8RUNNojsZLIFGS95PLgeZ1xFDDTCugCgt5jMXgCEjIpdprho73mmdzy8Lptn1tFF9UOtvxcELu0zMCm6QbpMMifheV43nel6HgADJEQA')">function merge(s1, s2) {
+            <td><div class='snippet' id='javascript_70_19_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0KkigUwHNmAnAZwH0uKAhh2olWPAhxoBbABQkAlKADeuUGtAdmFIh3oAHAVQ5yANKBmKAvAD4GTNp178hIsROlzQAalABGefIA3LgAvvjE5NR0oFxkAgA2zHwUmgKy-KlSZgQClDQciirqGlo69BnMaTxSAnoyAB6gNqCNAFSgOXkcJqrFff39FWlBoeGklLT0UpzsMly+ZlzYhb1qVATmVLwkRPHxc-4rAyXaujHYwcUhoMzxXMwMGzJbPDt7c8tHA5qn5b6X6mut3uylWfTIdH4MV8AAtKgATJqgOECeEHEbHCEkKFLFGIyzIhEfDHfUpneZ40AAHnOeLBx3UAH5QAYjAc8T0GVz1BYmrZphxZkMpDxBFR9vN5ItPvSuQAuaGU2y4hGy7nM1nGFWozncvW85oCoULGIpSoisUSz7yNXylmGLWwhG6vVcg38mbMOZmqqW9GLH0WwxWgIktRhMK4LFQvQ0LhUagANySjBY7G4SNTDm4yRcjDcklk-mC0YooCku2oekSvBoBFFMM0DwJsQSSWFMlj8aTKfs6a4ZhQQQAkFHIWWK-EqzWeHXxFRk0jW4lkplO3GEwve2nHGYMCNS6AKI3mMxeAISPD58muEijV7J9Oz7P68em2ZH1Rq8+5wQtyNmETBJV3NGQ31Pc9L2vM89wABiCIA')">function merge(s1, s2) {
     if (is_null(s1)) {
         return s2;
     } else if (is_null(s2)) {
@@ -2804,38 +2766,32 @@ function partial_sums(s) {
   
     
     
-    How many additions are performed when we compute the
-    $n$th Fibonacci number using the definition of
-    <kbd>fibs</kbd> based on the
-    
-      <span style="color:green"><kbd>add-streams</kbd></span>
-      <span style="color:blue"><kbd>add_streams</kbd></span>
-    
-    
-      <span style="color:green">procedure?</span>
-      <span style="color:blue">function, implemented using
-      <kbd>pair(..., () => ...)</kbd>
-      as described in the beginning of
-      section&nbsp;<REF NAME="sec:delayed-lists"><a class="superscript" id="3.5.2-sec-link-3.5.1" href="./3.5.1.html">3.5.1</a></REF>?</span>
-    
-    
       <span style="color:green">
+	
+	How many additions are performed when we compute the
+	$n$th Fibonacci number using the definition of
+	<kbd>fibs</kbd> based on the
+      <kbd>add-streams</kbd> procedure?
 	Show that the number of additions would be exponentially greater if we
 	had implemented <kbd>(delay ^exp^)</kbd> simply as
 	<kbd>(lambda () ^exp^)</kbd>, without using the
 	optimization provided by the <kbd>memo-proc</kbd>
 	procedure described in
+	section&nbsp;<REF NAME="sec:delayed-lists"><a class="superscript" id="3.5.2-sec-link-3.5.1" href="./3.5.1.html">3.5.1</a></REF>.<a class='superscript' id='footnote-link-5' href='#footnote-5'style="color:green">[5]</a>
       </span>
       <span style="color:blue">
-	Show that the number of additions is exponentially greater than if we
-	had implemented
-	<kbd>add_streams</kbd>
-	using the optimization using
-	<kbd>pair(..., memo( () => ... ))</kbd>
-	described in the last part of
+	
+	How many additions are performed when we compute the
+	$n$th Fibonacci number using the declaration of
+	<kbd>fibs</kbd> based on the
+	<kbd>add_streams</kbd> function?
+	Show that this number is exponentially greater than the number
+	of additions performed if 
+	<kbd>add_streams</kbd> had used the function
+	<kbd>stream_combine_optimized</kbd>
+	described in exercise&nbsp;<REF NAME="ex:combine-streams"><a class="superscript" id="3.5.2-ex-link-3.53" href="./3.5.1.html#ex_3.53">3.53</a></REF>.<a class='superscript' id='footnote-link-6' href='#footnote-6'style="color:blue">[6]</a>
       </span>
     
-    section&nbsp;<REF NAME="sec:delayed-lists"><a class="superscript" id="3.5.2-sec-link-3.5.1" href="./3.5.1.html">3.5.1</a></REF>.<a class='superscript' id='footnote-link-5' href='#footnote-5'>[5]</a>
   
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_70_5_div" data-toggle="collapse">Add solution</button></div>
@@ -2859,12 +2815,12 @@ function partial_sums(s) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_70_19_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_70_20_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (expand num den radix)
   (cons-stream
    (quotient (* num radix) den)
    (expand (remainder (* num radix) den) den radix)))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_70_19_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_70_20_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function expand(num, den, radix) {
     return pair(quotient(num * radix, den),
                 expand((num * radix) % den, den, radix));
@@ -2968,10 +2924,14 @@ function expand(num, den, radix) {
       series; when we use <kbd>integrate-series</kbd>,
       we will
       
-	<span style="color:green"><kbd>cons</kbd> on</span>
-	<span style="color:blue"><kbd>pair</kbd> with</span>
+	<span style="color:green">
+	  <kbd>cons</kbd> on the appropriate constant.)
+	</span>
+	<span style="color:blue">
+	  slot in the appropriate constant using
+	  <kbd>pair</kbd>.)
+	</span>
       
-      the appropriate constant.)
     </LI>
     <LI>
       The function $x\mapsto e^x$ is its own
@@ -2984,10 +2944,10 @@ function expand(num, den, radix) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_70_20_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_70_21_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define exp-series
   (cons-stream 1 (integrate-series exp-series)))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_70_20_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_70_21_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 const exp_series = 
     pair(1, () => integrate_series(exp_series));</pre></div></div></td></tr></table>
       Show how to generate the series for sine and cosine, starting from the
@@ -3238,19 +3198,34 @@ const sine_series = pair(0, $\langle ??\rangle$);</kbd>
     </FOOTNOTE></div>
     
     
-    <div class='footnote'>
-      <a class='footnote-number' id='footnote-5' href='#footnote-link-5' >[5] </a>
+    <div class='footnote'><span style="color:green">
+      <a class='footnote-number' id='footnote-5' href='#footnote-link-5' style="color:green">[5] </a>
     <FOOTNOTE>
     This
-    exercise shows how call-by-need is closely related to
+	exercise shows how call-by-need is closely related to
+	
+	
+	ordinary memoization as described in
+	exercise&nbsp;<REF NAME="ex:memoization"><a class="superscript" id="3.5.2-ex-link-3.27" href="./3.3.3.html#ex_3.27">3.27</a></REF>. In that exercise, we used
+	assignment to explicitly construct a local table.  Our call-by-need stream
+	optimization effectively constructs such a table automatically, storing
+	values in the previously forced parts of the stream.
+    </FOOTNOTE></span></div>
     
     
-    ordinary memoization as described in
-    exercise&nbsp;<REF NAME="ex:memoization"><a class="superscript" id="3.5.2-ex-link-3.27" href="./3.3.3.html#ex_3.27">3.27</a></REF>. In that exercise, we used
-    assignment to explicitly construct a local table.  Our call-by-need stream
-    optimization effectively constructs such a table automatically, storing
-    values in the previously forced parts of the stream.
-    </FOOTNOTE></div>
+    <div class='footnote'><span style="color:blue">
+      <a class='footnote-number' id='footnote-6' href='#footnote-link-6' style="color:blue">[6] </a>
+    <FOOTNOTE>
+    This
+	exercise shows how call-by-need is closely related to
+	
+	
+	ordinary memoization as described in
+	exercise&nbsp;<REF NAME="ex:memoization"><a class="superscript" id="3.5.2-ex-link-3.27" href="./3.3.3.html#ex_3.27">3.27</a></REF>. In that exercise, we used
+	assignment to explicitly construct a local table.  Our call-by-need stream
+	optimization effectively constructs such a table automatically, storing
+	values in the previously forced parts of the stream.
+    </FOOTNOTE></span></div>
     
     
 </div></div>

@@ -1991,8 +1991,8 @@ Acknowledgments
     provide an equivalent modularity without the use of assignment.  As an
     
     
-    illustration, we can reimplement the Monte Carlo estimation of
-    $\pi$, which we examined in
+    illustration, we can reimplement the Monte Carlo estimation
+    of&nbsp;$\pi$, which we examined in
     section&nbsp;<REF NAME="sec:benefits-of-assignment"><a class="superscript" id="3.5.5-sec-link-3.1.2" href="./3.1.2.html">3.1.2</a></REF>, from a
     stream-processing point of view.
   </p></div>
@@ -2055,10 +2055,6 @@ const rand = make_rand();
          () => stream_map(rand_update, random_numbers));
 </pre></div></div></td></tr></table>
     
-  </p></div>
-
-  <div class='permalink'>
-<a name='p4' class='permalink'></a><p>
     We use this to construct the stream of outcomes of the Cesàro
     experiment performed on consecutive pairs in the
     
@@ -2096,10 +2092,6 @@ const cesaro_stream =
                           random_numbers);
 </pre></div></div></td></tr></table>
     
-  </p></div>
-
-  <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
     The
     
       <span style="color:green"><kbd>cesaro-stream</kbd></span>
@@ -2155,10 +2147,6 @@ const pi = stream_map(p => math_sqrt(6 / p),
                       monte_carlo(cesaro_stream, 0, 0));
 </pre></div></div></td></tr></table>
     
-  </p></div>
-
-  <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
     
     There is considerable modularity in this approach, because we still
     can formulate a general 
@@ -2180,8 +2168,26 @@ const pi = stream_map(p => math_sqrt(6 / p),
     the random-number generator to allow one to reset the random-number sequence
     so as to produce repeatable sequences of <QUOTE>random</QUOTE> numbers.
     Produce a stream formulation of this same generator that operates on an
-    input stream of requests to <kbd>generate</kbd> a new
-    random number or to <kbd>reset</kbd> the sequence to a
+    input stream of requests to
+    
+      <span style="color:green">
+	<kbd>generate</kbd>
+      </span>
+      <span style="color:blue">
+	<kbd>"generate"</kbd>
+      </span>
+    
+    a new
+    random number or to
+    
+      <span style="color:green">
+	<kbd>reset</kbd>
+      </span>
+      <span style="color:blue">
+	<kbd>"reset"</kbd>
+      </span>
+    
+    the sequence to a
     specified value and that produces the desired stream of random numbers.
     Don't use assignment in your solution.
   
@@ -2232,7 +2238,7 @@ const pi = stream_map(p => math_sqrt(6 / p),
   
 
   <div class='permalink'>
-<a name='p7' class='permalink'></a><p>
+<a name='p4' class='permalink'></a><p>
     Let us now return to the issues of objects and state that were raised
     at the beginning of this chapter and examine them in a new light.  We
     introduced assignment and mutable objects to provide a mechanism for
@@ -2244,7 +2250,7 @@ const pi = stream_map(p => math_sqrt(6 / p),
   </p></div>
 
   <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
+<a name='p5' class='permalink'></a><p>
     Now we have seen that streams provide an alternative way to model
     objects with local state.  We can model a changing quantity, such as
     the local state of some object, using a stream that represents the
@@ -2265,7 +2271,7 @@ const pi = stream_map(p => math_sqrt(6 / p),
   </p></div>
 
   <div class='permalink'>
-<a name='p9' class='permalink'></a><p>
+<a name='p6' class='permalink'></a><p>
     In order to contrast these two approaches to modeling, let us
     reconsider the implementation of a <QUOTE>withdrawal processor</QUOTE> that
     
@@ -2289,10 +2295,6 @@ function make_simplified_withdraw(balance) {
                return balance;
            };
 }</pre></div></div></td></tr></table>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p10' class='permalink'></a><p>
     Calls to
     
       <span style="color:green">
@@ -2311,7 +2313,7 @@ function make_simplified_withdraw(balance) {
   </p></div>
 
   <div class='permalink'>
-<a name='p11' class='permalink'></a><p>
+<a name='p7' class='permalink'></a><p>
     Alternatively, we can model a withdrawal processor as a
     
       <span style="color:green">procedure</span>
@@ -2338,10 +2340,6 @@ function make_simplified_withdraw(balance) {
 }
 </pre></div></div></td></tr></table>
     
-  </p></div>
-
-  <div class='permalink'>
-<a name='p12' class='permalink'></a><p>
     
       <span style="color:green">
 	<kbd>Stream-withdraw</kbd>	
@@ -2378,7 +2376,7 @@ function make_simplified_withdraw(balance) {
   </p></div>
 
   <div class='permalink'>
-<a name='p13' class='permalink'></a><p>
+<a name='p8' class='permalink'></a><p>
     This is really remarkable.  Even though
     
       <span style="color:green">
@@ -2398,7 +2396,7 @@ function make_simplified_withdraw(balance) {
   </p></div>
 
   <div class='permalink'>
-<a name='p14' class='permalink'></a><p>
+<a name='p9' class='permalink'></a><p>
     From the point of view of one part of a complex process, the other parts
     appear to change with time.  They have hidden time-varying local state.  If
     we wish to write programs that model this kind of natural decomposition in
@@ -2412,7 +2410,7 @@ function make_simplified_withdraw(balance) {
   </p></div>
 
   <div class='permalink'>
-<a name='p15' class='permalink'></a><p>
+<a name='p10' class='permalink'></a><p>
     Modeling with objects is powerful and intuitive, largely because this
     matches the perception of interacting with a world of which we are
     part.  However, as we've seen repeatedly throughout this chapter,
@@ -2436,7 +2434,7 @@ function make_simplified_withdraw(balance) {
   </p></div>
 
   <div class='permalink'>
-<a name='p16' class='permalink'></a><p>
+<a name='p11' class='permalink'></a><p>
     On the other hand, if we look closely, we can see time-related problems
     creeping into functional models as well.  One particularly troublesome area
     arises when we wish to design interactive systems, especially ones that
@@ -2467,7 +2465,7 @@ function make_simplified_withdraw(balance) {
   </p></div>
 
   <div class='permalink'>
-<a name='p17' class='permalink'></a><p>
+<a name='p12' class='permalink'></a><p>
     
     The trouble with this formulation is in the notion of <EM>merge</EM>.  It
     will not do to merge the two streams by simply taking alternately one
@@ -2480,10 +2478,6 @@ function make_simplified_withdraw(balance) {
     Paul meet, they can agree that certain transactions were processed
     before the meeting, and other transactions were processed after the
     meeting.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p18' class='permalink'></a><p>
     This is precisely the same constraint that we had to deal with in
     section&nbsp;<REF NAME="sec:nature-of-time"><a class="superscript" id="3.5.5-sec-link-3.4.1" href="./3.4.1.html">3.4.1</a></REF>, where we found the need to
     introduce explicit synchronization to ensure a <QUOTE>correct</QUOTE> order
@@ -2494,7 +2488,7 @@ function make_simplified_withdraw(balance) {
   </p></div>
 
   <div class='permalink'>
-<a name='p19' class='permalink'></a><p>
+<a name='p13' class='permalink'></a><p>
     We began this chapter with the goal of building computational models
     whose structure matches our perception of the real world we are trying
     to model.  We can model the world as a collection of separate,

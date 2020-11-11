@@ -2005,25 +2005,24 @@ const integ = pair(initial_value,
                            scale_stream(integrand, dt),
                            integ)
                   );</pre></div></div>
+    
+      
+      
+	The interpreter's ability to deal with such an implicit definition
+	depends on the delay resulting from wrapping the call to
+	<kbd>add_streams</kbd> in a lambda expression.
+	Without this delay, the interpreter could not
+	construct <kbd>integ</kbd> before evaluating the call
+	to <kbd>add_streams</kbd>, which would require
+	that <kbd>integ</kbd> already be defined.
+	In general, such a delay is crucial for using streams to model
+	signal-processing systems that contain loops.  Without a delay,
+	our models would have to be formulated so that the inputs to any
+	signal-processing component would be fully evaluated before the output
+	could be produced.  This would outlaw loops.
+      
+    
   </p></div>
-
-  
-    
-    
-      The interpreter's ability to deal with such an implicit definition
-      depends on the delay resulting from wrapping the call of
-      <kbd>add_streams</kbd> into a lambda expression.
-      Without this delay, the interpreter could not
-      construct <kbd>integ</kbd> before evaluating both
-      arguments to <kbd>pair</kbd>, which would require
-      that <kbd>integ</kbd> already be defined.
-      In general, such a delay is crucial for using streams to model
-      signal-processing systems that contain loops.  Without a delay,
-      our models would have to be formulated so that the inputs to any
-      signal-processing component would be fully evaluated before the output
-      could be produced.  This would outlaw loops.
-    
-  
   
     
     
@@ -2046,6 +2045,7 @@ const integ = pair(initial_value,
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./3.5.4.html#fig_3.34">Figure 3.34 </a></b>
 	    An <QUOTE>analog computer circuit</QUOTE> that solves the equation
+	    $dy/dt = f(y)$.
 	  </div>
     </FIGURE>
   
@@ -2127,7 +2127,7 @@ function solve(f, y0, dt) {
     the first element of the output stream:
     
 	
-    <div class='snippet' id='javascript_72_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0BYBQuAzAVwDsBjAFwEsB7E0AWwFMGaAKYkgSlAG8BIUENC5hoADZMKoAIbiATkxkATAJ4B9eaVABeUATkBnJgG5RwydMWGi46XtLKmBKiSbKzYxRSLz6bHh0APj5zMXCIsSoCUDYAQjlFFQ0tblDIjMzQa1t7fVIAzyzi4USlNU1tPQotUzCSrO9fehy7IoaIgF9QJnFjdI7GqWbsphs2+sGhTtxBDM6zGcJSSlp6QxqlBnUyGgYAI1cmDgAaUEMARjPDACYeXnqmv1AqQ3USW3E2S54AMl+Xm8PuIvrcuJNhAB+UDA8QQoQALkB70+3wuPAAPhjkbDvnd4aBoUx5PIaPI2LCzgAiUhMAAeAAcmJR3LJ5ABzIjMEjSAC0vPOmxk212ByOVPBGSRDJkVHJBDYAAtymiuCdlSo8Vw1SJBsxWGwAroQhskiK9oc3KdBWb1BRZaD0ScCVNXaatnaHVrtVxFvhOKs6LJlMp1O7hYY0dc7gMhE91kLzWKrWw6VdQHSY8EMxdQABqDM3a7psF+5bkahBwxkORMMOJ76Js4GShk+6PYbPcPbBgyBmp40Z0AAKn0Mlb8mdrvC3d9uCWAcr9FcFCY7PkcjYTnEMlU7nUK7XG5IyjOrio1Dk6gAbnIiEwzsoKO2xLsSBsXjy17oCTK5Wxz0vcQbzvB8XTEI1sweV03w-Q91xkE9dFAbdd33eDj2UQpwMieNg1DbtI2rWt6zNACvwQk9H2fM4cOnYR4LnQZOiY4Q8PgstFzWGEuX2Yk3g2GR5GoEh2XUAhSQYNgKGol82M7eg-3JGS6IgwIQg+A5+PrISRLEiS9mk-MUJkkzJQ6OcZlg6Qn2QgAGNA7IuEx+FwayJCOITkM0vj5AE+1hNcfTJLYOzZJcyI3LoD9xE8+QDwojdxGQjDN0gkJYrcISzjCsyzBAUBRQZIg9M-VcEOSgyGFAOzQAoGhUFAGgYgVOlAgzXACuk5UyqPORAVAdlU3ahyMAzAA9ItZCQihlUUAgySYTqwFmphRnGaRXhhJR5BqzAR1QSbkOwTBwW7TRnDYTKdoS8qkrOXtZs0GhHDYFBQDAJ9tRMIA')">function integral(delayed_integrand, initial_value, dt) {
+    <div class='snippet' id='javascript_72_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0BYBQuAzAVwDsBjAFwEsB7E0AWwFMGaAKYkgSlAG8BIUENC5hoADZMKoAIbiATkxkATAJ4B9eaVABeUATkBnJgG5RwydMWGi46XtLKmBKiSbKzYxRSLz6bHh0APj5zMXCxKgJQNgBCOUUVDS1uUIj0iOtbe31SAM8MwtkFJTVNbT0KLVMwosypX3osuwK6oQBfUCZxYzS2+p8-UGaKVrb22vT2swnCUkpaekMqpQZ1MhoGACNXJg4AGlBDAEZDwwAmHl5a70bQKkN1EltxNhOeADIP+8fn8VeLlxJsIAPygP7iYFCABcPyeLzexx4AB9kXCIW9LlDQGCmPJ5DR5GwIYcAESkJgADwADkxKO5ZPIAOZEZgkaQAWg5RxWMjWG22u1JQIysOpMioRIIbAAFqVEVx9nKVJiuIqRP0hMxWGwAroQstEvzNjs3AceUb1BQJQCkftsZrHWJDasrTbVWquDN8JwFnRZMplOoXXzDIizpc+kJbkMQ8bBWa2JTTqBKZHgqnjqAANSp85nFOA71zcjUf2GMhyJjB3kMN61w4GSiEq43Bqx2vqBgyalJ-Wp0AAKn0Mmb8ntToica9uFmvrL9FcFCYTPkcjYTnEMlU7nUS5Xa5IykOrio1Dk6gAbnIiExDsoKK2xBsSMt7uyV7pseLJWxT+fxCvG87wdMQ9Qza5JxfN991XGQj10UBN23XdYMPZR8lA9IY3oFQgzjMMKyrGsjT-D84KPe9H0OLDJ0iciZ0ddpGOEHD32XJli3nRZwVZLY8UeZYZHkagSCZdQCAJOsKCop9WPbegfyJGTaLAwIQmebYBJrYTRPEyTNjYaRcwfWTVKEGcJmg6QH0QgAGNA7OOEx+FwayJF2YTEM0-j5EE60RNcfSpLYOzZJc9I3LoN9xE8+Q93ItdxEQtD13AkJYrcYTDjCpDHzMEBQAFakiD09iDzkfQpNAOzQAoGhUFAGhomlSlAlTXBCqMuVyrg5KHlAJkk3ahyMFTAA9fNZAQig5UUAhCSYTqwFmphhiYGw7B+cElHkGrMCHVBJsQ7BMCBONNGcNhMt2hKOKSw5u1mzQaEcNgUFAMAHzVEwgA')">function integral(delayed_integrand, initial_value, dt) {
     const integ =
         pair(initial_value,
              () => {
@@ -2138,10 +2138,6 @@ function solve(f, y0, dt) {
     return integ;
 }
 </pre></div></div>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
     Now we can implement our <kbd>solve</kbd>
     
       
@@ -2157,9 +2153,6 @@ function solve(f, y0, dt) {
     return y;
 }
 </pre></div></div>
-  </p></div>
-  <div class='permalink'>
-<a name='p7' class='permalink'></a><p>
     In general, every caller of <kbd>integral</kbd> must now
     
       
@@ -2242,6 +2235,9 @@ function solve(f, y0, dt) {
     <a name="ex_3.78" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_3.78">Exercise 3.78 </a></b> 
   
     
+    Consider the problem of designing a signal-processing system to study
+    the homogeneous second-order linear differential equation
+    
     
     <FIGURE>
       <img class="scale_factor_" id="fig_3.35" src="../img_original/ch3-Z-G-53.svg">
@@ -2251,9 +2247,6 @@ function solve(f, y0, dt) {
       </div>
     </FIGURE>
   
-    
-    Consider the problem of designing a signal-processing system to study
-    the homogeneous second-order linear differential equation
     
       \[ \frac {d^{2} y}{dt^{2}}-a\frac{dy}{dt}-by=0 \]
     
@@ -2422,7 +2415,7 @@ function solve(f, y0, dt) {
   
   
   <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
+<a name='p6' class='permalink'></a><p>
     The examples in this section illustrate how
     
       
@@ -2472,7 +2465,7 @@ function solve(f, y0, dt) {
   </p></div>
 
   <div class='permalink'>
-<a name='p9' class='permalink'></a><p>
+<a name='p7' class='permalink'></a><p>
     One way to avoid the need for two different classes of
     
       
@@ -2516,8 +2509,13 @@ function solve(f, y0, dt) {
       
     
     As far as anyone knows, mutability and delayed evaluation do not mix well
-    in programming languages, and devising ways to deal with both of these at
-    once is an active area of research.
+    in programming
+    
+      
+      
+	languages.
+      
+    
     
     
   </p></div>
@@ -2543,7 +2541,8 @@ function solve(f, y0, dt) {
       
       JavaScript,
       
-    of the difficulties that conventional strongly typed languages such as 
+      of the difficulties that conventional
+      strongly typed languages such as 
     
     
     
@@ -2573,7 +2572,8 @@ function solve(f, y0, dt) {
     over all the elements in a sequence</QUOTE> by a single higher-order
     
       
-    function
+      function
+    
     such as
     
       
@@ -2619,6 +2619,7 @@ function solve(f, y0, dt) {
       
       functions.
     
+  
     </FOOTNOTE></div>
 
     

@@ -2050,7 +2050,14 @@ Acknowledgments
     
     we made these guesses be the successive values of a state variable. Instead
     we can generate the infinite stream of guesses, starting with an initial
-    guess of 1:<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
+    
+      <span style="color:green">
+	guess of 1:<a class='superscript' id='footnote-link-1' href='#footnote-1'style="color:green">[1]</a>
+      </span>
+      <span style="color:blue">
+	guess of 1:
+      </span>
+    
 	
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
@@ -2064,11 +2071,10 @@ Acknowledgments
                                (sqrt-improve guess x))
                              guesses)))
   guesses)</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_71_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgCGAbgKYBO9A5swBQAeANAE8AlKADeOUFNCtm5Qqzp9QAalAjQYAEwBuHAF88RMlVqgAzgEdW5APqUAtgAdW1Ftw6Fm58-1C9RCWkZOQU6JjZOHk9vX39NUBifYT1DHFJac3JQB3peWwATSnMnABt6QVAAXlAATj1jCho6IpLywVss2XoHbnNAyWlG0xbisorO8m6He3I2PvI-YgHg4Mp8UG5i22JCUtKF4RXVqX1QZlLzZlB1zboqh9AABmOT4NbxwW4Acm+-ACI0ED-ilBiczhcruIwW8pB92twABbMegFQ6g2HvMbtSbTWbzLoombkeiUA5ZYRLUAAWlAAEYMW9DMFmdJ4RNCT18aw+n5cvl2SJUkYSE0zFYbLiiXxXqAMsQsokvD5vNUYcEnKSeXS-NxRFUAHwWKZE2y5JweZXmapGiV2RwuNzRK1+AL8dWYz2YpJXfqMqSyeSKJWxbzCnCCqU9PrWOyc3paI46IA')">function sqrt_stream(x) {
-    const guesses =
-        pair(1, () => stream_map(guess => sqrt_improve(guess, x),
-                                 guesses));
-    return guesses;
+            <td><div class='snippet' id='javascript_71_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgCGAbgKYBO9A5swBQAeANAE8AlKADeOUFNCtm5Qqzp9QAalAjQYAEwBuHAF88RMlVqgAzgEdW5APqUAtgAdW1Ftw6Fm58-1C9RCWkZOQU6JjZOHk9vX39NUBifYT1DHFJac3JQB3peWwATSnMnABt6QVAAXlAATj1jCho6IpLywVss2XoHbnNAyWlG0xbisorO8m6He3I2PvI-YgHg4Mp8UG5i22JCUtKF4RXVqX1QZlLzZlB1zboqh9AABmOT4NbxwW4Acm+-ACI0ED-ilBiczhcruIwW8pB92twABbMegFQ6g2HvMbtSbTWbzLoombkeiUA5ZYRLUAAWlAAEYMW9DMFmdJ4RNCT18aw+n5cvl2SJUkYSE0zFYbLiiXxXiF5IpQE5STy6X5uKIqgA+CxTIm2XJODxeHzVbUwzEWy3BCV2RwuNzRY1xAL8c1W90nG1Snoyo7CnCC729L2c3paP1AA')">function sqrt_stream(x) {
+    return pair(1, () => stream_map(guess => 
+                                      sqrt_improve(guess, x),
+                                    sqrt_stream(x)));
 }
 </pre></div></div></td></tr></table>
     <table width="100%">
@@ -2083,7 +2089,7 @@ Acknowledgments
 1.4142156862745097
 1.4142135623746899
 ...</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_71_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4MYD2AdgM4AuoAtgIYAeA+gCYCWpADgDY0CeoAvKACcAbhwAzAK7F85FiVCsO3HgwoAnAKY0qAClIBKUAG8coc6Cky5CpV15ryWnQxblN6-eQA0oYkdMLINAWcVBdNgZiSU5OLwMAs2DzAF9QTU5STRCw3WIBfkEABkTk5LsVXQByKt8AIjRGuoMxMtA0jKyTJLbzCt5dAAttJniWnt7+1Q1tKld3TxmXchoWOIoDX3yAWlAARnG2lInjoKnHZzm3D31fWkYp8eOJaVl5fJoANw8aAHNNXR0bw8UoWLTkSTqfKA0AAalAINAYAATGJnlY3gpSABHdTkVxUdjqQjfXS-SSaUikXx0UHmcGQj7fdR-AHkynU0B0JGgdlUp54DE2fI4vEXWaAumgIhkSh8rKkAQTILsVaePa+XRGfgAPlASzmtHYZIpVIEetF+JYhOJpPlNM2yt6zt68spCVaYM0EKhvNNCrReHOBv0uPxIeRHqAA')">display_stream(sqrt_stream(2));
+            <td><div class='snippet' id='javascript_71_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4MYD2AdgM4AuoAtgIYAeA+gCYCWpADgDY0CeoAvKACcAbhwAzAK7F85FiVCsO3HgwoAnAKY0qAClIBKUAG8coc6Cky5CpV15ryWnQxblN6-eQA0oYkdMLINAWcVBdNgZiSU5OLwMAs2DzAF9QTU5STRCw3WIBfkEABkTk5LsVXQByKt8AIjRGuoMxMtA0jKyTJLbzCt5dAAttJniWnt7+1Q1tKld3TxmXchoWOIoDX3yAWlAARnG2lInjoKnHZzm3D31fWkYp8eOJaVl5fJoANw8aAHNNXR0bw8UoWLTkSTqfKA0AAalAINAYAATGJnlY3gpSABHdTkVxUdjqQjfXS-SSaUikXx0UHmcGQj7fdR-AHkynU0B0JGgdlUp54DE2fI4vEXWaAumgBlQ0DsVaePa+XRGfgAPlASzmtHYZIpVIEGomvRNpqCovxLEJxNJfM5tO8xrNzuSFvFOklCTReHOWv0uPxfuRXqAA')">display_stream(sqrt_stream(2));
 </pre><pre class='prettyprintoutput'>
 1
 1.5
@@ -2091,10 +2097,6 @@ Acknowledgments
 1.4142156862745097
 1.4142135623746899
 ...</pre></div></div></td></tr></table>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
     We can generate more and more terms of the stream to get better and
     better guesses.  If we like, we can write a
     
@@ -2106,7 +2108,7 @@ Acknowledgments
   </p></div>
 
   <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
+<a name='p5' class='permalink'></a><p>
     
     
     
@@ -2122,10 +2124,6 @@ Acknowledgments
       \frac {\pi}{4} = 1-\frac{1}{3}+\frac{1}{5}-\frac{1}{7}+\cdots
       \]
     
-  </p></div>
-
-  <div class='permalink'>
-<a name='p7' class='permalink'></a><p>
     We first generate the stream of summands of the series (the reciprocals
     of the odd integers, with alternating signs).  Then we take the stream
     of sums of more and more terms (using the 
@@ -2147,7 +2145,7 @@ Acknowledgments
 
 (define pi-stream
   (scale-stream (partial-sums (pi-summands 1)) 4))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_71_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4MYD2AdgM4AuoAtgIYAeA+gCYCWpADgDY0CeoAvKACcAbhwAzAK7F85FiVCsO3HgwoAnAKY0qAClIBKUAG8coc6Cky5CpV15ryWnQxblN6-eQA0oYkdMLINAWcVBdNgZiSU5OLwMAs2DzAF9QTU5STRCw3WIBfkEABkTk5LsVXQByKt8AIjRGuoMxMtA0jKyTJLbzCt5dAAttJniWnt7+1Q1tKld3TxmXchoWOIoDX3yAWlAARnG2lInjoKnHZzm3D31fWkYp8eOJaVl5fNJ8Gk5NC9mvS6+cQ0WSEdSlCxaciSdQfJyzBi0di6OgCAB8oFRACpLCDyGDvBNer0llQnngrG8FFRNFRCLorAEAJBBCY-SjfZxMVTqaQCXGZTStCzs0BaUgxSiCaRMTTiFjETRMYXmKEw-K6Iz8DGBYnE0LhACEnJGPOkEL1lvFkv5Vk1KstxJNNG5DF5+UETkkQqJjrKathYs0Es45AdfosHUF3QjxID+WtofDseOLKOYmelJscMuDCIVAARgrNAzfKQ9mWAEwWoPQwORaKxfQHUAAMlbIVIURi62rvvMAH4-D3+6AAFyd7tN8tGAA+s8njd7BlHQ486jBeR79Wkmjo7E0siVoBo6gA5pIacRKNtdqS84RC8XmqOJ+xVp5xEMRs3NsMXfo1abKAo5lDSdK6Jq6KgPe+ZFoqpYwfCyyrOsByErGmFtPeKxrIBCQJBmFKvNmJ5MEwfw6KQzZVjW8ZIbmcHFpBdAVpi1bQaxoAANTsWWbGkNWREvNY7ygO+6hyN8aiXtRhgxpCmh1vk74sJ4-6jIYGERlB2pkRRpJychcy4esmygVhZQSVJnAyVQckEcJWZiewLB2bQxBMNR-gKaqSnquJH66HsoBgMQvgWckukYveSIotB2x0NplmWq57k0J53k8aAQGRUE5IECQFDiW5pL8hMnzfL8pK6NZLDSRK9m1aVl4eV5wUJL4AAs4w4OcNVpaSLRAA')">function pi_summands(n) {
+            <td><div class='snippet' id='javascript_71_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4MYD2AdgM4AuoAtgIYAeA+gCYCWpADgDY0CeoAvKACcAbhwAzAK7F85FiVCsO3HgwoAnAKY0qAClIBKUAG8coc6Cky5CpV15ryWnQxblN6-eQA0oYkdMLINAWcVBdNgZiSU5OLwMAs2DzAF9QTU5STRCw3WIBfkEABkTk5LsVXQByKt8AIjRGuoMxMtA0jKyTJLbzCt5dAAttJniWnt7+1Q1tKld3TxmXchoWOIoDX3yAWlAARnG2lInjoKnHZzm3D31fWkYp8eOJaVl5fNJ8Gk5NC9mvS6+cQ0WSEdSlCxaciSdQfJyzBi0di6OgCAB8oFRACpLCDyGDvBNer0llQnngrG8FFRNFRCLorAEAJBBCY-SjfZxMVTqaQCXGZTStCzs0BaUgxSiCaRMTTiFjETRMYXmKEw-K6Iz8DGBYlBULhACEnJGPOkEL1yXFkv5Vk1KstQRNNG5DF5+UETkkQqJjrFmmhsP9Es45Adeo6gu6fuCaqD1tD4eJp2TYmelJscMuDCIVAARgrNAzfKQ9iWAEwW-2B-KRaKxfQHUAAMmbIVIURi60rvvMAH4-F3e6AAFztzsN0tGAA+0-H9e7BmHA486jBeS79Wkmjo7E0siVoBo6gA5pIacRKNtdqSc4R84XmsOx+xVp5xEMRo3NsMXfpK5soDDmUNJ0romroqAt65gWirFlB8LLKs6wHISMbocSt4rGs-4JAkaYUq8mZHkwTB-DopCNhWVZxlmCIwYW4F0GWmKVpBzGgAA1KxJYsaQlYES81jvKAr7qHI3xqOelGGNGkIBuqolvp+f6GGhMYQdqJFkaSMmIXM2HrJswEYW0YkSZwUlUDJeGCRmInsCwVm0MQTCUf4cmqgpQaviwnh7KAYDEL4JnJJpGK3kiKKQdsdDqaZjqOc5NCue5XGgABoVBOSBAkBQolOaS-ITJ83y-KSujmSwkkStZlWFeeLluboByAQALOMODnBVSWki0QA')">function pi_summands(n) {
     return pair(1 / n, 
                 () => stream_map(x => -x,
                                  pi_summands(n + 2))
@@ -2172,7 +2170,7 @@ const pi_stream =
 3.2837384837384844
 3.017071817071818
 ...</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_71_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4MYD2AdgM4AuoAtgIYAeA+gCYCWpADgDY0CeoAvKACcAbhwAzAK7F85FiVCsO3HgwoAnAKY0qAClIBKUAG8coc6Cky5CpV15ryWnQxblN6-eQA0oYkdMLINAWcVBdNgZiSU5OLwMAs2DzAF9QTU5STRCw3WIBfkEABkTk5LsVXQByKt8AIjRGuoMxMtA0jKyTJLbzCt5dAAttJniWnt7+1Q1tKld3TxmXchoWOIoDX3yAWlAARnG2lInjoKnHZzm3D31fWkYp8eOJaVl5fNJ8Gk5NC9mvS6+cQ0WSEdSlCxaciSdQfJyzBi0di6OgCAB8oFRACpLCDyGDvBNer0llQnngrG8FFRNFRCLorAEAJBBCY-SjfZxMVTqaQCXGZTStCzs0BaUgxSiCaRMTTiFjETRMYXmKEw-K6Iz8DGBYnE0LhACEnJGPOkEL1lvFkv5Vk1KstxJNNG5DF5+UETkkQqJjrKathYs0Es45AdfosHUF3QjxID+WtofDseOLKOYmelJscMuDCIVAARgrNAzfKQ9mWAEwWoPQwORaKxfQHUAAMlbIVIURi62rvvMAH4-D3+6AAFyd7tN8tGAA+s8njd7BlHQ486jBeR79Wkmjo7E0siVoBo6gA5pIacRKNtdqS84RC8XmqOJ+xVp5xEMRs3NsMXfo1abKAo5lDSdK6Jq6KgPe+ZFoqpYwfCyyrOsByErGmFtPeKxrIBCQJBmFKvNmJ5MEwfw6KQzZVjW8ZIbmcHFpBdAVpi1bQaxoAANTsWWbGkNWREvNY7ygO+6hyN8aiXtRhgxpCmh1vk74sJ4-6jIYGERlB2pkRRpJychcy4esmygVhZQSVJnAyVQckEcJWZiewLB2bQxBMNR-gKaqSnquJH66HsoBgMQvgWckukYveSIotB2x0NplmWq57k0J53k8aAQGRUE5IECQFDiW5pL8hMnzfL8pK6NZLDSRK9m1aVl4eV5wUJL4AAs4w4OcNVpaSLRAA')">display_stream(pi_stream);
+            <td><div class='snippet' id='javascript_71_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4MYD2AdgM4AuoAtgIYAeA+gCYCWpADgDY0CeoAvKACcAbhwAzAK7F85FiVCsO3HgwoAnAKY0qAClIBKUAG8coc6Cky5CpV15ryWnQxblN6-eQA0oYkdMLINAWcVBdNgZiSU5OLwMAs2DzAF9QTU5STRCw3WIBfkEABkTk5LsVXQByKt8AIjRGuoMxMtA0jKyTJLbzCt5dAAttJniWnt7+1Q1tKld3TxmXchoWOIoDX3yAWlAARnG2lInjoKnHZzm3D31fWkYp8eOJaVl5fNJ8Gk5NC9mvS6+cQ0WSEdSlCxaciSdQfJyzBi0di6OgCAB8oFRACpLCDyGDvBNer0llQnngrG8FFRNFRCLorAEAJBBCY-SjfZxMVTqaQCXGZTStCzs0BaUgxSiCaRMTTiFjETRMYXmKEw-K6Iz8DGBYlBULhACEnJGPOkEL1yXFkv5Vk1KstQRNNG5DF5+UETkkQqJjrFmmhsP9Es45Adeo6gu6fuCaqD1tD4eJp2TYmelJscMuDCIVAARgrNAzfKQ9iWAEwW-2B-KRaKxfQHUAAMmbIVIURi60rvvMAH4-F3e6AAFztzsN0tGAA+0-H9e7BmHA486jBeS79Wkmjo7E0siVoBo6gA5pIacRKNtdqSc4R84XmsOx+xVp5xEMRo3NsMXfpK5soDDmUNJ0romroqAt65gWirFlB8LLKs6wHISMbocSt4rGs-4JAkaYUq8mZHkwTB-DopCNhWVZxlmCIwYW4F0GWmKVpBzGgAA1KxJYsaQlYES81jvKAr7qHI3xqOelGGNGkIBuqolvp+f6GGhMYQdqJFkaSMmIXM2HrJswEYW0YkSZwUlUDJeGCRmInsCwVm0MQTCUf4cmqgpQaviwnh7KAYDEL4JnJJpGK3kiKKQdsdDqaZjqOc5NCue5XGgABoVBOSBAkBQolOaS-ITJ83y-KSujmSwkkStZlWFeeLluboByAQALOMODnBVSWki0QA')">display_stream(pi_stream);
 </pre><pre class='prettyprintoutput'>
 4
 2.666666666666667
@@ -2183,10 +2181,6 @@ const pi_stream =
 3.2837384837384844
 3.017071817071818
 ...</pre></div></div></td></tr></table>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
     This gives us a stream of better and better approximations to
     $\pi$, although the approximations converge
     rather slowly.  Eight terms of the sequence bound the value of
@@ -2194,7 +2188,7 @@ const pi_stream =
   </p></div>
 
   <div class='permalink'>
-<a name='p9' class='permalink'></a><p>
+<a name='p6' class='permalink'></a><p>
     
     So far, our use of the stream of states approach is not much different
     from updating state variables.  But streams give us an opportunity to do
@@ -2205,7 +2199,7 @@ const pi_stream =
   </p></div>
 
   <div class='permalink'>
-<a name='p10' class='permalink'></a><p>
+<a name='p7' class='permalink'></a><p>
     One such accelerator, due to the eighteenth-century Swiss mathematician
     
     Leonhard Euler, works well with sequences that are partial sums of
@@ -2233,38 +2227,32 @@ const pi_stream =
     (cons-stream (- s2 (/ (square (- s2 s1))
                           (+ s0 (* -2 s1) s2)))
                  (euler-transform (stream-cdr s)))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_71_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgDOAjoQIYBOApgBQAeAlKADeOUKNCdyhNnR6gAVKB4BuHAF88RMlVqgAth13UumgYICQY0CLEAbDuVAsbnFgBMAngH02JUAF5QfCd6DhVLOwdOekIbBwCSVw58SmIOVzCxCSk6LgE-AD4ha0sS0stKfFAuAEInFw9vElNistayqJi4wJJcjLb+yzqONy8fOgDyH1CWgf6s6XEOaNi+2dLVUA4bEKK12fm6DpWZvdF1C1bVFXUcUlp6B10WHk9XSnoABxsWd39QAE4VJoKDQ6G9Pt8vA8XLouPRmpZgdowe8vj9PNDhrpPJRyBw2HDyAAaUDEBFlCpVd6eYgxGyEvjk9abbYcUCUrjjPwBAAMTLa4LR7i4AHIRSSAERoaUSvirSwbLY7YSzQWQrgAC2GrgZcpOpTV6MxLGxuPxhJhnnILEo9IefBJdAAtKAAIx6y4tdSWQ1QyZYnF4gn0ElPF6+vU3JGghikJwcDH+k0WrEkoIUahsfkHBhJ7FPD68fyFWQKdPkTNE-WnY26SMaEggnS1zx3XQAIxS3HwJPort7ACZs-Zsuz6DS6XD3aAAGQzscTmx2ofVgD8pLp1YAXAvaUupwIAD6H3eT+gr1rr-FsTOcumSkgcHgfDgUNKONgAc0I+mIDidLotm2napLK26gB8NoEvgmrageRJam4cJDg6VinPohhcLkxa5pawFdsYvZ5laNp2u6VanJR-QttatrIYyjLXA2Wgxm4riJjC9BToOw6SAsQHUB2BG8P2ihDjhPCuqAADUYm9qJ571gQjbIhB7BUE4GI-lx8K7JkI4LJBlAEohOrwhRpzYQUjiuOxtY6cRtF2g61ZUW0kFsBpNhaboOkMUxyksToHyUD5TzEK4XFknpog5kZBJSWAxAkq5ZRWYULYFkW1lOjwFluWsIVhSwEVRTJoAoalJRKXcxAPBBoW1n8LT0HGdgcViXAeV5PlcUV0S6OFkVcO6qEACx6oFTZ0BwMT4labAlfQ+CZrCukqmItX1fQPJ-C2nAwSGoB8qsW0OH2e3EQdcIku6p33OdA6XZa11HUOqxxVBXBVaI56gIBzDsNwf2AdOYBwrtslcE64kKBdsmKfl-QYUY6WbHNbALUtK1sGtjmkXCDFKb6HXJrNdiY5M2OrV1jV5oxQA')">function euler_transform(s) {
-    const s0 = stream_ref(s, 0);
-    const s1 = stream_ref(s, 1);
-    const s2 = stream_ref(s, 2);
+            <td><div class='snippet' id='javascript_71_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgDOAjoQIYBOApgBQAeAlKADeOUKNCdyhNnR6gAVKB4BuHAF88RMlVqgAth13UumgYICQY0CLEAbDuVAsbnFgBMAngH02JUAF5QfCd6DhVLOwdOekIbBwCSVw58SmIOVzCxCSk6LgE-AD4ha0sSy0p8UC4AQicXD28SU2LSlsyOaNj-QJJcjNb+2o43Lx86APIfUOb+0qzpcXaY8j6Z0VVQDhsQotXWuboopZXV9ROVdRxSWnoHXRYeT1dKegAHGxZ3LoBOFU0KGjoT1e7y8Nxcui49Calj+2kBzzeH08YKGuk8lHIHDYkPIABpQMRoS1ypVnp5iDEbDi+ETSutNtsSVwxn4AgAGWn9IGI9xcADkfPxACI0KKhXxjmJ6VsODtVtyQVwABZDVzUiXTFoKpEolhojFYnHgzzkFiUKk3Pj4ugAWlAAEYNa1TlLmtrQRNUejMdj6Pi7g93RqLrCAQxSE4OMjPXqjaj8UEKNQ2Jz9gwY2i7i9eP5CrIFInyMncZrdpZdbpgxoSP8dBXPFddAAjFLcfD4+j2jsAJlT9myoDJFJsFsdoAAZOPB-RyZTIb3S6AAPwEymLgBc09nI8hY4APnut8OLQvWiusWxk8zKcKSBweC8OBQ0o42ABzQj6YgOG12+uNltUnFDdQBeM1sXwZVVV3K0VTcecaXxRcWn0QwuFyXN02NADW2MDsMxNM1RytZCyzIkp61Nc0EJpKsCBrOFHFcVxo3Behdx7PtJHmf9qGbXDeC7RRe0wnh7VAABqYSOyE+he3OastDDMC2CoJxkU-dioTlUQ0zAyhsTgtUoRLcjKjyQo3BYistIIqiLRIsynNA9g1JsDTdC02iFPopSdBeSgPLuYhXHYwkdIWbi6H07FxLAYgkLMjCCiwr0sxzFKbR4UznLIgKgpYEKwsk0Bez4UiSjoq5iBuUDAorLpmnoCM7FY1EuBUtyPPY-Lol0YLQq4R0rVAAAWDVfNrOgOBiLETTYQr6HwZMIW04RLGq2r6DZLp604SC-VADklBKEBQAAEnATxBGIG17VUc7mk2hxO12gj9shfFHROywzsu67iAep7rhe7s3uND7Dvk06wH+m6JPux7LD08CuAq0Q5NAP9mHYbhMb-McwEhHapK4G0RIUV6pLkxzdlQoxksKGa7DYebFuWthVrsojIVouj3Ta2NmbmiZ2ZWjr6ozGklCAA')">function euler_transform(s) {
+    const s0 = stream_ref(s, 0);     // $S_{n-1}$
+    const s1 = stream_ref(s, 1);     // $S_{n}$
+    const s2 = stream_ref(s, 2);     // $S_{n+1}$
     return pair(
              s2 - square(s2 - s1) / (s0 + (-2) * s1 + s2),
              memo(() => euler_transform(stream_tail(s))));
 }
 </pre></div></div></td></tr></table>
-  </p></div>
-
-  <table width="100%">
+    <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
         <tr>
           <td class="meta" style = "color:grey; text-align: center">Original</td>
           <td></td>
           <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
         </tr>
-        <tr><td><span style="color:green">
-    </span>    </td>
+        <tr><td>    </td>
           <td></td>
           <td><span style="color:blue">
-      <div class='permalink'>
-<a name='p11' class='permalink'></a><p>
-	Note that we make use of the memoization optimization of
-	section&nbsp;<REF NAME="sec:delayed-lists"><a class="superscript" id="3.5.3-sec-link-3.5.1" href="./3.5.1.html">3.5.1</a></REF>, because in the
-	following we will rely on repeated evaluation of the resulting stream.
-      </p></div>
-    </span></td></tr></table>
-  
+	  Note that we make use of the memoization optimization of
+	  section&nbsp;<REF NAME="sec:delayed-lists"><a class="superscript" id="3.5.3-sec-link-3.5.1" href="./3.5.1.html">3.5.1</a></REF>, because in the
+	  following we will rely on repeated evaluation of the resulting stream.
+      </span></td></tr></table>
+  </p></div>
   <div class='permalink'>
-<a name='p12' class='permalink'></a><p>
+<a name='p8' class='permalink'></a><p>
     We can demonstrate Euler acceleration with our sequence of
     approximations to $\pi$:
     <table width="100%">
@@ -2282,7 +2270,7 @@ const pi_stream =
 3.142071817071818
 3.1412548236077655
 ...</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_71_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgDOAjoQIYBOApgBQAeAlKADeOUKNCdyhNnR6gAVKB4BuHAF88RMlVqgAth13UumgYICQY0CLEAbDuVAsbnFgBMAngH02JUAF5QfCd6DhVLOwdOekIbBwCSVw58SmIOVzCxCSk6LgE-AD4ha0sS0stKfFAuAEInFw9vElNistayqJi4wJJcjLb+yzqONy8fOgDyH1CWgf6s6XEOaNi+2dLVUA4bEKK12fm6DpWZvdF1C1bVFXUCEgoaOg4YjjZPSZZienxqNl0uemallItHoDnoAAZ-AxJsNdN4kv8ADSgcF8VbAz5ggCMUNBLjhnHwSNAWLRLQxoIYACZcTCWASEfRkVSyZYDqAAA4sShsLgnMr0GkAWgYzHY3EFoBF9FJoDA-0hAGoqkKWfIGDjlYK+Ij+aV9IYuLl-IUnnZXu9Pt9fv86XDyNybP8+C6yTcKQ5dCweJ5XJR6BybCx3FCAJwqTT3HR+gNBrx42HO3ZiSPaOgxwPBzwJ+meSjkF625HEQFlCpVf2eYgxJ2gl3J9abbYcUDlrjjPwBVENtoZuNcADkA+RACI0OOR6yyhstjthLM+8GuAALYauW0u1atRfxu15gu8nP2x0b4tSklT9YtdSWHfZvf5wtMvTe33+zPuN0aO5phikJwcPe+K2viyJBBQPylqI7JHp4XocrwJqKOq4HkD8uqnAKdpfrcWgPNC+KeMCugAEYpNw+DIjKVFqvOmT2Nkrb0FWNb-LKABk7FMSxNi1iyeoAPygNWvF6gAXNxIm1rKAA+MmSax2qCZsbBsD87Y1qOJAcDwHIcBQaSOGwADmhD6MQDhCtKe7EWRqSTuJnLcryRKrm4bE6m567ajqVinAaRjGgUBGwkR1CkeRxhUXuDqUNJOp6phSWwbFfGujhqb4W4rhAbC9BsTRUGLJICywbZkW8FiyI8GqwU8JqihUlRVXUhlP74VybBUE42ZmflAI9uyXI8iua7OhhpxBYU2W5fS-UxSeAITUlpydd1Ni9bo-Wutc354ToHKUJtXrEK4+UloNDELMNvI4mAxDIolZRTSFubwYhwVCjwy0rbMh3HR8Z3tqAyosnwT0lDhHqckdR5Qi09D-nYs1-GtlA9dEW1cP9mMnUDpK+QALGSOB3keXBmi8bxsB8Xw-KjsPYWiQA')">display_stream(euler_transform(pi_stream));
+            <td><div class='snippet' id='javascript_71_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgDOAjoQIYBOApgBQAeAlKADeOUKNCdyhNnR6gAVKB4BuHAF88RMlVqgAth13UumgYICQY0CLEAbDuVAsbnFgBMAngH02JUAF5QfCd6DhVLOwdOekIbBwCSVw58SmIOVzCxCSk6LgE-AD4ha0sSy0p8UC4AQicXD28SU2LSlsyOaNj-QJJcjNb+2o43Lx86APIfUOb+0qzpcXaY8j6Z0VVQDhsQotXWuboopZXV9ROVdQISCho6DhiONk8JlmJ6fGo2XS56JstSWnoDnoAAYuoCXLpvElvgAaUDAvhKEogUAAEnAnkExAAtABGVSo5r-V5A3FgiZDSGcfCw0C4xHIsDozHEAlEgFAgBM5IhUJp9DhnIZlhRzKxAGp8YTLPtQAAHFiUNhcaatejc7EMZjsbjq0Ca+j00Bgb6g8WVbFC+QMMnm9V8GGqlr6QxcXL+Qp3OyPZ6vd6fb4UliQ8iKmzfPiRxFqPDEwF6Fg8TyuSj0OU2FjuLoAThUmmuOhTaYzXnBlIjOzE+e0dCL6cznjLwc8lHID0DcOIvxa5Uqqc8xBi4cBkcrpXWm22va4Yz8AQRY-6dZLXAA5Ku4QAiNA7zfR1oTrYcRetZeZrgACyGrkDkeOLTPpaDkNb7abIbDt87+rp+5apzEADREfRtnxbNtlQFBMk0faMLmrG4GFIJwOFAiFAwhOEggoD5u1EWV308XQWDlXgPUUa1sPID5HV2GZ3zgjQrhrBgwP+XQACMUm4fA4UNPirWEGV7GyUB+0HGxhyNAAyaSxPoAch2+IUnVAAB+UAJJsVSAC55MUyTviNAAfYz9K05S+FUjSHjYD4ZyHLcSA4Hg5Q4Cg0kcNgAHNCH0YgHGxA02OoTjuL3XT5UVZUaSvNwjIdOKb3tB0rDo0QXSMd0ClY3l2K41JjD4sDQ0oKSHVU9KqssQjSuHIUo3OJitEQtxXDQyl6CMgS8IWSR5kI-LuLdHhcThHgrRy0bQHNCa+LGhghSay4Wp0BU2CoJxGz8rqfkXWUFSVS9rwjWiquywo2o64NdpKz8fjO6rqvWzabG23RdsamMVoLOg5Uod7iOIVwuq7faRPmQ7lTJMBiDhSqWgu3LKSIkiyJy7EeEep66P+wGXhBmcZtABqEZKRicDjBw8ffLpmnoZC7Gur4XsoLbog+rgab8oHCfpVKABZoxwED3y4L0HieNgXjeD4WYBhjESAA')">display_stream(euler_transform(pi_stream));
 </pre><pre class='prettyprintoutput'>
 3.166666666666667
 3.1333333333333337
@@ -2296,7 +2284,7 @@ const pi_stream =
   </p></div>
 
   <div class='permalink'>
-<a name='p13' class='permalink'></a><p>
+<a name='p9' class='permalink'></a><p>
     Even better, we can accelerate the accelerated sequence, and recursively
     accelerate that, and so on.  Namely, we create a stream of streams (a
     structure we'll call a 
@@ -2316,10 +2304,6 @@ const pi_stream =
     return pair(s, () => make_tableau(transform, transform(s)));
 }
 </pre></div></div></td></tr></table>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p14' class='permalink'></a><p>
     The tableau has the form
     
       \[
@@ -2331,10 +2315,6 @@ const pi_stream =
       \end{array}
       \]
     
-  </p></div>
-
-  <div class='permalink'>
-<a name='p15' class='permalink'></a><p>
     Finally, we form a sequence by taking the first term in each row of
     the tableau:
 	
@@ -2346,10 +2326,13 @@ const pi_stream =
 (define (accelerated-sequence transform s)
   (stream-map stream-car
               (make-tableau transform s)))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_71_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgC2AhgNYCmA+uYwEYA2rjQgApyAJ0bEAzvmqj6AGlCSAlKADeOUFtCjW5QqLoAHRpVFDJioaoC8APgYsOXPgOFiJ02QtAepMuQtlYIBuHABfPCIyKlolAEdCRl0hAA9VDW0dPQM6VNAAKlBUsMiCEgoaOnpWemohaIyASCzNbX5yUEZeXUYAEwBPdlESUBtQfG7JVjCsjuzJQl5O8ZI+1nxKYlY+2e1dfUNQazGHTKyLy4vKfGOAQm7eweGSDLarj4-dReWxiZJrHtPsCso8BM8RnRxmJCDN3iCQQdcgsluQgQjLuFQKxeNN1PCMV8ckdvqj0YTtJEWh9wqUohVYnRWEtWKJOOJ-N4gvisqRaJJOpIAAx-AW9ejDDYWRRC5TovlSQUARlFYgEEt0+GloCVcvhCoFSgATKrxZKtZZQEa9VkkUcTGYhASPpITQBaBJJFKu0AeyS60BgCwigDUxzd1sKShVYddynkzquNTqQhO9mxLLZfi8gTF6s4pl4QWCerKBs6TFS7D6lEkRl4jAGfwAnGFopU4jW6w2hnnGPRuectO3GaAu-XG+w+xLKORWRZyIpiG8PjdjrX2MQlkWBcEeVcsTi8WuhFCbONZfvgeOe0IAOR3xQAIjQr6fNoP2NxrCvnxvjaEAALcEF1CRMLn-Xs1X7dhZ3nacC0oHdyHjUA6A9XVyUpeFIiySCp2gmc53MS1K2rWsJwGUt6RiKolFIboOGnBdxUUSYKFkFd9mJOgEKYIw0lOYoo3Y8hZATCkrmnajylouIEL5ehuC2VgGkUf11MjIdskOOgNy3XgdwDAAyYzQH07cLGtcCAH40O3cCAC5zMkTdLP9VQAB9PJctzDKs5RbOxURRFkU9t2fEhWFSIxWAoHYulEABzQgamITo3T9Qj2EU5TtnfJzQAdcwtWA-oLF1eQyr6ALUPApNanqNMHAU6glJUtSlGyrgkIq+N6skySEJ6ndrRLOlZI7Oh+j6AjxUkCrNK4rQ7V47Lco6tIlUUVJI3TVIY2KI11O240ZJHOiTFEKhuinVKFpUX9VqK0xzGqoIJIpZquj6Wbpwe7rCw+gbBquK6bt4O76Ae8aIhoqaisoKGmGIPoFuXJ6eJex0VTAYhFBBi5vr4xgBPydM3VST7QYxIwkcWegUbR09QDDMbCe0GTy0Rub1T+eFJAY-hef7IRwcoW6GYWunkYkZndVQgAWPVJtHRhSFIHFWUYOc-tYRJWDIVTswCHxHu056SYE6rFCYNgC1cQQRA5HMzbAsp8OY9XNf4cRdanfXYSNoRmV99lPFN6macJGXpLlIA')">function accelerated_sequence(transform, s) {
+            <td><div class='snippet' id='javascript_71_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgC2AhgNYCmA+uYwEYA2rjQgApyAJ0bEAzvmqj6AGlCSAlKADeOUFtCjW5QqLoAHRpVFDJioaoC8APgYsOXPgOFiJ02QtAepMuQtlYIBuHABfPCIyKlolAEdCRl0hAA9VDW0dPQM6VNAAKlBUsMiCEgoaOnpWemohaIyASCzNbX5yUEZeXUYAEwBPdlESUBtQfG7JVjCsjuzJQl5O8ZI+1nxKYlY+2e1dfUNQazGHTKyLi8p8Y4BCbt7B4ZIMtsv3rN1F5bGJkms9h8gQ8BE8RnRxmJCDM3kD3gdcgsluRAXCtOFQKxeNN1LC0Z8ckcvsjUWjImTSlEKrE6KwlqxRJxxP5vEFcVlSLRJJ1JAAGX7c3r0YYbCyKXnKEIXECgAAk4HYamIAFoAIzhWWwzlSHmqgViATC3T4MWgVWS6VgeWK4garVcnkAJn1QpFJssoEdFqyMutSoA1OrNQTDsZTOY8R9JM7lQkkilo6BY5JzaAwBZ+f7jsqvYUlHqs9HlPJI+8anUhCd7Jj6Yy-F5AoLDZxTLwgsFJRE8NruY5Uuw+pRJEZeIwBr8AJxhaKVOKD4ejoZNxj0NnnLQzmmgecjsfsZfCyjkBkWciKYivD7XY5D9jEJZt7nBdnvDFYnHXoQQmzjCUvuE7ouQgAOTAYoABEaBQeBnYfG+2KsP+QKAWOQgABagqeoSlhcKFLgaK7sEeJ4Hi2lCPuQxagHQsbmqS2jkgxsJ4fuBGHse5gekw-Z4Z2ZSblUSikN0HAHqeQqKJMFCyJe+yEnQpFMEYaSnMUeZSeQsglvicIHnxVIxIJpGcvQ3BbKwDSKCmVm5uu2ShqAt73rwj6pgAZG5jmSHeD4WF6OEAPzUQ+OEAFxeT5LkWKmAA+MURc5j7+R8QUMqIshfg+EEkKwqRGKwFA7F0ogAOaEDUxCdMqyZsewJlmdsMFhaAJhmA06GYSmxYYf0fnBIoOFlrU9RVg4xnUKZ5mWUotVcOR0XFoNOnLRcpFzUlHb6eUhlxP0fSsUKkjRTZslaAiRzjZN2yVqkqqKKkubVrdoBZg9Vl3UoXqUtts5hqIVDdPu5VHSoSHnWGbU9X0QTaSto1dH0+0HiDs2tjDS0rUCJj-ZQgOLPQIMdt9AlxEYlBA-QTDEH0R0XmD8kteGQh6mAxADZj8OKYwyn5NWyqpLDmMrWTFNUzTX4vZ6wQY1kW09p0IsHr8sKSMJ-AHYaQjYwDvAU0divlWLR3mlRAAsnY-VujCkKQWIMowx5I6wiSsGQFn1gEPig3Z4Mza6Skdf0ihMGwLauIIIjMg2XvYWULFidbtv8OIjv7s70Ju0IdLJ0ynie4LQuY4rbGhEAA')">function accelerated_sequence(transform, s) {
     return stream_map(head, make_tableau(transform, s));
 }
 </pre></div></div></td></tr></table>
+  </p></div>
+  <div class='permalink'>
+<a name='p10' class='permalink'></a><p>
     We can demonstrate this kind of <QUOTE>super-acceleration</QUOTE> of the
     $\pi$ sequence:
     <table width="100%">
@@ -2368,7 +2351,7 @@ const pi_stream =
 3.1415926535911765
 3.141592653589778
 ...</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_71_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgC2AhgNYCmA+uYwEYA2rjQgApyAJ0bEAzvmqj6AGlCSAlKADeOUFtCjW5QqLoAHRpVFDJioaoC8APgYsOXPgOFiJ02QtAepMuQtlYIBuHABfPCIyKlpQRlJSVn5xclYAE3ZJVgBHQlYyVhFxf29FFXVNbV19QyUxAXp2JiMhAAsBdMUmNk4efkFizwCfFWUwyIISCho6STzGXSEAD1UNbR09Azpl0AAqUGWJqOnYunpWemohaLWASA2qrX5yeN5dRnSAT3ZRElAbKB8IxeNkwhsXptJIReK9ASR0qx8JRiBlwdUtnVrACHOsNviCfjKPhQEIAIQgj7fX4kNZPQkMwm6aGwgFAkjWdGM7kbSmdH5-OiAsT5Lk8nk1bZQmHkMXi-HhUDJbKVeXiyV1ZkyuVqrSRB4M8LHKYxWZKmGsUScEpeQIVPFaUi0SSvSQABjZLo+TV0+Asijd43pTqkroAjJ6GowfUj-aAw0GNiGXUoAEyR72-WOWUCpxMY2rGUzmemMyTpgC0SgWS3LoCrkgToDAFg9AGpSRW8-slBGO+XlPJSwyLlchNj7OaUtbht4LFGmlxKLwgsEg5Nk68mMt2OlKJIjLxGF82QBOMLRGZxPcHo8-L2NIKq7SXs6gG+H49ZBfsShpcwuooxB0gyxKkvu7DEDCK4usEz4EoqyqsKAYFCEKNiAoG8GMh+d5CAA5PhigAERoGRxH5ghSqgshDo4fun5fO0nTzqEw4ErhX4PtGv7-vOmZLjB5CDqAdBVgmOp6vSkQbJx94-n+lpxtuu4MXe64nKacSSKQIIcNx9D8Y0ijAhQsggQWUoGc0jCtLsk67AcpnkLIQ66oSBkaSaV5zD+Tr0NwKJFPg5RhuU3Z0RqdAQVBvAwU2ABkCUoZIkHQRYebsaAAD8onQVlABcKVpXFFhNgAPuVxWxTBmUMrllqiLIaHQSRJCsMsRisBQGTxKIADmhAXMQrwVg2fnUAFQUUYVoAmGYNzMZ8ZWDh0y0DiJWWEqO1wTg41n+YFqI3OUP6CStbnuVdHlnaYtVrl5r5mp8mQGZIZXhRZWhRfUmaHUF47LGFhzdg5fYg6Fn3Gk9cQmKIVAglkQ3vfa9I-fN5hrekQSXWqe3xOkr0Lijt3LjjW3XYScMI7wSP0Cja7Q6cZpGJQdNMMQ6TvcB2Ho8WQgRmAxCKBTBL49ZLQrDi9bLLjlM8qz7MSFzaGgB2ebKKLGxeZuc1swZbL0jpenft6QjU5QiPQvT5v60NHMqwmIkACxBjgcmm4+CRJCkjBpK9uT5IUQisBaVp+LaCha-LGyK554xAA')">display_stream(accelerated_sequence(euler_transform,
+            <td><div class='snippet' id='javascript_71_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgC2AhgNYCmA+uYwEYA2rjQgApyAJ0bEAzvmqj6AGlCSAlKADeOUFtCjW5QqLoAHRpVFDJioaoC8APgYsOXPgOFiJ02QtAepMuQtlYIBuHABfPCIyKlpQRlJSVn5xclYAE3ZJVgBHQlYyVhFxf29FFXVNbV19QyUxAXp2JiMhAAsBdMUmNk4efkFizwCfFWUwyIISCho6STzGXSEAD1UNbR09Azpl0AAqUGWJqOnYunpWemohaLWASA2qrX5yeN5dRnSAT3ZRElAbKB8IxeNkwhsXptJIReK9ASR0qx8JRiBlwdUtnVrACHOsNvj8ZR8KAhABCEEfb6-EhrJ4E+kY6GwgFAkjWdEMzkUzo-P50QFifIczn0mrbKEw8jCkWgcKgZLZSoyhliuq6JlSukyyLa45TGKzeUw1iiTglLyBCp4rSkWiSV6SAAMLPtHyaunwFkUjvG+JAoAAJOB2GpiABaACM4QDdNtUgdEZdDUY7qRXtAEd9G39QZDxGjsbtDoATEm3b805ZQMWs9oc8HQwBqKMxjaq4ymcxahmSUthpQLJa90D9ySZ0BgCzOxsksM1-ZKRMz3vKeTd+kXK5CbH2I0pM3DbwWZNNLiUXhBYLjCJ4OP2xzLdjpSiSIy8RhfFkATjC0RmcWfV93x+V1GiCJVtD-M5QEAt8PyyE92EoNJzHtRRiFpBkiRJF92GIGEL3tYIIIJOUFVYUBsKEfkbEBH0SM5WDgKEAByFjFAAIjQbiOOvBkyNBCjrUYl84K+dpOmPUJ13xJj4NAlMkJQ49yzPQjyFXUA6H7TNpW0HV9LpOSQMQ5CTXTJhH2M69Jigw1JFIEEOAU+gVMaRRgQoWRMIxWo5kQloVhxQ4F088hZDXZURRcmyTgNOIXPYW16G4FEinwcoI3KedhPbSjJDwgiLHHAAyEr8sK3hCJrGSAH4tIImSAC4KvwqritUAAfTrWqKlc6vlURRFkaiCM4khWGWIxWAoDJ4lEABzQgLmIV4w1HRDktS1FeOa0ATDMG4JM+Dr5A6E6V00mSN0ua4dwcRKtrSm5ykQtTTuuqKvvxRL3su6TbNOQ1PkyFzJGK7KfK0PLHuoFLnpWLLDnnXdliXZHMshvU7LiExRCoEEsmW8GrTpPKDvMc70iCSLvvu+J0lBk8Sbe0xCNXT7vs5PGCd4In6BJq9saB3HKH5phiHScGMIY8nOyERMwGIRROfxenEsC3ZdzDZZaa576jDF6F6AlqXqNAGca2UVXtFinA71eQ2ELdFk6QcpznbAnnKEJ43wad43TfBzNNIAFmvHBjM9lMhASJIUkYNJQdyfJCiEVhjVNPwLQUG39YJAOT1CIA')">display_stream(accelerated_sequence(euler_transform,
                                     pi_stream));
 </pre><pre class='prettyprintoutput'>
 4
@@ -2380,10 +2363,6 @@ const pi_stream =
 3.1415926535911765
 3.141592653589778
 ...</pre></div></div></td></tr></table>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p16' class='permalink'></a><p>
     The result is impressive.  Taking eight terms of the sequence yields the
     correct value of $\pi$ to 14 decimal places.
     If we had used only the original $\pi$ sequence,
@@ -2395,7 +2374,7 @@ const pi_stream =
   </p></div>
 
   <div class='permalink'>
-<a name='p17' class='permalink'></a><p>
+<a name='p11' class='permalink'></a><p>
     We could have implemented these acceleration techniques without using
     streams.  But the stream formulation is particularly elegant and convenient
     because the entire sequence of states is available to us as a data structure
@@ -2406,32 +2385,7 @@ const pi_stream =
     <div class="permalink">
     <a name="ex_3.66" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_3.66">Exercise 3.66 </a></b> 
   
-    Louis Reasoner asks why the 
     
-      <span style="color:green"><kbd>sqrt-stream</kbd> procedure</span>
-      <span style="color:blue"><kbd>sqrt_stream</kbd> function
-      </span>
-    
-    was not written in the following more straightforward way, without
-    the local variable <kbd>guesses</kbd>:
-    <table width="100%">
-          <colgroup><col width="48%"><col width="52%"></colgroup>
-          
-          <tr>
-            <td><div class='snippet' id='javascript_71_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define (sqrt-stream x)
-  (cons-stream 1.0
-               (stream-map (lambda (guess)
-                             (sqrt-improve guess x))
-                           (sqrt-stream x))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_71_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function sqrt_stream(x) {
-    return pair(1,
-                () => stream_map(guess => 
-                                   sqrt_improve(guess, x),
-                                 sqrt_stream(x))
-               );
-}</pre></div></div></td></tr></table>
     <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
         <tr>
@@ -2440,6 +2394,16 @@ function sqrt_stream(x) {
           <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
         </tr>
         <tr><td><span style="color:green">
+	Louis Reasoner asks why the 
+	<kbd>sqrt-stream</kbd> procedure
+	was not written in the following more straightforward way, without
+	the local variable <kbd>guesses</kbd>:
+	<div class='snippet' id='javascript_71_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+(define (sqrt-stream x)
+	    (cons-stream 1.0
+            (stream-map (lambda (guess)
+            (sqrt-improve guess x))
+            (sqrt-stream x))))</pre></div></div>
 	Alyssa P. Hacker replies that this version of the procedure
 	is considerably less efficient because it performs redundant computation.
 	Explain Alyssa's answer.  Would the two versions still differ in
@@ -2451,14 +2415,32 @@ function sqrt_stream(x) {
       </span>    </td>
           <td></td>
           <td><span style="color:blue">
-	Alyssa P. Hacker replies that this version of the function is
-	considerably less efficient if the memoization optimization in
-	section&nbsp;<REF NAME="sec:delayed-lists"><a class="superscript" id="3.5.3-sec-link-3.5.1" href="./3.5.1.html">3.5.1</a></REF> is used.
-	Is Alyssa's answer correct?  Do the two versions differ in efficiency
-	without using the optimization provided by
-	<kbd>memo</kbd>?
+	Louis Reasoner is not happy with the performance of the stream
+	produced by the
+	<kbd>sqrt_stream</kbd> function and
+	tries to optimize it using memoization:
+	<div class='snippet' id='javascript_71_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+function sqrt_stream_optimized(x) {
+    return pair(1,
+                memo(() => stream_map(guess => 
+                                        sqrt_improve(guess, x),
+                                      sqrt_stream(x))));
+}</pre></div></div>
+	Alyssa P. Hacker instead proposes
+	<div class='snippet' id='javascript_71_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+function sqrt_stream_optimized_2(x) {
+    const guesses = pair(1,
+                         memo(() => stream_map(guess => 
+                                                 sqrt_improve(guess, x),
+                                                 guesses)));
+    return guesses;
+}</pre></div></div>
+        and claims that Louis' version is 
+	considerably less efficient than hers.
+	Is Alyssa right? Would Alyssa's approach without memoization be more
+	efficient 
+	than the original <kbd>sqrt_stream</kbd>?
       </span></td></tr></table>
-    
   
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_71_1_div" data-toggle="collapse">Add solution</button></div>
@@ -2489,10 +2471,10 @@ function sqrt_stream(x) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_71_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_71_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (sqrt x tolerance)
   (stream-limit (sqrt-stream x) tolerance))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_71_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_71_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function sqrt(x, tolerance) {
     return stream_limit(sqrt_stream(x), tolerance);
 }</pre></div></div></td></tr></table>
@@ -2540,7 +2522,7 @@ function sqrt(x, tolerance) {
   
   
   <div class='permalink'>
-<a name='p18' class='permalink'></a><p>
+<a name='p12' class='permalink'></a><p>
     In section&nbsp;<REF NAME="sec:nested-mappings"><a class="superscript" id="3.5.3-sec-link-2.2.3" href="./2.2.3.html">2.2.3</a></REF>, we saw how the
     sequence paradigm handles traditional nested loops as processes defined
     on sequences of pairs. If we generalize this technique to infinite streams,
@@ -2549,7 +2531,7 @@ function sqrt(x, tolerance) {
   </p></div>
 
   <div class='permalink'>
-<a name='p19' class='permalink'></a><p>
+<a name='p13' class='permalink'></a><p>
     
     For example, suppose we want to generalize the 
     
@@ -2574,17 +2556,17 @@ function sqrt(x, tolerance) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_71_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_71_15_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (stream-filter (lambda (pair)
                  (prime? (+ (car pair) (cadr pair))))
                int-pairs)</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_71_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgDOAjoQIYBOApgBQAeAlKADeOUKNCdyhNnR6gAVKB4BuHAF88RMlVqhK9APoATSgDc9lAEYAbbjwA0oAJ4DhY8R0nTFoAKRPQALxBoAAMKuoEJBQ0dJTE5BwA5hxsBvTk7FTEifr4bNQAtlzELiJiElJ0AA4slGzFdmVuzc1cAgEAfLrxSSlpGWxZOXmFxaAA1KAAjHxNLS184RpR2rEGVWyUBdwlQnOa0TqUCfVV9KXz7p50TKycXAAWHCyGXGd8Al3Ec5diAPygchsQgcH6-UAALl0BmMZnolhsDVATxeb3Os3B8wB+BYVnooMxLShxxSXHSnBYBX0GUoVjRHxUbnUbgqXhJp0223OS1ItHSoA2Ww49ECAtq9QATI1CZc2oEuuTnlT8LSTlwwTLMXp9ILtg4NZrfnEEslUvp0pk4sN8kUUB8DZjFsstDFuicbCwTNx6FMHPQJRdyh5KtD9MRCFY6T6MViGBKDVCanVHs9XtH9Ya5Z03SkPV6yVKGECldTalGZjHCU6IgdVmK6vQyQ5yIHRKzquKuFY9OQU6jzg4Ua8W3wM5n2l1jbnnvnFZT9AUWFVePLQN30n206PFKOHYb92451SaXSR9KD4ak6kycX5yeydu9xfMUfS7SuCOGWo8LziPyp6aIoBDmgHmgMQy5DaXAzCoOC-vyi48EYehVFYLCOKKACcKi1q6xj0Kh6FgRSRTnHsbi4To+GEY4xEluyN4OLsrjzJQ+CgFw2rhpGN4fOR8yqKAHB4hwujsWMQTASEra-NRaGOFwADkikOAARGgGmqU6lyCcJ+L8eCcnoZuvHaZiRm0a+DGvve6TbnQAC00xmS0zJiG5ogWXR87WQ4iHIQR8nVj+fLkG6OrikB9bXgBfQOLFqROjgr4qlYapXqu2q6twQ5vOKAiTLl95Xh8u6asaEUNosQA')">stream_filter(pair => is_prime(head(pair) + head(tail(pair))),
+            <td><div class='snippet' id='javascript_71_15_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgDOAjoQIYBOApgBQAeAlKADeOUKNCdyhNnR6gAVKB4BuHAF88RMlVqhK9APoATSgDc9lAEYAbbjwA0oAJ4DB4jpOmLQAUiegAvIGgAAxKoOoEJBQ0dJTE5BwA5hxsBvTk7FTEifr4bNQAtlzELiJiElJ0AA4slGzFDlwC-gB8uvFJKWkZbFk5eYXFoADUoACMfHwqEZrROnr6VWyUBdwlQmWis9qxCfVV9KVix24edEysnFwAFhwshlwHk6BtxJsnH6AA-KDkbIQcd6fY4ALl0BmMZnolhsDVAt3uj0OfCBwOOP3wLCs9EBaOBYMoey46U4LAK+gylCsSMmKmO6mOFU8hJSj2Wq0O0xwpFo6VASxWHHoAX5tXqACY7Ki8ccmgE2iS7uT8FSidKZRqFgLVg51Rq8XEEslUvp0pk4v18kUUJM9Xiphoojt2nsbCwTNx6GMHPRxUdyu5KuD9MRCFZqV6UcCfr71WCanUbncHpHdfrRHLWi6Um6PcTJQw-kqKbUIxMo-qHTMnTFRXV6MSHOR-aImdUxVwrHpyEnEYcHAiHs2+Gn06BM21DTm7nnFWT9AUWFVePLQF30r2UyPFCO7WP92I5+TKdTh1KD-uE6liUX5yfidu9xe8UeS1SuMPaWo8DziHyp8awr+NmgGmj0fS5FaXATCo3K8uQoCLjwRh6FUVgsI4IoAJwqNstbGPQaEYWBpJFIcGzHHhOgEURjgkcWLL1OkDjrMIwKUPg44LKG4Y3s8bGfKooAcNiHC6JxQyBMBwQtmiNHoY4XAAORKQ4ABEaCaWpDrAkJIk4hRMryRhm58TpRmoQp9HzoxN6kW+EbNixoAALTjOZHwMmIXmiMZdGvrZ9AOEhKGEQpVY-vBLqLGKQF1teAFdA4iWpA6OCviqVhEleq5auy3CDo8YoCKMhX3leky7umhoxfWUxAA')">stream_filter(pair => is_prime(head(pair) + head(tail(pair))),
               int_pairs);
 </pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
-<a name='p20' class='permalink'></a><p>
+<a name='p14' class='permalink'></a><p>
     Our problem, then, is to produce the stream
     
       <span style="color:green"><kbd>int-pairs</kbd>.</span>
@@ -2625,7 +2607,7 @@ function sqrt(x, tolerance) {
   </p></div>
 
   <div class='permalink'>
-<a name='p21' class='permalink'></a><p>
+<a name='p15' class='permalink'></a><p>
     Call the general stream of pairs
     <span style="color:green"><kbd>(pairs S T)</kbd>,</span>
     <span style="color:blue"><kbd>pairs(S, T)</kbd>,</span>
@@ -2662,20 +2644,16 @@ function sqrt(x, tolerance) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_71_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_71_16_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (stream-map (lambda (x) (list (stream-car s) x))
             (stream-cdr t))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_71_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_71_16_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 stream_map(x => list(head(s), x),
            stream_tail(t));</pre></div></div></td></tr></table>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p22' class='permalink'></a><p>
     Thus we can form our stream of pairs as follows:
     <kbd class='snippet'>function pairs(s, t) {
     return pair(list(head(s), head(t)), 
-                () => $\textit{combine_in_some_way}$(
+                () => $combine$-$in$-$some$-$way$(
                          stream_map(x => list(head(s), x),
                                     stream_tail(t)),
                          pairs(stream_tail(s), stream_tail(t)))
@@ -2684,7 +2662,7 @@ stream_map(x => list(head(s), x),
   </p></div>
 
   <div class='permalink'>
-<a name='p23' class='permalink'></a><p>
+<a name='p16' class='permalink'></a><p>
     
     In order to complete the
     
@@ -2703,13 +2681,13 @@ stream_map(x => list(head(s), x),
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_71_15_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_71_17_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (stream-append s1 s2)
   (if (stream-null? s1)
       s2
       (cons-stream (stream-car s1)
                    (stream-append (stream-cdr s1) s2))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_71_15_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgDO5ATgKYCGAtgPpsAOvLYgBMAFPQCMAGgYAmAJSgA3jlCrQrcoSZ1K9LsUIAbQ2PFyVaywH5ZFy6oBcoXm0pMRAC3aiJc6XftA0BEFAF4APgZmdm4+AWExaM4uclcTX2l6eQCgtTkAbhwAXzxSWkZQWhZ6UFDnV3cpYLDIqvoCnDLiCvIAd2oaupc3ERlpENrIvoGOroq4wSEWIVqo1mSFhLbpafbCxnXuVnwRTaWhaXEABiuCoA')">function stream_append(s1, s2) {
+            <td><div class='snippet' id='javascript_71_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgDO5ATgKYCGAtgPpsAOvLYgBMAFPQCMAGgYAmAJSgA3jlCrQrcoSZ1K9LsUIAbQ2PFyVaywH5ZFy6oBcoXm0pMRAC3aiJc6XftA0BEFAF4APgZmdm4+AWExaM4uclcTX2l6eQCgtTkAbhwAXzxSWkZQWhZ6UFDnV3cpYLDIqvoCnDLiCvIAd2oaupc3ERlpENrIvoGOroq4wSEWIVqo1mSFhLbpafbCxnXuVnwRTaWhaXEABiuCoA')">function stream_append(s1, s2) {
     return is_null(s1)
         ? s2
         : pair(head(s1), 
@@ -2717,10 +2695,6 @@ stream_map(x => list(head(s), x),
               );
 }
 </pre></div></div></td></tr></table>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p24' class='permalink'></a><p>
     This is unsuitable for infinite streams, however, because it takes all the
     elements from the first stream before incorporating the second stream. In
     particular, if we try to generate all pairs of positive integers using
@@ -2729,9 +2703,9 @@ stream_map(x => list(head(s), x),
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_71_16_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_71_18_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (pairs integers integers)</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_71_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgDO5ATgKYCGAtgPpsAOvLYgBMAFPQCMAGgYAmAJSgA3jlCrQrcoSZ1K9LsUIAbQ2PFyVaywH5ZFy6oBcoXm0pMRAC3aiJc6XftA0BEFAF4APgZmdm4+AWExaM4uclcTX2l6eQCgtTkAbhwAXzwiMipaZ1cmejFpcgVlSw0tOhc3EUNdck9vMT9QLzZRBoGc3LUQ0Aio1mS4wVFxiZXGOe4OPhEAD2nIrsZe4f7pbb9llcvctZiUtJFRyQur+3aaxPW7ynSBm+TU74POTA56BArFPCkWiMUCbbZcIS6XiGNgAT2moAAnIUyhQaHREfRkWiuH8OP0lAFcRUCUiUajSUluJRyCx3IxpMRGhdKPhgrp9EZ0qNKbkiqAWIZ6CxQLzgnRQorQAAGblXQnE1EiADk2ukACI0Eb9eCxRKpTKmpcNfSjj5RoV1XSSWSuCy2R9bgDhQM6ABaUBmR1BEqWUNqG0uplu1ns6RwhHO1HgkoEEh4yqUYisgDmbL0jDYTCoxBzXHwTGo5K5orULW0VQ6xCeL0mYUiWdz+cZRZLZYrVZEdAA1IHzK3QCnIdDyLLsyw8zUMZ2F93C8Ws-3K+Sg3g3rUV4v6NJD-nwThIwyySJ9yJTzUT-Oj8D8kA')">pairs(integers, integers);
+            <td><div class='snippet' id='javascript_71_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgDO5ATgKYCGAtgPpsAOvLYgBMAFPQCMAGgYAmAJSgA3jlCrQrcoSZ1K9LsUIAbQ2PFyVaywH5ZFy6oBcoXm0pMRAC3aiJc6XftA0BEFAF4APgZmdm4+AWExaM4uclcTX2l6eQCgtTkAbhwAXzwiMipaZ1cmejFpcgVlSw0tOhc3EUNdck9vMT9QLzZRBoGc3LUQ0Aio1mS4wVFxiZXGOe4OPhEAD2nIrsZe4f7pbb9llcvctZiUtJFRyQur+3aaxPW7ynSBm+TU74POTA56BArFPCkWiMUCbbZcIS6XiGNgAT2moAAnIUyhQaHREfRkWiuH8OP0lAFcRUCUiUajSUluJRyCx3IxpMRGhdKPhgrp9EZ0qNKbkiqAWIZ6CxQLzgnRQorQAAGblXQnE1EiADk2ukACI0Eb9eCxRKpTKmpcNfSjj5RoV1XSSWSuCy2R9bgDhQM6ABaUBmR1BEqWUNqG0uplu1ns6RwhHO1HgkoEEh4yqUYisgDmbL0jDYTCoxBzXHwTGo5K5orULW0VQ6xGkUxmWdz+cZRZLZYrVZEdAA1IHgYVU1DiDD2yw8zUMdPZwXUsWs73K+Sg3g3rUF-npLuauCcJGGWSRNuRAf6PvszP86OgA')">pairs(integers, integers);
 </pre></div></div></td></tr></table>
     
     our stream of results will first try to run through all pairs with the
@@ -2740,7 +2714,7 @@ stream_map(x => list(head(s), x),
   </p></div>
 
   <div class='permalink'>
-<a name='p25' class='permalink'></a><p>
+<a name='p17' class='permalink'></a><p>
     To handle infinite streams, we need to devise an order of combination
     that ensures that every element will eventually be reached if we let
     our program run long enough.  An elegant way to accomplish this is
@@ -2752,13 +2726,13 @@ stream_map(x => list(head(s), x),
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_71_17_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_71_19_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (interleave s1 s2)
   (if (stream-null? s1)
       s2
       (cons-stream (stream-car s1)
                    (interleave s2 (stream-cdr s1)))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_71_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4MYD2AdgM4AuoAtgIYAeA+gCYCWpADgDY0CeoAvKACcAbhwAzAK7F85FiVCsO3HgwoAnAKY0qAClIBKUAG8coc6Cky5CpV15ryWnQxblN6-eQA0oYkdMLINAWcVBdNgZiSU5OLwMAs2DzAF9QTU5STRCw3WIBfkEABkTk5LsVXQByKt8AIjRGuoMxMtA0jKyTJLbzCt5dAAttJniWnt7+1Q1tKld3TxmXchoWOIoDX3yAWlAARnG2lInjoKnHZzm3D31fWkYp8eOJaVl5fJZiBc5tADdNfR7XykABMpQsWnIknUH1IURi6wOEyCAH5QKDkRYAFygdirTzDGijUgHXyY3q6Iz8AB8IS+Hh+NH++hBwKcswYKzWgIS5LKTzwRDIlBImlIAlx+N0QPCVNposMYiFFFA5AA7oRxYI8SxPKzZQJaerNeNlZRPt8-pomBKLQyrboFb5jYqcOclno7epGf8mC0gA')">function interleave(s1, s2) {
+            <td><div class='snippet' id='javascript_71_19_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4MYD2AdgM4AuoAtgIYAeA+gCYCWpADgDY0CeoAvKACcAbhwAzAK7F85FiVCsO3HgwoAnAKY0qAClIBKUAG8coc6Cky5CpV15ryWnQxblN6-eQA0oYkdMLINAWcVBdNgZiSU5OLwMAs2DzAF9QTU5STRCw3WIBfkEABkTk5LsVXQByKt8AIjRGuoMxMtA0jKyTJLbzCt5dAAttJniWnt7+1Q1tKld3TxmXchoWOIoDX3yAWlAARnG2lInjoKnHZzm3D31fWkYp8eOJaVl5fJZiBc5tADdNfR7XykABMpQsWnIknUH1IURi6wOEyCAH5QKDkRYAFygdirTzDGijUgHXyY3q6Iz8AB8IS+Hh+NH++hBwKcswYKzWgIS5LKTzwRDIlBImlIAlx+N0QPCVNposMYiFFFA5AA7oRxYI8SxPKzZQJaerNeNlZRPt8-pomBKLQyrboFb5jYqcOclno7epGf8mC0gA')">function interleave(s1, s2) {
     return is_null(s1)
         ? s2
         : pair(head(s1), 
@@ -2766,10 +2740,6 @@ stream_map(x => list(head(s), x),
               );
 }
 </pre></div></div></td></tr></table>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p26' class='permalink'></a><p>
     Since <kbd>interleave</kbd> takes elements alternately
     from the two streams, every element of the second stream will eventually
     find its way into the interleaved stream, even if the first stream is
@@ -2777,14 +2747,14 @@ stream_map(x => list(head(s), x),
   </p></div>
 
   <div class='permalink'>
-<a name='p27' class='permalink'></a><p>
+<a name='p18' class='permalink'></a><p>
     We can thus generate the required stream of pairs as
 	
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_71_18_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_71_20_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (pairs s t)
   (cons-stream
    (list (stream-car s) (stream-car t))
@@ -2792,7 +2762,7 @@ stream_map(x => list(head(s), x),
     (stream-map (lambda (x) (list (stream-car s) x))
                 (stream-cdr t))
     (pairs (stream-cdr s) (stream-cdr t)))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_71_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGiXHkCmATgDZMCGAbkwBQBnAIwAaUAIBMASlABvHKEWgWTcoRZ1KAgPrFCbNoKFSFSswH5xE02cUAuUAAdOlFnwAWXACZGpYm7aBoHwyALwAfPSMrBw8-JJiAuQqnAC22uQuhsJSJkFBUgDcOAC+eKS0SaCpnAAe2l5ajmycAJ6goaAAnMVEZFS0oI0CzW3aSSmpgjLyZn0UNHTDo63jyVzplMxuSWLEMwFmlPjBWrr62eS5codKJaBMbAJM9Cd8dKGfoAAMB-lmyxarT4AHIQWIAERoaEQoq3RT3R7PG7-JSAtoebyCK5w1GKdGrCYbbRbVjYyYZLLYvygOgAWlAxmK+TKZlZaKaQLWFNJOzENXqBLhZQIJAWgwYzAA5qwdElOCwqMQpdp8CxqFN9iilCo1BonC43MQRPD-iEOpFJUwZSw5ZlFQwVWqNe9QABqRl5PFKYXlSrkKLS2UdQPW2VrBVKp3qqZMvDzAZ0ZyuASCMRXbWKXXqJOGvhsLTkTGcHwCGmeEt8HH+b1mc0RUPsLi8cnEmqOPi1C2gAtJYulmm1Pym2uj-5EtKUyiGasjsf-ZO21uTzLT6Y1+eb2wT9Krme5XLFEUE7kbPiL1NWm0CMRX2WHoA')">function pairs(s, t) {
+            <td><div class='snippet' id='javascript_71_20_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGiXHkCmATgDZMCGAbkwBQBnAIwAaUAIBMASlABvHKEWgWTcoRZ1KAgPrFCbNoKFSFSswH5xE02cUAuUAAdOlFnwAWXACZGpYm7aBoHwyALwAfPSMrBw8-JJiAuQqnAC22uQuhsJSJkFBUgDcOAC+eKS0SaCpnAAe2l5ajmycAJ6goaAAnMVEZFS0oI0CzW3aSSmpgjLyZn0UNHTDo63jyVzplMxuSWLEMwFmlPjBWrr62eS5codKJaBMbAJM9Cd8dKGfoAAMB-lmyxarT4AHIQWIAERoaEQoq3RT3R7PG7-JSAtoebyCK5w1GKdGrCYbbRbVjYyYZLLYvygOgAWlAxmK+TKZlZaKaQLWFNJOzENXqBLhZQIJAWgwYzAA5qwdElOCwqMQpdp8CxqFN9iilCo1BonC43MQxCEOpFJUwZSw5ZlFQwVWqNe9QABqRm5YoiirEKoWq0CDpRaWytYKpUO9VTJl4eYDOjOVwCQRiK7axS69Txw18NhaciYzg+AQ0zyFvg4-x42ymiJBmJcXjk4k1Rx8Wpm0C5pIFos02p+eFVodVolpSmUQwVwfDvEJ61NseZCfTSsztdBUfpJeT3Ie0p4AncjZ8OdJv2ysTn60eoA')">function pairs(s, t) {
     return pair(list(head(s), head(t)), 
                 () => interleave(stream_map(x => list(head(s), x),
                                             stream_tail(t)),
@@ -2869,13 +2839,13 @@ stream_map(x => list(head(s), x),
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_71_19_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_71_21_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (pairs s t)
   (interleave
    (stream-map (lambda (x) (list (stream-car s) x))
                t)
    (pairs (stream-cdr s) (stream-cdr t))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_71_19_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_71_21_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function pairs(s, t) {
     return interleave(stream_map(x => list(head(s), x),
                                  t), 
@@ -3070,7 +3040,7 @@ function pairs(s, t) {
   
   
   <div class='permalink'>
-<a name='p28' class='permalink'></a><p>
+<a name='p19' class='permalink'></a><p>
     We began our discussion of streams by describing them as computational
     analogs of the <QUOTE>signals</QUOTE> in signal-processing systems.
     In fact, we can use streams to model signal-processing systems in a very
@@ -3099,14 +3069,14 @@ function pairs(s, t) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_71_20_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_71_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (integral integrand initial-value dt)
   (define int
           (cons-stream initial-value
                        (add-streams (scale-stream integrand dt)
                                     int)))
   int)</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_71_20_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgC2ApvdQBRHECUoA3gJChBoHENAAbRuVABDMQCdG0gCYBPAPpySoALyh8sgM6MA3CKESpCg4TFTdJJY3yVijJadELyhOXVbdtAD5eM1Ew8NFKfFBWAEJZBWV1TS4QiPSM0CsbOz0Sfw9MoqEExVUNLV1yTRNQ4syvHzps20L68IBfUEYxIzT2hskmrMZrVrqBwQ6cAXSO02mCEgoaOgNqxXo1Ump6ACMXRnYAGlADAEZTgwAmbh46xt9QSgM1YhsxVgvuADIf59e7zEnxunAmQgA-KAgWJwYIAFwAt4fL7nbgAH3RSJhX1ucNAUMYcjk1DkrBhpwARCRGAAPAAOjAobhkcgA5oQmMQpABaHlnDbSLY7faHSlg9KI+nSShk-CsAAWZVRnGOSuUuM4quEAyYLFY-h0wXWiWFuwOrhOAtNanIMpBaOO+MmLpNm1t9s1Ws4CzwHBWtBkSiUajdQoMqKut36gkea0FZtFltYtMuoFp0aC6fOoAA1Onrlc06DfUsyFRAwZSLJGKGE18E6d9BRSXcHkMnmGtvRpPSU0b06AAFR6aQtuROl1hLs+nCLf0VuguciMNlyWSsZer9fEJSnFyUKiyNQAN1khEYpyU5Dboh2xHWz25q50oGlstYzqKB6PYlP58vHUpxiAJgmUEMuwjL8pyrGs61NTdnzXaRdyvG9J2A9ItzZCUXVnTwOyXJDSwXVZoU5PYiVedZpDkKhiDZNR8BJehWHINDbyEOM3xlMl2OgsJDSzd59ioutaPoxjmN2Ni81Aa8OIEoRZ2me9H2vV8AAY0E085jD4HA1KkMRDlo18RMouRqLtOiXCkljWE0jj9IiQzaEfEzXFotRsPXMRX18jdPMUCdQCc+Sb1MEBQBFelCEkp8V2Q-zpPoMLQHIahUFAahonlWkAnTHBorYpVEu3WQAVANkU0K7SMHTAA9QsZF3DKlQUfBSUYYqwHIMqWikF5oRCsLMGHVBmtfAAWTAwS7DQnFYYLvMCsRTh7fqNGoBxWBQUAwGvLVjCAA')">function integral(integrand, initial_value, dt) {
+            <td><div class='snippet' id='javascript_71_22_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgC2ApvdQBRHECUoA3gJChBoHENAAbRuVABDMQCdG0gCYBPAPpySoALyh8sgM6MA3CKESpCg4TFTdJJY3yVijJadELyhOXVbdtAD5eM1Ew0Up8UFYAQlkFZXVNLhDwtPCrGzs9En8PdIKZeUVVDS1dck0TUMKMyR86TNt82sEAX1BGMSNU1rrvX1Am8hbWtpq0ttNxghIKGjoDSsV6NVJqegAjF0Z2ABpQAwBGA4MAJm4eGq8G0EoDNWIbMVZj7gAyd7uHp7EX884EyEAH5QL8xEDBAAub6PZ6vI7cAA+SNh4NeF0hoFBjDkcmoclY4IOACISIwAB4AB0YFDcMjkAHNCExiFIALTsw7LaSrdZbHYkwHpGFU6SUQn4VgACxKCM4e1lygxnAVwj6giYLFY-h0wSWCT5G22rn23MNanI4v+iL2WI1DtEBpWlutKtVnGmeA481oMiUSjUzt5BgRpwuvUEN0GwaNAtNrApJ1AFIjQRTR1AAGoU2dTsmAV7ZmQqH6DKRZIwgzz6K8awd9BQCZdrvUYzW1PRpFTE3qU6AAFR6aRNuR2x3hWOenAzH2luguciMRlyWSsRfL1fEJQHFyUKiyNQAN1khEYByU5BbonWxCWdzZy50oDFEtY9tqe4PYmPp-P6onQRdXTZRA1jUMP0A8tK2rQ110fFdpG3C8r3HQCCg3RlhQnadPDbBcEKLOcFjBFlNlxB4lmkOQqGIRk1HwfFa3IFDryEaM6FfQkWMgsJgOCJ4tgo6tqNo+jGI2VgpBzS9WN4oRp3GW970vZ8AAY0DUo5jD4HBlKkMQdmo59BPIuRKKtGiXHEpjWDU1idLSPTaHvQzXGotRMNXMRny8tc3MUMdQHs0BL2nEBQH5KlCDEh8l0QnyJPoYLQHIahUFAagoilCkAhTHAIqk2U4s3WRvlARlEzyjSMBTAA9PMZG3VLZQUfACUYAqwHIYrhnK9y5GCzBB1QBrnwAFkwQFYw0JxWACjy-LEA4ux6jRqAcVgUFAMAws9IA')">function integral(integrand, initial_value, dt) {
     const integ = pair(
                     initial_value, 
                     () => add_streams(
@@ -3146,10 +3116,6 @@ function pairs(s, t) {
     </FIGURE>
   
       </span></td></tr></table>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p29' class='permalink'></a><p>
     
       <span style="color:green">
 	Figure&nbsp;<REF NAME="fig:integral_scheme"><a class="superscript" id="3.5.3-fig-link-3.57" href="./3.5.3.html#fig_3.57">3.57</a></REF>
@@ -3184,18 +3150,6 @@ function pairs(s, t) {
     <a name="ex_3.76" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_3.76">Exercise 3.76 </a></b> 
   
     
-    <p>
-      
-    <FIGURE>
-      <img class="scale_factor_" id="fig_3.59" src="../img_original/ch3-Z-G-51.svg">
-      <div class="chapter-text-CAPTION">
-      <b><a class="caption" href="./3.5.3.html#fig_3.59">Figure 3.59 </a></b>An RC circuit and the associated signal-flow diagram.
-	</div>
-    </FIGURE>
-  
-      
-      
-      
       We can model electrical circuits using streams to represent the values
       of currents or voltages at a sequence of times.  For instance, suppose
       we have an <EM>RC circuit</EM> consisting of a resistor of resistance
@@ -3205,9 +3159,18 @@ function pairs(s, t) {
       $i$ is determined by the formula in
       figure&nbsp;<REF NAME="fig:rc"><a class="superscript" id="3.5.3-fig-link-3.59" href="./3.5.3.html#fig_3.59">3.59</a></REF>, whose structure is shown by the
       accompanying signal-flow diagram.
-    </p>
-
-    <p>
+      
+      
+      
+      
+    <FIGURE>
+      <img class="scale_factor_" id="fig_3.59" src="../img_original/ch3-Z-G-51.svg">
+      <div class="chapter-text-CAPTION">
+      <b><a class="caption" href="./3.5.3.html#fig_3.59">Figure 3.59 </a></b>An RC circuit and the associated signal-flow diagram.
+	</div>
+    </FIGURE>
+  
+    <p></p>
       Write a
       
 	<span style="color:green">procedure</span>
@@ -3243,7 +3206,7 @@ function pairs(s, t) {
       
       that takes a stream representing the time sequence of currents and an
       initial capacitor voltage and produces the output stream of voltages.
-    </p>
+    
   
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_71_11_div" data-toggle="collapse">Add solution</button></div>
@@ -3272,12 +3235,12 @@ function pairs(s, t) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_71_21_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_71_23_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 ^$\ldots$^ 1  2  1.5  1  0.5  -0.1  -2  -3  -2  -0.5  0.2  3  4 ^$\ldots$^
 ^$\ldots$^  0  0    0  0    0     -1  0   0   0     0    1  0  0 ^$\ldots$^</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_71_21_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_71_23_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 ... 1  2  1.5  1  0.5  -0.1  -2  -3  -2  -0.5  0.2  3  4 ...
-... 0  0    0  0    0     -1  0   0   0     0    1  0  0 ...</pre></div></div></td></tr></table>
+...  0  0    0  0    0     -1  0   0   0     0    1  0  0 ...</pre></div></div></td></tr></table>
 
     In Alyssa's system, the signal from the sensor is represented as a
     stream
@@ -3310,7 +3273,7 @@ function pairs(s, t) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_71_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_71_24_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (make-zero-crossings input-stream last-value)
   (cons-stream
    (sign-change-detector (stream-car input-stream) last-value)
@@ -3318,7 +3281,7 @@ function pairs(s, t) {
                         (stream-car input-stream))))
 
 (define zero-crossings (make-zero-crossings sense-data 0))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_71_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_71_24_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function make_zero_crossings(input_stream, last_value) {
     return pair(sign_change_detector(head(input_stream),
                                      last_value),
@@ -3342,9 +3305,9 @@ const zero_crossings = make_zero_crossings(sense_data, 0);</pre></div></div></td
 	from exercise&nbsp;<REF NAME="ex:combine-streams"><a class="superscript" id="3.5.3-ex-link-3.53" href="./3.5.1.html#ex_3.53">3.53</a></REF>:
       </span>
     
-    <kbd class='snippet'>const zero_crossing = combine_streams(sign_change_detector,
-                                      sense_data,
-                                      $\textit{expression}$);</kbd>
+    <kbd class='snippet'>const zero_crossings = combine_streams(sign_change_detector,
+                                       sense_data,
+                                       $expression$);</kbd>
     Complete the program by supplying the indicated
     $\textit{expression}$.
     
@@ -3379,13 +3342,13 @@ const zero_crossings = make_zero_crossings(sense_data, 0);</pre></div></div></td
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_71_23_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_71_25_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (make-zero-crossings input-stream last-value)
   (let ((avpt (/ (+ (stream-car input-stream) last-value) 2)))
     (cons-stream (sign-change-detector avpt last-value)
                  (make-zero-crossings (stream-cdr input-stream)
                                       avpt))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_71_23_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_71_25_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function make_zero_crossings(input_stream, last_value) {
     const avpt = (head(input_stream) + last_value) / 2;
     return pair(sign_change_detector(avpt, last_value),
@@ -3449,16 +3412,18 @@ function make_zero_crossings(input_stream, last_value) {
   
 <hr>
 
-    <div class='footnote'>
-      <a class='footnote-number' id='footnote-1' href='#footnote-link-1' >[1] </a>
+    <div class='footnote'><span style="color:green">
+      <a class='footnote-number' id='footnote-1' href='#footnote-link-1' style="color:green">[1] </a>
     <FOOTNOTE>
-    We can't use <kbd>let</kbd> to
-    bind the local variable <kbd>guesses</kbd>, because the
-    value of <kbd>guesses</kbd> depends on
-    <kbd>guesses</kbd> itself.
-    Exercise&nbsp;<REF NAME="ex:stream-internal-def"><a class="superscript" id="3.5.3-ex-link-3.66" href="./3.5.3.html#ex_3.66">3.66</a></REF> addresses why we want
-    a local variable here.
-    </FOOTNOTE></div>
+    We can't use
+	<kbd>let</kbd> to bind the local variable
+	<kbd>guesses</kbd> because the value of
+	<kbd>guesses</kbd> depends on
+	<kbd>guesses</kbd> itself.
+	Exercise&nbsp;<REF NAME="ex:stream-internal-def"><a class="superscript" id="3.5.3-ex-link-3.66" href="./3.5.3.html#ex_3.66">3.66</a></REF>
+	addresses why we want
+	a local name here.
+    </FOOTNOTE></span></div>
     
     
     <div class='footnote'>
