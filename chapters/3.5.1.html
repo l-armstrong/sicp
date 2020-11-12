@@ -2204,15 +2204,11 @@ function stream_for_each(fun, s) {
                     stream_enumerate_interval(10000, 
                                               1000000))));
 </pre></div></div>
-      </p></div>
-
-      <div class='permalink'>
-<a name='p12' class='permalink'></a><p>
         We will see that it does indeed work efficiently.
       </p></div>
 
       <div class='permalink'>
-<a name='p13' class='permalink'></a><p>
+<a name='p12' class='permalink'></a><p>
         We begin by calling
 	<kbd>stream_enumerate_interval</kbd> with
         the arguments 10,000 and 1,000,000.  The function
@@ -2235,10 +2231,6 @@ function stream_for_each(fun, s) {
 	is<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
         <div class='snippet' id='javascript_69_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAAmflUNLUpael9-QLsHJxJwilMLa1THV1FxSWl6ZjYubiyzFOD2QQA+UBJC91aAfiaW1vEALlBcqktTSuyatPCXLu7xDqqcoLSp6dA+pICBtLDQObHHUABqUGxo9UJSeN0BoYZuVnCAIwL3Yu970ABSUFZQAF4-0AADDFNOcdPR7OYAA7sKh6HguYRdF70eh-H76IwmaobEIuYFnbQJRgULisPTmTgkIhw9isLLmPxZdg2IzcQw0ADu4QAFlQAObcp5FTwlUDsjmgRq8gVLdpNIjGWXuPqQ1hUJzi0JK5ZibiCH6NMyk8mU6mcWn0xnmlmGNmcg5HcLanUu12u6WC6KgU64VXq7jYAFBgHhPW-Q0kzhkilUml0zgMkhMm0B4PYcKB4NB-jRIA')">pair(10000, () => stream_enumerate_interval(10001, 1000000));
 </pre></div></div>
-      </p></div>
-
-      <div class='permalink'>
-<a name='p14' class='permalink'></a><p>
         That is, <kbd>stream_enumerate_interval</kbd>
         returns a stream represented as a pair whose
 	<kbd>head</kbd>
@@ -2249,22 +2241,18 @@ function stream_for_each(fun, s) {
 	function
         (section&nbsp;<REF NAME="sec:sequences-conventional-interfaces"><a class="superscript" id="3.5.1-sec-link-2.2.3" href="./2.2.3.html">2.2.3</a></REF>):
 
-        <div class='snippet' id='javascript_69_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwoCcBTAQwFsB9C9qgDYAKJmy4BKUAG9coOaDYUizen0EiWHTuKHiA3LgC++MnSahO7AB7cAJlQYAHAewCeoALygAnAeLlqOlB7JxdXblEtEUkZeVB-Slp6EOc3CM0ubioKVmYNABpQEhjZOPkqAlAhB24SIgFhJnESsvlDUFYBBlZQCqr6D0HQAAYW1rKUsKEAcmnCgCI0Jfn9Utb2zu7pNfG5SbchAAsOWw1mg124-fDIzOzcjTEeNUaKcUL6AFpQbFXd4ziAPk13STyyOTyDEKlhs11WxkIpESQVuPAIgghQkcbFshQYYzkimU9BqdQa0R24wA-EV6gJKa0AFygbGsU7HdinfHiBnUln8PIcrnvXmXOK6TwAPkYGTRGIerNxoFFYtVqtRvH4jWaPLVoGZGvRAkxivyKr14w1L2i8JMZgoFhuss8-KoeQwhQlHmljgFQgAbJ7JN7XXkAOxBqW0ho6gymEjmTjhI0QtmgrSeHaG+V5KxRvMAUlAACZPENhtCnU9ViDUUIk9wU7k06j9EA')">function stream_filter(pred, s) {
-    return is_null(s)
+        <div class='snippet' id='javascript_69_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwoCcBTAQwFsB9C9qgDYAKJmy4BKUAG9coOaDYUizen0EiWHTuKHiA3LgC++MnSahO7AB7cAJlQYAHAewCeoALygAnAeLlqOlB7JxdXblEtEUkZeVB-Slp6EOc3CM0ubioKVmYNABpQEhjZOPkqAlAhB24SIgFhJnESsvlDUFYBBlZQCqr6D0HQAAYW1rKUsKEAcmnCgCI0Jfn9Utb2zu7pNfG5SbchAAsOWw1mg124-fDIzOzcjTEeNUaKcUL6AFpQbFXd4ziAPk13STyyOTyDEKlhs11WxkIpESQVuPAIgghQkcbFshVRYzkimU9BqdQajy04h24wA-EV6gJqa0AFygbGsU7HdinfFUy5xOmOfh5Lk8jLafJM-lxXSeAB8jHF3HRAkx7NxoCl0u1-NRvH4ryezT52tZepVapxkp1NrkepeFIk8JMZgoFhu4s8bOFQgwhVlHgVQqoeQAbP7JIHvSGhAB2CPy+kNY0GUwkcyccIW3Ic0FaTw7c0Yh5WROlgCkoAATJ4hsNoR6jQYQaihJnlcWcXmJHogA')">function stream_filter(pred, stream) {
+    return is_null(stream)
            ? null
-           : pred(head(s))
-             ? pair(head(s),
+           : pred(head(stream))
+             ? pair(head(stream),
                     () => stream_filter(pred, 
-                                        stream_tail(s)))
+                                        stream_tail(stream)))
              : stream_filter(pred,
-                             stream_tail(s));
+                             stream_tail(stream));
 }
 </pre></div></div>
         
-      </p></div>
-
-      <div class='permalink'>
-<a name='p15' class='permalink'></a><p>
         The function <kbd>stream_filter</kbd> tests the
 	<kbd>head</kbd> of the stream (which is 10,000). Since
 	this is not prime, <kbd>stream_filter</kbd>
@@ -2274,10 +2262,6 @@ function stream_for_each(fun, s) {
 	which now returns
         <div class='snippet' id='javascript_69_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAAmflUNLUpael9-QLsHJxJwilMLa1THV1FxSWl6ZjYubiyzFOD2QQA+UBJC91aAfiaW1vEALlBcqktTSuyatPCXLu7xDqqcoLSp6dA+pICBtLDQObHHUABqUGxo9UJSeN0BoYZuVnCAIwL3Yu970ABSUFZQAF4-0AADDFNOcdPR7OYAA7sKh6HguYRdF70eh-H76IwmaobEIuYFnbQJRgULisPTmTgkIhw9isLLmPxZdg2IzcQw0ADu4QAFlQAObcp5FTwlUDsjmgRq8gVLdpNIjGWXuPqQ1hUJzi0JK5ZibiCH6NMyk8mU6mcWn0xnmlmGNmcg5HcLanUu12u6WC6KgU64VXq7jYAFB7DhPW-Q0kzhkilUml0zgMkhMm0BoMAiLhQNpoP8aJAA')">pair(10001, () => stream_enumerate_interval(10002, 1000000));
 </pre></div></div>
-      </p></div>
-
-      <div class='permalink'>
-<a name='p16' class='permalink'></a><p>
 	The function <kbd>stream_filter</kbd> now
 	looks at the <kbd>head</kbd> of this stream,
         10,001, sees that this is not prime either, forces another 
@@ -2298,10 +2282,6 @@ pair(head(stream),
 	      )
     );
 </pre></div></div>
-      </p></div>
-
-      <div class='permalink'>
-<a name='p17' class='permalink'></a><p>
         This result is now passed to
 	<kbd>stream_tail</kbd> in our original
 	expression.  This forces the delayed
@@ -2318,10 +2298,6 @@ pair(head(stream),
               )
     );
 </pre></div></div>
-      </p></div>
-
-      <div class='permalink'>
-<a name='p18' class='permalink'></a><p>
 	The function <kbd>head</kbd> returns 10,009, and the
 	computation is complete.  Only as many integers were tested for
 	primality as were necessary to find the second prime, and the interval
@@ -2329,7 +2305,7 @@ pair(head(stream),
       </p></div>
 
       <div class='permalink'>
-<a name='p19' class='permalink'></a><p>
+<a name='p13' class='permalink'></a><p>
         In general, we can think of delayed evaluation as 
         
         <QUOTE>demand-driven</QUOTE> programming, whereby each stage in the
@@ -2351,7 +2327,7 @@ pair(head(stream),
       </h2></div>
 
       <div class='permalink'>
-<a name='p20' class='permalink'></a><p>
+<a name='p14' class='permalink'></a><p>
         
 	When we construct stream pairs, we delay the evaluation of their tail
 	expressions by wrapping these expressions in a function. We force their
@@ -2359,7 +2335,7 @@ pair(head(stream),
       </p></div>
 
       <div class='permalink'>
-<a name='p21' class='permalink'></a><p>
+<a name='p15' class='permalink'></a><p>
         
         
         This implementation suffices for streams to work as advertised, but
@@ -2396,7 +2372,7 @@ pair(head(stream),
       </p></div>
 
       <div class='permalink'>
-<a name='p22' class='permalink'></a><p>
+<a name='p16' class='permalink'></a><p>
 	We can make use of <kbd>memo</kbd> whenever
 	we construct a stream pair. For example, instead of 
         <div class='snippet' id='javascript_69_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwoCcBTAQwFsB9T9gBwAUBADSMAlKADeuUHNBsKRZvSoNuJIgBstghuNnyj8gPyhNOw8aMAuUP3ZVmwwQAsOAEz3jxIq9YC5QUkAXgA+RhYOHj4hUUi2Lm4KR119HwBuXABffDI6JlBOAE9uJkTOUBD7R2cAFjFgqoiHJ0EMRtCIiy1MvIKKItLy6O4AJir-EaTYwQ81fi12YrESsqiucSzcaZ42AkE13fGxbC2djb3WA6PLk9AzrJBQCndzIk4AI1ZmUAxQNSMVw0ADu9AoIKoZFYuGe3zI7CIDFYLzeDC4KI8rCWxVYHlhYBonwAVqxKACGKACDRmNCPC9IdCgA')">function stream_map(f, s) {
