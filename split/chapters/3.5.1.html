@@ -2861,7 +2861,8 @@ pair(head(stream),
 	is to use the following function, which takes as argument a function
         (of no arguments) and returns a memoized version of the function.
 	The first time the memoized function is run, it saves the computed
-	result.	On subsequent evaluations, it simply returns the result.
+	result.	On subsequent evaluations, it simply returns
+	the result.<a class='superscript' id='footnote-link-10' href='#footnote-10'style="color:blue">[10]</a>
         <div class='snippet' id='javascript_69_37_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AWwFMGaAKYkgSlAG8BIUENC5hoADZMKoAIbiATkxkATAJ4B9eaVABeUATkBnJgG5RwydMWGi46XtLKmBKiSbKzYxRSLz6bHh0APj5zMXCxKgJQNgBCOUUVDS1uUIj0iOtbe31SAM8MwtkFJTVNbT0KLVMwosypX3osuwK6oQBfUCZxYzS2+p8-UGaKVrb22vT2swnCUkpaekMARyIZRXUAFgC+oTI6QysmGztdUE3QACpzk0FhWuUqQwAHcRlVNgAiBmyqV6oyDJqHRQID5PIqO5QDQiBRPlwxt5GsNjtkZrh9iRDowWDR1Cs1hsLnpmKw2AT1kwtgjcI8Xm8PqS8RSiQEEaAQKBDAALGgAd0MoG+v1eaDQn1pT1e7zYTPxq0pWzZJg5YGUNGOoBINGkPP5Qp+dj+4jFnyAA')">function memo(fun) {	    
     let already_run = false;
     let result = undefined;
@@ -2893,7 +2894,7 @@ pair(head(stream),
 	
 	we can define an optimized function
 	<kbd>stream_map</kbd>	as
-	follows:<a class='superscript' id='footnote-link-10' href='#footnote-10'style="color:blue">[10]</a>
+	follows:
 	<div class='snippet' id='javascript_69_39_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AWwFMGaAKYkgSlAG8BIUENC5hoADZMKoAIbiATkxkATAJ4B9eaVABeUATkBnJgG5RwydMWGi46XtLKmBKiSbKzYxRSLz6bHh0APj5zMXCxKgJQNgBCOUUVDS1uUIj0iOtbe31SAM8MwtkFJTVNbT0KLVMwosypX3osuwK6oQBfUCZxYzS2+p8-UGaKVrb22vT2swnCUkpaekMqpQZ1BhkAB3UaTeoGKgAvdw4AGlBDHl5a70bQKkN1EltxNkvJiIB+UGfxcQ-wgAuUCbGRUeQcNgAC1Kby4XFOALqzFYbBigRCy0Saw2212+yOJyR-TaBHOWNW6goYNelx48Jm+DIdGWjA0FJkDF0ILBEIALOcAroQqDwWwMIKMT8XgymSzpAx2StOeoAEy6WocnFbNjKB6bcQyVTnRXqLVcMy4LWaZxsU3W1XnbAWq3KtaKAh2pXYtVOl0gUAUGHShgAIyY8lAGHuhguUJoAHd6BQE1QyExcAHw2QZERekGmBdOYWnIbVO5M2AaKGAFZMSgx-Q0eTp5SB1PpuUkVn2t3qFAasTW3E7PZUA7HZS6-Vlk3e1Yu10+j1es19lB+szWle9n0b0DOswBgsh8OR6MPOOJ+h0cSqUB0TtZ+u5-PBkYP6IEZtkVwAc0rQNg1LI13AfWt62kS8URoQllCAA')">function stream_map_optimized(f, s) {
     return is_null(s)
            ? null
@@ -2910,20 +2911,20 @@ pair(head(stream),
     <a name="ex_3.53" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_3.53">Exercise 3.53 </a></b> 
   
 	
-	Declare a function <kbd>stream_combine</kbd>
+	Declare a function <kbd>stream_map_2</kbd>
 	that takes a binary function and two streams as arguments and returns
 	a stream whose elements are the results of applying the function
 	pairwise to the corresponding elements of the argument streams.
 	<div class='snippet' id='javascript_69_40_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function stream_combine(f, s1, s2) {
+function stream_map_2(f, s1, s2) {
     ...
 }</pre></div></div>
 	
 	Similar to <kbd>stream_map_optimized</kbd>,
 	declare a function
-	<kbd>stream_combine_optimized</kbd> by
+	<kbd>stream_map_2_optimized</kbd> by
 	modifying your
-	<kbd>stream_combine</kbd>
+	<kbd>stream_map_2</kbd>
 	such that the result stream employs memoization.
       
       <div class="Solution">
