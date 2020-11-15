@@ -2228,7 +2228,7 @@ if (balance >= amount) {
       The variable <kbd>amount</kbd>
       
     
-    will be found in the first frame in the environment, while
+    will be found in the first frame in the environment, and
     <kbd>balance</kbd> will be found by following the
     enclosing-environment pointer to E1.
     
@@ -2428,15 +2428,17 @@ if (balance >= amount) {
       
 	The outer lambda expression is invoked immediately after it
 	is evaluated. Its only purpose is to create a local variable
-	<kbd>balance</kbd>, and
+	<kbd>balance</kbd> and
 	initialize it to <kbd>initial_amount</kbd>.
       
     
     Use the environment model to analyze this alternate version of
     <kbd>make_withdraw</kbd>, drawing figures like the ones
     above to illustrate the interactions
-    <div class='snippet' id='javascript_57_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQCY0oFA4GYCuAdgMYAuAlgPbGgC2AhgNYCmA+gO6XkAWAJgCdGnABSViPSowA27RvWolyASlABvHKG2hBrcoUF1RAI1mMyrUAF4AfKC06nz7QqXFyN+5pe+XlfFBTc0tQW2tQN2U1Hz845zMZC1IrCMTkqwBaSMVlAG5HeKK9AyNQdMsCor8AX1BWGQBnK1jquJLDOgAiCUbCfHxKUkpWD1AiYn5Grqq25xrC+ZVxSSpZeVyPFQKFnFJaRs8AdQBGGwYWDm4+IRFRE4AGB+2cU9EAVmeC-eJD0COMOcmGwuDwBMIxI8vkA')">const W1 = make_withdraw(100);
+    <div class='snippet' id='javascript_57_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQCY0oFA4GYCuAdgMYAuAlgPbGgC2AhgNYCmA+gO6XkAWAJgCdGnABSViPSowA27RvWolyASlABvHKG2hBrcoUF1RAI1mMyrUAF4AfKC06nz7QqXFyN+5pe+XlfFBTc0tQW2tQN2U1Hz845zMZC1IrCMTkqwBaSMVlAG5HeKK9AyNQdMsCor8AX1BWGQBnK1jquJLDOgAiCUbCfHxKUkpWD1AiYn5Grqq25xrC+ZVxSSpZeVyPFQKFnFJaRs8AdQBGGwYWDm4+IRFRE4AGB+28U9EAVmeCgEg9g+OMOcmGwuDwBMIxI8vkA')">const W1 = make_withdraw(100);
+
 W1(50);
+	
 const W2 = make_withdraw(100);
 </pre></div></div>
     Show that the two versions of

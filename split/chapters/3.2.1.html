@@ -2114,7 +2114,7 @@ Acknowledgments
     
       <span style="color:green">just syntactic sugar for</span>
       <span style="color:blue">
-	equivalent to<a class='superscript' id='footnote-link-3' href='#footnote-3'style="color:blue">[3]</a>
+	equivalent to
       </span>
     
     an underlying implicit
@@ -2122,7 +2122,7 @@ Acknowledgments
       <span style="color:green"><kbd>lambda</kbd></span>
       <span style="color:blue">lambda</span>
     
-    expression.  It would have been equivalent to have used
+    expression.  It would have been equivalent to have used<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -2296,18 +2296,18 @@ Acknowledgments
       <div class='permalink'>
 <a name='p4' class='permalink'></a><p>
 	In general, <kbd>const</kbd>,
-	<kbd>function</kbd> and
+	<kbd>function</kbd>, and
 	<kbd>let</kbd>
 	create declarations by	adding bindings to frames.
-	We consider function declarations as equivalent to constant
-	declarations;<a class='superscript' id='footnote-link-4' href='#footnote-4'style="color:blue">[4]</a>
-	observe the equal signs after the colons in
-	figure&nbsp;<REF NAME="fig:evaluating-square"><a class="superscript" id="3.2.1-fig-link-3.4" href="./3.2.1.html#fig_3.4">3.4</a></REF>.
 	Assignment is forbidden on constants, so our environment model
 	needs to distinguish symbols that refer to constants
 	from symbols that refer to variables. We shall indicate that
 	a symbol is a constant by writing an equal sign after the colon
-	that follows the symbol. 
+	that follows the symbol.
+	We consider function declarations as equivalent to constant
+	declarations;<a class='superscript' id='footnote-link-4' href='#footnote-4'style="color:blue">[4]</a>
+	observe the equal signs after the colons in
+	figure&nbsp;<REF NAME="fig:evaluating-square"><a class="superscript" id="3.2.1-fig-link-3.4" href="./3.2.1.html#fig_3.4">3.4</a></REF>.
       </p></div>
     </span></td></tr></table>
   <div class='permalink'>
@@ -2463,7 +2463,7 @@ Acknowledgments
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./3.2.1.html#fig_3.6">Figure 3.6 </a></b>
 	    Environment created by evaluating
-	    <kbd>square(5);</kbd>
+	    <kbd>square(5)</kbd>
 	    in the program environment.
 	  </div>
     </FIGURE>
@@ -2565,12 +2565,6 @@ Acknowledgments
 	  in section&nbsp;<REF NAME="sec:env-internal-def"><a class="superscript" id="3.2.1-sec-link-3.2.4" href="./3.2.4.html">3.2.4</a></REF>.
 	</span>
       </span></td></tr></table>
-    Finally, we specify the behavior of
-    
-      <span style="color:green"><kbd>set!</kbd>,</span>
-    <span style="color:blue">assignment,</span>
-    the operation that forced us to introduce the environment model in the
-    first place.
     <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
         <tr>
@@ -2600,21 +2594,19 @@ Acknowledgments
 	in some environment
 	locates the binding of the name in the environment.
 	That is, one finds the first frame in the environment that contains a
-	binding for the variable name.
+	binding for the name.
 	If the binding is a variable binding—indicated in the frame with
 	a single
 	colon after the name—that binding is changed to reflect the new
 	value of the variable. 
-	If the name is unbound in the environment, then the
-	assignment signals a <kbd>variable undefined</kbd>
-	error.
 	Otherwise, if the binding in the frame is a constant
 	binding—indicated
-	in the frame with an equal sign after colon that follows the
+	in the frame with an equal sign after the colon that follows the
 	name—the assignment signals an
 	<kbd>assignment to constant</kbd> error.
 	If the name is unbound in the environment, then
-	the assignment signals a <QUOTE>variable undeclared</QUOTE> error.
+	the assignment signals a
+	<kbd>variable undeclared</kbd> error.
       </span></td></tr></table>
   </p></div>
 
@@ -2671,14 +2663,14 @@ Acknowledgments
     </FOOTNOTE></span></div>
     
     
-    <div class='footnote'><span style="color:blue">
-      <a class='footnote-number' id='footnote-3' href='#footnote-link-3' style="color:blue">[3] </a>
+    <div class='footnote'>
+      <a class='footnote-number' id='footnote-3' href='#footnote-link-3' >[3] </a>
     <FOOTNOTE>
     
 	Footnote&nbsp;<REF NAME="foot:function-decl-vs-lambda"><a class="superscript" id="3.2.1-foot-link-2" href="./1.3.2.html#footnote-2">2</a></REF> in chapter 1
 	mentions subtle differences between the two in full JavaScript, which
-	we will ignore in this edition.
-    </FOOTNOTE></span></div>
+	we will ignore in this book.
+    </FOOTNOTE></div>
     
     
     <div class='footnote'><span style="color:blue">
@@ -2696,7 +2688,7 @@ Acknowledgments
       <a class='footnote-number' id='footnote-5' href='#footnote-link-5' style="color:blue">[5] </a>
     <FOOTNOTE>
     This example does not make use of the fact that
-	the parameter <kbd>x</kbd> is a variable, but recall
+	the parameter <kbd>x</kbd> is a variable, but recall the
 	function <kbd>make_withdraw</kbd> in
 	section&nbsp;<REF NAME="sec:local-state-variables"><a class="superscript" id="3.2.1-sec-link-3.1.1" href="./3.1.1.html">3.1.1</a></REF>, which relied on
 	its parameter being a variable.
