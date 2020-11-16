@@ -2245,7 +2245,14 @@ function solve(f, y0, dt) {
       <span style="color:blue">function</span>
     
     by delaying the evaluation of <kbd>dy</kbd> in the
-    definition of
+    
+      <span style="color:green">
+	definition of
+      </span>
+      <span style="color:blue">
+	declaration of
+      </span>
+    
     <kbd>y</kbd>:<span style="color:green"><a class='superscript' id='footnote-link-1' href='#footnote-1'style="color:green">[1]</a>
     </span>
 	
@@ -2280,7 +2287,8 @@ function solve(f, y0, dt) {
     $e\approx 2.718$ by computing the value at
     $y=1$ of the solution to the differential
     equation $dy/dt=y$ with initial condition
-    $y(0)=1$:<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+    $y(0)=1$:<span style="color:blue"><a class='superscript' id='footnote-link-2' href='#footnote-2'style="color:blue">[2]</a></span>
+    
     
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
@@ -2674,16 +2682,19 @@ function solve(f, y0, dt) {
     </FOOTNOTE></span></div>
     
     
-    <div class='footnote'>
-      <a class='footnote-number' id='footnote-2' href='#footnote-link-2' >[2] </a>
+    <div class='footnote'><span style="color:blue">
+      <a class='footnote-number' id='footnote-2' href='#footnote-link-2' style="color:blue">[2] </a>
     <FOOTNOTE>
     
-    <span style="color:blue">This calculations necessitates the use of the memoization
+    This calculation necessitates the use of the memoization
     optimization from section&nbsp;<REF NAME="sec:delayed-lists"><a class="superscript" id="3.5.4-sec-link-3.5.1" href="./3.5.1.html">3.5.1</a></REF> in
-    the functions <kbd>stream_combine</kbd> and
-    <kbd>integral</kbd>.</span>
-    
-    </FOOTNOTE></div>
+    <kbd>integral</kbd> and in
+    the function <kbd>add_stream</kbd> used in
+    <kbd>integral</kbd>
+    (using the function <kbd>stream_map_2_optimized</kbd>
+    as suggested in
+    exercise&nbsp;<REF NAME="ex:fib-stream-efficiency"><a class="superscript" id="3.5.4-ex-link-3.60" href="./3.5.2.html#ex_3.60">3.60</a></REF>).
+    </FOOTNOTE></span></div>
     
     
     <div class='footnote'>

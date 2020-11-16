@@ -2144,7 +2144,12 @@ function solve(f, y0, dt) {
       function
     
     by delaying the evaluation of <kbd>dy</kbd> in the
-    definition of
+    
+      
+      
+	declaration of
+      
+    
     <kbd>y</kbd>:
 	
     <div class='snippet' id='javascript_72_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0BYBQuAzAVwDsBjAFwEsB7E0AWwFMGaAKYkgSlAG8BIUENC5hoADZMKoAIbiATkxkATAJ4B9eaVABeUATkBnJgG5RwydMWGi46XtLKmBKiSbKzYxRSLz6bHh0APj5zMXCIsSoCUDYAQjlFFQ0tblDIjMzQa1t7fVIAzyzi4USlNU1tPQotUzCSrO9fehy7IoaIgF9QJnFjdI7GqWbsphs2+sGhTtxBDM6zGZBQEhoKJlAKAAsNon6aGO2N5lYqAC8ZajpQGgAHagZzy9oSfkFCUkoX0EMapQZ1GQaAwAEauJgcAA0PwAjNDDAAmHi8epNPygKiGdQkWziNiGGE8ABkRIxWJx4jxiK4k2EAH4VrjaUIAFxk7G4-GE0AAHx57IpVKRzNADKY8nkNHkbEF0IARKQmAAPW5MSjuWTyADmRGYJGkAFoDT8-jIAUDQeC5TSMmzbjIqNKCGwdiouVxIa7lPikR6RIMTuwAroQr8kubgWC3FCTeH1BQHVTCZCRVNBmH-vHEz6uLmuIsPuQrvQVMp1BmzYYufCkQMhGj6BWI5bo2wlXDQEra8FOzDQABqTsI+Ed6kFzhfa6GMhyJjl00MfEL6EGShS5Go4bopvqBgyW5tkOd0AAKn0MjX8hTafCTfzuCWYFW602O1Aew2B1fxxYNCexZue4qEeC5izeEQJwA1x1i1eQ5DYJxxBkVR3HUaCmFgmQSGUaFXCoag5HUAA3OQiCYaFlAoDcxCBEhfgxfUMN0EV7UdNg8II8RiNI8jUzEQM2GDHsURvWj6PQzDsN0UBEOQ1CJLg7DCj4jIG1kZQyybKtp1nedw3YxjJJwmSqOhFSbwyCT7zTTpc3aUYfHRCTx0+ADDBocQiIhAhoVUAAGCiqLrUAxOkVRpIU+DYkCEI1F8gKTOs4RQpk8K9B3PcDx80BVCS+st3oVQC3wXAd0UZ13M8iE0pCVRoQ7Py0D8vzk1AGFmr8-MgA')">function solve(f, y0, dt) {
@@ -2170,6 +2175,7 @@ function solve(f, y0, dt) {
     $y=1$ of the solution to the differential
     equation $dy/dt=y$ with initial condition
     $y(0)=1$:<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
+    
     
     <div class='snippet' id='javascript_72_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0BYBQuAzAVwDsBjAFwEsB7E0AWwFMGaAKYkgSlAG8BIUENC5hoADZMKoAIbiATkxkATAJ4B9eaVABeUATkBnJgG5RwydMWGi46XtLKmBKiSbKzYxRSLz6bHh0APj5zMXCIsSoCUDYAQjlFFQ0tblDIjMzQa1t7fVIAzyzi4USlNU1tPQotUzCSrO9fehy7IoaIgF9QJnFjdI7GqWbsphs2+sGhTtxBDM6zGZBQEhoKJlAKAAsNon6aGO2N5lYqAC8ZajpQGgAHagZzy9oSfkFCUkoX0EMapQZ1GQaAwAEauJgcAA0PwAjNDDAAmHi8epNPygKiGdQkWziNiGGE8ABkRIxWJx4jxiK4k2EAH4VrjaUIAFxk7G4-GE0AAHx57IpVKRzNADKY8nkNHkbEF0IARKQmAAPW5MSjuWTyADmRGYJGkAFoDT8-jIAUDQeC5TSMmzbjIqNKCGwdiouVxIa7lPikR6RIMTuwAroQr8kubgWC3FCTeH1BQHVTCZCRVNBmH-vHEz6uLmuIsPuQrvQVMp1BmzYYufCkQMhGj6BWI5bo2wlXDQEra8FOzDQABqTsI+Ed6kFzhfa6GMhyJjl00MfEL6EGShS5Go4bopvqBgyW5tkOd0AAKn0MjX8hTafCTfzuCWYFW602O1Aew2B1fxxYNCexZue4qEeC5izeEQJwA1x1i1eQ5DYJxxBkVR3HUaCmFgmQSGUaFXCoag5HUAA3OQiCYaFlAoDcxCBEhfgxfUMN0EV7UdNg8II8RiNI8jUzEQM2GDHsURvWj6PQzDsN0UBEOQ1CJLg7DCj4jIG1kZQyybKtp1nedw3YxjJJwmSqOhFSbwyCT7zTTpc3aUYfHRCTx0+ADDBocQiIhAhoVUAAGCiqLrUAxOkVRpIU+DYkCEI1F8gKTOs4RQpk8K9B3PcDx80BVCS+st3oVQC1wHdFGddzPIhNKQlUaEOz8tA-L85NQBhJq-PzIA')">stream_ref(solve(y => y, 1, 0.001), 1000);
 </pre><pre class='prettyprintoutput'>
@@ -2525,11 +2531,14 @@ function solve(f, y0, dt) {
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1'>[1] </a>
     <FOOTNOTE>
     
-    This calculations necessitates the use of the memoization
+    This calculation necessitates the use of the memoization
     optimization from section&nbsp;<REF NAME="sec:delayed-lists"><a class="superscript" id="3.5.4-sec-link-3.5.1" href="./3.5.1.html">3.5.1</a></REF> in
-    the functions <kbd>stream_combine</kbd> and
-    <kbd>integral</kbd>.
-    
+    <kbd>integral</kbd> and in
+    the function <kbd>add_stream</kbd> used in
+    <kbd>integral</kbd>
+    (using the function <kbd>stream_map_2_optimized</kbd>
+    as suggested in
+    exercise&nbsp;<REF NAME="ex:fib-stream-efficiency"><a class="superscript" id="3.5.4-ex-link-3.57" href="./3.5.2.html#ex_3.57">3.57</a></REF>).
     </FOOTNOTE></div>
 
     
