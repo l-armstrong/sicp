@@ -2009,9 +2009,9 @@ Acknowledgments
       <div class='permalink'>
 <a name='p1' class='permalink'></a><p>
 	Section&nbsp;<REF NAME="sec:env-apply-proc"><a class="superscript" id="3.2.4-sec-link-3.2.2" href="./3.2.2.html">3.2.2</a></REF> describes the application
-	of functions whose bodies do not contain constant, variable or
-	function declarations, and therefore all occurrences of names referred
-	to parameters or names that were bound in the program environment.
+	of functions whose bodies do not contain constant, variable, or
+	function declarations; therefore all occurrences of names referred
+	to parameters or to names that were bound in the function environment.
 	In this section we handle the evaluation of function bodies or other
 	blocks that contain declarations; examples are
 	the bodies of the functions
@@ -2022,20 +2022,34 @@ Acknowledgments
 	section&nbsp;<REF NAME="sec:lambda"><a class="superscript" id="3.2.4-sec-link-1.3.2" href="./1.3.2.html">1.3.2</a></REF>.
 	Each block opens a new scope for all names declared in the block.
 	In order to evaluate a block in a given environment, we extend that
-	environment by a new frame that contains all names declared locally
-	(outside of nested blocks) in the block body. These names are initially 
+	environment by a new frame that contains all names declared at top level
+	(that is, outside of nested blocks) in the block body, and evaluate
+	the body of the block in the newly constructed environment.
+	The names are initially 
 	unassigned, and any attempt to access the value of an unassigned
 	name leads to an error.
-	The evaluation of a local constant
+	The evaluation of a constant
 	or variable declaration then assigns the name to the left of the
 	<kbd>=</kbd> sign to the result of
 	evaluating the expression to the right, as if the declaration were
 	an assignment.<a class='superscript' id='footnote-link-1' href='#footnote-1'style="color:blue">[1]</a>
       </p></div>
-    </span></td></tr></table>
-  
-  <div class='permalink'>
+      <div class='permalink'>
 <a name='p2' class='permalink'></a><p>
+	Equipped with a way to handle declarations within blocks, we can
+	revisit declarations of names at the top level. We stated
+	that the names declared at the top level are added to the program
+	frame. A better explanation is that the whole program is placed in
+	an implicit block, which is evaluated in the global environment.
+	The treatment of blocks described above then contains the top
+	level as a special case;
+	the global environment is extended by a frame that contains the
+	bindings of all names declared in the implicit block. The resulting
+	environment is the program environment.
+      </p></div>
+    </span></td></tr></table>
+  <div class='permalink'>
+<a name='p3' class='permalink'></a><p>
     Section&nbsp;<REF NAME="sec:black-box"><a class="superscript" id="3.2.4-sec-link-1.1.8" href="./1.1.8.html">1.1.8</a></REF> introduced the idea that
     
       <span style="color:green">procedures</span>
@@ -2089,7 +2103,15 @@ Acknowledgments
 }
 </pre></div></div></td></tr></table>
     Now we can use the environment model to see why these internal
-    definitions behave as desired.
+    
+      <span style="color:green">
+	definitions
+      </span>
+      <span style="color:blue">
+	declarations
+      </span>
+    
+    behave as desired.
     
       <span style="color:green">
     Figure&nbsp;<REF NAME="fig:sqrt-internal_scheme"><a class="superscript" id="3.2.4-fig-link-3.21" href="./3.2.4.html#fig_3.21">3.21</a></REF>
@@ -2149,7 +2171,7 @@ Acknowledgments
   </p></div>
 
   <div class='permalink'>
-<a name='p3' class='permalink'></a><p>
+<a name='p4' class='permalink'></a><p>
     Observe the structure of the environment.
     <span style="color:blue">The name</span>
     <kbd>sqrt</kbd> is a symbol in
@@ -2278,7 +2300,7 @@ function good_enough(guess) {
   </p></div>
 
   <div class='permalink'>
-<a name='p4' class='permalink'></a><p>
+<a name='p5' class='permalink'></a><p>
     After the local
     
       <span style="color:green">procedures</span>
@@ -2402,7 +2424,7 @@ function good_enough(guess) {
   </p></div>
 
   <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
+<a name='p6' class='permalink'></a><p>
     The environment model thus explains the two key properties that make local
     
       <span style="color:green">procedure definitions</span>
@@ -2465,30 +2487,6 @@ function good_enough(guess) {
       </LI>
     </UL>
   </p></div>
-  <table width="100%">
-        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
-        <tr>
-          <td class="meta" style = "color:grey; text-align: center">Original</td>
-          <td></td>
-          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
-        </tr>
-        <tr><td><span style="color:green">
-    </span>    </td>
-          <td></td>
-          <td><span style="color:blue">
-      <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
-	Equipped with a way to handle declarations within blocks, we can
-	revisit declarations of names at the top level. We explained
-	that the names declared at the top level are added to the program
-	frame. A better explanation is that the whole program is placed in
-	an implicit block, which is evaluated in the global environment.
-	The treatment of blocks described above then specifies that
-	the global environment is extended by a frame that contains the
-	bindings of all names declared in the block. The resulting
-	environment is the environment we call <EM>program environment</EM>.
-      </p></div>
-    </span></td></tr></table>
   
     <div class="permalink">
     <a name="ex_3.11" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_3.11">Exercise 3.11 </a></b> 
@@ -2604,7 +2602,7 @@ const acc2 = make_account(100);</pre></div></div></td></tr></table>
     <div class='footnote'><span style="color:blue">
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1' style="color:blue">[1] </a>
     <FOOTNOTE>
-    Equipped with a deeper understanding of the
+    Equipped with this deeper understanding of the
 	scope of names, we can now explain why the program in
 	footnote&nbsp;<REF NAME="foot:tdz"><a class="superscript" id="3.2.4-foot-link-5" href="./1.3.2.html#footnote-5">5</a></REF> of chapter 1 goes
 	wrong.
