@@ -2041,13 +2041,13 @@ const rand = make_rand();
     stream:
 	
 	
-    <div class='snippet' id='javascript_73_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFZMChslAIKgBuApgE4CeoAzgJYC2ADgDamjkCGAdgCYD6AVya9OAF3YAzQdwDGYugHtuoWYuaCJNUJ1DdBDAEYU8YSeXWgADKAAUdOS0H0yASlBjFoAExWrGADYrABYATisARhQIu10WTnIAc3YmckZSV1NQc0tdYk4ndgAPUENqBkEWBVZKB0TQOjFQAHdGgAsdVWUaMR4mzgAaLM5eXjrOtW4evtKBnT4PNtIVXoBrcbEljlIGTgdeE3xFSVAx4jox7nrG0upN9niklLSGUjRQAHV2Z1JeBqaluR2FlJIpyA0WE4elwFMpQMoWJQ5jw-rwvNxFE1ZPFGPNqFlpgoenRZAVQKlFEwKApSDQ0NhJj1QAxQABeHx+QIhcJRCIAblADO6-TZoAiESsKAwEQw3mCGD5QqmTUMooi3hQ8sV2GkclhKi4fCEInEpFsRXcAG9sKBbdsxIJyCpbLoAFSgEoAalK7gApMzFQBfXCMpqGtEMfgOG7s9WawIAdgAHKFtaGOCj1Px9EYKNpWTa7Uw9uRbOGs9GxEM7TXbbZ3KyAHy0MRAziR3ZMMso42iCRzcuRnPGcg0VyubW6+RKFSJWS8F1zQxWwu2oEOp2lNms9k2AD8nQAXKA5wvDMjQP7l0HcFP9czOEx+DRBLJZLSXKR+MW6KPbJI5jHUBrRrddHRUH9S0kWwlhGWwxzmWCF2hUh234Xo6BYeDx1cOZa1XWtCLrBtm07Z9X3fGhP2-EsaFsAiiMY2sAMFJi2NrFC0IwrDOMjbjsJwm900ohJFGfVtUJZAsazIl83w-OgyBo386LscgIgHbwSJPecyw0jgtO3WNq3Y0y10zIcDBHMdtVIfIWHEtsGFsESLEcyS5l8CcgA')">function map_successive_pairs(f, s) {
+    <div class='snippet' id='javascript_73_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFZMChslAIKgBuApgE4CeoAzgJYC2ADgDamjkCGAdgCYD6AVya9OAF3YAzQdwDGYugHtuoWYuaCJNUJ1DdBDAEYU8YSeXWgADKAAUdOS0H0yASlBjFoAExWrGADYrABYATisARhQIu10WTnIAc3YmckZSV1NQc0tdYk4ndgAPUENqBkEWBVZKB0TQOjFQAHdGgAsdVWUaMR4mzgAaLM5eXjrOtW4evtKBnT4PNtIVXoBrcbEljlIGTgdeE3xFSVAx4jox7nrG0upN9niklLSGUjRQAHV2Z1JeBqaluR2FlJIpyA0WE4elwFMpQMoWJQ5jw-rwvNxFE1ZPFGPNqFlpgoenRZAVQKlFEwKApSDQ0NhJj1QAxQABeHx+QIhcJRCIAblADO6-TZoAiESsKAwEQw3mCGD5QqmTUMooi3hQ8sV2GkclhKi4fCEInEpFsRXcAG9sKBbdsxIJyCpbLoAFSgEoAalK7gApMzFQBfXCMpqGtEMfgOG7s9WawIAdgAHKFtaGOCj1Px9EYKNpWTa7Uw9uRbOGs9GxEM7TXbbZ3KyAHy0MRAziR3ZMMso42iCRzcuRnPGcg0VyubW6+RKFSJWS8F1zQxWwu2oEOp2lNms9k2AD8nQAXKA5wvDMjQP7l0HcFP9czOEx+DRBLJZLSXKR+MW6KPbJI5jHUBrRrddHRUH9S0kWwlhGWwxzmWCF2hUh234Xo6BYeDx1cOZa1XWtCLrBtm07Z9X3fGhP2-EsaFsAiiMY2sAMFJi2NrFC0IwrDOMjbjsJwm90zGNJZDaNgxGfVtUJZAsazIl83w-OgyBo386LscgIgHbwSJPecy20jhdO3WNq3Yiy10zIcDBHMdtVIfIWCktsGFsESSXE0hJN4uZfAnIA')">function map_successive_pairs(f, s) {
     return pair(f(head(s), head(stream_tail(s))),      
                 () => map_successive_pairs(
                         f, 
                         stream_tail(stream_tail(s))));
 }
-const cesaro_stream =
+const dirichlet_stream =
     map_successive_pairs( (r1, r2) => gcd(r1, r2) === 1,
                           random_numbers);
 </pre></div></div>
@@ -2055,7 +2055,7 @@ const cesaro_stream =
     The
     
       
-      <kbd>cesaro_stream</kbd>
+      <kbd>dirichlet_stream</kbd>
     
     is now fed to a
     
@@ -2073,7 +2073,7 @@ const cesaro_stream =
     (from performing more experiments) are obtained by looking farther into the
     <kbd>pi</kbd> stream:
 	
-    <div class='snippet' id='javascript_73_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFZMChslAIKgBuApgE4CeoAzgJYC2ADgDamjkCGAdgCYD6AVya9OAF3YAzQdwDGYugHtuoWYuaCJNUJ1DdBDAEYU8YSeXWgADKAAUdOS0H0yASlBjFoAExWrGADYrABYATisARhQIu10WTnIAc3YmckZSV1NQc0tdYk4ndgAPUENqBkEWBVZKB0TQOjFQAHdGgAsdVWUaMR4mzgAaLM5eXjrOtW4evtKBnT4PNtIVXoBrcbEljlIGTgdeE3xFSVAx4jox7nrG0upN9niklLSGUjRQAHV2Z1JeBqaluR2FlJIpyA0WE4elwFMpQMoWJQ5jw-rwvNxFE1ZPFGPNqFlpgoenRZAVQKlFEwKApSDQ0NhJj1QAxQABeHx+QIhcJRCIAblADO6-TZoAiESsKAwEQw3mCGD5QqmTUMooi3hQ8sV2GkclhKi4fCEInEpFsRXcAG9sKBbdsxIJyCpbLoAFSgEoAalK7gApMzFQBfXCMpqGtEMfgOG7s9WawIAdgAHKFtaGOCj1Px9EYKNpWTa7Uw9uRbOGs9GxEM7TXbbZ3KyAHy0MRAziR3ZMMso42iCRzcuRnPGcg0VyubW6+RKFSJWS8F1zQxWwu2oEOp2lNms9k2AD8nQAXKA5wvDMjQP7l0HcFP9czOEx+DRBLJZLSXKR+MW6KPbJI5jHUBrRrddHRUH9S0kWwlhGWwxzmWCF2hUh234Xo6BYeDx1cOZa1XWtCLrBtm07Z9X3fGhP2-EsaFsAiiMY2sAMFJi2NrFC0IwrDOMjbjsJwm900ohJFGfVtUJZAsazIl83w-OgyBo386LscgIgHbwSJPecyw0jgtO3WNq3Y0y10zIcDBHMdJxkac4QYZQJH4UlyBYRRbFIIoqReZYxHEtsGDmYsqN+OZJD2NheCtQiCLvGc9C8sRbBCmgwuySLfhXRiwM3SCUs4UK-jAAqitAb0IswrKTLM2t6zZUinK-Vz3PgiSuMizzvIodJuH83jcIY2rhprVL0sqqLx0VGtg1A0gNxUJCup83r+vahhMnYg9uCS0q0r+b19ImrKhtrY8dqKZKxt4cLMoOsUJ2wYMlSZJg6FFXj+E7FKGofTZnwAR3IZKAlAMAmEGkbCMcvrmoSVqRIsALJLmKxUam3BPqBaC3rmCUrAnIA')">function monte_carlo(experiment_stream, passed, failed) {      
+    <div class='snippet' id='javascript_73_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFZMChslAIKgBuApgE4CeoAzgJYC2ADgDamjkCGAdgCYD6AVya9OAF3YAzQdwDGYugHtuoWYuaCJNUJ1DdBDAEYU8YSeXWgADKAAUdOS0H0yASlBjFoAExWrGADYrABYATisARhQIu10WTnIAc3YmckZSV1NQc0tdYk4ndgAPUENqBkEWBVZKB0TQOjFQAHdGgAsdVWUaMR4mzgAaLM5eXjrOtW4evtKBnT4PNtIVXoBrcbEljlIGTgdeE3xFSVAx4jox7nrG0upN9niklLSGUjRQAHV2Z1JeBqaluR2FlJIpyA0WE4elwFMpQMoWJQ5jw-rwvNxFE1ZPFGPNqFlpgoenRZAVQKlFEwKApSDQ0NhJj1QAxQABeHx+QIhcJRCIAblADO6-TZoAiESsKAwEQw3mCGD5QqmTUMooi3hQ8sV2GkclhKi4fCEInEpFsRXcAG9sKBbdsxIJyCpbLoAFSgEoAalK7gApMzFQBfXCMpqGtEMfgOG7s9WawIAdgAHKFtaGOCj1Px9EYKNpWTa7Uw9uRbOGs9GxEM7TXbbZ3KyAHy0MRAziR3ZMMso42iCRzcuRnPGcg0VyubW6+RKFSJWS8F1zQxWwu2oEOp2lNms9k2AD8nQAXKA5wvDMjQP7l0HcFP9czOEx+DRBLJZLSXKR+MW6KPbJI5jHUBrRrddHRUH9S0kWwlhGWwxzmWCF2hUh234Xo6BYeDx1cOZa1XWtCLrBtm07Z9X3fGhP2-EsaFsAiiMY2sAMFJi2NrFC0IwrDOMjbjsJwm90zGNJZDaNgxGfVtUJZAsazIl83w-OgyBo386LscgIgHbwSJPecy20jhdO3WNq3Yiy10zIcDBHMdJxkac4QYZQJH4UlyBYRRbFIIoqReZZJN4uZiyo345kkPY2F4K1CIIu8Zz0XyxFsUKaHC7Iot+FdGLAzdINSzgwr+MBCuK0BvUizDsvMyza3rNlSNcr8PK8+DpK4qKfL8ih0m4IKOoYXCGLq0aazSjKqui8dFRrYNQNIDcVCQ7r-L6ga2yGkbawPbhkrK9K-m9Iypuy7aa2PPaihSibeAirKjrFCdsGDJUmSYOhRV4-hO1SxqH02Z8AEdyBSgJQDAJhhrGwiXP6lqEjakSSXExapM2uYrExmbcG+oFoI+uYJSsCcgA')">function monte_carlo(experiment_stream, passed, failed) {      
     function next(passed, failed) {
         return pair(passed / (passed + failed),
                     () => monte_carlo(stream_tail(experiment_stream),
@@ -2085,7 +2085,7 @@ const cesaro_stream =
 }
 
 const pi = stream_map(p => math_sqrt(6 / p),
-                      monte_carlo(cesaro_stream, 0, 0));
+                      monte_carlo(dirichlet_stream, 0, 0));
 </pre></div></div>
     
     
