@@ -2011,7 +2011,7 @@ Acknowledgments
 	In this section, we therefore
 	introduce a function 
 	<kbd>parse</kbd> that translates program text
-	to a <EM>tagged list representation</EM>, reminiscent of
+	to a <EM>tagged-list representation</EM>, reminiscent of
 	the tagged data of section&nbsp;<REF NAME="sec:manifest-types"><a class="superscript" id="4.1.2-sec-link-2.4.2" href="./2.4.2.html">2.4.2</a></REF>.
 	For example, the application of 
 	<kbd>parse</kbd> to the program string
@@ -2026,7 +2026,7 @@ list("sequence",
      list(list("constant_declaration", list("name", "size"), list("literal", 2)),
           list("application", list("name", "*"), 
                list(list("literal", 5), list("name", "size")))))</pre></div></div>
-	The syntax functions used by the evaluator access the tagged list
+	The syntax functions used by the evaluator access the tagged-list
 	representation produced by 
 	<kbd>parse</kbd>.
 	
@@ -2093,12 +2093,12 @@ list("sequence",
     <FIGURE>
       <img class="scale_factor_" id="fig_4.2" src="../img_javascript/ch4-parse-abstraction.svg">
       <div class="chapter-text-CAPTION">
-      <b><a class="caption" href="./4.1.2.html#fig_4.2">Figure 4.2 </a></b>Data abstraction in the evaluator.</div>
+      <b><a class="caption" href="./4.1.2.html#fig_4.2">Figure 4.2 </a></b>Syntax abstraction in the evaluator.</div>
     </FIGURE>
   
 	Figure&nbsp;<REF NAME="fig:parse-abstraction"><a class="superscript" id="4.1.2-fig-link-4.2" href="./4.1.2.html#fig_4.2">4.2</a></REF> depicts the abstraction barrier
 	formed by the syntax predicates and selectors,
-	which interface the evaluator to the tagged list representation of programs,
+	which interface the evaluator to the tagged-list representation of programs,
 	which in turn is separated from the string representation by 
 	<kbd>parse</kbd>. Below we
 	describe the parsing of program components and list the
@@ -2187,7 +2187,7 @@ null</pre></div></div>
 
   <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
-    The tagged list representation for names
+    The tagged-list representation for names
     includes the tag <kbd>"name"</kbd> as first
     element and the string representing the name as second element.
 	
@@ -2636,7 +2636,7 @@ $\ll \textbf{function}\ \textit{name} \texttt{(}\textit{parameter}_1\texttt{, }\
       \end{eqnarray*}
 	
 	Binary operator combinations carry their operator symbol as second element
-	in the tagged list representation.
+	in the tagged-list representation.
 	<blockquote class='blockquote'>
 	  
 	  
@@ -2772,7 +2772,7 @@ $\ll \textbf{function}\ \textit{name} \texttt{(}\textit{parameter}_1\texttt{, }\
 	dispatch is done in data-directed style.  Compare this with the
 	data-directed differentiation function of
 	exercise&nbsp;<REF NAME="ex:data-directed-differentiation"><a class="superscript" id="4.1.2-ex-link-2.73" href="./2.4.3.html#ex_2.73">2.73</a></REF>. (You may
-	use the tag of the tagged list notation as the type of the components.)
+	use the tag of the tagged-list representation as the type of the components.)
 	
       
       <div class="Solution">
