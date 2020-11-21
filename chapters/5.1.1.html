@@ -2078,14 +2078,14 @@ data_paths(
 
 controller(
   list(
-    "test_b",                   // label
+    "test_b",                     // label
       test("="),                  // test
       branch(label("gcd_done")),  // conditional branch
-      "t<-r",                     // button push
-      "a<-b",                     // button push
-      "b<-t",                     // button push
+      "t<-r",                  // button push
+      "a<-b",                  // button push
+      "b<-t",                  // button push
       go_to(label("test_b"))),    // unconditional branch
-    "gcd_done");                    // label</pre></div></div>
+    "gcd_done");                  // label</pre></div></div>
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./5.1.1.html#fig_5.3">Figure 5.3 </a></b>A specification of the GCD machine.</div>
     </FIGURE>
@@ -2166,7 +2166,7 @@ controller(
   <div class='permalink'>
 <a name='p8' class='permalink'></a><p>
     This form of description is easier to read than the kind illustrated
-    in Figure&nbsp;<REF NAME="fig:gcd-machine-spec"><a class="superscript" id="5.1.1-fig-link-5.3" href="./5.1.1.html#fig_5.3">5.3</a></REF>, but it also has disadvantages:
+    in figure&nbsp;<REF NAME="fig:gcd-machine-spec"><a class="superscript" id="5.1.1-fig-link-5.3" href="./5.1.1.html#fig_5.3">5.3</a></REF>, but it also has disadvantages:
     <UL>
       <LI>It is more verbose for large machines,
       because complete descriptions of the data-path elements are repeated
@@ -2254,6 +2254,10 @@ controller(
     
     that they are available as primitive
     operations.
+    
+      <a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
+    
+  
   </p></div>
 
   <div class='permalink'>
@@ -2360,7 +2364,19 @@ perform(list(op("display"), reg("a")))</pre></div></div>
     
     
   </p></div>
+<hr>
 
+    <div class='footnote'>
+      <a class='footnote-number' id='footnote-1' href='#footnote-link-1'>[1] </a>
+    <FOOTNOTE>
+    
+        This assumption glosses over a great deal of complexity. Implementation of reading 
+        and printing requires significant effort, for example to handle character encodings
+        for different languages. 
+      
+    </FOOTNOTE></div>
+
+    
 </div></div>
 
     <div class='nav'>
