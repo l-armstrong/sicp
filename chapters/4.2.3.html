@@ -2091,9 +2091,9 @@ const ones = pair(1, ones);
 const integers = pair(1, add_lists(ones, integers));
 
 list_ref(integers, 17);
-</pre><pre class='prettyprintoutput'>
-L-evaluate input:
-list_ref(integers, 17);
+</pre></div></div>
+    <div class='snippet' id='javascript_86_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+list_ref(integers, 17);</pre><pre class='prettyprintoutput'>
 L-evaluate value:
 18</pre></div></div>
   </p></div>
@@ -2104,12 +2104,12 @@ L-evaluate value:
     chapter&nbsp;3:  The
     
       
-      <kbd>head</kbd>
+      head
     
     of the list, as well as the
     
       
-      <kbd>tail</kbd>,
+      tail,
     
     is delayed.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
     In fact, even accessing the
@@ -2138,7 +2138,7 @@ L-evaluate value:
       
 	
 	
-	additional delayed lambda expressions, beyond the ones required to
+	additional lambda expressions for delays, beyond the ones required to
 	construct a stream pair.
       
     
@@ -2156,7 +2156,7 @@ L-evaluate value:
     intended in section&nbsp;<REF NAME="sec:streams-and-delayed-evaluation"><a class="superscript" id="4.2.3-sec-link-3.5.4" href="./3.5.4.html">3.5.4</a></REF>:
       
       
-    <div class='snippet' id='javascript_86_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&variant=lazy&prgrm=PTAEGUEkGEAVQFLlAFgHQCY0GYBQuAzAVwDsBjAFwEsB7E0ABwEMqAnACgA8AaUATwCUoAN4BIXKEmhWAUwpFW9ALagAvAD5QSrr0EBuXAF9CpSrXoALGUwAm7AF5DhU0BKmz5i0Pfah2DXgBHIQ1GUAEDY2JyajpQChYAGwcnN0kPBXofPwDQYLVNQPDI-GizOMSqAGcKAH1ZAnYqChklKt4SJ3EXDK96VQHQAAY0lxcAflArWyaWtoFRsckALlBKmvqZRoSqZObWqoEO0ABaUABGCKMTGPMtJgZ2aN59+ZFRKVHe+mrakiJEns5odFktJv9AaCxqtmGwnqR2NM7K9DkcoUsxkoHvCSLwdkCDgIiSUyrF6FUyExEjJausKLMDrwCExKDRWKkenJMvdHpwCqA+QAqUDM1msF7Aq5RUxk0C2Gy06oUKrsOnnXh0jAc9xcry-CHJNULDETNZKjDoqSrfUAw3moSfE1jSZqy0uGEsDhI1VKy6gADUU2sdk1aKd4blNgVdJV+J9NUu3DdEadcdDxOuZDoNVAdBkVTUjE97HVuZI+auWZIOaoJBaAHMZKwC6oi3DS-LFTUVXn2qBaw2m6iDLg6ZtGgOZI3m7xzgB2K43co-OtT1hUpqr+vrkg2F4kZpUKm1ABuVKIMl4NgoXVGVZrdbU6NhHFrh+PZ8SF6TKcj0aVKoUlSNJ0puDY7nuoDXmGv5OgOGacp4K4UCSMp3FUNCJCeMhPLoQxXjeIh3tmFD8IWk7bhuNh8HhBFXC496kdRhZYo8BC6PROpIfwJRjg07AYVhOF8qEPAXLwQxoEMQxarwACs0kREAA')">function integral(integrand, initial_value, dt) {	
+    <div class='snippet' id='javascript_86_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&variant=lazy&prgrm=PTAEGUEkGEAVQFLlAFgHQCY0GYBQuAzAVwDsBjAFwEsB7E0ABwEMqAnACgA8AaUATwCUoAN4BIXKEmhWAUwpFW9ALagAvAD5QSrr0EBuXAF9CpSrXoALGUwAm7AF5DhU0BKmz5i0Pfah2DXgBHIQ1GUAEDY2JyajpQChYAGwcnN0kPBXofPwDQYLVNQPDI-GizOMSqAGcKAH1ZAnYqChklKt4SJ3EXDK96VQHQAAY0lxcAflArWyaWtoFRsckALlBKmvqZRoSqZObWqoEO0ABaUABGCKMTGPMtJgZ2aN59+ZFRKVHe+mrakiJEns5odFktJv9AaCxqtmGwnqR2NM7K9DkcoUsxkoHvCSLwdkCDgIiSUyrF6FUyExEjJausKLMDrwCExKDRWKkenJMvdHpwCqA+QAqUDM1msF7Aq5RUxk0C2Gy06oUKrsOnnXh0jAc9xcry-CHJNULDETNZKjDoqSrfUAw3moSfE1jSZqy0uGEsDhI1VKy6gADUU2sdk1aKd4blNgVdJV+J9NUu3DdEadcdDxOuZDoNVAdBkVTUjE97HVuZI+auWZIOaoJBaAHMZKwC6oi3DS-LFTUVXn2qBaw2m6iDLg6ZtGgOZI3m7xzgB2K43co-OtT1hUpqr+vrkg2F4kZpUKm1ABuVKIMl4NgoXVGVZrdbU6NhHFrh+PZ8SF6TKcj0aVKoUlSNJ0puDY7nuoDXmGv5OgOGacp4K4UCSMp3FUNCJCeMhPLoQxXjeIh3tmFD8IWk7bhuNh8HhBFXC496kdRhZYo8BC6PROpIfwJRjg07AYVhOF8qEPAXLwQxoEMQxarwACs0kREAA')">function integral(integrand, initial_value, dt) {	
     const int =
         pair(initial_value,
              add_lists(scale_list(integrand, dt),
@@ -2169,9 +2169,9 @@ function solve(f, y0, dt) {
     return y;
 }
 list_ref(solve(x => x, 1, 0.001), 1000);
-</pre><pre class='prettyprintoutput'>
-L-evaluate input:
-list_ref(solve(x => x, 1, 0.001), 1000);
+</pre></div></div>
+    <div class='snippet' id='javascript_86_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+list_ref(solve(x => x, 1, 0.001), 1000);</pre><pre class='prettyprintoutput'>
 L-evaluate value:
 2.716924</pre></div></div>
   </p></div>
@@ -2199,7 +2199,7 @@ L-evaluate value:
   
     Ben Bitdiddle tests the lazy list implementation given above by
     evaluating the expression
-    <div class='snippet' id='javascript_86_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_86_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 head(list("a", "b", "c"));</pre></div></div>
     To his surprise, this produces an error.  After some thought, he realizes
     that the <QUOTE>lists</QUOTE> obtained

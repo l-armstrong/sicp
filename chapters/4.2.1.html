@@ -2021,10 +2021,6 @@ Acknowledgments
     return a === 0 ? 1 : b;	
 }
 </pre></div></div>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p2' class='permalink'></a><p>
     Evaluating
     
       
@@ -2050,7 +2046,7 @@ Acknowledgments
   </p></div>
 
   <div class='permalink'>
-<a name='p3' class='permalink'></a><p>
+<a name='p2' class='permalink'></a><p>
     An example that exploits lazy evaluation is the
     
       
@@ -2077,10 +2073,6 @@ Acknowledgments
        head(xs),	
        display("error: xs should not be null"));
 </pre></div></div>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p4' class='permalink'></a><p>
     This won't work in an applicative-order language because both the
     usual value and the exceptional value will be evaluated before
     <kbd>unless</kbd> is called (compare
@@ -2096,7 +2088,7 @@ Acknowledgments
   </p></div>
 
   <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
+<a name='p3' class='permalink'></a><p>
     If the body of a
     
       
@@ -2124,10 +2116,6 @@ Acknowledgments
     
     <EM>strict</EM> in that
     argument.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
     In a purely applicative-order language, all
     
       
@@ -2154,7 +2142,7 @@ Acknowledgments
   </p></div>
 
   <div class='permalink'>
-<a name='p7' class='permalink'></a><p>
+<a name='p4' class='permalink'></a><p>
     A striking example of a
     
       
@@ -2175,7 +2163,7 @@ Acknowledgments
     streams of chapter&nbsp;3 as lists formed of non-strict
     
       
-      <kbd>pair</kbd>s
+      pairs.
         
   </p></div>
 
@@ -2207,7 +2195,12 @@ Acknowledgments
       <kbd>factorial(5);</kbd>?
       
     
-    Will our definitions work in a normal-order language?
+    Will our
+    
+      
+      functions
+    
+    work in a normal-order language?
   
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_84_1_div" data-toggle="collapse">Add solution</button></div>
@@ -2228,10 +2221,10 @@ Acknowledgments
     <kbd>unless</kbd>. Ben points out that it's possible
     to implement <kbd>unless</kbd> in applicative order as a
     
-    new kind of expression, akin to conditional
-    expressions.
+      
+      syntactic
     
-    Alyssa counters that, if one did that,
+    form. Alyssa counters that, if one did that,
     <kbd>unless</kbd> would be merely syntax, not a
     
       
@@ -2246,15 +2239,16 @@ Acknowledgments
       
       
 	Show how to define the evaluation of 
-	<kbd>unless</kbd> as a new kind of expression
-	(as we defined the evaluation of conditional expressions in
-	section&nbsp;<REF NAME="sec:conditionals"><a class="superscript" id="4.2.1-sec-link-1.1.6" href="./1.1.6.html">1.1.6</a></REF>), by introducing
-	appropriate syntax functions and installing an evaluation function
-	in the <kbd>evaluate</kbd> function of
+	<kbd>unless</kbd> as a syntactic form, by
+	catching applications whose function expression is the name
+	<kbd>unless</kbd> and installing an
+	evaluation function
+	in the <kbd>evaluate</kbd> function of	    
 	section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.2.1-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>.
 	Give an example of a situation where it might be useful to have
 	<kbd>unless</kbd> available as a function,
-	rather than as a new expression syntax.
+	rather than as a 
+	syntactic form.
       
     
     
