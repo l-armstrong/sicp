@@ -2578,6 +2578,7 @@ function frame_values(frame) {
     <div class="permalink">
     <a name="ex_4.14" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.14">Exercise 4.14 </a></b> 
   
+        
     <OL type="a">
 	  
 	  <LI>
@@ -2596,6 +2597,21 @@ function frame_values(frame) {
 	    assignment to a variable declared with
 	    <kbd>let</kbd> leads to an error 
 	    in this case.
+	  </LI>
+	  <LI>
+	    Following good programming practice, Eva Lu Ator declares a constant
+	    in the beginning of her evaluator to designate which string is used
+	    to indicate that a name is not assigned yet:
+	    <div class='snippet' id='javascript_78_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+const unassigned_string = "*unassigned*";
+...</pre></div></div>
+	    She then tries to apply the metacircular evaluator to itself, by
+	    passing the whole evaluator as argument to
+	    <kbd>evaluate</kbd>.
+	    She observes strange errors involving 
+	    <kbd>unassigned_string</kbd> in her
+	    interpreted program.
+	    Explain the problem and describe how to avoid it.
 	  </LI>
     </OL>
   
@@ -2669,7 +2685,7 @@ function frame_values(frame) {
 	<QUOTE>predicate</QUOTE> expression. JavaScript's notion of
 	truthiness is captured by the following variant of 
 	<kbd>is_truthy</kbd>:
-	<div class='snippet' id='javascript_78_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0GYBQuAzAVwDsBjAFwEsB7E0KgZwH0KAnIigCwE8AKAB4BKUAG9coSaDYBTCkTb0AhKD6qmzAEY0aAGxkBDEoJEAyU6CUDQIqXfv2APo4kO36liSIBbTTLYmoOaq1gC84aAADKDOoNZKEdZCIs6u7vZ8GozsVCQA5oHBYREARCW26VKplfYaXrq6gTXNDtUtDCykACYyBLkyXU3tzUIA3LgAvkA')">function is_truthy(x) {
+	<div class='snippet' id='javascript_78_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0GYBQuAzAVwDsBjAFwEsB7E0KgZwH0KAnIigCwE8AKAB4BKUAG9coSaDYBTCkTb0AhKD6qmzAEY0aAGxkBDEoJEAyU6CUDQIqXfv2APo4kO36liSIBbTTLYmoOaq1gC84aAADKDOoNZKEdZCIs6u7vZ8GozsVCQA5oHBYREARCW26VKplfYaXrq6gTXNDtUtDCykACYyBLkyXU3tzUIA3LgAvkA')">function is_truthy(x) {
     return ! ( (is_boolean(x) && !x )                  ||
                (is_number(x) && (x === 0 || x !== x )) ||
                (is_string(x) && x === "")              ||

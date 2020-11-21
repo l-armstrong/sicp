@@ -2013,10 +2013,6 @@ Acknowledgments
     <div class='snippet' id='javascript_88_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 list(1, "a") list(1, "b") list(2, "a") 
 list(2, "b") list(3, "a") list(3, "b")</pre></div></div>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p2' class='permalink'></a><p>
     
       
       
@@ -2025,9 +2021,8 @@ list(2, "b") list(3, "a") list(3, "b")</pre></div></div>
     
     with a single choice produces an ordinary (single) value.
   </p></div>
-
   <div class='permalink'>
-<a name='p3' class='permalink'></a><p>
+<a name='p2' class='permalink'></a><p>
     
     
       
@@ -2060,7 +2055,7 @@ list(2, "b") list(3, "a") list(3, "b")</pre></div></div>
   </p></div>
 
   <div class='permalink'>
-<a name='p4' class='permalink'></a><p>
+<a name='p3' class='permalink'></a><p>
     With <kbd>amb</kbd> and
     <kbd>require</kbd>, we can implement the
     
@@ -2077,10 +2072,6 @@ list(2, "b") list(3, "a") list(3, "b")</pre></div></div>
     return amb(head(items), an_element_of(tail(items)));
 }
 </pre></div></div>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
     
       
       
@@ -2092,7 +2083,7 @@ list(2, "b") list(3, "a") list(3, "b")</pre></div></div>
   </p></div>
 
   <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
+<a name='p4' class='permalink'></a><p>
     We can also express infinite ranges of choices.  The following
     
       
@@ -2107,10 +2098,6 @@ list(2, "b") list(3, "a") list(3, "b")</pre></div></div>
     return amb(n, an_integer_starting_from(n + 1));
 }
 </pre></div></div>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p7' class='permalink'></a><p>
     This is like the stream
     
       
@@ -2134,7 +2121,7 @@ list(2, "b") list(3, "a") list(3, "b")</pre></div></div>
   </p></div>
 
   <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
+<a name='p5' class='permalink'></a><p>
     
     Abstractly, we can imagine that evaluating an
     <kbd>amb</kbd> expression causes time to split into
@@ -2154,7 +2141,7 @@ list(2, "b") list(3, "a") list(3, "b")</pre></div></div>
   </p></div>
 
   <div class='permalink'>
-<a name='p9' class='permalink'></a><p>
+<a name='p6' class='permalink'></a><p>
     
     On the other hand, if we have a machine that can execute only one process
     (or a few concurrent processes), we must consider the alternatives
@@ -2194,7 +2181,7 @@ list(2, "b") list(3, "a") list(3, "b")</pre></div></div>
   </h2></div>
 
   <div class='permalink'>
-<a name='p10' class='permalink'></a><p>
+<a name='p7' class='permalink'></a><p>
     
     The driver loop for the <kbd>amb</kbd> evaluator has some
     unusual properties.  It reads
@@ -2224,38 +2211,26 @@ list(2, "b") list(3, "a") list(3, "b")</pre></div></div>
       
     
     Here is a sample interaction:
-    <div class='snippet' id='javascript_88_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-</pre><pre class='prettyprintoutput'>
-amb-evaluate input:</pre></div></div>
-    <div class='snippet' id='javascript_88_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUFQYB9ACZUAbvqoAjADY9eAGlABPQUImcpMpaACkz0AC8QaAADMqgGoSklLT0VCQUnADmnOyGDBQc1CRJBgTsNAC23CSuouKS0vQADqxU7CWO3IIBAHx6Ccmp6Zns2bn5RSWgANSg2Pz8qpFaMbr6BtXsVIU8pcLlYrM6cYkN1Qxl4sfunvTMbFzcABacrEbcB5Og7SSbJx+gAPygFOxEnHen2OAC49IYTOYGFZbI1QLd7o9DvwgcDjj8CKxrAxAWjgWCqHtuBkuKxCgZMlRrEjJqpjhpjpUvITUo9lqtDtNcGQ6BlQEsVpwGIF+XUGgAmeyovHHZqBdoku7kghUonSmUahYC1aOdUavHxRIpNIGDJZeIDArFDCTPV4qaaaI7fnszimojk2r1bjWfQUbCOX0ZcWuY7vHkkPmsEWsEgGTi2VYJAw0Ag+v0TOniCN8ywxuMJzhJigptNBighrNiLgseo8LWu7jRsaWWnvJn0ctNxytrm4bVuhgexZi9MZbgB0AYRwAVkcAA5+IG-dxxSFHBg5+NsCE2yBQLAuAxhQAiABKpBPoAINHYv1u1-qfIYNGsRB2aFAABUnNVAfvJHYJxcH3eJ704UAzwAUVgAAZUBdAoB9liSa4KEcG870KW8IJfN8dgYIA')">prime_sum_pair(list(1, 3, 5, 8), list(20, 35, 110));
+    <div class='snippet' id='javascript_88_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUFQYB9ACZUAbvqoAjADY9eAGlABPQUImcpMpaACkz0AC8QaAADMqgGoSklLT0VCQUnADmnOyGDBQc1CRJBgTsNAC23CSuouKS0vQADqxU7CWO3IIBAHx6Ccmp6Zns2bn5RSWgANSg2Pz8qpFaMbr6BtXsVIU8pcLlYrM6cYkN1Qxl4sfunvTMbFzcABacrEbcB5Og7SSbJx+gAPygFOxEnHen2OAC49IYTOYGFZbI1QLd7o9DvwgcDjj8CKxrAxAWjgWCqHtuBkuKxCgZMlRrEjJqpjhpjpUvITUo9lqtDtNcGQ6BlQEsVpwGIF+XUGgAmeyovHHZqBdoku7kghUonSmUahYC1aOdUavHxRIpNIGDJZeIDArFDCTPV4qaaaI7fnszimojk2r1bjWfQUbCOX0ZcWuY7vHkkPmsEWsEgGTi2VYJAw0Ag+v0TOniCN8ywxuMJzhJigptNBighrNiLgseo8LWu7jRsaWWnvJn0ctNxytrm4bVuhgexZi9MZbgB0AYRwAVkcAA5+IG-dxxSFHBg5+NsCE2yBQLAuAxhQAiABKpBPoAINHYv1u1-qfIYNGsRB2aFAABUnNVAfvJHYJxcH3eJ704UAzwAUVgAAZUBdAoB9liSa4KEcG870KW8IJfN8dgYIA')">prime_sum_pair(list(1, 3, 5, 8), list(20, 35, 110));
 </pre><pre class='prettyprintoutput'>
 Starting a $new$ problem
 amb-evaluate value:
 [3, [20, null]]</pre></div></div>
-    <div class='snippet' id='javascript_88_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-</pre><pre class='prettyprintoutput'>
-amb-evaluate input:</pre></div></div>
-    <div class='snippet' id='javascript_88_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUFQYB9ACZUAbvqoAjADY9eAGlABPQUImcpMpaACkz0AC8QaAADMqgGoSklLT0VCQUnADmnOyGDBQc1CRJBgTsNAC23CSuouKS0vQADqxU7CWO3IIBAHx6Ccmp6Zns2bn5RSWgANSg2Pz8qpFaMbr6BtXsVIU8pcLlYrM6cYkN1Qxl4sfunvTMbFzcABacrEbcB5Og7SSbJx+gAPygFOxEnHen2OAC49IYTOYGFZbI1QLd7o9DvwgcDjj8CKxrAxAWjgWCqHtuBkuKxCgZMlRrEjJqpjhpjpUvITUo9lqtDtNcGQ6BlQEsVpwGIF+XUGgAmeyovHHZqBdoku7kghUonSmUahYC1aOdUavHxRIpNIGDJZeIDArFDCTPV4qaaaI7fnszimojk2r1bjWfQUbCOX0ZcWuY7vHkkPmsEWsEgGTi2VYJAw0Ag+v0TOniCN8ywxuMJzhJigptNBighrNiLgseo8LWu7jRsaWWnvJn0ctNxytrm4bVuhgexZi9MZbgB0AYRwAVkcAA5+IG-dxxSFHBg5+NsCE2yBQLAuAxhQAiABKpBPoAINHYv1u1-qfIYNGsRB2aFAABUnNVAfvJHYJxcH3eJ704UAzwAUVgAAZUBdAoB9liSa4KEcG870KW8IJfN8dgYIA')">retry
+    <div class='snippet' id='javascript_88_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUFQYB9ACZUAbvqoAjADY9eAGlABPQUImcpMpaACkz0AC8QaAADMqgGoSklLT0VCQUnADmnOyGDBQc1CRJBgTsNAC23CSuouKS0vQADqxU7CWO3IIBAHx6Ccmp6Zns2bn5RSWgANSg2Pz8qpFaMbr6BtXsVIU8pcLlYrM6cYkN1Qxl4sfunvTMbFzcABacrEbcB5Og7SSbJx+gAPygFOxEnHen2OAC49IYTOYGFZbI1QLd7o9DvwgcDjj8CKxrAxAWjgWCqHtuBkuKxCgZMlRrEjJqpjhpjpUvITUo9lqtDtNcGQ6BlQEsVpwGIF+XUGgAmeyovHHZqBdoku7kghUonSmUahYC1aOdUavHxRIpNIGDJZeIDArFDCTPV4qaaaI7fnszimojk2r1bjWfQUbCOX0ZcWuY7vHkkPmsEWsEgGTi2VYJAw0Ag+v0TOniCN8ywxuMJzhJigptNBighrNiLgseo8LWu7jRsaWWnvJn0ctNxytrm4bVuhgexZi9MZbgB0AYRwAVkcAA5+IG-dxxSFHBg5+NsCE2yBQLAuAxhQAiABKpBPoAINHYv1u1-qfIYNGsRB2aFAABUnNVAfvJHYJxcH3eJ704UAzwAUVgAAZUBdAoB9liSa4KEcG870KW8IJfN8dgYIA')">retry
 </pre><pre class='prettyprintoutput'>
 amb-evaluate value:
 [3, [110, null]]</pre></div></div>
-    <div class='snippet' id='javascript_88_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-</pre><pre class='prettyprintoutput'>
-amb-evaluate input:</pre></div></div>
-    <div class='snippet' id='javascript_88_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUFQYB9ACZUAbvqoAjADY9eAGlABPQUImcpMpaACkz0AC8QaAADMqgGoSklLT0VCQUnADmnOyGDBQc1CRJBgTsNAC23CSuouKS0vQADqxU7CWO3IIBAHx6Ccmp6Zns2bn5RSWgANSg2Pz8qpFaMbr6BtXsVIU8pcLlYrM6cYkN1Qxl4sfunvTMbFzcABacrEbcB5Og7SSbJx+gAPygFOxEnHen2OAC49IYTOYGFZbI1QLd7o9DvwgcDjj8CKxrAxAWjgWCqHtuBkuKxCgZMlRrEjJqpjhpjpUvITUo9lqtDtNcGQ6BlQEsVpwGIF+XUGgAmeyovHHZqBdoku7kghUonSmUahYC1aOdUavHxRIpNIGDJZeIDArFDCTPV4qaaaI7fnszimojk2r1bjWfQUbCOX0ZcWuY7vHkkPmsEWsEgGTi2VYJAw0Ag+v0TOniCN8ywxuMJzhJigptNBighrNiLgseo8LWu7jRsaWWnvJn0ctNxytrm4bVuhgexZi9MZbgB0AYRwAVkcAA5+IG-dxxSFHBg5+NsCE2yBQLAuAxhQAiABKpBPoAINHYv1u1-qfIYNGsRB2aFAABUnNVAfvJHYJxcH3eJ704UAzwAUVgAAZUBdAoB9liSa4KEcG870KW8IJfN8dgYIA')">retry
+    <div class='snippet' id='javascript_88_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUFQYB9ACZUAbvqoAjADY9eAGlABPQUImcpMpaACkz0AC8QaAADMqgGoSklLT0VCQUnADmnOyGDBQc1CRJBgTsNAC23CSuouKS0vQADqxU7CWO3IIBAHx6Ccmp6Zns2bn5RSWgANSg2Pz8qpFaMbr6BtXsVIU8pcLlYrM6cYkN1Qxl4sfunvTMbFzcABacrEbcB5Og7SSbJx+gAPygFOxEnHen2OAC49IYTOYGFZbI1QLd7o9DvwgcDjj8CKxrAxAWjgWCqHtuBkuKxCgZMlRrEjJqpjhpjpUvITUo9lqtDtNcGQ6BlQEsVpwGIF+XUGgAmeyovHHZqBdoku7kghUonSmUahYC1aOdUavHxRIpNIGDJZeIDArFDCTPV4qaaaI7fnszimojk2r1bjWfQUbCOX0ZcWuY7vHkkPmsEWsEgGTi2VYJAw0Ag+v0TOniCN8ywxuMJzhJigptNBighrNiLgseo8LWu7jRsaWWnvJn0ctNxytrm4bVuhgexZi9MZbgB0AYRwAVkcAA5+IG-dxxSFHBg5+NsCE2yBQLAuAxhQAiABKpBPoAINHYv1u1-qfIYNGsRB2aFAABUnNVAfvJHYJxcH3eJ704UAzwAUVgAAZUBdAoB9liSa4KEcG870KW8IJfN8dgYIA')">retry
 </pre><pre class='prettyprintoutput'>
 amb-evaluate value:
 [8, [35, null]]
 
 amb-evaluate input:</pre></div></div>
-    <div class='snippet' id='javascript_88_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUFQYB9ACZUAbvqoAjADY9eAGlABPQUImcpMpaACkz0AC8QaAADMqgGoSklLT0VCQUnADmnOyGDBQc1CRJBgTsNAC23CSuouKS0vQADqxU7CWO3IIBAHx6Ccmp6Zns2bn5RSWgANSg2Pz8qpFaMbr6BtXsVIU8pcLlYrM6cYkN1Qxl4sfunvTMbFzcABacrEbcB5Og7SSbJx+gAPygFOxEnHen2OAC49IYTOYGFZbI1QLd7o9DvwgcDjj8CKxrAxAWjgWCqHtuBkuKxCgZMlRrEjJqpjhpjpUvITUo9lqtDtNcGQ6BlQEsVpwGIF+XUGgAmeyovHHZqBdoku7kghUonSmUahYC1aOdUavHxRIpNIGDJZeIDArFDCTPV4qaaaI7fnszimojk2r1bjWfQUbCOX0ZcWuY7vHkkPmsEWsEgGTi2VYJAw0Ag+v0TOniCN8ywxuMJzhJigptNBighrNiLgseo8LWu7jRsaWWnvJn0ctNxytrm4bVuhgexZi9MZbgB0AYRwAVkcAA5+IG-dxxSFHBg5+NsCE2yBQLAuAxhQAiABKpBPoAINHYv1u1-qfIYNGsRB2aFAABUnNVAfvJHYJxcH3eJ704UAzwAUVgAAZUBdAoB9liSa4KEcG870KW8IJfN8dgYIA')">retry
+    <div class='snippet' id='javascript_88_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUFQYB9ACZUAbvqoAjADY9eAGlABPQUImcpMpaACkz0AC8QaAADMqgGoSklLT0VCQUnADmnOyGDBQc1CRJBgTsNAC23CSuouKS0vQADqxU7CWO3IIBAHx6Ccmp6Zns2bn5RSWgANSg2Pz8qpFaMbr6BtXsVIU8pcLlYrM6cYkN1Qxl4sfunvTMbFzcABacrEbcB5Og7SSbJx+gAPygFOxEnHen2OAC49IYTOYGFZbI1QLd7o9DvwgcDjj8CKxrAxAWjgWCqHtuBkuKxCgZMlRrEjJqpjhpjpUvITUo9lqtDtNcGQ6BlQEsVpwGIF+XUGgAmeyovHHZqBdoku7kghUonSmUahYC1aOdUavHxRIpNIGDJZeIDArFDCTPV4qaaaI7fnszimojk2r1bjWfQUbCOX0ZcWuY7vHkkPmsEWsEgGTi2VYJAw0Ag+v0TOniCN8ywxuMJzhJigptNBighrNiLgseo8LWu7jRsaWWnvJn0ctNxytrm4bVuhgexZi9MZbgB0AYRwAVkcAA5+IG-dxxSFHBg5+NsCE2yBQLAuAxhQAiABKpBPoAINHYv1u1-qfIYNGsRB2aFAABUnNVAfvJHYJxcH3eJ704UAzwAUVgAAZUBdAoB9liSa4KEcG870KW8IJfN8dgYIA')">retry
 </pre><pre class='prettyprintoutput'>
 There are no more values of
 prime_sum_pair([1, [3, [5, [8, null]]]], [20, [35, [110, null]]])</pre></div></div>
-    <div class='snippet' id='javascript_88_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-</pre><pre class='prettyprintoutput'>
-amb-evaluate input:</pre></div></div>
-    <div class='snippet' id='javascript_88_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUFQYB9ACZUAbvqoAjADY9eAGlABPQUImcpMpaACkz0AC8QaAADMqgGoSklLT0VCQUnADmnOyGDBQc1CRJBgTsNAC23CSuouKS0vQADqxU7CWO3IIBAHx6Ccmp6Zns2bn5RSWgANSg2Pz8qpFaMbr6BtXsVIU8pcLlYrM6cYkN1Qxl4sfunvTMbFzcABacrEbcB5Og7SSbJx+gAPygFOxEnHen2OAC49IYTOYGFZbI1QLd7o9DvwgcDjj8CKxrAxAWjgWCqHtuBkuKxCgZMlRrEjJqpjhpjpUvITUo9lqtDtNcGQ6BlQEsVpwGIF+XUGgAmeyovHHZqBdoku7kghUonSmUahYC1aOdUavHxRIpNIGDJZeIDArFDCTPV4qaaaI7fnszimojk2r1bjWfQUbCOX0ZcWuY7vHkkPmsEWsEgGTi2VYJAw0Ag+v0TOniCN8ywxuMJzhJigptNBighrNiLgseo8LWu7jRsaWWnvJn0ctNxytrm4bVuhgexZi9MZbjYACcjnFAHZHBgQvxA36JwHQBgAGyOACsAA42yBQLAuAxhQAiABKpHPoAINHYv1ud-qfIYNGsRB2aFAABUnNUgJHpI7BOLgR7xE+nCgJeACisAADKgLoFDPssSTXBQjj3o+hQPtB76fjsDBAA')">prime_sum_pair(list(19, 27, 30), list(11, 36, 58));
+    <div class='snippet' id='javascript_88_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUFQYB9ACZUAbvqoAjADY9eAGlABPQUImcpMpaACkz0AC8QaAADMqgGoSklLT0VCQUnADmnOyGDBQc1CRJBgTsNAC23CSuouKS0vQADqxU7CWO3IIBAHx6Ccmp6Zns2bn5RSWgANSg2Pz8qpFaMbr6BtXsVIU8pcLlYrM6cYkN1Qxl4sfunvTMbFzcABacrEbcB5Og7SSbJx+gAPygFOxEnHen2OAC49IYTOYGFZbI1QLd7o9DvwgcDjj8CKxrAxAWjgWCqHtuBkuKxCgZMlRrEjJqpjhpjpUvITUo9lqtDtNcGQ6BlQEsVpwGIF+XUGgAmeyovHHZqBdoku7kghUonSmUahYC1aOdUavHxRIpNIGDJZeIDArFDCTPV4qaaaI7fnszimojk2r1bjWfQUbCOX0ZcWuY7vHkkPmsEWsEgGTi2VYJAw0Ag+v0TOniCN8ywxuMJzhJigptNBighrNiLgseo8LWu7jRsaWWnvJn0ctNxytrm4bVuhgexZi9MZbjYACcjnFAHZHBgQvxA36JwHQBgAGyOACsAA42yBQLAuAxhQAiABKpHPoAINHYv1ud-qfIYNGsRB2aFAABUnNUgJHpI7BOLgR7xE+nCgJeACisAADKgLoFDPssSTXBQjj3o+hQPtB76fjsDBAA')">prime_sum_pair(list(19, 27, 30), list(11, 36, 58));
 </pre><pre class='prettyprintoutput'>
 Starting a $new$ problem
 amb-evaluate value:
@@ -2288,7 +2263,7 @@ amb-evaluate value:
     $i^2 + j^2 =k^2$, as follows:
     
       
-    <div class='snippet' id='javascript_88_15_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AQwH0AHATwoAsaBzGgJwCmDEkwr8qLADaCmAI0EUA7oMEkAFFJpKANKE5UenAJSgA3qEtXcV0GToBnCqCqgAvI1FUSFQT0H88ooqapraegZGxgDcNlb2JE6gAFbunkzevv6BCsqqGlQRhiaxtglJANZpIhk+fgFBeaHJRVGlVkIAjkRUQuquAFQuoADUKaBDqW7ToFVDFTFxlkIURPz0UlRO-Xots4sAvvjM7Fy8AsKi4pIyjSEaAKx62A+LIKCwQg4OoABEAEqkX6gAgCUBcQQg3pJBw0KREah0NCgAAqbBYglw7xW-DYWLA3nBnEh-wAorAADKgOhEyESIwUPSg-igAC2F1AsPhiMSQA')">function a_pythogorean_triple_between(low, high) {      
+    <div class='snippet' id='javascript_88_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AQwH0AHATwoAsaBzGgJwCmDEkwr8qLADaCmAI0EUA7oMEkAFFJpKANKE5UenAJSgA3qEtXcV0GToBnCqCqgAvI1FUSFQT0H88ooqapraegZGxgDcNlb2JE6gAFbunkzevv6BCsqqGlQRhiaxtglJANZpIhk+fgFBeaHJRVGlVkIAjkRUQuquAFQuoADUKaBDqW7ToFVDFTFxlkIURPz0UlRO-Xots4sAvvjM7Fy8AsKi4pIyjSEaAKx62A+LIKCwQg4OoABEAEqkX6gAgCUBcQQg3pJBw0KREah0NCgAAqbBYglw7xW-DYWLA3nBnEh-wAorAADKgOhEyESIwUPSg-igAC2F1AsPhiMSQA')">function a_pythogorean_triple_between(low, high) {      
     const i = an_integer_between(low, high);
     const j = an_integer_between(i, high);
     const k = an_integer_between(j, high);
@@ -2374,7 +2349,7 @@ amb-evaluate value:
     exercise&nbsp;<REF NAME="ex:amb-pythag-triples"><a class="superscript" id="4.3.1-ex-link-4.35" href="./4.3.1.html#ex_4.35">4.35</a></REF>.  Is he correct?
     (Hint: Consider the number of possibilities that must be explored.)
     
-    <div class='snippet' id='javascript_88_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AQwH0AHATwoAsGBzGgJwCmDEkwr8qLADaCmAI0EUA7oMEkAFFJpKANKE5UenAJSgA3rlBXQZOgGcKoKqAC8jUVRIVBPQf3mKKmqa2noGRsYA3JbWtiQO+nYAjq76hpygAFRpRtHWNvaOAFapIkye3r7+CsqqGlRh6VExVnEJANbJqc7ZzgDUoCXZRXnWQklEVELqnF0AfG6dSc35bY7tqQC2DFxMyfwU6ksrY4ITU4LqVHblXj5+R8YnVlLXhw2Deu3NAL74xORqHQnDcKvd+OoAB6mCz5IQUIj8eiQ1wuNzbXYELQCKG-XDMdhcXgCYSicSSGQBWrBACsemwNKiQA')">function a_pythagorean_triple_between(low, high) {
+    <div class='snippet' id='javascript_88_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AQwH0AHATwoAsGBzGgJwCmDEkwr8qLADaCmAI0EUA7oMEkAFFJpKANKE5UenAJSgA3rlBXQZOgGcKoKqAC8jUVRIVBPQf3mKKmqa2noGRsYA3JbWtiQO+nYAjq76hpygAFRpRtHWNvaOAFapIkye3r7+CsqqGlRh6VExVnEJANbJqc7ZzgDUoCXZRXnWQklEVELqnF0AfG6dSc35bY7tqQC2DFxMyfwU6ksrY4ITU4LqVHblXj5+R8YnVkIURPz0UteHDYN67c0AL74Yjkah0Jw3Cr3fjqAAepgs+Ve73ocNcLjc212BC0AnhQNwzHYXF4AmEonEkhkAVqwQArHpsPSokA')">function a_pythagorean_triple_between(low, high) {
     const i = an_integer_between(low, high);
     const hsq = high * high;
     const j = an_integer_between(i, high);
@@ -2382,7 +2357,7 @@ amb-evaluate value:
     require(hsq >= ksq);
     const k = math_sqrt(ksq);
     require(is_integer(k));
-    list(i, j, k);
+    return list(i, j, k);
 }
 </pre></div></div>
   
@@ -2498,8 +2473,14 @@ amb-evaluate value:
     generalized and clarified the methods of Stallman and Sussman, developing a
     new paradigm for formulating search that is now called
     
-    <EM>truth maintenance</EM>.  Modern problem-solving systems all use some
-    form of truth-maintenance system as a substrate.  See 
+    <EM>truth maintenance</EM>.
+    
+      
+      
+	Many problem-solving systems
+      
+    
+    use some form of truth-maintenance system as a substrate.  See 
     
     <CITATION>Forbus and deKleer 1993</CITATION> for a discussion of elegant
     ways to build truth-maintenance systems and applications using truth
