@@ -2935,21 +2935,26 @@ display(1);
 	    with <kbd>let*</kbd>.
 	  </LI>
 	  <LI>
-	    Define a suitable syntax predicate and selectors for this 
-	    <kbd>let*</kbd> variant.
+	    Design a suitable tagged-list representation and
+	    write a parse rule
+	    for <kbd>let*</kbd>.
+	    Declare a syntax predicate and selectors for the tagged-list
+	    representation.
 	  </LI>
 	  <LI>
-	    Write a function
+	    Assuming that
+	    <kbd>parse</kbd> respects your
+	    new rule, write a function
 	    <kbd>let_star_to_nested_let</kbd>
 	    that transforms any occurrence of 
 	    <kbd>let*</kbd> in a given program as
-	    described above. We can
+	    described above. We could
 	    then evaluate a program <kbd>p</kbd> in the
 	    extended language by running
-	    <kbd>evaluate(let_star_to_nested_let(p));</kbd>.
+	    <kbd>evaluate(let_star_to_nested_let(p))</kbd>.
 	  </LI>
 	  <LI>
-	    Consider the alternative of implementing
+	    As an alternative, consider implementing
 	    <kbd>let*</kbd> as we implemented
 	    <kbd>let</kbd> and 
 	    <kbd>const</kbd>, namely by
