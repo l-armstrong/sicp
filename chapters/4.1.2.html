@@ -2383,7 +2383,7 @@ $\ll \texttt{(}\textit{parameter}_1\texttt{, }\ldots\texttt{, } \textit{paramete
   <div class='permalink'>
 <a name='p10' class='permalink'></a><p>
 	    A sequence statement packages a sequence of statements into a
-	    single statement and is parsed as follows:
+	    single statement. A sequence of statements is parsed as follows:
 	
 	  \begin{eqnarray*}
 &	  \ll \textit{statement}_1 \cdots \textit{statement}_n   \gg \\
@@ -2432,9 +2432,9 @@ function is_last_statement(stmts) {
     Blocks are parsed as follows:    
 	
 	  \begin{eqnarray*}
-	  \ll \texttt{\{}\ \textit{statement}\ \texttt{\}} \gg
+	  \ll \texttt{\{}\ \textit{statements}\ \texttt{\}} \gg
 	  & = &
-	  \texttt{list("block",}\ \ll \textit{statement} \gg \texttt{)}
+	  \texttt{list("block",}\ \ll \textit{statements} \gg \texttt{)}
 	  \end{eqnarray*}
 	
 	The syntax predicate is <kbd>is_block</kbd>
@@ -3228,7 +3228,7 @@ display(1);
 	non-value-producing, and all 
 	expression statements, conditional statements and assignments are
 	value-producing.
-	A block is value-producing if its body statement
+	A block is value-producing if its body (sequence of statements)
 	is value-producing, and then its value is the value of its body
 	statement. A sequence is value-producing if any of
 	its component statements is value-producing, and then its value is
