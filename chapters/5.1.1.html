@@ -2053,8 +2053,22 @@ Acknowledgments
       </UL>
   </p></div>
 
-  <div class='permalink'>
+  
+    
+      <div class='permalink'>
 <a name='p4' class='permalink'></a><p>
+        The functions
+        <kbd>test</kbd>,
+        <kbd>branch</kbd>, and
+        <kbd>go_to</kbd>
+        are constructors for instructions which are represented internally as tagged lists.
+        They will be covered in section <REF NAME="sec:simulator"><a class="superscript" id="5.1.1-sec-link-5.2" href="./5.2.html">5.2</a></REF>.
+      </p></div>
+    
+  
+
+  <div class='permalink'>
+<a name='p5' class='permalink'></a><p>
     The machine starts at the beginning of the controller instruction
     sequence and stops when execution reaches the end of the sequence.
     Except when a branch changes the flow of control, instructions are
@@ -2081,9 +2095,9 @@ controller(
     "test_b",                     // label
       test("="),                  // test
       branch(label("gcd_done")),  // conditional branch
-      "t<-r",                  // button push
-      "a<-b",                  // button push
-      "b<-t",                  // button push
+      "t<-r",                     // button push
+      "a<-b",                     // button push
+      "b<-t",                     // button push
       go_to(label("test_b"))),    // unconditional branch
     "gcd_done");                  // label</pre></div></div>
       <div class="chapter-text-CAPTION">
@@ -2093,7 +2107,7 @@ controller(
   </p></div>
 
   <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
+<a name='p6' class='permalink'></a><p>
     Figure&nbsp;<REF NAME="fig:gcd-machine-spec"><a class="superscript" id="5.1.1-fig-link-5.3" href="./5.1.1.html#fig_5.3">5.3</a></REF> shows the GCD machine
     described in this way.  This example only hints at the generality of these
     descriptions, since the GCD machine is a very simple case: Each register has
@@ -2102,7 +2116,7 @@ controller(
   </p></div>
 
   <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
+<a name='p7' class='permalink'></a><p>
     Unfortunately, it is difficult to read such a description.  In order
     to understand the controller instructions we must constantly refer
     back to the definitions of the button names and the operation names,
@@ -2113,7 +2127,7 @@ controller(
   </p></div>
 
   <div class='permalink'>
-<a name='p7' class='permalink'></a><p>
+<a name='p8' class='permalink'></a><p>
     To obtain this form of description, we will replace the arbitrary
     button and operation names by the definitions of their behavior.  That
     is, instead of saying (in the controller) <QUOTE>Push button
@@ -2164,7 +2178,7 @@ controller(
 </p></div>
 
   <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
+<a name='p9' class='permalink'></a><p>
     This form of description is easier to read than the kind illustrated
     in figure&nbsp;<REF NAME="fig:gcd-machine-spec"><a class="superscript" id="5.1.1-fig-link-5.3" href="./5.1.1.html#fig_5.3">5.3</a></REF>, but it also has disadvantages:
     <UL>
@@ -2197,7 +2211,7 @@ controller(
   </p></div>
 
   <div class='permalink'>
-<a name='p9' class='permalink'></a><p>
+<a name='p10' class='permalink'></a><p>
     In spite of these disadvantages, we will use this register-machine
     language throughout this chapter, because we will be more concerned with
     understanding controllers than with understanding the elements and
@@ -2234,7 +2248,7 @@ controller(
   
 
   <div class='permalink'>
-<a name='p10' class='permalink'></a><p>
+<a name='p11' class='permalink'></a><p>
     Let us modify the GCD machine so that we can type in the numbers
     whose GCD we want and get the answer
     
@@ -2261,7 +2275,7 @@ controller(
   </p></div>
 
   <div class='permalink'>
-<a name='p11' class='permalink'></a><p>
+<a name='p12' class='permalink'></a><p>
     
     
       
@@ -2290,7 +2304,7 @@ controller(
   </p></div>
 
   <div class='permalink'>
-<a name='p12' class='permalink'></a><p>
+<a name='p13' class='permalink'></a><p>
     
     
       
@@ -2319,7 +2333,7 @@ perform(list(op("display"), reg("a")))</pre></div></div>
   </p></div>
 
   <div class='permalink'>
-<a name='p13' class='permalink'></a><p>
+<a name='p14' class='permalink'></a><p>
     
       
       
