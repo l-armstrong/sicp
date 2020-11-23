@@ -2000,7 +2000,7 @@ and(supervisor(x, y),
     job(x, list("computer", "programmer")))</pre></div></div>
     
     If a company has many more supervisors than programmers (the usual
-    case), it is better to use the first form rather than the second
+    case), it is better to use the first form rather than the second,
     because the data base must be scanned for each intermediate result
     (frame) produced by the first clause of the <kbd>and</kbd>.
   </p></div>
@@ -2115,7 +2115,7 @@ married("Mickey", who)</pre></div></div>
 	
 	  
 	  
-	    <kbd>married(x, y)</kbd>
+	    <kbd>married(y, x)</kbd>
 	  
 	
 	in this frame—in effect, to process the query
@@ -2475,8 +2475,6 @@ sum(amount,
 	    <kbd>son("Adam", "Cain")</kbd>, you would
 	    write
 	    <kbd>related("son", "Adam", "Cain")</kbd>.
-	  </LI>
-	  <LI>
 	    Represent the fact about Irad, for example, as
 	    <div class='snippet' id='javascript_94_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 related(list("great", "grandson"), "Adam", "Irad")</pre></div></div>
