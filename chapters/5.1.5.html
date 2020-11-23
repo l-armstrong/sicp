@@ -1985,14 +1985,14 @@ Acknowledgments
     
       
       
-	<kbd>reg(</kbd>$\OptionalPar{register-name}$<kbd>)</kbd>
+	<kbd>reg(</kbd>$\langle\textit{register-name}\rangle$<kbd>)</kbd>
       
     
     or
     
       
       
-	<kbd>constant(</kbd>$\OptionalPar{constant-value}$<kbd>)</kbd>.
+	<kbd>constant(</kbd>$\langle\textit{constant-value}\rangle$<kbd>)</kbd>.
       
       
   </p></div>
@@ -2013,28 +2013,28 @@ Acknowledgments
 	
       
     
-    <kbd class='snippet'>assign($\OptionalPar{register_name}$, reg($\OptionalPar{register_name}$))
+    <kbd class='snippet'>assign($\langle\textit{register_name}\rangle$, reg($\langle\textit{register_name}\rangle$))
 
-assign($\OptionalPar{register_name}$, constant($\OptionalPar{constant_value}$))
+assign($\langle\textit{register_name}\rangle$, constant($\langle\textit{constant_value}\rangle$))
 
-assign($\OptionalPar{register_name}$, list(op($\OptionalPar{operation_name}$), $\OptionalPar[1]{input}$, $\ldots$, $\OptionalPar[n]{input}$))
+assign($\langle\textit{register_name}\rangle$, list(op($\langle\textit{operation_name}\rangle$), $\langle\textit{input}_{1}\rangle$, $\ldots$, $\langle\textit{input}_{n}\rangle$))
 
-perform(list(op($\OptionalPar{operation_name}$), $\OptionalPar[1]{input}$, $\ldots$, $\OptionalPar[n]{input}$))
+perform(list(op($\langle\textit{operation_name}\rangle$), $\langle\textit{input}_{1}\rangle$, $\ldots$, $\langle\textit{input}_{n}\rangle$))
 
-test(list(op($\OptionalPar{operation_name}$), $\OptionalPar[1]{input}$, $\ldots$, $\OptionalPar[n]{input}$))
+test(list(op($\langle\textit{operation_name}\rangle$), $\langle\textit{input}_{1}\rangle$, $\ldots$, $\langle\textit{input}_{n}\rangle$))
 
-branch(label($\OptionalPar{label_name}$))
+branch(label($\langle\textit{label_name}\rangle$))
 
-go_to(label($\OptionalPar{label_name}$))</kbd>
+go_to(label($\langle\textit{label_name}\rangle$))</kbd>
   </p></div>
 
   <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
     The use of registers to hold labels was introduced in
     section&nbsp;<REF NAME="sec:subroutines"><a class="superscript" id="5.1.5-sec-link-5.1.3" href="./5.1.3.html">5.1.3</a></REF>:
-    <kbd class='snippet'>assign($\OptionalPar{register_name}$, label($\OptionalPar{label_name}$))
+    <kbd class='snippet'>assign($\langle\textit{register_name}\rangle$, label($\langle\textit{label_name}\rangle$))
 
-go_to(reg($\OptionalPar{register_name}$))</kbd>
+go_to(reg($\langle\textit{register_name}\rangle$))</kbd>
   </p></div>
 
   <div class='permalink'>
@@ -2043,9 +2043,9 @@ go_to(reg($\OptionalPar{register_name}$))</kbd>
     section&nbsp;<REF NAME="sec:stack-recursion"><a class="superscript" id="5.1.5-sec-link-5.1.4" href="./5.1.4.html">5.1.4</a></REF>:
     
     
-    <kbd class='snippet'>save($\OptionalPar{register_name}$)
+    <kbd class='snippet'>save($\langle\textit{register_name}\rangle$)
 
-restore($\OptionalPar{register_name}$)</kbd>
+restore($\langle\textit{register_name}\rangle$)</kbd>
   </p></div>
 
   <div class='permalink'>
@@ -2057,7 +2057,7 @@ restore($\OptionalPar{register_name}$)</kbd>
     
       
       
-	$\OptionalPar{constant_value}$
+	$\langle\textit{constant_value}\rangle$
       
     
     we have seen so far is a number, but later we will use
