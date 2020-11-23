@@ -2225,8 +2225,8 @@ null</pre></div></div>
   <div class='permalink'>
 <a name='p6' class='permalink'></a><p>
     We do not need to distinguish between expressions and expression statements.
-    Consequently, the
-    <kbd>parse</kbd> function can ignore the difference
+    Consequently, 
+    <kbd>parse</kbd> can ignore the difference
     between the two kinds of components:
 	
 	  \begin{eqnarray*}
@@ -2261,7 +2261,7 @@ null</pre></div></div>
 	<kbd>arg_expressions</kbd>.
 	    
 	    
-	    We add a constructor for function applications as follows, also used by
+	    We add a constructor for function applications, to be used by
 	    <kbd>operator_combination_to_application</kbd>:	    
 	    <div class='snippet' id='javascript_77_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajoGFhI2CW4-JxdtPUNjU3NLFnYuPkFhLIDFUAAiNIzazWi4wlJKWnoJNgBrdTYpKSEyNiSSEQSOumZuAA8pE0ZGTqU2Iw4iDPkZ+cXlukZc-UMTMwtQIUZRWoGhqhGx2qVJsZ2F7iWV0DWNrYo3vadQ4tfDiEhXUASACezAa6iuo24f1AQVANiMjEytVmkSa0V4TCGbChIiscJE0Nh6Xh7AoSJyzVwBMYRJJjChEgARjQBMwaAQqRkKTC4cwEXS-ppmkA')">function make_application(function_expression, argument_expressions) {
     return list("application", function_expression, argument_expressions);
@@ -3077,7 +3077,8 @@ display(1);
 	    Implement a 
 	    <kbd>continue;</kbd> statement that terminates
 	    only the loop iteration in which it is evaluated, and continues with
-	    evaluating the while loop predicate.
+	    evaluating the
+	    <kbd>while</kbd> loop predicate.
 	  </LI>
 	</OL>
       
