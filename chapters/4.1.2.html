@@ -2016,7 +2016,7 @@ Acknowledgments
 	For example, the application of 
 	<kbd>parse</kbd> to the program string
 	above produces a data structure that properly
-	reflects the structure of the program: a sequence consisting of
+	reflects the structure of the program: a sequence consisting 
 	of a constant declaration associating the name
 	<kbd>size</kbd>  with the value 2
 	and a multiplication.
@@ -2437,6 +2437,8 @@ function is_last_statement(stmts) {
 	  \texttt{list("block",}\ \ll \textit{statements} \gg \texttt{)}
 	  \end{eqnarray*}
 	
+	Here \textit{statements} refers to a sequence of
+	statements.
 	The syntax predicate is <kbd>is_block</kbd>
 	and the selector is <kbd>block_body</kbd>.
 	    
@@ -2488,7 +2490,7 @@ function is_last_statement(stmts) {
 	The syntax predicate is <kbd>is_assignment</kbd>
 	and the selectors are <kbd>assignment_symbol</kbd>
 	and <kbd>assignment_value_expression</kbd>.
-	The symbol is wrapped in a tagged list representing the name and thus
+	The symbol is wrapped in a tagged list representing the name, and thus
 	<kbd>assignment_symbol</kbd> needs to
 	unwrap it.
     <div class='snippet' id='javascript_77_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajoGFjZGRioOEgkXPycXbT1DY1NzSxZ2Lj5BYTyAxVAAIjSMrJz5Rs1ouITKWnoWzOyXZkYATwkAIxoBOudA3X1DEzMLL24fEXYqWe9fbdnxf3nXTTPuwlI+5MG2kYA3NgEidW4ADykTdP65gsXilZldabA5bWyHRz1M5dWL4cQkRgUUASMbMW7DeSjdgUbjtJFBUA2IyMbgiRpvUAEjCRTrRXhMKQCNhjETovGjCbTWYotHfO6YxFsHF4864emMRnM1l8jEUZiPZ6vD5fDJ0EQ8tkjQXCgpdIA')">function assignment_symbol(component) {
@@ -2532,7 +2534,7 @@ function declaration_value_expression(component) {
    return head(tail(tail(component)));
 }
 </pre></div></div>
-	We also declare a constructor for constant declarations, which is used in
+	We also declare a constructor for constant declarations, to be used by
 	<kbd>function_decl_to_constant_decl</kbd>:
 	<div class='snippet' id='javascript_77_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajoGFl5uMgE2IzYkkj8nF209Q2NTc0sWdi4+QWF8gMVQACJxEkZ2eWY0jKyc2hIm7QAfIf0S8ZSInn4hdvrneSUmgDcsqjYAIwF1bszs3MHQEbGJwysq6dq58X8FxqaEyn6u9L2+ukHouMJSJ+SJNgAa3UrXabE6u16uREJDYEm4SlWAiI6m4AA8pCZGIx+kUTqUzBZQLNRC06GCIa8of0mkpYfDEWxkaiMVicXRNF98KCKKAJABPF49fbPMEUbjw+SgIKgGxGRjcERNba8tHS0AYSKfXC8JhSTL8kRWSEiugiAVCt65ZhiiWFTk6vUGkQm94kG38iQbGgCc2C13W22S1wO3WMfVsQ0B55IlHMdGY7jY-p+y3Uug29ji4OaTlAA')">function make_constant_declaration(name, value_expression) {
     return list("constant_declaration", name, value_expression);
@@ -2601,7 +2603,8 @@ $\ll \textbf{function}\ \textit{name} \texttt{(}\textit{parameter}_1\texttt{, }\
 	components involving other syntactic forms, rather than being
 	implemented directly.
 	One example is function declaration, which 
-	we transform into a constant declaration whose
+	<kbd>evaluate</kbd>
+	transforms into a constant declaration whose
 	value expression is a lambda expression.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
 	<div class='snippet' id='javascript_77_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajoGFgTKWhJmXm4yATYjNiSSPycXbR0ASENQfUMTMwsUiJ5+IUZRcX9neSUAIjSirJy8gqLezWi4gYzQaboh3PzCjOYSNgluEoDXXVqDevN6NopmEwIt7sVQDAnYwlJ05LnM7MXRlZsCjYpuI0YLsq7aoHRrHU7cc6dUo9UDYW5TB5FWaIlavEbLeYAIxovAAngDAkC6qZDqAwWcCVcAMzw+6JGbPBYCVg0ZjiEjtNjyJmU8p7YwkxoSNgAa3U7M53LRSyKIn51QVBkZ0ve8zWG15CnliuqwrFgnWmN4bGY3AAHlITIxGBk5Tr7dVlcMZR8lt9fv8odtNFqHX6nW8MZlsXjeZp4UA')">function function_decl_to_constant_decl(component) {
     return make_constant_declaration(
@@ -2799,7 +2802,20 @@ $\ll \textbf{function}\ \textit{name} \texttt{(}\textit{parameter}_1\texttt{, }\
 	<kbd>&&</kbd>
 	and
 	<kbd>||</kbd>
-	are syntactic sugar for conditional expressions.
+	are syntactic sugar for conditional expressions:
+	    $ \textit{expression}_1$ <kbd>&&</kbd>
+	    $\textit{expression}_2$
+	    is syntactic sugar for
+	    $ \textit{expression}_1$ <kbd>?</kbd>
+	    $\textit{expression}_2$ <kbd>:</kbd>
+	    <kbd>false</kbd>, and
+            $\textit{expression}_1$ 
+            <kbd>||</kbd> 
+            $\textit{expression}_2$
+	    is syntactic sugar for
+	    $ \textit{expression}_1$ <kbd>?</kbd>
+	    <kbd>true</kbd> <kbd>:</kbd>
+	    $\textit{expression}_2$.
       
     
     
@@ -2870,7 +2886,7 @@ $\ll \textbf{function}\ \textit{name} \texttt{(}\textit{parameter}_1\texttt{, }\
 	    <kbd>evaluate</kbd>.
 	  </LI>
 	</UL>
-	In order to implement this check in an evaluator for JavaScript, which one
+	In order to implement this check in an evaluator for JavaScript, which
 	of these two approaches would you prefer? Why?
 	</LI>
 	<LI>
@@ -2935,9 +2951,10 @@ display(1);
 	    with <kbd>let*</kbd>.
 	  </LI>
 	  <LI>
-	    Design a suitable tagged-list representation and
-	    write a parse rule
-	    for <kbd>let*</kbd>.
+	    Introduce
+	    <kbd>let*</kbd> as
+	    a new syntactic form by designing a suitable tagged-list representation and
+	    writing a parse rule.
 	    Declare a syntax predicate and selectors for the tagged-list
 	    representation.
 	  </LI>
@@ -2955,10 +2972,10 @@ display(1);
 	  </LI>
 	  <LI>
 	    As an alternative, consider implementing
-	    <kbd>let*</kbd> as we implemented
-	    <kbd>let</kbd> and 
-	    <kbd>const</kbd>, namely by
-	    introducing an evaluation function
+	    <kbd>let*</kbd> by
+	    adding to the dispatch in
+	    <kbd>evaluate</kbd> a clause that will
+	    recognize the new syntactic form and then call a function
 	    <kbd>eval_let_star_declaration</kbd>.
 	    Why does this approach not work?
 	  </LI>
@@ -2983,17 +3000,17 @@ display(1);
       
       
 	JavaScript supports
-	<kbd>while</kbd> loops that execute a given
-	statement repeatedly.
+	<EM>while loops</EM> that execute a given
+	statement repeatedly. Specifically,
 	<kbd class='snippet'>while ($predicate$) { $body$ }</kbd>
 	evaluates the $\textit{predicate}$, and
 	if the result is true, evaluates the
 	$\textit{body}$
 	and then evaluates
-	the whole <kbd>while</kbd> loop again.
+	the whole while loop again.
 	Once the $\textit{predicate}$ evaluates
 	to false, the
-	<kbd>while</kbd> loop terminates. Using
+	while loop terminates. Using
 	this syntax, we can compute the greatest common divisor
 	of two numbers using the following function:
 	
@@ -3008,7 +3025,7 @@ display(1);
     return a;	
 }
 </pre></div></div>
-	<kbd>while</kbd> loops are parsed as follows:
+	while loops are parsed as follows:
 	<blockquote class='blockquote'>
 	  
 	  
@@ -3022,14 +3039,14 @@ display(1);
     <OL type="a">
 	  <LI>
 	    Declare a syntax predicate and selectors to handle
-	    <kbd>while</kbd> loops.
+	    while loops.
 	  </LI>
 	  <LI>
 	    Declare a function <kbd>while_loop</kbd>
 	    that takes as arguments a predicate and a
 	    body—each represented by a
 	    function of no arguments—and simulates the behavior of the
-	    <kbd>while</kbd> loop. The
+	    while loop. The
 	    <kbd>gcd</kbd> function would then
 	    look as follows:
 	    <div class='snippet' id='javascript_77_23_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuRQB3ACwEsAbAUwH0KB7egB1ABd7QAjK4gJzNasqAOy4BPUAGdWAVwAmI1pNwAzGcIDGrMvVEBzDXIAUAQwA0XAJSgA3rlAPi5anUZMjoI9YC8APlAmoACE3t5cZvaOUdGOXqB+tg5kKp6B-pzWdjHZOTmBYYEAtFwA3JG5FVEAvqBUFJI8WZXN0ZzxXKDFJmUtzVXlvdH9vZY9jrxUsryi3bhVQA')">function gcd(a, b) {
@@ -3050,7 +3067,7 @@ display(1);
 	    section&nbsp;<REF NAME="sec:recursion-and-iteration"><a class="superscript" id="4.1.2-sec-link-1.2.1" href="./1.2.1.html">1.2.1</a></REF>).
 	  </LI>
 	  <LI>
-	    Install <kbd>while</kbd> loops as
+	    Install while loops as
 	    a derived component by defining a transformation function
 	    <kbd>while_to_application</kbd> 
 	    that makes use of your function
@@ -3058,13 +3075,13 @@ display(1);
 	  </LI>
 	  <LI>
 	    What problem arises with this approach for implementing
-	    <kbd>while</kbd> loops, when
+	    while loops, when
 	    the programmer decides within the body of the loop to
 	    return from the function that contains the loop?
 	  </LI>
 	  <LI>
 	    Change your approach to address the problem. How about directly
-	    installing <kbd>while</kbd> loops for the
+	    installing while loops for the
 	    evaluator, using a function
 	    <kbd>eval_while</kbd>?
 	  </LI>
@@ -3078,7 +3095,7 @@ display(1);
 	    <kbd>continue;</kbd> statement that terminates
 	    only the loop iteration in which it is evaluated, and continues with
 	    evaluating the
-	    <kbd>while</kbd> loop predicate.
+	    while loop predicate.
 	  </LI>
 	</OL>
       
@@ -3101,12 +3118,12 @@ display(1);
       
 	      
 	Another kind of loop available in JavaScript is the
-	<kbd>for</kbd> loop, which combines
+	<EM>for loop</EM>, which combines
 	an initialization, a predicate, an update statement, and a body in a single
-	construct. As for the <kbd>while</kbd>
+	construct. As for the while
 	loop, the body is repeatedly executed as long as the predicate holds. After
 	every execution, the update statement is evaluated. Here is a function
-	that reverses a list, using a <kbd>for</kbd>
+	that reverses a list, using a for
 	loop. 
 	
 	<div class='snippet' id='javascript_77_24_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwFMA3JhgZyYAoAPDgJSgA3rlDjQAGyYVGTDkUmyAvKBKLJAbjESCNBqG7TZZIg2YkVofptABCUFQ4B9dZMndT5ppYG2vFlYUAIZUHgE+FAJCohJxcgpKoKoADqEM3AAWTMEAJp5mgQIANAmKUdpxAL464swUZvTMiRTaNbjMbJw8kk4U3Bil2KUAzNGaQA')">function reverse(xs) {
@@ -3117,7 +3134,7 @@ display(1);
     return result;
 }
 </pre></div></div>
-	<kbd>for</kbd> loops are parsed as follows:
+	for loops are parsed as follows:
 	<blockquote class='blockquote'>
 	  
 	  
@@ -3125,32 +3142,27 @@ display(1);
 	  $\ll \textbf{for} \ \texttt{(}\ \textit{init-statement}\texttt{; } \textit{predicate}\texttt{; }\textit{update-statement}\texttt{)}\ \textit{block}  \gg \ \ =$ 
 	
 	  
-	  <kbd class='snippet'>list("for_loop",
-     $\ll \textit{init-statement} \gg$, 
-     $\ll \textit{predicate} \gg$, 
-     $\ll \textit{update-statement}\gg$, 
-     $\ll \textit{block} \gg$)</kbd>
+	  <kbd class='snippet'>list("for_loop", $\ll \textit{init-statement} \gg$, $\ll \textit{predicate} \gg$, $\ll \textit{update-statement}\gg$, $\ll \textit{block} \gg$)</kbd>
     </blockquote>
 
     where $\textit{init-statement}$ is either an assignment or a
     variable declaration and $\textit{update-statement}$ is an assignment.
 	<OL type="a">
 	  <LI>
-	    Declare a syntax predicate and selectors to handle
-	    <kbd>for</kbd> loops.
+	    Declare a syntax predicate and selectors to handle for loops.
 	  </LI>
 	  <LI>
-	    Following the approach for <kbd>while</kbd>
+	    Following the approach for while
 	    loops in exercise&nbsp;<REF NAME="ex:while_loop"><a class="superscript" id="4.1.2-ex-link-4.7" href="./4.1.2.html#ex_4.7">4.7</a></REF>, first implement
 	    a function <kbd>for_loop</kbd> that takes
 	    as arguments four functions of no arguments and simulates the
-	    behavior of the <kbd>for</kbd> loop. Then
-	    install <kbd>for</kbd> loops as a
-	    derived component by defining a suitable transformation function
+	    behavior of the for loop. Then
+	    install for loops as a
+	    derived component by defining a transformation function
 	    <kbd>for_to_application</kbd> 
 	    that makes use of your function
 	    <kbd>for_loop</kbd>. Finally,
-	    install <kbd>for</kbd> loops directly
+	    install for loops directly
 	    in the evaluator, using a function
 	    <kbd>eval_for</kbd>.
 	  </LI>
@@ -3158,11 +3170,10 @@ display(1);
 	    Assume that you have solved
 	    exercise&nbsp;<REF NAME="ex:while_loop"><a class="superscript" id="4.1.2-ex-link-4.7" href="./4.1.2.html#ex_4.7">4.7</a></REF>. Would this allow
 	    for an elegant way to install
-	    <kbd>for</kbd> loops in the evaluator?
+	    for loops in the evaluator?
 	  </LI>
 	  <LI>
-	    Eva Lu Ator tries to combine 
-	    <kbd>for</kbd> loops 
+	    Eva Lu Ator tries to combine for loops
 	    with lambda expressions in the following program.
 	    <div class='snippet' id='javascript_77_25_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwFMA3JhgZyYH1jzq6HABQAPDgEpQAb1yg5oADZMKjJhyIKVAXlAkNCgNyz5BGg1BClKskQbmdYg6ACEoKh256FCoTbvinP3tQCgBDKh8g8UkZeTjVdU1QHQAHcIYhIUktAD5QAAsmUIATX1sGcQAaBI0KAOM5AF8G1QpbemZEiiNGoA')">function reverse_functions(xs) {
     let result = null;
@@ -3176,13 +3187,11 @@ display(1);
 	    <kbd>reverse_functions</kbd> are useless:
 	    They apply <kbd>head</kbd> to
 	    <kbd>null</kbd> and thus give an error,
-	    because after execution of the
-	    <kbd>for</kbd> loop, the value of the variable
+	    because after execution of the for loop, the value of the variable
 	    <kbd>curr</kbd> is
 	    <kbd>null</kbd>.
 	    Alyssa P. Hacker proposes to give each iteration 
-	    of any 
-	    <kbd>for</kbd> loop with a declaration
+	    of any for loop with a declaration
 	    of a variable its own <QUOTE>instance</QUOTE> of the variable.
 	    Modify your solution to part (b) to follow Alyssa's approach, and
 	    verify that Eva's program now works as expected.
@@ -3211,28 +3220,32 @@ display(1);
     
       
       
+	<div class='permalink'>
+<a name='p20' class='permalink'></a><p>
 	The result of evaluating the body of a function is determined by
 	its return statements. 
-	Following up on footnotes&nbsp;<REF NAME="foot:value_producing"><a class="superscript" id="4.1.2-foot-link-5" href="./4.1.1.html#footnote-5">5</a></REF>
-	and the evaluation of declaration and assignment in
+	Following up on footnote&nbsp;<REF NAME="foot:value_producing"><a class="superscript" id="4.1.2-foot-link-5" href="./4.1.1.html#footnote-5">5</a></REF>
+	and the evaluation of declarations and assignments in
 	section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.2-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>,
-	this exercise addresses the question what should be the result of
+	this exercise addresses the question of what should be the result of
 	evaluating a JavaScript program containing sequences,
 	declarations, blocks, expression statements, conditional
-	statements and assignments <EM>outside of</EM> any function
-	body. For such a program, JavaScript
+	statements, and assignments <EM>outside of</EM> any function
+	body.
+	</p></div>
+	<div class='permalink'>
+<a name='p21' class='permalink'></a><p>
+	For such a program, JavaScript
 	statically
         distinguishes between <EM>value-producing</EM> and
-	<EM>non-value-producing statements</EM>.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
+	<EM>non-value-producing statements</EM>. (Here 
+	<QUOTE>statically</QUOTE> means that
+	we can make the distinction by <EM>inspecting</EM> the program
+	rather than by running it.)
 	All declarations are
 	non-value-producing, and all 
-	expression statements, conditional statements and assignments are
+	expression statements, conditional statements, and assignments are
 	value-producing.
-	A block is value-producing if its body (sequence of statements)
-	is value-producing, and then its value is the value of its body
-	statement. A sequence is value-producing if any of
-	its component statements is value-producing, and then its value is
-	the value of its <EM>last</EM> value-producing component statement.
 	The value of an expression statement is the value of the expression.
 	The value of a conditional statement is the value of the branch that
 	gets executed, or the value
@@ -3240,6 +3253,11 @@ display(1);
 	not value-producing.
 	The value of an assignment is the value of the expression
 	to the right of its <kbd>=</kbd> sign.
+	A block is value-producing if its body (sequence of statements)
+	is value-producing, and then its value is the value of its body.
+	A sequence is value-producing if any of
+	its component statements is value-producing, and then its value is
+	the value of its <EM>last</EM> value-producing component statement.
 	Finally, if the whole
 	program	is not value-producing, its value is the value
 	<kbd>undefined</kbd>.
@@ -3262,6 +3280,7 @@ display(1);
 	    specification.
 	  </LI>
 	</OL>
+	</p></div>
       
     
   
@@ -3281,7 +3300,7 @@ display(1);
     
       
 	Eva Lu Ator is writing programs with blocks in which
-	function declarations and other statements appear interspersed.
+	function declarations and other statements are interspersed.
 	She needs to take care that the declarations are evaluated before
 	the functions are applied. She complains: <QUOTE>Why can't
 	the evaluator take care of this chore, and move all function
@@ -3339,16 +3358,6 @@ display(1);
 	    in chapter 1.
 	    Exercise&nbsp;<REF NAME="ex:hoisting"><a class="superscript" id="4.1.2-ex-link-4.10" href="./4.1.2.html#ex_4.10">4.10</a></REF> addresses these differences.
             
-    </FOOTNOTE></div>
-
-    
-    <div class='footnote'>
-      <a class='footnote-number' id='footnote-3' href='#footnote-link-3'>[3] </a>
-    <FOOTNOTE>
-    Here 
-	<QUOTE>statically</QUOTE> means that
-	we can make the distinction by <EM>inspecting</EM> the program
-	rather than by running it.
     </FOOTNOTE></div>
 
     

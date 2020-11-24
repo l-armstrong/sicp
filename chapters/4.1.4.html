@@ -2389,11 +2389,11 @@ M-evaluate value:
       
       
         JavaScript's <kbd>apply</kbd> method 
-	expects arguments in a vector. (Confusingly, vectors
+	expects arguments in a vector. (Vectors
 	are called <EM>arrays</EM> in JavaScript. For more on vectors, see
         section&nbsp;<REF NAME="sec:memory-as-vectors"><a class="superscript" id="4.1.4-sec-link-5.3.1" href="./5.3.1.html">5.3.1</a></REF>.)
 	Thus, the <kbd>arglist</kbd> is transformed into 
-        a vector—here using a <kbd>while</kbd>
+        a vector—here using a while
 	loop (see exercise&nbsp;<REF NAME="ex:while_loop"><a class="superscript" id="4.1.4-ex-link-4.7" href="./4.1.2.html#ex_4.7">4.7</a></REF>):
 	<div class='snippet' id='javascript_79_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function apply_in_underlying_javascript(prim, arglist) {

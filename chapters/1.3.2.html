@@ -2308,7 +2308,6 @@ x         =>                   x    +   4
       Names that are declared with
       <kbd>const</kbd> inside a block have the
       body of the immediately surrounding block as their scope.<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
-      
       </p></div>
     
   
@@ -2541,25 +2540,25 @@ f(2)
       the evaluation of the right-hand expression
       of the declaration itself, regardless of whether the same name is
       declared outside the block. Thus in the program below, the
-      attempt to use the <kbd>x</kbd> declared
-      in <kbd>h</kbd> to provide a value for
-      the <kbd>x</kbd> declared in
-      <kbd>i</kbd> cannot work.
-      <div class='snippet' id='javascript_22_20_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAzAVwDsBjAFwEsB7E0ACwAoBKUAb11G9DLoGcKoAB6gAvKgDcXHsXLU6oKqw4yePPiUEjxOgNRS160ACcAphSIn6w6eoC+R85etLW0x8xaSgA')">function h() {
-    const x = 1;
-    function i() {
-        const x = x + 1;
-        return x;
-    }
-    return i();
+      attempt to use the <kbd>a</kbd> declared
+      at the top level 
+      to provide a value for the calculation of 
+      the <kbd>b</kbd> declared in
+      <kbd>f</kbd> cannot work.
+      <div class='snippet' id='javascript_22_20_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuBjAewDsBnAF1AENQBeVAblwDMBXEgigS1NBYAUADwCUoAN6gp03NNDFyVAEb0aoANSghzOQspqGAVh3SATgFMKbUyTWalzAL6sBKAAwjGQA')">const a = 1;
+function f(x) {      
+    const b = a + x;
+    const a = 5;
+    return a + b;
 }
-h();
+f(10);
 </pre></div></div>
       The program
-      leads to an error, because the <kbd>x</kbd> in
-      <kbd>x + 1</kbd> is used before its declaration
-      is fully evaluated. We will return to this issue in
-      section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="1.3.2-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>, when we learn
+      leads to an error, because the <kbd>a</kbd> in
+      <kbd>a + x</kbd> is used before its declaration
+      is evaluated. We will return to this program in
+      section&nbsp;<REF NAME="sec:internal-definitions"><a class="superscript" id="1.3.2-sec-link-4.1.6" href="./4.1.6.html">4.1.6</a></REF>
+      (exercise&nbsp;<REF NAME="ex:simultaneous-def"><a class="superscript" id="1.3.2-ex-link-4.20" href="./4.1.6.html#ex_4.20">4.20</a></REF>), after we learn
       more about evaluation.
     </FOOTNOTE></div>
 
