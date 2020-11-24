@@ -2074,32 +2074,31 @@ Acknowledgments
     Except when a branch changes the flow of control, instructions are
     executed in the order in which they are listed.
     <FIGURE><div class='snippet' id='javascript_98_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-data_paths(
-  registers(
-    list(
-      pair(name("a"),
-           buttons(name("a<-b"), source(register("b")))),
-      pair(name("b"),
-           buttons(name("b<-t"), source(register("t")))),
-      pair(name("t"),
-           buttons(name("t<-r"), source(operation("rem"))))),
-  operations(
-    list(
-      pair(name("rem"),
-           inputs(register("a"), register("b"))),
-      pair(name("="),
-           inputs(register("b"), constant(0)))))));
+const gcd_registers = 
+    list(pair(name("a"),
+              buttons(name("a<-b"), source(register("b")))),
+         pair(name("b"),
+              buttons(name("b<-t"), source(register("t")))),
+         pair(name("t"),
+              buttons(name("t<-r"), source(operation("rem")))));
 
-controller(
-  list(
-    "test_b",                     // label
-      test("="),                  // test
-      branch(label("gcd_done")),  // conditional branch
-      "t<-r",                     // button push
-      "a<-b",                     // button push
-      "b<-t",                     // button push
-      go_to(label("test_b"))),    // unconditional branch
-    "gcd_done");                  // label</pre></div></div>
+const gcd_operations = 
+    list(pair(name("rem"),
+              inputs(register("a"), register("b"))),
+         pair(name("="),
+              inputs(register("b"), constant(0))));
+
+const gcd_data_paths = pair(gcd_registers, gcd_operations);
+
+const gcd_controller = 
+    list("test_b",                     // label
+           test("="),                  // test
+           branch(label("gcd_done")),  // conditional branch
+           "t<-r",                     // button push
+           "a<-b",                     // button push
+           "b<-t",                     // button push
+           go_to(label("test_b"))),    // unconditional branch
+         "gcd_done");                  // label</pre></div></div>
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./5.1.1.html#fig_5.3">Figure 5.3 </a></b>A specification of the GCD machine.</div>
     </FIGURE>
@@ -2179,6 +2178,13 @@ controller(
 
   <div class='permalink'>
 <a name='p9' class='permalink'></a><p>
+    
+      
+        As we did for the instructions, like <kbd>go_to</kbd>,
+        we introduce a constructor for controllers which uses a tagged list
+        to brand the datum.
+      
+    
     This form of description is easier to read than the kind illustrated
     in figure&nbsp;<REF NAME="fig:gcd-machine-spec"><a class="superscript" id="5.1.1-fig-link-5.3" href="./5.1.1.html#fig_5.3">5.3</a></REF>, but it also has disadvantages:
     <UL>
