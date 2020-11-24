@@ -2315,6 +2315,14 @@ function test_condition(test_instruction) {
 </pre></div></div>
   </p></div>
 
+  
+    
+      The function <kbd>test</kbd> is a constructor function
+      that matches the syntax in the controller specification. 
+    
+  
+
+
   <div class='permalink'>
 <a name='p7' class='permalink'></a><p>
     
@@ -2367,6 +2375,13 @@ function branch_dest(branch_instruction) {
 </pre></div></div>
   </p></div>
 
+  
+    
+      The function <kbd>branch</kbd> is a constructor function
+      that matches the syntax in the controller specification. 
+    
+  
+  
   <div class='permalink'>
 <a name='p8' class='permalink'></a><p>
     
@@ -2403,6 +2418,13 @@ function go_to_dest(go_to_instruction) {
 </pre></div></div>
   </p></div>
 
+  
+    
+      The function <kbd>go_to</kbd> is a constructor function
+      that matches the syntax in the controller specification. 
+    
+  
+  
   
       <div class='permalink'>
         <a name='h3' class='permalink'></a><h2>
@@ -2448,6 +2470,16 @@ function stack_inst_reg_name(stack_instruction) {
 </pre></div></div>
   </p></div>
 
+  
+    
+      The functions <kbd>save</kbd> and
+      <kbd>restore</kbd> are constructor functions
+      that match the syntax in the controller specification. 
+    
+  
+  
+
+  
   <div class='permalink'>
 <a name='p10' class='permalink'></a><p>
     
@@ -2491,6 +2523,14 @@ function perform_action(inst) {
 </pre></div></div>
   </p></div>
 
+  
+    
+      The function <kbd>perform</kbd> is a constructor function
+      that matches the syntax in the controller specification. 
+    
+  
+  
+  
   
       <div class='permalink'>
         <a name='h4' class='permalink'></a><h2>
@@ -2599,6 +2639,18 @@ function label_exp_label(exp) {
 </pre></div></div>
   </p></div>
 
+  
+    
+      The functions 
+      <kbd>reg</kbd>
+      <kbd>constant</kbd>, 
+      and
+      <kbd>label</kbd>,
+      are constructor functions that matches the syntax in the
+      controller specification.
+    
+  
+
   <div class='permalink'>
 <a name='p13' class='permalink'></a><p>
     
@@ -2640,6 +2692,22 @@ function label_exp_label(exp) {
 }
 </pre></div></div>
   </p></div>
+
+  
+    
+      We make use of the function
+      <kbd>apply_in_underlying_javascript</kbd>,
+      like we did in section <REF NAME="sec:running-eval"><a class="superscript" id="5.2.3-sec-link-4.1.4" href="./4.1.4.html">4.1.4</a></REF>, when
+      we were defining <kbd>apply</kbd>.
+      This is needed to apply <kbd>op</kbd>
+      to all elements of the argument list produced by the
+      <kbd>map</kbd>, as if they were
+      separate arguments to
+      <kbd>op</kbd>. Without this, 
+      <kbd>op</kbd> would have been restricted
+      to a unary function.
+    
+  
 
   <div class='permalink'>
 <a name='p14' class='permalink'></a><p>
@@ -2742,10 +2810,9 @@ function operation_exp_operands(operation_exp) {
     Design a new syntax for register-machine instructions and modify the
     simulator to use your new syntax.  Can you implement your new
     syntax without changing any part of the simulator except the
-    syntax
     
       
-      functions
+      constructor functions
     
     in this section?
     
@@ -2782,7 +2849,7 @@ restore(y);</pre></div></div>
 	  <kbd>restore(y)</kbd>
 	  
 	
-	puts into <kbd>>y</kbd> the last value saved on the
+	puts into <kbd>y</kbd> the last value saved on the
 	stack, regardless of what register that value came from.  This is the
 	way our simulator behaves.  Show how to take advantage of this
 	behavior to eliminate one instruction from the Fibonacci machine of
