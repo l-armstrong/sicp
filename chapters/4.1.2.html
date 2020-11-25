@@ -2961,7 +2961,7 @@ display(1);
 	  </LI>
 	  <LI>
 	    Assuming that
-	    <kbd>parse</kbd> respects your
+	    <kbd>parse</kbd> implements your
 	    new rule, write a function
 	    <kbd>let_star_to_nested_let</kbd>
 	    that transforms any occurrence of 
@@ -2976,7 +2976,7 @@ display(1);
 	    <kbd>let*</kbd> by
 	    adding to the dispatch in
 	    <kbd>evaluate</kbd> a clause that will
-	    recognize the new syntactic form and then call a function
+	    recognize the new syntactic form and call a function
 	    <kbd>eval_let_star_declaration</kbd>.
 	    Why does this approach not work?
 	  </LI>
