@@ -2209,14 +2209,14 @@ x         =>                   x    +   4
     
     For example, suppose we wish to compute the function
     
-      \[ f(x,y)=x(1+xy)^2 +y(1-y)+(1+xy)(1-y)\]
+      \[ f(x, y)=x(1 + x y)^2 +y (1 - y) + (1 + x y)(1 - y)\]
     
     which we could also express as
     
       \begin{eqnarray*}
       a &=& 1+xy\\
       b &=& 1-y\\
-      f(x,y) &=& xa^2 +yb +ab
+      f(x, y) &=& x a^2 +y b + a b
       \end{eqnarray*}
     
     In writing a
@@ -2239,14 +2239,11 @@ x         =>                   x    +   4
       
       function to bind the local names:
     
-    <div class='snippet' id='javascript_22_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUAT4AaUAE9BI8XtKVa9AgH0AFpwA2AB07turIwCMzoi3FJaVkFRhYOHlZBAGpQAMDEsWMwn1A4hKTA1lTVCw0LYJk9Rxd3TxR0pTDjA0ysrMqAWhN+VQ1CbgwjABY2oA')">function f(x, y) {
+    <div class='snippet' id='javascript_22_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUAT4AaUAE9BI8XtKVa9AgH0AFpwA2AB07turIwCMzoi3FJaVkFRhYOHlZBAGoTMJ9QONYE1QsNC2CZPUcXd08UJKUw4yNCgFoTflUNQm4MIwAWaqA')">function f(x, y) {
     function f_helper(a, b) {
-        return x * square(a) + 
-               y * b + 
-               a * b;
+        return x * square(a) + y * b + a * b;
     }
-    return f_helper(1 + x * y,
-                    1 - y);
+    return f_helper(1 + x * y, 1 - y);
 }
 </pre></div></div>
     
@@ -2263,13 +2260,19 @@ x         =>                   x    +   4
       
       function for binding our local names.
     
-    The body of
-    <kbd>f</kbd> then becomes a single call to that
+    The
+    
+      
+      
+	function body
+      
+    
+    then becomes a single call to that
     
       
       function:
     
-    <div class='snippet' id='javascript_22_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUAT4AaAJ6CR4iZykzQ3G6wOgARoIC8APiULGLDj1aCAalBRc1Cw8KMvR1AgkPD4sNYouPj+bhQYz0UjBwyAWlATVQ1CbgwHABZ+ZSA')">function f(x,y) {
+    <div class='snippet' id='javascript_22_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUAQD62PgBpQAT0EjxEzlJmhuD1qYBGggLwA+JQsYsOPKyCANSgotYRkVFmvi6goeFRSZGssYlJ-Nwo8T6KZqbZALTm-KoahNwYpgAspUA')">function f_2(x, y) {
     return ( (a, b) => x * square(a) + 
                        y * b + 
                        a * b
@@ -2287,13 +2290,14 @@ x         =>                   x    +   4
         A more convenient way to declare local names is by using constant
 	declarations within the body of the function. Using
 	<kbd>const</kbd>, the  function
-        <kbd>f</kbd> can be written as
-        <div class='snippet' id='javascript_22_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUAT4AaUAE9BI8aDJ0GFUK1ABeVKADUShSdUWrJG6ABGjs4AtJ6i4pLSsh7MbFzcrIJu4Rapxh6ByanZ9or+qhqE3BhGACz8ykA')">function f(x, y) {
+	
+	  
+	
+	can be written as
+        <div class='snippet' id='javascript_22_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUAQD6GPgBpQAT0EjxoMnQYVQrUAF5UoANRKF51ddsl7UAAjFzcAWh9RcUlpWW9mNi5uVkFPM28QzydFINUNQm4MUwAWfmUgA')">function f_3(x, y) {
     const a = 1 + x * y;
     const b = 1 - y;
-    return x * square(a) + 
-           y * b + 
-           a * b;
+    return x * square(a) + y * b + a * b;
 }
 </pre></div></div>
       </p></div>
@@ -2536,9 +2540,7 @@ f(2)
       
       Note that a name declared in a block using
       <kbd>const</kbd> cannot be used before the
-      declaration is fully evaluated; that is, it cannot be used in
-      the evaluation of the right-hand expression
-      of the declaration itself, regardless of whether the same name is
+      declaration is fully evaluated, regardless of whether the same name is
       declared outside the block. Thus in the program below, the
       attempt to use the <kbd>a</kbd> declared
       at the top level 
@@ -2558,7 +2560,7 @@ f(10);
       <kbd>a + x</kbd> is used before its declaration
       is evaluated. We will return to this program in
       section&nbsp;<REF NAME="sec:internal-definitions"><a class="superscript" id="1.3.2-sec-link-4.1.6" href="./4.1.6.html">4.1.6</a></REF>
-      (exercise&nbsp;<REF NAME="ex:simultaneous-def"><a class="superscript" id="1.3.2-ex-link-4.20" href="./4.1.6.html#ex_4.20">4.20</a></REF>), after we learn
+      (exercise&nbsp;<REF NAME="ex:simultaneous-def"><a class="superscript" id="1.3.2-ex-link-4.19" href="./4.1.6.html#ex_4.19">4.19</a></REF>), after we learn
       more about evaluation.
     </FOOTNOTE></div>
 

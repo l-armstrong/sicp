@@ -2021,7 +2021,7 @@ Acknowledgments
     
     that improves guesses:
     
-    <div class='snippet' id='javascript_71_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgCGAbgKYBO9A5swBQAeANAE8AlKADeOUFNCtm5Qqzp9QAalAjQYAEwBuHAF88RMlVqgAzgEdW5APqUAtgAdW1Ftw6Fm58-1C9RCWkZOQU6JjZOHk9vX39NUBifYT1DHCsbe2dXdwBGNC0-LRSgA')">function sqrt_improve(guess, x) {
+    <div class='snippet' id='javascript_71_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgCGAbgKYBO9A5swBQAeANKACeASlABvHKGmhWzcoVZ0+oANTCxYAEwBuHAF88RMlVqgAzgEdW5APqUAtgAdW1Ftw6Fm584N5jJGVl5RTomNk4eT29fUF5QMGifET1DHCsbe2dXdwBGNC1BLRSgA')">function sqrt_improve(guess, x) {
     return average(guess, x / guess);
 }
 </pre></div></div>
@@ -2044,13 +2044,13 @@ Acknowledgments
       
     
 	
-    <div class='snippet' id='javascript_71_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgCGAbgKYBO9A5swBQAeANAE8AlKADeOUFNCtm5Qqzp9QAalAjQYAEwBuHAF88RMlVqgAzgEdW5APqUAtgAdW1Ftw6Fm58-1C9RCWkZOQU6JjZOHk9vX39NUBifYT1DHFJac3JQB3peWwATSnMnABt6QVAAXlAATj1jCho6IpLywVss2XoHbnNAyWlG0xbisorO8m6He3I2PvI-YgHg4Mp8UG5i22JCUtKF4RXVqX1QZlLzZlB1zboqh9AABmOT4NbxwW4Acm+-ACI0ED-ilBiczhcruIwW8pB92twABbMegFQ6g2HvMbtSbTWbzLoombkeiUA5ZYRLUAAWlAAEYMW9DMFmdJ4RNCT18aw+n5cvl2SJUkYSE0zFYbLiiXxXiF5IpQE5STy6X5uKIqgA+CxTIm2XJODxeHzVbUwzEWy3BCV2RwuNzRY1xAL8c1W90nG1Snoyo7CnCC729L2c3paP1AA')">function sqrt_stream(x) {
+    <div class='snippet' id='javascript_71_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgCGAbgKYBO9A5swBQAeANKACeASlABvHKGmhWzcoVZ0+oANTCxYAEwBuHAF88RMlVqgAzgEdW5APqUAtgAdW1Ftw6Fm584N5jJGVl5RTomNk4eT29fUF5QMGifET1DHFJac3JQB3peWwATSnMnABt6IVAAXlAATj1jCho6IpLyoVssuXoHbnMAqRlG0xbisorO8m6He3I2PvJBYgGgoMp8UG5i22JCUtKFkRXV6X1QZlLzZlB1zboqh9AABmOToNbxoW4Acm-BACI0ED-ilBiczhcrhIwW9pB92twABbMegFQ6g2HvMbtSbTWbzLoombkeiUA5ZERLUAAWlAAEYMW9DEFmTJ4RNCT18aw+oJcvl2aJUkYSE0zFYbLiiXxXsEFEpQE5STy6YJuGIqgA+CxTIm2XJODxeHzVbUwzEWy1BCV2RwuNxRY2xfz8c1W90nG1Snoyo7CnCC729L2c3paP1AA')">function sqrt_stream(x) {
     return pair(1, () => stream_map(guess => 
                                       sqrt_improve(guess, x),
                                     sqrt_stream(x)));
 }
 </pre></div></div>
-    <div class='snippet' id='javascript_71_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4MYD2AdgM4AuoAtgIYAeA+gCYCWpADgDY0CeoAvKACcAbhwAzAK7F85FiVCsO3HgwoAnAKY0qAClIBKUAG8coc6Cky5CpV15ryWnQxblN6-eQA0oYkdMLINAWcVBdNgZiSU5OLwMAs2DzAF9QTU5STRCw3WIBfkEABkTk5LsVXQByKt8AIjRGuoMxMtA0jKyTJLbzCt5dAAttJniWnt7+1Q1tKld3TxmXchoWOIoDX3yAWlAARnG2lInjoKnHZzm3D31fWkYp8eOJaVl5fJoANw8aAHNNXR0bw8UoWLTkSTqfKA0AAalAINAYAATGJnlY3gpSABHdTkVxUdjqQjfXS-SSaUikXx0UHmcGQj7fdR-AHkynU0B0JGgdlUp54DE2fI4vEXWaAumgBlQ0DsVaePa+XRGfgAPlASzmtHYZIpVIEGomvRNpqCovxLEJxNJfM5tO8xrNzuSFvFOklCTReHOWv0uPxfuRXqAA')">display_stream(sqrt_stream(2));
+    <div class='snippet' id='javascript_71_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4MYD2AdgM4AuoAtgIYAeA+gCYCWpADgDY0CeoAvKACcAbhwAzAK7F85FiVCsO3HgwoAnAKY0qAClIBKUAG8coc6Cky5CpV15ryWnQxblN6-eQA0oYkdMLINAWcVBdNgZiSU5OLwMAs2DzAF9QTU5STRCw3WIBfkEABkTk5LsVXQByKt8AIjRGuoMxMtA0jKyTJLbzCt5dAAttJniWnt7+1Q1tKld3TxmXchoWOIoDX3yAWlAARnG2lInjoKnHZzm3D31fWkYp8eOJaVl5fJoANw8aAHNNXR0Xw8UoWLTkSTqfKA0AAalAINAYAATGJnlY3gpSABHdTkVxUdjqQjfXS-SSaUikXx0UHmcGQj7fdR-AHkynU0B0JGgdlUp54DE2fI4vEXWaAumgBlQ0DsVaePa+XRGfgAPlASzmtHYZIpVIEGomvRNpqCovxLEJxNJfM5tO8xrNzuSFvFOklCTReHOWv0uPxfuRXqAA')">display_stream(sqrt_stream(2));
 </pre><pre class='prettyprintoutput'>
 1
 1.5

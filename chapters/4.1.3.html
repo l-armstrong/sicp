@@ -2424,7 +2424,7 @@ function frame_values(frame) {
     environments.  Since we used data abstraction to isolate the rest of the
     evaluator from the detailed choice of representation, we could change the
     environment representation if we wanted to.  (See
-    exercise&nbsp;<REF NAME="ex:alternate-frame-representation"><a class="superscript" id="4.1.3-ex-link-4.11" href="./4.1.3.html#ex_4.11">4.11</a></REF>.)  In a
+    exercise&nbsp;<REF NAME="ex:alternate-frame-representation"><a class="superscript" id="4.1.3-ex-link-4.10" href="./4.1.3.html#ex_4.10">4.10</a></REF>.)  In a
     production-quality
     
       
@@ -2447,7 +2447,7 @@ function frame_values(frame) {
 
   
     <div class="permalink">
-    <a name="ex_4.11" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.11">Exercise 4.11 </a></b> 
+    <a name="ex_4.10" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.10">Exercise 4.10 </a></b> 
   
     
     Instead of representing a frame as a pair of lists, we can represent a frame
@@ -2464,7 +2464,7 @@ function frame_values(frame) {
 
   
     <div class="permalink">
-    <a name="ex_4.12" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.12">Exercise 4.12 </a></b> 
+    <a name="ex_4.11" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.11">Exercise 4.11 </a></b> 
   
     The
     
@@ -2502,7 +2502,7 @@ function frame_values(frame) {
   
   
     <div class="permalink">
-    <a name="ex_4.13" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.13">Exercise 4.13 </a></b> 
+    <a name="ex_4.12" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.12">Exercise 4.12 </a></b> 
   
     
     
@@ -2576,16 +2576,16 @@ function frame_values(frame) {
 
   
     <div class="permalink">
-    <a name="ex_4.14" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.14">Exercise 4.14 </a></b> 
+    <a name="ex_4.13" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.13">Exercise 4.13 </a></b> 
   
         
     <OL type="a">
 	  
 	  <LI>
-	    JavaScript's semantics requires that any attempt to access the
-	    value <kbd>"*unassigned*"</kbd> leads to
-	    a runtime error. Change
-	    <kbd>lookup_symbol_value</kbd>
+	    JavaScript's semantics requires that an attempt to access the
+	    value of a name before its declaration is evaluated leads to
+	    a runtime error. To achieve this behaviour in the evaluator,
+	    change <kbd>lookup_symbol_value</kbd>
 	    to signal an error if the value it finds is 
 	    <kbd>"*unassigned*"</kbd>.
 	  </LI>
@@ -2627,7 +2627,7 @@ const unassigned_string = "*unassigned*";
     
 	
     <div class="permalink">
-    <a name="ex_4.15" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.15">Exercise 4.15 </a></b> 
+    <a name="ex_4.14" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.14">Exercise 4.14 </a></b> 
   
 	  
 	  Prior to ECMAScript 2015's strict mode that we are using in this book,
@@ -2737,7 +2737,7 @@ const unassigned_string = "*unassigned*";
     <FOOTNOTE>
     The drawback of this representation (as
     well as the variant in
-    exercise&nbsp;<REF NAME="ex:alternate-frame-representation"><a class="superscript" id="4.1.3-ex-link-4.11" href="./4.1.3.html#ex_4.11">4.11</a></REF>) is that the
+    exercise&nbsp;<REF NAME="ex:alternate-frame-representation"><a class="superscript" id="4.1.3-ex-link-4.10" href="./4.1.3.html#ex_4.10">4.10</a></REF>) is that the
     evaluator may have to search through many frames in order to find the binding
     for a given variable.
     

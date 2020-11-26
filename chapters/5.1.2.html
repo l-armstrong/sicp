@@ -2064,7 +2064,7 @@ assign("t", list(op("rem"), reg("a"), reg("b")))</pre></div></div>
     
     Design a machine to compute square roots using Newton's method, as
     described in section&nbsp;<REF NAME="sec:sqrt"><a class="superscript" id="5.1.2-sec-link-1.1.7" href="./1.1.7.html">1.1.7</a></REF>:
-    <div class='snippet' id='javascript_99_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAVgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUKwBundqwDmPXgBoAnoJHiJnKTNB9QAalA3QYbKo2FSSlp6ZnYKPltRcS0g3RMaGgATAH1OEhoiEwALbhMiTgYGSPt7SWl6AFtWCizk1gAjBm5mNi5c-MLBAFolQQAeUAAGNEHBjFV7DXsYnXoqCoAHdhpDdoKi4SiShyd6AyNTHjz1iyVvUGPOifEp6MDZxiYw5KoKIzXOze2xMud4pNS6UyOUuRS23zEAH4Lh0GOCIQAuR7PV7veZLFZHWH8fjXMS3H6OcpiUIUF5vdjcDC49T4UncFC4oA')">function sqrt(x) {
+    <div class='snippet' id='javascript_99_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAVgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUKwBundqwDmPXgBpQAT0EjxEzlJmg+oANQ3BYbKo2FSSlp6ZnYKPjtRcS0g3RMaGgATAH1OEhoiEwALbhMiTgYGSIcHSWl6AFtWCizk1gAjBm5mNi5c-MLBAFolQQAeUAAGNEHBjFUHDQcYnXoqCoAHdhpDdoKi4SiSx2d6AyNTHjz1qzkwY86J8SnowNnGJjDkqgojNc7N7bEyl3ik1PSmRyFyKWy+YgA-KAQWDwQAuB5PF5veZLFZHDpFfhXMQ3b5OcpiUIUZ6vdjcDDY9T4YncFDYoA')">function sqrt(x) {
     function good_enough(guess) {
         return math_abs(square(guess) - x) < 0.001;
     }

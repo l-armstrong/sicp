@@ -2005,8 +2005,8 @@ Acknowledgments
 	Initially, these names refer to the value
 	<kbd>"*unassigned*"</kbd>, but the evaluation of
 	their respective declaration statements assigns them to their proper values.
-	This section takes a closer look at this design and discusses alternatives
-	in exercises.
+	This section takes a closer look at this design and discusses alternative
+	interpretations of local declarations in exercises.
       </p></div>
       <div class='permalink'>
 <a name='p2' class='permalink'></a><p>
@@ -2053,21 +2053,23 @@ Acknowledgments
       <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
 	We can see the evaluation of blocks in
-	section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> as a technique to achieve a
-	truly simultaneous scope for local names. The local names
+	section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> as a technique to achieve such
+	a simultaneous scope for local names. The new environment with respect to which
+	the block body is evaluated already contains bindings for 
 	<kbd>is_even</kbd> and
-	<kbd>is_odd</kbd>
-	initially refer to
-	<kbd>"*unassigned*"</kbd> and get bound to
-	their proper function values one by one as the evaluation of the sequence of
-	statements in the body of
-	<kbd>f</kbd> proceeds. This does not pose a problem,
-	even in the presence of (mutual) recursion, because the evaluation of the function
-	declarations does not evaluate their bodies. By the time any of the locally
-	declared functions get applied (later in the body of
-	<kbd>f</kbd>),
-	and as a result their bodies get evaluated,
-	all declarations have been evaluated.
+	<kbd>is_odd</kbd> and thus all occurrences
+	of these two names refer to the correct environment. Once their respective
+	declarations are evaluated, these names refer to the correct values in
+	the functions' environments. For example, 
+	when
+	<kbd>is_even</kbd> 	
+	gets applied in the rest of
+	<kbd>f</kbd>, its environment—already containing
+	the correct binding for the symbol
+	<kbd>is_odd</kbd>—gets extended and
+	the evaluation of the name 
+	<kbd>is_odd</kbd> in the body  of
+	<kbd>is_even</kbd> retrieves the correct value.
       </p></div>
     
   
@@ -2080,19 +2082,21 @@ Acknowledgments
     
       
     <div class="permalink">
-    <a name="ex_4.18" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.18">Exercise 4.18 </a></b> 
+    <a name="ex_4.17" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.17">Exercise 4.17 </a></b> 
   
 		
 	Our implementation of blocks in
 	section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> imposes a
 	runtime burden: It needs to scan
-	the body of the block for locally declared names. We can avoid 
-	scanning for local names
-	in many cases by changing the evaluation of constant and variable
-	declaration such that they add to the innermost
-	frame of the given environment a binding of the declared name to
+	the body of the block for locally declared names, extend the
+	current environment with a new frame that binds those names and evaluate the
+	block body with this extended environment. Alternatively,
+	we could evaluate the block body with respect to the current environment, 
+	and change the evaluation of a
+	declaration such that it adds to the innermost
+	frame of the current environment a binding of the declared name to
 	the result of evaluating the expression on the right-hand side of the
-	declaration.
+	declaration. Implement this alternative as follows:
 	<OL type="a">
 	  <LI>
 	    Simplify 
@@ -2115,11 +2119,6 @@ Acknowledgments
 	    <kbd>add_binding_to_frame</kbd> instead of
 	    <kbd>assign_symbol_value</kbd>.
 	  </LI>
-	  <LI>
-	    Can you find programs that behave differently with this treatment
-	    of local declarations, compared to the implementation
-	    in section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>?
-	  </LI>
 	</OL>
       
       <div class="Solution">
@@ -2134,16 +2133,17 @@ Acknowledgments
 
   
     <div class="permalink">
-    <a name="ex_4.19" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.19">Exercise 4.19 </a></b> 
+    <a name="ex_4.18" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.18">Exercise 4.18 </a></b> 
   
     
       
       
-	Draw diagrams of the environment in effect when evaluating 
-	$\textit{statements}$ in the
-	function in the text, comparing how this will be structured when
+	Draw diagrams of the environment in effect when evaluating the
+	return expression of
+	the function <kbd>f_3</kbd>
+	in section&nbsp;<REF NAME="sec:lambda"><a class="superscript" id="4.1.6-sec-link-1.3.2" href="./1.3.2.html">1.3.2</a></REF>, comparing how this will be structured when
 	declarations are interpreted sequentially as described in
-	exercise&nbsp;<REF NAME="ex:add_binding_to_frame"><a class="superscript" id="4.1.6-ex-link-4.18" href="./4.1.6.html#ex_4.18">4.18</a></REF>
+	exercise&nbsp;<REF NAME="ex:add_binding_to_frame"><a class="superscript" id="4.1.6-ex-link-4.17" href="./4.1.6.html#ex_4.17">4.17</a></REF>
 	with how it is structured if declarations are scanned out as described
 	in section&nbsp;&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>.
 	Why is there an extra frame in the latter case?
@@ -2169,7 +2169,7 @@ Acknowledgments
     
       
     <div class="permalink">
-    <a name="ex_4.20" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.20">Exercise 4.20 </a></b> 
+    <a name="ex_4.19" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.19">Exercise 4.19 </a></b> 
   
 	 
 	Ben Bitdiddle, Alyssa P. Hacker, and Eva Lu Ator are arguing about
@@ -2184,7 +2184,7 @@ f(10);
 </pre></div></div>
 	Ben asserts that the result should be obtained using the sequential
 	implementation for <kbd>let</kbd> as given
-	in exercise&nbsp;<REF NAME="ex:add_binding_to_frame"><a class="superscript" id="4.1.6-ex-link-4.18" href="./4.1.6.html#ex_4.18">4.18</a></REF>:
+	in exercise&nbsp;<REF NAME="ex:add_binding_to_frame"><a class="superscript" id="4.1.6-ex-link-4.17" href="./4.1.6.html#ex_4.17">4.17</a></REF>:
 	<kbd>b</kbd> is declared to be 11, then
 	<kbd>a</kbd> is declared to be 5, so the result is 16.
 	Alyssa objects that mutual recursion requires the simultaneous scope
@@ -2216,6 +2216,46 @@ f(10);
     
   
 
+  
+    <div class="permalink">
+    <a name="ex_4.20" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.20">Exercise 4.20 </a></b> 
+  
+        
+    
+      
+	Eva Lu Ator is writing programs with blocks in which
+	function declarations and other statements are interspersed.
+	She needs to take care that the declarations are evaluated before
+	the functions are applied. She complains: <QUOTE>Why can't
+	the evaluator take care of this chore, and move all function
+	declarations to the beginning of the block in which they appear?</QUOTE>
+	<OL type="a">
+	  <LI>
+	    Modify the evaluator following Eva's suggestion.
+	  </LI>
+	  <LI>
+	    The designers of JavaScript decided to follow Eva's approach. Discuss 
+	    this decision.
+	  </LI>
+	  <LI>
+	    In addition, the designers of JavaScript decided to allow the name declared
+	    by a function declaration to be reassigned using assignment statements.
+	    Modify your solution
+	    accordingly and discuss this decision.
+	  </LI>
+	</OL>
+      
+    
+  
+      <div class="Solution">
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_4_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_81_4_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      </div>
+    
+</EXERCISE></div>
+
+
+  
   
     <div class="permalink">
     <a name="ex_4.21" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.21">Exercise 4.21 </a></b> 
@@ -2289,8 +2329,8 @@ f(10);
     
   
       <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_4_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_81_4_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_5_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_81_5_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
       </div>
     
 </EXERCISE></div>
