@@ -2654,8 +2654,8 @@ L-evaluate value:</pre></div></div>
 	no subsequent use of this value (e.g., as an argument to a primitive
 	function) that will cause it to be forced.
 	Cy thus thinks that when
-	evaluating sequences, we must force all statements in the sequence
-	except the final one. He proposes to modify
+	evaluating sequences, we must force all statements in the sequence.
+	He proposes to modify
 	<kbd>evaluate_sequence</kbd>
 	from section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.2.2-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> to use
 	<kbd>actual_value</kbd>
@@ -2673,7 +2673,7 @@ function eval_sequence(stmts, env) {
         const first_stmt_value = 
             actual_value(first_statement(stmts),env);
         if (is_return_value(first_stmt_value)) {
-            return first_component_value;
+            return first_stmt_value;
         } else {
             return eval_sequence(
                 rest_statements(stmts),env);
@@ -2714,7 +2714,7 @@ function eval_sequence(stmts, env) {
 	
 	handles this correctly:
 	<div class='snippet' id='javascript_85_26_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-for_each(x => display( x),
+for_each(x => display(x),
          list(57, 321, 88));</pre><pre class='prettyprintoutput'>
 57
 321
