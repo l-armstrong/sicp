@@ -2002,12 +2002,14 @@ Acknowledgments
     <EM>vector</EM>.  Abstractly, a vector is a compound data object whose
     individual elements can be accessed by means of an integer index in an
     amount of time that is independent of the index.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a> In order to describe memory operations, we use two
-    primitive 
     
       
       JavaScript functions
     
-    for manipulating vectors:
+    for manipulating vectors
+    
+      (as hinted in previous chapters, JavaScript supports vectors as primitive data structures called <EM>arrays</EM>, and writes <kbd>array[n]</kbd> and <kbd>array[n] = value</kbd> in-place of the two functions below)
+    :
     <UL>
       
       
@@ -2016,8 +2018,8 @@ Acknowledgments
 	  
 	  
 	    <kbd>vector_ref(</kbd>
-	    $\textit{vector}$,
-	    $\textit{n}$
+	    $\ensuremath{\text{\textrm{\sl vector}}}$,
+	    $\ensuremath{\text{\textrm{\sl n}}}$
 	    <kbd>)</kbd>
 	  
 	
@@ -2030,9 +2032,9 @@ Acknowledgments
 	  
 	  
 	    <kbd>vector_set(</kbd>
-	    $\textit{vector}$,
-	    $\textit{n}$,
-	    $\textit{value}$
+	    $\ensuremath{\text{\textrm{\sl vector}}}$,
+	    $\ensuremath{\text{\textrm{\sl n}}}$,
+	    $\ensuremath{\text{\textrm{\sl value}}}$
 	    <kbd>)</kbd>
 	  
 	
@@ -2223,9 +2225,9 @@ Acknowledgments
     printed representation. This sequence is constructed by the
     
       
-      JavaScript
+      JavaScript <kbd>prompt</kbd> function
     
-    reader when the character string is initially encountered in input.  Since
+    when the character string is initially encountered in input.  Since
     we want two instances of a
     
       
@@ -2249,17 +2251,30 @@ Acknowledgments
       <kbd>===</kbd>
     
     to be a simple test for equality of pointers, we must ensure that if the
-    reader sees the same character string twice, it will use the same pointer
+    
+      
+      <kbd>prompt</kbd> function
+    
+    sees the same character string twice, it will use the same pointer
     (to the same sequence of characters) to represent both occurrences.  To
-    accomplish this, the reader maintains a table, traditionally called the 
+    accomplish this, the
+    
+      
+      system
+    
+    maintains a table, traditionally called the 
     
     <EM>obarray</EM>, of all the
     
       
       string
     
-    it has ever encountered.  When the reader encounters a character string
-    and is about to construct a
+    it has ever encountered.  When the
+    
+      
+      <kbd>prompt</kbd> function
+    
+    encounters a character string and is about to construct a
     
       
       string,
@@ -2273,7 +2288,11 @@ Acknowledgments
     
     (a typed pointer to a
     new character sequence) and enters this pointer in the obarray.  If the
-    reader has seen the string before, it returns the
+    
+      
+      <kbd>prompt</kbd> function
+    
+    has seen the string before, it returns the
     
       
       string
@@ -2335,27 +2354,24 @@ Acknowledgments
     For example, we can make a register machine support the instructions
     
     
-    <kbd class='snippet'>assign($\textit{reg}_1$, list(op("head"), $\textit{reg}_2$))
-assign($\textit{reg}_1$, list(op("tail"), $\textit{reg}_2$))</kbd>
+    <kbd class='snippet'>assign($\ensuremath{\text{\textrm{\sl reg}}_{1}}$, list(op("head"), $\ensuremath{\text{\textrm{\sl reg}}_{2}}$))
+assign($\ensuremath{\text{\textrm{\sl reg}}_{1}}$, list(op("tail"), $\ensuremath{\text{\textrm{\sl reg}}_{2}}$))</kbd>
     if we implement these, respectively, as
-    <kbd class='snippet'>assign($\textit{reg}_1$, list(op("vector_ref"), reg("the_heads"), $\textit{reg}_2$))
-assign($\textit{reg}_1$, list(op("vector_ref"), reg("the_tails"), $\textit{reg}_2$))</kbd>
+    <kbd class='snippet'>assign($\ensuremath{\text{\textrm{\sl reg}}_{1}}$, list(op("vector_ref"), reg("the_heads"), $\ensuremath{\text{\textrm{\sl reg}}_{2}}$))
+assign($\ensuremath{\text{\textrm{\sl reg}}_{1}}$, list(op("vector_ref"), reg("the_tails"), $\ensuremath{\text{\textrm{\sl reg}}_{2}}$))</kbd>
+
+    The instructions
+    
+    
+    <kbd class='snippet'>perform(list(op("set_head"), reg($\ensuremath{\text{\textrm{\sl reg}}_{1}}$), reg($\ensuremath{\text{\textrm{\sl reg}}_{2}}$)))
+perform(list(op("set_tail"), reg($\ensuremath{\text{\textrm{\sl reg}}_{1}}$), reg($\ensuremath{\text{\textrm{\sl reg}}_{2}}$)))</kbd>
+    are implemented as
+    <kbd class='snippet'>perform(op("vector_set"), list(reg("the_heads"), reg($\ensuremath{\text{\textrm{\sl reg}}_{1}}$), reg($\ensuremath{\text{\textrm{\sl reg}}_{2}}$)))
+perform(op("vector_set"), list((reg("the_tails"), reg($\ensuremath{\text{\textrm{\sl reg}}_{1}}$), reg($\ensuremath{\text{\textrm{\sl reg}}_{2}}$)))</kbd>
   </p></div>
 
   <div class='permalink'>
 <a name='p9' class='permalink'></a><p>
-    The instructions
-    
-    
-    <kbd class='snippet'>perform(list(op("set_head"), reg($\textit{reg}_1$), reg($\textit{reg}_2$)))
-perform(list(op("set_tail"), reg($\textit{reg}_1$), reg($\textit{reg}_2$)))</kbd>
-    are implemented as
-    <kbd class='snippet'>perform(op("vector_set"), list(reg("the_heads"), reg($\textit{reg}_1$), reg($\textit{reg}_2$)))
-perform(op("vector_set"), list((reg("the_tails"), reg($\textit{reg}_1$), reg($\textit{reg}_2$)))</kbd>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p10' class='permalink'></a><p>
     
     
       
@@ -2384,24 +2400,24 @@ perform(op("vector_set"), list((reg("the_tails"), reg($\textit{reg}_1$), reg($\t
     containing the next available index, and that we can increment the index
     part of that pointer to find the next free location.<a class='superscript' id='footnote-link-7' href='#footnote-7'>[7]</a>
     For example, the instruction
-    <kbd class='snippet'>assign($\textit{reg}_1$, list(op("pair"), reg($\textit{reg}_2$), reg($\textit{reg}_3$)))</kbd>
+    <kbd class='snippet'>assign($\ensuremath{\text{\textrm{\sl reg}}_{1}}$, list(op("pair"), reg($\ensuremath{\text{\textrm{\sl reg}}_{2}}$), reg($\ensuremath{\text{\textrm{\sl reg}}_{3}}$)))</kbd>
     is implemented as the following sequence of vector
     operations:<a class='superscript' id='footnote-link-8' href='#footnote-8'>[8]</a>
-    <kbd class='snippet'>perform(op("vector_set"), list(reg("the_heads"), reg("free"), reg($\textit{reg}_2$))),
-perform(op("vector_set"), list(reg("the_tails"), reg("free"), reg($\textit{reg}_3$))),
-assign($\textit{reg}_1$, reg("free")),
+    <kbd class='snippet'>perform(op("vector_set"), list(reg("the_heads"), reg("free"), reg($\ensuremath{\text{\textrm{\sl reg}}_{2}}$))),
+perform(op("vector_set"), list(reg("the_tails"), reg("free"), reg($\ensuremath{\text{\textrm{\sl reg}}_{3}}$))),
+assign($\ensuremath{\text{\textrm{\sl reg}}_{1}}$, reg("free")),
 assign("free", list(op("+"), reg("free"), constant(1)))</kbd>
   </p></div>
 
   <div class='permalink'>
-<a name='p11' class='permalink'></a><p>
+<a name='p10' class='permalink'></a><p>
     The
     
       
       <kbd>===</kbd>
     
     operation
-    <kbd class='snippet'>list(op("==="), reg($\textit{reg}_1$), reg($\textit{reg}_2$))</kbd>
+    <kbd class='snippet'>list(op("==="), reg($\ensuremath{\text{\textrm{\sl reg}}_{1}}$), reg($\ensuremath{\text{\textrm{\sl reg}}_{2}}$))</kbd>
     simply tests the equality of all fields in the registers, and
     
     
@@ -2437,7 +2453,7 @@ assign("free", list(op("+"), reg("free"), constant(1)))</kbd>
 
   
   <div class='permalink'>
-<a name='p12' class='permalink'></a><p>
+<a name='p11' class='permalink'></a><p>
     Although our register machines use stacks, we need do nothing special
     here, since stacks can be modeled in terms of lists.  The stack can be
     a list of the saved values, pointed to by a special register
@@ -2449,23 +2465,23 @@ assign("free", list(op("+"), reg("free"), constant(1)))</kbd>
     
       
       <kbd>save(</kbd>
-      $\textit{reg}$
+      $\ensuremath{\text{\textrm{\sl reg}}}$
       <kbd>)</kbd>
     
     can be implemented as
     
-    <kbd class='snippet'>assign("the_stack", list(op("pair"), reg($\textit{reg}$), reg("the_stack")))</kbd>
+    <kbd class='snippet'>assign("the_stack", list(op("pair"), reg($\ensuremath{\text{\textrm{\sl reg}}}$), reg("the_stack")))</kbd>
     
     Similarly,
     
       
       
 	<kbd>restore(</kbd>
-	$\textit{reg}$
+	$\ensuremath{\text{\textrm{\sl reg}}}$
       <kbd>)</kbd>
     
     can be implemented as
-    <kbd class='snippet'>assign($\textit{reg}$, list(op("head"), reg("the_stack")))
+    <kbd class='snippet'>assign($\ensuremath{\text{\textrm{\sl reg}}}$, list(op("head"), reg("the_stack")))
 assign("the_stack", list(op("tail"), reg("the_stack")))</kbd>
     and
     
@@ -2479,7 +2495,7 @@ assign("the_stack", list(op("tail"), reg("the_stack")))</kbd>
   </p></div>
 
   <div class='permalink'>
-<a name='p13' class='permalink'></a><p>
+<a name='p12' class='permalink'></a><p>
     These operations can be further expanded in terms of the vector
     operations given above.  In conventional computer architectures,
     however, it is usually advantageous to allocate the stack as a
