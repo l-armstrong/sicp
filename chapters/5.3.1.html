@@ -2008,7 +2008,7 @@ Acknowledgments
     
     for manipulating vectors
     
-      (as hinted in previous chapters, JavaScript supports vectors as primitive data structures called <EM>arrays</EM>, and writes <kbd>array[n]</kbd> and <kbd>array[n] = value</kbd> in-place of the two functions below)
+      (as hinted in previous chapters, JavaScript supports vectors as data structures called <EM>arrays</EM>, and writes <kbd>array[n]</kbd> and <kbd>array[n] = value</kbd> in-place of the two functions below)
     :
     <UL>
       
@@ -2225,7 +2225,7 @@ Acknowledgments
     printed representation. This sequence is constructed by the
     
       
-      JavaScript <kbd>prompt</kbd> function
+      JavaScript parser
     
     when the character string is initially encountered in input.  Since
     we want two instances of a
@@ -2253,14 +2253,14 @@ Acknowledgments
     to be a simple test for equality of pointers, we must ensure that if the
     
       
-      <kbd>prompt</kbd> function
+      parser
     
     sees the same character string twice, it will use the same pointer
     (to the same sequence of characters) to represent both occurrences.  To
     accomplish this, the
     
       
-      system
+      parser
     
     maintains a table, traditionally called the 
     
@@ -2272,7 +2272,7 @@ Acknowledgments
     it has ever encountered.  When the
     
       
-      <kbd>prompt</kbd> function
+      parser
     
     encounters a character string and is about to construct a
     
@@ -2290,7 +2290,7 @@ Acknowledgments
     new character sequence) and enters this pointer in the obarray.  If the
     
       
-      <kbd>prompt</kbd> function
+      parser
     
     has seen the string before, it returns the
     
