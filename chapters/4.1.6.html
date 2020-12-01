@@ -1998,10 +1998,7 @@ Acknowledgments
 
       <div class='permalink'>
 <a name='p1' class='permalink'></a><p>
-	In JavaScript, the scope of a name declared with
-	<kbd>const</kbd>,
-	<kbd>let</kbd> or
-	<kbd>function</kbd> 
+	In JavaScript, the scope of a declaration
 	is the entire block that immediately surrounds the declaration;
 	the scope is not just starting at the declaration.
 	This section takes a closer look at this design choice.
@@ -2234,9 +2231,9 @@ f(10);
 	Why is there an extra frame in the latter case?
 	JavaScript forbids the redeclaration of parameters
 	as local names in the body block of a function. Assuming this restriction,
-	how can you achieve the scoping for local names
-	in blocks of 
+	how can you achieve the scoping of 
 	section&nbsp;&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>
+	for local names	in the body blocks of lambda expressions 	
 	without constructing the extra frame?
       
       
