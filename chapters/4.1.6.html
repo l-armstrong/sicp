@@ -1998,15 +1998,13 @@ Acknowledgments
 
       <div class='permalink'>
 <a name='p1' class='permalink'></a><p>
-	Our metacircular evaluator
-	of section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> evaluates
-	blocks by scanning out the declarations in the block and by
-	extending the current environment with bindings for the scanned-out names.
-	Initially, these names refer to the value
-	<kbd>"*unassigned*"</kbd>, but the evaluation of
-	their respective declaration statements assigns them to their proper values.
-	This section takes a closer look at this design and discusses alternative
-	interpretations of local declarations in exercises.
+	In JavaScript, the scope of a name declared with
+	<kbd>const</kbd>,
+	<kbd>let</kbd> or
+	<kbd>function</kbd> 
+	is the entire block that immediately surrounds the declaration;
+	the scope is not just starting at the declaration.
+	This section takes a closer look at this design choice.
       </p></div>
       <div class='permalink'>
 <a name='p2' class='permalink'></a><p>
@@ -2052,12 +2050,16 @@ Acknowledgments
       </p></div>
       <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
-	We can see the evaluation of blocks in
-	section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> as a technique to achieve such
-	a simultaneous scope for local names. The new environment with respect to which
+	The evaluation of blocks in the metacircular evaluator of
+	section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> achieves such
+	a simultaneous scope for local names
+	by scanning out the declarations in the block and 
+	extending the current environment with bindings for the scanned-out names
+	before evaluating the declarations.
+	Thus the new environment with respect to which
 	the block body is evaluated already contains bindings for 
 	<kbd>is_even</kbd> and
-	<kbd>is_odd</kbd> and thus all occurrences
+	<kbd>is_odd</kbd>, and thus all occurrences
 	of these two names refer to the correct environment. Once their respective
 	declarations are evaluated, these names refer to the correct values in
 	the functions' environments. For example, 
@@ -2066,10 +2068,17 @@ Acknowledgments
 	gets applied in the rest of
 	<kbd>f</kbd>, its environment—already containing
 	the correct binding for the symbol
-	<kbd>is_odd</kbd>—gets extended and
+	<kbd>is_odd</kbd>—gets extended, and
 	the evaluation of the name 
 	<kbd>is_odd</kbd> in the body  of
 	<kbd>is_even</kbd> retrieves the correct value.
+      </p></div>
+      <div class='permalink'>
+<a name='p4' class='permalink'></a><p>
+	An alternative strategy for handling local declarations,
+	by evaluating them sequentially without scanning them out first,
+	is explored in
+	exercise&nbsp;<REF NAME="ex:add_binding_to_frame"><a class="superscript" id="4.1.6-ex-link-4.17" href="./4.1.6.html#ex_4.17">4.17</a></REF>.
       </p></div>
     
   
@@ -2085,18 +2094,18 @@ Acknowledgments
     <a name="ex_4.17" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.17">Exercise 4.17 </a></b> 
   
 		
-	Our implementation of blocks in
+	The design of our evaluator of
 	section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> imposes a
-	runtime burden: It needs to scan
+	runtime burden on the evaluation of blocks: It needs to scan
 	the body of the block for locally declared names, extend the
-	current environment with a new frame that binds those names and evaluate the
-	block body with this extended environment. Alternatively,
+	current environment with a new frame that binds those names, and evaluate the
+	block body in this extended environment. Alternatively,
 	we could evaluate the block body with respect to the current environment, 
 	and change the evaluation of a
 	declaration such that it adds to the innermost
 	frame of the current environment a binding of the declared name to
 	the result of evaluating the expression on the right-hand side of the
-	declaration. Implement this alternative as follows:
+	declaration. Implement this alternative design as follows:
 	<OL type="a">
 	  <LI>
 	    Simplify 
@@ -2108,14 +2117,14 @@ Acknowledgments
 	    Declare a function
 	    <kbd class='snippet'>add_binding_to_frame($symbol$, $value$, $frame$)</kbd>
 	    that permanently changes the given
-	    $\textit{frame}$ such that after calling
-	    the function, $\textit{symbol}$
+	    $\textit{frame}$ so that 
+	    $\textit{symbol}$
 	    refers to $\textit{value}$.
 	  </LI>
 	  <LI>
-	    Change the function
+	    Change
 	    <kbd>eval_declaration</kbd>
-	    such that it makes use of
+	    so that it uses
 	    <kbd>add_binding_to_frame</kbd> instead of
 	    <kbd>assign_symbol_value</kbd>.
 	  </LI>
@@ -2131,45 +2140,41 @@ Acknowledgments
     
   
 
+    
+      
+    
   
+    
+    
+      <div class='permalink'>
+<a name='p5' class='permalink'></a><p>
+	As it happens, the sequential processing of declarations
+	of exercise&nbsp;<REF NAME="ex:add_binding_to_frame"><a class="superscript" id="4.1.6-ex-link-4.17" href="./4.1.6.html#ex_4.17">4.17</a></REF>
+	will evaluate calls to the function
+	<kbd>f</kbd> of the beginning of this section
+	correctly, but for an
+	<QUOTE>accidental</QUOTE> reason: Since the declarations
+	of the internal functions come first, no calls to these functions
+	will be evaluated until all of them have been declared. Hence,
+	<kbd>is_odd</kbd> will have been declared by the time
+	<kbd>is_even</kbd> is executed.  In fact, the 
+	evaluation mechanism of exercise&nbsp;<REF NAME="ex:add_binding_to_frame"><a class="superscript" id="4.1.6-ex-link-4.17" href="./4.1.6.html#ex_4.17">4.17</a></REF>
+	will give the same result as our scanning-out-names evaluator in
+	section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>
+	for any function
+	in which the 
+	
+	internal declarations come first in a body and evaluation of the value
+	expressions for the declared names doesn't actually use any of
+	the declared names.
+	Exercise&nbsp;<REF NAME="ex:simultaneous-def"><a class="superscript" id="4.1.6-ex-link-4.18" href="./4.1.6.html#ex_4.18">4.18</a></REF> shows
+	an example of a function that doesn't
+	obey these restrictions, so that the alternative interpreter isn't
+	equivalent to our scanning-out-names evaluator.
+      </p></div>
+      
     <div class="permalink">
     <a name="ex_4.18" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.18">Exercise 4.18 </a></b> 
-  
-    
-      
-      
-	Draw diagrams of the environment in effect when evaluating the
-	return expression of
-	the function <kbd>f_3</kbd>
-	in section&nbsp;<REF NAME="sec:lambda"><a class="superscript" id="4.1.6-sec-link-1.3.2" href="./1.3.2.html">1.3.2</a></REF>, comparing how this will be structured when
-	declarations are interpreted sequentially as described in
-	exercise&nbsp;<REF NAME="ex:add_binding_to_frame"><a class="superscript" id="4.1.6-ex-link-4.17" href="./4.1.6.html#ex_4.17">4.17</a></REF>
-	with how it is structured if declarations are scanned out as described
-	in section&nbsp;&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>.
-	Why is there an extra frame in the latter case?
-	JavaScript forbids the redeclaration of parameters
-	as local names in the body block of any function. With this restriction,
-	can you achieve the scoping for local names
-	in lambda expressions of 
-	section&nbsp;&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>
-	without constructing the extra frame?
-      
-    
-  
-      <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_2_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_81_2_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
-      </div>
-    
-</EXERCISE></div>
-
-
-  
-    
-    
-      
-    <div class="permalink">
-    <a name="ex_4.19" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.19">Exercise 4.19 </a></b> 
   
 	 
 	Ben Bitdiddle, Alyssa P. Hacker, and Eva Lu Ator are arguing about
@@ -2183,7 +2188,7 @@ function f(x) {
 f(10);
 </pre></div></div>
 	Ben asserts that the result should be obtained using the sequential
-	implementation for <kbd>let</kbd> as given
+	implementation for <kbd>const</kbd> as given
 	in exercise&nbsp;<REF NAME="ex:add_binding_to_frame"><a class="superscript" id="4.1.6-ex-link-4.17" href="./4.1.6.html#ex_4.17">4.17</a></REF>:
 	<kbd>b</kbd> is declared to be 11, then
 	<kbd>a</kbd> is declared to be 5, so the result is 16.
@@ -2205,6 +2210,35 @@ f(10);
 	Which (if any) of these	viewpoints do you support?  Can you devise a way
 	to implement internal declarations so that they behave as Eva
 	prefers?<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
+      
+      <div class="Solution">
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_2_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_81_2_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      </div>
+    
+</EXERCISE></div>
+
+      
+    <div class="permalink">
+    <a name="ex_4.19" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.19">Exercise 4.19 </a></b> 
+  
+      
+	Draw diagrams of the environment in effect when evaluating the
+	return expression of
+	the function <kbd>f_3</kbd>
+	in section&nbsp;<REF NAME="sec:lambda"><a class="superscript" id="4.1.6-sec-link-1.3.2" href="./1.3.2.html">1.3.2</a></REF>, comparing how this will be structured when
+	declarations are interpreted sequentially as described in
+	exercise&nbsp;<REF NAME="ex:add_binding_to_frame"><a class="superscript" id="4.1.6-ex-link-4.17" href="./4.1.6.html#ex_4.17">4.17</a></REF>
+	with how it is structured if declarations are scanned out as described
+	in section&nbsp;&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>.
+	Why is there an extra frame in the latter case?
+	JavaScript forbids the redeclaration of parameters
+	as local names in the body block of a function. Assuming this restriction,
+	how can you achieve the scoping for local names
+	in blocks of 
+	section&nbsp;&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>
+	without constructing the extra frame?
+      
       
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_3_div" data-toggle="collapse">Add solution</button></div>
@@ -2268,8 +2302,8 @@ f(10);
 	Recursive functions are obtained in a roundabout way in our
 	interpreter: First declare the name that will refer to the recursive
 	function and assign it to the special value
-	<kbd>"*unassigned*"</kbd>. Then define the
-	recursive function in the scope of that name, and finally assign the
+	<kbd>"*unassigned*"</kbd>; then define the
+	recursive function in the scope of that name; and finally assign the
 	name to the defined function. By the time the recursive function gets
 	applied, any occurrences of the name in the body properly refer to
 	the recursive function. Amazingly, it is possible to specify recursive
