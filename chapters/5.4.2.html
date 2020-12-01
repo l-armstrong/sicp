@@ -1789,7 +1789,7 @@ Acknowledgments
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-115" aria-expanded="false" aria-controls="sidebar-collapse-115">
                 <a href="./5.4.3.html"> 5.4.3 
-    Conditionals, Assignments, and Declarations and Blocks
+    Conditionals, Assignments, Declarations, and Blocks
   </a>
               </span>
             </h5>
@@ -2030,10 +2030,7 @@ Acknowledgments
       save("continue"),
       assign("unev", list(op("sequence_statements"), reg("stmt"))),
       go_to(label("ev_sequence"))</pre></div></div>
-  </p></div>
 
-  <div class='permalink'>
-<a name='p3' class='permalink'></a><p>
     The implicit sequences in
     
       
@@ -2060,7 +2057,7 @@ Acknowledgments
   </p></div>
 
   <div class='permalink'>
-<a name='p4' class='permalink'></a><p>
+<a name='p3' class='permalink'></a><p>
     The entries at
     
       
@@ -2089,7 +2086,13 @@ Acknowledgments
     
     is kept in <kbd>unev</kbd>.
     Before evaluating each
-    expression, we check to see if there are additional
+    
+      
+      
+	statement,
+      
+    
+    we check to see if there are additional
     
       
       
@@ -2134,7 +2137,7 @@ Acknowledgments
         not. If it is, we jump to the entry point
         <kbd>ev_return_from_seq</kbd> and abort the
         loop. Sequences that do not contain an explicit return will eventually
-        dispatch to the aforementioned entry point
+        dispatch to the entry point
         <kbd>end_without_return</kbd>, which will
         ensure that the sequence ends with <kbd>val</kbd>
         holding the value <kbd>undefined</kbd>. 
@@ -2143,7 +2146,7 @@ Acknowledgments
   </p></div>
 
   <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
+<a name='p4' class='permalink'></a><p>
     The final
     
       
@@ -2266,7 +2269,7 @@ Acknowledgments
   
   
   <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
+<a name='p5' class='permalink'></a><p>
     In chapter&nbsp;1 we said that the process described by a
     
       
@@ -2331,7 +2334,7 @@ function sqrt_iter(guess, x) {
   </p></div>
 
   <div class='permalink'>
-<a name='p7' class='permalink'></a><p>
+<a name='p6' class='permalink'></a><p>
     With one exception, discussed
     at the end of this section, our evaluator is
     tail-recursive, because in order to evaluate the final
@@ -2379,7 +2382,7 @@ function sqrt_iter(guess, x) {
     not cause any information to be accumulated on the stack.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a> 
 
   <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
+<a name='p7' class='permalink'></a><p>
     If we did not think to take advantage of the fact that it was unnecessary to
     save information in this case, we might have implemented
     
@@ -2398,7 +2401,7 @@ function sqrt_iter(guess, x) {
      assign(exp(op("first_stmt"), reg("unev")),
      save("unev"),
      save("env"),
-     assign(continue(label("ev_sequence_continue"))),
+     assign("continue", label("ev_sequence_continue")),
      go_to(label("eval_dispatch")),
 "ev_sequence_continue",
      restore("env"),
@@ -2411,13 +2414,33 @@ function sqrt_iter(guess, x) {
   </p></div>
 
   <div class='permalink'>
-<a name='p9' class='permalink'></a><p>
+<a name='p8' class='permalink'></a><p>
     This may seem like a minor change to our previous code for evaluation of a
     sequence:  The only difference is that we go through the save-restore cycle
-    for the last expression in a sequence as well as for the others.  The
-    interpreter will still give the same value for any expression.  But this
-    change is fatal to the tail-recursive implementation, because we must now
-    return after evaluating the final expression in a sequence in order to undo
+    for the last
+    
+      
+      
+        statement
+      
+    
+    in a sequence as well as for the others.  The
+    interpreter will still give the same value for any
+    
+      
+      
+        statement.
+      
+    
+    But this change is fatal to the tail-recursive implementation, because we must now
+    return after evaluating the final
+    
+      
+      
+        statement
+      
+    
+    in a sequence in order to undo
     the (useless) register saves.  These extra saves will accumulate during a
     nest of
     
@@ -2458,7 +2481,7 @@ function count(n) {
   </p></div>
 
   <div class='permalink'>
-<a name='p10' class='permalink'></a><p>
+<a name='p9' class='permalink'></a><p>
     
       The exception to tail recursion in our evaluator is due to the
       implicit returning of <kbd>undefined</kbd>.

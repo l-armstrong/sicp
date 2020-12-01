@@ -15,11 +15,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <meta name="description" content="5.4.3&nbsp;&nbsp;
-    Conditionals, Assignments, and Declarations and Blocks
+    Conditionals, Assignments, Declarations, and Blocks
   " />
     <title>
       5.4.3&nbsp;&nbsp;
-    Conditionals, Assignments, and Declarations and Blocks
+    Conditionals, Assignments, Declarations, and Blocks
   
     </title>
     
@@ -1789,7 +1789,7 @@ Acknowledgments
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-115" aria-expanded="false" aria-controls="sidebar-collapse-115">
                 <a href="./5.4.3.html"> 5.4.3 
-    Conditionals, Assignments, and Declarations and Blocks
+    Conditionals, Assignments, Declarations, and Blocks
   </a>
               </span>
             </h5>
@@ -1963,7 +1963,7 @@ Acknowledgments
         <div class='permalink'>
         <a name='top' class='permalink'> 
     5.4.3&nbsp;&nbsp;
-    Conditionals, Assignments, and Declarations and Blocks
+    Conditionals, Assignments, Declarations, and Blocks
   
         </a>
         </div>
@@ -1976,15 +1976,29 @@ Acknowledgments
   <div class='permalink'>
 <a name='p1' class='permalink'></a><p>
     
-    As with the metacircular evaluator, special forms are handled by
-    selectively evaluating fragments of the expression.  For
+    As with the metacircular evaluator,
     
       
       
-	conditional
+        syntactic
       
     
-    expression, we must evaluate the predicate and decide, based on the
+    forms are handled by
+    selectively evaluating fragments of the
+    
+      
+      
+        statement.
+      
+    
+    For
+    
+      
+      
+	conditional,
+      
+    
+    we must evaluate the predicate and decide, based on the
     value of predicate, whether to evaluate the consequent or the
     alternative.
   </p></div>
@@ -1998,11 +2012,18 @@ Acknowledgments
 	conditional
       
     
-    expression itself so that we can later extract the consequent or
+    itself so that we can later extract the consequent or
     alternative.  We also save the environment, which we will need later in
     order to evaluate the consequent or the alternative, and we save
     <kbd>continue</kbd>, which we will need later in order to
-    return to the evaluation of the expression that is waiting for the value of
+    return to the evaluation of the
+    
+      
+      
+        statement
+      
+    
+    that is waiting for the value of
     the
     
       
@@ -2048,10 +2069,9 @@ Acknowledgments
     
       
       
-	conditional
+	conditional.
       
     
-    expression. 
     <div class='snippet' id='javascript_114_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_cond_decide",
       restore("continue"),
@@ -2158,6 +2178,18 @@ Acknowledgments
       go_to(reg("continue")),</pre></div></div>
   </p></div>
 
+
+  
+    
+      
+      <div class='permalink'>
+        <a name='h2' class='permalink'></a><h2>
+     
+        Blocks
+      </h2></div>
+    
+  
+  
   <div class='permalink'>
 <a name='p6' class='permalink'></a><p>
     
@@ -2308,7 +2340,7 @@ Acknowledgments
       </div>
     <div class='chapter_sign'>
       5.4.3&nbsp;&nbsp;
-    Conditionals, Assignments, and Declarations and Blocks
+    Conditionals, Assignments, Declarations, and Blocks
   
     </div>
     <script> var chapter_id = 115; </script>

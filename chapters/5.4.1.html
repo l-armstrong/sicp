@@ -1789,7 +1789,7 @@ Acknowledgments
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-115" aria-expanded="false" aria-controls="sidebar-collapse-115">
                 <a href="./5.4.3.html"> 5.4.3 
-    Conditionals, Assignments, and Declarations and Blocks
+    Conditionals, Assignments, Declarations, and Blocks
   </a>
               </span>
             </h5>
@@ -2072,7 +2072,7 @@ Acknowledgments
 
     <div class='permalink'>
 <a name='p2' class='permalink'></a><p>
-    Numbers and strings (which are self-evaluating),
+    Numbers and strings 
     
       
       
@@ -2318,7 +2318,12 @@ Acknowledgments
 	argument expressions
       
     
-    of the combination and to accumulate the
+    of the
+    
+      
+      application
+    
+    and to accumulate the
     resulting arguments in a list, held in <kbd>argl</kbd>.
     First we restore the unevaluated
     
@@ -2394,9 +2399,9 @@ Acknowledgments
     result into <kbd>argl</kbd>. To evaluate an
   
     
-    argument expression
-  , we
-    place it in the 
+    argument expression,
+  
+    we place it in the 
     
       
       <kbd>stmt</kbd>
@@ -2840,19 +2845,24 @@ Acknowledgments
     it could have been written in a data-directed style (and in a real
     system it probably would have been) to avoid the need to perform
     sequential tests and to facilitate the definition of new expression
-    types.  A machine designed to run
+    types.
     
       
-      JavaScript
-    
-    would probably include a
-    
       
-      <kbd>dispatch_on_type</kbd>
+        Most common JavaScript implementations today do not interpret the
+        JavaScript source code directly. Instead, source is transformed
+        into an intermediate representation called bytecode which is
+        typically interpreted in a loop similar to our dispatch functions.
+        Some JavaScript interpreters are register machines, like ours --
+        others are stack machines, in which operations pop and push
+        operands from and to a stack instead of keeping a large number of
+        registers. For performance reasons, most JavaScript interpreters
+        compile commonly executed parts of a program from bytecode to
+        machine code. This is called Just-In-Time compilation (JIT). We
+        will address compilation in section <REF NAME="sec:compilation"><a class="superscript" id="5.4.1-sec-link-5.5" href="./5.5.html">5.5</a></REF>.
       
     
-    instruction that would efficiently execute such
-    data-directed dispatches.
+  
     </FOOTNOTE></div>
 
     
