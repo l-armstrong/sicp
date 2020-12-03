@@ -2611,7 +2611,7 @@ function factorial(n) {
 
 
     <FIGURE><div class='snippet' id='javascript_121_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-save("continue"),
+$$  save("continue"),
   save("fun"),            // save * function
   assign("val", list(op("lookup_symbol_value"), 
                      constant(n), reg("env"))),
@@ -2660,7 +2660,7 @@ save("continue"),
   
 
     <FIGURE><div class='snippet' id='javascript_121_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-$$  "after_call9",            // val now has result of factorial(n - 1)
+"after_call9",            // val now has result of factorial(n - 1)
   restore("argl"),        // restore partial argument list for *
   assign("argl", list(op("pair"), reg("val"), reg("argl"))),
   restore("fun"),         // restore *
