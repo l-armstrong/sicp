@@ -2036,15 +2036,13 @@ Acknowledgments
       (expt-iter b
                 (- counter 1)
                 (* b product))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_17_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0BYBQuAzAVwDsBjAFwEsB7E0AUwA8AHCgCgCMAaEgSlABvXKFGgATgwpFx9ZmwD6VCg3Fde3FHwDcuAL6FSlWnNYUlKtTzI1Sl7i3E0AJkUoDhYiVJn0bd1VAAXhDQAAYRLyjQAH5QRxc3CkjosQAuRjMLVXUU1Pyo-xJLUABaVG5QPIKazlAAKninV3ddA1x5DgBmSuwdIA')">function expt(b,n) {
+            <td><div class='snippet' id='javascript_17_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0BYBQuAzAVwDsBjAFwEsB7E0AUwA8AHCgCgCMAaEgSlABvXKFGgATgwpFx9ZmwD6VCg3Fde3FHwDcuAL6FSlWnNYUlKtTzI1Sl7i3E0AJkUoDhYiVJn0bd1VAAXhDQAAYRLyjQAH5QRxc3CkjosQAuRjMLVXVQfxJLUABaVG5QTlAAKninV3ddA1x5DgBmMuwdIA')">function expt(b,n) {
     return expt_iter(b,n,1);
 }
 function expt_iter(b,counter,product) {
     return counter === 0
            ? product
-           : expt_iter(b,
-                       counter - 1, 
-                       b * product);
+           : expt_iter(b, counter - 1, b * product);
 }
 </pre></div></div></td></tr></table>
     
