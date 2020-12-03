@@ -1999,8 +1999,9 @@ Acknowledgments
       <div class='permalink'>
 <a name='p1' class='permalink'></a><p>
 	In JavaScript, the scope of a declaration
-	is the entire block that immediately surrounds the declaration;
-	the scope is not just starting at the declaration.
+	is the entire block that immediately surrounds the declaration,
+	not just the portion of the block starting at the point where
+	the declaration occurs.
 	This section takes a closer look at this design choice.
       </p></div>
       <div class='permalink'>
@@ -2056,8 +2057,8 @@ Acknowledgments
 	Thus the new environment with respect to which
 	the block body is evaluated already contains bindings for 
 	<kbd>is_even</kbd> and
-	<kbd>is_odd</kbd>, and thus all occurrences
-	of these two names refer to the correct environment. Once their respective
+	<kbd>is_odd</kbd>, and all occurrences
+	of these two names refer to the correct binding. Once their respective
 	declarations are evaluated, these names refer to the correct values in
 	the functions' environments. For example, 
 	when
@@ -2070,62 +2071,32 @@ Acknowledgments
 	<kbd>is_odd</kbd> in the body  of
 	<kbd>is_even</kbd> retrieves the correct value.
       </p></div>
-      <div class='permalink'>
-<a name='p4' class='permalink'></a><p>
-	An alternative strategy for handling local declarations,
-	by evaluating them sequentially without scanning them out first,
-	is explored in
-	exercise&nbsp;<REF NAME="ex:add_binding_to_frame"><a class="superscript" id="4.1.6-ex-link-4.17" href="./4.1.6.html#ex_4.17">4.17</a></REF>.
-      </p></div>
-    
-  
-
-    
-      
-    
-  
-    
-    
       
     <div class="permalink">
     <a name="ex_4.17" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.17">Exercise 4.17 </a></b> 
   
-		
-	The design of our evaluator of
-	section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> imposes a
-	runtime burden on the evaluation of blocks: It needs to scan
-	the body of the block for locally declared names, extend the
-	current environment with a new frame that binds those names, and evaluate the
-	block body in this extended environment. Alternatively,
-	we could evaluate the block body with respect to the current environment, 
-	and change the evaluation of a
-	declaration such that it adds to the innermost
-	frame of the current environment a binding of the declared name to
-	the result of evaluating the expression on the right-hand side of the
-	declaration. Implement this alternative design as follows:
-	<OL type="a">
-	  <LI>
-	    Simplify 
-	    <kbd>eval_block</kbd> in
-	    section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> to 
-	    ignore local declarations.
-	  </LI>
-	  <LI>
-	    Declare a function
-	    <kbd class='snippet'>add_binding_to_frame($symbol$, $value$, $frame$)</kbd>
-	    that permanently changes the given
-	    $\textit{frame}$ so that 
-	    $\textit{symbol}$
-	    refers to $\textit{value}$.
-	  </LI>
-	  <LI>
-	    Change
-	    <kbd>eval_declaration</kbd>
-	    so that it uses
-	    <kbd>add_binding_to_frame</kbd> instead of
-	    <kbd>assign_symbol_value</kbd>.
-	  </LI>
-	</OL>
+	    
+	    Eva Lu Ator is writing programs with blocks in which
+	    function declarations and other statements are interspersed.
+	    She needs to make sure that the declarations are evaluated before
+	    the functions are applied. She complains: <QUOTE>Why can't
+	    the evaluator take care of this chore, and move all function
+	    declarations to the beginning of the block in which they appear?</QUOTE>
+	    <OL type="a">
+	      <LI>
+		Modify the evaluator following Eva's suggestion.
+	      </LI>
+	      <LI>
+		The designers of JavaScript decided to follow Eva's approach. Discuss 
+		this decision.
+	      </LI>
+	      <LI>
+		In addition, the designers of JavaScript decided to allow the name declared
+		by a function declaration to be reassigned using assignments.
+		Modify your solution
+		accordingly and discuss this decision.
+	      </LI>
+	    </OL>
       
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_1_div" data-toggle="collapse">Add solution</button></div>
@@ -2134,167 +2105,12 @@ Acknowledgments
     
 </EXERCISE></div>
 
-    
-  
-
-    
-      
-    
-  
-    
-    
-      <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
-	As it happens, the sequential processing of declarations
-	of exercise&nbsp;<REF NAME="ex:add_binding_to_frame"><a class="superscript" id="4.1.6-ex-link-4.17" href="./4.1.6.html#ex_4.17">4.17</a></REF>
-	will evaluate calls to the function
-	<kbd>f</kbd> of the beginning of this section
-	correctly, but for an
-	<QUOTE>accidental</QUOTE> reason: Since the declarations
-	of the internal functions come first, no calls to these functions
-	will be evaluated until all of them have been declared. Hence,
-	<kbd>is_odd</kbd> will have been declared by the time
-	<kbd>is_even</kbd> is executed.  In fact, the 
-	evaluation mechanism of exercise&nbsp;<REF NAME="ex:add_binding_to_frame"><a class="superscript" id="4.1.6-ex-link-4.17" href="./4.1.6.html#ex_4.17">4.17</a></REF>
-	will give the same result as our scanning-out-names evaluator in
-	section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>
-	for any function
-	in which the 
-	
-	internal declarations come first in a body and evaluation of the value
-	expressions for the declared names doesn't actually use any of
-	the declared names.
-	Exercise&nbsp;<REF NAME="ex:simultaneous-def"><a class="superscript" id="4.1.6-ex-link-4.18" href="./4.1.6.html#ex_4.18">4.18</a></REF> shows
-	an example of a function that doesn't
-	obey these restrictions, so that the alternative interpreter isn't
-	equivalent to our scanning-out-names evaluator.
-      </p></div>
       
     <div class="permalink">
     <a name="ex_4.18" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.18">Exercise 4.18 </a></b> 
   
-	 
-	Ben Bitdiddle, Alyssa P. Hacker, and Eva Lu Ator are arguing about
-	the desired result of evaluating the program
-	<div class='snippet' id='javascript_81_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuBjAewDsBnAF1AENQBeUDAblwDMBXEgigS1NFYAKAB4BKUAG9Q0mbhmhi5KgCN6NUAGpQwlvMWV1DAKy6ZAJwCmFdmZLqtylgF82gjAAZRTIA')">const a = 1;
-function f(x) {      
-    const b = a + x;
-    const a = 5;
-    return a + b;
-}
-f(10);
-</pre></div></div>
-	Ben asserts that the result should be obtained using the sequential
-	implementation for <kbd>const</kbd> as given
-	in exercise&nbsp;<REF NAME="ex:add_binding_to_frame"><a class="superscript" id="4.1.6-ex-link-4.17" href="./4.1.6.html#ex_4.17">4.17</a></REF>:
-	<kbd>b</kbd> is declared to be 11, then
-	<kbd>a</kbd> is declared to be 5, so the result is 16.
-	Alyssa objects that mutual recursion requires the simultaneous scope
-	rule for internal function declarations, and that it is unreasonable to
-	treat function names differently from other names.  Thus, she argues for
-	the mechanism implemented in
-	section&nbsp;&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>. This would
-	lead to <kbd>a</kbd> being unassigned at the time that
-	the value for <kbd>b</kbd> is to be computed.  Hence,
-	in Alyssa's view the function should produce an error.  Eva has a
-	third opinion.  She says that if the declarations of
-	<kbd>a</kbd> and <kbd>b</kbd>
-	are truly meant to be simultaneous, then the value 5 for
-	<kbd>a</kbd> should be used in evaluating
-	<kbd>b</kbd>.  Hence, in Eva's view
-	<kbd>a</kbd> should be 5,
-	<kbd>b</kbd> should be 15, and the result should be 20.
-	Which (if any) of these	viewpoints do you support?  Can you devise a way
-	to implement internal declarations so that they behave as Eva
-	prefers?<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
-      
-      <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_2_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_81_2_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
-      </div>
-    
-</EXERCISE></div>
-
-      
-    <div class="permalink">
-    <a name="ex_4.19" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.19">Exercise 4.19 </a></b> 
-  
-      
-	Draw diagrams of the environment in effect when evaluating the
-	return expression of
-	the function <kbd>f_3</kbd>
-	in section&nbsp;<REF NAME="sec:lambda"><a class="superscript" id="4.1.6-sec-link-1.3.2" href="./1.3.2.html">1.3.2</a></REF>, comparing how this will be structured when
-	declarations are interpreted sequentially as described in
-	exercise&nbsp;<REF NAME="ex:add_binding_to_frame"><a class="superscript" id="4.1.6-ex-link-4.17" href="./4.1.6.html#ex_4.17">4.17</a></REF>
-	with how it is structured if declarations are scanned out as described
-	in section&nbsp;&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>.
-	Why is there an extra frame in the latter case?
-	JavaScript forbids the redeclaration of parameters
-	as local names in the body block of a function. Assuming this restriction,
-	how can you achieve the scoping of 
-	section&nbsp;&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>
-	for local names	in the body blocks of lambda expressions 	
-	without constructing the extra frame?
-      
-      
-      <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_3_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_81_3_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
-      </div>
-    
-</EXERCISE></div>
-
-    
-  
-
-  
-    <div class="permalink">
-    <a name="ex_4.20" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.20">Exercise 4.20 </a></b> 
-  
-        
-    
-      
-	Eva Lu Ator is writing programs with blocks in which
-	function declarations and other statements are interspersed.
-	She needs to take care that the declarations are evaluated before
-	the functions are applied. She complains: <QUOTE>Why can't
-	the evaluator take care of this chore, and move all function
-	declarations to the beginning of the block in which they appear?</QUOTE>
-	<OL type="a">
-	  <LI>
-	    Modify the evaluator following Eva's suggestion.
-	  </LI>
-	  <LI>
-	    The designers of JavaScript decided to follow Eva's approach. Discuss 
-	    this decision.
-	  </LI>
-	  <LI>
-	    In addition, the designers of JavaScript decided to allow the name declared
-	    by a function declaration to be reassigned using assignments.
-	    Modify your solution
-	    accordingly and discuss this decision.
-	  </LI>
-	</OL>
-      
-    
-  
-      <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_4_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_81_4_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
-      </div>
-    
-</EXERCISE></div>
-
-
-  
-  
-    <div class="permalink">
-    <a name="ex_4.21" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.21">Exercise 4.21 </a></b> 
-  
-    
-    
-      
-      
+	
+	
 	
 	Recursive functions are obtained in a roundabout way in our
 	interpreter: First declare the name that will refer to the recursive
@@ -2307,8 +2123,8 @@ f(10);
 	functions without using declarations or assignment. The following program computes
 	10 factorial by applying a recursive
 	
-	factorial function:<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
-	<div class='snippet' id='javascript_81_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuAKAO1AF4A+UAgMwEMBjAFzMrqZocYBpQiBKPrlDCRBKtW6gA1nxbSypUqAxCRa9RoD8y1Rr1qAXPIBUoCTUlTQAWmWzdIwYIIYADHwDcQA')">(n => (fact => fact(fact, n))
+	factorial function:<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
+	<div class='snippet' id='javascript_81_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuAKAO1AF4A+UAgMwEMBjAFzMrqZocYBpQiBKPrlDCRBKtW6gA1nxbSypUqAxCRa9RoD8y1Rr1qAXPIBUoCTUlTQAWmWzdIwYIIYADHwDcQA')">(n => (fact => fact(fact, n))
       ( (ft, k) => k === 1
                    ? 1
                    : k * ft(ft, k - 1) 
@@ -2326,7 +2142,7 @@ f(10);
 	    Consider the following function, which includes mutually recursive
 	    internal declarations:
 	    
-	    <div class='snippet' id='javascript_81_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuAzAVwDsBjAFwEsB7E0AgCgA8BKUAb11B4dMtr0qAZwD6AUwBu4koxLsuvJaABO4ikRX16AXj2gADN2UneAflAUVRccdMmAXKBGiaAEzdzQAWlAZWANx2oAC+wcTk1HTOYu6e8pzBSmoaWqC6+kb2phYEAIYANsK22Y4xEtKy9L7+QUphyeqaQmJSMiyBuGGEjACcvYFAA')">function f(x) {
+	    <div class='snippet' id='javascript_81_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuAzAVwDsBjAFwEsB7E0AgCgA8BKUAb11B4dMtr0qAZwD6AUwBu4koxLsuvJaABO4ikRX16AXj2gADN2UneAflAUVRccdMmAXKBGiaAEzdzQAWlAZWANx2oAC+wcTk1HTOYu6e8pzBSmoaWqC6+kb2phYEAIYANsK22Y4xEtKy9L7+QUphyeqaQmJSMiyBuGGEjACcvYFAA')">function f(x) {
     function is_even(n) {
         return n === 0
                ? true
@@ -2357,33 +2173,223 @@ f(10);
 	  </LI>
 	</OL>
       
-    
-  
       <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_5_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_81_5_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_2_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_81_2_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
       </div>
     
 </EXERCISE></div>
 
+    
+  
+
+    
+      
+    
+  
+    
+    
+      
+      <div class='permalink'>
+        <a name='h1' class='permalink'></a><h2>
+    
+      Sequential Declaration Processing
+      </h2></div>
+      <div class='permalink'>
+<a name='p4' class='permalink'></a><p>
+		
+	The design of our evaluator of
+	section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> imposes a
+	runtime burden on the evaluation of blocks: It needs to scan
+	the body of the block for locally declared names, extend the
+	current environment with a new frame that binds those names, and evaluate the
+	block body in this extended environment. Alternatively,
+	we could evaluate the block body with respect to the current environment, 
+	and change the evaluation of a
+	declaration such that it adds to the innermost
+	frame of the current environment a binding of the declared name to
+	the result of evaluating the expression on the right-hand side of the
+	declaration. To implement this design, we first simplify
+	<kbd>eval_block</kbd>:
+	<div class='snippet' id='javascript_81_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+function eval_block(component, env) {
+    const body = block_body(component);
+    return evaluate(body, env);
+}</pre></div></div>
+	The function 
+	<kbd>eval_declaration</kbd>
+	now uses a function
+	<kbd>add_binding_to_frame</kbd> instead of
+	<kbd>assign_symbol_value</kbd>.
+	<div class='snippet' id='javascript_81_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+function eval_declaration(component, env) {
+    add_binding_to_frame(declaration_symbol(component), 
+                         evaluate(declaration_value_expression(component),
+                                  env),
+                         first_frame(env));
+    return undefined;
+}</pre></div></div>
+	The function
+	<kbd>add_binding_to_frame</kbd>
+	modified the given frame by adding a binding to it.
+	<div class='snippet' id='javascript_81_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+function add_binding_to_frame(symbol, value, frame) {
+    set_head(frame, pair(symbol, head(frame)));
+    set_tail(frame, pair(value, tail(frame)));
+    return undefined;
+}</pre></div></div>
+      </p></div>
+    
+  
+    
+      
+    
+  
+    
+    
+      <div class='permalink'>
+<a name='p5' class='permalink'></a><p>
+	This sequential processing of declarations
+	will evaluate calls to the function
+	<kbd>f</kbd> of the beginning of this section
+	correctly, but for an
+	<QUOTE>accidental</QUOTE> reason: Since the declarations
+	of the internal functions come first, no calls to these functions
+	will be evaluated until all of them have been declared. Hence,
+	<kbd>is_odd</kbd> will have been declared by the time
+	<kbd>is_even</kbd> is executed.  In fact, the 
+	sequential processing of declarations
+	will give the same result as our scanning-out-names evaluator in
+	section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>
+	for any function
+	in which the 
+	
+	internal declarations come first in a body and evaluation of the value
+	expressions for the declared names doesn't actually use any of
+	the declared names.
+	Exercise&nbsp;<REF NAME="ex:simultaneous-def"><a class="superscript" id="4.1.6-ex-link-4.19" href="./4.1.6.html#ex_4.19">4.19</a></REF> shows
+	an example of a function that doesn't
+	obey these restrictions, so that the alternative evaluator isn't
+	equivalent to our scanning-out-names evaluator.
+      </p></div>
+      
+    <div class="permalink">
+    <a name="ex_4.19" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.19">Exercise 4.19 </a></b> 
+  
+	 
+	Ben Bitdiddle, Alyssa P. Hacker, and Eva Lu Ator are arguing about
+	the desired result of evaluating the program
+	<div class='snippet' id='javascript_81_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuBjAewDsBnAF1AENQBeUDAblwDMBXEgigS1NFYAKAB4BKUAG9Q0mbhmhi5KgCN6NUAGpQwlvMWV1DAKy6ZAJwCmFdmZLqtylgF82gjAAZRTIA')">const a = 1;
+function f(x) {      
+    const b = a + x;
+    const a = 5;
+    return a + b;
+}
+f(10);
+</pre></div></div>
+	Ben asserts that the result should be obtained using the sequential
+	processing of declarations:
+	<kbd>b</kbd> is declared to be 11, then
+	<kbd>a</kbd> is declared to be 5, so the result is 16.
+	Alyssa objects that mutual recursion requires the simultaneous scope
+	rule for internal function declarations, and that it is unreasonable to
+	treat function names differently from other names.  Thus, she argues for
+	the mechanism implemented in
+	section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>. This would
+	lead to <kbd>a</kbd> being unassigned at the time that
+	the value for <kbd>b</kbd> is to be computed.  Hence,
+	in Alyssa's view the function should produce an error.  Eva has a
+	third opinion.  She says that if the declarations of
+	<kbd>a</kbd> and <kbd>b</kbd>
+	are truly meant to be simultaneous, then the value 5 for
+	<kbd>a</kbd> should be used in evaluating
+	<kbd>b</kbd>.  Hence, in Eva's view
+	<kbd>a</kbd> should be 5,
+	<kbd>b</kbd> should be 15, and the result should be 20.
+	Which (if any) of these	viewpoints do you support?  Can you devise a way
+	to implement internal declarations so that they behave as Eva
+	prefers?<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+      
+      <div class="Solution">
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_3_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_81_3_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      </div>
+    
+</EXERCISE></div>
+
+      
+    <div class="permalink">
+    <a name="ex_4.20" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.20">Exercise 4.20 </a></b> 
+  
+      
+	Consider the function <kbd>f_3</kbd>
+	in section&nbsp;<REF NAME="sec:lambda"><a class="superscript" id="4.1.6-sec-link-1.3.2" href="./1.3.2.html">1.3.2</a></REF>, repeated here:
+        <div class='snippet' id='javascript_81_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+function f_3(x, y) {
+    const a = 1 + x * y;
+    const b = 1 - y;
+    return x * square(a) + y * b + a * b;
+}</pre></div></div>
+	<OL type="a">
+	  <LI>
+	    Draw diagrams of the environment in effect when evaluating the
+	    return expression of
+	    <kbd>f_3</kbd>.
+	  </LI>
+	  <LI>
+	    Compare how the environment will be structured when
+	    declarations are processed sequentially
+	    with how it is structured if declarations are scanned out as described
+	    in section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>.
+	    Why is there an extra frame in the latter case?
+	  </LI>
+	  <LI>
+	    In the design of section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>,
+	    the parameters of a function are included in an environment
+	    created by the function application, but are always accessed
+	    via the environment created by the evaluation of the function's body
+	    block or an environment
+	    enclosed by that environment. An implementation 
+	    could therefore combine the two environments.
+	    Change the evaluator
+	    such that the evaluation of the body block itself does not create
+	    a new environment.
+	  </LI>
+	  <LI>
+	    JavaScript forbids the redeclaration of parameters
+	    as local names directly in the function's body block.
+	    Modify your solution 
+	    such that an error is generated whenever a function is
+	    called in which this happens. Alternatively, modify the
+	    evaluator such that it analyzes all its function declarations
+	    and lambda expressions and generates an error whenever
+	    a parameter is redeclared directly in a function's body block,
+	    regardless
+	    whether that function is ever applied or not. Which design
+	    do you prefer? Why?
+	  </LI>
+	</OL>
+      
+      
+      <div class="Solution">
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_4_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_81_4_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      </div>
+    
+</EXERCISE></div>
+
+    
+  
+
+
+  
+    
+  
   
 <hr>
 
     <div class='footnote'>
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1'>[1] </a>
-    <FOOTNOTE>
-    The designers of JavaScript support Alyssa on the
-	following grounds: Eva is in principle correct—the definitions
-	should be regarded as simultaneous.  But it seems difficult to implement
-	a general, efficient mechanism that does what Eva requires. In the
-	absence of such a mechanism, it is better to generate an error in the
-	difficult cases of simultaneous definitions (Alyssa's notion) than
-	to produce an incorrect answer (as Ben would have it).
-    </FOOTNOTE></div>
-
-    
-    <div class='footnote'>
-      <a class='footnote-number' id='footnote-2' href='#footnote-link-2'>[2] </a>
     <FOOTNOTE>
     This example illustrates a programming
 	trick for formulating recursive functions without using assignment. The
@@ -2396,6 +2402,19 @@ f(10);
 	calculus, and <CITATION>Gabriel 1988</CITATION> for an exposition of the
 	$Y$ operator in the language
 	Scheme.)
+    </FOOTNOTE></div>
+
+    
+    <div class='footnote'>
+      <a class='footnote-number' id='footnote-2' href='#footnote-link-2'>[2] </a>
+    <FOOTNOTE>
+    The designers of JavaScript support Alyssa on the
+	following grounds: Eva is in principle correct—the definitions
+	should be regarded as simultaneous.  But it seems difficult to implement
+	a general, efficient mechanism that does what Eva requires. In the
+	absence of such a mechanism, it is better to generate an error in the
+	difficult cases of simultaneous definitions (Alyssa's notion) than
+	to produce an incorrect answer (as Ben would have it).
     </FOOTNOTE></div>
 
     
