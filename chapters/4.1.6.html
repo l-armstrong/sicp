@@ -2203,24 +2203,28 @@ Acknowledgments
 	runtime burden on the evaluation of blocks: It needs to scan
 	the body of the block for locally declared names, extend the
 	current environment with a new frame that binds those names, and evaluate the
-	block body in this extended environment. Alternatively,
-	we could evaluate the block body with respect to the current environment, 
-	and change the evaluation of a
-	declaration such that it adds to the innermost
-	frame of the current environment a binding of the declared name to
-	the result of evaluating the expression on the right-hand side of the
-	declaration. To implement this design, we first simplify
+	block body in this extended environment. Alternatively, the evaluation
+	of a block could extend the current environment with an empty frame.
+	The evaluation of each declaration in the block body would then add
+	a new binding to that frame.
+	To implement this design, we first simplify
 	<kbd>eval_block</kbd>:
 	<div class='snippet' id='javascript_81_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function eval_block(component, env) {
     const body = block_body(component);
-    return evaluate(body, env);
+    return evaluate(body, extend_environment(null,
+                                             null,
+                                             env);
 }</pre></div></div>
 	The function 
-	<kbd>eval_declaration</kbd>
-	now uses a function
-	<kbd>add_binding_to_frame</kbd> instead of
-	<kbd>assign_symbol_value</kbd>.
+	<kbd>eval_declaration</kbd> can no
+	longer assume that the environment already has a binding for
+	the name's symbol. Instead of using
+	<kbd>add_binding_to_frame</kbd>, it
+	now applies a new function
+	<kbd>assign_symbol_value</kbd> to
+	the symbol, the value of the value expression, and the first
+	frame of the environment.
 	<div class='snippet' id='javascript_81_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function eval_declaration(component, env) {
     add_binding_to_frame(declaration_symbol(component), 
