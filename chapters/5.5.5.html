@@ -1847,9 +1847,9 @@ Acknowledgments
                 <a href="./5.5.2.html"> 5.5.2 
     Compiling
     
-      Statements and
+      
+      Components
     
-    Expressions
   </a>
               </span>
             </h5>
@@ -1995,18 +1995,15 @@ Acknowledgments
     
     by calling <kbd>compile</kbd>:
     <div class='snippet' id='javascript_121_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-compile(parse("                \
-function factorial(n) {        \
-    return n === 1             \
-        ? 1"                   \
-        : n * factorial(n - 1);\
+compile(parse("                   \
+function factorial(n) {           \
+    return n === 1                \
+           ? 1"                   \
+           : n * factorial(n - 1);\
 }                              "),
        "val",
        "next");</pre></div></div>
-  </p></div>
 
-  <div class='permalink'>
-<a name='p2' class='permalink'></a><p>
     We have specified that the value of the
     
       
@@ -2031,7 +2028,7 @@ function factorial(n) {        \
   </p></div>
 
   <div class='permalink'>
-<a name='p3' class='permalink'></a><p>
+<a name='p2' class='permalink'></a><p>
     
       
       
@@ -2102,7 +2099,7 @@ assign("val", constant(undefined))</kbd>
   </p></div>
 
   <div class='permalink'>
-<a name='p4' class='permalink'></a><p>
+<a name='p3' class='permalink'></a><p>
     The expression that is to be compiled to produce the value for the
     
       
@@ -2210,7 +2207,7 @@ assign("val", constant(undefined))</kbd>
   </p></div>
 
   <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
+<a name='p4' class='permalink'></a><p>
     A
     
       
@@ -2249,12 +2246,9 @@ assign("val", constant(undefined))</kbd>
     
     <div class='snippet' id='javascript_121_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 return n === 1 
-    ? 1 
-    : factorial(n - 1) * n;</pre></div></div>
-  </p></div>
+       ? 1 
+       : factorial(n - 1) * n;</pre></div></div>
 
-  <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
     
       
 	The function
@@ -2262,13 +2256,27 @@ return n === 1
 	compiles the return expression with the same target
 	<kbd>val</kbd> but with linkage
 	<kbd>return</kbd>, because the return
-	expression is the last expression to be evaluated in the
+	expression is the last
+  
+    
+    
+      statement
+    
+  
+  to be evaluated in the
 	body, and its value is to be returned from the function.
       
     
     
       
-      The return expression is a conditional expression and thus
+      The return expression is a
+      
+        
+        
+          conditional
+        
+      
+      and thus
       <kbd>compile_conditional</kbd>
       
     
@@ -2320,7 +2328,7 @@ return n === 1
   </p></div>
 
   <div class='permalink'>
-<a name='p7' class='permalink'></a><p>
+<a name='p5' class='permalink'></a><p>
     The predicate
     
       
@@ -2395,7 +2403,7 @@ assign("fun", list(op("lookup_symbol_value"), constant("==="),
   </p></div>
 
   <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
+<a name='p6' class='permalink'></a><p>
     The true branch, which is the constant 1, compiles (with target
     <kbd>val</kbd> and linkage
     
@@ -2408,10 +2416,7 @@ assign("fun", list(op("lookup_symbol_value"), constant("==="),
     <div class='snippet' id='javascript_121_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 assign("val", constant(1)),
 go_to(reg("continue"))</pre></div></div>
-  </p></div>
 
-  <div class='permalink'>
-<a name='p9' class='permalink'></a><p>
     The code for the false branch is another a
     
       
@@ -2489,9 +2494,9 @@ go_to(reg("continue"))</pre></div></div>
     which is slightly different from the one given above:
     <div class='snippet' id='javascript_121_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function factorial_alt(n) {
-    return  n === 1  
-        ? 1
-        : n * factorial_alt(n - 1);
+    return n === 1  
+           ? 1
+           : n * factorial_alt(n - 1);
 }</pre></div></div>
     Compile this
     
@@ -2525,8 +2530,8 @@ function factorial_alt(n) {
 function factorial(n) {
     function iter(product, counter) {
         return counter > n
-            ? product
-            : iter(product * counter, counter + 1);
+               ? product
+               : iter(product * counter, counter + 1);
     }
 
     return iter(1, 1);
@@ -2655,7 +2660,7 @@ save("continue"),
   
 
     <FIGURE><div class='snippet' id='javascript_121_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-"after_call9",            // val now has result of factorial(n - 1)
+$$  "after_call9",            // val now has result of factorial(n - 1)
   restore("argl"),        // restore partial argument list for *
   assign("argl", list(op("pair"), reg("val"), reg("argl"))),
   restore("fun"),         // restore *
@@ -2701,7 +2706,7 @@ save("continue"),
 
       
   <FIGURE><div class='snippet' id='javascript_121_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-assign("val", list(op("make_compiled_function"),
+$$  assign("val", list(op("make_compiled_function"),
                      label("entry16")),
         reg env)),
   go_to(label("after_lambda15")),

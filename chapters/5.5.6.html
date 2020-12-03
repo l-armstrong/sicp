@@ -1847,9 +1847,9 @@ Acknowledgments
                 <a href="./5.5.2.html"> 5.5.2 
     Compiling
     
-      Statements and
+      
+      Components
     
-    Expressions
   </a>
               </span>
             </h5>
@@ -2034,6 +2034,7 @@ Acknowledgments
     
       
       
+  
 	Each time
 	<kbd>lookup_symbol_value</kbd>
 	searches for <kbd>x</kbd>, it must determine
@@ -2054,11 +2055,25 @@ Acknowledgments
     
     Because our language is 
     
-    lexically scoped, the run-time environment for any expression will have a
+    lexically scoped, the run-time environment for any
+    
+      
+      
+        component
+      
+    
+    will have a
     structure that parallels the lexical structure of the program in which
     the expression appears.
   Thus, the compiler can know, when it analyzes the
-  above expression, that each time the
+  above
+  
+    
+    
+      component
+    
+  
+  , that each time the
   
     
     function
@@ -2535,6 +2550,7 @@ Acknowledgments
     <div class="permalink">
     <a name="ex_5.44" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.44">Exercise 5.44 </a></b> 
   
+	
     
       
       

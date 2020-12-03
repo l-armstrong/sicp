@@ -1847,9 +1847,9 @@ Acknowledgments
                 <a href="./5.5.2.html"> 5.5.2 
     Compiling
     
-      Statements and
+      
+      Components
     
-    Expressions
   </a>
               </span>
             </h5>
@@ -2556,13 +2556,13 @@ const y = list(x, x);</pre></div></div>
 	  
 	
 
-	<div class='snippet' id='javascript_109_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAVgHQGY0EYBQuAzAVwDsBjAFwEsB7E0Mm0igfQBsBTAQwDcOBnABQUAThw4BKUAG9coeaDEUiI+lX4sSRNm2FjJchUYD8oAAyGj8gFygAhKHUsADlyoi94ibgCQ803hWVraMzOzcfEIAFtwAJp6SUgDUoJZBCqEkrJy8AsJuuqJeEgDcuAC++JnZEXmu7oJs6hSC2AA0oABMEh1N-C0YHQAsEqMlQA')">function count_leaves(tree) {
+	<div class='snippet' id='javascript_109_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAVgHQGY0EYBQuAzAVwDsBjAFwEsB7E0Mm0igfQBsBTAQwDcOBnABQUAThw4BKUAG9coeaDEUiI+lX4sSRNm2FjJchUYUB+UAAZDxowC5QAQlDqWABy5URe8RNwBIa6ageAG2DEwkrJy8AoIAFtwAJl6SUgDUoFYh8ozM7Nx8QhTuuqLeEgDcuAC++DkRedFCbh6CbOoUgtgANKAATBI9bfwdGD0ALBKT5UA')">function count_leaves(tree) {
     return is_null(tree)
-        ? 0
-        : ! is_pair(tree)
-	  ? 1
-          : count_leaves(head(tree)) + 
-            count_leaves(tail(tree));
+           ? 0
+           : ! is_pair(tree)
+	         ? 1
+           : count_leaves(head(tree)) + 
+             count_leaves(tail(tree));
 }
 </pre></div></div>
       </LI>
@@ -2574,14 +2574,14 @@ const y = list(x, x);</pre></div></div>
 	  
 	
 	with explicit counter:
-	<div class='snippet' id='javascript_109_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAVgHQGY0EYBQuAzAVwDsBjAFwEsB7E0Mm0igfQBsBTAQwDcOBnABQUAThw4BKUAG9coeaGLlqdBkxKsqFDiOFiOAGlAkpshedBiKREfSr8WJImzZ7xEuRa8B+Y56-mAFygAISg9iwADlxUuqLuoP4B5r70ANSgeACQXsGMzCxaOsIxrvGSBknJ1V75GoXaugAW3AAmbhXGEhIA3EkAvklWNvR1mo0dRgAMvbiDuGPs3HxC0bGCbPYUgthGAEwSRpv82xhGACzdvUA')">function count_leaves(tree) {
+	<div class='snippet' id='javascript_109_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAVgHQGY0EYBQuAzAVwDsBjAFwEsB7E0Mm0igfQBsBTAQwDcOBnABQUAThw4BKUAG9coeaGLlqdBkxKsqFDiOFiOAGlAkpshedBiKREfSr8WJImzZ7xEuRa8B+Y56-mAFygAISg9iwADlxUuqLuoP4B8r70ANSgeOYAkF7BjMwsWjrCMa7xkgZJyfIFGkXaugAW3AAmbpXGEhIA3EkAvklWNvR1mo0dRgAMvbiDuGPs3HxC0bGCbPYUgthGAEwSRpv82xhGACzdvUA')">function count_leaves(tree) {
     function count_iter(tree, n) {
         return is_null(tree)
             ? n
             : ! is_pair(tree) 
-              ? n + 1
-	      : count_iter(tail(tree),
-                           count_iter(head(tree), n));
+            ? n + 1
+    	      : count_iter(tail(tree),
+              count_iter(head(tree), n));
     }
     return count_iter(tree, 0);
 }

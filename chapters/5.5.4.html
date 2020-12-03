@@ -1847,9 +1847,9 @@ Acknowledgments
                 <a href="./5.5.2.html"> 5.5.2 
     Compiling
     
-      Statements and
+      
+      Components
     
-    Expressions
   </a>
               </span>
             </h5>
@@ -2012,16 +2012,13 @@ function needs_register(seq, reg) {
 function modifies_register(seq, reg) {
     return ! is_null(member(reg, registers_modified(seq)));
 }</pre></div></div>
-  </p></div>
 
-  <div class='permalink'>
-<a name='p2' class='permalink'></a><p>
     In terms of these predicates and selectors, we can implement the
     various instruction sequence combiners used throughout the compiler.
   </p></div>
 
   <div class='permalink'>
-<a name='p3' class='permalink'></a><p>
+<a name='p2' class='permalink'></a><p>
     The basic combiner is
     
       
@@ -2042,7 +2039,7 @@ function modifies_register(seq, reg) {
   </p></div>
 
   <div class='permalink'>
-<a name='p4' class='permalink'></a><p>
+<a name='p3' class='permalink'></a><p>
     The sequences are appended two at a time by
     
       
@@ -2051,8 +2048,28 @@ function modifies_register(seq, reg) {
     
     This takes two instruction sequences <kbd>seq1</kbd> and
     <kbd>seq2</kbd> and returns the instruction sequence whose
-    statements are the statements of <kbd>seq1</kbd> followed
-    by the statements of <kbd>seq2</kbd>, whose modified
+    
+      
+      
+        instructions
+      
+    
+    are the
+    
+      
+      
+        instructions
+      
+    
+    of <kbd>seq1</kbd> followed
+    by the
+    
+      
+      
+        instructions
+      
+    
+    of <kbd>seq2</kbd>, whose modified
     registers are those registers that are modified by either
     <kbd>seq1</kbd> or <kbd>seq2</kbd>, and
     whose needed registers are the registers needed by
@@ -2084,7 +2101,7 @@ function append_instruction_sequences(seq1, seq2) {
   </p></div>
 
   <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
+<a name='p4' class='permalink'></a><p>
     This
     
       
@@ -2098,37 +2115,70 @@ function append_instruction_sequences(seq1, seq2) {
     <div class='snippet' id='javascript_120_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function list_union(s1, s2) {
     return is_null(s1)
-        ? s2
-        : is_null(member(head(s1), s2))
-          ? pair(head(s1), list_union(tail(s1), s2))
-          : list_union(tail(s1), s2);
+           ? s2
+           : is_null(member(head(s1), s2))
+           ? pair(head(s1), list_union(tail(s1), s2))
+           : list_union(tail(s1), s2);
 }
 
 function list_difference(s1, s2) {
     return is_null(s1)
-        ? null
-        : is_null(member(head(s1), s2))
-          ? pair(head(s1), list_difference(tail(s1), s2))
-          : list_difference(tail(s1), s2);
+           ? null
+           : is_null(member(head(s1), s2))
+           ? pair(head(s1), list_difference(tail(s1), s2))
+           : list_difference(tail(s1), s2);
 }</pre></div></div>
   </p></div>
 
   <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
-    <kbd>Preserving</kbd>, the second major instruction
+<a name='p5' class='permalink'></a><p>
+
+    
+      
+      
+        The function <kbd>preserving</kbd>,
+      
+    
+    the second major instruction
     sequence combiner, takes a list of registers
     <kbd>regs</kbd> and two instruction sequences
     <kbd>seq1</kbd> and <kbd>seq2</kbd> that
     are to be executed sequentially.  It returns an instruction sequence whose
-    statements are the statements of <kbd>seq1</kbd> followed
-    by the statements of <kbd>seq2</kbd>, with appropriate
+    
+      
+      
+        instructions
+      
+    
+    are the
+    
+      
+      
+        instructions
+      
+    
+    of <kbd>seq1</kbd> followed
+    by the
+    
+      
+      
+        instructions
+      
+    
+    of <kbd>seq2</kbd>, with appropriate
     <kbd>save</kbd> and <kbd>restore</kbd>
     instructions around <kbd>seq1</kbd> to protect the
     registers in <kbd>regs</kbd> that are modified by
     <kbd>seq1</kbd> but needed by
     <kbd>seq2</kbd>.  To accomplish this,
     <kbd>preserving</kbd> first creates a sequence that has
-    the required <kbd>save</kbd>s followed by the statements
+    the required <kbd>save</kbd>s followed by the
+    
+      
+      
+        instructions
+      
+    
     of <kbd>seq1</kbd> followed by the required
     <kbd>restore</kbd>s.  This sequence needs the registers
     being saved and restored in addition to the registers needed by
@@ -2141,7 +2191,7 @@ function list_difference(s1, s2) {
       function
     
     implements this strategy recursively, walking down the list of registers to
-    be preserved:<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
+    be preserved:
     
     <div class='snippet' id='javascript_120_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function preserving(regs, seq1, seq2) {
@@ -2170,7 +2220,7 @@ function preserving(regs, seq1, seq2) {
   </p></div>
 
   <div class='permalink'>
-<a name='p7' class='permalink'></a><p>
+<a name='p6' class='permalink'></a><p>
     Another sequence combiner,
     
       
@@ -2215,7 +2265,7 @@ function tack_on_instruction_sequence(seq, body_seq) {
   </p></div>
 
   <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
+<a name='p7' class='permalink'></a><p>
     
       
       The functions
@@ -2256,25 +2306,7 @@ function parallel_instruction_sequences(seq1, seq2) {
 }</pre></div></div>
     
   </p></div>
-<hr>
 
-    <div class='footnote'>
-      <a class='footnote-number' id='footnote-1' href='#footnote-link-1'>[1] </a>
-    <FOOTNOTE>
-    Note that <kbd>preserving</kbd>
-    calls <kbd>append</kbd> with three
-    
-    arguments.  Though the definition of <kbd>append</kbd>
-    shown in this book accepts only two arguments, Scheme standardly provides an
-    <kbd>append</kbd>
-    
-      
-      function
-    
-    that takes an arbitrary number of arguments.
-    </FOOTNOTE></div>
-
-    
 </div></div>
 
     <div class='nav'>

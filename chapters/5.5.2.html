@@ -17,17 +17,17 @@
   <meta name="description" content="5.5.2&nbsp;&nbsp;
     Compiling
     
-      Statements and
+      
+      Components
     
-    Expressions
   " />
     <title>
       5.5.2&nbsp;&nbsp;
     Compiling
     
-      Statements and
+      
+      Components
     
-    Expressions
   
     </title>
     
@@ -1855,9 +1855,9 @@ Acknowledgments
                 <a href="./5.5.2.html"> 5.5.2 
     Compiling
     
-      Statements and
+      
+      Components
     
-    Expressions
   </a>
               </span>
             </h5>
@@ -1973,9 +1973,9 @@ Acknowledgments
     5.5.2&nbsp;&nbsp;
     Compiling
     
-      Statements and
+      
+      Components
     
-    Expressions
   
         </a>
         </div>
@@ -2062,25 +2062,22 @@ Acknowledgments
     <div class='snippet' id='javascript_118_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_linkage(target, linkage) {
     return linkage === "return"
-        ? make_instruction_sequence(
-              list("continue"), 
-              null,
-              list(go_to(reg("continue"))))
-        : linkage === "return_undefined"
-        ? make_instruction_sequence(
-              list("continue"), 
-              list(target),
-              list(assign(target, constant(undefined)),
-                   go_to(reg("continue"))))
-        : linkage === "next"
-          ? empty_instruction_sequence()
-          : make_instruction_sequence(null, null, 
-                list(go_to(label(linkage))));
+           ? make_instruction_sequence(
+                 list("continue"), 
+                 null,
+                 list(go_to(reg("continue"))))
+           : linkage === "return_undefined"
+           ? make_instruction_sequence(
+                 list("continue"), 
+                 list(target),
+                 list(assign(target, constant(undefined)),
+                      go_to(reg("continue"))))
+           : linkage === "next"
+           ? empty_instruction_sequence()
+           : make_instruction_sequence(null, null, 
+                 list(go_to(label(linkage))));
 }</pre></div></div>
-  </p></div>
 
-  <div class='permalink'>
-<a name='p3' class='permalink'></a><p>
     The linkage code is appended to an instruction sequence by
     <kbd>preserving</kbd> the
     <kbd>continue</kbd> register, since a
@@ -2112,14 +2109,14 @@ function end_with_linkage(target, linkage, instruction_sequence) {
   </h2></div>
 
   <div class='permalink'>
-<a name='p4' class='permalink'></a><p>
+<a name='p3' class='permalink'></a><p>
     
     
     
-    The code generators for self-evaluating 
+    The code generators for 
     
       
-      expressions and names
+      literal expressions and names
     
     construct instruction
     sequences that assign the required value to the target register
@@ -2128,25 +2125,25 @@ function end_with_linkage(target, linkage, instruction_sequence) {
     
     
     <div class='snippet' id='javascript_118_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function compile_literal(exp, target, linkage) {
+function compile_literal(component, target, linkage) {
     return end_with_linkage(target, linkage,
                make_instruction_sequence(
                    null,
                    list(target),
-                   list(assign(target, constant(literal_value(exp))))));
+                   list(assign(target, constant(literal_value(component))))));
 }
 
-function compile_name(exp, target, linkage) {
+function compile_name(component, target, linkage) {
     return end_with_linkage(target, linkage,
                make_instruction_sequence(list("env"), list(target),
                    list(assign(target, 
                                list(op("lookup_symbol_value"),
-                                    constant(exp), reg("env"))))));
+                                    constant(component), reg("env"))))));
 }</pre></div></div>
   </p></div>
 
   <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
+<a name='p4' class='permalink'></a><p>
     All these assignment instructions modify the target register,
     and the one that looks up a
     
@@ -2159,7 +2156,7 @@ function compile_name(exp, target, linkage) {
   </p></div>
 
   <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
+<a name='p5' class='permalink'></a><p>
     
     
     Assignments and
@@ -2218,17 +2215,17 @@ function compile_name(exp, target, linkage) {
     
     
     <div class='snippet' id='javascript_118_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function compile_assignment(stmt, target, linkage) {
-    const symbol = assignment_symbol(stmt);
+function compile_assignment(component, target, linkage) {
+    const symbol = assignment_symbol(component);
     const value_code =
-              compile(assignment_value_expression(stmt), "val", "next");
+              compile(assignment_value_expression(component), "val", "next");
     return compile_assignment_returning(symbol,
                value_code, target, linkage, reg("val"));
 }
 
-function compile_declaration(stmt, target, linkage) {
-    const symbol = declaration_symbol(stmt);
-    const value_code = compile(declaration_value_expression(stmt), "val", "next");
+function compile_declaration(component, target, linkage) {
+    const symbol = declaration_symbol(component);
+    const value_code = compile(declaration_value_expression(component), "val", "next");
     return compile_assignment_returning(symbol,
                value_code, target, linkage, constant(undefined));
 }
@@ -2249,10 +2246,7 @@ function compile_assignment_returning(
                                      reg("env"))),
                             assign(target, return_val)))));
 }</pre></div></div>
-  </p></div>
 
-  <div class='permalink'>
-<a name='p7' class='permalink'></a><p>
     The appended two-instruction sequence requires
     <kbd>env</kbd> and <kbd>val</kbd>
     and modifies the target.  Note that although we preserve
@@ -2280,11 +2274,18 @@ function compile_assignment_returning(
       <div class='permalink'>
         <a name='h3' class='permalink'></a><h2>
     
-    Compiling conditional expressions
+    Compiling 
+    
+      
+      
+        conditionals
+      
+    
+    
   </h2></div>
 
   <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
+<a name='p6' class='permalink'></a><p>
     
     The code for 
     
@@ -2293,7 +2294,7 @@ function compile_assignment_returning(
 	a conditional
       
     
-    expression compiled with a given target and linkage has the form
+    compiled with a given target and linkage has the form
     <kbd class='snippet'>  $\langle compilation$ $of$ $predicate,$ $target$ val, $linkage$ next$\rangle$
   test(list(op("is_falsy"), reg("val"))),
   branch(label("false_branch")),
@@ -2305,7 +2306,7 @@ function compile_assignment_returning(
   </p></div>
 
   <div class='permalink'>
-<a name='p9' class='permalink'></a><p>
+<a name='p7' class='permalink'></a><p>
     To generate this code, we compile the predicate, consequent,
     and alternative, and combine the resulting code with instructions
     to test the predicate result and with newly generated labels to mark the
@@ -2333,16 +2334,16 @@ function compile_assignment_returning(
     the code for the false branch to the label at the end of the conditional.
     
     <div class='snippet' id='javascript_118_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function compile_conditional(stmt, target, linkage) {
+function compile_conditional(component, target, linkage) {
     let t_branch = make_label("true_branch");
     let f_branch = make_label("false_branch");
     let after_cond = make_label("after_cond");
     let consequent_linkage =
             linkage === "next" ? after_cond : linkage;
-    let p_code = compile(conditional_predicate(stmt), "val", "next");
-    let c_code = compile(conditional_consequent(stmt),
+    let p_code = compile(conditional_predicate(component), "val", "next");
+    let c_code = compile(conditional_consequent(component),
                          target, consequent_linkage);
-    let a_code = compile(conditional_alternative(stmt),
+    let a_code = compile(conditional_alternative(component),
                          target, linkage);
     return preserving(
              list("env", "continue"),
@@ -2359,10 +2360,7 @@ function compile_conditional(stmt, target, linkage) {
                      append_instruction_sequences(f_branch, a_code)),
                    after_cond)));
 }</pre></div></div>
-  </p></div>
 
-  <div class='permalink'>
-<a name='p10' class='permalink'></a><p>
     
       
       
@@ -2398,17 +2396,39 @@ function compile_conditional(stmt, target, linkage) {
   </h2></div>
 
   <div class='permalink'>
-<a name='p11' class='permalink'></a><p>
+<a name='p8' class='permalink'></a><p>
     
-    The compilation of sequences (from
+    The compilation of 
     
       
-      function
+      
+        statement sequences (inside blocks)
+      
     
-    bodies or explicit
-    <kbd>begin</kbd> expressions) parallels their evaluation.
-    Each expression of the sequence is compiled—the last expression with
-    the linkage specified for the sequence, and the other expressions with
+    parallels their evaluation.
+    Each
+    
+      
+      
+        statement
+      
+    
+    of the sequence is compiled—the last
+    
+      
+      
+        statement
+      
+    
+    with
+    the linkage specified for the sequence, and the other
+    
+      
+      
+        statements
+      
+    
+    with
     linkage
     
       
@@ -2417,7 +2437,14 @@ function compile_conditional(stmt, target, linkage) {
       
     
     (to execute the rest of the
-    sequence). The instruction sequences for the individual expressions are
+    sequence). The instruction sequences for the individual
+    
+      
+      
+        statements
+      
+    
+    are
     appended to form a single instruction sequence, such that
     <kbd>env</kbd> (needed for the rest of the sequence) and
     <kbd>continue</kbd> (possibly needed for the linkage at
@@ -2426,11 +2453,11 @@ function compile_conditional(stmt, target, linkage) {
     <div class='snippet' id='javascript_118_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_sequence(seq, target, linkage) {
     return is_last_statement(seq)
-        ? compile(first_statement(seq), target, linkage)
-        : preserving(
-            list("env", "continue"),
-            compile(first_statement(seq), target, "next"),
-            compile_sequence(rest_statements(seq), target, linkage));
+           ? compile(first_statement(seq), target, linkage)
+           : preserving(
+               list("env", "continue"),
+               compile(first_statement(seq), target, "next"),
+               compile_sequence(rest_statements(seq), target, linkage));
 }</pre></div></div>
   </p></div>
 
@@ -2449,7 +2476,7 @@ function compile_sequence(seq, target, linkage) {
   </h2></div>
 
   <div class='permalink'>
-<a name='p12' class='permalink'></a><p>
+<a name='p9' class='permalink'></a><p>
     
     Lambda expressions construct
     
@@ -2459,10 +2486,7 @@ function compile_sequence(seq, target, linkage) {
     The object code for a lambda expression must have the form
     <kbd class='snippet'>$\langle construct$ $function$ $object$ $and$ $assign$ $it$ $to$ $target$ $register \rangle$
 $\langle linkage \rangle$</kbd>
-  </p></div>
 
-  <div class='permalink'>
-<a name='p13' class='permalink'></a><p>
     When we compile the lambda expression, we also generate the code for the
     
       
@@ -2508,7 +2532,7 @@ $\langle compilation$ $of$ $function$ $body \rangle$
   </p></div>
 
   <div class='permalink'>
-<a name='p14' class='permalink'></a><p>
+<a name='p10' class='permalink'></a><p>
     
       
       
@@ -2555,10 +2579,7 @@ function compile_lambda_expression(exp, target, linkage) {
           compile_lambda_body(exp, fun_entry)),
          after_lambda);
 }</pre></div></div>
-  </p></div>
 
-  <div class='permalink'>
-<a name='p15' class='permalink'></a><p>
     
       
       
@@ -2593,7 +2614,7 @@ function compile_lambda_expression(exp, target, linkage) {
   </p></div>
 
   <div class='permalink'>
-<a name='p16' class='permalink'></a><p>
+<a name='p11' class='permalink'></a><p>
     
       
       
@@ -2628,11 +2649,11 @@ function compile_lambda_expression(exp, target, linkage) {
       
       function
     
-    is called.  After this comes the code for the sequence of
+    is called.  After this comes the code for the 
     
       
       
-	statements
+	block
       
     
     that
@@ -2687,7 +2708,7 @@ function compile_lambda_body(exp, fun_entry) {
       </h2></div>
 
       <div class='permalink'>
-<a name='p17' class='permalink'></a><p>
+<a name='p12' class='permalink'></a><p>
 	
 
 	JavaScript's return statements are compiled such that the compiled code
@@ -2709,7 +2730,7 @@ function compile_return_statement(stmt, target, linkage) {
       </h2></div>
 
       <div class='permalink'>
-<a name='p18' class='permalink'></a><p>
+<a name='p13' class='permalink'></a><p>
 	
 
 	A block is compiled by prepending an assignment instruction to the compiled
@@ -2866,9 +2887,9 @@ function compiled_function_env(c_proc) {
       5.5.2&nbsp;&nbsp;
     Compiling
     
-      Statements and
+      
+      Components
     
-    Expressions
   
     </div>
     <script> var chapter_id = 119; </script>

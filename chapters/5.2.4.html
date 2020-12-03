@@ -1847,9 +1847,9 @@ Acknowledgments
                 <a href="./5.5.2.html"> 5.5.2 
     Compiling
     
-      Statements and
+      
+      Components
     
-    Expressions
   </a>
               </span>
             </h5>
@@ -2014,7 +2014,7 @@ list(list("initialize_stack",
       <kbd>make_stack</kbd>:
     
       
-    <div class='snippet' id='javascript_107_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0BnCpslgBQBKUAG9QuUFNAAbNhVBdQAXlAkiMmQG5J0uQvUMARmwBOHAA5EuACzZLVABh3TZ8xkwAeHACZsLFDYqoM66UvqgZESmpmwkFL7+gcGhrsTk1HSgVrYCniKiYa6KwRZMVKZ5ADSKQi7FUoYm5jl2DmpExmaW1m2gANSgAIz1DVExcQl+AUGq47HxiTMDw6PFzN7TyarMgRwbAvOTS4E1uzb7XnVFAL5F6ZS09BY0FsJiRa5UBKACVFwcdSaARcIQFT4NUBmUw0SoAIgAogwAgBPRS8figKjPV5w64QqQ3KEyLhsD6Q4pkOg8UAUV7BOxMHwg64U1ztXhUGQstYUo6LLazSLRBZTJJBAC0qwJxViFGi9DpFl50jurjV0gemXo2Ko1CYMioAC82O9ChT2kDtDKmt1WvYUiqpBsTkLUpD+WLlk4dDK5QrQHCfHQ2HC1hqpFqntlTNiEjwmNQeFQyFwzTKfP8LDImCiQRRYyQAObfPMytmyf4UARwgA6JDhNThdN4Mgl9vajY6XRavXsVXLFdcdYbTY2VAYnQlguCXZdgrBrNV91Ijyyma4ZQoZBsAgY9i4TCLbHBFP9pno+64h+PKmUqjhrThg6kAH5sr0X6AAFyMA9Hsl7wfF4LGfIdQHfEDhC-X8rxvQD70DXV9UNE0wKHd9kKoA1jVNIQYL-a8ALvYDC3jXgk2oVN0IrSCyO4CiqxTNN8PA39oVhPd-2PJsAFUSBYEgaAAd3oWIAEciHsBRsXRPgWG-PFwyKc96A3Lcdx0G4gA')">function make_stack() { 
+    <div class='snippet' id='javascript_107_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0BnCpslgBQBKUAG9QuUFNAAbNhVBdQAXlAkiMmQG5J0uQvUMARmwBOHAA5EuACzZLVABh3TZ8xkwAeHACZsLFDYqoM66UvqgZESmpmwkFL7+gcGhrsTk1HSgVrYCniKiYa6KwRZMVKZ5ADSKQi7FUoYm5jl2DmpExmaW1m2gANSgAIz1DVExcQl+AUGq47HxiTMDw6PFzN7TyarMgRwbAvOTS4E1uzb7XnVFAL5F6ZS09BY0FsJiRa5UBKACVFwcdSaARcIQFT4NUBmUw0SoAIgAogwAgBPRS8figKjPV5w64QqQ3KEyLhsD6Q4pkOg8UAUV7BOxMHwg64U1ztXhUGQstYUo6LLazSLRBZTJJBAC0qwJxViFGi9DpFl50jurjV0gemXo2Ko1CYMioAC82O9ChT2kDtDKmt1WvYUiqpBsTkLUpD+WLlk4dDK5QrQHCfHQ2HC1hqpFqntlTNiEjwmNQeFQyFwzTKfP8LDImCiQRRYyQAObfPMytmyf4UARwgA6JDhNThdN4Mgl9vajY6XRavXsVXLFdcdYbTY2VAYnQlguCXZdgrBrNV91Ijyyma4ZQoZBsAgY9i4TCLbHBFP9pno+64h+PKmUqjhrThg+KAH5sr0X64AFyMA9Hsl7wfF4LGfIdXHfEDhC-aRfyvG9APvQNdX1Q0TTA8CpHfFCqANY1TSEGCpDg-9byAwMLELeNeCTahUwwzDIKo7gaKrFM00IzDiKhGJYT3Ui2CbABVEgWBIGgAHd6FiABHIh7AUbF0T4FhvzxcMinPegNy3HcdBuIA')">function make_stack() { 
     let s = null;
     let number_pushes = 0;
     let max_depth = 0;
@@ -2051,14 +2051,14 @@ list(list("initialize_stack",
     }
     function dispatch(message) {
         return message === "push"
-            ? push
-            : message === "pop"
-            ? pop()
-            : message === "initialize"
-            ? initialize()
-            : message === "print_statistics"
-            ? print_statistics()
-            : error(message, "Unknown request in stack:");
+               ? push
+               : message === "pop"
+               ? pop()
+               : message === "initialize"
+               ? initialize()
+               : message === "print_statistics"
+               ? print_statistics()
+               : error(message, "Unknown request in stack:");
     }
     return dispatch;
 }

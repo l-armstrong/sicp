@@ -1847,9 +1847,9 @@ Acknowledgments
                 <a href="./5.5.2.html"> 5.5.2 
     Compiling
     
-      Statements and
+      
+      Components
     
-    Expressions
   </a>
               </span>
             </h5>
@@ -1979,7 +1979,14 @@ Acknowledgments
     
     In section&nbsp;<REF NAME="sec:separating-analysis"><a class="superscript" id="5.5.1-sec-link-4.1.7" href="./4.1.7.html">4.1.7</a></REF> we modified our
     original metacircular interpreter to separate analysis from execution.  We
-    analyzed each expression to produce an execution
+    analyzed each
+    
+      
+      
+        component
+      
+    
+    to produce an execution
     
       
       function
@@ -2038,28 +2045,30 @@ Acknowledgments
     generator</EM>:
     
     <div class='snippet' id='javascript_117_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function compile(stmt, target, linkage) {
-    return is_literal(stmt)
-        ? compile_literal(stmt, target, linkage)
-        : is_name(stmt)
-        ? compile_name(stmt, target, linkage)
-        : is_declaration(stmt)
-        ? compile_declaration(stmt, target, linkage)
-        : is_assignment(stmt)
-        ? compile_assignment(stmt, target, linkage)
-        : is_conditional(stmt)
-        ? compile_conditional(stmt, target, linkage)
-        : is_lambda_expression(stmt)
-        ? compile_lambda_expression(stmt, target, linkage)
-        : is_sequence(stmt)
-        ? compile_sequence(sequence_statements(stmt), target, linkage)
-        : is_block(stmt)
-        ? compile_block(stmt, target, linkage)
-        : is_return_statement(stmt)
-        ? compile_return_statement(stmt, target, linkage) 
-        : is_application(stmt)
-        ? compile_application(stmt, target, linkage)
-        : error(stmt, "Unknown statement type -- compile");
+function compile(component, target, linkage) {
+    return is_literal(component)
+           ? compile_literal(component, target, linkage)
+           : is_name(component)
+           ? compile_name(component, target, linkage)
+           : is_application(component)
+           ? compile_application(component, target, linkage)
+           : is_operator_combination(component)           //TODO
+           ? compile_operator_combination(component, env) //TODO
+           : is_conditional(component)
+           ? compile_conditional(component, target, linkage)
+           : is_lambda_expression(component)
+           ? compile_lambda_expression(component, target, linkage)
+           : is_sequence(component)
+           ? compile_sequence(sequence_statements(component), target, linkage)
+           : is_block(component)
+           ? compile_block(component, target, linkage)
+           : is_return_statement(component)
+           ? compile_return_statement(component, target, linkage) 
+           : is_declaration(component)
+           ? compile_declaration(component, target, linkage)
+           : is_assignment(component)
+           ? compile_assignment(component, target, linkage)
+           : error(component, "Unknown component type -- compile");
 }</pre></div></div>
   </p></div>
 
@@ -2081,14 +2090,35 @@ function compile(stmt, target, linkage) {
       
     
     and the code generators that it calls
-    take two arguments in addition to the expression to compile.  There is a 
+    take two arguments in addition to the
+    
+      
+      
+        component
+      
+    
+    to compile.  There is a 
     
     <EM>target</EM>, which specifies the register in which the compiled code is
-    to return the value of the expression.  There is also a 
+    to return the value of the
+    
+      
+      
+        component.
+      
+    
+    There is also a 
     
     <EM>linkage descriptor</EM>, which describes how the code resulting from the
-    compilation of the expression should proceed when it has finished its
-    execution.  The linkage descriptor can require that the code do one of
+    compilation of the
+    
+      
+      
+        component
+      
+    
+    should proceed when it has finished its
+    execution.  The linkage descriptor can require the code to do one of
     the following three things:
     <UL>
       <LI>
@@ -2124,12 +2154,19 @@ function compile(stmt, target, linkage) {
 	designated label as the linkage descriptor).
       </LI>
     </UL>
-  </p></div>
 
-  <div class='permalink'>
-<a name='p4' class='permalink'></a><p>
-    For example, compiling the expression <kbd>5</kbd> (which
-    is self-evaluating) with a target of the <kbd>val</kbd>
+    For example, compiling the
+    
+      
+      
+        literal
+      
+    
+    <kbd>5</kbd>
+    
+      
+    
+    with a target of the <kbd>val</kbd>
     register and a linkage of
     
       
@@ -2144,7 +2181,7 @@ assign("val", constant(5));</pre></div></div>
   </p></div>
 
   <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
+<a name='p4' class='permalink'></a><p>
     Compiling the same expression with a linkage of
     
       
@@ -2156,10 +2193,7 @@ assign("val", constant(5));</pre></div></div>
     <div class='snippet' id='javascript_117_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 assign("val", constant(5));
 go_to(reg("continue"));</pre></div></div>
-  </p></div>
 
-  <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
     In the first case, execution will continue with the next instruction
     in the sequence. In the second case, we will return from a
     
@@ -2179,12 +2213,19 @@ go_to(reg("continue"));</pre></div></div>
 
   
   <div class='permalink'>
-<a name='p7' class='permalink'></a><p>
+<a name='p5' class='permalink'></a><p>
     
     
     Each code generator returns an 
     <EM>instruction sequence</EM> containing
-    the object code it has generated for the expression.  Code generation
+    the object code it has generated for the
+    
+      
+      
+        statement or expression.
+      
+    
+    Code generation
     for a compound expression is accomplished by combining the output from
     simpler code generators for component expressions, just as
     evaluation of a compound expression is accomplished by evaluating the
@@ -2192,7 +2233,7 @@ go_to(reg("continue"));</pre></div></div>
   </p></div>
 
   <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
+<a name='p6' class='permalink'></a><p>
     The simplest method for combining instruction sequences is a
     
       
@@ -2225,7 +2266,7 @@ $seq_2$</kbd>
   </p></div>
 
   <div class='permalink'>
-<a name='p9' class='permalink'></a><p>
+<a name='p7' class='permalink'></a><p>
     
     Whenever registers might need to be saved, the compiler's code
     generators use
@@ -2235,7 +2276,7 @@ $seq_2$</kbd>
     
       
       
-	The function <kbd>preserving</kbd>
+	      The function <kbd>preserving</kbd>
       
     
     takes three arguments: a set of registers and two instruction sequences that
@@ -2276,7 +2317,7 @@ $seq_2$</kbd>
     
   
   <div class='permalink'>
-<a name='p10' class='permalink'></a><p>
+<a name='p8' class='permalink'></a><p>
     By using <kbd>preserving</kbd> to combine instruction
     sequences the compiler avoids unnecessary stack operations.  This also
     isolates the details of whether or not to generate
@@ -2294,7 +2335,7 @@ $seq_2$</kbd>
   </p></div>
 
   <div class='permalink'>
-<a name='p11' class='permalink'></a><p>
+<a name='p9' class='permalink'></a><p>
     In principle, we could represent an instruction sequence simply as a
     list of instructions.
     
@@ -2309,7 +2350,12 @@ $seq_2$</kbd>
     <kbd>preserving</kbd> would then be a complex operation,
     because it would have to analyze each instruction sequence to
     determine how the sequence uses its registers.
-    <kbd>Preserving</kbd>
+    
+      
+      
+	      The function <kbd>preserving</kbd>
+      
+    
     would be inefficient as well as complex, because it would have to
     analyze each of its instruction sequence arguments, even though these
     sequences might themselves have been constructed by calls to
@@ -2329,7 +2375,7 @@ $seq_2$</kbd>
   </p></div>
 
   <div class='permalink'>
-<a name='p12' class='permalink'></a><p>
+<a name='p10' class='permalink'></a><p>
     An instruction sequence will contain three pieces of information:
     <UL>
       <LI>the set of registers that must be initialized before the
@@ -2346,10 +2392,7 @@ $seq_2$</kbd>
       in the sequence.
       </LI>
     </UL>
-  </p></div>
 
-  <div class='permalink'>
-<a name='p13' class='permalink'></a><p>
     We will represent an instruction sequence as a list of its three
     parts.  The constructor for instruction sequences is thus
     
@@ -2360,7 +2403,7 @@ function make_instruction_sequence(needs, modifies, instructions) {
   </p></div>
 
   <div class='permalink'>
-<a name='p14' class='permalink'></a><p>
+<a name='p11' class='permalink'></a><p>
     For example, the two-instruction sequence that looks up the value of
     the
     
@@ -2383,7 +2426,7 @@ make_instruction_sequence(
   </p></div>
 
   <div class='permalink'>
-<a name='p15' class='permalink'></a><p>
+<a name='p12' class='permalink'></a><p>
     We sometimes need to construct an instruction sequence with no
     
       
@@ -2399,7 +2442,7 @@ function empty_instruction_sequence() {
   </p></div>
 
   <div class='permalink'>
-<a name='p16' class='permalink'></a><p>
+<a name='p13' class='permalink'></a><p>
     The
     
       
@@ -2441,7 +2484,14 @@ function empty_instruction_sequence() {
       
       argument expression,
     
-    and saves and restores <kbd>proc</kbd> around the
+    and saves and restores
+    
+      
+      
+        <kbd>fun</kbd>
+      
+    
+    around the
     evaluation of the
     
       
@@ -2509,7 +2559,7 @@ f(g("x"), "y")</pre></div></div>
 	
 	  
 	  
-	    statements applications whose function expression is a name,
+	    component applications whose function expression is a name,
 	  
 	
 	and to take
@@ -2517,7 +2567,7 @@ f(g("x"), "y")</pre></div></div>
 	
 	  
 	  
-	    statements.
+	    components.
 	  
 	
       </LI>

@@ -1843,9 +1843,9 @@ Acknowledgments
                 <a href="./5.5.2.html"> 5.5.2 
     Compiling
     
-      Statements and
+      
+      Components
     
-    Expressions
   </a>
               </span>
             </h5>
@@ -2091,37 +2091,30 @@ Acknowledgments
     be constructed and added to the system during debugging.
   </p></div>
 
-  <div class='permalink'>
+  
+    
+    
+      <div class='permalink'>
 <a name='p7' class='permalink'></a><p>
-    In view of the complementary advantages of compilation and
-    interpretation, modern program-development environments pursue a mixed
-    strategy.
+        For performance, JavaScript interpreters typically operate
+        on an intermediate representation of the program called
+        bytecode, rather than directly on the sources. Bytecode
+        instructions are compiled to machine instructions while
+        the program is running. To ensure that the additional time
+        spent compiling leads to a net performance gain, only
+        frequently executed parts of a program (for example a
+        single function or an entire call chain) will be compiled.
+        As a consequence of this design, interpreted functions and
+        compiled functions must be able to call each other. In
+        section&nbsp;<REF NAME="sec:interfacing-compiled-code"><a class="superscript" id="5.5-sec-link-5.5.7" href="./5.5.7.html">5.5.7</a></REF>, after we have
+        implemented the compiler, we will show how to interface it
+        with our interpreter to produce an integrated
+        interpreter-compiler development system.
+        
+         
+      </p></div>
     
-      
-      JavaScript
-    
-    interpreters are generally organized so that interpreted
-    
-      
-      functions
-    
-    and compiled
-    
-      
-      functions
-    
-    can call each other. This enables a programmer to compile those parts of a
-    program that are assumed to be debugged, thus gaining the efficiency
-    advantage of compilation, while retaining the interpretive mode of execution
-    for those parts of the program that are in the flux of interactive
-    development and debugging.  In
-    section&nbsp;<REF NAME="sec:interfacing-compiled-code"><a class="superscript" id="5.5-sec-link-5.5.7" href="./5.5.7.html">5.5.7</a></REF>, after we have
-    implemented the compiler, we will show how to interface it with our
-    interpreter to produce an integrated interpreter-compiler development system.
-    
-    
-    
-  </p></div>
+  
 
   
       <div class='permalink'>
@@ -2230,16 +2223,44 @@ Acknowledgments
     analyzing evaluator of section&nbsp;<REF NAME="sec:separating-analysis"><a class="superscript" id="5.5-sec-link-4.1.7" href="./4.1.7.html">4.1.7</a></REF>.
     But there are further opportunities to gain efficiency in compiled code.
     As the interpreter runs, it follows a process that must be applicable
-    to any expression in the language.  In contrast, a given segment of
-    compiled code is meant to execute some particular expression.  This
+    to any
+    
+      
+      
+        component
+      
+    
+    in the language.  In contrast, a given segment of
+    compiled code is meant to execute some particular
+    
+      
+      
+        component
+      
+    
+    .  This
     can make a big difference, for example in the use of the stack to
-    save registers.  When the interpreter evaluates an expression, it must
-    be prepared for any contingency.  Before evaluating a subexpression,
+    save registers.  When the interpreter evaluates a
+    
+      
+      
+        component
+      
+    
+    , it must
+    be prepared for any contingency.  Before evaluating a subcomponent,
     the interpreter saves all
     registers that will be needed later, because
-    the subexpression might require an arbitrary evaluation.
+    the subcomponent might require an arbitrary evaluation.
     A compiler, on the other hand, can exploit the structure of the
-    particular expression it is processing to generate code that avoids
+    particular
+    
+      
+      
+        component
+      
+    
+    it is processing to generate code that avoids
     unnecessary stack operations.
   </p></div>
 

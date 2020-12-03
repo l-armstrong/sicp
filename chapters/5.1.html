@@ -1843,9 +1843,9 @@ Acknowledgments
                 <a href="./5.5.2.html"> 5.5.2 
     Compiling
     
-      Statements and
+      
+      Components
     
-    Expressions
   </a>
               </span>
             </h5>
@@ -2000,27 +2000,30 @@ Acknowledgments
   <div class='permalink'>
 <a name='p2' class='permalink'></a><p>
     A machine to carry out this algorithm must keep track of two numbers,
-    $a$ and $b$, so let
-    us assume that these numbers are stored in two registers with those names.
-    The basic operations required are testing whether the contents of register
-    <kbd>b</kbd><a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
-    is zero and computing the remainder of the
+    $a$ and $b$, so let us
+    assume that these numbers are stored in two registers with those names. The
+    basic operations required are testing whether the contents of register
+    <kbd>b</kbd> is zero and computing the remainder of the
     contents of register <kbd>a</kbd> divided by the contents
-    of register <kbd>b</kbd>.  The remainder operation is a
-    complex process,
-    but assume for the moment that we have a primitive device that
-    computes remainders.  On each cycle of the GCD algorithm, the contents
-    of register <kbd>a</kbd> must be replaced by the contents
-    of register <kbd>b</kbd>, and the contents of
-    <kbd>b</kbd> must be replaced by the remainder of
-    the old contents of <kbd>a</kbd> divided by the old
-    contents of <kbd>b</kbd>. It would be convenient if these
-    replacements could be done simultaneously, but in our model of register
-    machines we will assume that only one register can be assigned a new value
-    at each step.  To accomplish the replacements, our machine will use a third
-    <QUOTE>temporary</QUOTE> register, which we call
-    <kbd>t</kbd>.  (First the remainder
-    will be placed in <kbd>t</kbd>, then the contents of
+    of register <kbd>b</kbd>.
+      
+        <a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
+      
+    
+
+    The remainder operation is a complex process, but assume for the moment that
+    we have a primitive device that computes remainders. On each cycle of the
+    GCD algorithm, the contents of register <kbd>a</kbd> must
+    be replaced by the contents of register <kbd>b</kbd>, and
+    the contents of <kbd>b</kbd> must be replaced by the
+    remainder of the old contents of <kbd>a</kbd> divided by
+    the old contents of <kbd>b</kbd>. It would be convenient
+    if these replacements could be done simultaneously, but in our model of
+    register machines we will assume that only one register can be assigned a
+    new value at each step. To accomplish the replacements, our machine will use
+    a third <QUOTE>temporary</QUOTE> register, which we call
+    <kbd>t</kbd>. (First the remainder will be placed in
+    <kbd>t</kbd>, then the contents of
     <kbd>b</kbd> will be placed in
     <kbd>a</kbd>, and finally the remainder stored in
     <kbd>t</kbd> will be placed in
@@ -2167,18 +2170,13 @@ Acknowledgments
     <div class='footnote'>
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1'>[1] </a>
     <FOOTNOTE>
-    In our
-    controllers, we shall use strings to represent machine components such as
-    registers, labels and operations. In the text, we shall omit the quotation
-    marks around the names and write
-    <blockquote class='blockquote'>
-      register <kbd>b</kbd>
-    </blockquote>
-
-    instead of
-    <blockquote class='blockquote'>register <kbd>"b"</kbd>
-    </blockquote>
-
+    
+          In our controllers, we shall use strings to represent machine
+          components such as registers, labels and operations. In the text, we
+          shall omit the quotation marks around the names and write
+          <kbd>register b</kbd> instead of
+          <kbd>register "b"</kbd>.
+        
     </FOOTNOTE></div>
 
     
