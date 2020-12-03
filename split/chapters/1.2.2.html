@@ -2019,12 +2019,12 @@ Acknowledgments
         ((= n 1) 1)
         (else (+ (fib (- n 1))
                  (fib (- n 2))))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_15_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCZMChsDMBXAOwGMAXASwHsjQ8KAjACiIEpQBvbUH0AJwCmZAn1q0AvJNAAGbr3m8A-DLkL5ALlASpKVWvnLd+tZvrNaAWlTsA1HUYtQVjKwDc2AL64zTAGxugA')">function fib(n) {
+            <td><div class='snippet' id='javascript_15_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCZMChsDMBXAOwGMAXASwHsjQ8KAjACiIEpQBvbUH0AJwCmZAn1q0AvJNAAGbr3m8A-DLkL5ALlASpKVWp7Ld+jXUYtQAWlTsA1Kea0rGVgG5sAX1z1mANldA')">function fib(n) {
     return n === 0
            ? 0
            : n === 1
-             ? 1
-             : fib(n - 1) + fib(n - 2);
+           ? 1
+           : fib(n - 1) + fib(n - 2);
 }
 </pre></div></div></td></tr></table>
 
@@ -2357,20 +2357,18 @@ function fib_iter(a, b, count) {
         ((= kinds-of-coins 3) 10)
         ((= kinds-of-coins 4) 25)
         ((= kinds-of-coins 5) 50)))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_15_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCZMChsDMBXAOwGMAXASwHsjQSriyB9EgCwEMiBzAUwAp2AWwZEyASlABvbKFmgATjzIF5tEiQHDGAGlAA2MQG5sAX3zFy1NRqEiyugNYUiAEwDOTKnhZVnbidJyCkoqtLaMoAC80aAADDJBiaAA-KgJSXIAXKDhoqAAPHGgAD7F6RlyTq4eXj5+UTHxFYmpTc1ZdDZaoo7O7p7e9PUAtKhi5e2gANQT7eqadqCjeBTybswuPERUgs7slDR8s5MnslX9tUNE-trHk+c1g77XRqbmpAe0K2sbWzt7nz4DwGdReUnKimUqlAwMuzzcDUiqBSyMyd0qfUeoIR0SRGBRAFZQGj7piQVccTEAMwolCxYnos5kuH1XGgAAsKIwRJJ7VhT1ZMSJqQJ9N5zX52MR+lpsTFcWMZmw9EYLA43H4dNiRiAA')">function count_change(amount) {
+            <td><div class='snippet' id='javascript_15_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCZMChsDMBXAOwGMAXASwHsjQSriyB9EgCwEMiBzAUwAp2AWwZEyASlABvbKFmgATjzIF5tEiQHDGAGlAA2MQG5sAX3zFy1NRqEiyugNYUiAEwDOTKnhZVnbidJyCkoqtLaMoAC80aAADDJBiaAA-KgJSXIAXKDhoqAAPHGgAD7FoE6uHl4+flEx8RlBqQ2NstnqmnaOzu6e3vS1ALSoYumtoADUY60duWSgw3gU8m7MLjxEVILO7JQ0fBW91QNE-trT4+U9Vf2+p0am5qR7tEsraxtbOy8H13019ykY0UylUV0q-xObjqkVQKThmQuiUONwB0OisIw8IArKBEZcUZC7uiYgBmeEoWJ4pFBQnHYkw0AAFnhGFx+PGdNutQxoFxqWxVI5rS5aMZegpsSFcWMZmw9EYLA43H4lNiRiAA')">function count_change(amount) {
     return cc(amount, 6);
 }
 function cc(amount, kinds_of_coins) {
     return amount === 0
            ? 1
-           : amount < 0 ||
-             kinds_of_coins === 0
-             ? 0
-             : cc(amount, kinds_of_coins - 1)
-               +
-               cc(amount - first_denomination(
-                               kinds_of_coins),
-                  kinds_of_coins);
+           : amount < 0 || kinds_of_coins === 0
+           ? 0
+           : cc(amount, kinds_of_coins - 1)
+             +
+             cc(amount - first_denomination(kinds_of_coins),
+                kinds_of_coins);
 }
 function first_denomination(kinds_of_coins) {
     return kinds_of_coins === 1 ? 1 :
@@ -2407,7 +2405,7 @@ function first_denomination(kinds_of_coins) {
             <td><div class='snippet' id='javascript_15_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (count-change 100)</pre><pre class='prettyprintoutput'>
 292</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_15_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCZMChsDMBXAOwGMAXASwHsjQSriyB9EgCwEMiBzAUwAp2AWwZEyASlABvbKFmgATjzIF5tEiQHDGAGlAA2MQG5sAX3zFy1NRqEiyugNYUiAEwDOTKnhZVnbidJyCkoqtLaMoAC80aAADDJBiaAA-KgJSXIAXKDhoqAAPHGgAD7F6RlyTq4eXj5+UTHxFYmpTc1ZdDZaoo7O7p7e9PUAtKhi5e2gANQT7eqadqCjeBTybswuPERUgs7slDR8s5MnslX9tUNE-trHk+c1g77XRqbmpAe0K2sbWzt7nz4DwGdReUnKimUqlAwMuzzcDUiqBSyMyd0qfUeoIR0SRGBRAFZQGj7piQVccTEAMwolCxYnos5kuH1XGgAAsKIwRJJ7VhT1ZMSJqQJ9N5zX52MR+lpsTFcWMZmw9EYLA43H4dNiRiAA')">count_change(100);
+            <td><div class='snippet' id='javascript_15_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCZMChsDMBXAOwGMAXASwHsjQSriyB9EgCwEMiBzAUwAp2AWwZEyASlABvbKFmgATjzIF5tEiQHDGAGlAA2MQG5sAX3zFy1NRqEiyugNYUiAEwDOTKnhZVnbidJyCkoqtLaMoAC80aAADDJBiaAA-KgJSXIAXKDhoqAAPHGgAD7FoE6uHl4+flEx8RlBqQ2NstnqmnaOzu6e3vS1ALSoYumtoADUY60duWSgw3gU8m7MLjxEVILO7JQ0fBW91QNE-trT4+U9Vf2+p0am5qR7tEsraxtbOy8H13019ykY0UylUV0q-xObjqkVQKThmQuiUONwB0OisIw8IArKBEZcUZC7uiYgBmeEoWJ4pFBQnHYkw0AAFnhGFx+PGdNutQxoFxqWxVI5rS5aMZegpsSFcWMZmw9EYLA43H4lNiRiAA')">count_change(100);
 </pre><pre class='prettyprintoutput'>
 293</pre></div></div></td></tr></table>
   </p></div>

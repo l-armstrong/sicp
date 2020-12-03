@@ -2257,24 +2257,32 @@ x > 5 && x < 10</pre></div></div>
         <div class='snippet' id='javascript_10_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsGMB7AOwGcAXUAQ1AF5QBmAbl0NIoCNarQBqVZ7NRrDQAFlAB+UJlAAuUJ2F1xUmXwDsvbvIBMAVkZA')">a === 4 ? 6 : b === 4 ? 6 + 7 + a : 25;
 </pre></div></div>
         consists of two conditional expressions, where the second one forms the
-	alternative of the first one. To make that clear, we sometimes indent the
-	lines like this:
-        <div class='snippet' id='javascript_10_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsGMB7AOwGcAXUAQ1AF5QBmAbl0NIoCNarQBqVZ7NRrDQAFmwB+UDgBcoTsLqjQ2UKCmZeoAOxbKq0HIBMAVkZA')">a === 4
+	alternative of the first one; we say that the conditional expression operator
+	is <EM>right-associative</EM>. As with long arithmetic expressions, we
+	use line breaks to visually separate the major components of long
+	conditional expressions:
+        <div class='snippet' id='javascript_10_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsGMB7AOwGcAXUAQ1AF5QBmAbl0NIoCNarQBqVZ7NRrDQAFmwB+UDgBcoTsLqjQk6b1AB2dZWxyATAFZGQA')">a === 4
 ? 6
 : b === 4 
-  ? 6 + 7 + a
-  : 25;
+? 6 + 7 + a
+: 25;
 </pre></div></div>
 	
+	Conditional expressions can appear inside arithmetic expressions. The
+	parentheses in the following examples are necessary because the
+	conditional expression operator has lower precedence than the arithmetic
+	operators
+	<kbd>+</kbd> and
+	<kbd>*</kbd>.
       
     
     <div class='snippet' id='javascript_10_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsGMB7AOwGcAXUAQ1AF5QBmAbl0NIoCNarQBqVZ7ACZeoABScAfNwD8oTgC4qASkZA')">2 + (b > a ? b : a);
 </pre></div></div>
-    <div class='snippet' id='javascript_10_19_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsGMB7AOwGcAXUAQ1AF5QBmAbl0NIoCNarQBqVZ7AApqAPlDtsoAPxVJALm4AecZNDSVa0AoC0KAJTYAVEOp99jIA')">(a > b
+    <div class='snippet' id='javascript_10_19_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsGMB7AOwGcAXUAQ1AF5QBmAbl0NIoCNarQBqVZ7AApqAPlDtsoAPxVJALm4AecZJkTQCgLQoAlNgBUQ6n12MgA')">(a > b
  ? a
  : a < b
-   ? b
-   : -1)
+ ? b
+ : -1)
 *
 (a + 1);
 </pre></div></div>

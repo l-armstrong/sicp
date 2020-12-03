@@ -3028,7 +3028,7 @@ function improve(guess, x) {
           guess
           (sqrt-iter (improve guess x) x)))
    (sqrt-iter 1.0 x))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_12_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToBwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaOgA3YUE6AHNhdgAaUABPBz4BETEJUHZQAGp4rjAAJm9jPzNaK0Eyex4k-hN-c3CqKgATAH1hIioCcIALFnCCYSYmWM4qpycU13pmFisbO37Bpi4tNS4AHkU0BQUUfScjJ1qS0AoAWwAHQSoQvoGhkcTx5Jc04NCIqMWHtVAwb+W+wEhwExwCFks5RaFDIoTuS0eY2ezlStAazTaHS6vQBiOqyIJKlAAPxhOemjKZGhsMELHOVxuX3uwzWjyB-BB-EmaUp1LhKDZhlwlJYAFYOLogA')">function sqrt(x) {
+            <td><div class='snippet' id='javascript_12_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToBwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaOgA3YUE6AHNhdgAaUABPBz4BETEJUHZQAGp4rjAAJm9jPzNaK0Eyex4k-hN-c3CqKgATAH1hIioCcIALFnCCYSYmWM4qpycU13pmFisbO37Bpi4tNS4AHkU0BQUUfScjJ1qS0AoAWwAHQSoQvoGhkcTx5Jc04NCIqMWHtVAwb+W+wEhwExwCFks5RaFDIoTuS0eY2ezlStAazTaHS6vQBiOqyPGqgB+IJAk0ZTI0NhghY5yuNy+92Ga0eQP4IP4kzSFKpcJQrMMuApLAArBxdEA')">function sqrt(x) {
     function good_enough(guess, x) {
         return abs(square(guess) - x) < 0.001;
     }
@@ -3037,8 +3037,8 @@ function improve(guess, x) {
     }
     function sqrt_iter(guess, x) {
         return good_enough(guess, x) 
-                   ? guess
-                   : sqrt_iter(improve(guess, x), x);
+               ? guess
+               : sqrt_iter(improve(guess, x), x);
     }
     return sqrt_iter(1, x);
 }

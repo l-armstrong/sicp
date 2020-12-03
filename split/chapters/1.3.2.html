@@ -2647,37 +2647,37 @@ x         =>                   x    +   4
       keep the scope of the names as narrow as possible. 
       Consider for example <kbd>expmod</kbd> in
       exercise&nbsp;<REF NAME="ex:louis-fast-prime"><a class="superscript" id="1.3.2-ex-link-1.26" href="./1.2.6.html#ex_1.26">1.26</a></REF>.
-      <div class='snippet' id='javascript_22_21_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0BTAN1ZIAoSBKUAG9coUaABOrCkXH16AUlDZQAXjWgADAG5cAX3zFy1OqFYAPAA4BbGgBNuAIwCGjVgBpTlj1YHCxEqRl6cwtVdQ0RfyjQAH5USOixAC4GFg4ubhC+BMSxOJCbe2dXDxDQMGxvARzcsQAqT2s7Rxd3RvKlKpra0EUrbsSU4tYB3IaC5uHSy1AAWlQq0FHEvp19XAn7ABYPDA8AVj4tIA')">function expmod(base, exp, m) {
+      <div class='snippet' id='javascript_22_21_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0BTAN1ZIAoSBKUAG9coUaABOrCkXH16AUlDZQAXjWgADAG5cAX3zFy1OqFYAPAA4BbGgBNuAIwCGjVgBpTlj1YHCxEqRl6cwtVdQ0RfyjQAH5USOixAC4GFg4ubhC+BMTYz2s7Rxd3fNAwbG8BHNzQACp8m3tnVw8QsqVK6tzFKy6olObWPuj6kMailtKAWlRK0GGonp19XDHCgBYPDA8AVj4tIA')">function expmod(base, exp, m) {
     return exp === 0
            ? 1
            : is_even(exp)
-             ? expmod(base, exp / 2, m) 
-               * expmod(base, exp / 2, m)
-               % m
-             : base
-               * expmod(base, exp - 1, m) 
-               % m;
+           ? expmod(base, exp / 2, m) 
+             * expmod(base, exp / 2, m)
+             % m
+           : base
+             * expmod(base, exp - 1, m) 
+             % m;
 }
 </pre></div></div>
       This function is unnecessarily inefficient, because it contains two
       identical calls:
-      <div class='snippet' id='javascript_22_22_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0BTAN1ZIAoSBKUAG9coUaABOrCkXH16AUlDZQAXjWgADAG5cAX3zFy1OqFYAPAA4BbGgBNuAIwCGjVgBpTlj1YHCxEqRl6cwtVdQ0RfyjQAH5USOixAC4GFg4ubhC+BMSxOJCbe2dXDxDQMGxvARzcsQAqT2s7Rxd3RvKlKpra0EUrbsSU4tYB3IaC5uHSy1AAWlQq0FHEvp19XAn7ABYPDA8AVj4tIA')">expmod(base, exp / 2, m);
+      <div class='snippet' id='javascript_22_22_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0BTAN1ZIAoSBKUAG9coUaABOrCkXH16AUlDZQAXjWgADAG5cAX3zFy1OqFYAPAA4BbGgBNuAIwCGjVgBpTlj1YHCxEqRl6cwtVdQ0RfyjQAH5USOixAC4GFg4ubhC+BMTYz2s7Rxd3fNAwbG8BHNzQACp8m3tnVw8QsqVK6tzFKy6olObWPuj6kMailtKAWlRK0GGonp19XDHCgBYPDA8AVj4tIA')">expmod(base, exp / 2, m);
 </pre></div></div>
       While this can be easily fixed in this example using the
       <kbd>square</kbd> function, this is not so easy
       in general. Without using <kbd>square</kbd>,
       we would be tempted to introduce a local name for the expression as
       follows:
-      <div class='snippet' id='javascript_22_23_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0BTAN1ZIAoSBKUAG9coUaABOrCkXH16AUlDZQAXjWgADAG5cAX3zFy1OqFYAPAA4BbGgBNuAIwCGjVgBpTlj1YHCxoMjpGClAACycAGwI2S1VPaztHF3d40DBsbz4df0lpWVS1FU0Rf1LQAH5UErKxAC4GFg4ubnMLPmqasUrwqJiLUAAqMMjo1o7OsUUrcc7651cZiaHWm3t5lNbQAFpUTNBFzqmdfVwVxIAWDwwPAFYsoA')">function expmod(base, exp, m) {
+      <div class='snippet' id='javascript_22_23_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0BTAN1ZIAoSBKUAG9coUaABOrCkXH16AUlDZQAXjWgADAG5cAX3zFy1OqFYAPAA4BbGgBNuAIwCGjVgBpTlj1YHCxoMjpGClAACycAGwI2S1VPaztHF3d40DBsbz4df0lpWVS1FU0Rf1LQAH5UErKxAC4GFg4ubnMLPmqairDI6NbQACpuqJiLDs7QRSsxsvrnV2mawdabezmUvoBaVEzQBbLJnX1cZcSAFg8MDwBWLKA')">function expmod(base, exp, m) {
     const half_exp = expmod(base, exp / 2, m);
     return exp === 0
            ? 1
            : is_even(exp)
-             ? half_exp * half_exp
-               % m
-             : base
-               * expmod(base, exp - 1, m) 
-               % m;
+           ? half_exp * half_exp
+             % m
+           : base
+             * expmod(base, exp - 1, m) 
+             % m;
 }
 </pre></div></div>
       This would make the function not just inefficient, but actually
