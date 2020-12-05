@@ -2003,13 +2003,13 @@ Acknowledgments
     written in standard iterative style:<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
     
         
-    <div class='snippet' id='javascript_69_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAAmflUNLUpael9-QLsHJxJwilMLa1THV1FxSWl6ZjYubiyzFOD2QQA+UBJC91aAfiaW1vEALlBcqktTSuyatPCXLu7QDqqcoLSp7r6kgIG0sNA5scdQAGpQbGj1QlJ43QGhhm5WcIAjAvdi7zvQAFJQVlAAXl-QAAYYpozjp6PZzAAHdhUPQ8FzCLrPej0X7ffRGEzVdYhFxA07aBKMIh6SHQ2HXW6gB4I9xxUGgKhZJxkGikCjhVhkMjEx7TJGgFls0CNO5LaZiDqc7l6MXivrgqEwniCkgUfiy8UzBlM7gqij7Q7hPUGqU8jVy7WcZms1UG7Acrk81TuDRPTwlS1OSn-Y4aXAMYmkpXXADs4WwAA4osogA')">function sum_primes(a, b) {
+    <div class='snippet' id='javascript_69_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAAmflUNLUpael9-QLsHJxJwilMLa1THV1FxSWl6ZjYubiyzFOD2QQA+UBJC91aAfiaW1vEALlBcqktTSuyatPCXLu7QDqqcoLSp7r6kgIG0sNA5scdQAGpQbGj1QlJ43QGhhm5WcIAjAvdi7zvQAFJQVlAAXl-QAAYYpozjp6PZzAAHdhUPQ8FzCLrPej0X7ffRGEzVdYhFxA07aBKMIh6SHQ2HXW6gB4I9xxUGgKhZJxkGikCjhVhkMjEx7TJGgFls0CNO5LaZiDqc7l6MXivrgqEwniCkgUfiy6YdRmcZms1X7Q7hFUUA1Snka5YMpncY0G7Acrk81TuDRPTwlK06m7hf7HDS4BjE0lK64AdnC2AAHFFlEA')">function sum_primes(a, b) {
     function iter(count, accum) {
         return count > b
                ? accum
                : is_prime(count)
-                 ? iter(count + 1, count + accum)
-                 : iter(count + 1, accum);
+               ? iter(count + 1, count + accum)
+               : iter(count + 1, accum);
     }
     return iter(a, 0);
 }
@@ -2241,15 +2241,15 @@ function stream_for_each(fun, s) {
 	function
         (section&nbsp;<REF NAME="sec:sequences-conventional-interfaces"><a class="superscript" id="3.5.1-sec-link-2.2.3" href="./2.2.3.html">2.2.3</a></REF>):
 
-        <div class='snippet' id='javascript_69_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwoCcBTAQwFsB9C9qgDYAKJmy4BKUAG9coOaDYUizen0EiWHTuKHiA3LgC++MnSahO7AB7cAJlQYAHAewCeoALygAnAeLlqOlB7JxdXblEtEUkZeVB-Slp6EOc3CM0ubioKVmYNABpQEhjZOPkqAlAhB24SIgFhJnESsvlDUFYBBlZQCqr6D0HQAAYW1rKUsKEAcmnCgCI0Jfn9Utb2zu7pNfG5SbchAAsOWw1mg124-fDIzOzcjTEeNUaKcUL6AFpQbFXd4ziAPk13STyyOTyDEKlhs11WxkIpESQVuPAIgghQkcbFshVRYzkimU9BqdQajy04h24wA-EV6gJqa0AFygbGsU7HdinfFUy5xOmOfh5Lk8jLafJM-lxXSeAB8jHF3HRAkx7NxoCl0u1-NRvH4ryezT52tZepVapxkp1NrkepeFIk8JMZgoFhu4s8bOFQgwhVlHgVQqoeQAbP7JIHvSGhAB2CPy+kNY0GUwkcyccIW3Ic0FaTw7c0Yh5WROlgCkoAATJ4hsNoR6jQYQaihJnlcWcXmJHogA')">function stream_filter(pred, stream) {
+        <div class='snippet' id='javascript_69_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwoCcBTAQwFsB9C9qgDYAKJmy4BKUAG9coOaDYUizen0EiWHTuKHiA3LgC++MnSahO7AB7cAJlQYAHAewCeoALygAnAeLlqOlB7JxdXblEtEUkZeVB-Slp6EOc3CM0ubioKVmYNABpQEhjZOPkqAlAhB24SIgFhJnESsvlDUFYBBlZQCqr6D0HQAAYW1rKUsKEAcmnCgCI0Jfn9Utb2zu7pNfG5SbchAAsOWw1mg124-fDIzOzcjTEeNUaKcUL6AFpQbFXd4ziAPk13STyyOTyDEKlhs11WxkIpESQVuPAIgghQkcbFshVRYzkimU9BqdQajy04h24wA-EV6gJqa0AFygbGsU7HdinfFUy5yOmOfh5Lk8jLafJM-lyXSeAB8jHF3HRAkx7NxoCl0u1u1RvH4ryezT5-NZepVapxkp1Nr1LwpEnhJjMFAsN3FnjZwqEGEKso8CqFVDyADY-ZIA17g0IAOzh+X0hrGgymEjmTjhC25DmgrSeHbmjEPKwJksAUlAACZPENhtD3UaDCDUUIM8qizjcxI9EA')">function stream_filter(pred, stream) {
     return is_null(stream)
            ? null
            : pred(head(stream))
-             ? pair(head(stream),
-                    () => stream_filter(pred, 
-                                        stream_tail(stream)))
-             : stream_filter(pred,
-                             stream_tail(stream));
+           ? pair(head(stream),
+                  () => stream_filter(pred, 
+                                      stream_tail(stream)))
+           : stream_filter(pred,
+                           stream_tail(stream));
 }
 </pre></div></div>
         

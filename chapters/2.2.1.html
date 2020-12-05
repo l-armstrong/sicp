@@ -2564,23 +2564,23 @@ list(25, 16, 9, 4, 1)</pre></div></div>
 const uk_coins = list(100, 50, 20, 10, 5, 2, 1);
 </pre></div></div>
       We could then call <kbd>cc</kbd> as follows:
-      <div class='snippet' id='javascript_32_24_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChslAGYCWATgM4AuA+gCYCmAdgPYC2RDAhhUUwwDSg6ADwDGdAA7Vi5avWZtO3XnjAcGNUMyosmJOqApNQAI30BzIgDdGJgJ6hKAVzkVcBRwxFKGoESIAUHDoeFAIiTOxUlhwANo50ZACUoADe2KAZoHoUjiQ+QUwhoAC8paAADOmZ1ZkA-KA4NU0AXKAFRQA8FaAAPj2aTNq6dP7hkdFxCYlVTTX1lbMtvgHtDKEzi7PCYpJU0pS0jKzsXDwMoxEMUbHxSdObTQDUGw-LgcFroAC0hKQHcsdFGcLuMblMBC9XhkxlcJrdEgBubAAX1w4QYlFAjjIVBhZBKoBiREo-kw5XKAgArBTUJSBGSqfTEdh0ZjHABrXGXfHFQnEiik8lUmkoGkM0B01BMpEsgJkmnYrnsJIIoA')">cc(100, us_coins);
+      <div class='snippet' id='javascript_32_24_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChslAGYCWATgM4AuA+gCYCmAdgPYC2RDAhhUUwwDSg6ADwDGdAA7Vi5avWZtO3XnjAcGNUMyosmJOqApNQAI30BzIgDdGJgJ6hKAVzkVcBRwxFKGoESIAUHDoeFAIiTOxUlhwANo50ZACUoADe2KAZoHoUjiQ+QUwhoAC8paAADOmZ1ZkA-KA4NU0AXKAFRQA8FaAAPj2aTNq6dP7hkdFxCYlVTXUVM7OgrX6BwQyhC4vVwmKSVNKUtIys7Fw8DKMRDFGx8UnTW9UA1JuLK+3roAC0hKSHcidFOdLuNblMBK9HmNrhM7okANzYAC+uHCDEooEcZCo0LIJVAMSIlH8mHK5QEAFZyagKQJSZS6QjsGiMY4ANY4q544oEokUElkynUlDU+mgWmoRmI5kBUnUrGc9hJeFAA')">cc(100, us_coins);
 </pre><pre class='prettyprintoutput'>
 293</pre></div></div>
       To do this will require changing the program
       <kbd>cc</kbd> somewhat.  It will still have the same
       form, but it will access its second argument differently, as follows:
       
-      <div class='snippet' id='javascript_32_25_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChslAGYCWATgM4AuA+gCYCmAdgPYC2RDAhhUUwwDSg6ADwDGdAA7Vi5avWZtO3XnjAcGNUMyosmJOqApNQAI30BzIgDdGJgJ6hKAVzkVcI3pVCOyVd+zKgALygADZElAAUmAAM0QIArHGo8QIxCakAlADc2O4Mno4A1r5M-kGh4RRRsQlJKElpoCmomTnYBI4MIkoMoCIiERw6nRQCfgxUlhwhjnRkGaAA3tigq6B6FI4kvUNMI0GBwdEra6drAPygOGc3AFygu-sAPKDRoAA+75pM2rp0EeNJtNZvMTjczpdjuC7n0Bo8GKMwdDwcIxJIqNJKLRGKx2FweAwAaUJlMZnMMhkkcjVgBqKnU-qDYYI0AAWkIpCxclxigJRPYQLJ8wE9Opq0BpJB2WwAF83AMYklvCV-NkgA')">function cc(amount, coin_values) {
+      <div class='snippet' id='javascript_32_25_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChslAGYCWATgM4AuA+gCYCmAdgPYC2RDAhhUUwwDSg6ADwDGdAA7Vi5avWZtO3XnjAcGNUMyosmJOqApNQAI30BzIgDdGJgJ6hKAVzkVcI3pVCOyVd+zKgALygADZElAAUmAAM0QIArHGo8QIxCakAlADc2O4Mno4A1r5M-kGh4RRRsQlJKElpoCmomTnYBI4MIkoMoCIiERw6nRQCfgxUlhwhjnRkGaAA3tigq6B6FI4kvUNMI0GBwdEra6drAPygOGc3AFygu-sAPKDRoAA+75pM2rp0EeNJtNZvMTjcLq8weDQPd+oNhgxRlDoadhGJJFRpJRaIxWOwuDwGADShMpjM5hkMsjoQBqanguGPRGgAC0hFI2LkeMUhOJ7CB5PmAnpKMBZJB2WwAF83AMYklvCV-NkgA')">function cc(amount, coin_values) {
     return amount === 0
            ? 1
            : amount < 0 || no_more(coin_values)
-             ? 0
-             : cc(amount,
-                  except_first_denomination(coin_values))
-               +
-               cc(amount - first_denomination(coin_values), 
-                  coin_values);
+           ? 0
+           : cc(amount,
+                except_first_denomination(coin_values))
+             +
+             cc(amount - first_denomination(coin_values), 
+                coin_values);
 }
 </pre></div></div>
       Define the
@@ -2621,7 +2621,7 @@ const uk_coins = list(100, 50, 20, 10, 5, 2, 1);
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#solution_32_3_div" data-toggle="collapse">Solution</button></div>
       <div class="solution_content collapse" id="solution_32_3_div"><SOLUTION>
     
-      <div class='snippet' id='javascript_32_26_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChslAGYCWATgM4AuA+gCYCmAdgPYC2RDAhhUUwwDSg6ADwDGdAA7Vi5avWZtO3XnjAcGNUMyosmJOqApNQAI30BzIgDdGJgJ6hKAVzkVcBRwxFKGoESIAUHDoeFAIiTOxUlhwANo50ZACUoADe2KAZoHoUjiQ+QUwhoAC8paAADOmZ1ZkA-KA4NU0AXKAFRQA8FaAAPj2aTNq6dP7hkdFxCYlVTTX1lbMtvgHtDKEzi7PCYpJU0pS0jKzsXDwMoxEMUbHxSdObTQDUGw-LgcFroAC0hKQHcsdFGcLuMblMBC9XhkxlcJrdEgBubAAX1w4QYlFAjjIVBhZBKoBiREo-kw5XKAgArBTUJSBGSqfTEdh0ZjHABrXGXfHFQnEiik8lUmkoGkM0B01BMpHYdyeby-GSHeQnbwg2FgpKpDbZXI+AAWdA4NHV10mSSRqLlXjOglEEikf1kRwUp14prhU211V1eQMHCIMQ9muZVo8Nt4AyGemD5uSaR9dByfuJVAYjhiQZhZvhlrRATJNOxXPYFqAA')">function first_denomination(coin_values) {
+      <div class='snippet' id='javascript_32_26_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChslAGYCWATgM4AuA+gCYCmAdgPYC2RDAhhUUwwDSg6ADwDGdAA7Vi5avWZtO3XnjAcGNUMyosmJOqApNQAI30BzIgDdGJgJ6hKAVzkVcBRwxFKGoESIAUHDoeFAIiTOxUlhwANo50ZACUoADe2KAZoHoUjiQ+QUwhoAC8paAADOmZ1ZkA-KA4NU0AXKAFRQA8FaAAPj2aTNq6dP7hkdFxCYlVTXUVM7OgrX6BwQyhC4vVwmKSVNKUtIys7Fw8DKMRDFGx8UnTW9UA1JuLK+3roAC0hKSHcidFOdLuNblMBK9HmNrhM7okANzYAC+uHCDEooEcZCo0LIJVAMSIlH8mHK5QEAFZyagKQJSZS6QjsGiMY4ANY4q544oEokUElkynUlDU+mgWmoRmI7DuTzeX4yI7yU7eEEwsFJVILbK5HwACzoHBoapukySiJRsq850EogkUj+smOCjOvBNsKmWuqOryBg4RBi7o1TMtHmtvAGQz0QbNyTS3roOV9RKoDEcMUD0NNcItqICpOpWM57HNQA')">function first_denomination(coin_values) {
     return head(coin_values);
 }
 function except_first_denomination(coin_values) {

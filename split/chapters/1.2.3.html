@@ -2293,14 +2293,14 @@ Acknowledgments
    (if (not (> (abs angle) 0.1))
        angle
        (p (sine (/ angle 3.0)))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_16_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0GYBQuAzAVwDsBjAFwEsB7E0AQwCMBnACgA8BKUAb11CDQAJwCmFIsPodQAPgC8oAAygA-KBkAuUAFoOAblwBffMXLU6oMkSajOPfkJHjJ00ACoNHjYZNnKtPQADvZ8AkJiElKg2N4yOqAALN7Wtva+hKQBlixUJHYMJADmADaiDuGCka6gAIRszOyFpeVyymgoXJVOTurNZd09gtohufkNxWWgYNhcXBm4Y3YAtgwUABYA+rCQ06AY80A')">function cube(x) {
+            <td><div class='snippet' id='javascript_16_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0GYBQuAzAVwDsBjAFwEsB7E0AQwCMBnACgA8BKUAb11CDQAJwCmFIsPodQAPgC8oAAygA-KBkAuUAFoOAblwBffMXLU6oMkSajOPfkJHjJ00ACoNHjYZNnKtPQADvZ8AkJiElKg2N4yOqAALN7Wtva+hKQBlixUJHYMJADmADaiDuGCka6gAISgbMzshaXlcspoKFyVTk7qLWU9vYLaIbn5jcVloGDYXFwZuON2ALYMFAAWAPqwkDOgGAtAA')">function cube(x) {
     return x * x * x;
 }
 function p(x) {
     return 3 * x - 4 * cube(x);
 }
 function sine(angle) {
-    return !(abs(angle) > 0.1)
+    return ! (abs(angle) > 0.1)
            ? angle
            : p(sine(angle / 3));
 }

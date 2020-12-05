@@ -2835,9 +2835,10 @@ const z1 = pair(x, x);
 	One way to detect sharing in list structures is to use the
 	primitive predicate <kbd>===</kbd>,	
 	which we introduced in
-	sections&nbsp;<REF NAME="sec:conditionals"><a class="superscript" id="3.3.1-sec-link-1.1.6" href="./1.1.6.html">1.1.6</a></REF>
-	and&nbsp; to test whether two numbers or
-	two strings are equal. When applied to two non-primitive values,
+	section&nbsp;<REF NAME="sec:conditionals"><a class="superscript" id="3.3.1-sec-link-1.1.6" href="./1.1.6.html">1.1.6</a></REF>
+	and extended in section&nbsp;<REF NAME="sec:strings"><a class="superscript" id="3.3.1-sec-link-2.3.1" href="./2.3.1.html">2.3.1</a></REF> to test whether
+	two numbers
+	or two strings are equal. When applied to two non-primitive values,
 	<kbd>x === y</kbd>
 	tests whether <kbd>x</kbd> and
 	<kbd>y</kbd> are the same object (that is, whether
@@ -2938,8 +2939,8 @@ const z1 = pair(x, x);
       function
     
             
-    <div class='snippet' id='javascript_60_27_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQSriyB9ABwEMKAnAZwAoAPAJSgA3tlATQnAKZkCnWgEIK3Vh04DB4yTskB+UAAZtunQC46DIs3Zc+AC2lsAJpuEBqUCdM76jNXa8ZBwANm6gnpgA3NgAvkA')">function count_pairs(x) {
-    return !is_pair(x)
+    <div class='snippet' id='javascript_60_27_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQSriyB9ABwEMKAnAZwAoAPAJSgA3tlATQnAKZkCnWgEJQFbqw6cBg8ZN2SA-KAAMOvboBcdBkWbsufABbS2AEy3CA1KFNnd9Rur2vGQcADbuoF6YANzYAL5AA')">function count_pairs(x) {
+    return ! is_pair(x)
            ? 0
            : count_pairs(head(x)) + 
              count_pairs(tail(x)) + 1;
@@ -3065,13 +3066,13 @@ const z1 = pair(x, x);
             
             
             
-    <div class='snippet' id='javascript_60_28_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAHAQwoCcAKADwBpQBPASlABvbKFGhCpSjVAATCgGdGZEgAtWAWwHCxO0MwCmZAs1rrQAXkugARCv0MZ1kbpcB+UO2cudALlBnLcxsyJgAbJ29ddx4vSNA-fWZmKjZ1bmsAVSIZfTwKIn0ZUCo6RIYpWgBaSvomZms+AG5YgF9YgyMTWQUlVUaASBdsNp18YnJqWjsHVgAvLT1DY1pZ1lt7RybQEbExyUnQEIpQuYWO5dBV6yPwrbbsEhp5Mg8LWpZWTG4AJibsaZkHCaQA')">function pair(x, y) {
+    <div class='snippet' id='javascript_60_28_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAHAQwoCcAKADwBpQBPASlABvbKFGhCpSjVAATCgGdGZEgAtWAWwHCxO0MwCmZAs1rrQAXkugARCv0MZ1kbpdiA-KHbPXLgFygzS3MbMiYAGycfVw8ebyixf31mZio2dW5rAFUiGX08CiJ9GVAqOiSGKVoAWir6JmZrPgBuOIBfOIMjE1kFJVUmgEgXbHadfGJyalo7B1YALy09Q2NaOdZbe0dm0FGxcckp0FCKMPnFzpXQNetjiO327BIaeTJPCzqWVkxuACZm7BmMg4zSAA')">function pair(x, y) {
     function dispatch(m) {
         return m === "head"
-            ? x
-            : m === "tail"
-            ? y
-            : error(m, "Undefined operation -- pair");
+               ? x
+               : m === "tail"
+               ? y
+               : error(m, "Undefined operation -- pair");
     }
     return dispatch;	      
 }

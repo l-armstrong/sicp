@@ -2053,19 +2053,19 @@ const b = 2;
 	<kbd>null</kbd>.  Otherwise, it returns the
 	sublist of the list beginning with the first occurrence of the string:
         
-        <div class='snippet' id='javascript_37_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AWwFMGAjJgJwAoqKWAaUAA8AlKADeuUNNAcmFIh3pUAzgH0SRADZauoqTMMB+UJp0HD0gFyheLUAF4noABZMAhgBM9Ii5ekmQn7+NsxsnDx8DIIU7lS6oiIA3LgAvvhh7NwARO4ADnlaTNmCWqoUXNl5HhwloNms7iRN7nVVHKTFIslAA')">function member(item, x) {
+        <div class='snippet' id='javascript_37_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AWwFMGAjJgJwAoqKWAaUAA8AlKADeuUNNAcmFIh3pUAzgH0SRADZauoqTMMyA-KE06DRwwC5QvFqAC8z0AAsmAQwAmekZavSpkL+AbbMbJw8fAyCFB5UuqIiANy4AL744ezcAEQeAA75Wkw5glqqFFw5+Z4cpaA5rB4kzR711RykJSIpQA')">function member(item, x) {
     return is_null(x)
-        ? null
-        : item === head(x)
-          ? x
-          : member(item, tail(x));
+           ? null
+           : item === head(x)
+           ? x
+           : member(item, tail(x));
 }
 </pre></div></div>
         For example, the value of
-        <div class='snippet' id='javascript_37_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AWwFMGAjJgJwAoqKWAaUAA8AlKADeuUNNAcmFIh3pUAzgH0SRADZauoqTMMB+UJp0HD0gFyheLUAF4noABZMAhgBM9Ii5ekmQn7+NsxsnDx8DIIU7lS6oiIA3LgAvvhh7NwARO4ADnlaTNmCWqoUXNl5HhwloNms7iRN7nVVHKTFIslAA')">member("apple", list("pear", "banana", "prune"));
+        <div class='snippet' id='javascript_37_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AWwFMGAjJgJwAoqKWAaUAA8AlKADeuUNNAcmFIh3pUAzgH0SRADZauoqTMMyA-KE06DRwwC5QvFqAC8z0AAsmAQwAmekZavSpkL+AbbMbJw8fAyCFB5UuqIiANy4AL744ezcAEQeAA75Wkw5glqqFFw5+Z4cpaA5rB4kzR711RykJSIpQA')">member("apple", list("pear", "banana", "prune"));
 </pre></div></div>
         is <kbd>null</kbd>, whereas the value of
-        <div class='snippet' id='javascript_37_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AWwFMGAjJgJwAoqKWAaUAA8AlKADeuUNNAcmFIh3pUAzgH0SRADZauoqTMMB+UJp0HD0gFyheLUAF4noABZMAhgBM9Ii5ekmQn7+NsxsnDx8DIIU7lS6oiIA3LgAvvhh7NwARO4ADnlaTNn8wdJaqhRc2UIloBUqVbkFRSXZKu5EZMUigtkAnnXNhcV9eR4c2SLJQA')">member("apple",
+        <div class='snippet' id='javascript_37_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AWwFMGAjJgJwAoqKWAaUAA8AlKADeuUNNAcmFIh3pUAzgH0SRADZauoqTMMyA-KE06DRwwC5QvFqAC8z0AAsmAQwAmekZavSpkL+AbbMbJw8fAyCFB5UuqIiANy4AL744ezcAEQeAA75Wkw5-CHSWqoUXDlCpaCVKtV5hcWlOSoeRGQlIoI5AJ71LUUl-fmeHDkiKUA')">member("apple",
        list("x", list("apple","sauce"), "y", "apple", "pear"));
 </pre></div></div>
         is <kbd>["apple", ["pear", null]]</kbd>.
@@ -2085,9 +2085,9 @@ const b = 2;
 </pre></div></div>
         <div class='snippet' id='javascript_37_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuAXAQwEsAbACgAsBTIgEwrJIGcCnX2AiAD2y4A0oXii4BKIczYUuAT35C5osSrEBuIA')">tail(head(list(list("x1", "x2"), list("y1", "y2"))));
 </pre></div></div>
-        <div class='snippet' id='javascript_37_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AWwFMGAjJgJwAoqKWAaUAA8AlKADeuUNNAcmFIh3pUAzgH0SRADZauoqTMMB+UJp0HD0gFyheLUAF4noABZMAhgBM9Ii5ekmQn7+NsxsnDx8DIIU7lS6oiIA3LgAvvhh7NwARHKe2YJaqhRcRSoluUz5gtkqLjRMKtkihcVc2axaREwFoLU0ZADWTSKjSUA')">member("red", list(list("red", "shoes"), list("blue", "socks")));
+        <div class='snippet' id='javascript_37_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AWwFMGAjJgJwAoqKWAaUAA8AlKADeuUNNAcmFIh3pUAzgH0SRADZauoqTMMyA-KE06DRwwC5QvFqAC8z0AAsmAQwAmekZavSpkL+AbbMbJw8fAyCFB5UuqIiANy4AL744ezcAERyXjmCWqoUXMUqpXlMBYI5Kq40TCo5IkUlXDmsWkRMhaB1NGQA1s0iY8lAA')">member("red", list(list("red", "shoes"), list("blue", "socks")));
 </pre></div></div>
-        <div class='snippet' id='javascript_37_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AWwFMGAjJgJwAoqKWAaUAA8AlKADeuUNNAcmFIh3pUAzgH0SRADZauoqTMMB+UJp0HD0gFyheLUAF4noABZMAhgBM9Ii5ekmQn7+NsxsnDx8DIIU7lS6oiIA3LgAvvhh7NwARHKe2YJaqhRcuUz5gtkqLjRMKgWg2axaREwNVTRkANb1IslAA')">member("red", list("red", "shoes", "blue", "socks"));
+        <div class='snippet' id='javascript_37_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AWwFMGAjJgJwAoqKWAaUAA8AlKADeuUNNAcmFIh3pUAzgH0SRADZauoqTMMyA-KE06DRwwC5QvFqAC8z0AAsmAQwAmekZavSpkL+AbbMbJw8fAyCFB5UuqIiANy4AL744ezcAERyXjmCWqoUXHlMBYI5Kq40TCqFoDmsWkRMjdU0ZADWDSIpQA')">member("red", list("red", "shoes", "blue", "socks"));
 </pre></div></div>
 	
       
@@ -2103,9 +2103,9 @@ const b = 2;
 </pre></div></div>
           <div class='snippet' id='javascript_37_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuAXAQwEsAbACgAsBTIgEwrJIGcCnX2AiAD2y4A0oXii4BKIczYUuAT35C5osSrEBuXCFABtEYNAA7AK5kyAXSA')">["x2", null]
 </pre></div></div>
-          <div class='snippet' id='javascript_37_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AWwFMGAjJgJwAoqKWAaUAA8AlKADeuUNNAcmFIh3pUAzgH0SRADZauoqTMMB+UJp0HD0gFyheLUAF4noABZMAhgBM9Ii5ekmQn7+NsxsnDx8DIIU7lS6oiIA3LgAvvhh7NwARHKe2YJaqhRcRSoluUz5gtkqLjRMKtkihcVc2axaREwFoLU0ZADWTSKjKSCm2lpAA')">null
+          <div class='snippet' id='javascript_37_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AWwFMGAjJgJwAoqKWAaUAA8AlKADeuUNNAcmFIh3pUAzgH0SRADZauoqTMMyA-KE06DRwwC5QvFqAC8z0AAsmAQwAmekZavSpkL+AbbMbJw8fAyCFB5UuqIiANy4AL744ezcAERyXjmCWqoUXMUqpXlMBYI5Kq40TCo5IkUlXDmsWkRMhaB1NGQA1s0iY6kgZtpaQA')">null
 </pre></div></div>
-          <div class='snippet' id='javascript_37_19_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AWwFMGAjJgJwAoqKWAaUAA8AlKADeuUNNAcmFIh3pUAzgH0SRADZauoqTMMB+UJp0HD0gFyheLUAF4noABZMAhgBM9Ii5ekmQn7+NsxsnDx8DIIU7lS6oiIA3LgAvvhh7NwARCouNEwq2YJaqhRc2XKexaC5+YU12axaREyNKjRkANZFIsm4IKAA2nUFRYIjza01Ix3d46baWgC6q0A')">["red", ["shoes", ["blue", ["socks", null]]]]
+          <div class='snippet' id='javascript_37_19_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AWwFMGAjJgJwAoqKWAaUAA8AlKADeuUNNAcmFIh3pUAzgH0SRADZauoqTMMyA-KE06DRwwC5QvFqAC8z0AAsmAQwAmekZavSpkL+AbbMbJw8fAyCFB5UuqIiANy4AL744ezcAEQqrjRMKjmCWqoUXDlyXiWgeQVFtTmsWkRMTSo0ZADWxSIpuCCgANr1hcWCoy1ttaOdPRNm2loAumtAA')">["red", ["shoes", ["blue", ["socks", null]]]]
 </pre></div></div>
 	</SOLUTION></div></div>
 </EXERCISE></div>
@@ -2162,23 +2162,23 @@ const b = 2;
 	  will only encounter an error when both
 	  arguments are functions, because it is not clear in chapters 1
 	  and 2 what equality on functions would mean.
-          <div class='snippet' id='javascript_37_22_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuRQAzAVwDsBjAFwEsB7M0AUwEcSBDAG1CrtACMmoAO4AnGlSpNG-AJ6gAzlRIATaVXylKtBszZcAFAA8FAGlCyFASlABvXKEehRTZaMY0FAfQAO7GqLG1g5OoQD8oAaevv6BljYAZAkhoamsHJwGABZM7CpBVuY5eQbxiQmgKalO6YZU-pkmhTwNpdZWVlWhAFyg0WQknI3B1Y4R-YOZ8V1OvRMAtoKBTTNjkQtLbeWgJqAAvAcWI6Nz3vx0dJy5ZAWroBFRZxdX7DfxoEmRQR8V7wA+f0iAEJdp8gWVOqNQKcvEpxGQAOa3KEPaJwmiIgo-HYKfaHaZQmHkNREDFMfIrFF9bzEpiksjkrZ3XqEYRCADWZDowlAXJ5VCy7CoOOpoHYxHI1HoZDujkeXi0UoYW2xuwOeyOVgA3LgAL74WqZTieKgGABEAs8ZvMZqtNvY1tAZuNSjNzRmLtNFqydqdvrNDptnrd2qAA')">function equal(xs, ys) {
+          <div class='snippet' id='javascript_37_22_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuRQAzAVwDsBjAFwEsB7M0AUwEcSBDAG1CrtACMmoAO4AnGlSpNG-AJ6gAzlRIATaVXylKtBszZcAFAA8FAGlCyFASlABvXKEehRTZaMY0FAfQAO7GqLG1g5OoU4A-KAGnr7+gZY2AGSJIWFpehycBgAWTOwqQVbmufkGCUmJoKnpoayZBlT+WSZFPE1l1lZW1ekAXKAxZCSczcE1EQPeQyMd3eOO-YMkALaCgS09aZHRUytrs6DJoCagALznFmPzi978dHSceWSFm2HbMXcPTwdHBkGHlQSoAAPsCogBCE5HcHlObXSZeJTiMgAcxe81A728SJoqMKAOOCjOFwSr1CNy85DURFxTAKGwxkRiVKYNLIdNmZKc-UIwiEAGsyHRhKAhSKqNl2FRCZNQOxiORqPQyFzQjsvFolQwfpUTudTpcrABuXAAX3wdUMnE8VAMACIJZ47eY7U6XexnaA7dalHbWpsfbaHdk3V7Q3aPS7A37jUA')">function equal(xs, ys) {
     return is_pair(xs)
-        ? (is_pair(ys) &&
-           equal(head(xs), head(ys)) && 
-           equal(tail(xs), tail(ys)))
-        : is_null(xs)
-        ? is_null(ys)
-        : is_number(xs)
-        ? (is_number(ys) && xs === ys)
-        : is_boolean(xs)
-        ? (is_boolean(ys) && ((xs && ys) || (!xs && !ys)))
-        : is_string(xs)
-        ? (is_string(xs) && xs === ys)
-        : is_undefined(xs)
-        ? is_undefined(ys)
-        : // we know now that xs is a function
-          (is_function(ys) && xs === ys);
+           ? (is_pair(ys) &&
+              equal(head(xs), head(ys)) && 
+              equal(tail(xs), tail(ys)))
+           : is_null(xs)
+           ? is_null(ys)
+           : is_number(xs)
+           ? (is_number(ys) && xs === ys)
+           : is_boolean(xs)
+           ? (is_boolean(ys) && ((xs && ys) || (!xs && !ys)))
+           : is_string(xs)
+           ? (is_string(xs) && xs === ys)
+           : is_undefined(xs)
+           ? is_undefined(ys)
+           : // we know now that xs is a function
+             (is_function(ys) && xs === ys);
 }
 </pre></div></div>
 	  In chapter 3, we
@@ -2189,12 +2189,12 @@ const b = 2;
 	  still be valid with this extended meaning of
 	  <kbd>===</kbd>, but can be simplified
 	  as follows:
-          <div class='snippet' id='javascript_37_23_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuRQAzAVwDsBjAFwEsB7M0AUwEcSBDAG1CrtACMmoAO4AnGlSpNG-AJ6gAzlRIATaVXylKtBszZcAFAA8FAGlCyFASlABvXKEehRTZaMY0FAfQAO7GqLG1g5OoQD8oAaevv6BljYAZAkhoamsHJwGABZM7CpBVuY5eQbxiQmgKalO6YZU-pkmhTwNpdZWVlWhAFygJqAAvEMWCgDcuAC++LWZnJ5UBgBEVFmei+aLaxvs66CLc0qLzV2gBwvLqwq7m1fb12dHVqNAA')">function equal(xs, ys) {
+          <div class='snippet' id='javascript_37_23_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuRQAzAVwDsBjAFwEsB7M0AUwEcSBDAG1CrtACMmoAO4AnGlSpNG-AJ6gAzlRIATaVXylKtBszZcAFAA8FAGlCyFASlABvXKEehRTZaMY0FAfQAO7GqLG1g5OoU4A-KAGnr7+gZY2AGSJIWFpehycBgAWTOwqQVbmufkGCUmJoKnpoayZBlT+WSZFPE1l1lZW1ekAXKAmoAC8IxYKANy4AL74dYacnlQGAERU2Z7L5ssbW+yboMsLSsutPaBHS6vrCvvbN7u3FydW40A')">function equal(xs, ys) {
     return is_pair(xs)
-        ? (is_pair(ys) &&
-           equal(head(xs), head(ys)) && 
-           equal(tail(xs), tail(ys)))
-        : xs === ys;
+           ? (is_pair(ys) &&
+              equal(head(xs), head(ys)) && 
+              equal(tail(xs), tail(ys)))
+           : xs === ys;
 }
 </pre></div></div>
 	</SOLUTION></div></div>
