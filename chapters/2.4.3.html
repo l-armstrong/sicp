@@ -2891,16 +2891,16 @@ function get_salary(insatiable_record) {
 	  <div class='snippet' id='javascript_44_16_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function find_employee_record(employee_name, 
                               personnel_files) {
-    if (is_null(personell_files)) {
+    if (is_null(personnel_files)) {
         return undefined;
     } else {
         const insatiable_record 
             = get_record(employee_name,
-                         head(personell_files));
+                         head(personnel_files));
         return ! is_undefined(insatiable_record)
                ? insatiable_record
                : find_employee_record(employee_name, 
-                                      tail(personell_files));
+                                      tail(personnel_files));
     }
 }</pre></div></div>
         </LI>
@@ -2926,7 +2926,7 @@ function find_employee_record(employee_name,
 	    </LI>
 	    <LI>
 	      Add the employee files to the list of
-	      <kbd>personell_files</kbd>.
+	      <kbd>personnel_files</kbd>.
 	      Note that this is a <QUOTE>destructive</QUOTE>
 	      operation—similar to the extension of operations
 	      tables—in that the data structure is permanently  and

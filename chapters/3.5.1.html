@@ -2241,15 +2241,14 @@ function stream_for_each(fun, s) {
 	function
         (section&nbsp;<REF NAME="sec:sequences-conventional-interfaces"><a class="superscript" id="3.5.1-sec-link-2.2.3" href="./2.2.3.html">2.2.3</a></REF>):
 
-        <div class='snippet' id='javascript_69_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwoCcBTAQwFsB9C9qgDYAKJmy4BKUAG9coOaDYUizen0EiWHTuKHiA3LgC++MnSahO7AB7cAJlQYAHAewCeoALygAnAeLlqOlB7JxdXblEtEUkZeVB-Slp6EOc3CM0ubioKVmYNABpQEhjZOPkqAlAhB24SIgFhJnESsvlDUFYBBlZQCqr6D0HQAAYW1rKUsKEAcmnCgCI0Jfn9Utb2zu7pNfG5SbchAAsOWw1mg124-fDIzOzcjTEeNUaKcUL6AFpQbFXd4ziAPk13STyyOTyDEKlhs11WxkIpESQVuPAIgghQkcbFshVRYzkimU9BqdQajy04h24wA-EV6gJqa0AFygbGsU7HdinfFUy5yOmOfh5Lk8jLafJM-lyXSeAB8jHF3HRAkx7NxoCl0u1u1RvH4ryezT5-NZepVapxkp1Nr1LwpEnhJjMFAsN3FnjZwqEGEKso8CqFVDyADY-ZIA17g0IAOzh+X0hrGgymEjmTjhC25DmgrSeHbmjEPKwJksAUlAACZPENhtD3UaDCDUUIM8qizjcxI9EA')">function stream_filter(pred, stream) {
+        <div class='snippet' id='javascript_69_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwoCcBTAQwFsB9C9qgDYAKJmy4BKUAG9coOaDYUizen0EiWHTuKHiA3LgC++MnSahO7AB7cAJlQYAHAewCeoALygAnAeLlqOlB7JxdXblEtEUkZeVB-Slp6EOc3CM0ubioKVmYNABpQEhjZOPkqAlAhB24SIgFhJnESsvlDUFYBBlZQCqr6D0HQAAYW1rKUsKEAcmnCgCI0Jfn9Utb2zu7pNfG5SbchAAsOWw1mg124-fDIzOzcjTEeNUaKcUL6AFpQbFXd4ziAPk13STyyOTyDEKlhs11WxkIpESQVuPAIgghQkcbFshVRYzkimU9BqdQajy04h24wA-EV6gJqa0AFygbGsU7HdinfFUy5yOmOfh5Lk8jLafJM-lyXSeAB8jHF3HRAkx7NxoCl0u1u1RvH4ryezT5-NZepVapxeKVLwpEnhJjMFAsN3FnjZwqEGEKso8CqFVDyADYfZI-R7A0IAOyh+X0hrGgymEjmTjhC25DmgrSeHbmjEPKxxosAUlAACZPENhtDXUaDCDUUI08qCzjsxI9EA')">function stream_filter(pred, stream) {
     return is_null(stream)
            ? null
            : pred(head(stream))
            ? pair(head(stream),
                   () => stream_filter(pred, 
                                       stream_tail(stream)))
-           : stream_filter(pred,
-                           stream_tail(stream));
+           : stream_filter(pred, stream_tail(stream));
 }
 </pre></div></div>
         
@@ -2274,12 +2273,13 @@ function stream_for_each(fun, s) {
 pair(head(stream), 
      stream_filter(pred, stream_tail(stream)));</pre></div></div>
         which in this case is
-        <div class='snippet' id='javascript_69_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAAmflUNLUpael9-QLsHJxJwilMLa1THV1FxSWl6ZjYubiyzFOD2QQA+UBJC91aAfiaW1vEALlBcqktTSuyatPCXLu7QDqqcoLSp7r6kgIG0sNA5scdQAGpQbGj1QlJ43QGhhm5WcIAjAvdi7zvQAFJQVlAAXl-QAAYYpozjp6PZzAAHdhUPQ8FzCLrPej0X7ffRGEzVdYhFxA07aBKMChcVh6cycEhEWHsVhZcx+LLsGxGbiGGgAd3CAAsqABzLmPIqeEqgNns0CNHn8pbtJpEYwy9x9CGsKhOMWhRXTcTcQTfRpmElkilUzg0ukMs3Mwysjn7Q7hLXa50u13iKUC6KgE64FVq7jYf5BgDsmtaup+BuJnFJ5l8hkZ3HBUJhnDDbrEfqcgaDAA50xnw3qo0byZTqbTOPSSIzrQGg-8AJyOwuttvTHMN-78fi4ACQ3V77miQA')">pair(10007,
-     () => stream_filter(is_prime,
+        <div class='snippet' id='javascript_69_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAAmflUNLUpael9-QLsHJxJwilMLa1THV1FxSWl6ZjYubiyzFOD2QQA+UBJC91aAfiaW1vEALlBcqktTSuyatPCXLu7QDqqcoLSp7r6kgIG0sNA5scdQAGpQbGj1QlJ43QGhhm5WcIAjAvdi7zvQAFJQVlAAXl-QAAYYpozjp6PZzAAHdhUPQ8FzCLrPej0X7ffRGEzVdYhFxA07aBKMChcVh6cycEhEWHsVhZcx+LLsGxGbiGGgAd3CAAsqABzLmPIqeEqgNns0CNHn8pbtJpEYwy9x9CGsKhOMWhRXTcTcQTfRpmElkilUzg0ukMs3Mwysjn7Q7hLXa50u13iKUC6KgE64FVq7jYf5BgDsmtaup+BuJnFJ5l8hkZ3CdrXBUJhnDDbrEfqcgaDAA5M1nw3qo0byZTqbTOPSSIzrQGg-8AJyO4vtjvTPNN-78fjJ8T99zRIA')">pair(10007,
+     () => stream_filter(
+               is_prime,
                pair(10008,
                     () => stream_enumerate_interval(10009, 
                                                     1000000))
-	      )
+              )
     );
 </pre></div></div>
         This result is now passed to
@@ -2290,8 +2290,9 @@ pair(head(stream),
 	<kbd>stream_enumerate_interval</kbd> until it
 	finds the next prime, which is 10,009.  Finally, the result passed to
 	<kbd>head</kbd> in our original expression is
-        <div class='snippet' id='javascript_69_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAAmflUNLUpael9-QLsHJxJwilMLa1THV1FxSWl6ZjYubiyzFOD2QQA+UBJC91aAfiaW1vEALlBcqktTSuyatPCXLu7QDqqcoLSp7r6kgIG0sNA5scdQAGpQbGj1QlJ43QGhhm5WcIAjAvdi7zvQAFJQVlAAXl-QAAYYpozjp6PZzAAHdhUPQ8FzCLrPej0X7ffRGEzVdYhFxA07aBKMChcVh6cycEhEWHsVhZcx+LLsGxGbiGGgAd3CAAsqABzLmPIqeEqgNns0CNHn8pbtJpEYwy9x9CGsKhOMWhRXTcTcQTfRpmElkilUzg0ukMs3Mwysjn7Q7hLXa50u13iKUC6KgE64FVq7jYf5BgCcmtaup+BuJnFJ5l8hkZ3HBUJhnDDbrEfqcgf+gfTGfDeqjRvJlOptM49JIjOtAaD2GwjoLzZb0xzQaD-H4Tvc3d7yiAA')">pair(10009,
-     () => stream_filter(is_prime,
+        <div class='snippet' id='javascript_69_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAAmflUNLUpael9-QLsHJxJwilMLa1THV1FxSWl6ZjYubiyzFOD2QQA+UBJC91aAfiaW1vEALlBcqktTSuyatPCXLu7QDqqcoLSp7r6kgIG0sNA5scdQAGpQbGj1QlJ43QGhhm5WcIAjAvdi7zvQAFJQVlAAXl-QAAYYpozjp6PZzAAHdhUPQ8FzCLrPej0X7ffRGEzVdYhFxA07aBKMChcVh6cycEhEWHsVhZcx+LLsGxGbiGGgAd3CAAsqABzLmPIqeEqgNns0CNHn8pbtJpEYwy9x9CGsKhOMWhRXTcTcQTfRpmElkilUzg0ukMs3Mwysjn7Q7hLXa50u13iKUC6KgE64FVq7jYf5BgCcmtaup+BuJnFJ5l8hkZ3CdrXBUJhnDDbrEfqcgf+gczWfDeqjRvJlOptM49JIjOtAaD2GwjqLrbb0zzQaD-H4yfEvfc0SAA')">pair(10009,
+     () => stream_filter(
+               is_prime,
                pair(10010,
                     () => stream_enumerate_interval(10011, 
                                                     1000000))
