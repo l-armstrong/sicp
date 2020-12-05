@@ -2212,19 +2212,18 @@ Acknowledgments
 	<div class='snippet' id='javascript_81_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function eval_block(component, env) {
     const body = block_body(component);
-    return evaluate(body, extend_environment(null,
-                                             null,
-                                             env);
+    return evaluate(body, extend_environment(null, null, env);
 }</pre></div></div>
 	The function 
 	<kbd>eval_declaration</kbd> can no
 	longer assume that the environment already has a binding for
-	the name's symbol. Instead of using
-	<kbd>add_binding_to_frame</kbd>, it
-	now applies a new function
+	the name's symbol.
+	Instead of using
 	<kbd>assign_symbol_value</kbd> to
-	the symbol, the value of the value expression, and the first
-	frame of the environment.
+	change an existing binding, it calls a new function,
+	<kbd>add_binding_to_frame</kbd>, to
+	add to the first frame of the environment a binding of the symbol
+	to the value of the value expression.
 	<div class='snippet' id='javascript_81_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function eval_declaration(component, env) {
     add_binding_to_frame(declaration_symbol(component), 
@@ -2232,11 +2231,8 @@ function eval_declaration(component, env) {
                                   env),
                          first_frame(env));
     return undefined;
-}</pre></div></div>
-	The function
-	<kbd>add_binding_to_frame</kbd>
-	modifies the given frame by adding a binding to it.
-	<div class='snippet' id='javascript_81_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+}
+
 function add_binding_to_frame(symbol, value, frame) {
     set_head(frame, pair(symbol, head(frame)));
     set_tail(frame, pair(value, tail(frame)));
@@ -2253,7 +2249,12 @@ function add_binding_to_frame(symbol, value, frame) {
     
       <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
-	This sequential processing of declarations
+	With sequential declaration processing, the scope of a
+	declaration is no longer the entire block that immediately surrounds
+	the declaration, but rather just the portion of the block starting at
+	the point where the declaration occurs.
+	Although we no longer have simultaneous scope, sequential
+	declaration processing
 	will evaluate calls to the function
 	<kbd>f</kbd> of the beginning of this section
 	correctly, but for an
@@ -2261,8 +2262,8 @@ function add_binding_to_frame(symbol, value, frame) {
 	of the internal functions come first, no calls to these functions
 	will be evaluated until all of them have been declared. Hence,
 	<kbd>is_odd</kbd> will have been declared by the time
-	<kbd>is_even</kbd> is executed.  In fact, the 
-	sequential processing of declarations
+	<kbd>is_even</kbd> is executed.  In fact, 
+	sequential declaration processing 
 	will give the same result as our scanning-out-names evaluator in
 	section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>
 	for any function
@@ -2278,20 +2279,19 @@ function add_binding_to_frame(symbol, value, frame) {
       </p></div>
       <div class='permalink'>
 <a name='p6' class='permalink'></a><p>
-	Sequential processing of declarations is more efficient and easier to
-	implement than our scanning-out-names evaluator. A disadvantage of
-	sequential processing of declarations is that in some cases, the
-	declaration to which a name refers will only be decided at runtime.
-	An important optimization presented in
-	section&nbsp;<REF NAME="sec:lexical-addressing"><a class="superscript" id="4.1.6-sec-link-5.5.6" href="./5.5.6.html">5.5.6</a></REF> is not available in
-	those cases.
+	Sequential declaration processing is more efficient and easier to
+	implement than our scanning-out-names evaluator.
+	A disadvantage of
+	sequential processing is that the
+	declaration to which a name refers may depend on the order in which
+	the statements in a block are evaluated.
 	Interactive programming environments such as the read-evaluate-print loop
 	of MIT Scheme turn this disadvantage into a desirable feature. 
-	Using sequential processing of declarations at the top level, programmers
+	Using sequential declaration processing at the top level, programmers
 	of MIT Scheme
 	can write functions that use other functions
 	whose declarations they provide only
-	later. Programmers can fix bugs on-the-fly in these other functions simply
+	later. Programmers can fix bugs on the fly in these other functions simply
 	by reevaluating their declarations.
       </p></div>
       
@@ -2301,7 +2301,7 @@ function add_binding_to_frame(symbol, value, frame) {
 	 
 	Ben Bitdiddle, Alyssa P. Hacker, and Eva Lu Ator are arguing about
 	the desired result of evaluating the program
-	<div class='snippet' id='javascript_81_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuBjAewDsBnAF1AENQBeUDAblwDMBXEgigS1NFYAKAB4BKUAG9Q0mbhmhi5KgCN6NUAGpQwlvMWV1DAKy6ZAJwCmFdmZLqtylgF82gjAAZRTIA')">const a = 1;
+	<div class='snippet' id='javascript_81_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuBjAewDsBnAF1AENQBeUDAblwDMBXEgigS1NFYAKAB4BKUAG9Q0mbhmhi5KgCN6NUAGpQwlvMWV1DAKy6ZAJwCmFdmZLqtylgF82gjAAZRTIA')">const a = 1;
 function f(x) {      
     const b = a + x;
     const a = 5;
@@ -2345,8 +2345,8 @@ f(10);
   
       
 	Consider the function <kbd>f_3</kbd>
-	in section&nbsp;<REF NAME="sec:lambda"><a class="superscript" id="4.1.6-sec-link-1.3.2" href="./1.3.2.html">1.3.2</a></REF>, repeated here:
-        <div class='snippet' id='javascript_81_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	of section&nbsp;<REF NAME="sec:lambda"><a class="superscript" id="4.1.6-sec-link-1.3.2" href="./1.3.2.html">1.3.2</a></REF>:
+        <div class='snippet' id='javascript_81_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function f_3(x, y) {
     const a = 1 + x * y;
     const b = 1 - y;
@@ -2354,40 +2354,35 @@ function f_3(x, y) {
 }</pre></div></div>
 	<OL type="a">
 	  <LI>
-	    Draw diagrams of the environment in effect when evaluating the
-	    return expression of
+	    Draw a diagram of the environment in effect during evaluation
+	    of the return expression of
 	    <kbd>f_3</kbd>.
 	  </LI>
 	  <LI>
-	    Compare how the environment will be structured when
-	    declarations are processed sequentially
-	    with how it is structured if declarations are scanned out as described
-	    in section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>.
-	    Why is there an extra frame in the latter case?
-	  </LI>
-	  <LI>
 	    In the design of section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>,
-	    the parameters of a function are included in an environment
-	    created by the function application, but are always accessed
-	    via the environment created by the evaluation of the function's body
-	    block or an environment
-	    enclosed by that environment. An implementation 
-	    could therefore combine the two environments.
+	    the parameters of a function are bound in a frame
+	    created by the function application, but
+	    any access of a parameter during the evaluation of the function's
+	    body needs to first visit the frame created by the 
+	    evaluation of the function's body
+	    block. An implementation 
+	    could therefore combine the two frames.
 	    Change the evaluator
 	    such that the evaluation of the body block itself does not create
-	    a new environment.
+	    a new frame.
 	  </LI>
 	  <LI>
 	    JavaScript forbids the redeclaration of parameters
-	    as local names directly in the function's body block.
-	    Modify your solution 
+	    as local names <EM>directly</EM> in the function's body block, 
+	    as opposed to in an inner block.
+	    Modify your solution to part b
 	    such that an error is generated whenever a function is
 	    called in which this happens. Alternatively, modify the
 	    evaluator such that it analyzes all function declarations
 	    and lambda expressions of a given program and generates an error 
 	    whenever
 	    a parameter is redeclared directly in a function's body block,
-	    regardless
+	    regardless of
 	    whether that function is ever applied or not. Which design
 	    do you prefer? Why?
 	  </LI>
