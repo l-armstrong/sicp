@@ -3832,7 +3832,7 @@ function comma_separated(strings) {
 </pre></div></div>
 	  The function
 	  <kbd>is_data_list</kbd> ensures
-	  sure that variables, represented by tagged lists,
+	  that variables, represented by tagged lists,
 	  are not mistaken for data lists.
 	  <div class='snippet' id='javascript_95_41_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwMwK4B2AxgC4CWA9oaOQM4D6AJgIaksMA29pAFAB4BKUAG8soCaABOAU1L4pNeg0L5OnAcIA+W0L2UAHFuSmbQAMnOgAhLUYA3FqaEXz4yR89fvy1uy48vOzkGkKCggDcWAC+QA')">function is_data_list(x) {
     return is_null(x) || (is_pair(x) && ! is_var(x) &&
