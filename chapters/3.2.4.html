@@ -1996,7 +1996,7 @@ Acknowledgments
 <a name='p1' class='permalink'></a><p>
 	Section&nbsp;<REF NAME="sec:env-apply-proc"><a class="superscript" id="3.2.4-sec-link-3.2.2" href="./3.2.2.html">3.2.2</a></REF> describes the application
 	of functions whose bodies do not contain constant, variable, or
-	function declarations; therefore all occurrences of names referred
+	function declarations, in which case all occurrences of names refer
 	to parameters of surrounding lambda expressions or function declarations
 	or to declarations at the top level.
 	In this section we handle the evaluation of function bodies or other
@@ -2009,7 +2009,7 @@ Acknowledgments
 	section&nbsp;<REF NAME="sec:lambda"><a class="superscript" id="3.2.4-sec-link-1.3.2" href="./1.3.2.html">1.3.2</a></REF>.
 	Each block opens a new scope for all names declared in the block.
 	In order to evaluate a block in a given environment, we extend that
-	environment by a new frame that contains all names declared at top level
+	environment by a new frame that contains all names declared directly
 	(that is, outside of nested blocks) in the body of the block and evaluate
 	the body in the newly constructed environment.
 	The names are initially 
