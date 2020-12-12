@@ -2056,7 +2056,7 @@ function query_driver_loop() {
 	
 	  Here, as in the other evaluators in this chapter,
 	  we transform expressions of the query language given as strings
-	  into abstract objects at the appropriate conceptual level. The function
+	  into abstract expressions at the appropriate conceptual level. The function
 	  <kbd>parse_query</kbd> that performs
 	  the transformation, the predicate
 	  <kbd>is_assertion</kbd>,
@@ -3618,7 +3618,7 @@ function flatten_stream(stream) {
 <a name='p38' class='permalink'></a><p>
 	  The driver loop uses 
 	  <kbd>parse_query</kbd>
-	  to transform an input string into an abstract object
+	  to transform an input string into an abstract expression
 	  representing an assertion, a rule, or a query,
 	  and 
 	  <kbd>unparse_query</kbd>
