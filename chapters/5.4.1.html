@@ -1777,7 +1777,7 @@ Acknowledgments
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-114" aria-expanded="false" aria-controls="sidebar-collapse-114">
                 <a href="./5.4.2.html"> 5.4.2 
-    Sequence Evaluation and Tail Recursion
+    Returns and Tail Recursion
   </a>
               </span>
             </h5>
@@ -2033,27 +2033,33 @@ Acknowledgments
     
     <div class='snippet' id='javascript_112_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "eval_dispatch",
-  test(list(op("is_literal"), reg("stmt"))),
-  branch(label("ev_literal")),
-  test(list(op("is_name"), reg("stmt"))),
-  branch(label("ev_name")),
-  test(list(op("is_application"), reg("stmt"))),
-  branch(label("ev_application")),
-  test(list(op("is_conditional"), reg("stmt"))),
-  branch(label("ev_cond")),
-  test(list(op("is_lambda_expression"), reg("stmt"))),
-  branch(label("ev_lambda")),
-  test(list(op("is_sequence"), reg("stmt"))),
-  branch(label("ev_seq")),
-  test(list(op("is_block"), reg("stmt"))),
-  branch(label("ev_block")),
-  test(list(op("is_return_statement"), reg("stmt"))),
-  branch(label("ev_return")),
-  test(list(op("is_declaration"), reg("stmt"))),
-  branch(label("ev_declaration")),
-  test(list(op("is_assignment"), reg("stmt"))),
-  branch(label("ev_assignment")),
-  go_to(label("unknown_expression_type")),</pre></div></div>
+      test(list(op("is_literal"), reg("stmt"))),
+      branch(label("ev_literal")),
+      test(list(op("is_name"), reg("stmt"))),
+      branch(label("ev_name")),
+      test(list(op("is_application"), reg("stmt"))),
+      branch(label("ev_application")),
+      test(list(op("is_operator_combination"), reg("stmt"))),
+      branch(label("ev_operator_combination")),
+      test(list(op("is_operator_combination"), reg("stmt"))),
+      branch(label("ev_operator_combination")),
+      test(list(op("is_conditional"), reg("stmt"))),
+      branch(label("ev_cond")),
+      test(list(op("is_lambda_expression"), reg("stmt"))),
+      branch(label("ev_lambda")),
+      test(list(op("is_sequence"), reg("stmt"))),
+      branch(label("ev_seq")),
+      test(list(op("is_block"), reg("stmt"))),
+      branch(label("ev_block")),
+      test(list(op("is_return_statement"), reg("stmt"))),
+      branch(label("ev_return")),
+      test(list(op("is_function_declaration"), reg("stmt"))),
+      branch(label("ev_function_declaration")),
+      test(list(op("is_declaration"), reg("stmt"))),
+      branch(label("ev_declaration")),
+      test(list(op("is_assignment"), reg("stmt"))),
+      branch(label("ev_assignment")),
+      go_to(label("unknown_expression_type")),</pre></div></div>
   </p></div>
 
   
@@ -2776,7 +2782,7 @@ Acknowledgments
         <kbd>undefined</kbd> before
         jumping back into the dispatch loop. This has implications
         for tail-recursion, which is discussed in
-        section&nbsp;<REF NAME="sec:sequence-evaluation"><a class="superscript" id="5.4.1-sec-link-5.4.2" href="./5.4.2.html">5.4.2</a></REF>.
+        section&nbsp;<REF NAME="sec:sequence-evaluation"><a class="superscript" id="5.4.1-sec-link-5.4.1" href="./5.4.1.html">5.4.1</a></REF>.
         All other cases handle returns by themselves as part of
         the normal dispatch loop.
       
@@ -2789,14 +2795,20 @@ Acknowledgments
       assign("env", list(op("extend_environment"), 
                          reg("unev"), reg("argl"), reg("env"))),
       assign("stmt", list(op("function_body"), reg("fun"))),
-
-      test(list(op("does_not_handle_return"), reg("stmt"))),
-      branch(label("no_return_wrapping")),
-      restore("continue"),
+      save_frame(),
+      assign("continue", label("implicit_return")),
       go_to(label("eval_dispatch")),
 
-"no_return_wrapping",
-      assign("continue", label("end_without_return")),
+"implicit_return",
+      restore_frame(),
+      assign("val", constant(undefined)),
+      restore("continue"),
+      go_to(reg("continue")),
+
+"ev_return",
+      restore_frame(),
+      restore("continue"),
+      assign("stmt", list(op("return_expression"), reg("stmt"))),
       go_to(label("eval_dispatch")),</pre></div></div>
   </p></div>
 
@@ -2832,8 +2844,320 @@ Acknowledgments
 	
       
     
-    </p></div>
+  </p></div>
 
+    
+      
+        <div class='permalink'>
+<a name='p14' class='permalink'></a><p>
+          To simplify the treatment of unwinding the stack after a function
+          call, we extend the stack in <REF NAME="sec:machine-model"><a class="superscript" id="5.4.1-sec-link-5.2.1" href="./5.2.1.html">5.2.1</a></REF> with two
+          new commands <kbd>save_frame</kbd> and
+          <kbd>restore_frame</kbd>. These commands can
+          be implemented using <kbd>save</kbd> and
+          <kbd>restore</kbd> and demarcates the
+          boundary of the current stack frame, and the new. This marker allows
+          returning from any point in a function, and dynamically unwinding the
+          stack using the marker as an end condition.
+        </p></div>
+        <div class='permalink'>
+<a name='p15' class='permalink'></a><p>
+          Inside a return statement, we unwind the stack before proceeding to
+          evaluate the expression that defines the return value. Unwinding the
+          stack <EM>before</EM> this evaluation does not pose a problem as
+          <kbd>env</kbd> and
+          <kbd>unev</kbd> are unaffected by operations
+          on the stack. 
+        </p></div>
+        <div class='permalink'>
+<a name='p16' class='permalink'></a><p>
+          To deal with the JavaScript idiosyncrasy that functions that do not
+          explicitly return a value returns
+          <kbd>undefined</kbd>, the evaluator a
+          special handler <kbd>implicit_return</kbd>
+          that sets <kbd>val</kbd> to
+          <kbd>undefined</kbd>. All function calls are
+          set up with this continuation after the call to
+          <kbd>save_frame</kbd>. Thus, an explicit
+          return's call to <kbd>restore_frame</kbd>
+          will skip over the handler which preserves the return value.
+        </p></div>
+      
+    
+
+  
+      <div class='permalink'>
+        <a name='h4' class='permalink'></a><h2>
+     
+    Sequence Evaluation
+  </h2></div>
+
+  
+  
+
+  <div class='permalink'>
+<a name='p17' class='permalink'></a><p>
+    The portion of the explicit-control evaluator at
+    
+      
+      <kbd>ev_sequence</kbd>
+    
+    is analogous to the metacircular evaluator's
+    
+      
+      <kbd>eval_sequence</kbd>
+    
+    
+      
+      function.
+    
+    It handles sequences of expressions in
+    
+      
+      function
+    
+    bodies or in 
+    
+      
+      sequences of statements.
+    
+  </p></div>
+
+  <div class='permalink'>
+<a name='p18' class='permalink'></a><p>
+    
+      
+      Sequences of statements
+    
+    are evaluated by placing the 
+    
+      
+      
+	sequence
+      
+    
+    to be evaluated in
+    <kbd>unev</kbd>, saving
+    <kbd>continue</kbd> on the
+    stack, and jumping to
+    
+      
+      <kbd>ev_sequence</kbd>.
+    
+    
+    <div class='snippet' id='javascript_112_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"ev_seq",
+      save("continue"),
+      assign("unev", list(op("sequence_statements"), reg("stmt"))),</pre></div></div>
+
+    
+    
+      
+      All sequences in function
+    
+    bodies are handled by jumping to
+    
+      
+      <kbd>ev_sequence</kbd> via
+    
+    
+    
+      
+      <kbd>ev_seq</kbd>,
+      
+    
+    at which point <kbd>continue</kbd> is already on the stack,
+    having been saved at
+    
+      
+      <kbd>ev_application</kbd>.
+      
+    
+  </p></div>
+
+  <div class='permalink'>
+<a name='p19' class='permalink'></a><p>
+    The entries at
+    
+      
+      <kbd>ev_sequence</kbd>
+    
+    and
+    
+      
+      <kbd>ev_sequence_continue</kbd>
+      
+    
+    form a loop that successively evaluates each
+    
+      
+      
+	statement
+      
+    
+    in a sequence.  The
+    list of unevaluated
+    
+      
+      
+	statements
+      
+    
+    is kept in <kbd>unev</kbd>.
+    Before evaluating each
+    
+      
+      
+	statement,
+      
+    
+    we check to see if there are additional
+    
+      
+      
+	statements
+      
+    
+    to be evaluated in the sequence.  If so, we save the rest of the
+    unevaluated
+    
+      
+      
+	statements
+      
+    
+    (held in <kbd>unev</kbd>) and the
+    environment in which these must be evaluated (held in
+    <kbd>env</kbd>) and call
+    
+      
+      <kbd>eval_dispatch</kbd>
+      
+    
+    to evaluate the
+    
+      
+      
+	statement.
+      
+    
+    The two saved registers are restored upon
+    the return from this evaluation, at
+    
+      
+      <kbd>ev_sequence_continue</kbd>.
+      
+    
+  </p></div>
+
+  <div class='permalink'>
+<a name='p20' class='permalink'></a><p>
+    The final
+    
+      
+      
+	statement
+      
+    
+    in the sequence is handled differently, at the
+    entry point
+    
+      
+      
+	<kbd>ev_sequence_last_stmt</kbd>.
+      
+    
+    Since there are no more
+    
+      
+      
+	statements
+      
+    
+    to be evaluated after this one, we need
+    not save <kbd>unev</kbd> or
+    <kbd>env</kbd> before going to
+    
+      
+      <kbd>eval_dispatch</kbd>.
+    
+    The value of the whole sequence is the value of the last
+    
+      
+      
+	statement,
+      
+    
+    so
+    after the evaluation of the last
+    
+      
+      
+	statement
+      
+    
+    there is nothing left to do
+    except continue at the entry point currently held on the stack (which was
+    saved by
+    
+      
+      <kbd>ev_application</kbd>
+      
+    
+    or
+    
+      
+      <kbd>ev_seq</kbd>.)
+    
+    Rather than setting up <kbd>continue</kbd> to arrange for
+    
+      
+      <kbd>eval_dispatch</kbd>
+      
+    
+    to return here and then restoring <kbd>continue</kbd> from
+    the stack and continuing at that entry point, we restore
+    <kbd>continue</kbd> from the stack before going to
+    
+      
+      <kbd>eval_dispatch</kbd>,
+      
+    
+    so that
+    
+      
+      <kbd>eval_dispatch</kbd>
+      
+    
+    will continue at that entry point after evaluating the
+    
+      
+      
+	statement.
+      
+    
+    <div class='snippet' id='javascript_112_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"ev_sequence",
+      assign("stmt", list(op("first_statement"), reg("unev"))),
+      test(list(op("is_last_statement"), reg("unev"))),
+      branch(label("ev_sequence_last_exp")),
+      save("unev"),
+      save("env"),
+      assign("continue", label("ev_sequence_continue")),
+      go_to(label("eval_dispatch")),
+      
+"ev_sequence_continue",
+      restore("env"),
+      restore("unev"),
+      assign("unev", list(op("rest_statements"), reg("unev"))),
+      go_to(label("ev_sequence")),
+
+"ev_sequence_last_exp",
+      restore("continue"),
+      go_to(label("eval_dispatch")),</pre></div></div>
+  </p></div>
+
+    
 <hr>
 
     <div class='footnote'>
@@ -2904,9 +3228,8 @@ Acknowledgments
       functions
     
     for manipulating argument lists:
-    <div class='snippet' id='javascript_112_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_112_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 const empty_arglist = list();
-
  
 function adjoin_arg(arg, arglist) {
     return append(arglist, list(arg));
@@ -2922,7 +3245,7 @@ function adjoin_arg(arg, arglist) {
     argument expression
   
     in a combination:
-    <div class='snippet' id='javascript_112_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_112_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function is_last_argument_expression(ops) {
     return is_null(tail(ops));
 }</pre></div></div>

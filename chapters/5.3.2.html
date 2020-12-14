@@ -1777,7 +1777,7 @@ Acknowledgments
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-114" aria-expanded="false" aria-controls="sidebar-collapse-114">
                 <a href="./5.4.2.html"> 5.4.2 
-    Sequence Evaluation and Tail Recursion
+    Returns and Tail Recursion
   </a>
               </span>
             </h5>
@@ -2461,18 +2461,15 @@ accumulate((x, y) => x + y, 0, filter(is_odd, enumerate_interval(0, n)))</pre></
   // Update "free" pointer.
   assign("free", list((op("+"), reg("free"), constant(1))),
   // Copy the head and tail to new memory
-  perform(list(op("vector_set"), 
-  reg("new_heads"), reg("new"), reg("oldht"))),
+  perform(list(op("vector_set"), reg("new_heads"), reg("new"), reg("oldht"))),
   assign("oldht", list(op("vector_ref"), 
                        reg("the_tails"), reg("old"))),
-  perform(list(op("vector_set"), 
-  reg("new_tails"), reg("new"), reg("oldht"))),
+  perform(list(op("vector_set"), reg("new_tails"), reg("new"), reg("oldht"))),
   // Construct the broken heart
   perform(list(op("vector_set"),
                reg("the_heads"), reg("old"), 
                constant("broken_heart"))),
-  perform(list(op("vector_set"),
-  reg("the_tails"), reg("old"), reg("new"))),
+  perform(list(op("vector_set"),  reg("the_tails"), reg("old"), reg("new"))),
   go_to(reg("relocate_continue")),
 "already_moved",
   assign("new", list(op("vector_ref"), 
@@ -2531,7 +2528,7 @@ accumulate((x, y) => x + y, 0, filter(is_odd, enumerate_interval(0, n)))</pre></
     
       
       
-        $3\times 10^{16}$ nanoseconds,
+        $3\times 10^{16}$ nanoseconds
       
     
     in a year, so if we were to
@@ -2559,8 +2556,11 @@ accumulate((x, y) => x + y, 0, filter(is_odd, enumerate_interval(0, n)))</pre></
     physically impossible.  On the other hand, processors are getting faster and 
     
       
+      
+        modern computers have increasingly
+      
     
-    have large numbers of processors operating in
+    large numbers of processors operating in
     parallel on a single memory, so it may be possible to use up memory much
     faster than we have postulated.
     </FOOTNOTE></div>
@@ -2676,32 +2676,10 @@ accumulate((x, y) => x + y, 0, filter(is_odd, enumerate_interval(0, n)))</pre></
     
     operation because in a real system there might be various things
     that are treated as pairs for garbage-collection purposes.
-    For example, in a Scheme system that conforms to the 
-    IEEE standard a
     
       
-      
-	function
-      
     
-    object may be implemented as a special kind of
-    <QUOTE>pair</QUOTE> that doesn't satisfy the
-    
-      
-      <kbd>is_pair</kbd>
-    
-    predicate.
-    For simulation purposes,
-    
-      
-      <kbd>is_pointer_to_pair</kbd>
-      
-    
-    can be implemented as
-    
-      
-      <kbd>is_pair</kbd>.
-    
+  
     </FOOTNOTE></div>
 
     

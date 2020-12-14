@@ -1777,7 +1777,7 @@ Acknowledgments
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-114" aria-expanded="false" aria-controls="sidebar-collapse-114">
                 <a href="./5.4.2.html"> 5.4.2 
-    Sequence Evaluation and Tail Recursion
+    Returns and Tail Recursion
   </a>
               </span>
             </h5>
@@ -2257,38 +2257,16 @@ Acknowledgments
 
 
   
+    
+      
     <div class="permalink">
     <a name="ex_5.24" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.24">Exercise 5.24 </a></b> 
   
-    
-    
+        Implement the equivalent of save_frame and restore_frame by using save
+        to store a special marker value on the stack. Use a restoring loop for
+        implicit and explicit returns that restores from the stack until it hits
+        the marker.
       
-      
-	Implement conditional statements in the explicit control evaluator.
-      
-    
-    
-      
-      
-        Note that proper handling of returns inside the consequent
-        and alternative blocks poses a challenge as the
-        current implementation only supports returning from the
-        outermost block in a function. One way to implement this
-        is to add a new register
-        <kbd>returning</kbd> that keeps
-        track of whether the current function is returning. Change
-        <kbd>ev_sequence</kbd> so that
-        instead of checking if the next statement is a return
-        statement, the sequence loop inspects
-        <kbd>returning</kbd> to
-        determine whether to continue or return. Also note that it
-        is possible to nest several conditional statements, so a
-        <kbd>return</kbd> can appear at
-        any depth.
-      
-	  
-    
-  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_114_2_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_114_2_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2296,10 +2274,38 @@ Acknowledgments
     
 </EXERCISE></div>
 
-
+    
+  
+  
   
     <div class="permalink">
     <a name="ex_5.25" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.25">Exercise 5.25 </a></b> 
+  
+    
+    
+      
+      
+        Implement save_frame and restore_frame. Extend the evaluator with two
+        new instructions implemented as the nullary functions save_frame and
+        restore_frame, similar to save and restore. You will have to add
+        dispatch cases in the stack, make_save_frame and make_restore_frame
+        functions. Note that you do not need to actually insert a marker in the
+        stack, but keep a parallel structure that only keeps track of the
+        position of the last save before a call to save_frame.
+      
+    
+  
+      <div class="Solution">
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_114_3_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_114_3_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      </div>
+    
+</EXERCISE></div>
+
+
+  
+    <div class="permalink">
+    <a name="ex_5.26" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.26">Exercise 5.26 </a></b> 
   
     
     
@@ -2308,8 +2314,8 @@ Acknowledgments
     section&nbsp;<REF NAME="sec:lazy-evaluation"><a class="superscript" id="5.4.3-sec-link-4.2" href="./4.2.html">4.2</a></REF>.
   
       <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_114_3_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_114_3_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_114_4_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_114_4_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
       </div>
     
 </EXERCISE></div>

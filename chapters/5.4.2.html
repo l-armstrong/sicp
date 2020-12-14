@@ -15,11 +15,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <meta name="description" content="5.4.2&nbsp;&nbsp;
-    Sequence Evaluation and Tail Recursion
+    Returns and Tail Recursion
   " />
     <title>
       5.4.2&nbsp;&nbsp;
-    Sequence Evaluation and Tail Recursion
+    Returns and Tail Recursion
   
     </title>
     
@@ -1777,7 +1777,7 @@ Acknowledgments
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-114" aria-expanded="false" aria-controls="sidebar-collapse-114">
                 <a href="./5.4.2.html"> 5.4.2 
-    Sequence Evaluation and Tail Recursion
+    Returns and Tail Recursion
   </a>
               </span>
             </h5>
@@ -1963,7 +1963,7 @@ Acknowledgments
         <div class='permalink'>
         <a name='top' class='permalink'> 
     5.4.2&nbsp;&nbsp;
-    Sequence Evaluation and Tail Recursion
+    Returns and Tail Recursion
   
         </a>
         </div>
@@ -1973,310 +1973,18 @@ Acknowledgments
     
 
   
-  
 
+  
+  
   <div class='permalink'>
 <a name='p1' class='permalink'></a><p>
-    The portion of the explicit-control evaluator at
-    
-      
-      <kbd>ev_sequence</kbd>
-    
-    is analogous to the metacircular evaluator's
-    
-      
-      <kbd>eval_sequence</kbd>
-    
-    
-      
-      function.
-    
-    It handles sequences of expressions in
-    
-      
-      function
-    
-    bodies or in 
-    
-      
-      sequences of statements.
-    
-  </p></div>
-
-  <div class='permalink'>
-<a name='p2' class='permalink'></a><p>
-    
-      
-      Sequences of statements
-    
-    are evaluated by placing the 
-    
-      
-      
-	sequence
-      
-    
-    to be evaluated in
-    <kbd>unev</kbd>, saving
-    <kbd>continue</kbd> on the
-    stack, and jumping to
-    
-      
-      <kbd>ev_sequence</kbd>.
-    
-    
-    <div class='snippet' id='javascript_113_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-"ev_seq",
-      save("continue"),
-      assign("unev", list(op("sequence_statements"), reg("stmt"))),
-      go_to(label("ev_sequence"))</pre></div></div>
-
-    The implicit sequences in
-    
-      
-      function
-    
-    bodies are handled by jumping to
-    
-      
-      <kbd>ev_sequence</kbd>
-    
-    from
-    
-      
-      <kbd>compound_apply</kbd>,
-      
-    
-    at which point <kbd>continue</kbd> is already on the stack,
-    having been saved at
-    
-      
-      <kbd>ev_application</kbd>.
-      
-    
-  </p></div>
-
-  <div class='permalink'>
-<a name='p3' class='permalink'></a><p>
-    The entries at
-    
-      
-      <kbd>ev_sequence</kbd>
-    
-    and
-    
-      
-      <kbd>ev_sequence_continue</kbd>
-      
-    
-    form a loop that successively evaluates each
-    
-      
-      
-	statement
-      
-    
-    in a sequence.  The
-    list of unevaluated
-    
-      
-      
-	statements
-      
-    
-    is kept in <kbd>unev</kbd>.
-    Before evaluating each
-    
-      
-      
-	statement,
-      
-    
-    we check to see if there are additional
-    
-      
-      
-	statements
-      
-    
-    to be evaluated in the sequence.  If so, we save the rest of the
-    unevaluated
-    
-      
-      
-	statements
-      
-    
-    (held in <kbd>unev</kbd>) and the
-    environment in which these must be evaluated (held in
-    <kbd>env</kbd>) and call
-    
-      
-      <kbd>eval_dispatch</kbd>
-      
-    
-    to evaluate the
-    
-      
-      
-	statement.
-      
-    
-    The two saved registers are restored upon
-    the return from this evaluation, at
-    
-      
-      <kbd>ev_sequence_continue</kbd>.
-      
-    
-
-    
-      
-        As returns immediately end the function, skipping any trailing
-        statements, we inspect each statement to see whether it is a return or
-        not. If it is, we jump to the entry point
-        <kbd>ev_return_from_seq</kbd> and abort the
-        loop. Sequences that do not contain an explicit return will eventually
-        dispatch to the entry point
-        <kbd>end_without_return</kbd>, which will
-        ensure that the sequence ends with <kbd>val</kbd>
-        holding the value <kbd>undefined</kbd>. 
-      
-    
-  </p></div>
-
-  <div class='permalink'>
-<a name='p4' class='permalink'></a><p>
-    The final
-    
-      
-      
-	statement
-      
-    
-    in the sequence is handled differently, at the
-    entry point
-    
-      
-      
-	<kbd>ev_sequence_last_stmt</kbd>.
-      
-    
-    Since there are no more
-    
-      
-      
-	statements
-      
-    
-    to be evaluated after this one, we need
-    not save <kbd>unev</kbd> or
-    <kbd>env</kbd> before going to
-    
-      
-      <kbd>eval_dispatch</kbd>.
-    
-    The value of the whole sequence is the value of the last
-    
-      
-      
-	statement,
-      
-    
-    so
-    after the evaluation of the last
-    
-      
-      
-	statement
-      
-    
-    there is nothing left to do
-    except continue at the entry point currently held on the stack (which was
-    saved by
-    
-      
-      <kbd>ev_application</kbd>
-      
-    
-    or
-    
-      
-      <kbd>ev_seq</kbd>.)
-    
-    Rather than setting up <kbd>continue</kbd> to arrange for
-    
-      
-      <kbd>eval_dispatch</kbd>
-      
-    
-    to return here and then restoring <kbd>continue</kbd> from
-    the stack and continuing at that entry point, we restore
-    <kbd>continue</kbd> from the stack before going to
-    
-      
-      <kbd>eval_dispatch</kbd>,
-      
-    
-    so that
-    
-      
-      <kbd>eval_dispatch</kbd>
-      
-    
-    will continue at that entry point after evaluating the
-    
-      
-      
-	statement.
-      
-    
-    <div class='snippet' id='javascript_113_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-"ev_sequence",
-      assign("stmt", list(op("first_statement"), reg("unev"))),
-      test(list(op("is_return_statement"), reg("stmt"))),
-      branch(label("ev_return_from_seq")),
-      test(list(op("is_last_statement"), reg("unev"))),
-      branch(label("ev_sequence_last_exp")),
-      save("unev"),
-      save("env"),
-      assign("continue", label("ev_sequence_continue")),
-      go_to(label("eval_dispatch")),
-      
-"ev_sequence_continue",
-      restore("env"),
-      restore("unev"),
-      assign("unev", list(op("rest_statements"), reg("unev"))),
-      go_to(label("ev_sequence")),
-      
-"ev_sequence_last_exp",
-      assign("continue", label("end_without_return")),
-      go_to(label("eval_dispatch")),
-
-"end_without_return",
-      assign("val", constant(undefined)),
-      restore("continue"),
-      go_to(reg("continue")),</pre></div></div>
-  </p></div>
-
-  
-      <div class='permalink'>
-        <a name='h1' class='permalink'></a><h2>
-     
-    Tail recursion
-  </h2></div>
-
-  
-  
-  <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
     In chapter&nbsp;1 we said that the process described by a
     
       
       function
     
     such as
-    <div class='snippet' id='javascript_113_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_113_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function sqrt_iter(guess, x) {
     return is_good_enough(guess, x)
            ? guess
@@ -2334,25 +2042,23 @@ function sqrt_iter(guess, x) {
   </p></div>
 
   <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
-    With one exception, discussed
-    at the end of this section, our evaluator is
-    tail-recursive, because in order to evaluate the final
+<a name='p2' class='permalink'></a><p>
+    Our evaluator is tail-recursive, because in order to evaluate the 
     
       
       
-	statement
+	      a return statement in a function body
       
     
-    of a
-    sequence we transfer directly to
+    we transfer directly to
     
       
-      <kbd>eval_dispatch</kbd>
+      
+        <kbd>eval_dispatch</kbd> after unwinding the stack down to the next marker introduced
+        by <kbd>save_frame</kbd>.
+        Hence, evaluating a return statement in a function body—even if it contains a
       
     
-    without saving any information on the stack.  Hence, evaluating the final
-    expression in a sequence—even if it is a
     
       
       function
@@ -2381,68 +2087,68 @@ function sqrt_iter(guess, x) {
     
     not cause any information to be accumulated on the stack.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a> 
 
-  <div class='permalink'>
-<a name='p7' class='permalink'></a><p>
-    If we did not think to take advantage of the fact that it was unnecessary to
-    save information in this case, we might have implemented
     
       
-      <kbd>eval_sequence</kbd>
+        <div class='permalink'>
+<a name='p3' class='permalink'></a><p>
+          Note that JavaScript is only tail recursive in the presence of an
+          explicit return statement. Without this return statement, we must 
+          dispatch to the implicit return handler that ensures that the
+          function returned <kbd>undefined</kbd>.
+        </p></div>
       
     
-    by treating all the expressions in a sequence in the same way—saving
-    the registers, evaluating the expression, returning to restore the registers,
-    and repeating this until all the expressions have been
-    evaluated (for simplicity, ignoring the handling of returns which are not needed to illustrate this point):<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
-    <div class='snippet' id='javascript_113_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-"ev_sequence",
-     test(list(op("has_no_more_stmts"), reg("unev"))),
-     branch(label("ev_sequence_end")),
-     assign(exp(op("first_stmt"), reg("unev")),
-     save("unev"),
-     save("env"),
-     assign("continue", label("ev_sequence_continue")),
-     go_to(label("eval_dispatch")),
-"ev_sequence_continue",
-     restore("env"),
-     restore("unev"),
-     assign("unev", op("rest_stmts"), reg("unev")),
-     go_to(label("ev_sequence")),
-"ev_sequence_end",
-     restore("continue"),
-     go_to(reg("continue")),</pre></div></div>
-  </p></div>
 
+    
+      
+      
+        <div class='permalink'>
+<a name='p4' class='permalink'></a><p>
+          If we did not think to take advantage of the fact that it was unnecessary to
+          save information in this case, we might have implemented 
+          <kbd>ev_return</kbd>
+          by first evaluating the return expression before unwinding the stack. 
+          <div class='snippet' id='javascript_113_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"ev_return",
+      assign("stmt", list(op("return_expression"), reg("stmt"))),
+      assign("continue", label("ev_unwind")),
+      save("continue"),
+      go_to(label("eval_dispatch")),
+
+"ev_unwind",
+      restore_frame("continue"),
+      restore("continue"),
+      go_to(reg("continue")),</pre></div></div>
+        </p></div>
+      
+    
+    
   <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
-    This may seem like a minor change to our previous code for evaluation of a
-    sequence:  The only difference is that we go through the save-restore cycle
-    for the last
+<a name='p5' class='permalink'></a><p>
     
       
       
-        statement
+        This may seem like a minor change to our previous code for
+        evaluation of a return statement.
       
     
-    in a sequence as well as for the others.  The
-    interpreter will still give the same value for any
+    The interpreter will still give the same value for any
     
       
       
         statement.
       
     
-    But this change is fatal to the tail-recursive implementation, because we must now
-    return after evaluating the final
+    But this change is fatal to the tail-recursive implementation, because we
+    must now return after evaluating the 
     
       
       
-        statement
+        final expression inside return statement
       
     
-    in a sequence in order to undo
-    the (useless) register saves.  These extra saves will accumulate during a
-    nest of
+    in order to undo the (useless) register saves. These extra saves will
+    accumulate during a nest of
     
       
       function
@@ -2461,7 +2167,7 @@ function sqrt_iter(guess, x) {
       function-call
     
     mechanism:
-    <div class='snippet' id='javascript_113_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_113_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function count(n) {
     display(n, "\n");
     return count(n + 1);
@@ -2478,23 +2184,6 @@ function count(n) {
       function
     
     call.
-  </p></div>
-
-  <div class='permalink'>
-<a name='p9' class='permalink'></a><p>
-    
-      The exception to tail recursion in our evaluator is due to the
-      implicit returning of <kbd>undefined</kbd>.
-      Function bodies that do not end in an explicit return dispatch to the
-      <kbd>end_without_return</kbd> entry point which
-      destroys tail-recursion as every function call must have its return value
-      changed to <kbd>undefined</kbd>. Removing the
-      <kbd>return</kbd> from the
-      <kbd>count</kbd> function above will thus lead to
-      exhausting the stack space. (Note that it is only when a function actually
-      reaches the end of its body that this extra stack space is consumed.) 
-      
-    
   </p></div>
 
     
@@ -2518,10 +2207,9 @@ function count(n) {
       <a class='footnote-number' id='footnote-2' href='#footnote-link-2'>[2] </a>
     <FOOTNOTE>
     This
-    implementation of tail recursion in
+    implementation of tail recursion 
     
       
-      <kbd>ev_sequence</kbd>
     
     is one variety of a well-known optimization technique used
     by many compilers.  In compiling a
@@ -2545,23 +2233,6 @@ function count(n) {
     </FOOTNOTE></div>
 
     
-    <div class='footnote'>
-      <a class='footnote-number' id='footnote-3' href='#footnote-link-3'>[3] </a>
-    <FOOTNOTE>
-    We can define
-    
-      
-      <kbd>has_no_more_stmts</kbd>
-      
-    
-    as follows:
-    <div class='snippet' id='javascript_113_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function has_no_more_exps(seq) {
-    return is_null(seq);
-}</pre></div></div>
-    </FOOTNOTE></div>
-
-    
 </div></div>
 
     <div class='nav'>
@@ -2574,7 +2245,7 @@ function has_no_more_exps(seq) {
       </div>
     <div class='chapter_sign'>
       5.4.2&nbsp;&nbsp;
-    Sequence Evaluation and Tail Recursion
+    Returns and Tail Recursion
   
     </div>
     <script> var chapter_id = 114; </script>

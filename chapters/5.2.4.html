@@ -1777,7 +1777,7 @@ Acknowledgments
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-114" aria-expanded="false" aria-controls="sidebar-collapse-114">
                 <a href="./5.4.2.html"> 5.4.2 
-    Sequence Evaluation and Tail Recursion
+    Returns and Tail Recursion
   </a>
               </span>
             </h5>
@@ -2014,34 +2014,33 @@ list(list("initialize_stack",
       <kbd>make_stack</kbd>:
     
       
-    <div class='snippet' id='javascript_107_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0BnCpslgBQBKUAG9QuUFNAAbNhVBdQAXlAkiMmQG5J0uQvUMARmwBOHAA5EuACzZLVABh3TZ8xkwAeHACZsLFDYqoM66UvqgZESmpmwkFL7+gcGhrsTk1HSgVrYCniKiYa6KwRZMVKZ5ADSKQi7FUoYm5jl2DmpExmaW1m2gANSgAIz1DVExcQl+AUGq47HxiTMDw6PFzN7TyarMgRwbAvOTS4E1uzb7XnVFAL5F6ZS09BY0FsJiRa5UBKACVFwcdSaARcIQFT4NUBmUw0SoAIgAogwAgBPRS8figKjPV5w64QqQ3KEyLhsD6Q4pkOg8UAUV7BOxMHwg64U1ztXhUGQstYUo6LLazSLRBZTJJBAC0qwJxViFGi9DpFl50jurjV0gemXo2Ko1CYMioAC82O9ChT2kDtDKmt1WvYUiqpBsTkLUpD+WLlk4dDK5QrQHCfHQ2HC1hqpFqntlTNiEjwmNQeFQyFwzTKfP8LDImCiQRRYyQAObfPMytmyf4UARwgA6JDhNThdN4Mgl9vajY6XRavXsVXLFdcdYbTY2VAYnQlguCXZdgrBrNV91Ijyyma4ZQoZBsAgY9i4TCLbHBFP9pno+64h+PKmUqjhrThg+KAH5sr0X64AFyMA9Hsl7wfF4LGfIdXHfEDhC-aRfyvG9APvQNdX1Q0TTA8CpHfFCqANY1TSEGCpDg-9byAwMLELeNeCTahUwwzDIKo7gaKrFM00IzDiKhGJYT3Ui2CbABVEgWBIGgAHd6FiABHIh7AUbF0T4FhvzxcMinPegNy3HcdBuIA')">function make_stack() { 
-    let s = null;
+    <div class='snippet' id='javascript_107_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0BnCpslgBQBKUAG9QuUFNAAbNhVA8+LUAF5QJIjJkBuSdLkLNDAEZsAThwAORLgAs2XNaAAMe6bPmMmADw4ATNisKO2c3fSlDUDIic3M2EgoAoJCw92licmo6UBt7AR8RUQiPRV5+ZysmKnMCgBoy5SF00o0iUwtrWwcndWMzSzye0ABqUABGFtKYuISkwODQ9Rn4xOTF0Ympj2Y-BdT1ZhCOXYEVufWQht3Lu2aSj3iKWPoAIn86NlepgF8SzMotHoVhoVmEYge0ioBFAAioXA4mm0AiU-CERUhrQs5hotVeAFEGMEAJ6NCpUYGg173VpSH6gNgyLhsCG06Z0HigCig5wOJj+FHlFg0tnSVEqdS8KgyQVNba085rfZLaKxVbzFKhAC0W0xpSeLy5oPldJKfw8AOy9ApVGoTBkVAAXmxwcU2eLnEjdHr+p0ho40nqbsrA2zFRqNupwmyDeY3h8SF9fv9SICclZzBSkkpqDwqGQuK69f54VYZExiYLMyQAObQyt60WyeEUASvAA6JFeDVe3N4Mi1-t6oG7bQ6g26jjqjabHg7XZ7uyoDHaWpD6lHwc16JFpotqatoBLXCqFDIdgEDEcXCYNbYGJj8kNV64N7valUG6GrxnpQA-Lk3S-h4ABcjDXreLKfl+VLAdIAEgmCQhwVIYEvm+UGfiONp2g6zo-rOHgAThVD2k6LrIYR0hoRB77QSOGZZtwvC5tQBYEVRoAIdW2YsS2+aFpRnFgdiuKXrRbA9gAqiQLAkDQADu9DxAAjkQjgKBSZIsCB1LJo8T5xkepZMGedh6D8QA')">function make_stack() { 
+    let stack = null;
     let number_pushes = 0;
     let max_depth = 0;
     let current_depth = 0;
     function push(x) {
-        s = pair(x, s);
+        stack = pair(x, stack);
         number_pushes = number_pushes + 1;
         current_depth = current_depth + 1;
-        max_depth = math_max(current_depth, math_max);
+        max_depth = math_max(current_depth, max_depth);
+        return "done";
     }
     function pop() {
-        if (is_null(s)) {
+        if (is_null(stack)) {
             error("Empty stack in pop");
-
         } else {
-            const top = head(s);
-            s = tail(s);
+            const top = head(stack);
+            stack = tail(stack);
             current_depth = current_depth - 1;
             return top;
         }
     }
     function initialize() {
-        s = null;
+        stack = null;
         number_pushes = 0;
         max_depth = 0;
         current_depth = 0;
-
         return "done";
     }
     function print_statistics() {

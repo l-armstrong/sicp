@@ -1777,7 +1777,7 @@ Acknowledgments
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-114" aria-expanded="false" aria-controls="sidebar-collapse-114">
                 <a href="./5.4.2.html"> 5.4.2 
-    Sequence Evaluation and Tail Recursion
+    Returns and Tail Recursion
   </a>
               </span>
             </h5>
@@ -2315,7 +2315,7 @@ return n === 1
       
       function.)
     
-    <kbd class='snippet'>  $\langle save$ continue$,$ env $if$ $modified$ $by$ $predicate$ $and$ $needed$ $by$ $branches \rangle$
+    <kbd class='snippet'>$$  $\langle save$ continue$,$ env $if$ $modified$ $by$ $predicate$ $and$ $needed$ $by$ $branches \rangle$
   $\langle compilation$ $of$ $predicate,$ $target$ val$,$ $linkage$ next$\rangle$
   $\langle restore$ continue$,$ env $if$ $saved$ $above \rangle$
   test(list(op("is_falsy"), reg("val"))),
@@ -2383,7 +2383,7 @@ return n === 1
     modify the registers in question.
 
     <div class='snippet' id='javascript_121_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-assign("fun", list(op("lookup_symbol_value"), constant("==="), 
+$$  assign("fun", list(op("lookup_symbol_value"), constant("==="), 
                      reg("env"))),
   assign("val", constant(1)),
   assign("argl", list(op("list"), reg("val"))),
@@ -2484,7 +2484,7 @@ go_to(reg("continue"))</pre></div></div>
 
   
     <div class="permalink">
-    <a name="ex_5.33" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.33">Exercise 5.33 </a></b> 
+    <a name="ex_5.34" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.34">Exercise 5.34 </a></b> 
   
     Consider the following definition of a factorial
     
@@ -2517,7 +2517,7 @@ function factorial_alt(n) {
 
   
     <div class="permalink">
-    <a name="ex_5.34" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.34">Exercise 5.34 </a></b> 
+    <a name="ex_5.35" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.35">Exercise 5.35 </a></b> 
   
     
     
@@ -2691,7 +2691,7 @@ $$  save("continue"),
 
       
     <div class="permalink">
-    <a name="ex_5.35" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.35">Exercise 5.35 </a></b> 
+    <a name="ex_5.36" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.36">Exercise 5.36 </a></b> 
   
 	
   What expression was compiled to produce the code shown in
@@ -2752,7 +2752,7 @@ $$  assign("val", list(op("make_compiled_function"),
   go_to(reg("val")),</pre></div></div>
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./5.5.5.html#fig_5.20">Figure 5.20 </a></b>An example of compiler output (continued on next page).
-  See exercise&nbsp;<REF NAME="ex:compiled-code"><a class="superscript" id="5.5.5-ex-link-5.35" href="./5.5.5.html#ex_5.35">5.35</a></REF>.
+  See exercise&nbsp;<REF NAME="ex:compiled-code"><a class="superscript" id="5.5.5-ex-link-5.36" href="./5.5.5.html#ex_5.36">5.36</a></REF>.
   </div>
     </FIGURE>
   
@@ -2792,7 +2792,7 @@ $$  assign("val", list(op("make_compiled_function"),
 
   
     <div class="permalink">
-    <a name="ex_5.36" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.36">Exercise 5.36 </a></b> 
+    <a name="ex_5.37" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.37">Exercise 5.37 </a></b> 
    
     
     
@@ -2829,7 +2829,7 @@ $$  assign("val", list(op("make_compiled_function"),
 
   
     <div class="permalink">
-    <a name="ex_5.37" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.37">Exercise 5.37 </a></b> 
+    <a name="ex_5.38" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.38">Exercise 5.38 </a></b> 
   
     
     
@@ -2855,7 +2855,7 @@ $$  assign("val", list(op("make_compiled_function"),
 
   
     <div class="permalink">
-    <a name="ex_5.38" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.38">Exercise 5.38 </a></b> 
+    <a name="ex_5.39" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.39">Exercise 5.39 </a></b> 
   
     
     

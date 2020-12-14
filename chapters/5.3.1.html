@@ -1777,7 +1777,7 @@ Acknowledgments
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-114" aria-expanded="false" aria-controls="sidebar-collapse-114">
                 <a href="./5.4.2.html"> 5.4.2 
-    Sequence Evaluation and Tail Recursion
+    Returns and Tail Recursion
   </a>
               </span>
             </h5>
@@ -2008,7 +2008,9 @@ Acknowledgments
     
     for manipulating vectors
     
-      (as hinted in previous chapters, JavaScript supports vectors as data structures called <EM>arrays</EM>, and supports the syntax <kbd>array[n]</kbd> and <kbd>array[n] = value</kbd> in-place of the two functions below)
+      
+        <a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+      
     :
     <UL>
       
@@ -2017,10 +2019,8 @@ Acknowledgments
 	
 	  
 	  
-	    <kbd>vector_ref(</kbd>
-	    $\ensuremath{\text{\textrm{\sl vector}}}$,
-	    $\ensuremath{\text{\textrm{\sl n}}}$
-	    <kbd>)</kbd>
+	    <kbd>vector_ref(</kbd>$\ensuremath{\text{\textrm{\sl vector}}}$,
+	    $\ensuremath{\text{\textrm{\sl n}}}$<kbd>)</kbd>
 	  
 	
 	returns the $n$th element of the vector.
@@ -2031,21 +2031,16 @@ Acknowledgments
 	
 	  
 	  
-	    <kbd>vector_set(</kbd>
-	    $\ensuremath{\text{\textrm{\sl vector}}}$,
+	    <kbd>vector_set(</kbd>$\ensuremath{\text{\textrm{\sl vector}}}$,
 	    $\ensuremath{\text{\textrm{\sl n}}}$,
-	    $\ensuremath{\text{\textrm{\sl value}}}$
-	    <kbd>)</kbd>
+	    $\ensuremath{\text{\textrm{\sl value}}}$<kbd>)</kbd>
 	  
 	
 	sets the $n$th element of the vector to the
 	designated value.
       </LI>
     </UL>
-  </p></div>
 
-  <div class='permalink'>
-<a name='p3' class='permalink'></a><p>
     For example, if <kbd>v</kbd> is a vector, then
     
       
@@ -2061,7 +2056,7 @@ Acknowledgments
     
     changes the value of the fifth entry of the vector
     <kbd>v</kbd>
-    to 7.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a> For computer memory, this access can be implemented
+    to 7.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a> For computer memory, this access can be implemented
     through the use of address arithmetic to combine a <EM>base address</EM>
     that specifies the beginning location of a vector in memory with an
     <EM>index</EM> that specifies the offset of a particular element of the
@@ -2083,7 +2078,7 @@ Acknowledgments
   
   
   <div class='permalink'>
-<a name='p4' class='permalink'></a><p>
+<a name='p3' class='permalink'></a><p>
     We can use vectors to implement the basic pair structures required for a
     list-structured memory.  Let us imagine that computer memory is divided into
     two vectors: 
@@ -2129,7 +2124,7 @@ Acknowledgments
     
     
     <EM>typed pointers</EM>, that is, to extending the notion of
-    <QUOTE>pointer</QUOTE> to include information on data type.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a> The data type enables the system to
+    <QUOTE>pointer</QUOTE> to include information on data type.<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a> The data type enables the system to
     distinguish a pointer to a pair (which consists of the <QUOTE>pair</QUOTE>
     data type and an index into the memory vectors) from pointers to other
     kinds of data (which consist of some other data type and whatever is
@@ -2140,14 +2135,14 @@ Acknowledgments
       
       (<kbd>===</kbd>)
     
-    if their pointers are identical.<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
+    if their pointers are identical.<a class='superscript' id='footnote-link-5' href='#footnote-5'>[5]</a>
     
       
       
 	Figure&nbsp;<REF NAME="fig:box-and-pointer-memory"><a class="superscript" id="5.3.1-fig-link-5.14" href="./5.3.1.html#fig_5.14">5.14</a></REF>
       
     
-    illustrates the use of this method to represent the list
+    illustrates the use of this method to represent 
     
       
       <kbd>list(list(1, 2), 3, 4)</kbd>,
@@ -2197,24 +2192,23 @@ Acknowledgments
   </p></div>
 
   <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
+<a name='p4' class='permalink'></a><p>
     A pointer to a number, such as <kbd>n4</kbd>,
     might consist of a type indicating numeric data together with the
-    actual representation of the number 4.<a class='superscript' id='footnote-link-5' href='#footnote-5'>[5]</a>
+    actual representation of the number 4.<a class='superscript' id='footnote-link-6' href='#footnote-6'>[6]</a>
     To deal with numbers that are too large to be represented in the fixed
     amount of space allocated for a single pointer, we could use a distinct 
     
     <EM>bignum</EM> data type, for which the pointer designates a list in which
-    the parts of the number are stored.<a class='superscript' id='footnote-link-6' href='#footnote-6'>[6]</a>
+    the parts of the number are stored.<a class='superscript' id='footnote-link-7' href='#footnote-7'>[7]</a>
   </p></div>
 
   <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
+<a name='p5' class='permalink'></a><p>
     
-    A
     
       
-      string
+      Strings
     
     might be represented as a typed pointer that designates a
     sequence of the characters that form the
@@ -2262,7 +2256,12 @@ Acknowledgments
       
       parser
     
-    maintains a table, traditionally called the 
+    maintains a table, 
+    
+      
+      which we will refer to as
+    
+    the 
     
     <EM>obarray</EM>, of all the
     
@@ -2317,7 +2316,7 @@ Acknowledgments
   </h2></div>
 
   <div class='permalink'>
-<a name='p7' class='permalink'></a><p>
+<a name='p6' class='permalink'></a><p>
     
     
     Given the above representation scheme, we can replace each
@@ -2350,15 +2349,15 @@ Acknowledgments
   </p></div>
 
   <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
+<a name='p7' class='permalink'></a><p>
     For example, we can make a register machine support the instructions
     
     
-    <kbd class='snippet'>assign($\ensuremath{\text{\textrm{\sl reg}}_{1}}$, list(op("head"), $\ensuremath{\text{\textrm{\sl reg}}_{2}}$))
-assign($\ensuremath{\text{\textrm{\sl reg}}_{1}}$, list(op("tail"), $\ensuremath{\text{\textrm{\sl reg}}_{2}}$))</kbd>
+    <kbd class='snippet'>assign($\ensuremath{\text{\textrm{\sl reg}}_{1}}$, list(op("head"), reg($\ensuremath{\text{\textrm{\sl reg}}_{2}}$)))
+assign($\ensuremath{\text{\textrm{\sl reg}}_{1}}$, list(op("tail"), reg($\ensuremath{\text{\textrm{\sl reg}}_{2}}$)))</kbd>
     if we implement these, respectively, as
-    <kbd class='snippet'>assign($\ensuremath{\text{\textrm{\sl reg}}_{1}}$, list(op("vector_ref"), reg("the_heads"), $\ensuremath{\text{\textrm{\sl reg}}_{2}}$))
-assign($\ensuremath{\text{\textrm{\sl reg}}_{1}}$, list(op("vector_ref"), reg("the_tails"), $\ensuremath{\text{\textrm{\sl reg}}_{2}}$))</kbd>
+    <kbd class='snippet'>assign($\ensuremath{\text{\textrm{\sl reg}}_{1}}$, list(op("vector_ref"), reg("the_heads"), reg($\ensuremath{\text{\textrm{\sl reg}}_{2}}$)))
+assign($\ensuremath{\text{\textrm{\sl reg}}_{1}}$, list(op("vector_ref"), reg("the_tails"), reg($\ensuremath{\text{\textrm{\sl reg}}_{2}}$)))</kbd>
 
     The instructions
     
@@ -2371,7 +2370,7 @@ perform(op("vector_set"), list((reg("the_tails"), reg($\ensuremath{\text{\textrm
   </p></div>
 
   <div class='permalink'>
-<a name='p9' class='permalink'></a><p>
+<a name='p8' class='permalink'></a><p>
     
     
       
@@ -2398,11 +2397,11 @@ perform(op("vector_set"), list((reg("the_tails"), reg($\ensuremath{\text{\textrm
     
     <kbd>free</kbd>, that always holds a pair pointer
     containing the next available index, and that we can increment the index
-    part of that pointer to find the next free location.<a class='superscript' id='footnote-link-7' href='#footnote-7'>[7]</a>
+    part of that pointer to find the next free location.<a class='superscript' id='footnote-link-8' href='#footnote-8'>[8]</a>
     For example, the instruction
     <kbd class='snippet'>assign($\ensuremath{\text{\textrm{\sl reg}}_{1}}$, list(op("pair"), reg($\ensuremath{\text{\textrm{\sl reg}}_{2}}$), reg($\ensuremath{\text{\textrm{\sl reg}}_{3}}$)))</kbd>
     is implemented as the following sequence of vector
-    operations:<a class='superscript' id='footnote-link-8' href='#footnote-8'>[8]</a>
+    operations:<a class='superscript' id='footnote-link-9' href='#footnote-9'>[9]</a>
     <kbd class='snippet'>perform(op("vector_set"), list(reg("the_heads"), reg("free"), reg($\ensuremath{\text{\textrm{\sl reg}}_{2}}$))),
 perform(op("vector_set"), list(reg("the_tails"), reg("free"), reg($\ensuremath{\text{\textrm{\sl reg}}_{3}}$))),
 assign($\ensuremath{\text{\textrm{\sl reg}}_{1}}$, reg("free")),
@@ -2410,7 +2409,7 @@ assign("free", list(op("+"), reg("free"), constant(1)))</kbd>
   </p></div>
 
   <div class='permalink'>
-<a name='p10' class='permalink'></a><p>
+<a name='p9' class='permalink'></a><p>
     The
     
       
@@ -2453,7 +2452,7 @@ assign("free", list(op("+"), reg("free"), constant(1)))</kbd>
 
   
   <div class='permalink'>
-<a name='p11' class='permalink'></a><p>
+<a name='p10' class='permalink'></a><p>
     Although our register machines use stacks, we need do nothing special
     here, since stacks can be modeled in terms of lists.  The stack can be
     a list of the saved values, pointed to by a special register
@@ -2492,10 +2491,7 @@ assign("the_stack", list(op("tail"), reg("the_stack")))</kbd>
     
     can be implemented as
     <kbd class='snippet'>assign("the_stack", constant(null))</kbd>
-  </p></div>
 
-  <div class='permalink'>
-<a name='p12' class='permalink'></a><p>
     These operations can be further expanded in terms of the vector
     operations given above.  In conventional computer architectures,
     however, it is usually advantageous to allocate the stack as a
@@ -2657,6 +2653,20 @@ const y = list(x, x);</pre></div></div>
     <div class='footnote'>
       <a class='footnote-number' id='footnote-2' href='#footnote-link-2'>[2] </a>
     <FOOTNOTE>
+    
+          As hinted in previous chapters, JavaScript supports vectors as data
+          structures called <EM>arrays</EM>, and supports the syntax
+          <kbd>array[n]</kbd> and
+          <kbd>array[n] = value</kbd>.
+          Rather than introduce new syntax for arrays, we use the vector functions,
+          which are easily implemented using JavaScript's primitive array support.
+        
+    </FOOTNOTE></div>
+
+    
+    <div class='footnote'>
+      <a class='footnote-number' id='footnote-3' href='#footnote-link-3'>[3] </a>
+    <FOOTNOTE>
     For completeness, we should specify a
     
       
@@ -2669,7 +2679,7 @@ const y = list(x, x);</pre></div></div>
 
     
     <div class='footnote'>
-      <a class='footnote-number' id='footnote-3' href='#footnote-link-3'>[3] </a>
+      <a class='footnote-number' id='footnote-4' href='#footnote-link-4'>[4] </a>
     <FOOTNOTE>
     This is
     precisely the same 
@@ -2683,7 +2693,7 @@ const y = list(x, x);</pre></div></div>
 
     
     <div class='footnote'>
-      <a class='footnote-number' id='footnote-4' href='#footnote-link-4'>[4] </a>
+      <a class='footnote-number' id='footnote-5' href='#footnote-link-5'>[5] </a>
     <FOOTNOTE>
     Type information may be encoded in
     a variety of ways, depending on the details of the machine on which the
@@ -2713,7 +2723,7 @@ const y = list(x, x);</pre></div></div>
 
     
     <div class='footnote'>
-      <a class='footnote-number' id='footnote-5' href='#footnote-link-5'>[5] </a>
+      <a class='footnote-number' id='footnote-6' href='#footnote-link-6'>[6] </a>
     <FOOTNOTE>
     This decision on the
     
@@ -2734,7 +2744,7 @@ const y = list(x, x);</pre></div></div>
 
     
     <div class='footnote'>
-      <a class='footnote-number' id='footnote-6' href='#footnote-link-6'>[6] </a>
+      <a class='footnote-number' id='footnote-7' href='#footnote-link-7'>[7] </a>
     <FOOTNOTE>
     This is just like writing a
     number as a sequence of digits, except that each <QUOTE>digit</QUOTE> is a
@@ -2744,7 +2754,7 @@ const y = list(x, x);</pre></div></div>
 
     
     <div class='footnote'>
-      <a class='footnote-number' id='footnote-7' href='#footnote-link-7'>[7] </a>
+      <a class='footnote-number' id='footnote-8' href='#footnote-link-8'>[8] </a>
     <FOOTNOTE>
     There are
     other ways of finding free storage.  For example, we could link together
@@ -2758,7 +2768,7 @@ const y = list(x, x);</pre></div></div>
 
     
     <div class='footnote'>
-      <a class='footnote-number' id='footnote-8' href='#footnote-link-8'>[8] </a>
+      <a class='footnote-number' id='footnote-9' href='#footnote-link-9'>[9] </a>
     <FOOTNOTE>
     This is essentially the implementation of
     
