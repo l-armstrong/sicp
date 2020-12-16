@@ -15,11 +15,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <meta name="description" content="5.4.2&nbsp;&nbsp;
-    Returns and Tail Recursion
+    Return Statements and Tail Recursion
   " />
     <title>
       5.4.2&nbsp;&nbsp;
-    Returns and Tail Recursion
+    Return Statements and Tail Recursion
   
     </title>
     
@@ -1777,7 +1777,7 @@ Acknowledgments
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-114" aria-expanded="false" aria-controls="sidebar-collapse-114">
                 <a href="./5.4.2.html"> 5.4.2 
-    Returns and Tail Recursion
+    Return Statements and Tail Recursion
   </a>
               </span>
             </h5>
@@ -1963,7 +1963,7 @@ Acknowledgments
         <div class='permalink'>
         <a name='top' class='permalink'> 
     5.4.2&nbsp;&nbsp;
-    Returns and Tail Recursion
+    Return Statements and Tail Recursion
   
         </a>
         </div>
@@ -2022,13 +2022,12 @@ function sqrt_iter(guess, x) {
     <EM>tail-recursive</EM> evaluator.  
     
     
-    The metacircular implementation of the evaluator in chapter&nbsp;4 does
-    not specify whether the evaluator is tail-recursive, because that evaluator
-    inherits its mechanism for saving state from the underlying
     
       
       
-	JavaScript.
+        The metacircular implementation of the evaluator in chapter&nbsp;4 is
+        not tail-recursive, because apply in 4.1.1 needs to check whether the
+        evaluation of the function body yields a return value.
       
     
     With
@@ -2071,9 +2070,9 @@ function sqrt_iter(guess, x) {
     where the
     
       
-      conditional
+      conditional,
     
-    expression, which is the last expression in the
+    which is the last expression in the
     
       
       function
@@ -2110,7 +2109,7 @@ function sqrt_iter(guess, x) {
           by first evaluating the return expression before unwinding the stack. 
           <div class='snippet' id='javascript_113_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_return",
-      assign("stmt", list(op("return_expression"), reg("stmt"))),
+      assign("comp", list(op("return_expression"), reg("comp"))),
       assign("continue", label("ev_unwind")),
       save("continue"),
       go_to(label("eval_dispatch")),
@@ -2144,7 +2143,7 @@ function sqrt_iter(guess, x) {
     
       
       
-        final expression inside return statement
+        final expression inside the return statement
       
     
     in order to undo the (useless) register saves. These extra saves will
@@ -2245,7 +2244,7 @@ function count(n) {
       </div>
     <div class='chapter_sign'>
       5.4.2&nbsp;&nbsp;
-    Returns and Tail Recursion
+    Return Statements and Tail Recursion
   
     </div>
     <script> var chapter_id = 114; </script>

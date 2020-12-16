@@ -1777,7 +1777,7 @@ Acknowledgments
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-114" aria-expanded="false" aria-controls="sidebar-collapse-114">
                 <a href="./5.4.2.html"> 5.4.2 
-    Returns and Tail Recursion
+    Return Statements and Tail Recursion
   </a>
               </span>
             </h5>
@@ -1988,14 +1988,14 @@ Acknowledgments
     
       
       
-        statement.
+        component.
       
     
     For
     
       
       
-	conditional,
+	conditionals,
       
     
     we must evaluate the predicate and decide, based on the
@@ -2032,12 +2032,12 @@ Acknowledgments
       
     
     <div class='snippet' id='javascript_114_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-"ev_cond",
-      save("stmt"), // save expression for later
+"ev_conditional",
+      save("comp"), // save expression for later
       save("env"),
       save("continue"),
-      assign("continue", label("ev_cond_decide")),
-      assign("stmt", list(op("conditional_predicate"), reg("stmt"))),
+      assign("continue", label("ev_conditional_decide")),
+      assign("comp", list(op("conditional_predicate"), reg("comp"))),
       go_to(label("eval_dispatch")), // evaluate the predicate</pre></div></div>
   </p></div>
 
@@ -2048,7 +2048,7 @@ Acknowledgments
     consequent or the alternative in
     
       
-      <kbd>stmt</kbd>
+      <kbd>comp</kbd>
     
     before
     going to
@@ -2073,19 +2073,19 @@ Acknowledgments
       
     
     <div class='snippet' id='javascript_114_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-"ev_cond_decide",
+"ev_conditional_decide",
       restore("continue"),
       restore("env"),
-      restore("stmt"),
+      restore("comp"),
       test(list(op("is_truthy"), reg("val"))),
-      branch(label("ev_cond_consequent")),
+      branch(label("ev_conditional_consequent")),
       
-"ev_cond_alternative",
-      assign("stmt", list(op("conditional_alternative"), reg("stmt"))),
+"ev_conditional_alternative",
+      assign("comp", list(op("conditional_alternative"), reg("comp"))),
       go_to(label("eval_dispatch")),
       
-"ev_cond_consequent",
-      assign("stmt", list(op("conditional_consequent"), reg("stmt"))),
+"ev_conditional_consequent",
+      assign("comp", list(op("conditional_consequent"), reg("comp"))),
       go_to(label("eval_dispatch")),</pre></div></div>
   </p></div>
 
@@ -2113,7 +2113,7 @@ Acknowledgments
     
     with the assignment expression in 
       
-      <kbd>stmt</kbd>
+      <kbd>comp</kbd>
     .  The
     code at
     
@@ -2133,9 +2133,9 @@ Acknowledgments
     is assumed to be available as a machine operation.
     <div class='snippet' id='javascript_114_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_assignment",
-      assign("unev", list(op("assignment_symbol"), reg("stmt"))),
+      assign("unev", list(op("assignment_symbol"), reg("comp"))),
       save("unev"), // save variable for later
-      assign("stmt", list(op("assignment_value"), reg("stmt"))),
+      assign("comp", list(op("assignment_value"), reg("comp"))),
       save("env"),
       save("continue"),
       assign("continue", label("ev_assignment_1")),
@@ -2153,16 +2153,26 @@ Acknowledgments
   <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
     
-    Declarations of variables and constants are handled in a similar way:
+    
+      
+      
+        Declarations of variables and constants are handled in a similar way.
+        Note that declarations do not returns
+        <kbd>undefined</kbd> instead of the result of
+        the expression used to initialize the variable. This is handled by
+        setting <kbd>val</kbd> to
+        <kbd>undefined</kbd> before continuing.
+      
+      
 
 
     <div class='snippet' id='javascript_114_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_declaration",
       assign("unev", list(op("declaration_symbol"),
-                          reg("stmt"))),
+                          reg("comp"))),
       save("unev"), // save variable for later
-      assign("stmt", list(op("declaration_value_expression"),
-                          reg("stmt"))),
+      assign("comp", list(op("declaration_value_expression"),
+                          reg("comp"))),
       save("env"),
       save("continue"),
       assign("continue", label("ev_declaration_assign")),
@@ -2203,16 +2213,16 @@ Acknowledgments
       
     <div class='snippet' id='javascript_114_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_block",
-      assign("stmt", list(op("block_body"), reg("stmt"))),
-      assign("val", list(op("scan_out_declarations"), reg("stmt"))),
+      assign("comp", list(op("block_body"), reg("comp"))),
+      assign("val", list(op("scan_out_declarations"), reg("comp"))),
 
-      save("stmt"), // temporarily store to stmt
-      assign("stmt", list(op("list_of_unassigned"), reg("val"))),
+      save("comp"), // temporarily store to comp
+      assign("comp", list(op("list_of_unassigned"), reg("val"))),
       assign("env", list(op("extend_environment"), 
                          reg("val"), 
-                         reg("stmt"), 
+                         reg("comp"), 
                          reg("env"))),
-      restore("stmt"),
+      restore("comp"),
       go_to(label("eval_dispatch")),</pre></div></div>
       
     
@@ -2262,8 +2272,10 @@ Acknowledgments
     <div class="permalink">
     <a name="ex_5.24" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.24">Exercise 5.24 </a></b> 
   
-        Implement the equivalent of save_frame and restore_frame by using save
-        to store a special marker value on the stack. Use a restoring loop for
+        Implement the equivalent of
+        <kbd>save_frame</kbd> and
+        <kbd>restore_frame</kbd> by using save to
+        store a special marker value on the stack. Use a restoring loop for
         implicit and explicit returns that restores from the stack until it hits
         the marker.
       
@@ -2285,13 +2297,16 @@ Acknowledgments
     
       
       
-        Implement save_frame and restore_frame. Extend the evaluator with two
-        new instructions implemented as the nullary functions save_frame and
-        restore_frame, similar to save and restore. You will have to add
-        dispatch cases in the stack, make_save_frame and make_restore_frame
-        functions. Note that you do not need to actually insert a marker in the
-        stack, but keep a parallel structure that only keeps track of the
-        position of the last save before a call to save_frame.
+        Implement <kbd>save_frame</kbd> and
+        <kbd>restore_frame</kbd>. Extend the evaluator
+        with two new instructions implemented as the nullary functions
+        save_frame and restore_frame, similar to save and restore. You will have
+        to add dispatch cases in the stack,
+        <kbd>make_save_frame</kbd> and
+        <kbd>make_restore_frame</kbd> functions. Note
+        that you do not need to actually insert a marker in the stack, but keep
+        a parallel structure that only keeps track of the position of the last
+        save before a call to <kbd>save_frame</kbd>.
       
     
       

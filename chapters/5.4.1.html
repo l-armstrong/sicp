@@ -1777,7 +1777,7 @@ Acknowledgments
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-114" aria-expanded="false" aria-controls="sidebar-collapse-114">
                 <a href="./5.4.2.html"> 5.4.2 
-    Returns and Tail Recursion
+    Return Statements and Tail Recursion
   </a>
               </span>
             </h5>
@@ -2006,16 +2006,19 @@ Acknowledgments
       <kbd>eval_dispatch</kbd>,
       
     
-    it evaluates the expression specified by
+    it evaluates the 
+component
+ specified by
     
       
-      <kbd>stmt</kbd>
+      <kbd>comp</kbd>
     
     in the environment specified by <kbd>env</kbd>.  When
     evaluation is complete, the controller will go to the entry point stored in
     <kbd>continue</kbd>, and the
     <kbd>val</kbd> register will hold the value of the
-    expression.  As with the metacircular
+    component.
+    As with the metacircular
     
       
       
@@ -2033,31 +2036,31 @@ Acknowledgments
     
     <div class='snippet' id='javascript_112_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "eval_dispatch",
-      test(list(op("is_literal"), reg("stmt"))),
+      test(list(op("is_literal"), reg("comp"))),
       branch(label("ev_literal")),
-      test(list(op("is_name"), reg("stmt"))),
+      test(list(op("is_name"), reg("comp"))),
       branch(label("ev_name")),
-      test(list(op("is_application"), reg("stmt"))),
+      test(list(op("is_application"), reg("comp"))),
       branch(label("ev_application")),
-      test(list(op("is_operator_combination"), reg("stmt"))),
+      test(list(op("is_operator_combination"), reg("comp"))),
       branch(label("ev_operator_combination")),
-      test(list(op("is_operator_combination"), reg("stmt"))),
+      test(list(op("is_operator_combination"), reg("comp"))),
       branch(label("ev_operator_combination")),
-      test(list(op("is_conditional"), reg("stmt"))),
-      branch(label("ev_cond")),
-      test(list(op("is_lambda_expression"), reg("stmt"))),
+      test(list(op("is_conditional"), reg("comp"))),
+      branch(label("ev_conditional")),
+      test(list(op("is_lambda_expression"), reg("comp"))),
       branch(label("ev_lambda")),
-      test(list(op("is_sequence"), reg("stmt"))),
-      branch(label("ev_seq")),
-      test(list(op("is_block"), reg("stmt"))),
+      test(list(op("is_sequence"), reg("comp"))),
+      branch(label("ev_sequence_start")),
+      test(list(op("is_block"), reg("comp"))),
       branch(label("ev_block")),
-      test(list(op("is_return_statement"), reg("stmt"))),
+      test(list(op("is_return_statement"), reg("comp"))),
       branch(label("ev_return")),
-      test(list(op("is_function_declaration"), reg("stmt"))),
+      test(list(op("is_function_declaration"), reg("comp"))),
       branch(label("ev_function_declaration")),
-      test(list(op("is_declaration"), reg("stmt"))),
+      test(list(op("is_declaration"), reg("comp"))),
       branch(label("ev_declaration")),
-      test(list(op("is_assignment"), reg("stmt"))),
+      test(list(op("is_assignment"), reg("comp"))),
       branch(label("ev_assignment")),
       go_to(label("unknown_expression_type")),</pre></div></div>
   </p></div>
@@ -2078,7 +2081,7 @@ Acknowledgments
 
     <div class='permalink'>
 <a name='p2' class='permalink'></a><p>
-    Numbers and strings 
+    Numbers and strings ,
     
       
       
@@ -2096,22 +2099,22 @@ Acknowledgments
     <kbd>val</kbd> register and continues
     execution at the entry point specified by
     <kbd>continue</kbd>.  Evaluation
-    of simple expressions is performed by the following controller code:
+    of simple components is performed by the following controller code:
     <div class='snippet' id='javascript_112_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_literal",
-      assign("val", list(op("literal_value"), reg("stmt"))),
+      assign("val", list(op("literal_value"), reg("comp"))),
       go_to(reg("continue")),
       
 "ev_name",
       assign("val",
-        list(op("lookup_symbol_value"), reg("stmt"), reg("env"))),
+        list(op("lookup_symbol_value"), reg("comp"), reg("env"))),
       go_to(reg("continue")),
       
 "ev_lambda",
-      assign("unev", list(op("lambda_parameter_symbols"), reg("stmt"))),
-      assign("stmt", list(op("lambda_body"), reg("stmt"))),
+      assign("unev", list(op("lambda_parameter_symbols"), reg("comp"))),
+      assign("comp", list(op("lambda_body"), reg("comp"))),
       assign("val", list(op("make_function"),
-                         reg("unev"), reg("stmt"), reg("env"))),
+                         reg("unev"), reg("comp"), reg("env"))),
       go_to(reg("continue")),</pre></div></div>
     Observe how
     
@@ -2126,9 +2129,9 @@ Acknowledgments
     and
     
       
-      <kbd>stmt</kbd>
+      <kbd>comp</kbd>
     
-    registers to hold the parameters and body of the lambda expression so
+    registers to hold the parameters and body of the lambda components so
     that they can be passed to the
     
       
@@ -2236,7 +2239,7 @@ Acknowledgments
     we move it to the 
     
       
-      <kbd>stmt</kbd>
+      <kbd>comp</kbd>
     
     register and go to
     
@@ -2294,9 +2297,9 @@ Acknowledgments
 "ev_application",
       save("continue"),
       save("env"),
-      assign("unev", list(op("args"), reg("stmt"))),
+      assign("unev", list(op("args"), reg("comp"))),
       save("unev"),
-      assign("stmt", list(op("function_expression"), reg("stmt"))),
+      assign("comp", list(op("function_expression"), reg("comp"))),
       assign("continue", label("ev_appl_did_function_expression")),
       go_to(label("eval_dispatch")),</pre></div></div>
   </p></div>
@@ -2410,7 +2413,7 @@ Acknowledgments
     we place it in the 
     
       
-      <kbd>stmt</kbd>
+      <kbd>comp</kbd>
     
     register and go to
     
@@ -2443,7 +2446,7 @@ Acknowledgments
     <div class='snippet' id='javascript_112_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_appl_argument_expression_loop",
       save("argl"),
-      assign("stmt", list(op("first_arg"), reg("unev"))),
+      assign("comp", list(op("first_arg"), reg("unev"))),
       test(list(op("is_last_argument_expression"),
                 reg("unev"))),
       branch(label("ev_appl_last_arg")),
@@ -2710,7 +2713,9 @@ Acknowledgments
       <kbd>apply_primitive_function</kbd> operation
     that applies the
     function
-    in <kbd>proc</kbd> to the arguments in <kbd>argl</kbd>.  For the purpose of simulating the evaluator with the simulator
+    in 
+    fun
+    to the arguments in <kbd>argl</kbd>.  For the purpose of simulating the evaluator with the simulator
     of section&nbsp;<REF NAME="sec:simulator"><a class="superscript" id="5.4.1-sec-link-5.2" href="./5.2.html">5.2</a></REF> we use the
     function
     
@@ -2776,7 +2781,7 @@ Acknowledgments
         with a single non-return statement as these should return
         <kbd>undefined</kbd>. In this
         case, we set as continuation the label
-        <kbd>end_without_return</kbd>,
+        <kbd>return_undefined</kbd>,
         which will overwrite the contents of
         <kbd>val</kbd> by
         <kbd>undefined</kbd> before
@@ -2794,12 +2799,12 @@ Acknowledgments
       assign("env", list(op("function_environment"), reg("fun"))),
       assign("env", list(op("extend_environment"), 
                          reg("unev"), reg("argl"), reg("env"))),
-      assign("stmt", list(op("function_body"), reg("fun"))),
+      assign("comp", list(op("function_body"), reg("fun"))),
       save_frame(),
-      assign("continue", label("implicit_return")),
+      assign("continue", label("return_undefined")),
       go_to(label("eval_dispatch")),
 
-"implicit_return",
+"return_undefined",
       restore_frame(),
       assign("val", constant(undefined)),
       restore("continue"),
@@ -2808,7 +2813,7 @@ Acknowledgments
 "ev_return",
       restore_frame(),
       restore("continue"),
-      assign("stmt", list(op("return_expression"), reg("stmt"))),
+      assign("comp", list(op("return_expression"), reg("comp"))),
       go_to(label("eval_dispatch")),</pre></div></div>
   </p></div>
 
@@ -2874,7 +2879,7 @@ Acknowledgments
           To deal with the JavaScript idiosyncrasy that functions that do not
           explicitly return a value returns
           <kbd>undefined</kbd>, the evaluator a
-          special handler <kbd>implicit_return</kbd>
+          special handler <kbd>return_undefined</kbd>
           that sets <kbd>val</kbd> to
           <kbd>undefined</kbd>. All function calls are
           set up with this continuation after the call to
@@ -2897,29 +2902,15 @@ Acknowledgments
 
   <div class='permalink'>
 <a name='p17' class='permalink'></a><p>
-    The portion of the explicit-control evaluator at
     
       
-      <kbd>ev_sequence</kbd>
-    
-    is analogous to the metacircular evaluator's
-    
       
-      <kbd>eval_sequence</kbd>
-    
-    
+        The portion of the explicit-control evaluator at
+        <kbd>ev_sequence</kbd> is analogous to the
+        metacircular evaluator's
+        <kbd>eval_sequence</kbd> function. It handles
+        sequences of expressions in blocks or at the top level.
       
-      function.
-    
-    It handles sequences of expressions in
-    
-      
-      function
-    
-    bodies or in 
-    
-      
-      sequences of statements.
     
   </p></div>
 
@@ -2946,9 +2937,9 @@ Acknowledgments
     
     
     <div class='snippet' id='javascript_112_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-"ev_seq",
+"ev_sequence_start",
       save("continue"),
-      assign("unev", list(op("sequence_statements"), reg("stmt"))),</pre></div></div>
+      assign("unev", list(op("sequence_statements"), reg("comp"))),</pre></div></div>
 
     
     
@@ -2961,16 +2952,10 @@ Acknowledgments
       <kbd>ev_sequence</kbd> via
     
     
-    
       
-      <kbd>ev_seq</kbd>,
-      
-    
-    at which point <kbd>continue</kbd> is already on the stack,
-    having been saved at
-    
-      
-      <kbd>ev_application</kbd>.
+      <kbd>ev_sequence_start</kbd>.
+      The latter takes care to save <kbd>continue</kbd>
+      to allow the register to be used in the iteration over the statements in the sequence.
       
     
   </p></div>
@@ -3064,7 +3049,7 @@ Acknowledgments
     
       
       
-	<kbd>ev_sequence_last_stmt</kbd>.
+	<kbd>ev_sequence_last_comp</kbd>.
       
     
     Since there are no more
@@ -3138,7 +3123,7 @@ Acknowledgments
     
     <div class='snippet' id='javascript_112_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_sequence",
-      assign("stmt", list(op("first_statement"), reg("unev"))),
+      assign("comp", list(op("first_statement"), reg("unev"))),
       test(list(op("is_last_statement"), reg("unev"))),
       branch(label("ev_sequence_last_exp")),
       save("unev"),
@@ -3168,7 +3153,8 @@ Acknowledgments
     <kbd>branch</kbd> instructions.  Alternatively,
     it could have been written in a data-directed style (and in a real
     system it probably would have been) to avoid the need to perform
-    sequential tests and to facilitate the definition of new expression
+    sequential tests and to facilitate the definition of new 
+    component
     types.
     
       

@@ -1773,7 +1773,7 @@ Acknowledgments
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-114" aria-expanded="false" aria-controls="sidebar-collapse-114">
                 <a href="./5.4.2.html"> 5.4.2 
-    Returns and Tail Recursion
+    Return Statements and Tail Recursion
   </a>
               </span>
             </h5>
@@ -2026,9 +2026,8 @@ Acknowledgments
     special-purpose machine for evaluating
     
       
-      JavaScript
+      JavaScript programs.
     
-    expressions.
     Figure&nbsp;<REF NAME="fig:Scheme-chip"><a class="superscript" id="5.4-fig-link-5.16" href="./5.4.html#fig_5.16">5.16</a></REF> shows such a hardware
     implementation: a silicon chip that acts as an evaluator for
     
@@ -2132,7 +2131,7 @@ Acknowledgments
     registers:
     
       
-       <kbd>stmt</kbd>, 
+       <kbd>comp</kbd>, 
     
     <kbd>env</kbd>,
     <kbd>val</kbd>, <kbd>continue</kbd>,
@@ -2145,23 +2144,24 @@ Acknowledgments
     <kbd>argl</kbd>, and <kbd>unev</kbd>.
     
       
-      The <kbd>stmt</kbd> register
+      The <kbd>comp</kbd> register
     
     is used to hold the
     
       
       
-	statement
+	component
       
     
-    to be evaluated, and <kbd>env</kbd> contains the
-    environment in which the evaluation is to be performed.  At the end of an
-    evaluation, <kbd>val</kbd> contains the value obtained by
-    evaluating the expression in the designated environment.  The
-    <kbd>continue</kbd> register is used to implement
-    recursion, as explained in section&nbsp;<REF NAME="sec:stack-recursion"><a class="superscript" id="5.4-sec-link-5.1.4" href="./5.1.4.html">5.1.4</a></REF>.
-    (The evaluator needs to call itself recursively, since evaluating an
-    expression requires evaluating its subexpressions.)  The registers
+    to be evaluated, and <kbd>env</kbd> contains the environment in
+    which the evaluation is to be performed. At the end of an evaluation,
+    <kbd>val</kbd> contains the value obtained by evaluating the
+    component
+    in the designated environment. The <kbd>continue</kbd> register is
+    used to implement recursion, as explained in section&nbsp;<REF NAME="sec:stack-recursion"><a class="superscript" id="5.4-sec-link-5.1.4" href="./5.1.4.html">5.1.4</a></REF>. (The evaluator needs to call itself recursively, since
+    evaluating a 
+    componentrequires  evaluating its
+    subcomponent.) The registers
     
       
       
