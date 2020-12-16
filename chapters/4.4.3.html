@@ -1992,12 +1992,12 @@ Acknowledgments
     For example, to find all of the supervisors of programmers we could
     formulate a query in either of two logically equivalent forms:
     <div class='snippet' id='javascript_94_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-and(job(x, list("computer", "programmer")),
-    supervisor(x, y))</pre></div></div>
+and(job($x, list("computer", "programmer")),
+    supervisor($x, $y))</pre></div></div>
     or
     <div class='snippet' id='javascript_94_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-and(supervisor(x, y),
-    job(x, list("computer", "programmer")))</pre></div></div>
+and(supervisor($x, $y),
+    job($x, list("computer", "programmer")))</pre></div></div>
     
     If a company has many more supervisors than programmers (the usual
     case), it is better to use the first form rather than the second,
@@ -2063,16 +2063,16 @@ and(supervisor(x, y),
 assert(married("Minnie", "Mickey"))</pre></div></div>
     If we now ask
     <div class='snippet' id='javascript_94_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-married("Mickey", who)</pre></div></div>
+married("Mickey", $who)</pre></div></div>
     we will get no response, because the system doesn't know that if
     $A$ is married to $B$,
     then $B$ is married to
     $A$.  So we assert the rule
     <div class='snippet' id='javascript_94_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-assert(rule(married(x, y), married(y, x)))</pre></div></div>
+assert(rule(married($x, $y), married($y, $x)))</pre></div></div>
     and again query
     <div class='snippet' id='javascript_94_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-married("Mickey", who)</pre></div></div>
+married("Mickey", $who)</pre></div></div>
     Unfortunately, this will drive the system into an infinite loop, as
     follows:
     <UL>
@@ -2081,20 +2081,20 @@ married("Mickey", who)</pre></div></div>
 	applicable; that is, the rule conclusion
 	
 	  
-	  <kbd>married(x, y)</kbd>
+	  <kbd>married($x, $y)</kbd>
 	  
 	
 	successfully
 	unifies with the query pattern
 	
 	  
-	  <kbd>married("Mickey", who)</kbd>
+	  <kbd>married("Mickey", $who)</kbd>
 	  
 	
 	to produce a frame in which
 	
 	  
-	  <kbd>x</kbd>
+	  <kbd>$x</kbd>
 	
 	is bound to
 	
@@ -2104,25 +2104,25 @@ married("Mickey", who)</pre></div></div>
 	and
 	
 	  
-	  <kbd>y</kbd>
+	  <kbd>$y</kbd>
 	      
 	is bound to
 	
 	  
-	  <kbd>who</kbd>.
+	  <kbd>$who</kbd>.
 	
 	So the interpreter proceeds to evaluate the rule body
 	
 	  
 	  
-	    <kbd>married(y, x)</kbd>
+	    <kbd>married($y, $x)</kbd>
 	  
 	
 	in this frame—in effect, to process the query
 	
 	  
 	  
-	    <kbd>married(who, "Mickey")</kbd>.
+	    <kbd>married($who, "Mickey")</kbd>.
 	  
 	
       </LI>
@@ -2143,7 +2143,7 @@ married("Mickey", who)</pre></div></div>
 	
 	  
 	  
-	    <kbd>married("Mickey", who)</kbd>.
+	    <kbd>married("Mickey", $who)</kbd>.
 	  
 	
       </LI>
@@ -2183,29 +2183,29 @@ married("Mickey", who)</pre></div></div>
     section&nbsp;<REF NAME="sec:deductive-info-retrieval"><a class="superscript" id="4.4.3-sec-link-4.4.1" href="./4.4.1.html">4.4.1</a></REF>, consider the
     following two queries:
     <div class='snippet' id='javascript_94_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-and(supervisor(x, y),
-    not(job(x, list("computer", "programmer"))))
+and(supervisor($x, $y),
+    not(job($x, list("computer", "programmer"))))
 
-and(not(job(x, list("computer", "programmer"))),
-    supervisor(x, y))</pre></div></div>
+and(not(job($x, list("computer", "programmer"))),
+    supervisor($x, $y))</pre></div></div>
     These two queries do not produce the same result.  The first query
     begins by finding all entries in the data base that match
     
       
-      <kbd>supervisor(x, y)</kbd>,
+      <kbd>supervisor($x, $y)</kbd>,
       
     
     and then filters the resulting frames by removing the ones in which the
     value of
     
       
-      <kbd>x</kbd>
+      <kbd>$x</kbd>
     
     satisfies
     
       
       
-	<kbd>job(x, list("computer", "programmer"))</kbd>.
+	<kbd>job($x, list("computer", "programmer"))</kbd>.
       
     
     The second query begins by filtering the
@@ -2213,7 +2213,7 @@ and(not(job(x, list("computer", "programmer"))),
     
       
       
-	<kbd>job(x, list("computer", "programmer"))</kbd>.
+	<kbd>job($x, list("computer", "programmer"))</kbd>.
       
     
     Since the only incoming frame is empty, it checks the data base to see if
@@ -2221,7 +2221,7 @@ and(not(job(x, list("computer", "programmer"))),
     
       
       
-	<kbd>job(x, list("computer", "programmer"))</kbd>.
+	<kbd>job($x, list("computer", "programmer"))</kbd>.
       
     
     Since there generally are entries of this form, the
@@ -2238,7 +2238,7 @@ and(not(job(x, list("computer", "programmer"))),
     some of the variables remain unbound (as does
     
       
-      <kbd>x</kbd>
+      <kbd>$x</kbd>
     
     in the example above), the system will produce unexpected results. Similar
     problems occur with the use of
@@ -2294,15 +2294,15 @@ and(not(job(x, list("computer", "programmer"))),
     data base.  When he realizes this, he quickly reinstalls it.  Unfortunately,
     he makes a slight change in the rule, and types it in as
     <div class='snippet' id='javascript_94_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-rule(outranked_by(staff_person, boss),      
-     or(supervisor(staff_person, boss),
-        and(outranked_by(middle_manager, boss),
-            supervisor(staff_person, middle_manager))))</pre></div></div>
+rule(outranked_by($staff_person, $boss),      
+     or(supervisor($staff_person, $boss),
+        and(outranked_by($middle_manager, $boss),
+            supervisor($staff_person, $middle_manager))))</pre></div></div>
     Just after Louis types this information into the system, DeWitt
     Aull comes by to find out who outranks Ben Bitdiddle. He issues
     the query
     <div class='snippet' id='javascript_94_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-outanked_by(list("Bitdiddle", "Ben"), who)</pre></div></div>
+outanked_by(list("Bitdiddle", "Ben"), $who)</pre></div></div>
 
     After answering, the system goes into an infinite loop.  Explain why.
     
@@ -2325,7 +2325,7 @@ outanked_by(list("Bitdiddle", "Ben"), who)</pre></div></div>
     <kbd>wheel</kbd> rule of
     section&nbsp;<REF NAME="sec:deductive-info-retrieval"><a class="superscript" id="4.4.3-sec-link-4.4.1" href="./4.4.1.html">4.4.1</a></REF>):
     <div class='snippet' id='javascript_94_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-wheel(who)</pre></div></div>
+wheel($who)</pre></div></div>
     To his surprise, the system responds
     <div class='snippet' id='javascript_94_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 wheel(list("Warbucks", "Oliver"))
@@ -2353,9 +2353,9 @@ wheel(list("Warbucks", "Oliver"))</pre></div></div>
     company.  For example, to find the total salaries of all the computer
     programmers one will be able to say
     <div class='snippet' id='javascript_94_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-sum(amount,      
-    and(job(x, list("computer", "programmer")),
-        salary(x, amount)))</pre></div></div>
+sum($amount,      
+    and(job($x, list("computer", "programmer")),
+        salary($x, $amount)))</pre></div></div>
     In general, Ben's new system allows expressions of the form
     <kbd class='snippet'>accumulation_function($variable$, 
                       $query$-$pattern$)</kbd>
@@ -2441,12 +2441,12 @@ sum(amount,
     
       
       
-	<kbd>reverse(list(1, 2, 3), x)</kbd>
+	<kbd>reverse(list(1, 2, 3), $x)</kbd>
       
     
     and 
     
-    <kbd>reverse(x, list(1, 2, 3)</kbd>?
+    <kbd>reverse($x, list(1, 2, 3)</kbd>?
     
     
   
@@ -2491,13 +2491,13 @@ related(list("great", "grandson"), "Adam", "Irad")</pre></div></div>
 	  <LI>
 	    Use this to express a rule that allows one to derive the relationship
 	    <div class='snippet' id='javascript_94_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-list(pair("great", rel), x, y)</pre></div></div>
-	    where <kbd>rel</kbd> is a list ending in
+list(pair("great", $rel), $x, $y)</pre></div></div>
+	    where <kbd>$rel</kbd> is a list ending in
 	    <kbd>"grandson"</kbd>.
 	  </LI>
 	  <LI>
 	    Check your rules on queries such as
-	    <kbd>related(list("great", "grandson"), g, ggs)</kbd>
+	    <kbd>related(list("great", "grandson"), $g, $ggs)</kbd>
 	    and
 	    <kbd>related(relationship, "Adam", "Irad")</kbd>.
 	  </LI>

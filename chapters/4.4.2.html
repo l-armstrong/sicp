@@ -2051,13 +2051,13 @@ Acknowledgments
     matches the pattern
     
       
-      <kbd>list(x, "c", x)</kbd>
+      <kbd>list($x, "c", $x)</kbd>
       
     
     with the pattern variable
     
       
-      <kbd>x</kbd>
+      <kbd>$x</kbd>
     
     bound to
     
@@ -2074,18 +2074,18 @@ Acknowledgments
     matches the pattern
     
       
-      <kbd>list(x, y, z)</kbd>
+      <kbd>list($x, $y, $z)</kbd>
       
     
     with
     
       
-      <kbd>x</kbd>
+      <kbd>$x</kbd>
     
     and
     
       
-      <kbd>z</kbd>
+      <kbd>$z</kbd>
     
     both bound to
     
@@ -2096,7 +2096,7 @@ Acknowledgments
     and
     
       
-      <kbd>y</kbd>
+      <kbd>$y</kbd>
     
     bound to
     
@@ -2107,13 +2107,13 @@ Acknowledgments
     
       
       
-	<kbd>list(list(x, y), "c", list(x, y))</kbd>
+	<kbd>list(list($x, $y), "c", list($x, $y))</kbd>
       
     
     with
     
       
-      <kbd>x</kbd>
+      <kbd>$x</kbd>
     
     bound to
     
@@ -2123,7 +2123,7 @@ Acknowledgments
     and
     
       
-      <kbd>y</kbd>
+      <kbd>$y</kbd>
     
     bound to
     
@@ -2133,7 +2133,7 @@ Acknowledgments
     However, it does not match the pattern
     
       
-      <kbd>list(x, "a", y)</kbd>,
+      <kbd>list($x, "a", $y)</kbd>,
       
     since that pattern specifies a list whose second element is the
     
@@ -2160,7 +2160,7 @@ Acknowledgments
     For example, using the pattern
     
       
-      <kbd>list(x, y, x)</kbd>
+      <kbd>list($x, $y, $x)</kbd>
       
     
     to match
@@ -2172,7 +2172,7 @@ Acknowledgments
     given an empty frame will return a frame specifying that
     
       
-      <kbd>x</kbd>
+      <kbd>$x</kbd>
     
     is bound to
     
@@ -2182,7 +2182,7 @@ Acknowledgments
     and
     
       
-      <kbd>y</kbd>
+      <kbd>$y</kbd>
     
     is bound to
     
@@ -2193,7 +2193,7 @@ Acknowledgments
     specifying that
     
       
-      <kbd>y</kbd>
+      <kbd>$y</kbd>
     
     is bound to
     
@@ -2204,7 +2204,7 @@ Acknowledgments
     frame in which
     
       
-      <kbd>y</kbd>
+      <kbd>$y</kbd>
     
     is bound to
     
@@ -2214,12 +2214,12 @@ Acknowledgments
     and
     
       
-      <kbd>x</kbd>
+      <kbd>$x</kbd>
     
     is unbound will return the given frame augmented by a binding of
     
       
-      <kbd>x</kbd>
+      <kbd>$x</kbd>
     
     to&nbsp;<kbd>"a"</kbd>.
   </p></div>
@@ -2230,14 +2230,14 @@ Acknowledgments
     The pattern matcher is all the mechanism that is needed to process simple
     queries that don't involve rules.  For instance, to process the query
     <div class='snippet' id='javascript_93_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-job(x, list("computer", "programmer"))</pre></div></div>
+job($x, list("computer", "programmer"))</pre></div></div>
     we scan through all assertions in the data base and select those that
     match the pattern with respect to an initially empty frame.  For each
     match we find, we use the frame returned by the match to instantiate
     the pattern with a value for
     
       
-      <kbd>x</kbd>.
+      <kbd>$x</kbd>.
     
     
     
@@ -2325,36 +2325,36 @@ job(x, list("computer", "programmer"))</pre></div></div>
     be consistent with a specified frame.  For example, to handle the
     <kbd>and</kbd> of two queries, such as
     <div class='snippet' id='javascript_93_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-and(can_do_job(x, list("computer", "programmer", "trainee")),
-    job(person, x))</pre></div></div>
+and(can_do_job($x, list("computer", "programmer", "trainee")),
+    job($person, $x))</pre></div></div>
     (informally, <QUOTE>Find all people who can do the job of a computer
     programmer trainee</QUOTE>), we first find all entries that match the
     pattern
     <div class='snippet' id='javascript_93_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-can_do_job(x, list("computer", "programmer", "trainee"))</pre></div></div>
+can_do_job($x, list("computer", "programmer", "trainee"))</pre></div></div>
     This produces a stream of frames, each of which contains a binding for
     
       
-      <kbd>x</kbd>.
+      <kbd>$x</kbd>.
     
     Then for each frame in the stream we find all entries that
     match
     <div class='snippet' id='javascript_93_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-job(person, x)</pre></div></div>
+job($person, $x)</pre></div></div>
     in a way that is consistent with the given binding for
     
       
-      <kbd>x</kbd>.
+      <kbd>$x</kbd>.
     
     Each such match will produce a frame containing bindings for
     
       
-      <kbd>x</kbd>
+      <kbd>$x</kbd>
     
     and
     
       
-      <kbd>person</kbd>.
+      <kbd>$person</kbd>.
     
     The <kbd>and</kbd> of two queries can be viewed as a series
     combination of the two component queries, as shown in
@@ -2440,13 +2440,13 @@ job(person, x)</pre></div></div>
     some query acts as a filter that removes all frames for which the query can
     be satisfied.  For instance, given the pattern
     <div class='snippet' id='javascript_93_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-not(job(x, list("computer", "programmer")))</pre></div></div>
+not(job($x, list("computer", "programmer")))</pre></div></div>
     we attempt, for each frame in the input stream, to produce extension
     frames that satisfy
     
       
       
-	<kbd>job(x, list("computer", "programmer"))</kbd>.
+	<kbd>job($x, list("computer", "programmer"))</kbd>.
       
     
     We remove from the input stream all frames for which such extensions exist.
@@ -2454,39 +2454,39 @@ not(job(x, list("computer", "programmer")))</pre></div></div>
     for
     
       
-      <kbd>x</kbd>
+      <kbd>$x</kbd>
     
     does not satisfy
     
       
       
-	<kbd>job(x, list("computer", "programmer"))</kbd>.
+	<kbd>job($x, list("computer", "programmer"))</kbd>.
       
     
     For example, in processing the query
     <div class='snippet' id='javascript_93_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-and(supervisor(x, y),
-    not(job(x, list("computer", "programmer"))))</pre></div></div>
+and(supervisor($x, $y),
+    not(job($x, list("computer", "programmer"))))</pre></div></div>
     the first clause will generate frames with bindings for
     
       
-      <kbd>x</kbd>
+      <kbd>$x</kbd>
     
     and
     
       
-      <kbd>y</kbd>.
+      <kbd>$y</kbd>.
     
     The <kbd>not</kbd> clause will then filter these by
     removing all frames in which the binding for
     
       
-      <kbd>x</kbd>
+      <kbd>$x</kbd>
     
     satisfies the restriction that
     
       
-      <kbd>x</kbd>
+      <kbd>$x</kbd>
     
     is a computer programmer.<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
   </p></div>
@@ -2538,28 +2538,28 @@ and(supervisor(x, y),
     frame containing these bindings.  For example, unifying
     
       
-      <kbd>list(x, "a", y)</kbd>
+      <kbd>list($x, "a", $y)</kbd>
       
     
     and
     
       
-      <kbd>list(y, z, "a")</kbd>
+      <kbd>list($y, $z, "a")</kbd>
       
     
     will specify a frame in which
     
       
-      <kbd>x</kbd>,
+      <kbd>$x</kbd>,
     
     
       
-      <kbd>y</kbd>,
+      <kbd>$y</kbd>,
     
     and
     
       
-      <kbd>z</kbd>
+      <kbd>$z</kbd>
     
     must all be bound to
     
@@ -2569,25 +2569,25 @@ and(supervisor(x, y),
     On the other hand, unifying
     
       
-      <kbd>list(x, y, "a")</kbd>
+      <kbd>list($x, $y, "a")</kbd>
       
     
     and
     
       
-      <kbd>list(x, "b", y)</kbd>
+      <kbd>list($x, "b", $y)</kbd>
       
     
     will fail, because there is no value for
     
       
-      <kbd>y</kbd>
+      <kbd>$y</kbd>
     
     that can make the two patterns equal. (For the second elements of the
     patterns to be equal,
     
       
-      <kbd>y</kbd>
+      <kbd>$y</kbd>
     
     would have to be
     
@@ -2597,7 +2597,7 @@ and(supervisor(x, y),
     however, for the third elements to be equal,
     
       
-      <kbd>y</kbd>
+      <kbd>$y</kbd>
     
     would have to be
     
@@ -2614,18 +2614,18 @@ and(supervisor(x, y),
     seem to require deduction.  To unify
     
       
-      <kbd>list(x, x)</kbd>
+      <kbd>list($x, $x)</kbd>
     
     and
     
       
-      <kbd>list(list("a", y, "c"), list("a", "b", z))</kbd>,
+      <kbd>list(list("a", $y, "c"), list("a", "b", $z))</kbd>,
       
     
     for example, the algorithm must infer that
     
       
-      <kbd>x</kbd>
+      <kbd>$x</kbd>
     
     should be
     
@@ -2635,7 +2635,7 @@ and(supervisor(x, y),
     
     
       
-      <kbd>y</kbd>
+      <kbd>$y</kbd>
     
     should be
     
@@ -2645,7 +2645,7 @@ and(supervisor(x, y),
     and
     
       
-      <kbd>z</kbd>
+      <kbd>$z</kbd>
     
     should be
     
@@ -2658,13 +2658,13 @@ and(supervisor(x, y),
     unifying
     
       
-      <kbd>list(x, x)</kbd>
+      <kbd>list($x, $x)</kbd>
     
     and
     
       
       
-	<kbd>list(list("a", y, "c"), list("a", "b", z))</kbd>
+	<kbd>list(list("a", $y, "c"), list("a", "b", $z))</kbd>
       
     
     may be thought of as specifying the simultaneous equations
@@ -2673,8 +2673,8 @@ and(supervisor(x, y),
       
 	
 	  \begin{eqnarray*}
-	  \texttt{x} & = & \texttt{list("a", y, "c")} \\
-	  \texttt{x} & = & \texttt{list("a", "b", z)} \\
+	  \texttt{\$x} & = & \texttt{list("a", y, "c")} \\
+	  \texttt{\$x} & = & \texttt{list("a", "b", z)} \\
 	  \end{eqnarray*}
 	
       
@@ -2684,7 +2684,7 @@ and(supervisor(x, y),
       
       
 	
-	  \[ \texttt{list("a", y, "c")} =  \texttt{list("a", "b", z)} \]
+	  \[ \texttt{list("a", \$y, "c")} =  \texttt{list("a", "b", \$z)} \]
 	
       
     
@@ -2694,8 +2694,8 @@ and(supervisor(x, y),
       
 	
 	  \[ \texttt{"a"} =  \texttt{"a"},
-             \texttt{y} = \texttt{"b"},
-             \texttt{"c"} =  \texttt{z} \]
+             \texttt{\$y} = \texttt{"b"},
+             \texttt{"c"} =  \texttt{\$z} \]
 	
       
     
@@ -2704,7 +2704,7 @@ and(supervisor(x, y),
       
       
 	
-	  \[ \texttt{x} = \texttt{list("a", "b", "c")} \]
+	  \[ \texttt{\$x} = \texttt{list("a", "b", "c")} \]
 	
       
     
@@ -2727,22 +2727,22 @@ and(supervisor(x, y),
     Consider the unification of
     
       
-      <kbd>list(x, "a")</kbd>
+      <kbd>list($x, "a")</kbd>
     
     and
     
       
-      <kbd>list(list("b", y), z)</kbd>.
+      <kbd>list(list("b", $y), $z)</kbd>.
     
     We can deduce that
     
       
-      <kbd>x</kbd>
+      <kbd>$x</kbd>
     
     $=$
     
       
-      <kbd>list("b", y)</kbd>
+      <kbd>list("b", $y)</kbd>
     
     and
     
@@ -2752,81 +2752,81 @@ and(supervisor(x, y),
     $=$
     
       
-      <kbd>z</kbd>,
+      <kbd>$z</kbd>,
     
     but we cannot further solve for
     
       
-      <kbd>x</kbd>
+      <kbd>$x</kbd>
     
     or
     
       
-      <kbd>y</kbd>.
+      <kbd>$y</kbd>.
     
     The unification doesn't fail, since it is certainly possible to make
     the two patterns equal by assigning values to
     
       
-      <kbd>x</kbd>
+      <kbd>$x</kbd>
     
     and
     
       
-      <kbd>y</kbd>.
+      <kbd>$y</kbd>.
     
     Since this match in no way restricts the values
     
       
-      <kbd>y</kbd>
+      <kbd>$y</kbd>
     
     can take on, no binding for
     
       
-      <kbd>y</kbd>
+      <kbd>$y</kbd>
     
     is put into the result frame. The match does, however, restrict the value of
     
       
-      <kbd>x</kbd>.
+      <kbd>$x</kbd>.
     
     Whatever value
     
       
-      <kbd>y</kbd>
+      <kbd>$y</kbd>
     
     has,
     
       
-      <kbd>x</kbd>
+      <kbd>$x</kbd>
     
     must be
     
       
-      <kbd>list("b", y)</kbd>.
+      <kbd>list("b", $y)</kbd>.
       
     
     A binding of
     
       
-      <kbd>x</kbd>
+      <kbd>$x</kbd>
     
     to the pattern
     
       
-      <kbd>list("b", y)</kbd>
+      <kbd>list("b", $y)</kbd>
     
     is thus put into the frame.  If a value for
     
       
-      <kbd>y</kbd>
+      <kbd>$y</kbd>
     
     is later determined and added to the frame (by a pattern match or
     unification that is required to be consistent with this frame), the
     previously bound
     
       
-      <kbd>x</kbd>
+      <kbd>$x</kbd>
     
     will refer to this value.<a class='superscript' id='footnote-link-6' href='#footnote-6'>[6]</a>
     
@@ -2847,7 +2847,7 @@ and(supervisor(x, y),
     inferences from rules. To see how this is accomplished, consider
     processing a query that involves applying a rule, such as
     <div class='snippet' id='javascript_93_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-lives_near(x, list("Hacker", "Alyssa", "P"))</pre></div></div>
+lives_near($x, list("Hacker", "Alyssa", "P"))</pre></div></div>
     To process this query, we first use the ordinary pattern-match
     
       
@@ -2859,14 +2859,14 @@ lives_near(x, list("Hacker", "Alyssa", "P"))</pre></div></div>
     step is to attempt to unify the query pattern with the conclusion of each
     rule.  We find that the pattern unifies with the conclusion of the rule
     <div class='snippet' id='javascript_93_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-rule(lives_near(person_1, person_2),
-     and(address(person_1, pair(town, rest_1)),
-         address(person_2, list(town, rest_2)),
-         not(same(person_1, person_2))))</pre></div></div>
+rule(lives_near($person_1, $person_2),
+     and(address($person_1, pair($town, $rest_1)),
+         address($person_2, list($town, $rest_2)),
+         not(same($person_1, $person_2))))</pre></div></div>
     resulting in a frame specifying that
     
       
-      <kbd>person_2</kbd>
+      <kbd>$person_2</kbd>
     
     is bound to
     
@@ -2878,24 +2878,24 @@ rule(lives_near(person_1, person_2),
     and that
     
       
-      <kbd>x</kbd>
+      <kbd>$x</kbd>
     
     should be bound to (have the same value as)
     
       
-      <kbd>person_1</kbd>.
+      <kbd>$person_1</kbd>.
     
     Now, relative to this frame, we evaluate the compound query given by the body
     of the rule.  Successful matches will extend this frame by providing a
     binding for
     
       
-      <kbd>person_1</kbd>,
+      <kbd>$person_1</kbd>,
     
     and consequently a value for
     
       
-      <kbd>x</kbd>,
+      <kbd>$x</kbd>,
     
     which we can use to instantiate the original query pattern.
   </p></div>
@@ -3160,9 +3160,9 @@ rule(lives_near(person_1, person_2),
     <div class='snippet' id='javascript_93_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 assert(job(list("Bitdiddle", "Ben"), list("computer", "wizard")))
 
-assert(rule(wheel(person),
-            and(supervisor(middle_manager, person),
-                supervisor(x, middle_manager))))</pre></div></div>
+assert(rule(wheel($person),
+            and(supervisor($middle_manager, $person),
+                supervisor($x, $middle_manager))))</pre></div></div>
     
   </p></div>
 <hr>
@@ -3233,31 +3233,31 @@ assert(rule(wheel(person),
     two input patterns. That is, the unification of
     
       
-      <kbd>list(x, "a")</kbd>
+      <kbd>list($x, "a")</kbd>
     
     and
     
       
       
-	<kbd>list(list("b", y), z)</kbd>
+	<kbd>list(list("b", $y), $z)</kbd>
       
     
     is
     
       
-      <kbd>list(list("b", y), "a")</kbd>
+      <kbd>list(list("b", $y), "a")</kbd>
       ,
     
     and the unification of
     
       
-      <kbd>list(x, "a", y)</kbd>
+      <kbd>list($x, "a", $y)</kbd>
       
     
     and
     
       
-      <kbd>list(y, z, "a")</kbd>,
+      <kbd>list($y, $z, "a")</kbd>,
       
     
     discussed above, is
