@@ -2382,8 +2382,7 @@ return n === 1
     any saving of registers, because in this case those evaluations don't
     modify the registers in question.
 
-    <div class='snippet' id='javascript_121_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-$$  assign("fun", list(op("lookup_symbol_value"), constant("==="), 
+    <kbd class='snippet'>$$  assign("fun", list(op("lookup_symbol_value"), constant("==="), 
                      reg("env"))),
   assign("val", constant(1)),
   assign("argl", list(op("list"), reg("val"))),
@@ -2399,7 +2398,7 @@ $$  assign("fun", list(op("lookup_symbol_value"), constant("==="),
 "primitive_branch17",
   assign("val", list(op("apply_primitive_function"), reg("fun"), 
                      reg("argl"))),
-"after_call15"</pre></div></div>
+"after_call15"</kbd>
   </p></div>
 
   <div class='permalink'>
@@ -2413,7 +2412,7 @@ $$  assign("fun", list(op("lookup_symbol_value"), constant("==="),
       
     
     to
-    <div class='snippet' id='javascript_121_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_121_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 assign("val", constant(1)),
 go_to(reg("continue"))</pre></div></div>
 
@@ -2492,7 +2491,7 @@ go_to(reg("continue"))</pre></div></div>
       function,
     
     which is slightly different from the one given above:
-    <div class='snippet' id='javascript_121_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_121_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function factorial_alt(n) {
     return n === 1  
            ? 1
@@ -2526,7 +2525,7 @@ function factorial_alt(n) {
       
       function
     
-    <div class='snippet' id='javascript_121_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_121_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function factorial(n) {
     function iter(product, counter) {
         return counter > n
@@ -2550,7 +2549,7 @@ function factorial(n) {
 </EXERCISE></div>
 
 
-  <FIGURE><div class='snippet' id='javascript_121_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+  <FIGURE><div class='snippet' id='javascript_121_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 // construct the function and skip over code for the function body
   assign("val",
     list(op("make-compiled-procedure"), label("entry2"), reg("env"))),
@@ -2610,8 +2609,7 @@ function factorial(n) {
   
 
 
-    <FIGURE><div class='snippet' id='javascript_121_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-$$  save("continue"),
+    <FIGURE><kbd class='snippet'>$$  save("continue"),
   save("fun"),            // save * function
   assign("val", list(op("lookup_symbol_value"), 
                      constant(n), reg("env"))),
@@ -2653,13 +2651,13 @@ $$  save("continue"),
   go_to(reg("val")),
 "primitive_branch11",
   assign("val", list(op("apply_primitive_function"), 
-                     reg("fun"), reg("argl"))),</pre></div></div>
+                     reg("fun"), reg("argl"))),</kbd>
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./5.5.5.html#fig_5.18">Figure 5.18 </a></b>(continued)</div>
     </FIGURE>
   
 
-    <FIGURE><div class='snippet' id='javascript_121_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <FIGURE><div class='snippet' id='javascript_121_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "after_call9",            // val now has result of factorial(n - 1)
   restore("argl"),        // restore partial argument list for *
   assign("argl", list(op("pair"), reg("val"), reg("argl"))),
@@ -2705,8 +2703,7 @@ $$  save("continue"),
 </EXERCISE></div>
 
       
-  <FIGURE><div class='snippet' id='javascript_121_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-$$  assign("val", list(op("make_compiled_function"),
+  <FIGURE><kbd class='snippet'>$$  assign("val", list(op("make_compiled_function"),
                      label("entry16")),
         reg env)),
   go_to(label("after_lambda15")),
@@ -2749,7 +2746,7 @@ $$  assign("val", list(op("make_compiled_function"),
   assign("continue", label("after_call20")),
   assign(val, list(op("compiled_function_entry"), 
                    reg("fun"))),
-  go_to(reg("val")),</pre></div></div>
+  go_to(reg("val")),</kbd>
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./5.5.5.html#fig_5.20">Figure 5.20 </a></b>An example of compiler output (continued on next page).
   See exercise&nbsp;<REF NAME="ex:compiled-code"><a class="superscript" id="5.5.5-ex-link-5.36" href="./5.5.5.html#ex_5.36">5.36</a></REF>.
@@ -2758,7 +2755,7 @@ $$  assign("val", list(op("make_compiled_function"),
   
 
 
-  <FIGURE><div class='snippet' id='javascript_121_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+  <FIGURE><div class='snippet' id='javascript_121_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "primitive_branch22",
   assign("val", list(op("apply_primitive_function"),
                      reg("fun"), reg("argl"))),
@@ -2908,7 +2905,7 @@ $$  assign("val", list(op("make_compiled_function"),
       <kbd>a + 1</kbd>
     
     might be compiled into something as simple as<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
-    <div class='snippet' id='javascript_121_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_121_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 assign("val", list(op("lookup_symbol_value"), 
                    constant("a"), reg("env")),
 assign("val", list(op("+"), reg("val"), constant(1))</pre></div></div>

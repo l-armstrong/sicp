@@ -2726,8 +2726,7 @@ function coeff(term) {
     
     which takes two polys as arguments and returns a list of the quotient and
     remainder polys.
-    <div class='snippet' id='javascript_48_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function div_terms(L1, L2) {
+    <kbd class='snippet'>function div_terms(L1, L2) {
     if (is_empty_termlist(L1)) {
         return list(the_empty_termlist, the_empty_termlist);
     } else {
@@ -2743,7 +2742,7 @@ function div_terms(L1, L2) {
             $\langle form$ $complete$ $result \rangle$
         }
     }
-}</pre></div></div>
+}</kbd>
   
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_48_5_div" data-toggle="collapse">Add solution</button></div>
@@ -2888,7 +2887,7 @@ function div_terms(L1, L2) {
       
     
     on two polynomials to produce a rational function
-    <div class='snippet' id='javascript_48_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_48_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 const p1 = make_polynomial("x", list(make_term(2, 1),
                                      make_term(0, 1)));
 const p2 = make_polynomial("x", list(make_term(3, 1),
@@ -2927,7 +2926,7 @@ const rf = make_rational(p2, p1);</pre></div></div>
     fact, we can compute the GCD of two polynomials using essentially the
     same Euclid's Algorithm that works for integers.<a class='superscript' id='footnote-link-7' href='#footnote-7'>[7]</a>  The
     integer version is
-    <div class='snippet' id='javascript_48_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_48_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function gcd(a, b) {
     return b === 0
            ? a
@@ -2935,7 +2934,7 @@ function gcd(a, b) {
 }</pre></div></div>
     Using this, we could make the obvious modification to define a GCD
     operation that works on term lists:
-    <div class='snippet' id='javascript_48_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_48_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function gcd_terms(a, b) {
     return is_empty_termlist(b)
            ? a
@@ -3010,7 +3009,7 @@ function gcd_terms(a, b) {
     
     for polynomials and to ordinary <kbd>gcd</kbd> for
     ordinary numbers.  As a test, try
-    <div class='snippet' id='javascript_48_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_48_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 const p1 = make_polynomial("x", list(make_term(4, 1),
                                      make_term(3, -1),
                                      make_term(2, -2),
@@ -3335,7 +3334,7 @@ greatest_common_divisor(p1, p2);</pre></div></div>
 	<kbd>make_rat</kbd>
 	
 	did for integers:
-        <div class='snippet' id='javascript_48_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+        <div class='snippet' id='javascript_48_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function reduce_integers(n, d) {
     const g = gcd(n, d);
     return list(n / g, d / g);
@@ -3376,7 +3375,7 @@ function reduce_integers(n, d) {
         handles rational expressions in either integers or polynomials.
         To test your program, try the example at the beginning of this
         extended exercise:
-        <div class='snippet' id='javascript_48_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+        <div class='snippet' id='javascript_48_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 const p1 = make_polynomial("x", list(make_term(1, 1),
                                      make_term(0, 1)));
 const p2 = make_polynomial("x", list(make_term(3, 1),

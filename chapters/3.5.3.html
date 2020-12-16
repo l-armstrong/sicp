@@ -2150,15 +2150,14 @@ const pi_stream =
     Thus, if the original sequence is represented as a stream of values,
     the transformed sequence is given by
 	
-    <div class='snippet' id='javascript_71_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgDOAjoQIYBOApgBQAeAlKADeOUKNCdyhNnR6gAVKB4BuHAF88RMlVqgAth13UumgYICQY0CLEAbDuVAsbnFgBMAngH02JUAF5QfCd6DhVLOwdOekIbBwCSVw58SmIOVzCxCSk6LgE-AD4ha0sSy0p8UC4AQicXD28SU2LSlsyOaNj-QJJcjNb+2o43Lx86APIfUOb+0qzpcXaY8j6Z0VVQDhsQotXWuboopZXV9ROVdRxSWnoHXRYeT1dKegAHGxZ3LoBOFU0KGjoT1e7y8Nxcui49Calj+2kBzzeH08YKGuk8lHIHDYkPIABpQMRoS1ypVnp5iDEbDi+ETSutNtsSVwxn4AgAGWn9IGI9xcADkfPxACI0KKhXxjmJ6VsODtVtyQVwABZDVzUiXTFoKpEolhojFYnHgzzkFiUKk3Pj4ugAWlAAEYNa1TlLmtrQRNUejMdj6Pi7g93RqLrCAQxSE4OMjPXqjaj8UEKNQ2Jz9gwY2i7i9eP5CrIFInyMncZrdpZdbpgxoSP8dBXPFnPAAmYz4+j2ttN1P2bKgMkUmwWx2gABkI779HJlMhXdLlgA-ATKXOxAAuCdTweQ4cAHx3G4HFtnq0XWLYyeZlOFJA4PBeHAoaUcbAA5oR9MQHDa7fXG03xSuojri8ZrYvgyqqtuVoqm4M40vigGtPohhcLkubpsaf6thhXqmuaUElmWRHEfWeFHjSNLnNWWhhm4rjRuC9Dbp23aSPMv4sC8zaoTwHaKF26G8aAADU-Ftnx9BdlRBA1nCoAgWwVBOMi75MVCcqiGmIGUNiMFqlChHEWhBSOK49EVmpGYmmaFpWohxGtApSk2CpuhqRR0mhjoLyUK5dzEK4TGEhpCxsXQ2nYvaoBgMQCEOcZhQcdmsgmTaPCGQ5xE+X5LABUFImgF2fD2WIVaXNcDjZRWXTNPQEZ2AxqJcE5lDKdEbnNb57X+YFXCOlaoAACwajJNE6BwMRYiabC5fQ+DJhC6nCJYVzEDcDBsl09acOBfqgBySglCAoAACTgJ4gjEDa9qqCdzSret7ZbVZO2QvijqHZYx1nRdxC3fdFUME2z3Gq9e1SUdYA-Zdwk3XdlhaaBXAlZJoA-sw7DcKjP7DmAkKbaJXA2gJChPaJkl2WWyFGAlGyTWw02zfNbCLVZZGQhRZXuo1sYTXYDMTEzC2dTzlYSkAA')">function euler_transform(s) {
+    <kbd class='snippet'>function euler_transform(s) {
     const s0 = stream_ref(s, 0);     // $S_{n-1}$
     const s1 = stream_ref(s, 1);     // $S_{n}$
     const s2 = stream_ref(s, 2);     // $S_{n+1}$
     return pair(
              s2 - square(s2 - s1) / (s0 + (-2) * s1 + s2),
              memo(() => euler_transform(stream_tail(s))));
-}
-</pre></div></div>
+}</kbd>
     
       
 	  Note that we make use of the memoization optimization of
@@ -2171,7 +2170,7 @@ const pi_stream =
 <a name='p8' class='permalink'></a><p>
     We can demonstrate Euler acceleration with our sequence of
     approximations to $\pi$:
-    <div class='snippet' id='javascript_71_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgDOAjoQIYBOApgBQAeAlKADeOUKNCdyhNnR6gAVKB4BuHAF88RMlVqgAth13UumgYICQY0CLEAbDuVAsbnFgBMAngH02JUAF5QfCd6DhVLOwdOekIbBwCSVw58SmIOVzCxCSk6LgE-AD4ha0sSy0p8UC4AQicXD28SU2LSlsyOaNj-QJJcjNb+2o43Lx86APIfUOb+0qzpcXaY8j6Z0VVQDhsQotXWuboopZXV9ROVdQISCho6DhiONk8JlmJ6fGo2XS56JstSWnoDnoAAYuoCXLpvElvgAaUDAvhKEogUAAEnAnkExAAtABGVSo5r-V5A3FgiZDSGcfCw0C4xHIsDozHEAlEgFAgBM5IhUJp9DhnIZlhRzKxAGp8YTLPtQAAHFiUNhcaatejc7EMZjsbjq0Ca+j00Bgb6g8WVbFC+QMMnm9V8GGqlr6QxcXL+Qp3OyPZ6vd6fb4UliQ8iKmzfPiRxFqPDEwF6Fg8TyuSj0OU2FjuLoAThUmmuOhTaYzXnBlIjOzE+e0dCL6cznjLwc8lHID0DcOIvxa5Uqqc8xBi4cBkcrpXWm22va4Yz8AQRY-6dZLXAA5Ku4QAiNA7zfR1oTrYcRetZeZrgACyGrkDkeOLTPpaDkNb7abIbDt87+rp+5apzEADREfRtnxbNtlQFBMk0faMLmrG4GFIJwOFAiFAwhOEggoD5u1EWV308XQWDlXgPUUa1sPID5HV2GZ3zgjQrhrBgwOIuVPE5Yw4UNHirWEGV7GyUB+0HGxhyNAAySSRPoAch2+IUnUsAB+UAxJsZSxAALlk+TxO+I0AB8jL0jTFL4LTRDUh42A+Gchy3EgOB4OUOAoNJHDYABzQh9GIBxsQNNiSM4vcrNAXSFSVYxL2vQyHSvNwLIdKw6JKF0jHdApWN5djOO43LKSeT9DQdCL0sq0RCNDShhyFKNziYrRELcVw0MpehDL4vCFkkeZCPyrjeFxOEeCtHKeFtRROR40aGCFJrLhanQFTYKgnEbPyup+RdZWi5UkpvH5aMq7LCjajrgx2sDauHcqqse+V2A2mwtt0HbGpjZaCzoOVKHe4jiFcLquz2oT5gOrgyTAYg4QqyxzqK5t2LInLsR4U6nro-7AZeEGZ1Ac0GoR0RGJwOMHFx98umaehkLsK6vjW173q66m-KBgn6VSgAWaMcBA98uC9B4njYF43g+ZmAYYxEgA')">display_stream(euler_transform(pi_stream));
+    <div class='snippet' id='javascript_71_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgDOAjoQIYBOApgBQAeAlKADeOUKNCdyhNnR6gAVKB4BuHAF88RMlVqgAth13UumgYICQY0CLEAbDuVAsbnFgBMAngH02JUAF5QfCd6DhVLOwdOekIbBwCSVw58SmIOVzCxCSk6LgE-AD4ha0sSy0p8UC4AQicXD28SU2LSlsyOaNj-QJJcjNb+2o43Lx86APIfUOb+0qzpcXaY8j6Z0VVQDhsQotXWuboopZXV9ROVdQISCho6DhiONk8JlmJ6fGo2XS56JstSWnoDnoAAYuoCXLpvElvgAaUDAvhKEogUAAEnAnkExAAtABGVSo5r-V5A3FgiZDSGcfCw0C4xHIsDozHEAlEgFAgBM5IhUJp9DhnIZlhRzKxAGp8YTLPtQAAHFiUNhcaatejc7EMZjsbjq0Ca+j00Bgb6g8WVbFC+QMMnm9V8GGqlr6QxcXL+Qp3OyPZ6vd6fb4UliQ8iKmzfPiRxFqPDEwF6Fg8TyuSj0OU2FjuLoAThUmmuOhTaYzXnBlIjOzE+e0dCL6cznjLwc8lHID0DcOIvxa5Uqqc8xBi4cBkcrpXWm22va4Yz8AQRY-6dZLXAA5Ku4QAiNA7zfR1oTrYcRetZeZrgACyGrkDkeOLTPpaDkNb7abIbDt87+rp+5apzEADREfRtnxbNtlQFBMk0faMLmrG4GFIJwOFAiFAwhOEggoD5u1EWV308XQWDlXgPUUa1sPID5HV2GZ3zgjQrhrBgwOIuVPE5Yw4UNHirWEGV7GyUB+0HGxhyNAAySSRPoAch2+IUnUsAB+UAxJsZSxAALlk+TxO+I0AB8jL0jTFL4LTRDUh42A+Gchy3EgOB4OUOAoNJHDYABzQh9GIBxsQNNiSM4vcrNAXSFSVYxL2vQyHSvNwLIdKw6JKF0jHdApWN5djOO43LKSeT9DQdCL0sq0RCNDShhyFKNziYrRELcVw0MpehDL4vCFkkeZCPyrjeFxOEeCtHKeFtRROR40aGCFJrLhanQFTYKgnEbPyup+RdZWi5UkpvH5aMq7LCjajrgx2sDauHcqqse+V2A2mwtt0HbGpjZaCzoOVKHe4jiFcLquz2oT5gOrgyTAYg4QqyxzqK5t2LInLsR4U6nro-7AZeEGZ1Ac0GoR0RGJwOMHFx98umaehkLsK6vjW173q66m-KBgn6VSgAWaMcBA98uC9B4njYF43g+ZmAYYxEgA')">display_stream(euler_transform(pi_stream));
 </pre><pre class='prettyprintoutput'>
 3.166666666666667
 3.1333333333333337
@@ -2192,7 +2191,7 @@ const pi_stream =
     
     <EM>tableau</EM>) in which each stream is the transform of the preceding one:
 	
-    <div class='snippet' id='javascript_71_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgC2AhgNYCmA+uYwEYA2rjQgApyAJ0bEAzvmqj6AGlCSAlKADeOUFtCjW5QqLoAHRpVFDJioaoC8APgYsOXPgOFiJ02QtAepMuQtlYIBuHABfIA')">function make_tableau(transform, s) {
+    <div class='snippet' id='javascript_71_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgC2AhgNYCmA+uYwEYA2rjQgApyAJ0bEAzvmqj6AGlCSAlKADeOUFtCjW5QqLoAHRpVFDJioaoC8APgYsOXPgOFiJ02QtAepMuQtlYIBuHABfIA')">function make_tableau(transform, s) {
     return pair(s, () => make_tableau(transform, transform(s)));
 }
 </pre></div></div>
@@ -2210,7 +2209,7 @@ const pi_stream =
     Finally, we form a sequence by taking the first term in each row of
     the tableau:
 	
-    <div class='snippet' id='javascript_71_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgC2AhgNYCmA+uYwEYA2rjQgApyAJ0bEAzvmqj6AGlCSAlKADeOUFtCjW5QqLoAHRpVFDJioaoC8APgYsOXPgOFiJ02QtAepMuQtlYIBuHABfPCIyKlolAEdCRl0hAA9VDW0dPQM6VNAAKlBUsMiCEgoaOnpWemohaIyASCzNbX5yUEZeXUYAEwBPdlESUBtQfG7JVjCsjuzJQl5O8ZI+1nxKYlY+2e1dfUNQazGHTKyLi8p8Y4BCbt7B4ZIMtsv3rN1F5bGJkms9h8gQ8BE8RnRxmJCDM3kD3gdcgsluRAXCtOFQKxeNN1LC0Z8ckcvsjUWjImTSlEKrE6KwlqxRJxxP5vEFcVlSLRJJ1JAAGX7c3r0YYbCyKXnKEIXECgAAk4HYamIAFoAIzhWWwzlSHmqgViATC3T4MWgVWS6VgeWK4garVcnkAJn1QpFJssoEdFqyMutSoA1OrNQTDsZTOY8R9JM7lQkkilo6BY5JzaAwBZ+f7jsqvYUlHqs9HlPJI+8anUhCd7Jj6Yy-F5AoLDZxTLwgsFJRE8NruY5Uuw+pRJEZeIwBr8AJxhaKVOKD4ejoZNxj0NnnLQzmmgecjsfsZfCyjkBkWciKYivD7XY5D9jEJZt7nBdnvDFYnHXoQQmzjCUvuE7ouQgAOTAYoABEaBQeBnYfG+2KsP+QKAWOQgABagqeoSlhcKFLgaK7sEeJ4Hi2lCPuQxagHQsbmqS2jkgxsJ4fuBGHse5gekw-Z4Z2ZSblUSikN0HAHqeQqKJMFCyJe+yEnQpFMEYaSnMUeZSeQsglvicIHnxVIxIJimMEY7COg0igppZubrtkoagLe968I+qYAGSuQ5kh3g+Fhejh2gAPzUQ+-laAAXJ53nORYqYAD6xZFTmPn5aJBQyoiyF+D4QSQrCpEYrAUDsXSiAA5oQNTEJ0yrJmx7BKWZMGhaAEUmGYDToZhKbFhh-S+cEijNWWtT1FWDjGaZ5n4JZdVcORMXFkNOnLdopFzclHb6eUhlxP0fSsUKkgxdZslaAiRwTWZlapKqiipLm1Y3aAWb3ZZt1KF6lLbbOYaiFQ3T7hVR0qEh51hu1vV9EE2krWNXR9PtB7A7NrbQ0tK2XCYf2UADiz0MDHZfQJcRGJQgP0EwxB9EdF6g-JoBteYepgMQg0Y3DE0qdWyqpDDGMraT5OU9TX7PZ6wTo6AW09p0gsHr8sKSMJ-AHYaQhY-9vDk0dcsVcLR3mlRAAsnbfVujCkKQWIMowx6I6wiSsGQrAiMyDY+CDtlg0odVKZ1-SKEwbAtq4giu54AQe9hZQsWJFtW-w4h2-uDvQs7Qh0onTIR94fP8xjctsaEQA')">function accelerated_sequence(transform, s) {
+    <div class='snippet' id='javascript_71_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgC2AhgNYCmA+uYwEYA2rjQgApyAJ0bEAzvmqj6AGlCSAlKADeOUFtCjW5QqLoAHRpVFDJioaoC8APgYsOXPgOFiJ02QtAepMuQtlYIBuHABfPCIyKlolAEdCRl0hAA9VDW0dPQM6VNAAKlBUsMiCEgoaOnpWemohaIyASCzNbX5yUEZeXUYAEwBPdlESUBtQfG7JVjCsjuzJQl5O8ZI+1nxKYlY+2e1dfUNQazGHTKyLi8p8Y4BCbt7B4ZIMtsv3rN1F5bGJkms9h8gQ8BE8RnRxmJCDM3kD3gdcgsluRAXCtOFQKxeNN1LC0Z8ckcvsjUWjImTSlEKrE6KwlqxRJxxP5vEFcVlSLRJJ1JAAGX7c3r0YYbCyKXnKEIXECgAAk4HYamIAFoAIzhWWwzlSHmqgViATC3T4MWgVWS6VgeWK4garVcnkAJn1QpFJssoEdFqyMutSoA1OrNQTDsZTOY8R9JM7lQkkilo6BY5JzaAwBZ+f7jsqvYUlHqs9HlPJI+8anUhCd7Jj6Yy-F5AoLDZxTLwgsFJRE8NruY5Uuw+pRJEZeIwBr8AJxhaKVOKD4ejoZNxj0NnnLQzmmgecjsfsZfCyjkBkWciKYivD7XY5D9jEJZt7nBdnvDFYnHXoQQmzjCUvuE7ouQgAOTAYoABEaBQeBnYfG+2KsP+QKAWOQgABagqeoSlhcKFLgaK7sEeJ4Hi2lCPuQxagHQsbmqS2jkgxsJ4fuBGHse5gekw-Z4Z2ZSblUSikN0HAHqeQqKJMFCyJe+yEnQpFMEYaSnMUeZSeQsglvicIHnxVIxIJimMEY7COg0igppZubrtkoagLe968I+qYAGSuQ5kh3g+Fhejh2gAPzUQ+-laAAXJ53nORYqYAD6xZFTmPn5aJBQyoiyF+D4QSQrCpEYrAUDsXSiAA5oQNTEJ0yrJmx7BKWZMGhaAEUmGYDToZhKbFhh-S+cEijNWWtT1FWDjGaZ5n4JZdVcORMXFkNOnLdopFzclHb6eUhlxP0fSsUKkgxdZslaAiRwTWZlapKqiipLm1Y3aAWb3ZZt1KF6lLbbOYaiFQ3T7hVR0qEh51hu1vV9EE2krWNXR9PtB7A7NrbQ0tK2XCYf2UADiz0MDHZfQJcRGJQgP0EwxB9EdF6g-JoBteYepgMQg0Y3DE0qdWyqpDDGMraT5OU9TX7PZ6wTo6AW09p0gsHr8sKSMJ-AHYaQhY-9vDk0dcsVcLR3mlRAAsnbfVujCkKQWIMowx6I6wiSsGQrAiMyDY+CDtlg0odVKZ1-SKEwbAtq4giu54AQe9hZQsWJFtW-w4h2-uDvQs7Qh0onTIR94fP8xjctsaEQA')">function accelerated_sequence(transform, s) {
     return stream_map(head, make_tableau(transform, s));
 }
 </pre></div></div>
@@ -2219,7 +2218,7 @@ const pi_stream =
 <a name='p10' class='permalink'></a><p>
     We can demonstrate this kind of <QUOTE>super-acceleration</QUOTE> of the
     $\pi$ sequence:
-    <div class='snippet' id='javascript_71_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgC2AhgNYCmA+uYwEYA2rjQgApyAJ0bEAzvmqj6AGlCSAlKADeOUFtCjW5QqLoAHRpVFDJioaoC8APgYsOXPgOFiJ02QtAepMuQtlYIBuHABfPCIyKlpQRlJSVn5xclYAE3ZJVgBHQlYyVhFxf29FFXVNbV19QyUxAXp2JiMhAAsBdMUmNk4efkFizwCfFWUwyIISCho6STzGXSEAD1UNbR09Azpl0AAqUGWJqOnYunpWemohaLWASA2qrX5yeN5dRnSAT3ZRElAbKB8IxeNkwhsXptJIReK9ASR0qx8JRiBlwdUtnVrACHOsNvj8ZR8KAhABCEEfb6-EhrJ4E+kY6GwgFAkjWdEMzkUzo-P50QFifIczn0mrbKEw8jCkWgcKgZLZSoyhliuq6JlSukyyLa45TGKzeUw1iiTglLyBCp4rSkWiSV6SAAMLPtHyaunwFkUjvG+JAoAAJOB2GpiABaACM4QDdNtUgdEZdDUY7qRXtAEd9G39QZDxGjsbtDoATEm3b805ZQMWs9oc8HQwBqKMxjaq4ymcxahmSUthpQLJa90D9ySZ0BgCzOxsksM1-ZKRMz3vKeTd+kXK5CbH2I0pM3DbwWZNNLiUXhBYLjCJ4OP2xzLdjpSiSIy8RhfFkATjC0RmcWfV93x+V1GiCJVtD-M5QEAt8PyyE92EoNJzHtRRiFpBkiRJF92GIGEL3tYIIIJOUFVYUBsKEfkbEBH0SM5WDgKEAByFjFAAIjQbiOOvBkyNBCjrUYl84K+dpOmPUJ13xJj4NAlMkJQ49yzPQjyFXUA6H7TNpW0HV9LpOSQMQ5CTXTJhH2M69Jigw1JFIEEOAU+gVMaRRgQoWRMIxWo5kQloVhxQ4F088hZDXZURRcmyTgNOIXOaRgjHYYsbnKCNynnYT20oyQ8IIixxwAMmKvKCt4Qiaxk7QAH4tIImqtAALnK-DKqK1QAB8urawqVya0B6pNURZGogjOJIVhliMVgKAyeJRAAc0IC5iFeMNRwC5LUt4wbWpMMwbgkz5OvkDpTpXTTBo3S5rh3BxEpaVL0vqVTTEIzNIqin6fsStSLBrK89TsuJPkyFzJCKrKfK0XKnp2tKVkyw5513ZYl1RjKYZB05DRMUQqBBLJVqhq06Vyw7zAu9Igm+n6HvidIIZPMnEIBlR6d+7mCaJ3gSfoMngZvfV-2MSgBaYYh0ihjCGMpzshETMBiEUG6NkZhHWl2Xcw2WLnuaiowJehegpZl6jQBnIH1a0WKcDvV5jYQt0WTpBynJdsDecoYnTah53TfNqHM00gAWa8cGMr2UyEBIkhSRg0gh3J8kKIRWGNU0-AtBRbcN-FA5PUIgA')">display_stream(accelerated_sequence(euler_transform,
+    <div class='snippet' id='javascript_71_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgC2AhgNYCmA+uYwEYA2rjQgApyAJ0bEAzvmqj6AGlCSAlKADeOUFtCjW5QqLoAHRpVFDJioaoC8APgYsOXPgOFiJ02QtAepMuQtlYIBuHABfPCIyKlpQRlJSVn5xclYAE3ZJVgBHQlYyVhFxf29FFXVNbV19QyUxAXp2JiMhAAsBdMUmNk4efkFizwCfFWUwyIISCho6STzGXSEAD1UNbR09Azpl0AAqUGWJqOnYunpWemohaLWASA2qrX5yeN5dRnSAT3ZRElAbKB8IxeNkwhsXptJIReK9ASR0qx8JRiBlwdUtnVrACHOsNvj8ZR8KAhABCEEfb6-EhrJ4E+kY6GwgFAkjWdEMzkUzo-P50QFifIczn0mrbKEw8jCkWgcKgZLZSoyhliuq6JlSukyyLa45TGKzeUw1iiTglLyBCp4rSkWiSV6SAAMLPtHyaunwFkUjvG+JAoAAJOB2GpiABaACM4QDdNtUgdEZdDUY7qRXtAEd9G39QZDxGjsbtDoATEm3b805ZQMWs9oc8HQwBqKMxjaq4ymcxahmSUthpQLJa90D9ySZ0BgCzOxsksM1-ZKRMz3vKeTd+kXK5CbH2I0pM3DbwWZNNLiUXhBYLjCJ4OP2xzLdjpSiSIy8RhfFkATjC0RmcWfV93x+V1GiCJVtD-M5QEAt8PyyE92EoNJzHtRRiFpBkiRJF92GIGEL3tYIIIJOUFVYUBsKEfkbEBH0SM5WDgKEAByFjFAAIjQbiOOvBkyNBCjrUYl84K+dpOmPUJ13xJj4NAlMkJQ49yzPQjyFXUA6H7TNpW0HV9LpOSQMQ5CTXTJhH2M69Jigw1JFIEEOAU+gVMaRRgQoWRMIxWo5kQloVhxQ4F088hZDXZURRcmyTgNOIXOaRgjHYYsbnKCNynnYT20oyQ8IIixxwAMmKvKCt4Qiaxk7QAH4tIImqtAALnK-DKqK1QAB8urawqVya0B6pNURZGogjOJIVhliMVgKAyeJRAAc0IC5iFeMNRwC5LUt4wbWpMMwbgkz5OvkDpTpXTTBo3S5rh3BxEpaVL0vqVTTEIzNIqin6fsStSLBrK89TsuJPkyFzJCKrKfK0XKnp2tKVkyw5513ZYl1RjKYZB05DRMUQqBBLJVqhq06Vyw7zAu9Igm+n6HvidIIZPMnEIBlR6d+7mCaJ3gSfoMngZvfV-2MSgBaYYh0ihjCGMpzshETMBiEUG6NkZhHWl2Xcw2WLnuaiowJehegpZl6jQBnIH1a0WKcDvV5jYQt0WTpBynJdsDecoYnTah53TfNqHM00gAWa8cGMr2UyEBIkhSRg0gh3J8kKIRWGNU0-AtBRbcN-FA5PUIgA')">display_stream(accelerated_sequence(euler_transform,
                                     pi_stream));
 </pre><pre class='prettyprintoutput'>
 4
@@ -2261,7 +2260,7 @@ const pi_stream =
 	produced by the
 	<kbd>sqrt_stream</kbd> function and
 	tries to optimize it using memoization:
-	<div class='snippet' id='javascript_71_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	<div class='snippet' id='javascript_71_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function sqrt_stream_optimized(x) {
     return pair(1,
                 memo(() => stream_map(guess => 
@@ -2269,7 +2268,7 @@ function sqrt_stream_optimized(x) {
                                       sqrt_stream(x))));
 }</pre></div></div>
 	Alyssa P. Hacker instead proposes
-	<div class='snippet' id='javascript_71_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	<div class='snippet' id='javascript_71_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function sqrt_stream_optimized_2(x) {
     const guesses = pair(1,
                          memo(() => stream_map(guess => 
@@ -2311,7 +2310,7 @@ function sqrt_stream_optimized_2(x) {
   than the tolerance, and return the second of the two elements.  Using
   this, we could compute square roots up to a given tolerance by
       
-  <div class='snippet' id='javascript_71_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+  <div class='snippet' id='javascript_71_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function sqrt(x, tolerance) {
     return stream_limit(sqrt_stream(x), tolerance);
 }</pre></div></div>
@@ -2389,7 +2388,7 @@ function sqrt(x, tolerance) {
     with $i \leq j$, then our required stream is
     simply<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
     
-    <div class='snippet' id='javascript_71_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgDOAjoQIYBOApgBQAeAlKADeOUKNCdyhNnR6gAVKB4BuHAF88RMlVqhK9APoATSgDc9lAEYAbbjwA0oAJ4DB4jpOmLQAUiegAvIGgAAxKoOoEJBQ0dJTE5BwA5hxsBvTk7FTEifr4bNQAtlzELiJiElJ0AA4slGzFDlwC-gB8uvFJKWkZbFk5eYXFoADUoACMfHwqEZrROnr6VWyUBdwlQmWis9qxCfVV9KVix24edEysnFwAFhwshlwHk6BtxJsnH6AA-KDkbIQcd6fY4ALl0BmMZnolhsDVAt3uj0OfCBwNEP3wLCs9EBaI+YMoey46U4LAK+gylCsSMmKmO6mOFU8hJSj2Wq0O0xwpFo6VASxWHHoAX5tXqACY7Ki8ccmgE2iS7uT8FSidKZRqFgLVg51Rq8XEEslUvp0pk4v18kUUJM9Xiphoojt2nsbCwTNx6GMHPRxUdyu5KuD9MRCFZqV6UTKfr67aAwTU6jc7g9I7r9Sc5a0XSk3R7iZKGH8lRTahGJlGM6IHTMnTFRXV6MSHOR-aImdUxVwrHpyMnEYcHAiHq2+Omq1m2obc3d84qyfoCiwqrx5aAe+l+6mx4ox3GqwfRPPyZTqaOpYeD4nUsTiwvT8Sd-vL2jj6WqVxR7S1HgecQ+dOxrCv4OZAaaPR9LkVpcBMKjcry5CgEuPBGHoVRWCwjgigAnCo2z1sY9DoZh4GkkUhwbMc+E6IRxGOKRJYsvU6QOOswjApQ+CgFwCyhuGt7POxnyqKAHDYhwuhcUMgQgcEbZorRGGOFwADkKkOAARGg2kaQ6wIiWJOKUTKimYVuAl6SZaFKQxC5MbeZHvhGrasaAAC04yWR8DJiD5oimfRb72fQDjIahRFKTWv4IS6ixisBDY3oBXQOMlqQOjgb4qlYRLXmuWrstww6PGKAijMVD7XpMe4ZoacWNlMQA')">stream_filter(pair => is_prime(head(pair) + head(tail(pair))),
+    <div class='snippet' id='javascript_71_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgDOAjoQIYBOApgBQAeAlKADeOUKNCdyhNnR6gAVKB4BuHAF88RMlVqhK9APoATSgDc9lAEYAbbjwA0oAJ4DB4jpOmLQAUiegAvIGgAAxKoOoEJBQ0dJTE5BwA5hxsBvTk7FTEifr4bNQAtlzELiJiElJ0AA4slGzFDlwC-gB8uvFJKWkZbFk5eYXFoADUoACMfHwqEZrROnr6VWyUBdwlQmWis9qxCfVV9KVix24edEysnFwAFhwshlwHk6BtxJsnH6AA-KDkbIQcd6fY4ALl0BmMZnolhsDVAt3uj0OfCBwNEP3wLCs9EBaI+YMoey46U4LAK+gylCsSMmKmO6mOFU8hJSj2Wq0O0xwpFo6VASxWHHoAX5tXqACY7Ki8ccmgE2iS7uT8FSidKZRqFgLVg51Rq8XEEslUvp0pk4v18kUUJM9Xiphoojt2nsbCwTNx6GMHPRxUdyu5KuD9MRCFZqV6UTKfr67aAwTU6jc7g9I7r9Sc5a0XSk3R7iZKGH8lRTahGJlGM6IHTMnTFRXV6MSHOR-aImdUxVwrHpyMnEYcHAiHq2+Omq1m2obc3d84qyfoCiwqrx5aAe+l+6mx4ox3GqwfRPPyZTqaOpYeD4nUsTiwvT8Sd-vL2jj6WqVxR7S1HgecQ+dOxrCv4OZAaaPR9LkVpcBMKjcry5CgEuPBGHoVRWCwjgigAnCo2z1sY9DoZh4GkkUhwbMc+E6IRxGOKRJYsvU6QOOswjApQ+CgFwCyhuGt7POxnyqKAHDYhwuhcUMgQgcEbZorRGGOFwADkKkOAARGg2kaQ6wIiWJOKUTKimYVuAl6SZaFKQxC5MbeZHvhGrasaAAC04yWR8DJiD5oimfRb72fQDjIahRFKTWv4IS6ixisBDY3oBXQOMlqQOjgb4qlYRLXmuWrstww6PGKAijMVD7XpMe4ZoacWNlMQA')">stream_filter(pair => is_prime(head(pair) + head(tail(pair))),
               int_pairs);
 </pre></div></div>
   </p></div>
@@ -2469,7 +2468,7 @@ function sqrt(x, tolerance) {
       
     
     Also note that the second piece (the rest of the first row) is
-    <div class='snippet' id='javascript_71_15_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_71_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 stream_map(x => list(head(s), x),
            stream_tail(t));</pre></div></div>
     Thus we can form our stream of pairs as follows:
@@ -2499,7 +2498,7 @@ stream_map(x => list(head(s), x),
     from section&nbsp;<REF NAME="sec:sequences"><a class="superscript" id="3.5.3-sec-link-2.2.1" href="./2.2.1.html">2.2.1</a></REF>:
     
 	
-    <div class='snippet' id='javascript_71_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgDO5ATgKYCGAtgPpsAOvLYgBMAFPQCMAGgYAmAJSgA3jlCrQrcoSZ1K9LsUIAbQ2PFyVay2oD8si1csAuULzaUmIgBbtREudPsHINURBQBeAD4GZnZuPgFhMRjOLnI3Ez9penlA4Ks5AG4cAF88UlpGUFoWelAwlzcPKVBQuqjq+kKccuJK8gB3alr613cRGWlWyNABoa6eyvjBIRYhOujWFKXEjulZzqLGTe5WfBFtlaFpcQAGG8KgA')">function stream_append(s1, s2) {
+    <div class='snippet' id='javascript_71_15_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgDO5ATgKYCGAtgPpsAOvLYgBMAFPQCMAGgYAmAJSgA3jlCrQrcoSZ1K9LsUIAbQ2PFyVay2oD8si1csAuULzaUmIgBbtREudPsHINURBQBeAD4GZnZuPgFhMRjOLnI3Ez9penlA4Ks5AG4cAF88UlpGUFoWelAwlzcPKVBQuqjq+kKccuJK8gB3alr613cRGWlWyNABoa6eyvjBIRYhOujWFKXEjulZzqLGTe5WfBFtlaFpcQAGG8KgA')">function stream_append(s1, s2) {
     return is_null(s1)
            ? s2
            : pair(head(s1), 
@@ -2511,7 +2510,7 @@ stream_map(x => list(head(s), x),
     elements from the first stream before incorporating the second stream. In
     particular, if we try to generate all pairs of positive integers using
     
-    <div class='snippet' id='javascript_71_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgDO5ATgKYCGAtgPpsAOvLYgBMAFPQCMAGgYAmAJSgA3jlCrQrcoSZ1K9LsUIAbQ2PFyVay2oD8si1csAuULzaUmIgBbtREudPsHINURBQBeAD4GZnZuPgFhMRjOLnI3Ez9penlA4Ks5AG4cAF88IjIqWhc3JnoxaXIFZUsNLTpXdxFDXXIvHzF-UG82UUbB3LyQ8KjGVhT4wVEJybzZ2K4OPhEAD1BI0G7GPpGB6W3-ZZWrhzWUtMoTMclL68sO2qS57nuMwdvv9IiMbmV6gQolPCkWiMUCbbZcIS6XiGNgATz2oAAnEVyhQaHREfRkWiuP8BkpArjKgSkSjUaTktxKOQWB5GNJiE1LpR8KARLp9EYMmMKcFiqAWIZ6CxQDy+XQworQAAGLlXQnE1EiADk2ukACI0Eb9eCxRKpTLmisNXTjr4xkV1bSSf8uMzWZ91j8koM6ABaUBmR1BUqWUNqG0uxlulls6RwhHO1Hg0oEEh4qqUYgsgDmrL0jDYTCoxBzXHwTGoHBEnNFala2mqnWI0lCeyiWdz+YZRZLZYrVZroAA1IG5CnIdDyLLsyw87UMZ2593C8Ws-3K9Wg3h3nUl-P6NJ9-nwThI-Sybv+bOD0ebyfCkA')">pairs(integers, integers);
+    <div class='snippet' id='javascript_71_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgDO5ATgKYCGAtgPpsAOvLYgBMAFPQCMAGgYAmAJSgA3jlCrQrcoSZ1K9LsUIAbQ2PFyVay2oD8si1csAuULzaUmIgBbtREudPsHINURBQBeAD4GZnZuPgFhMRjOLnI3Ez9penlA4Ks5AG4cAF88IjIqWhc3JnoxaXIFZUsNLTpXdxFDXXIvHzF-UG82UUbB3LyQ8KjGVhT4wVEJybzZ2K4OPhEAD1BI0G7GPpGB6W3-ZZWrhzWUtMoTMclL68sO2qS57nuMwdvv9IiMbmV6gQolPCkWiMUCbbZcIS6XiGNgATz2oAAnEVyhQaHREfRkWiuP8BkpArjKgSkSjUaTktxKOQWB5GNJiE1LpR8KARLp9EYMmMKcFiqAWIZ6CxQDy+XQworQAAGLlXQnE1EiADk2ukACI0Eb9eCxRKpTLmisNXTjr4xkV1bSSf8uMzWZ91j8koM6ABaUBmR1BUqWUNqG0uxlulls6RwhHO1Hg0oEEh4qqUYgsgDmrL0jDYTCoxBzXHwTGoHBEnNFala2mqnWI0lCeyiWdz+YZRZLZYrVZroAA1IG5CnIdDyLLsyw87UMZ2593C8Ws-3K9Wg3h3nUl-P6NJ9-nwThI-Sybv+bOD0ebyfCkA')">pairs(integers, integers);
 </pre></div></div>
     
     our stream of results will first try to run through all pairs with the
@@ -2528,7 +2527,7 @@ stream_map(x => list(head(s), x),
     function:<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
     
 	
-    <div class='snippet' id='javascript_71_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4MYD2AdgM4AuoAtgIYAeA+gCYCWpADgDY0CeoAvKACcAbhwAzAK7F85FiVCsO3HgwoAnAKY0qAClIBKUAG8coc6Cky5CpV15ryWnQxblN6-eQA0oYkdMLINAWcVBdNgZiSU5OLwMAs2DzAF9QTU5STRCw3WIBfkEABkTk5LsVXQByKt8AIjRGuoMxMtA0jKyTJLbzCt5dAAttJniWnt7+1Q1tKld3TxmXchoWOIoDX3yAWlAARnG2lInjoKnHZzm3D31fWkYp8eOJaVl5fJZiBc5tADdNfR7XykABMpQsWnIknUH1IURi6wOEzKAH5QKDkckAFygdirTzDGijUgHXyY3oWXRGfgAPhCXw8Pxo-30IOBTlmDBWa0BCXJFKeeCIZEoJE0pAEuPxuiB4WpdLFhjEwoooHIAHdCBLBHiWJ42XKBHSNVrxirKJ9vn9NExJZbGdbdIrfCalThzks9Pb1Ez-kwWkA')">function interleave(s1, s2) {
+    <div class='snippet' id='javascript_71_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4MYD2AdgM4AuoAtgIYAeA+gCYCWpADgDY0CeoAvKACcAbhwAzAK7F85FiVCsO3HgwoAnAKY0qAClIBKUAG8coc6Cky5CpV15ryWnQxblN6-eQA0oYkdMLINAWcVBdNgZiSU5OLwMAs2DzAF9QTU5STRCw3WIBfkEABkTk5LsVXQByKt8AIjRGuoMxMtA0jKyTJLbzCt5dAAttJniWnt7+1Q1tKld3TxmXchoWOIoDX3yAWlAARnG2lInjoKnHZzm3D31fWkYp8eOJaVl5fJZiBc5tADdNfR7XykABMpQsWnIknUH1IURi6wOEzKAH5QKDkckAFygdirTzDGijUgHXyY3oWXRGfgAPhCXw8Pxo-30IOBTlmDBWa0BCXJFKeeCIZEoJE0pAEuPxuiB4WpdLFhjEwoooHIAHdCBLBHiWJ42XKBHSNVrxirKJ9vn9NExJZbGdbdIrfCalThzks9Pb1Ez-kwWkA')">function interleave(s1, s2) {
     return is_null(s1)
            ? s2
            : pair(head(s1), 
@@ -2546,7 +2545,7 @@ stream_map(x => list(head(s), x),
 <a name='p18' class='permalink'></a><p>
     We can thus generate the required stream of pairs as
 	
-    <div class='snippet' id='javascript_71_19_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGiXHkCmATgDZMCGAbkwBQBnAIwAaUAIBMASlABvHKEWgWTcoRZ1KAgPrFCbNoKFSFSs0oD84iafNmAXKAAOnSiz4ALLgBMjUsbZ2QYp8MgC8AHz0jKwcPPySYgLkKpwAttrkrobCUibBBVIA3DgAvniktMmgaZwAHtreWk5snACeoGGgAJwlRGRUtKBNAi3t2smpaYIy8mb9FDR0I2NtEylcGZTM7slixLOBZpT4oHxauvo55HlyR0qloExsAkz0p3x0Yd+gAAyHBSUK1abT4AHIwWIAERoWFQ4r3RSPZ6vO6AxTA9qeHyCG4I9HDZog9ZTbTbVi40lZSjXfygOgAWlAxhKwXKZnZQKJ40mmzJO0EYlqDUxbQR5QIJEWQwYzAA5qwdMlOCwqMQ5dp8CxqNMDmilCo1BpnK53MQxKFOlFZUwFSwlVlVQwNVqdZ9QABqZl5EoSyrEao2u0CTrReWK9YqtUu7XTFl4BaDOguNwCQWgG76xSG9TJ018NhacjYzi+AR0rylvh4gIEsyWyJh2JcXiUvm1Jx8OpW0CF5Ilst0ur+RF1seA3npTLZat5ESj8eAlP2ttT6k5OkLxdjycZdezvLivCikmbPjLtNBxViK-2n1AA')">function pairs(s, t) {
+    <div class='snippet' id='javascript_71_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGiXHkCmATgDZMCGAbkwBQBnAIwAaUAIBMASlABvHKEWgWTcoRZ1KAgPrFCbNoKFSFSs0oD84iafNmAXKAAOnSiz4ALLgBMjUsbZ2QYp8MgC8AHz0jKwcPPySYgLkKpwAttrkrobCUibBBVIA3DgAvniktMmgaZwAHtreWk5snACeoGGgAJwlRGRUtKBNAi3t2smpaYIy8mb9FDR0I2NtEylcGZTM7slixLOBZpT4oHxauvo55HlyR0qloExsAkz0p3x0Yd+gAAyHBSUK1abT4AHIwWIAERoWFQ4r3RSPZ6vO6AxTA9qeHyCG4I9HDZog9ZTbTbVi40lZSjXfygOgAWlAxhKwXKZnZQKJ40mmzJO0EYlqDUxbQR5QIJEWQwYzAA5qwdMlOCwqMQ5dp8CxqNMDmilCo1BpnK53MQxKFOlFZUwFSwlVlVQwNVqdZ9QABqZl5EoSyrEao2u0CTrReWK9YqtUu7XTFl4BaDOguNwCQWgG76xSG9TJ018NhacjYzi+AR0rylvh4gIEsyWyJh2JcXiUvm1Jx8OpW0CF5Ilst0ur+RF1seA3npTLZat5ESj8eAlP2ttT6k5OkLxdjycZdezvLivCikmbPjLtNBxViK-2n1AA')">function pairs(s, t) {
     return pair(list(head(s), head(t)), 
                 () => interleave(stream_map(x => list(head(s), x),
                                             stream_tail(t)),
@@ -2619,7 +2618,7 @@ stream_map(x => list(head(s), x),
     unnecessarily complicated.  Instead of separating the pair
     $(S_0,T_0)$ from the rest of the pairs in the
     first row, he proposes to work with the whole first row, as follows:
-    <div class='snippet' id='javascript_71_20_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_71_19_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function pairs(s, t) {
     return interleave(stream_map(x => list(head(s), x),
                                  t), 
@@ -2839,7 +2838,7 @@ function pairs(s, t) {
     stream of integers (section&nbsp;<REF NAME="sec:infinite-streams"><a class="superscript" id="3.5.3-sec-link-3.5.2" href="./3.5.2.html">3.5.2</a></REF>):
     
 	
-    <div class='snippet' id='javascript_71_21_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgC2ApvdQBRHECUoA3gJChBoHENAAbRuVABDMQCdG0gCYBPAPpySoALyh8sgM6MA3CKESpCg4TFTdJJY3yVijJadELyhOXVbdtAD5eM1Ew0Up8UFYAQlkFZXVNLhDwtPCrGzs9En8PdIKZeUVVDS1dck0TUMKMyR86TNt82sEAX1BGMSNU1rrvX1Am8hbWtpq0ttNxghIKGjoDSsV6NXppAAc1ACZ2ABpQAwBGA4Nt7h4arwbQSgM1YhsxVmPuADI32-vHsWezzgm4QA-KAfmJAWEAFxfB5PF5HbgAH0RMLBL3OENEIMYcjk1DkrDBBwARCRGAAPDaMChuGRyADmhCYxCkAFpWYdltJVustttiQDatCNtJKAT8KwABYleGcPbS5Tozhy4R9MJMFisfw6YJLBI8zY7fac-Vqciiv4IvaYtW2sJ6lZmi1K5WcaZ4DjzWgyJRKNQO7kGeGnc69QTXQYBg18rXkk6gcmhoIJo6gADUCe2p3j-3dszIVG9BlIskY-q59BeFYO+go+IuV3qkYra02rHJOoToAAVHppHW5Na7eEo26cDNPYW6C5yIx6XJZKwZ3OF8QlAcXJQqLI1AA3WSERgHJTkBuiUi0Ja3FlznSgEVi1g22qb7diPcHo+q4eCbXJ5R+lGQbPj+xaluW+pLje87SGux6nkOP4FMu9KCsOY6eE207QXmk4LKCTIAEY4vcSzSHIVDEPSaj4HilbkPBZ5CBGdAPgSDEgWEf7BI89DEXIpHmhRLjUbR1D0emoAnoxnFCGO4wXsQV4nneAAMaCqUcxh8DgilXmILiKHId68fxgnkZRol0awqmMdpaS6ZeUgGa45FqChC5iHeHmLi5RkHLZUmnqYICgBe9AbIQlnXrOMFeWJ9CgKpoDkNQqCgNQUQSuSAQJjgoWsOQ0oxSushfKA9Ltrl6kYAmAB6WYyGuKXSgo+D4ow+VgEVjBDIw1i2OVrnGTVPaoA1d4ACyYACUYaE4rB+W5PliAc6xFRo1AOKwKCgGAJ7KsYQA')">function integral(integrand, initial_value, dt) {
+    <div class='snippet' id='javascript_71_20_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgC2ApvdQBRHECUoA3gJChBoHENAAbRuVABDMQCdG0gCYBPAPpySoALyh8sgM6MA3CKESpCg4TFTdJJY3yVijJadELyhOXVbdtAD5eM1Ew0Up8UFYAQlkFZXVNLhDwtPCrGzs9En8PdIKZeUVVDS1dck0TUMKMyR86TNt82sEAX1BGMSNU1rrvX1Am8hbWtpq0ttNxghIKGjoDSsV6NXppAAc1ACZ2ABpQAwBGA4Nt7h4arwbQSgM1YhsxVmPuADI32-vHsWezzgm4QA-KAfmJAWEAFxfB5PF5HbgAH0RMLBL3OENEIMYcjk1DkrDBBwARCRGAAPDaMChuGRyADmhCYxCkAFpWYdltJVustttiQDatCNtJKAT8KwABYleGcPbS5Tozhy4R9MJMFisfw6YJLBI8zY7fac-Vqciiv4IvaYtW2sJ6lZmi1K5WcaZ4DjzWgyJRKNQO7kGeGnc69QTXQYBg18rXkk6gcmhoIJo6gADUCe2p3j-3dszIVG9BlIskY-q59BeFYO+go+IuV3qkYra02rHJOoToAAVHppHW5Na7eEo26cDNPYW6C5yIx6XJZKwZ3OF8QlAcXJQqLI1AA3WSERgHJTkBuiUi0Ja3FlznSgEVi1g22qb7diPcHo+q4eCbXJ5R+lGQbPj+xaluW+pLje87SGux6nkOP4FMu9KCsOY6eE207QXmk4LKCTIAEY4vcSzSHIVDEPSaj4HilbkPBZ5CBGdAPgSDEgWEf7BI89DEXIpHmhRLjUbR1D0emoAnoxnFCGO4wXsQV4nneAAMaCqUcxh8DgilXmILiKHId68fxgnkZRol0awqmMdpaS6ZeUgGa45FqChC5iHeHmLi5RkHLZUmnqYICgBe9AbIQlnXrOMFeWJ9CgKpoDkNQqCgNQUQSuSAQJjgoWsOQ0oxSushfKA9Ltrl6kYAmAB6WYyGuKXSgo+D4ow+VgEVjBDIw1i2OVrnGTVPaoA1d4ACyYACUYaE4rB+W5PliAc6xFRo1AOKwKCgGAJ7KsYQA')">function integral(integrand, initial_value, dt) {
     const integ = pair(
                     initial_value, 
                     () => add_streams(
@@ -2973,7 +2972,7 @@ function pairs(s, t) {
     positive to negative, and 0 otherwise.  (Assume that the sign of a 0 input
     is positive.)  For example, a typical input signal with its associated
     zero-crossing signal would be
-    <div class='snippet' id='javascript_71_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_71_21_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 ... 1  2  1.5  1  0.5  -0.1  -2  -3  -2  -0.5  0.2  3  4 ...
 ...  0  0    0  0    0     -1  0   0   0     0    1  0  0 ...</pre></div></div>
 
@@ -3004,7 +3003,7 @@ function pairs(s, t) {
     $1$, or $-1$.  She
     then constructs her zero-crossing stream as follows:
 
-    <div class='snippet' id='javascript_71_23_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_71_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function make_zero_crossings(input_stream, last_value) {
     return pair(sign_change_detector(head(input_stream),
                                      last_value),
@@ -3057,7 +3056,7 @@ const zero_crossings = make_zero_crossings(sense_data, 0);</pre></div></div>
     the previous value.  She explains the problem to her assistant, Louis
     Reasoner, who attempts to implement the idea, altering Alyssa's
     program as follows:
-    <div class='snippet' id='javascript_71_24_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_71_23_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function make_zero_crossings(input_stream, last_value) {
     const avpt = (head(input_stream) + last_value) / 2;
     return pair(sign_change_detector(avpt, last_value),
