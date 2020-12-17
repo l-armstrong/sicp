@@ -2059,15 +2059,15 @@ Acknowledgments
     
     to compute square roots:
             
-    <div class='snippet' id='javascript_58_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQCY0BYBQuAzAVwDsBjAFwEsB7E0AQwCMBnACgA8BKUAb11CDQAJwCmFIsPodQAPgC8oAAygA-KBkAuUAFoOAblwBffMXLU6oFgEciDMZx78hI8ZOmgAVBsMnCpSlp6BgA3UWEGAHNRTgAaUABPJwEhMQkpUE5QAGpEnjAMX1MAi3obYQpHPhTBM0DLSJoaABMAfVESGiJIgAs2SKJRFhZklxc090ZWNhs7BwGhkd0NHgAeZTQlJQBGQxcTFzrS0CoAWwAHYRow-sHh0bHBCYzQ8KiYheH4mTBPkb2hAchEcglZrBVWlQKOFbosuM5Hq50vRGi12p1un0-lwaoixuo-ri8UJtOUKJDocI2GdLtcPncRlwAYIgU83BkyRSYdsmcZ8GS2ABWJlAA')">function sqrt(x) {
-    function good_enough(guess) {
+    <div class='snippet' id='javascript_58_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQCY0BYBQuAzAVwDsBjAFwEsB7E0AQwCMBnACgA8BKUAb11CDQAJwCmFIsPodQAPgC8oAAygA-KBkAuUAFoOAblwBffMXLU6oFgEciDMZx78hI8ZOmgAVBsMnCpSlp6BgA3UWEGAHNRTgAaUABPJwEhMQkpUE5QAGpEnjAMX1MAi3obYQpHPhTBM0DLKhYAfUiaGgATJtESGiJIgAs2SKJRFhZklxc090ZWNhs7B2HR8d0NHgAeZTQlJQBGQxcTFzrS0CoAWwAHYRowoZGxicnBaYzQ8KiY5bH4mTAfuNDkJjkJTkErNYKk0qBRwg8VlxnC9XOl6I0Wm1Ot1egMEU8aijJupAYSiUJtOUKDC4cI2Jcbndvo9xlxgYJQa83BkqTT4Xs2cZ8FS2ABWNlAA')">function sqrt(x) {
+    function is_good_enough(guess) {
         return abs(square(guess) - x) < 0.001;
     }
     function improve(guess) {
         return average(guess, x / guess);
     }
     function sqrt_iter(guess){
-        return good_enough(guess)
+        return is_good_enough(guess)
                ? guess
                : sqrt_iter(improve(guess));
     }
@@ -2100,7 +2100,7 @@ Acknowledgments
     
     
       
-      <kbd>good_enough</kbd>
+      <kbd>is_good_enough</kbd>
     
     has been called for the first time with
     <kbd>guess</kbd> equal to&nbsp;1.
@@ -2161,14 +2161,14 @@ Acknowledgments
       
     
     <div class='snippet' id='javascript_58_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function good_enough(guess) {
+function is_good_enough(guess) {
     return abs(square(guess) - x) < 0.001;
 }</pre></div></div>
     
       
       
 	evaluating this declaration created the function
-	<kbd>good_enough</kbd>
+	<kbd>is_good_enough</kbd>
 	in the environment&nbsp;E2.
       
     
@@ -2176,7 +2176,7 @@ function good_enough(guess) {
       
       
 	To&nbsp;be more precise, 
-	the symbol <kbd>good_enough</kbd>
+	the symbol <kbd>is_good_enough</kbd>
 	in the first frame of E2 was bound to a function
 	object whose associated environment is E2.
       
@@ -2207,7 +2207,7 @@ function good_enough(guess) {
     object for 
     
       
-      <kbd>good_enough</kbd>.
+      <kbd>is_good_enough</kbd>.
     
   </p></div>
 
@@ -2256,14 +2256,14 @@ function good_enough(guess) {
     in turn called 
     
       
-      <kbd>good_enough</kbd>
+      <kbd>is_good_enough</kbd>
     
     with the value of <kbd>guess</kbd>
     
       
       
 	(from E3) as the argument for 
-	<kbd>good_enough</kbd>.
+	<kbd>is_good_enough</kbd>.
       
     
     This set up another environment,
@@ -2272,7 +2272,7 @@ function good_enough(guess) {
       
 	E4, in which
 	<kbd>guess</kbd> (the parameter of 
-	<kbd>good_enough</kbd>)
+	<kbd>is_good_enough</kbd>)
       
     
     is bound to 1. Although 
@@ -2283,7 +2283,7 @@ function good_enough(guess) {
     and 
     
       
-      <kbd>good_enough</kbd>
+      <kbd>is_good_enough</kbd>
     
     both have a parameter named <kbd>guess</kbd>, these are two
     distinct local variables located in different frames.
@@ -2293,7 +2293,7 @@ function good_enough(guess) {
 	Also, E3 and E4 both have E2 as their enclosing environment, because the 
 	<kbd>sqrt_iter</kbd>
 	and 
-	<kbd>good_enough</kbd> functions
+	<kbd>is_good_enough</kbd> functions
 	both have E2 as their environment part.
       
     
@@ -2301,7 +2301,7 @@ function good_enough(guess) {
     symbol <kbd>x</kbd> that appears in the body of 
     
       
-      <kbd>good_enough</kbd>
+      <kbd>is_good_enough</kbd>
     
     will reference the binding of <kbd>x</kbd> that appears in
     E1, namely the value of <kbd>x</kbd> with which the

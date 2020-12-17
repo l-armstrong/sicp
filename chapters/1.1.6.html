@@ -2022,6 +2022,7 @@ Acknowledgments
 	
 	
 	
+	
         Conditional expressions begin with a
         $\textit{predicate}$—that is, 
         an expression whose value is either
@@ -2044,18 +2045,19 @@ Acknowledgments
     
       <div class='permalink'>
 <a name='p2' class='permalink'></a><p>
+	
+	
         To evaluate a conditional expression,
 	the interpreter starts by evaluating the 
-        
         $\textit{predicate}$ 
         of the expression. If the
 	$\textit{predicate}$ 
         evaluates to true, the interpreter evaluates the
         
+        
         $\textit{consequent-expression}$.
         If the $\textit{predicate}$
 	evaluates to false, it evaluates the
-        
         $\textit{alternative-expression}$.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
       </p></div>
     
@@ -2069,8 +2071,9 @@ Acknowledgments
         The word <EM>predicate</EM> is used for operators and functions that
 	return true or false, as well as for expressions that
 	evaluate to true or false. The absolute-value function
-	<kbd>abs</kbd> makes use of the 
-        
+	<kbd>abs</kbd> makes use of the
+	
+	
         
         
         
@@ -2096,6 +2099,17 @@ Acknowledgments
     
       <div class='permalink'>
 <a name='p4' class='permalink'></a><p>
+        
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
         In addition to primitive predicates such as
         <kbd>>=</kbd>, 
         <kbd>></kbd>, 
@@ -2107,9 +2121,13 @@ Acknowledgments
 	there are logical composition operations, which enable us to construct
 	compound predicates. The three most frequently used are these:
         <UL>
-          
+	  
+	  
           
           <LI>
+	    
+	    
+            
 	    $ \textit{expression}_1$ <kbd>&&</kbd>
 	    $\textit{expression}_2$<br>
 	    This operation expresses <EM>logical
@@ -2121,6 +2139,8 @@ Acknowledgments
 	    <kbd>false</kbd>.
           </LI>
           <LI>
+	    
+	    
             
             $\textit{expression}_1$ 
             <kbd>||</kbd> 
@@ -2136,6 +2156,8 @@ Acknowledgments
           </LI>
           
           <LI>
+	    
+	    
             <kbd>!</kbd>
 	    $\textit{expression}$<br>
 	    This operation expresses <EM>logical negation</EM>, meaning
@@ -2146,6 +2168,8 @@ Acknowledgments
           </LI>
         </UL>
         
+	
+	
         Notice that <kbd>&&</kbd> and 
         <kbd>||</kbd> are syntactic forms,
 	not operators; their right-hand
@@ -2460,6 +2484,7 @@ function test(x, y) {
       interpreter that uses normal-order evaluation?  Explain your answer.
       
       
+      
       (Assume that the evaluation rule for 
       
 	
@@ -2519,11 +2544,11 @@ function test(x, y) {
     <FOOTNOTE>
     
         
+        
 	
-        
-        
-        In JavaScript, other values of the predicate in conditional
-	expressions are automatically converted to true or false
+	
+        In JavaScript, other values of the predicate in conditionals
+	are automatically converted to true or false
         according to <EM>conversion rules</EM>, but we choose not to make
 	use of these conversion rules in this book.
     </FOOTNOTE></div>

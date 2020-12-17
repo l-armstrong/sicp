@@ -2091,8 +2091,8 @@ Acknowledgments
       
     
 
-    <div class='snippet' id='javascript_11_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaAHMqKgATAH1hIioCQIALFkCCYSYmABo1Bz4BETEJemYWKxs7JJSmLi1M0AAeRTQFBRRvYz8zWjoAN2FBOkDhdgyATyynXNdQdlAAalAR0DAAJhbfUwDQCgBbAAdBKm7E5NSMzh5s-nH8rp6+gbLjtQXQe4qVk39zK0EycIoyHsO5ROoxyLnywTCkWisQSL2B5ycTlULwRiP4mi+Pz+AK2u32dyO6UywJWmN+-0ELAAzBlFgBWDi6IA')">function sqrt_iter(guess, x) {
-    return good_enough(guess, x)
+    <div class='snippet' id='javascript_11_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaCiYAfQBzKioAE2DhIioCUIALFlCCYSYmABo1Bz4BETEJemYWKxs7VPSmLi0c0AAeRTQFBRRvYz8zWjoAN2FBOlDhdmyAT1ynAtdQdlAAalBx0DAAJnbfUwDQCgBbAAdBKj6UtIzszh48-imi3v7B4cqztWXQJ+r1k39zK0EyYIoZH6Jyq5wm+RcRSCYQi0Vi8SSIOenCuTicqneqLR-E0v3+gOBuwOR0epyyOTB6zxAKBghYAGZsisAKwcXRAA')">function sqrt_iter(guess, x) {
+    return is_good_enough(guess, x)
            ? guess
            : sqrt_iter(improve(guess, x), x);
 }
@@ -2110,6 +2110,7 @@ Acknowledgments
     
     where
     
+    
     <div class='snippet' id='javascript_11_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDANwFMAnOgcyYAoAPAGlABPAJSgA3tlBTQLJmQItavUAGohosACYA3NgC+uRqw7cAzAIBsw7UA')">function average(x, y) {
     return (x + y) / 2;
 }
@@ -2123,9 +2124,8 @@ Acknowledgments
     test.  (See exercise&nbsp;<REF NAME="ex:ex-sqrt-end-test"><a class="superscript" id="1.1.7-ex-link-1.7" href="./1.1.7.html#ex_1.7">1.7</a></REF>.)
     The idea is to improve the answer until it is close enough so that its
     square differs from the radicand by less than a predetermined
-    tolerance (here 0.001):
-    
-    <div class='snippet' id='javascript_11_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaAHMqKgATAH1hIioCQIALFkCCYSYmABo1Bz4BETEJemYWKxs7JJSmLi1M0AAeRTQFBRRvXGCwyOjYhPQAFhQMgCYOXSA')">function good_enough(guess, x) {
+    tolerance (here 0.001):<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
+    <div class='snippet' id='javascript_11_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaCiYAfQBzKioAE2DhIioCUIALFlCCYSYmABo1Bz4BETEJemYWKxs7VPSmLi0c0AAeRTQFBRRvXCCwiOjY+KSWdAAWFGyAJg5dIA')">function is_good_enough(guess, x) {
     return abs(square(guess) - x) < 0.001;
 }
 </pre></div></div>
@@ -2137,7 +2137,7 @@ Acknowledgments
     that the square root of any number
     is&nbsp;1:
     
-    <div class='snippet' id='javascript_11_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaAHMqKgATAH1hIioCQIALFkCCYSYmABo1Bz4BETEJemYWKxs7JJSmLi1M0AAeRTQFBRRvYz8zWjoAN2FBOkDhdgyATyynXNdQdlAAalAR0DAAJhbfUwDQCgBbAAdBKm7E5NSMzh5s-nH8rp6+gbLjtQXQe4qVk39zK0EycIoyHsO5ROoxyLnywTCkWisQSL2B5ycTlULwRiP4mi+Pz+AK2u32dyO6UywLebXWmPsZzGYNomN+-0ELBQJMMuApAFYOLogA')">function sqrt(x) {
+    <div class='snippet' id='javascript_11_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaCiYAfQBzKioAE2DhIioCUIALFlCCYSYmABo1Bz4BETEJemYWKxs7VPSmLi0c0AAeRTQFBRRvYz8zWjoAN2FBOlDhdmyAT1ynAtdQdlAAalBx0DAAJnbfUwDQCgBbAAdBKj6UtIzszh48-imi3v7B4cqztWXQJ+r1k39zK0EyYIoZH6Jyq5wm+RcRSCYQi0Vi8SSIOenCuTicqneqLR-E0v3+gOBuwOR0epyyOTBn06Wzx9kuk0htDxAKBghYKEphlwtIArBxdEA')">function sqrt(x) {
     return sqrt_iter(1, x);
 }
 </pre></div></div>
@@ -2160,18 +2160,18 @@ Acknowledgments
       
     
 
-    <div class='snippet' id='javascript_11_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaAHMqKgATAH1hIioCQIALFkCCYSYmABo1Bz4BETEJemYWKxs7JJSmLi1M0AAeRTQFBRRvYz8zWjoAN2FBOkDhdgyATyynXNdQdlAAalAR0DAAJhbfUwDQCgBbAAdBKm7E5NSMzh5s-nH8rp6+gbLjtQXQe4qVk39zK0EycIoyHsO5ROoxyLnywTCkWisQSL2B5ycTlULwRiP4mi+Pz+AK2u32dyO6UywLebXWmPsZzGYNomN+-0ELBQJMMuApAE4OLogA')">sqrt(9);
+    <div class='snippet' id='javascript_11_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaCiYAfQBzKioAE2DhIioCUIALFlCCYSYmABo1Bz4BETEJemYWKxs7VPSmLi0c0AAeRTQFBRRvYz8zWjoAN2FBOlDhdmyAT1ynAtdQdlAAalBx0DAAJnbfUwDQCgBbAAdBKj6UtIzszh48-imi3v7B4cqztWXQJ+r1k39zK0EyYIoZH6Jyq5wm+RcRSCYQi0Vi8SSIOenCuTicqneqLR-E0v3+gOBuwOR0epyyOTBn06Wzx9kuk0htDxAKBghYKEphlwtIAnBxdEA')">sqrt(9);
 </pre><pre class='prettyprintoutput'>
 3.00009155413138</pre></div></div>
     
 
-    <div class='snippet' id='javascript_11_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaAHMqKgATAH1hIioCQIALFkCCYSYmABo1Bz4BETEJemYWKxs7JJSmLi1M0AAeRTQFBRRvYz8zWjoAN2FBOkDhdgyATyynXNdQdlAAalAR0DAAJhbfUwDQCgBbAAdBKm7E5NSMzh5s-nH8rp6+gbLjtQXQe4qVk39zK0EycIoyHsO5ROoxyLnywTCkWisQSL2B5ycTlULwRiP4mi+Pz+AK2u32dyO6UywLebXWmPsZzGYNomN+-0ELBQJMMuApKEaM1AAGZMBxdEA')">sqrt(100 + 37);
+    <div class='snippet' id='javascript_11_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaCiYAfQBzKioAE2DhIioCUIALFlCCYSYmABo1Bz4BETEJemYWKxs7VPSmLi0c0AAeRTQFBRRvYz8zWjoAN2FBOlDhdmyAT1ynAtdQdlAAalBx0DAAJnbfUwDQCgBbAAdBKj6UtIzszh48-imi3v7B4cqztWXQJ+r1k39zK0EyYIoZH6Jyq5wm+RcRSCYQi0Vi8SSIOenCuTicqneqLR-E0v3+gOBuwOR0epyyOTBn06Wzx9kuk0htDxAKBghYKEphlwtJQLXmoAAzJgOLogA')">sqrt(100 + 37);
 </pre><pre class='prettyprintoutput'>
 11.704699917758145</pre></div></div>
-    <div class='snippet' id='javascript_11_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaAHMqKgATAH1hIioCQIALFkCCYSYmABo1Bz4BETEJemYWKxs7JJSmLi1M0AAeRTQFBRRvYz8zWjoAN2FBOkDhdgyATyynXNdQdlAAalAR0DAAJhbfUwDQCgBbAAdBKm7E5NSMzh5s-nH8rp6+gbLjtQXQe4qVk39zK0EycIoyHsO5ROoxyLnywTCkWisQSL2B5ycTlULwRiP4mi+Pz+AK2u32dyO6UywLebXWmPsZzGYNomN+-0ELBQJMMuApFMWXFmFIAzBwOLogA')">sqrt(sqrt(2) + sqrt(3));
+    <div class='snippet' id='javascript_11_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaCiYAfQBzKioAE2DhIioCUIALFlCCYSYmABo1Bz4BETEJemYWKxs7VPSmLi0c0AAeRTQFBRRvYz8zWjoAN2FBOlDhdmyAT1ynAtdQdlAAalBx0DAAJnbfUwDQCgBbAAdBKj6UtIzszh48-imi3v7B4cqztWXQJ+r1k39zK0EyYIoZH6Jyq5wm+RcRSCYQi0Vi8SSIOenCuTicqneqLR-E0v3+gOBuwOR0epyyOTBn06Wzx9kuk0htDxAKBghYKEphlwtNpKy4C1pAGYOBxdEA')">sqrt(sqrt(2) + sqrt(3));
 </pre><pre class='prettyprintoutput'>
 1.7739279023207892</pre></div></div>
-    <div class='snippet' id='javascript_11_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaAHMqKgATAH1hIioCQIALFkCCYSYmABo1Bz4BETEJemYWKxs7JJSmLi1M0AAeRTQFBRRvYz8zWjoAN2FBOkDhdgyATyynXNdQdlAAalAR0DAAJhbfUwDQCgBbAAdBKm7E5NSMzh5s-nH8rp6+gbLjtQXQe4qVk39zK0EycIoyHsO5ROoxyLnywTCkWisQSL2B5ycTlULwRiP4mi+Pz+AK2u32dyO6UywLebXWmPsZzGYNomN+-0ELBQJMMuGKtgGFJQjQUHA4uiAA')">square(sqrt(1000));
+    <div class='snippet' id='javascript_11_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaCiYAfQBzKioAE2DhIioCUIALFlCCYSYmABo1Bz4BETEJemYWKxs7VPSmLi0c0AAeRTQFBRRvYz8zWjoAN2FBOlDhdmyAT1ynAtdQdlAAalBx0DAAJnbfUwDQCgBbAAdBKj6UtIzszh48-imi3v7B4cqztWXQJ+r1k39zK0EyYIoZH6Jyq5wm+RcRSCYQi0Vi8SSIOenCuTicqneqLR-E0v3+gOBuwOR0epyyOTBn06Wzx9kuk0htDxAKBghYKEphlwZVsw1pKBaCg4HF0QA')">square(sqrt(1000));
 </pre><pre class='prettyprintoutput'>
 1000.000369924366</pre></div></div>
     
@@ -2207,7 +2207,7 @@ Acknowledgments
     
     on the other hand, demonstrates how iteration can be accomplished using no
     special construct other than the ordinary ability to call a
-    function.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
+    function.<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
     
   </p></div>
 
@@ -2242,8 +2242,8 @@ Acknowledgments
 	evaluates as expected to 0. Delighted, Alyssa uses
 	<kbd>conditional</kbd> to rewrite the square-root
         program:
-        <div class='snippet' id='javascript_11_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQSaATCymgQwBsAKABwCcBTJiVZl+AGlBkAFvyIB9Eu1YEAzuND92ahUtX8AlKADeASBOgLobJdACyBXrT6CKw0aAD8kmfMXK1oABcGlr8Ov78ANzYAL64hKQstKwARiqcAB6GRtaWdg60GaAAfAC8oAAMnqBFwQC0GdFx+MTk1LQqAI4ErAKZ2bkW+Y41oABUNU3xrUmgAOZUVAxyslQEc1KccwT8KioSWcaDtvz2I6npXT1927sqhnU1hgA8lWgVFShTLYntoKwAN34vFYc34mQkAE8BjZhrRMqAANSgaGgMAAJm+CTaNFAFAAtnwqECtjs9gcYXlTgV-kCQWDSXcDmj5mT7liZn8urwyHJmMDGeSnkdYdSRvQiEwkhwtotlqt1ptbkKsmJjjYNZqbMr9uqtfrLNzefzeJwCUSSTqKWqDba7ZYsvpvka+aJTQBmCTogCsTqAA')">function sqrt_iter(guess, x) {
-    return conditional(good_enough(guess, x),
+        <div class='snippet' id='javascript_11_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQSaATCymgQwBsAKABwCcBTJiVZl+AGlBkAFvyIB9Eu1YEAzuND92ahUtX8AlKADeASBOgLobJdACyBXrT6CKw0aAD8kmfMXK1oABcGlr8Ov78ANzYAL64hKQstKwARiqcAB6GRtaWdg60GaAAfAC8oAAMnqBFwQC0GdFx+MTk1LQqAI4ErAKZ2bkW+Y41oABUNU3xrUmgFCpyAOZUVAxyslQEi1KciwT8KioSWcaDtvz2I6npXT19ewcqhnU1hgA8lWgVFShTLYntUCsABu-F4rEW-EyEgAngMbMNaJlQABqUBw0BgABMfwSbRocwAtnwqKDdvtDsd4XkLgUgaDwZDyY9jpjQA9DvpcTNAV1eGQ5MwwczKa9TgjaSN6EQmEkOJx5ksVmsNlsdhyjq8xGcbLq9TYNdr9cbjXyBULeAribxSVDDVqdSanSaslzYrgzYLRJaAMwSLEAVi5QA')">function sqrt_iter(guess, x) {
+    return conditional(is_good_enough(guess, x),
                        guess,
                        sqrt_iter(improve(guess, x),
                                  x));
@@ -2283,7 +2283,7 @@ Acknowledgments
     
       
       
-        <kbd>good_enough</kbd>
+        <kbd>is_good_enough</kbd>
       
     
     test used in computing square roots will not be very effective for finding
@@ -2295,7 +2295,7 @@ Acknowledgments
     
       
       
-        <kbd>good_enough</kbd>
+        <kbd>is_good_enough</kbd>
       
     
     is to watch how <kbd>guess</kbd> changes from one
@@ -2328,8 +2328,8 @@ Acknowledgments
       <p></p>
       The following program alleviates the problem by replacing an absolute
       tolerance with a relative tolerance.
-      <div class='snippet' id='javascript_11_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGvQBuwwXQDmw9gBpQATy68BQ0eNrtQAalcuMAAmfSN8YnJqWiYAR0Eydnc+ARExCVB4xIB9CjJrFhRnTnDjKLNaCgBbAAdBKisWWwJhJiYSlM90n0trOwcWto61UDAh9o4yyNMYrISyPILBZtb2zp5U-h7M2yoqABMc4SIqAlsAC1Xhzq3PT1UJpjv7-k1sxfzCmvrGwbWRpxOtMSDQmGRQNYGoIcmQLiImBcqAAbA6geQKNAKFD6EzRcx7Q7HU7nK5PDYeNLeTIiZF0ShWY6CaHXdagH4NJrktQcDgvV4AHkhzKoMLhCKRqLKeMqXjpDOETJZbUo1XpwmcIjw1hOJGEXSpGVojFYKpq6u0Xm1IlI+rGVp1tumHxYAGYpkA')">const error_threshold = 0.01;
-function good_enough(guess, x) {
+      <div class='snippet' id='javascript_11_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGvQBuwwXQDmw9gBpQATy68BQ0eNrtQAalcuMAAmfSN8YnJqWiYAR0Eydnc+ARExCVB4xIB9CjJrFhRnTnDjKLNaCgBbAAdBKisWWwJhJiYSlM90n0trOwcWto61UDAh9o4yyNMYrISyPILBZtb2zp5U-h7MiiYc2yoqABMc4SIqAlsAC1Xhzq3PT1UJpken-k1sxfzCmvrGoM1iNOJ1piQaEwyKBrA1BDkyNcRExrlQADbHUDyBRoBQofQmaLmPYHI6nc6XG53dZqLppbyZERouiUKxnQRw6kjf4NJqvTocd4fAA8MI5VHhiORqIxZUJlS8zNZwnZnLalGqLOEzhEeGs5xIwjp2wZtEYrHVNS12i8epEpCNY1t+od02+LAAzFMgA')">const error_threshold = 0.01;
+function is_good_enough(guess, x) {
     return relative_error(guess, improve(guess, x))
            < error_threshold;
 }
@@ -2381,7 +2381,7 @@ function relative_error(estimate, reference) {
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#solution_11_3_div" data-toggle="collapse">Solution</button></div>
       <div class="solution_content collapse" id="solution_11_3_div"><SOLUTION>
     
-      <div class='snippet' id='javascript_11_15_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqBIEGw9l14Cho8ZNAAqNW7X6j+YuWq0AOZUVAAmAPrCRFQEgQAWLIEEwkxMADRqdnwCImIS9MwsltaJyalcWpmgADyKaAoKKN6+pgGgoRQAbgDM7BkAnlkOjnm07KAA1KCDoGDdzSb+5hQAtgAOglSdNkkp6VX2OU75HT3jYKV7nrvlGQBM12VMHAt+ZrTFwuGbVGSXqRlODxsvxcs5QMEwpForEEjd9pwQcNkSoIU8kSiHJpPt8Qn9VhstjsnoCOKTmtgcT8-t17pgXkA')">function good_enough(guess, x) {
+      <div class='snippet' id='javascript_11_15_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqBIEGw9l14Cho8ZNAAqNW7X6j+YuWq0FEwA+gDmVFQAJsHCRFQEoQAWLKEEwkxMADRqdnwCImIS9MwsltYpaRlcWjmgADyKaAoKKN6+pgGgkRQAbgDM7NkAnrkOjoW07KAA1KAjoGB9bSb+5hQAtgAOglQ9NqnpWbX2+U5F3f1TYBWHngdV2QBMd5VMHMt+ZrRlwsE7VGQbhlspweHl+AVnKAgmEItFYvEkkCjpxwWMBKp7kw0ejQJofn8IoCNttdvtXiCOJS2tgCf9AX0nph3kA')">function is_good_enough(guess, x) {
     return abs(cube(guess) - x) < 0.001;
 }
 function div3(x, y) {
@@ -2391,9 +2391,9 @@ function improve(guess, x) {
     return div3(x / (guess * guess), 2 * guess);
 }
 function cube_root(guess, x) {
-    return good_enough(guess, x)
-               ? guess
-               : cube_root(improve(guess, x), x);
+    return is_good_enough(guess, x)
+           ? guess
+           : cube_root(improve(guess, x), x);
 }
 </pre></div></div>
     </SOLUTION></div></div>
@@ -2457,6 +2457,19 @@ function cube_root(guess, x) {
     
     <div class='footnote'>
       <a class='footnote-number' id='footnote-3' href='#footnote-link-3'>[3] </a>
+    <FOOTNOTE>
+    We will usually give
+    
+    
+    
+    
+    predicates names starting with <kbd>is_</kbd>, to help us remember that they
+    are predicates.
+    </FOOTNOTE></div>
+
+    
+    <div class='footnote'>
+      <a class='footnote-number' id='footnote-4' href='#footnote-link-4'>[4] </a>
     <FOOTNOTE>
     Readers who are worried about the efficiency issues involved in using
     

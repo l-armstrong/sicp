@@ -3075,9 +3075,9 @@ function n_fold_smooth(f, n) {
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#solution_24_7_div" data-toggle="collapse">Solution</button></div>
       <div class="solution_content collapse" id="solution_24_7_div"><SOLUTION>
     
-      <div class='snippet' id='javascript_24_23_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0BYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUKwBundqwDmPXgBpQAT0EjxEzlJmg+oANQ3BYAEyqNhKSUtPRUALYADuw0htwmRJwMDFYCwqLiktL0BkamPPGJyUqgYAVJ-P6aQTrZAEYMfHbpYpkucgB8ALygAAygAPzFAFygALQq6lXaIaAmNDQAJgD6nCQ0RCYAFnEJSSlNDq11DcxsXDuFgqNKggA8vWg9PSiVgdO6VBS51IZL4VExfLzZardZbKz-aKGA7iLTBD5fYxfC7lNIOQ5OLKzYErNYbbZlBj8Zro0kDWa7BgkskOEafb48SGAlFEiokjQY5yhRGsL6vOE1RhMdgURpojKYlz0pFUX5M2LWUCddrYxa4sHbaz7KzUml6smK5WgeU8LU3fjcFBsgLMEXcbAATgqQA')">function iterative_improve(good_enough, improve) {
+      <div class='snippet' id='javascript_24_23_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0BYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUKwBundqwDmPXgBpQAT0EjxEzlJmg+oANQ3BYAEyqNhKSUtPRUALYADuw0htwmRJwMDFYCwqLiktL0BkamPPGJyUqgYAVJ-P6aQTrZAEYMfHbpYpkucgB8ALygAAygAPzFAFygALQq6lXaIaBUDAD6JjQ0ACbznCQ0RCYAFnEJSSlNDq11DcxsXPuFgqNKggA8vWg9PSiVgdO6VBS51IbzcJRGI8OaLZZrDZbXZWIHRQzHcRaYLfX7GX7XcppBwnJxZWYLJardabbZ7MoMfjNHE0gagCnU2kOEY-P6gyLw-IHSkVakaXHOUJo1i-D7ImqMJjsCiNbEZPEuVnoqgAuEg7jWUCddoE8HEqFkjVHKyMplm2ma7WzDnq6xHfjcFC8gLMaXcbAATgqQA')">function iterative_improve(is_good_enough, improve) {
     function iterate(guess) {
-        return good_enough(guess)
+        return is_good_enough(guess)
                ? guess
                : iterate(improve(guess));
     }

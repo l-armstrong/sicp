@@ -2064,15 +2064,15 @@ assign("t", list(op("rem"), reg("a"), reg("b")))</pre></div></div>
     
     Design a machine to compute square roots using Newton's method, as
     described in section&nbsp;<REF NAME="sec:sqrt"><a class="superscript" id="5.1.2-sec-link-1.1.7" href="./1.1.7.html">1.1.7</a></REF>, and implemented using the following code from section&nbsp;<REF NAME="sec:block-structure"><a class="superscript" id="5.1.2-sec-link-1.1.8" href="./1.1.8.html">1.1.8</a></REF>:
-    <div class='snippet' id='javascript_99_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAVgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUKwBundqwDmPXgBpQAT0EjxEzlJmg+oANQ3BYbKo2FSSlp6ZnYKPjtRcS0g3RMaGgATAH1OEhoiEwALbhMiTgYGSIcHSWl6AFtWCizk1gAjBm5mNi5c-MLBAFolQQAeUAAGNEHBjFUHDQcYnXoqCoAHdhpDdoKi4SiSx2d6AyNTHjz1qzkwY86J8SnowNnGJjDkqgojNc7N7bEyl3ik1PSmRyFyKWy+JQA-KAQWDweIAFwPJ4vN7zJYrI4dIr8K5iG7fJzlMShCjPV7sbgYHHqfAk7goHFAA')">function sqrt(x) {
-    function good_enough(guess) {
+    <div class='snippet' id='javascript_99_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAVgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUKwBundqwDmPXgBpQAT0EjxEzlJmg+oANQ3BYbKo2FSSlp6ZnYKPjtRcS0g3SoGAH0TGhoAEwTOEhoiEwALbhMiTgYGSIcHSWl6AFtWClyE1gAjBm5mNi4CopLBAFolQQAeUAAGNBGRjFUHDQcYnXoqaoAHdhpDLuLS4Sjyx2d6AyNTHkKtqzkwM57p8VnowIXGJjCEqgojTZ6dvbFKl3iSRS6Uy2TyX1Ku1+5QA-KBrgwodDxAAuZ6vd6fJardanbqlfi3MT3P5OKpiUIUN4fdjcDCE9T4SncFCEoA')">function sqrt(x) {
+    function is_good_enough(guess) {
         return math_abs(square(guess) - x) < 0.001;
     }
     function improve(guess) {
         return average(guess, x / guess);
     }
     function sqrt_iter(guess) {
-        return good_enough(guess)
+        return is_good_enough(guess)
                ? guess
                : sqrt_iter(improve(guess));
     }
@@ -2082,7 +2082,7 @@ assign("t", list(op("rem"), reg("a"), reg("b")))</pre></div></div>
     Begin by assuming that
     
       
-      <kbd>good_enough</kbd>
+      <kbd>is_good_enough</kbd>
     
     and <kbd>improve</kbd> operations are available as
     primitives.  Then show how to expand these in terms of arithmetic

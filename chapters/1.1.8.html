@@ -2104,7 +2104,7 @@ Acknowledgments
     
       
       
-        <kbd>good_enough</kbd> function
+        <kbd>is_good_enough</kbd> function
       
     
     in terms of <kbd>square</kbd>, we are able to
@@ -2131,7 +2131,7 @@ Acknowledgments
     
       
       
-        <kbd>good_enough</kbd> function
+        <kbd>is_good_enough</kbd> function
       
     
     is concerned, <kbd>square</kbd> is not quite a
@@ -2302,7 +2302,7 @@ function double(x) {
       
       
 	in the declaration of	      
-        <kbd>good_enough</kbd>
+        <kbd>is_good_enough</kbd>
       
     
     in our square-root
@@ -2312,7 +2312,7 @@ function double(x) {
         function:
       
     
-    <div class='snippet' id='javascript_12_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToBwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaAHMqKgATAH1hIioCQIALFkCCYSYmABo1Bz4BETEJemYWKxs7JJSmLi1M0AAeRTQFBRRvXGCwyOjYhPQAFhQMgCYOXSA')">function good_enough(guess, x) {
+    <div class='snippet' id='javascript_12_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToBwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaCiYAfQBzKioAE2DhIioCUIALFlCCYSYmABo1Bz4BETEJemYWKxs7VPSmLi0c0AAeRTQFBRRvXCCwiOjY+KSWdAAWFGyAJg5dIA')">function is_good_enough(guess, x) {
     return abs(square(guess) - x) < 0.001;
 }
 </pre></div></div>
@@ -2323,7 +2323,7 @@ function double(x) {
     
       
       
-        <kbd>good_enough</kbd>
+        <kbd>is_good_enough</kbd>
       
     
     is to determine if the square of the first argument is within a given
@@ -2331,7 +2331,7 @@ function double(x) {
     
       
       
-        <kbd>good_enough</kbd>
+        <kbd>is_good_enough</kbd>
       
     
     used the name <kbd>guess</kbd> to refer to the
@@ -2344,7 +2344,7 @@ function double(x) {
     
       
       
-        <kbd>good_enough</kbd>
+        <kbd>is_good_enough</kbd>
       
     
     must be a different <kbd>x</kbd> than the one
@@ -2360,14 +2360,14 @@ function double(x) {
     
       
       
-	<kbd>good_enough</kbd>,
+	<kbd>is_good_enough</kbd>,
       
     
     because that value of <kbd>x</kbd> may be needed by
     
       
       
-        <kbd>good_enough</kbd>
+        <kbd>is_good_enough</kbd>
       
     
     after <kbd>square</kbd> is done computing.
@@ -2385,14 +2385,14 @@ function double(x) {
     
       
       
-	<kbd>good_enough</kbd>,
+	<kbd>is_good_enough</kbd>,
       
       
     and the behavior of
     
       
       
-        <kbd>good_enough</kbd>
+        <kbd>is_good_enough</kbd>
       
     
     would depend upon which version of <kbd>square</kbd>
@@ -2516,7 +2516,7 @@ function double(x) {
     
       
       
-	declaration of <kbd>good_enough</kbd>
+	declaration of <kbd>is_good_enough</kbd>
       
     
     above,
@@ -2539,7 +2539,7 @@ function double(x) {
     
       
       
-	<kbd>good_enough</kbd>
+	<kbd>is_good_enough</kbd>
       
     
     should be independent of the names we choose for
@@ -2573,7 +2573,7 @@ function double(x) {
     
       
       
-        <kbd>good_enough</kbd>	      
+        <kbd>is_good_enough</kbd>	      
       
     
     is not independent of the 
@@ -2600,7 +2600,7 @@ function double(x) {
     
       
       
-	The function <kbd>good_enough</kbd> 
+	The function <kbd>is_good_enough</kbd> 
       
     
     will compute a different function if we substitute
@@ -2658,15 +2658,15 @@ function double(x) {
         functions:
       
       
-      <div class='snippet' id='javascript_12_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToBwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaOgA3YUE6AHNhdgAaUABPBz4BETEJUHZQAGp4rjAAJm9jPzNaK0Eyex4k-hTXC0tygH0KMlCWFFjOQpN-czKyZtbBFnCCYSYmTsSnWrTwqioAE0bhIioCcIALEbGJqeqnJ1VR8aYDw-5NfsG2igBbAAdBKhCd06mp7uKA0HmllbWG22Jz2ammyRcaUYrCsNjsIKYXC0YNAAB5FGgFAoUF9TD97k8XlEEVMqjNIYEQmFIm9QVIwAiOIVsP0WABWJlAA')">function sqrt(x) {
+      <div class='snippet' id='javascript_12_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToBwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaOgA3YUE6AHNhdgAaUABPBz4BETEJUHZQAGp4rjAAJm9jPzNaK0Eyex4k-hTXC0tygH0KMlCWFFjOQpN-czKyZtbBFnCCYSYmTsSnWrSKJkbwqioAE0bhIioCcIALEbGJqeqnJ1VR8aZjk-5NfsG2igBbAAdBKhD9i6mp7uKA0Hmi2Waw2W12n0OammyRcaUYrCsNjs5wmXC0UNAAB5FGgFAoUL9TP8nq93lEUZMMY4YalAiEwpEIZSpGAKRxCth+iwAKzsoA')">function sqrt(x) {
     return sqrt_iter(1, x);
 }
 function sqrt_iter(guess, x) {
-    return good_enough(guess, x)
+    return is_good_enough(guess, x)
            ? guess
            : sqrt_iter(improve(guess, x), x);
 }
-function good_enough(guess, x) {
+function is_good_enough(guess, x) {
     return abs(square(guess) - x) < 0.001;
 }
 function improve(guess, x) {
@@ -2695,7 +2695,7 @@ function improve(guess, x) {
       
       
 	(<kbd>sqrt_iter</kbd>,
-	<kbd>good_enough</kbd>,
+	<kbd>is_good_enough</kbd>,
       
     
     and <kbd>improve</kbd>) only clutter up their minds.
@@ -2710,7 +2710,7 @@ function improve(guess, x) {
     
       
       
-        <kbd>good_enough</kbd>
+        <kbd>is_good_enough</kbd>
       
     
     as part of another program to work together
@@ -2734,7 +2734,7 @@ function improve(guess, x) {
     
       
       
-        <kbd>good_enough</kbd>
+        <kbd>is_good_enough</kbd>
       
     
     and <kbd>improve</kbd> as auxiliary
@@ -2752,7 +2752,7 @@ function improve(guess, x) {
     successive approximations, each having its own private
     
       
-      <kbd>good_enough</kbd> function.
+      <kbd>is_good_enough</kbd> function.
       
     
     To make this possible, we allow a
@@ -2776,15 +2776,15 @@ function improve(guess, x) {
       function.
     
     For example, in the square-root problem we can write
-    <div class='snippet' id='javascript_12_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToBwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaOgA3YUE6AHNhdgAaUABPBz4BETEJUHZQAGp4rjAAJm9jPzNaK0Eyex4k-hN-c3CqKgATAH1hIioCcIALFnCCYSYmWM4qpycU13pmFisbO37Bpi4tNS4AHkU0BQUUfScjJ1qS0AoAWwAHQSoQvoGhkcTx5Jc04NCIqMWHtVAwb+W+wEhwExwCFks5RaFDIoTuS0eY2ezlStAazTaHS6vQBiOqyPGqgB+IJAk0ZTI0NhghY5yuNy+92Ga0eQP4IP4kzSFKpcJQrMMuApLAArBxdEA')">function sqrt(x) {
-    function good_enough(guess, x) {
+    <div class='snippet' id='javascript_12_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToBwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaOgA3YUE6AHNhdgAaUABPBz4BETEJUHZQAGp4rjAAJm9jPzNaK0Eyex4k-hN-cwomAH1wqioAE0bhIioCcIALFnCCYSYmWM4qpycU13pmFisbOyGRpi4tNS4AHkU0BQUUfScjJ1qS0AoAWwAHQSoQweHR8cSp5Jc04NCIqJXntVAYD+ayOAhOAjOAQslnKjQoZFCj1WL0mb2cqVoDWarQ6XR6-SR-wm1TRU1UwJJpIEmjKZDhCMELCut3uvyeY02L1B-HB-BmaVp9MRKC5hlwtJYAFYOLogA')">function sqrt(x) {
+    function is_good_enough(guess, x) {
         return abs(square(guess) - x) < 0.001;
     }
     function improve(guess, x) {
         return average(guess, x / guess);
     }
     function sqrt_iter(guess, x) {
-        return good_enough(guess, x) 
+        return is_good_enough(guess, x) 
                ? guess
                : sqrt_iter(improve(guess, x), x);
     }
@@ -2827,7 +2827,7 @@ function improve(guess, x) {
     
     
       
-      <kbd>good_enough</kbd>,
+      <kbd>is_good_enough</kbd>,
     
     <kbd>improve</kbd>, and
     
@@ -2871,15 +2871,16 @@ function improve(guess, x) {
     
     <EM>lexical scoping</EM>.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
     
-    <div class='snippet' id='javascript_12_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToBwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaOgA3YUE6AHNhdgAaUABPBz4BETEJUHZQAGp4rjAAJm9jPzNaK0Eyex4k-hN-c3CqKgATAH1hIioCcIALFnCCYSYmRKcnFNd6ZhYrGzt+weHtNS4AHkU0BQUUfScjJ1qS0AoAWwAHQSoQvoGhkdH+cbTg0Iio+aHYqTB34Z2BPYEBwCFks5RaFDIoWuCzu90etAazTaHS6vR+HGq93uqh+mKxTk0ZTI4MhghYJ3OlzeN2GHD+-ABDxcaSJJKhKDphlwRJYAFY6UA')">function sqrt(x) {
-    function good_enough(guess) {
+    
+    <div class='snippet' id='javascript_12_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToBwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaOgA3YUE6AHNhdgAaUABPBz4BETEJUHZQAGp4rjAAJm9jPzNaK0Eyex4k-hN-cwomAH1wqioAE0bhIioCcIALFnCCYSYmRKcnFNd6ZhYrGzshkbHtNS4AHkU0BQUUfScjJ1qS0AoAWwAHQSoQweHR8Yn+KbTg0IiopdHYqTAvsf2AkOAmOAQslnKjQoZFCd2WjyeL1oDWarQ6XR6-ThD2qTyeqn+uLxTk0ZTIUJhghY5yuN0+9zGHEB-GBzxcaTJFNhKCZhlwZJYAFYmUA')">function sqrt(x) {
+    function is_good_enough(guess) {
         return abs(square(guess) - x) < 0.001;
     }
     function improve(guess) {
         return average(guess, x / guess);
     }
     function sqrt_iter(guess) {
-        return good_enough(guess)
+        return is_good_enough(guess)
                ? guess
                : sqrt_iter(improve(guess));
     }
