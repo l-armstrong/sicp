@@ -2640,7 +2640,7 @@ $\ll \textbf{function}\ \textit{name} \texttt{(}\textit{parameter}_1\texttt{, }\
 	
       \begin{eqnarray*}
 	\ll \texttt{!}\ \textit{expression} \gg & = &
-	\texttt{list("operator_combination", "!", list(}\ll \textit{expression} \gg \texttt{))}
+	\texttt{list("unary_operator_combination", "!", list(}\ll \textit{expression} \gg \texttt{))}
 	\end{eqnarray*}
 	
 	The unary minus operator is represented by the symbol
@@ -2648,7 +2648,7 @@ $\ll \textbf{function}\ \textit{name} \texttt{(}\textit{parameter}_1\texttt{, }\
 	
       \begin{eqnarray*}
 	\ll \texttt{-}\ \textit{expression} \gg & = &
-\texttt{list("operator_combination", "-unary", list(}\ll \textit{expression} \gg \texttt{))}
+\texttt{list("unary_operator_combination", "-unary", list(}\ll \textit{expression} \gg \texttt{))}
       \end{eqnarray*}
 	
 	Binary operator combinations carry their operator symbol as second element
@@ -2660,7 +2660,7 @@ $\ll \textbf{function}\ \textit{name} \texttt{(}\textit{parameter}_1\texttt{, }\
 	  $\ll \textit{expression}_1\ \ \textit{binary-operator}\ \ \textit{expression}_2 \gg \ \ = $
 	
 	  
-	<kbd class='snippet'>list("operator_combination",
+	<kbd class='snippet'>list("binary_operator_combination",
      "$binary$-$operator$",
      list($\ll \textit{expression}_1 \gg$, $\ll \textit{expression}_2 \gg$))</kbd>
     </blockquote>
@@ -2687,9 +2687,9 @@ $\ll \textbf{function}\ \textit{name} \texttt{(}\textit{parameter}_1\texttt{, }\
 	<kbd>operator_combination_to_application</kbd>
 	to transform an operator combination into a function application whose
 	function expression is the name of the operator.
-	<div class='snippet' id='javascript_78_20_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0aAHAUwCcBDCmrszI0AtgCMqJPrRIAKYSLZ0OJCgEpQAbwCQoPaFz7QXDhSJd6TZhR4BzWxwAmzADZMK80UpIqKAGlAAInZuPgEhUQkpajpAtQBuXABfQlJKGVAQ3n5BBSjpOlZObPDGAE9xGhdPRWVVDU1DfRMzC1A3RgpmEwIa718AjATk1PIY+iyw3MjJApJmAiouTqLQkkc+uvUtJr0W83oOrp7Nn1UA7GGU4jGMyZyI8Vnx5kYOYXXV3nXT3wbd4ymA7tdzdDi9BT9c6gADMV3wN3SdAYLBs9icrncv2hFAAFhxrHZ-kZ9m0rGweEtsdsAGQ00D4ngbSFbDQAXg5oDxBLRiRSoyRlhYUhEHGpxOaQLJqLsDmcR2pAUCIo4cT5CLS41AIh4AGsCTw2Gw3GQ5rJES8OAAPNgmRiMGQBHhcWxEUWqZjW20ce0yRgSvZSw5YwKG41UU3jQIBC0yT02u0OuhOl1u3zx72+uj+9UCrX3cJ5Z5x-jMMMms0ss7bRpGD6dTLFKagNmN0IPIvROMFwTlSrVKt-RIkoNtkpcFucwIAQkCoAAPvOx82Oa3AgBaUjOsqBAFGfQAfm1eoNRor41ke-31+P+uYKtkPbUfivN6MCp7j3yL0Wyy6kx+Qd6jUNRXyMAAuW9T3DSMZEvN8EJ1O8HyfF8ELfD8mw7GYu0KX8VgA5kvFZND0LIz9OzmV53joZxCPFEC+SAA')">function operator_combination_to_application(component) {
+	<div class='snippet' id='javascript_78_20_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0aAHAUwCcBDCmrszI0AtgCMqJPrRIAKYSLZ0OJCgEpQAbwCQoPaFz7QXDhSJd6TZhR4BzWxwAmzADZMK80UpIqKAGlAAIlIeLgBPVk5efkEFCSlqOkCNAB8UwyNMhhYbeydXd09FZVUAwPjQiPZuPgEhUQrEkmTQNNwAX0JSShls5hDwyJqY+vFJaToi718NHSMMvRMzCz7ch2c3Rg8FadKggaqo2tiG8abkgG4OrvImvorB6ui6uLOZKZL1LV19BeNTcyWHJ2dYFLYfHx7crjR5HEavBIyFptTrEW69J7HUaNGRDZ6CRhhcQ0FwQmZaP5LQGgTYUZgmAhkvYYNRXVHdO6Y+GnRF0ZgEKhcLZ4ngkRxMr6aSkAla0+kcRk7T4BbCs65onp0UBcl48iYkZiMDjCMUisUS2bS5b0OUMiUBADMas6N01QOsIPytPtoAoAAsOB7bJajFSVlY2DxBRbQAAyWOgAM8cVKyFfAC8md9AaDbPwGruVikIg4MaloZl7rWXsKqd8ZWLHEu11ddxEPAA1oGeGw2G4yPrZAXcRwAB5sEyMRgyAKhWxEEuqZhjiccKcyRgh-Rhm2FQI9vtUAfnALDvkryfTuizrjzxd0i9rq8kTd51sYuG6sa8g38ZgH-tBzrVQtz0E0tm1T8uFAdNIOGL8cT5HUCSJMQSQtK4K2tPoDhFblvyArxPjUP4slAAB+UB2y7f9e0AppZFIsjMmowNG1kZC1D8JjmP0b1kOxN4+QFIU6Uxc1gPUNQSN4vQAC4qM7bs6KPQceNk1jmHYzjuNksj+KgwSf35QVhXElMiLTLj1L0-QBIRfVDWNOhnHMi1pLZIA')">function operator_combination_to_application(component) {
     const operator = operator_combination_operator_symbol(component);
-    return operator === "!" || operator === "-unary"
+    return is_unary_operator_combination(component)
            ? make_application(
                  make_name(operator),
                  list(operator_combination_first_operand(component)))
