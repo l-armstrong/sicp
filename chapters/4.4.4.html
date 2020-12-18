@@ -3702,9 +3702,8 @@ unparse_query(parse_query('assert(salary(list("Bitdiddle", "Ben"), 122000))'));<
 	  section&nbsp;<REF NAME="sec:representing-expressions"><a class="superscript" id="4.4.4-sec-link-4.1.2" href="./4.1.2.html">4.1.2</a></REF>.
 	  The function <kbd>query_syntax_process</kbd>
 	  recursively transforms that JavaScript syntax representation into
-	  the query-language-specific representation by tagging the
-	  subexpressions of assertions, rules, and queries with their kind of information
-	  or syntactic form and by
+	  the query-language-specific representation by simplifying the
+	  subexpressions of assertions, rules, and queries and by
 	  transforming applications of
 	  <kbd>pair</kbd>
 	  and <kbd>list</kbd> to JavaScript pairs
@@ -3732,6 +3731,7 @@ function query_syntax_process(exp) {
     }
 }
 </pre></div></div>
+	  Names and literals are preserved in this transformation.
 	  For example, the query-language-specific representation of the pattern
 	  <kbd>job($x, $y)</kbd> is 
 	  <kbd>list("job", list("name", "$x"), list("name", "$y"))</kbd>.
