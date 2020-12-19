@@ -2076,29 +2076,21 @@ Acknowledgments
     is a
     
       
-      function that implements this strategy. Note that we
-      slightly extend the syntax of conditional statements described in
-      section&nbsp;<REF NAME="sec:lambda"><a class="superscript" id="1.3.3-sec-link-1.3.2" href="./1.3.2.html">1.3.2</a></REF> by admitting another conditional
-      statement in place of the block following
-      <kbd>else</kbd>.
-      
+      function that implements this strategy:
+    
     
 
-    
-
-    <div class='snippet' id='javascript_24_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGZMChsDMBXAOwGMAXASwHsjQBDANwFMAnOgcyYAoAPAGlABPAJSgA3tlBTQLJmQItavUAGohosACYA3NgC+uQqUo1QAByoBnCpWa9RYmXIW0eoAHygADNtAGj5NS0REzsdLbcPA5O8oqgbgA83r4G+MSBpnQARpb24pLSsrGuHgC83qAA-PGgAFygALTxuqkBJrQkADZWTAD6TERUBOwAFrwCIvnSMS70OcpNk0leaF5eKC2G6e2glkx0LCRjeAIh7L0WFERkAhaWF1RXZA4FUiQ0lmSgALYUACaXa6gcqMVgcbhnB5PW5WKHXYS6aYUPCgLhdHr9QbDMaQwE3cywvHCF7TaZFWa-AGPa6I6R6UBMTp7Kakt4fL5kJifXoMOidAhMYGgPBcSlE2ms5Gou42Ch2Tnc3n8pjElmssnOOJ7A5HLgnUC46n4sVGhGvUn0xnMqVcM7hOXcBVkHl8gWqiTq0nkrX7Q7HAQm6EE+7i83TS1MwUez2FTW0QM0sN080GVLav3KUqeNwAKhqTRQAi8Ak0CKAA')">function search(f, neg_point, pos_point) {
+    <div class='snippet' id='javascript_24_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGZMChsDMBXAOwGMAXASwHsjQBDANwFMAnOgcyYAoAPAGlABPAJSgA3tlBTQLJmQItavUAGohosACYA3NgC+uQqUo1QAByoBnCpWa9RYmXIW0eoAHygADNtAGj5NS0REzsdLbcPA5O8oqgbgA83r4G+MSBpnQARpb24pLSsrGuHgC83qAA-PGgAFygALTxuqkBJrQkADZWTAD6TERUBOwAFrwCIvnSMS70OcpNk0leaF5eKC2G6e2glkx0LCRjeAIh7L0WFERkAhaWF1RXZA4FUiQ0lmSgALYUACaXa6gcqMVgcbhnB5PW5WKHXYS6aYUPCgLhdHr9QbDMaQwE3cywvHCF7TaZFWa-AGPa6I6R6UBMTp7Kakt4fL5kJifXoMOidAhMYGgPBcSlE2ms8lxO42Ch2Tnc3n8pjCV6s1nVPYHI5cE6gXHU-Fiw2q9Vm+pncJy7gKsg8vkC01mjW7faHY4CY3Qgn3Ilq51SepemlqgypLXu5SlTxuABUNSaKAEXgEmgRQA')">function search(f, neg_point, pos_point) {
     const midpoint = average(neg_point, pos_point);
     if (close_enough(neg_point, pos_point)) {
         return midpoint;
     } else {
         const test_value = f(midpoint);
-        if (positive(test_value)) {
-            return search(f, neg_point, midpoint);
-        } else if (negative(test_value)) {
-            return search(f, midpoint, pos_point);
-        } else {
-            return midpoint;
-        }
+        return positive(test_value)
+               ? search(f, neg_point, midpoint)
+               : negative(test_value)
+               ? search(f, midpoint, pos_point)
+               : midpoint;
     }
 }
 </pre></div></div>
@@ -2164,7 +2156,7 @@ Acknowledgments
     
     signals an error.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
 
-    <div class='snippet' id='javascript_24_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGZMChsDMBXAOwGMAXASwHsjQBDANwFMAnOgcyYAoAPAGlABPAJSgA3tlBTQLJmQItavUAGohosACYA3NgC+uQqUo1QAByoBnCpWa9RYmXIW0eoAHygADNtAGj5NS0REzsdLbcPA5O8oqgbgA83r4G+MSBpnQARpb24pLSsrGuHgC83qAA-PGgAFygALTxuqkBJrQkADZWTAD6TERUBOwAFrwCIvnSMS70OcpNk0leaF5eKC2G6e2glkx0LCRjeAIh7L0WFERkAhaWF1RXZA4FUiQ0lmSgALYUACaXa6gcqMVgcbhnB5PW5WKHXYS6aYUPCgLhdHr9QbDMaQwE3cywvHCF7TaZFWa-AGPa6I6R6UBMTp7Kakt4fL5kJifXoMOidAhMYGgPBcSlE2ms5Gou42Ch2Tnc3n8pjElmssnOOJ7A5HLgnUC46n4sVGhGvUn0xnMqVcM7hOXcBVkHl8gWqiTq0nkrX7Q7HAQm6EE+7i83TS1MwUez2FTW0QM0sN080GVrbIKgEZ8vC9J6sJW9b5yEZUP56gR0ARZEnSd5ET70F3KoUiuhm6Z1htZJsCltcasSmZxO0RLh0Hsq0AAMinwdldm7SrdSdJ1W1fvL9CrwhX03qI4d-Ynohnc9H46XKt30jXvt1+qyFZ3Mak9VYLCoLC4ACJL5Z6LIBpUF8VAolQZgypyuwUOwRDfmaqRZp0OZ5iwBZFmQJZlt84QjL01hEAImgCAALAiQA')">function half_interval_method(f, a, b) {
+    <div class='snippet' id='javascript_24_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGZMChsDMBXAOwGMAXASwHsjQBDANwFMAnOgcyYAoAPAGlABPAJSgA3tlBTQLJmQItavUAGohosACYA3NgC+uQqUo1QAByoBnCpWa9RYmXIW0eoAHygADNtAGj5NS0REzsdLbcPA5O8oqgbgA83r4G+MSBpnQARpb24pLSsrGuHgC83qAA-PGgAFygALTxuqkBJrQkADZWTAD6TERUBOwAFrwCIvnSMS70OcpNk0leaF5eKC2G6e2glkx0LCRjeAIh7L0WFERkAhaWF1RXZA4FUiQ0lmSgALYUACaXa6gcqMVgcbhnB5PW5WKHXYS6aYUPCgLhdHr9QbDMaQwE3cywvHCF7TaZFWa-AGPa6I6R6UBMTp7Kakt4fL5kJifXoMOidAhMYGgPBcSlE2ms8lxO42Ch2Tnc3n8pjCV6s1nVPYHI5cE6gXHU-Fiw2q9Vm+pncJy7gKsg8vkC01mjW7faHY4CY3Qgn3Ilq51SepemlqgytbZBUAjPl4XpPVhK3rfOQjKh-XUCOgCLIk6TvIifej25VCkV0BFq-OFrLFgWlrg5iUzOKWiJcOi1lWgABk3Z9srsNaVjv9Lq17oz9GzTudFtCVsHndEvf7bY7w5Vo9JmrdOr1WUzM-NDJYLCoLC4ACIN5Z6LJ9VQvlQUVQzDLObsKOwiJeK6lo50sbxiwibJmQqbpt84QjL01hEAImgCAALAiQA')">function half_interval_method(f, a, b) {
     const a_value = f(a);
     const b_value = f(b);
     return negative(a_value) && positive(b_value)
@@ -2186,12 +2178,12 @@ Acknowledgments
     $\pi$ as the root between 2 and 4 of
     $\sin\, x = 0$:
 
-    <div class='snippet' id='javascript_24_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGZMChsDMBXAOwGMAXASwHsjQBDANwFMAnOgcyYAoAPAGlABPAJSgA3tlBTQLJmQItavUAGohosACYA3NgC+uQqUo1QAByoBnCpWa9RYmXIW0eoAHygADNtAGj5NS0REzsdLbcPA5O8oqgbgA83r4G+MSBpnQARpb24pLSsrGuHgC83qAA-PGgAFygALTxuqkBJrQkADZWTAD6TERUBOwAFrwCIvnSMS70OcpNk0leaF5eKC2G6e2glkx0LCRjeAIh7L0WFERkAhaWF1RXZA4FUiQ0lmSgALYUACaXa6gcqMVgcbhnB5PW5WKHXYS6aYUPCgLhdHr9QbDMaQwE3cywvHCF7TaZFWa-AGPa6I6R6UBMTp7Kakt4fL5kJifXoMOidAhMYGgPBcSlE2ms5Gou42Ch2Tnc3n8pjElmssnOOJ7A5HLgnUC46n4sVGhGvUn0xnMqVcM7hOXcBVkHl8gWqiTq0nkrX7Q7HAQm6EE+7i83TS1MwUez2FTW0QM0sN080GVrbIKgEZ8vC9J6sJW9b5yEZUP56gR0ARZEnSd5ET70F3KoUiuhm6Z1htZJsCltcasSmZxO0RLh0Hsq0AAMinwdldm7SrdSdJ1W1fvL9CrwhX03qI4d-Ynohnc9H46XKt30jXvt1+qyFZ3Mak9VYLCoLC4ACJL5Z6LIBpUF8VAolQZgypyuwUOwRDfmaqRZp0OZ5iwBZFmQJZlt84QjL01hEAImgCAALAiQA')">half_interval_method(math_sin, 2, 4);
+    <div class='snippet' id='javascript_24_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGZMChsDMBXAOwGMAXASwHsjQBDANwFMAnOgcyYAoAPAGlABPAJSgA3tlBTQLJmQItavUAGohosACYA3NgC+uQqUo1QAByoBnCpWa9RYmXIW0eoAHygADNtAGj5NS0REzsdLbcPA5O8oqgbgA83r4G+MSBpnQARpb24pLSsrGuHgC83qAA-PGgAFygALTxuqkBJrQkADZWTAD6TERUBOwAFrwCIvnSMS70OcpNk0leaF5eKC2G6e2glkx0LCRjeAIh7L0WFERkAhaWF1RXZA4FUiQ0lmSgALYUACaXa6gcqMVgcbhnB5PW5WKHXYS6aYUPCgLhdHr9QbDMaQwE3cywvHCF7TaZFWa-AGPa6I6R6UBMTp7Kakt4fL5kJifXoMOidAhMYGgPBcSlE2ms8lxO42Ch2Tnc3n8pjCV6s1nVPYHI5cE6gXHU-Fiw2q9Vm+pncJy7gKsg8vkC01mjW7faHY4CY3Qgn3Ilq51SepemlqgytbZBUAjPl4XpPVhK3rfOQjKh-XUCOgCLIk6TvIifej25VCkV0BFq-OFrLFgWlrg5iUzOKWiJcOi1lWgABk3Z9srsNaVjv9Lq17oz9GzTudFtCVsHndEvf7bY7w5Vo9JmrdOr1WUzM-NDJYLCoLC4ACIN5Z6LJ9VQvlQUVQzDLObsKOwiJeK6lo50sbxiwibJmQqbpt84QjL01hEAImgCAALAiQA')">half_interval_method(math_sin, 2, 4);
 </pre></div></div>
     Here is another example, using the half-interval method to search for a root
     of the equation $x^3 - 2x - 3 = 0$ between 1
     and 2:
-    <div class='snippet' id='javascript_24_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGZMChsDMBXAOwGMAXASwHsjQBDANwFMAnOgcyYAoAPAGlABPAJSgA3tlBTQLJmQItavUAGohosACYA3NgC+uQqUo1QAByoBnCpWa9RYmXIW0eoAHygADNtAGj5NS0REzsdLbcPA5O8oqgbgA83r4G+MSBpnQARpb24pLSsrGuHgC83qAA-PGgAFygALTxuqkBJrQkADZWTAD6TERUBOwAFrwCIvnSMS70OcpNk0leaF5eKC2G6e2glkx0LCRjeAIh7L0WFERkAhaWF1RXZA4FUiQ0lmSgALYUACaXa6gcqMVgcbhnB5PW5WKHXYS6aYUPCgLhdHr9QbDMaQwE3cywvHCF7TaZFWa-AGPa6I6R6UBMTp7Kakt4fL5kJifXoMOidAhMYGgPBcSlE2ms5Gou42Ch2Tnc3n8pjElmssnOOJ7A5HLgnUC46n4sVGhGvUn0xnMqVcM7hOXcBVkHl8gWqiTq0nkrX7Q7HAQm6EE+7i83TS1MwUez2FTW0QM0sN080GVrbIKgEZ8vC9J6sJW9b5yEZUP56gR0ARZEnSd5ET70F3KoUiuhm6Z1htZJsCltcasSmZxO0RLh0Hsq0AAMinwdldm7SrdSdJ1W1fvL9CrwhX03qI4d-Ynohnc9H46XKt30jXvt1+qyFZ3Mak9VYLCoLC4ACJL5Z6LIBpUF8VAolQZgypyuwUOwRDfmaqRZp0OZ5iwBZFmQJZlm4pSeG4ABUNSEW4TSaKAxGNKAGACCgAiaAiQA')">half_interval_method(x => x * x * x - 2 * x - 3, 1, 2);
+    <div class='snippet' id='javascript_24_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGZMChsDMBXAOwGMAXASwHsjQBDANwFMAnOgcyYAoAPAGlABPAJSgA3tlBTQLJmQItavUAGohosACYA3NgC+uQqUo1QAByoBnCpWa9RYmXIW0eoAHygADNtAGj5NS0REzsdLbcPA5O8oqgbgA83r4G+MSBpnQARpb24pLSsrGuHgC83qAA-PGgAFygALTxuqkBJrQkADZWTAD6TERUBOwAFrwCIvnSMS70OcpNk0leaF5eKC2G6e2glkx0LCRjeAIh7L0WFERkAhaWF1RXZA4FUiQ0lmSgALYUACaXa6gcqMVgcbhnB5PW5WKHXYS6aYUPCgLhdHr9QbDMaQwE3cywvHCF7TaZFWa-AGPa6I6R6UBMTp7Kakt4fL5kJifXoMOidAhMYGgPBcSlE2ms8lxO42Ch2Tnc3n8pjCV6s1nVPYHI5cE6gXHU-Fiw2q9Vm+pncJy7gKsg8vkC01mjW7faHY4CY3Qgn3Ilq51SepemlqgytbZBUAjPl4XpPVhK3rfOQjKh-XUCOgCLIk6TvIifej25VCkV0BFq-OFrLFgWlrg5iUzOKWiJcOi1lWgABk3Z9srsNaVjv9Lq17oz9GzTudFtCVsHndEvf7bY7w5Vo9JmrdOr1WUzM-NDJYLCoLC4ACIN5Z6LJ9VQvlQUVQzDLObsKOwiJeK6lo50sbxiwibJmQqbpm4pSeG4ABUNTwW4TSaKAiGNKAGACCgAiaAiQA')">half_interval_method(x => x * x * x - 2 * x - 3, 1, 2);
 </pre></div></div>
     
   </p></div>
