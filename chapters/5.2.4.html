@@ -2026,7 +2026,7 @@ list(list("initialize_stack",
       <kbd>make_stack</kbd>:
     
       
-    <div class='snippet' id='javascript_108_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0BnCpslgBQBKUAG9QuUFNAAbNhVA8+LUAF5QJIjJkBuSdLkLNDAEZsAThwAORLgAs2XNaAAMe6bPmMmADw4ATNisKO2c3fSlDUDIic3M2EgoAoJCw92licmo6UBt7AR8RUQiPRV5+ZysmKnMCgBoy5SF00o0iUwtrWwcndWMzSzye0ABqUABGFtKYuISkwODQ9Rn4xOTF0Ympj2Y-BdT1ZhCOXYEVufWQht3Lu2aSj3iKWPoAIn86NlepgF8SzMotHoVhoVmEYge0ioBFAAioXA4mm0AiU-CERUhrQs5hotVeAFEGMEAJ6NCpUYGg173VpSH6gNgyLhsCG06Z0HigCig5wOJj+FHlFg0tnSVEqdS8KgyQVNba085rfZLaKxVbzFKhAC0W0xpSeLy5oPldJKfw8AOy9ApVGoTBkVAAXmxwcU2eLnEjdHr+p0ho40nqbsrA2zFRqNupwmyDeY3h8SF9fv9SICclZzBSkkpqDwqGQuK69f54VYZExiYLMyQAObQyt60WyeEUASvAA6JFeDVe3N4Mi1-t6oG7bQ6g26jjqjabHg7XZ7uyoDHaWpD6lHwc16JFpotqatoBLXCqFDIdgEDEcXCYNbYGJj8kNV64N7valUG6GrxnpQA-Lk3S-h4ABcjDXreLKfl+VLAdIAEgmCQhwVIYEvm+UGfiONp2g6zo-rOHgAThVD2k6LrIYR0hoRB77QSOGZZtwvC5tQBYEVRoAIdW2YsS2+aFpRnFgdiuKXrRbA9gAqiQLAkDQADu9DxAAjkQjgKBSZIsCB1LJo8T5xkepZMGedh6D8QA')">function make_stack() { 
+    <div class='snippet' id='javascript_108_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0BnCpslgBQBKUAG9QuUFNAAbNhVA8+LUAF5QJIjJkBuSdLkLNDAEZsAThwAORLgAs2XNaAAMe6bPmMmADw4ATNisKO2c3fSlDUDIic3M2EgoAoJCw92licmo6UBt7AR8RUQiPRV5+ZysmKnMCgBoy5SF00o0iUwtrWwcndWMzSzye0ABqUABGFtKYuISkwODQ9Rn4xOTF0Ympj2Y-BdT1ZhCOXYEVufWQht3Lu2aSj3iKWPoAIn86NlepgF8SzMotHoVhoVmEYge0ioBFAAioXA4mm0AiU-CERUhrQs5hotVebAYwQAno0KgBaMm5UGve6tKQ-UBsGRcNgQunTOg8UAUUHOBxMfwo8osWns6SolTqXhUGRCprbOnnNb7JbRWKreYpUKUyaY0pPF7c0EK+klP4eAHZehUEhUahMGRUABebHBxXZEucSN0ev6nSGjjSepuKqD7KVmo26nC7IN5jeHxIX1+-1IgJyVnMNqSSmoPCoZC4br1-nhVhkTCJQqzJAA5tCq3qxbJ4RQBK8ADokV4NV483gyMkB3qgHttDqDbqOOpN5seTvd3u7KgMdpk0PqMchrXo0Wmi1pq2gUtcKoUMh2AQMRxcJi1tgY2PyQ3Xri3+9qVSboavWelAD8uTdH+HgAFyMDed6sl+37UiB0iASCYJCPBUjga+77QV+o42naVAOs6XyoaAgG4fajousIxHoZBH4waOmbZtwvB5tQha-nOHiITWOYsa2BZFihnHSOB2K4letFsL2pAsCQNAAO70PEACORCOAoFKkiwNIpo8z7xseZZMOedh6D8QA')">function make_stack() { 
     let stack = null;
     let number_pushes = 0;
     let max_depth = 0;
@@ -2040,7 +2040,7 @@ list(list("initialize_stack",
     }
     function pop() {
         if (is_null(stack)) {
-            error("Empty stack in pop");
+            error("empty stack -- pop");
         } else {
             const top = head(stack);
             stack = tail(stack);
@@ -2069,7 +2069,7 @@ list(list("initialize_stack",
                ? initialize()
                : message === "print_statistics"
                ? print_statistics()
-               : error(message, "Unknown request in stack:");
+               : error(message, "unknown request -- stack");
     }
     return dispatch;
 }

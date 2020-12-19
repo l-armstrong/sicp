@@ -2235,13 +2235,13 @@ Acknowledgments
 (define (car z) (z 0))
 
 (define (cdr z) (z 1))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_30_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEY0GYBQuAzAVwDsBjAFwEsB7E0ABwEMqAnACgA8AaUATwCUoAN65Q40MXLU6oACZUAzswpkAFuwC2Q0RL2hWAUwpFW9TaAC810AAZQY-U4kB+UJ0fOnALlAXrlqAYDl7ObnyeoRK+hqysNByavABEAIKsAOZEmoYkFKAkNPn2CUGgALTljCysyQIA3JEAvpFGJmbySirq9QCQTrgtUpS09GqGTHLsAF46rcam9NPstg2DhKQjshQsADYzc3pti6DLGGstuGR0ivmcVtVs7Bi8KGvjk1wNQA')">function pair(x, y) {
+            <td><div class='snippet' id='javascript_30_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEY0GYBQuAzAVwDsBjAFwEsB7E0ABwEMqAnACgA8AaUATwCUoAN65Q40MXLU6oACZUAzswpkAFuwC2Q0RL2hWAUwpFW9TaAC810AAZQY-U4kB+UJ0fOnALlAXrlqAYDl7ObnyeoRK+hqysNByavABETKwA5kSahiQUoCQ0efYJQaAAtGWMLKzJAgDckQC+kUYmZvJKKup1AJBOuM1SlLT0aoZMcuwAXjotxqb0U+y29QOEpMOyFCwANtOzeq0LoEsYq824ZHSKeZxWVWzsGLwoq2MTXPVAA')">function pair(x, y) {
     function dispatch(m) {
         return m === 0 
                ? x
                : m === 1 
                ? y
-               : error(m, "Argument not 0 or 1 -- pair");
+               : error(m, "argument not 0 or 1 -- pair");
     }
     return dispatch;	      
 }
