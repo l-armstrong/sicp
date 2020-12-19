@@ -2442,7 +2442,7 @@ function double(x) {
             <td><div class='snippet' id='javascript_13_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (good-enough? guess x)
    (< (abs (- (square guess) x)) 0.001))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_13_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToBwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaCiYAfQBzKioAE2DhIioCUIALFlCCYSYmABo1Bz4BETEJemYWKxs7VPSmLi0c0AAeRTQFBRRvXCCwiOjY+KSWdAAWFGyAJg5dIA')">function is_good_enough(guess, x) {
+            <td><div class='snippet' id='javascript_13_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToBwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNQG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFR7Dx4uWq0KJgB9AHMqKgATIOEiKgIQgAsWEIJhJiYAGjUHPgERMQl6ZhYrGzsUtKYuHU5QAB5FNAUFFH0jbEDQ8KiYuMSWdAAWFCyAJg5dIA')">function is_good_enough(guess, x) {
     return abs(square(guess) - x) < 0.001;
 }
 </pre></div></div></td></tr></table>
@@ -2889,7 +2889,7 @@ function double(x) {
 
 (define (improve guess x)
    (average guess (/ x guess)))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_13_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToBwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaOgA3YUE6AHNhdgAaUABPBz4BETEJUHZQAGp4rjAAJm9jPzNaK0Eyex4k-hTXC0tygH0KMlCWFFjOQpN-czKyZtbBFnCCYSYmTsSnWrSKJkbwqioAE0bhIioCcIALEbGJqeqnJ1VR8aZjk-5NfsG2igBbAAdBKhD9i6mp7uKA0Hmi2Waw2W12n0OammyRcaUYrCsNjs5wmXC0UNAAB5FGgFAoUL9TP8nq93lEUZMMY4YalAiEwpEIZSpGAKRxCth+iwAKzsoA')">function sqrt(x) {
+            <td><div class='snippet' id='javascript_13_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToBwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNQG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFR7Dx4uWq06ADdhQToAc2F2ABpQAE8HPgERMQlQdlAAajiuMAAmfSN8XzNaK0Eyex5E-mTXC0tygH0KMhCWFBjOAqLTf3qmlrawgmEmJk6Ep1rUiiZGsKoqABNG4SIqAjCACxZh0fG1DmqnJ1U9seOT-k0ysmbWwRYKAFsAB0EqYN2RsYmJ7pMfnMs3mixWaw222++wmVSmLlSjFYVhsdnOTC4Ok4oAAPIo0AoFCgAcU+i93p9IujYY4kgiAsFQhFob81KAwOiON1sLcWABWLlAA')">function sqrt(x) {
     return sqrt_iter(1, x);
 }
 function sqrt_iter(guess, x) {
@@ -3042,7 +3042,7 @@ function improve(guess, x) {
           guess
           (sqrt-iter (improve guess x) x)))
    (sqrt-iter 1.0 x))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_13_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToBwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaOgA3YUE6AHNhdgAaUABPBz4BETEJUHZQAGp4rjAAJm9jPzNaK0Eyex4k-hN-cwomAH1wqioAE0bhIioCcIALFnCCYSYmWM4qpycU13pmFisbOyGRpi4tNS4AHkU0BQUUfScjJ1qS0AoAWwAHQSoQweHR8cSp5Jc04NCIqJXntVAYD+ayOAhOAjOAQslnKjQoZFCj1WL0mb2cqVoDWarQ6XR6-SR-wm1TRU1UwJJpIEmjKZDhCMELCut3uvyeY02L1B-HB-BmaVp9MRKC5hlwtJYAFYOLogA')">function sqrt(x) {
+            <td><div class='snippet' id='javascript_13_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToBwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNQG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFR7Dx4uWq06ADdhQToAc2F2ABpQAE8HPgERMQlQdlAAajiuMAAmfSN8XzNaK0Eyex5E-hM-cwomAH0wqioAE0bhIioCMIALFjCCYSYmGM4qpydk13pmFisbOyGRpi4dCYAeRTQFBRR9JyMnWpLQCgBbAAdBKmDB4dHxhKmkl1SgkPDIlae1UDAvzWhwExwEp38Fks5UaFDIIQeq2ek1ezhStAazVaHS6PX6iL+E2qqKmqiBxJJAk0ZTIsPhghYlxudx+jzGag4zxB-DB-BmqRpdIRKC53mwNJYAFYOLogA')">function sqrt(x) {
     function is_good_enough(guess, x) {
         return abs(square(guess) - x) < 0.001;
     }
@@ -3161,7 +3161,7 @@ function improve(guess, x) {
           guess
           (sqrt-iter (improve guess))))
    (sqrt-iter 1.0))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_13_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToBwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaOgA3YUE6AHNhdgAaUABPBz4BETEJUHZQAGp4rjAAJm9jPzNaK0Eyex4k-hN-cwomAH1wqioAE0bhIioCcIALFnCCYSYmRKcnFNd6ZhYrGzshkbHtNS4AHkU0BQUUfScjJ1qS0AoAWwAHQSoQweHR8Yn+KbTg0IiopdHYqTAvsf2AkOAmOAQslnKjQoZFCd2WjyeL1oDWarQ6XR6-ThD2qTyeqn+uLxTk0ZTIUJhghY5yuN0+9zGHEB-GBzxcaTJFNhKCZhlwZJYAFYmUA')">function sqrt(x) {
+            <td><div class='snippet' id='javascript_13_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToBwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNQG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFR7Dx4uWq06ADdhQToAc2F2ABpQAE8HPgERMQlQdlAAajiuMAAmfSN8XzNaK0Eyex5E-hM-cwomAH0wqioAE0bhIioCMIALFjCCYSYmBKcnZNd6ZhYrGzshkbHtNS4AHkU0BQUUfScjJ1qS0AoAWwAHQSpgweHR8Yn+KdSgkPDIpdGYqTAvsf2AkOAmO-gslnKjQoZBCd2WjyeL1oDWarQ6XR6-ThD2qTyeqn+uLxTk0ZTIUJhghY5yuN0+9zGHEB-GBzxcqTJFNhKCZ3mwZJYAFYmUA')">function sqrt(x) {
     function is_good_enough(guess) {
         return abs(square(guess) - x) < 0.001;
     }

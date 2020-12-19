@@ -2127,7 +2127,7 @@ Acknowledgments
   (if (good-enough? guess x)
        guess
       (sqrt-iter (improve guess x) x)))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_12_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaCiYAfQBzKioAE2DhIioCUIALFlCCYSYmABo1Bz4BETEJemYWKxs7VPSmLi0c0AAeRTQFBRRvYz8zWjoAN2FBOlDhdmyAT1ynAtdQdlAAalBx0DAAJnbfUwDQCgBbAAdBKj6UtIzszh48-imi3v7B4cqztWXQJ+r1k39zK0EyYIoZH6Jyq5wm+RcRSCYQi0Vi8SSIOenCuTicqneqLR-E0v3+gOBuwOR0epyyOTB6zxAKBghYAGZsisAKwcXRAA')">function sqrt_iter(guess, x) {
+            <td><div class='snippet' id='javascript_12_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNQG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFR7Dx4uWq0KJgB9AHMqKgATIOEiKgIQgAsWEIJhJiYAGjUHPgERMQl6ZhYrGzsUtKYuHU5QAB5FNAUFFH0jfF8zWjoAN2FBOhDhdiyATxynfNdQdlAAalBx0DAAJjafU39QCgBbAAdBKj7k1PSs2sc8l0Le-sHhirO1ZdBHqvWOzfMrQTIgijI-ROlXOEyuBQCwTCkWisXiSTeoNyThRqjeyJRAk0Pz+AKBuwORwep0y2VBHxx-0BghYAGYsisAKwcXRAA')">function sqrt_iter(guess, x) {
     return is_good_enough(guess, x)
            ? guess
            : sqrt_iter(improve(guess, x), x);
@@ -2191,7 +2191,7 @@ Acknowledgments
             <td><div class='snippet' id='javascript_12_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (good-enough? guess x)
    (< (abs (- (square guess) x)) 0.001))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_12_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaCiYAfQBzKioAE2DhIioCUIALFlCCYSYmABo1Bz4BETEJemYWKxs7VPSmLi0c0AAeRTQFBRRvXCCwiOjY+KSWdAAWFGyAJg5dIA')">function is_good_enough(guess, x) {
+            <td><div class='snippet' id='javascript_12_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNQG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFR7Dx4uWq0KJgB9AHMqKgATIOEiKgIQgAsWEIJhJiYAGjUHPgERMQl6ZhYrGzsUtKYuHU5QAB5FNAUFFH0jbEDQ8KiYuMSWdAAWFCyAJg5dIA')">function is_good_enough(guess, x) {
     return abs(square(guess) - x) < 0.001;
 }
 </pre></div></div></td></tr></table>
@@ -2211,7 +2211,7 @@ Acknowledgments
             <td><div class='snippet' id='javascript_12_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (sqrt x)
    (sqrt-iter 1.0 x))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_12_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaCiYAfQBzKioAE2DhIioCUIALFlCCYSYmABo1Bz4BETEJemYWKxs7VPSmLi0c0AAeRTQFBRRvYz8zWjoAN2FBOlDhdmyAT1ynAtdQdlAAalBx0DAAJnbfUwDQCgBbAAdBKj6UtIzszh48-imi3v7B4cqztWXQJ+r1k39zK0EyYIoZH6Jyq5wm+RcRSCYQi0Vi8SSIOenCuTicqneqLR-E0v3+gOBuwOR0epyyOTBn06Wzx9kuk0htDxAKBghYKEphlwtIArBxdEA')">function sqrt(x) {
+            <td><div class='snippet' id='javascript_12_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNQG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFR7Dx4uWq0KJgB9AHMqKgATIOEiKgIQgAsWEIJhJiYAGjUHPgERMQl6ZhYrGzsUtKYuHU5QAB5FNAUFFH0jfF8zWjoAN2FBOhDhdiyATxynfNdQdlAAalBx0DAAJjafU39QCgBbAAdBKj7k1PSs2sc8l0Le-sHhirO1ZdBHqvWOzfMrQTIgijI-ROlXOEyuBQCwTCkWisXiSTeoNyThRqjeyJRAk0Pz+AKBuwORwep0y2VBHxMfm+ll+9h4GKmhRx-0BghYKHJ3mwOJYAFYOLogA')">function sqrt(x) {
     return sqrt_iter(1, x);
 }
 </pre></div></div></td></tr></table>
@@ -2245,7 +2245,7 @@ Acknowledgments
             <td><div class='snippet' id='javascript_12_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (sqrt 9)</pre><pre class='prettyprintoutput'>
 3.00009155413138</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_12_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaCiYAfQBzKioAE2DhIioCUIALFlCCYSYmABo1Bz4BETEJemYWKxs7VPSmLi0c0AAeRTQFBRRvYz8zWjoAN2FBOlDhdmyAT1ynAtdQdlAAalBx0DAAJnbfUwDQCgBbAAdBKj6UtIzszh48-imi3v7B4cqztWXQJ+r1k39zK0EyYIoZH6Jyq5wm+RcRSCYQi0Vi8SSIOenCuTicqneqLR-E0v3+gOBuwOR0epyyOTBn06Wzx9kuk0htDxAKBghYKEphlwtIAnBxdEA')">sqrt(9);
+            <td><div class='snippet' id='javascript_12_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNQG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFR7Dx4uWq0KJgB9AHMqKgATIOEiKgIQgAsWEIJhJiYAGjUHPgERMQl6ZhYrGzsUtKYuHU5QAB5FNAUFFH0jfF8zWjoAN2FBOhDhdiyATxynfNdQdlAAalBx0DAAJjafU39QCgBbAAdBKj7k1PSs2sc8l0Le-sHhirO1ZdBHqvWOzfMrQTIgijI-ROlXOEyuBQCwTCkWisXiSTeoNyThRqjeyJRAk0Pz+AKBuwORwep0y2VBHxMfm+ll+9h4GKmhRx-0BghYKHJ3mwOJYAE4OLogA')">sqrt(9);
 </pre><pre class='prettyprintoutput'>
 3.00009155413138</pre></div></div></td></tr></table>
     
@@ -2257,7 +2257,7 @@ Acknowledgments
             <td><div class='snippet' id='javascript_12_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (sqrt (+ 100 37))</pre><pre class='prettyprintoutput'>
 11.704699917758145</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_12_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaCiYAfQBzKioAE2DhIioCUIALFlCCYSYmABo1Bz4BETEJemYWKxs7VPSmLi0c0AAeRTQFBRRvYz8zWjoAN2FBOlDhdmyAT1ynAtdQdlAAalBx0DAAJnbfUwDQCgBbAAdBKj6UtIzszh48-imi3v7B4cqztWXQJ+r1k39zK0EyYIoZH6Jyq5wm+RcRSCYQi0Vi8SSIOenCuTicqneqLR-E0v3+gOBuwOR0epyyOTBn06Wzx9kuk0htDxAKBghYKEphlwtJQLXmoAAzJgOLogA')">sqrt(100 + 37);
+            <td><div class='snippet' id='javascript_12_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNQG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFR7Dx4uWq0KJgB9AHMqKgATIOEiKgIQgAsWEIJhJiYAGjUHPgERMQl6ZhYrGzsUtKYuHU5QAB5FNAUFFH0jfF8zWjoAN2FBOhDhdiyATxynfNdQdlAAalBx0DAAJjafU39QCgBbAAdBKj7k1PSs2sc8l0Le-sHhirO1ZdBHqvWOzfMrQTIgijI-ROlXOEyuBQCwTCkWisXiSTeoNyThRqjeyJRAk0Pz+AKBuwORwep0y2VBHxMfm+ll+9h4GKmhRx-0BghYKHJ3mwOPZzXmoAAzJgOLogA')">sqrt(100 + 37);
 </pre><pre class='prettyprintoutput'>
 11.704699917758145</pre></div></div></td></tr></table>
     <table width="100%">
@@ -2267,7 +2267,7 @@ Acknowledgments
             <td><div class='snippet' id='javascript_12_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (sqrt (+ (sqrt 2) (sqrt 3)))</pre><pre class='prettyprintoutput'>
 1.7739279023207892</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_12_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaCiYAfQBzKioAE2DhIioCUIALFlCCYSYmABo1Bz4BETEJemYWKxs7VPSmLi0c0AAeRTQFBRRvYz8zWjoAN2FBOlDhdmyAT1ynAtdQdlAAalBx0DAAJnbfUwDQCgBbAAdBKj6UtIzszh48-imi3v7B4cqztWXQJ+r1k39zK0EyYIoZH6Jyq5wm+RcRSCYQi0Vi8SSIOenCuTicqneqLR-E0v3+gOBuwOR0epyyOTBn06Wzx9kuk0htDxAKBghYKEphlwtNpKy4C1pAGYOBxdEA')">sqrt(sqrt(2) + sqrt(3));
+            <td><div class='snippet' id='javascript_12_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNQG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFR7Dx4uWq0KJgB9AHMqKgATIOEiKgIQgAsWEIJhJiYAGjUHPgERMQl6ZhYrGzsUtKYuHU5QAB5FNAUFFH0jfF8zWjoAN2FBOhDhdiyATxynfNdQdlAAalBx0DAAJjafU39QCgBbAAdBKj7k1PSs2sc8l0Le-sHhirO1ZdBHqvWOzfMrQTIgijI-ROlXOEyuBQCwTCkWisXiSTeoNyThRqjeyJRAk0Pz+AKBuwORwep0y2VBHxMfm+ll+9h4GKmhRx-0BghYKHJ3mwOJKNLILBWXAWPIAzBwOLogA')">sqrt(sqrt(2) + sqrt(3));
 </pre><pre class='prettyprintoutput'>
 1.7739279023207892</pre></div></div></td></tr></table>
     <table width="100%">
@@ -2277,7 +2277,7 @@ Acknowledgments
             <td><div class='snippet' id='javascript_12_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (square (sqrt 1000))</pre><pre class='prettyprintoutput'>
 1000.000369924366</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_12_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaCiYAfQBzKioAE2DhIioCUIALFlCCYSYmABo1Bz4BETEJemYWKxs7VPSmLi0c0AAeRTQFBRRvYz8zWjoAN2FBOlDhdmyAT1ynAtdQdlAAalBx0DAAJnbfUwDQCgBbAAdBKj6UtIzszh48-imi3v7B4cqztWXQJ+r1k39zK0EyYIoZH6Jyq5wm+RcRSCYQi0Vi8SSIOenCuTicqneqLR-E0v3+gOBuwOR0epyyOTBn06Wzx9kuk0htDxAKBghYKEphlwZVsw1pKBaCg4HF0QA')">square(sqrt(1000));
+            <td><div class='snippet' id='javascript_12_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNQG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFR7Dx4uWq0KJgB9AHMqKgATIOEiKgIQgAsWEIJhJiYAGjUHPgERMQl6ZhYrGzsUtKYuHU5QAB5FNAUFFH0jfF8zWjoAN2FBOhDhdiyATxynfNdQdlAAalBx0DAAJjafU39QCgBbAAdBKj7k1PSs2sc8l0Le-sHhirO1ZdBHqvWOzfMrQTIgijI-ROlXOEyuBQCwTCkWisXiSTeoNyThRqjeyJRAk0Pz+AKBuwORwep0y2VBHxMfm+ll+9h4GKmhRx-0BghYKHJ3mwpVswxx7OaCg4HF0QA')">square(sqrt(1000));
 </pre><pre class='prettyprintoutput'>
 1000.000369924366</pre></div></div></td></tr></table>
     
@@ -2392,7 +2392,7 @@ Acknowledgments
 	evaluates as expected to 0. Delighted, Alyssa uses
 	<kbd>conditional</kbd> to rewrite the square-root
         program:
-        <div class='snippet' id='javascript_12_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQSaATCymgQwBsAKABwCcBTJiVZl+AGlBkAFvyIB9Eu1YEAzuND92ahUtX8AlKADeASBOgLobJdACyBXrT6CKw0aAD8kmfMXK1oABcGlr8Ov78ANzYAL64hKQstKwARiqcAB6GRtaWdg60GaAAfAC8oAAMnqBFwQC0GdFx+MTk1LQqAI4ErAKZ2bkW+Y41oABUNU3xrUmgFCpyAOZUVAxyslQEi1KciwT8KioSWcaDtvz2I6npXT19ewcqhnU1hgA8lWgVFShTLYntUCsABu-F4rEW-EyEgAngMbMNaJlQABqUBw0BgABMfwSbRocwAtnwqKDdvtDsd4XkLgUgaDwZDyY9jpjQA9DvpcTNAV1eGQ5MwwczKa9TgjaSN6EQmEkOJx5ksVmsNlsdhyjq8xGcbLq9TYNdr9cbjXyBULeAribxSVDDVqdSanSaslzYrgzYLRJaAMwSLEAVi5QA')">function sqrt_iter(guess, x) {
+        <div class='snippet' id='javascript_12_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQSaATCymgQwBsAKABwCcBTJiVZl+AGlBkAFvyIB9Eu1YEAzuND92ahUtX8AlKADeASBOgLobJdACyBXrT6CKw0aAD8kmfMXK1oABcGlr8Ov78ANzYAL64hKQstKwARiqcAB6GRtaWdg60GaAAfAC8oAAMnqBFwQC0NdFx+MTk1LQqAI4ErAKZ2bkW+Y41oABUjbHxrUmgFCpyAOZUVAxyslQEi1KciwT8KioSWcaDtvz2I6npXT19ewcqhg0nADyVaBUVKE3Tie2gVgAN34vFYi34mQkAE8BjZhrRMqAANSgWGgMAAJl+LX+NDmAFs+FQQbt9odjnC8hcCoCQWCIWTHscMaAHod9DiEm18V1eGQ5MxQUyKTUqUMaSN6EQmEkOJx5ksVmsNlsduyjmKxGcbLq9TYNdr9cbjXyBULeAqibwSZDDVqdSanSaspyptgzYLRJaAMwSTEAVk5QA')">function sqrt_iter(guess, x) {
     return conditional(is_good_enough(guess, x),
                        guess,
                        sqrt_iter(improve(guess, x),
@@ -2483,7 +2483,7 @@ Acknowledgments
       <p></p>
       The following program alleviates the problem by replacing an absolute
       tolerance with a relative tolerance.
-      <div class='snippet' id='javascript_12_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGvQBuwwXQDmw9gBpQATy68BQ0eNrtQAalcuMAAmfSN8YnJqWiYAR0Eydnc+ARExCVB4xIB9CjJrFhRnTnDjKLNaCgBbAAdBKisWWwJhJiYSlM90n0trOwcWto61UDAh9o4yyNMYrISyPILBZtb2zp5U-h7MiiYc2yoqABMc4SIqAlsAC1Xhzq3PT1UJpken-k1sxfzCmvrGoM1iNOJ1piQaEwyKBrA1BDkyNcRExrlQADbHUDyBRoBQofQmaLmPYHI6nc6XG53dZqLppbyZERouiUKxnQRw6kjf4NJqvTocd4fAA8MI5VHhiORqIxZUJlS8zNZwnZnLalGqLOEzhEeGs5xIwjp2wZtEYrHVNS12i8epEpCNY1t+od02+LAAzFMgA')">const error_threshold = 0.01;
+      <div class='snippet' id='javascript_12_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNQG5sAX1yFSlGvQBuwwXQDmw9gBpQATy68BQ0eNrtQAalcuMAAmfSN8YnJqWiYAR0Eydnc+ARExCVB4xIB9CjJrFhRnTnDjKLNaCgBbAAdBKisWWwJhJiYSlM90n0trOwcWto61UDAh9o4yyNMYrISyPILBZtb2zp5U-h7MiiYc2yoqABMc4SIqAlsAC1Xhzq3PT1UJpken-k1sxfzCmvrGoM1iNOJ1piQaEwyKBrA1BDkyNcRExrlQADbHUDyBRoBQofQmaLmPYHI6nc6XG53dZqLppbyZERouiUKxnQRw6kjf4NJqvTocd4fAA8MI5VHhiORqIxZUJlS8zNZwnZnLalGqLOEzhEeGs5xIwjp2wZtEYrHVNS12i8epEpCNY1t+od02+LAAzFMgA')">const error_threshold = 0.01;
 function is_good_enough(guess, x) {
     return relative_error(guess, improve(guess, x))
            < error_threshold;
@@ -2544,7 +2544,7 @@ function relative_error(estimate, reference) {
           <tr>
             <td><div class='snippet' id='javascript_12_19_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_12_19_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqBIEGw9l14Cho8ZNAAqNW7X6j+YuWq0FEwA+gDmVFQAJsHCRFQEoQAWLKEEwkxMADRqdnwCImIS9MwsltYpaRlcWjmgADyKaAoKKN6+pgGgkRQAbgDM7NkAnrkOjoW07KAA1KAjoGB9bSb+5hQAtgAOglQ9NqnpWbX2+U5F3f1TYBWHngdV2QBMd5VMHMt+ZrRlwsE7VGQbhlspweHl+AVnKAgmEItFYvEkkCjpxwWMBKp7kw0ejQJofn8IoCNttdvtXiCOJS2tgCf9AX0nph3kA')">function is_good_enough(guess, x) {
+            <td><div class='snippet' id='javascript_12_19_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNQG5sAX1yFSlGqBIEGw9l14Cho8ZNAAqNW72HjxctVoUTAD6AOZUVAAmQcJEVAQhABYsIQTCTEwANGp2fAIiYhL0zCyW1smp6Vw6nKAAPIpoCgoo+kYmfuYRFABuAMzsWQCeOQ6OBbTsoADUoMOgYL2t+L5mAQC2AA6CVN02KWmZ2Ty5-PnOoF19k2DlB577lVkATPcVTBxL7asWVsJB21QyLd0lkavY8k5CoFQuEojE4olgYdOCdRgJVA8mKi0aBNKU-gCgRRNttdkjQRwKUtsPj-uEgb1npgPkA')">function is_good_enough(guess, x) {
     return abs(cube(guess) - x) < 0.001;
 }
 function div3(x, y) {
