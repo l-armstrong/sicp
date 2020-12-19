@@ -2748,7 +2748,7 @@ display(s("how many calls"));
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#solution_52_3_div" data-toggle="collapse">Solution</button></div>
       <div class="solution_content collapse" id="solution_52_3_div"><SOLUTION>
     
-      <div class='snippet' id='javascript_52_33_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQZJKuLIAoARgwA2DUiwA0oAA4BKUAG9soFaEKlKNUAHcKZABYATAE4NtfBnR5Ey8paoegKeUIJFiSLUAD4AvKEtrW0VlRzChUXFQfwiPLwBaAKteAG5QsIdjFjICY1pY8TSM0ABfUBZhAGcve2LVLJy80AAiSCJKgjw8ChIKFhs1YkNK5qKMkvTSyfVyalpDFmkqSr0LZJs7SYcCz2jQHa8AaiSgsbCG3Pz3QsmJhxnNeYpK6QYyEn0+OikAR03i5yuaTRXz+P4hOqqQFfEH+Zq6AwmMzNf6QxwXJoIoymbRnOplCrVJwuGGguELJYrMgoiFozLZS6gCnLPR44oEqo1LZojG0ZoAVSITCIVG0tCyPwILEqZAAXPRmOxONxeKNuWE7qoAJAcom1SG80A-aLeFptbjGLLkUCwBiVSraKjGQxq9m3SaGwzPV7vfRpCbYbjtMgBPaMVgcLhBPgYAAMsakzRYADcGCi0gw+PC9NjkYmU2nZHwAKyx2QpUAgLFI7SVUCl7CZ7OInHNRMCfoovgAFjLFZAFFITqtIde9sdzqAA')">function make_account(balance, p) {
+      <div class='snippet' id='javascript_52_33_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQZJKuLIAoARgwA2DUiwA0oAA4BKUAG9soFaEKlKNUAHcKZABYATAE4NtfBnR5Ey8paoegKeUIJFiSLUAD4AvKEtrW0VlRzChUXFQfwiPLwBaAKteAG5QsIdjFjICY1pY8TSM0ABfUBZhAGcve2LVLJy80AAiSCJKgjw8ChIKFhs1YkNK5qKMkvTSyfVyalpDFmkqSr0LZJs7SYcCz2jQHa8AaiSgsbCG3Pz3QsmJhxnNeYpK6QYyEn0+OikAR03i5yuaTRXz+P4hOr1bKXegg-zNXQGExmZpbSEOAD8Oj0RlM2jR6JUAC5YaD4QslisyKjCRksRTlnoCYSSc0AKpEJhEKjaWhZH4EFiVMgkxisDhcIKjSYASDKFWqEPRFyaP2i3habW4xiy5FAsAYlUq2ioxkM0uKd1UVpUKqeLzeHzSE2w3HaZACezF7E43F4fAwAAZA1JmiwAG4MZqyNIMPgInHI7TNUMRqOyPgAVkDMdAIERuLMlVA2ewcYTSLxKZaAn60b4ABYcyk88AKKRTbqPa8jSazUA')">function make_account(balance, p) {
     function withdraw(amount) {
         if (balance >= amount) {
             balance = balance - amount;
@@ -2763,13 +2763,11 @@ display(s("how many calls"));
     }
     function dispatch(m, q) {
         if (p === q) {
-            if (m === "withdraw") {
-                return withdraw;
-            } else if (m === "deposit") {
-                return deposit;
-            } else {
-                return "Unknown request: make_account";
-            }
+            return m === "withdraw"
+                   ? withdraw
+                   : m === "deposit"
+                   ? deposit
+                   : "Unknown request: make_account";
     	} else {
             return q => "Incorrect Password";
         }
@@ -2816,7 +2814,7 @@ a("withdraw", "ben")(40); //incorrect password
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#solution_52_4_div" data-toggle="collapse">Solution</button></div>
       <div class="solution_content collapse" id="solution_52_4_div"><SOLUTION>
     
-      <div class='snippet' id='javascript_52_34_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQSBDAG0YH0yALAUxZKoAcAzgAoATp3oCaASlABvbKEWgxZAiNoAiBswpEA5qA6c6-AaABGnBgQHGNoANTLxkogG4AkIuwBffMXJqWgBbegBrbnoSXmIyIXMmelJOABpQPhl5BSVGTjJQXQA3JgoAExZ6MjJOYL4yMwBeUAAGN1AQXQpKEoAvTjMyKhbcJVBCUkoaUAB3LvZSkXppoXpgqljM7NHFCjxQeMTk0AA+JtX1ojJN7ZuLQ5JjJoTGJIfQAFpQc9i3LdvFFRqWjPV6cX7-HygTiMWxyP7-QHqUAaSBEAQEPB4CgkCicS5jYilAQacG3PyjPx-caBKalTh8KgCLorNYbOH-EFHJ73YxOb6XUk3RHAnmC0CU0bUya0bSMXR6NhcHimIQsa63YV0JisIzKwRCDQAT3WoHY9EKxk4AA8Hpw6aVkY54f8XbcNEZQKEraAiEMqHs8PQKLkHZVqrV6hopGKJUopUFQKUKAI+JUSOwhME0gBHdU3Xb7Iolcphmp1MwAHlAAHY8y6C0I+KAGi3QLn2a7tg3gs3WxpZhwFksox3Oxq8kCZnMh9MxWPIdDYd3e00NHSGUyyCP5GOEROkevGV0552FzDjDvd0L95oAKpEMK+6a0MTZgj9MgALk94Ui0QuW4nq65KnlC56jruRZyiWVRlvUzYFEQxTQRUsERmYTgYGKXjjqoSLeg0xzIqivAiGI5CgLAEgCNMVAiKUJLOjcIHMWBsKXq6mqyvKircLwghAeKfyxgCN6JsmqZkOmvy+LgvBovk9AIaEEQVP+sRCBgzTNGkGgiIynDmAQDHRtg9AGgO8yLNMGi6fptgJCZQgAKzNKZ5n9tO1m2ci9mGfQTmue5FlecOdkGY5UYuW5vweZZM4+XpEUBVFQWxSFg7eeFDkpVI0XBZ5mVhb5yWBTFZkZVZxVJTlZUFfFWUlbVqUxUAA')">function call_the_cops(reason) {
+      <div class='snippet' id='javascript_52_34_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQSBDAG0YH0yALAUxZKoAcAzgAoATp3oCaASlABvbKEWgxZAiNoAiBswpEA5qA6c6-AaABGnBgQHGNoANTLxkogG4AkIuwBffMXJqWgBbegBrbnoSXmIyIXMmelJOABpQPhl5BSVGTjJQXQA3JgoAExZ6MjJOYL4yMwBeUAAGN1AQXQpKEoAvTjMyKhbcJVBCUkoaUAB3LvZSkXppoXpgqljM7NHFCjxQeMTk0AA+JtX1ojJN7ZuLQ5JjJoTGJIfQAFpQc9i3LdvFFRqWjPV6cX7-HygTiMWxyP7-QHqUAaSBEAQEPB4CgkCicS5jYilAQacG3PyjPx-caBKalTh8KgCLorNYbOH-EFHJ73YxOb6XUk3RHAnmC0CU0bUya0bSMXR6NhcHimIQsa63YV0JisIzKwRCDQAT3WoHY9EKxk4AA8Hpw6aVkY54f8XbcNEZQKEraAiEMqHs8PQKLkHZVqrV6hopGKJUopUFQKUKAI+JUSOwhME0gBHdU3Xb7Iolcphmp1MwAHlAAHY8y6C0I+KAGi3QLn2a7tprgs3WxpZhwFksNM7OzcAPwzOZD6ajsejABcnt7TQ0dIZTLII-nrsn68ZXTnO9AS40AFUiGFfdNaGJswR+mQl6EIhVohct2KIVCYcZ5MeCiIYo5RLKoy3qZtAOAsoKjAiMzCcDAxS8DU8iBUBvQaY5kVRXgRDEchQFgCQBGmKgRFKEkjyUckyR-WF-07TVZXlRVuF4QQvxov5YwBNCkSTFM03YX5fFwXg0XyehIJfSJ31iIQMGaZo0g0ERGU4cwCEo6NsHoA0B3mRZpg0VT1NsBIdKEABWZpdP0-tp2M0zkXMzT6Cs2z7IMpzhzMjTLKjGy7N+BzDJnFy1ICjygq80KfMHZz-IsmKpGC7zHMSvzXOizyQr0hKjOyqKUryjLwqSnLStikKgA')">function call_the_cops(reason) {
     return "calling the cops because " + reason;	  
 }
 function make_account(balance, p) {
@@ -2845,13 +2843,11 @@ function make_account(balance, p) {
     function dispatch(m, q) {
         if (invalid_attempts < 7) {
             if (p === q) {
-                if (m === "withdraw") {
-                    return withdraw;
-                } else if (m === "deposit") {
-                    return deposit;
-                } else {
-                    return "Unknown request: make_account";
-                }
+                return m === "withdraw"
+                       ? withdraw
+                       : m === "deposit"
+                       ? deposit
+                       : "Unknown request: make_account";
             } else {
                 invalid_attempts = invalid_attempts + 1;
     	        return x => "Incorrect Password";
