@@ -2220,8 +2220,8 @@ Acknowledgments
 
         Evaluation of blocks evaluates the body of the block with
         respect to the current environment extended by a binding
-        of all local names to the special value
-        <kbd>no_value_yet</kbd>.
+        of all local names to the value
+        <kbd>"*undefined*"</kbd>.
       
     <div class='snippet' id='javascript_115_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_block",
@@ -2239,9 +2239,6 @@ Acknowledgments
       
     
 
-    The function <kbd>get_temp_block_values</kbd> can
-    be implemented easily using a map:
-    <kbd>locals => map(ignore => no_value_yet, locals)</kbd>.
   </p></div>
   
   
