@@ -2018,12 +2018,11 @@ Acknowledgments
       
       JavaScript functions
     
-    for manipulating vectors
-    
+    for manipulating vectors:
       
         <a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
       
-    :
+    
     <UL>
       
       
@@ -2218,9 +2217,9 @@ Acknowledgments
   <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
     
-    
+    A 
       
-      Strings
+      string
     
     might be represented as a typed pointer that designates a
     sequence of the characters that form the
@@ -2271,14 +2270,12 @@ Acknowledgments
     maintains a table, 
     
       
-      which we will refer to as
+      
     
-    the 
-    
-    <EM>obarray</EM>, of all the
+      of all the
     
       
-      string
+      strings
     
     it has ever encountered.  When the
     
@@ -2290,7 +2287,12 @@ Acknowledgments
       
       string,
     
-    it checks the obarray to see if it
+    it checks the
+    
+      
+      table
+    
+    to see if it
     has ever before seen the same character string.  If it has not, it
     uses the characters to construct a new
     
@@ -2298,7 +2300,12 @@ Acknowledgments
       string
     
     (a typed pointer to a
-    new character sequence) and enters this pointer in the obarray.  If the
+    new character sequence) and enters this pointer in the
+    
+      
+      table.
+    
+    If the
     
       
       parser
@@ -2308,7 +2315,12 @@ Acknowledgments
       
       string
     
-    pointer stored in the obarray.  This process of replacing character strings
+    pointer stored in the 
+    
+      
+      table.
+    
+    This process of replacing character strings
     by unique pointers is called 
     
     
@@ -2564,11 +2576,11 @@ const y = list(x, x);</pre></div></div>
 	  
 	
 
-	<div class='snippet' id='javascript_110_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAVgHQGY0EYBQuAzAVwDsBjAFwEsB7E0Mm0igfQBsBTAQwDcOBnABQUAThw4BKUAG9coeaDEUiI+lX4sSRNm2FjJchUYUB+UAAZDxowC5QAQlDqWABy5URe8RNwBIa6ageAG2DEwkrJy8AoIAFtwAJl6SUgDUoFYh8ozM7Nx8QhTuuqLeEgDcuAC++DkRedFCbh6CbOoUgtgANKAATBI9bfwdGD0ALBKT5UA')">function count_leaves(tree) {
+	<div class='snippet' id='javascript_110_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAVgHQGY0EYBQuAzAVwDsBjAFwEsB7E0Mm0igfQBsBTAQwDcOBnABQUAThw4BKUAG9coeaDEUiI+lX4sSRNm2FjJchUYUB+UAAZDxowC5QAQlDqWABy5URe8RKvX5ZvD9bBiYSVk5eAUEAC24AEy9JKQBqUF8gkOZ2bj4hCnddUW8JAG5cAF98RiyI3ME3D0E2dQpBbAAaUAAmCU7m-laMToAWCTGSoA')">function count_leaves(tree) {
     return is_null(tree)
            ? 0
            : ! is_pair(tree)
-	         ? 1
+           ? 1
            : count_leaves(head(tree)) + 
              count_leaves(tail(tree));
 }
@@ -2582,13 +2594,13 @@ const y = list(x, x);</pre></div></div>
 	  
 	
 	with explicit counter:
-	<div class='snippet' id='javascript_110_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAVgHQGY0EYBQuAzAVwDsBjAFwEsB7E0Mm0igfQBsBTAQwDcOBnABQUAThw4BKUAG9coeaGLlqdBkxKsqFDiOFiOAGlAkpshedBiKREfSr8WJImzZ7xEuRa8B+Y56-mAFygAISg9iwADlxUuqLuoP4B8r70ANSgeOYAkF7BjMwsWjrCMa7xkgZJyfIFGkXaugAW3AAmbpXGEhIA3EkAvklWNvR1mo0dRgAMvbiDuGPs3HxC0bGCbPYUgthGAEwSRpv82xhGACzdvUA')">function count_leaves(tree) {
+	<div class='snippet' id='javascript_110_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAVgHQGY0EYBQuAzAVwDsBjAFwEsB7E0Mm0igfQBsBTAQwDcOBnABQUAThw4BKUAG9coeaGLlqdBkxKsqFDiOFiOAGlAkpshedBiKREfSr8WJImzZ7xEuRa8B+Y56-mAFygAISg9iwADlxUuqLuoP4B8r70ANSgeMlBaswsWjrCMa7xkgZJ2bka+dq6ABbcACZuZcYSEgDcSQC+SVY29Ix5BXH6RgAMnbi9uEPVnLwCgtGxgmz2FILYRgBMEkbr-JsYRgAs7Z1AA')">function count_leaves(tree) {
     function count_iter(tree, n) {
         return is_null(tree)
             ? n
             : ! is_pair(tree) 
             ? n + 1
-    	      : count_iter(tail(tree),
+            : count_iter(tail(tree),
               count_iter(head(tree), n));
     }
     return count_iter(tree, 0);

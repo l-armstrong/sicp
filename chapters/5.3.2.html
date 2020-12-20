@@ -2688,8 +2688,34 @@ accumulate((x, y) => x + y, 0, filter(is_odd, enumerate_interval(0, n)))</pre></
     
     operation because in a real system there might be various things
     that are treated as pairs for garbage-collection purposes.
+    For example,
     
       
+    
+    a
+    
+      
+      
+	      function
+      
+    
+    object may be implemented as a special kind of
+    <QUOTE>pair</QUOTE> that doesn't satisfy the
+    
+      
+      <kbd>is_pair</kbd>
+    
+    predicate.
+    For simulation purposes,
+    
+      
+      <kbd>is_pointer_to_pair</kbd>
+      
+    
+    can be implemented as
+    
+      
+      <kbd>is_pair</kbd>.
     
   
     </FOOTNOTE></div>
