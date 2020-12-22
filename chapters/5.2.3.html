@@ -2073,6 +2073,16 @@ Acknowledgments
       functions
     
     to extract and classify the parts of an instruction.
+
+  
+    
+      Because we chose a textual representation for the controller in the beginning of
+      this chapter that is valid JavaScript syntax, we can now write functions that
+      allows us to evaluate the controller text as part of a JavaScript program. When the
+      controller text is evaluated, is will generate a data structure representation of
+      itself which can be executed by the register machine simulator.
+    
+  
   </p></div>
 
   
@@ -2665,12 +2675,13 @@ function label_exp_label(exp) { return head(tail(exp)); }
   
     
       We make use of the function
-      <kbd>apply_in_underlying_javascript</kbd>, as we did in
+      <kbd>apply_in_underlying_javascript</kbd>, as we did 
       in <kbd>apply_primitive_function</kbd> in 
       section <REF NAME="sec:running-eval"><a class="superscript" id="5.2.3-sec-link-4.1.4" href="./4.1.4.html">4.1.4</a></REF>. This is needed to apply
       <kbd>op</kbd> to all elements of the argument list
+      <kbd>aprocs</kbd> 
       produced by the first <kbd>map</kbd>,
-      <kbd>aprocs</kbd>, as if they were separate arguments to
+      as if they were separate arguments to
       <kbd>op</kbd>. Without this,
       <kbd>op</kbd> would have been restricted to be a unary
       function.
@@ -2778,7 +2789,7 @@ function operation_exp_operands(operation_exp) {
     syntax without changing any part of the simulator except the
     
       
-      constructor functions
+      constructor and selector functions
     
     in this section?
     
