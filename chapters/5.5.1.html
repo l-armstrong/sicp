@@ -2049,10 +2049,13 @@ Acknowledgments
     
     defined in
     section&nbsp;<REF NAME="sec:representing-expressions"><a class="superscript" id="5.5.1-sec-link-4.1.2" href="./4.1.2.html">4.1.2</a></REF>.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
-    <kbd>Compile</kbd> performs a case analysis on the
+    
+      
+      The function <kbd>compile</kbd>
+     performs a case analysis on the
     syntactic type of the expression to be compiled.  For
     each type of expression, it dispatches to a specialized 
-    
+    <a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
     <EM>code
     generator</EM>:
     
@@ -2064,8 +2067,8 @@ function compile(component, target, linkage) {
            ? compile_name(component, target, linkage)
            : is_application(component)
            ? compile_application(component, target, linkage)
-           : is_operator_combination(component)           //TODO
-           ? compile_operator_combination(component, env) //TODO
+           : is_operator_combination(component)
+           ? compile(operator_combination_to_application(component), target, linkage)
            : is_conditional(component)
            ? compile_conditional(component, target, linkage)
            : is_lambda_expression(component)
@@ -2076,6 +2079,8 @@ function compile(component, target, linkage) {
            ? compile_block(component, target, linkage)
            : is_return_statement(component)
            ? compile_return_statement(component, target, linkage) 
+           : is_function_declaration(component)
+           : compile(function_decl_to_constant_decl(component), target, linkage)
            : is_declaration(component)
            ? compile_declaration(component, target, linkage)
            : is_assignment(component)
@@ -2156,7 +2161,7 @@ function compile(component, target, linkage) {
 	
 	  
 	  
-	    <kbd>"return"</kbd>),
+	    <kbd>"return"</kbd> or <kbd>"return_undefined"</kbd>),
 	  
 	
 	or
@@ -2605,12 +2610,13 @@ f(g("x"), "y")</pre></div></div>
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1'>[1] </a>
     <FOOTNOTE>
     Notice,
-    however, that our compiler is a Scheme program, and the syntax
+    however, that our compiler is a JavaScript program, and the syntax
     
       
       functions
     
-    that it uses to manipulate expressions are the actual Scheme
+    that it uses to manipulate expressions are the actual
+    JavaScript
     
       
       functions
@@ -2618,12 +2624,22 @@ f(g("x"), "y")</pre></div></div>
     used with the metacircular evaluator.  For the explicit-control evaluator, in
     contrast, we assumed that equivalent syntax operations were available
     as operations for the register machine.  (Of course, when we simulated
-    the register machine in Scheme, we used the actual Scheme
+    the register machine in Scheme, we used the actual
     
       
-      functions
+      JavaScript functions
     
     in our register machine simulation.)
+    </FOOTNOTE></div>
+
+    
+    <div class='footnote'>
+      <a class='footnote-number' id='footnote-2' href='#footnote-link-2'>[2] </a>
+    <FOOTNOTE>
+    Just like in
+    the register machine evaluator, operator combinations are
+    turned into applications and function declarations are turned
+    into constant declaration with a lambda expression.
     </FOOTNOTE></div>
 
     

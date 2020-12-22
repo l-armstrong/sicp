@@ -2193,7 +2193,7 @@ Acknowledgments
     time the interpreter evaluates an expression—for example,
     
       
-      <kbd>f(84, 96)</kbd>—it
+      <kbd>f(96, 21)</kbd>—it
       
     
     performs the work of classifying the expression (discovering that this is a
@@ -2247,25 +2247,23 @@ Acknowledgments
     
       
       
-        component
+        component.
       
     
-    .  This
-    can make a big difference, for example in the use of the stack to
-    save registers.  When the interpreter evaluates a
+    This can make a big difference, for example in the use of the
+    stack to save registers.  When the interpreter evaluates a
     
       
       
-        component
+        component,
       
     
-    , it must
-    be prepared for any contingency.  Before evaluating a subcomponent,
-    the interpreter saves all
-    registers that will be needed later, because
-    the subcomponent might require an arbitrary evaluation.
-    A compiler, on the other hand, can exploit the structure of the
-    particular
+    it must be prepared for any contingency. Before evaluating a
+    subcomponent,
+    the interpreter saves all registers that will be needed later, because the
+    subcomponent,
+    might require an arbitrary evaluation.
+    A compiler, on the other hand, can exploit the structure of the particular
     
       
       
@@ -2280,7 +2278,7 @@ Acknowledgments
 <a name='p11' class='permalink'></a><p>
     As a case in point, consider the combination
     
-    <kbd>f(84, 96)</kbd>.
+    <kbd>f(96, 21)</kbd>.
     
     Before the interpreter evaluates the
     

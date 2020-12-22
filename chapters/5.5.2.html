@@ -2074,16 +2074,14 @@ Acknowledgments
     <div class='snippet' id='javascript_119_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_linkage(target, linkage) {
     return linkage === "return"
-           ? make_instruction_sequence(
-                 list("continue"), 
-                 null,
-                 list(go_to(reg("continue"))))
+           ? make_instruction_sequence(list("continue"), 
+                                       null,
+                                       list(go_to(reg("continue"))))
            : linkage === "return_undefined"
-           ? make_instruction_sequence(
-                 list("continue"), 
-                 list(target),
-                 list(assign(target, constant(undefined)),
-                      go_to(reg("continue"))))
+           ? make_instruction_sequence(list("continue"), 
+                                       list(target),
+                                       list(assign(target, constant(undefined)),
+                                            go_to(reg("continue"))))
            : linkage === "next"
            ? empty_instruction_sequence()
            : make_instruction_sequence(null, null, 
@@ -2180,7 +2178,7 @@ function compile_name(component, target, linkage) {
     interpreter.
     
       
-	The three functions use the function
+	The two functions use the function
 	<kbd>compile_assignment_returning</kbd>,
 	whose parameter
 	<kbd>return_val</kbd> lets declarations
@@ -2464,13 +2462,23 @@ function compile_conditional(component, target, linkage) {
     
     <div class='snippet' id='javascript_119_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_sequence(seq, target, linkage) {
-    return is_last_statement(seq)
+    return is_last_statement(seq) || is_return_statement(first_statement(seq))
            ? compile(first_statement(seq), target, linkage)
            : preserving(
                list("env", "continue"),
                compile(first_statement(seq), target, "next"),
                compile_sequence(rest_statements(seq), target, linkage));
 }</pre></div></div>
+
+    The check
+    <kbd>is_return_statement(first_statement(seq))</kbd>
+    detects <QUOTE>dead code</QUOTE>, meaning code that follows in
+    sequence after a return statement and therefore never will be
+    executed. Not compiling dead code is good for several reasons:
+    it shortens the compilation time, it reduces the size of the
+    executable, and it removes a possible security hazard if a
+    malicious user could trick the program to execute the dead
+    code.
   </p></div>
 
   
@@ -2763,7 +2771,7 @@ function compile_block(stmt, target, linkage) {
                                            constant(locals),
                                            constant(unassigneds),
                                            reg("env"))))),
-               compile(body(stmt), target, linkage));
+               compile(body, target, linkage));
 }</pre></div></div>
       </p></div>
 

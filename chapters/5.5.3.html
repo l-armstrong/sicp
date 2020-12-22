@@ -2019,9 +2019,9 @@ Acknowledgments
     
     compiled with a given target and
     linkage has the form
-    <kbd class='snippet'>$\langle compilation$ $of$ $function$ $expression,$ $target$ fun, $linkage$ next$\rangle$
-$\langle evaluate$ $arg$ $expressions$ $and$ $construct$ $arg$ $list$ $in$ argl$\rangle$
-$\langle compilation$ $of$ $function$ $call$ $with$ $given$ $target$ $and$ $linkage\rangle$</kbd>
+    <kbd class='snippet'>$\langle \text{\it compilation of function expression, target \texttt{fun}, linkage \texttt{next}}\rangle$
+$\langle \text{\it evaluate arg expressions and construct arg list in}\ argl\rangle$
+$\langle \text{\it compilation of function call with given target and linkage}\rangle$</kbd>
 
     The registers <kbd>env</kbd>,
     
@@ -2172,7 +2172,7 @@ function compile_application(exp, target, linkage) {
     const fun_code = compile(function_expression(exp), "fun", "next"); 
     const arguments_codes =
               map(arg => compile(arg, "val", "next"),
-                  args(exp));
+                  arg_expressions(exp));
     return preserving(list("env", "continue"), 
                fun_code,
                preserving(list("fun", "continue"), 
@@ -2218,12 +2218,12 @@ function compile_application(exp, target, linkage) {
     we make the first code sequence construct the initial
     <kbd>argl</kbd>.
     The general form of the argument-list construction is thus as follows:
-    <kbd class='snippet'>$\langle compilation$ $of$ $last$ $argument,$ $targeted$ $to$ val$\rangle$
+    <kbd class='snippet'>$\langle \text{\it compilation of last argument, targeted to}\ val\rangle$
 assign("argl", list(op("list"), reg("val")));
-$\langle compilation$ $of$ $next$ $argument,$ $targeted$ $to$ val$\rangle$
+$\langle \text{\it compilation of next argument, targeted to}\ val\rangle$
 assign("argl", list(op("pair"), reg("val"), reg("argl")));
 $\ldots$
-$\langle compilation$ $of$ $first$ $argument,$ $targeted$ $to$ val$\rangle$
+$\langle \text{\it compilation of first argument, targeted to}\ val\rangle$
 assign("argl", list(op("pair"), reg("val"), reg("argl")));</kbd>
 
     
@@ -2425,13 +2425,13 @@ function code_to_get_rest_args(arg_codes) {
     <kbd class='snippet'>$$  test(op("primitive_function"), reg("fun")),
   branch(label("primitive_branch")),
 "compiled_branch",
-  $\langle code$ $to$ $apply$ $compiled$ $function$ $with$ $given$ $target$ $and$ $appropriate$ $linkage \rangle$
+  $\langle\text{\it code to apply compiled function with given target and appropriate linkage} \rangle$
 "primitive_branch",
-  assign($target$,
+  assign($\ensuremath{\text{\textrm{\sl target}}}$,
          list(op("apply_primitive_function"),
          reg("fun"),
          reg("argl")))
-$linkage$
+$\ensuremath{\text{\textrm{\sl linkage}}}$
 "after_call"</kbd>
 
     Observe that the compiled branch must skip around the primitive
@@ -2570,14 +2570,14 @@ function compile_function_call(target, linkage) {
   assign("val", list(op("compiled_function_entry"), reg("fun"))),
   go_to(reg("val")),
 "fun_return",
-  assign($target$, reg("val")),   // included if target is not val
-  go_to(label($linkage$)),        // linkage code</kbd>
+  assign($\ensuremath{\text{\textrm{\sl target}}}$, reg("val")),   // included if target is not val
+  go_to(label($\ensuremath{\text{\textrm{\sl linkage}}}$)),        // linkage code</kbd>
 
     or like this if the linkage is
     
       
       
-	<kbd>"return"</kbd>.
+	<kbd>"return"</kbd>
       
     
     <kbd class='snippet'>$$  save("continue"),
@@ -2585,9 +2585,24 @@ function compile_function_call(target, linkage) {
   assign("val", list(op("compiled_function_entry"), reg("fun"))),
   go_to(reg("val")),
 "fun_return",
-  assign($target$, reg("val")),   // included if target is not val
+  assign($\ensuremath{\text{\textrm{\sl target}}}$, reg("val")),   // included if target is not val
   restore("continue"),
   go_to(reg("continue")),         // linkage code</kbd>
+ 
+    
+    
+      
+        of, finally, if the linkage is <kbd>"return_undefined"</kbd>.
+        <kbd class='snippet'>$$  save("continue"),
+  assign("continue", label("return_undefined")),
+  assign("val", list(op("compiled_function_entry"), reg("fun"))),
+  go_to(reg("val")),
+"return_undefined",
+  assign($\ensuremath{\text{\textrm{\sl target}}}$, constant(undefined)),   // included even if target is val
+  restore("continue"),
+  go_to(reg("continue")),         // linkage code</kbd>
+
+
 
     This code sets up <kbd>continue</kbd> so that the
     
@@ -2599,6 +2614,8 @@ function compile_function_call(target, linkage) {
       
       
 	<kbd>fun_return</kbd>
+  or
+	<kbd>return_undefined</kbd>
       
     
     and jumps to the
@@ -2616,13 +2633,14 @@ function compile_function_call(target, linkage) {
       
       function's
     
-    result from <kbd>val</kbd> to the target register (if
+    result from <kbd>val</kbd> (or undefined) to the target register (if
     necessary) and then jumps to the location specified by the linkage.
     (The linkage is always
     
       
       
-	<kbd>"return"</kbd>
+	<kbd>"return"</kbd>,
+	<kbd>"return_undefined"</kbd>
       
     
     or a label,
@@ -2675,7 +2693,7 @@ function compile_function_call(target, linkage) {
     
     result is put directly into
     the target register and there is no need to return to a special
-    location that copies it.  Instead, we simplify the code by
+    location that copies it. Instead, unless linkage is <kbd>"return_undefined"</kbd>, we simplify the code by
     setting up <kbd>continue</kbd> so that the
     
       
@@ -2683,7 +2701,7 @@ function compile_function_call(target, linkage) {
     
     will <QUOTE>return</QUOTE>
     directly to the place specified by the caller's linkage:
-    <kbd class='snippet'>$\langle set$ $up$ cont$$inue $for$ $linkage\rangle$
+    <kbd class='snippet'>$\langle \text{\it set up continue for linkage}\rangle$
 assign("val", list(op("compiled_function_entry"), reg("fun"))),
 go_to(reg("val")),</kbd>
 
@@ -2711,7 +2729,7 @@ go_to(reg("val")),</kbd>
       
       
 	<kbd>go_to(label(</kbd>
-	$\langle linkage\rangle$
+	$\ensuremath{\text{\textrm{\sl linkage}}}$
 	<kbd>))</kbd>
       
     
@@ -2722,7 +2740,7 @@ go_to(reg("val")),</kbd>
       
     
     above.)
-    <kbd class='snippet'>assign("continue", label($linkage$)),
+    <kbd class='snippet'>assign("continue", label($\ensuremath{\text{\textrm{\sl linkage}}}$)),
 assign("val", list(op("compiled_function_entry"), reg("fun"))),
 go_to(reg("val")),</kbd>
 
@@ -2794,55 +2812,36 @@ go_to(reg("val")),</pre></div></div>
 
   <div class='permalink'>
 <a name='p10' class='permalink'></a><p>
-    Suppose instead that we had handled the case of a
-    
-      
-      function
-    
-    call with a linkage of
     
       
       
-	<kbd>"return"</kbd>
-      
-    
-    and a target of
-    <kbd>val</kbd> as shown above for a
-    non-<kbd>val</kbd> target.  This would destroy tail
-    recursion.  Our system would still give the same value for any expression.
-    But each time we called a
-    
-      
-      function,
-    
-    we would save <kbd>continue</kbd> and return
-    after the call to undo the (useless) save.  These extra saves would
-    accumulate during a nest of
-    
-      
-      function
-    
-    calls.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+        This is not the case for 
+        function calls with linkage <kbd>"return_undefined"</kbd>.
+        In this case we must save <kbd>continue</kbd> and
+        return after the call to store <kbd>undefined</kbd> 
+        in target. These extra saves accumulate during a nest of procedure calls which
+        destroys tail recursion.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
   </p></div>
 
   <div class='permalink'>
 <a name='p11' class='permalink'></a><p>
     
       
-      <kbd>Compile_fun_appl</kbd>
+      The function <kbd>compile_fun_appl</kbd>
       
     
     generates the above
     
       
-      function-application
+      function-application code by considering five cases, 
     
-    code by considering four cases, depending on whether the target for the call
+    depending on whether the target for the call
     is <kbd>val</kbd> and whether the linkage is
     
       
       
-	<kbd>"return"</kbd>.
+	<kbd>"return"</kbd> or
+	<kbd>"return_undefined"</kbd> (in which case both targets can be handled by a single case).
       
     
     Observe that the instruction sequences
@@ -2872,7 +2871,20 @@ go_to(reg("val")),</pre></div></div>
     
     <div class='snippet' id='javascript_120_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_fun_appl(target, linkage) {
-    if (target === "val" && linkage !== "return") {
+    if (linkage === "return_undefined") {
+        const return_undefined = make_label("return_undefined");
+        return make_instruction_sequence(
+            list("fun"),
+            all_regs,
+            list(
+                assign("continue", label(return_undefined)),
+                assign("val", list(op("compiled_function_entry"), 
+                                   reg("fun"))),
+                go_to(reg("val")),
+                return_undefined,
+                assign(target, constant(undefined)),
+                go_to(reg("continue"))));
+    } else if (target === "val" && linkage !== "return") {
         return make_instruction_sequence(
             list("fun"),
             all_regs,
@@ -2952,7 +2964,10 @@ function compile_fun_appl(target, linkage) {
     
     compiler generate tail-recursive code might seem like a
     straightforward idea.  But most compilers for common languages,
-    including C and Pascal, do not do this, and therefore these languages
+    including 
+C (at least without optimisation flags turned on)
+do not do this, 
+and therefore these languages
     cannot represent iterative processes in terms of
     
       
