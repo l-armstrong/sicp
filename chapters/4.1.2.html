@@ -2189,6 +2189,13 @@ list("literal", null)</pre></div></div>
 null</pre></div></div>
 	In the following, we just list the syntax predicates and selectors,
 	and omit their declarations if they just access the obvious list elements.
+	We provide a constructor for literals, which will come in handy in
+	section&nbsp;<REF NAME="sec:query-syntax"><a class="superscript" id="4.1.2-sec-link-4.4.4.7" href="./4.4.4.html#sec4.4.4.7">4.4.4.7</a></REF>.
+	    <div class='snippet' id='javascript_78_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0AbKitgJyZcAFADchRNgEpQAb1yhFofmwpF+9HgGcKwgEQ8+grnoA0ocV0lSA3LgC+QA')">function make_literal(value) {
+    return list("literal", value);
+}
+</pre></div></div>
+	
       </p></div>
       
   
@@ -2221,7 +2228,7 @@ null</pre></div></div>
 	    
 	    We provide a constructor for names, to be used by
 	    <kbd>operator_combination_to_application</kbd>:
-	    <div class='snippet' id='javascript_78_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajpQCTYAa3USNgluEUYATwkAIxoBbT1DY1NzeiFGUQAiLJyGpQLi0s1ouNxxEnqU-OZm9Xq2Cm4c+VAg0BsjRlyGgA9Ihq7cXiYpATZ8kSsRkQkhkeYxianXDa3GHb28wpKBZhoCYezck4+c8-ZLlyaLpAA')">function make_name(symbol) {
+	    <div class='snippet' id='javascript_78_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajpQCTYAa3USNgluEUYATwkAIxoBbT1DY1NzeiFGUQAiLJyGpQLi0s1ouNxxEnqU-OZm9Xq2Cm4c+VAg0BsjRlyGgA9Ihq7cXiYpATZ8kSsRkQkhkeYxianXDa3GHb28wpKBZhoCYezck4+c8-ZLlyaLpAA')">function make_name(symbol) {
     return list("name", symbol);
 }
 </pre></div></div>
@@ -2276,7 +2283,7 @@ null</pre></div></div>
 	    
 	    We add a constructor for function applications, to be used by
 	    <kbd>operator_combination_to_application</kbd>:	    
-	    <div class='snippet' id='javascript_78_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajoGFhI2CW4-JxdtPUNjU3NLFnYuPkFhLIDFUAAiNIzazWi4wlJKWnoJNgBrdTYpKSEyNiSSEQSOumZuAA8pE0ZGTqU2Iw4iDPkZ+cXlukZc-UMTMwtQIUZRWoGhqhGx2qVJsZ2F7iWV0DWNrYo3vadQ4tfDiEhXUASACezAa6iuo24f1AQVANiMjEytVmkSa0V4TCGbChIiscJE0Nh6Xh7AoSJyzVwBMYRJJjChEgARjQBMwaAQqRkKTC4cwEXS-ppmkA')">function make_application(function_expression, argument_expressions) {
+	    <div class='snippet' id='javascript_78_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajoGFhI2CW4-JxdtPUNjU3NLFnYuPkFhLIDFUAAiNIzazWi4wlJKWnoJNgBrdTYpKSEyNiSSEQSOumZuAA8pE0ZGTqU2Iw4iDPkZ+cXlukZc-UMTMwtQIUZRWoGhqhGx2qVJsZ2F7iWV0DWNrYo3vadQ4tfDiEhXUASACezAa6iuo24f1AQVANiMjEytVmkSa0V4TCGbChIiscJE0Nh6Xh7AoSJyzVwBMYRJJjChEgARjQBMwaAQqRkKTC4cwEXS-ppmkA')">function make_application(function_expression, argument_expressions) {
     return list("application", function_expression, argument_expressions);
 }
 </pre></div></div>
@@ -2372,14 +2379,14 @@ $\ll \texttt{(}\textit{parameter}_1\texttt{, }\ldots\texttt{, } \textit{paramete
 	The selector for the parameters, called
 	<kbd>lambda_parameter_symbols</kbd>,
 	additionally extracts the symbols from the names.
-	    <div class='snippet' id='javascript_78_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajoGFhI2CW4-JxdtPUNjU3NLFnYuPkFhLIDFUAAiNIzazWi4wlJKWnpGAE8JACMaAWYaAmYGzPF-Z0DdfUMTMwsvbh8RdioBKunXZtj49qTiwXS+3jZmbgAPKRNGRk6tnNn5wqWrUp5+IUZRSez5JS1AQnM4Xa63e50JotNqJTqgYH9UE2IzpUzcIzMHr9QaMR4zPIGBZFUASNhSETYgZDEZjNFKby+dabP7VTTsmEJDrJRGnc4DXjdfGuZ5E170RlrWybZnC9m7VriEg-UndY5ItigIKgFGMTK1S5agB8oEu0NwvCYUmBQqsvNBVxu3DuDwkavtbA5FqtNpEHusbFRGQoGKxvWpeLd6r5XstjGtbCF-oFQqjHo5QA')">function lambda_parameter_symbols(component) {
+	    <div class='snippet' id='javascript_78_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajoGFhI2CW4-JxdtPUNjU3NLFnYuPkFhLIDFUAAiNIzazWi4wlJKWnpGAE8JACMaAWYaAmYGzPF-Z0DdfUMTMwsvbh8RdioBKunXZtj49qTiwXS+3jZmbgAPKRNGRk6tnNn5wqWrUp5+IUZRSez5JS1AQnM4Xa63e50JotNqJTqgYH9UE2IzpUzcIzMHr9QaMR4zPIGBZFUASNhSETYgZDEZjNFKby+dabP7VTTsmEJDrJRGnc4DXjdfGuZ5E170RlrWybZnC9m7VriEg-UndY5ItigIKgFGMTK1S5agB8oEu0NwvCYUmBQqsvNBVxu3DuDwkavtbA5FqtNpEHusbFRGQoGKxvWpeLd6r5XstjGtbCF-oFQqjHo5QA')">function lambda_parameter_symbols(component) {
    return map(symbol_of_name, head(tail(component)));
 }
 </pre></div></div>
 	    
 	    We add a constructor for lambda expressions, to be used by
 	    <kbd>function_decl_to_constant_decl</kbd>:
-	    <div class='snippet' id='javascript_78_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajoGFhI2CW4-JxdtPUNjU3NLFnYuPkFhLIDFUAAiNIzazWi4wlJKWnoJNgBrdQF0gCNeNmZuAA8pE0ZGTpEbI3TTbiNGJUGaXgBPXP1DEzMLUCFGUVqBiWHRianuGc7apQWlihW10A3t5tj8cRJT0ASLbMBrqU5sV4ZeSgIKgBaMTK1caRJrRXhMKQDLYiKygkRAkFLZjgyE5b7oxiYtjYxhbS40ATMGgEQkZfHA0HE9ikwLNIA')">function make_lambda_expression(parameters, body) {
+	    <div class='snippet' id='javascript_78_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajoGFhI2CW4-JxdtPUNjU3NLFnYuPkFhLIDFUAAiNIzazWi4wlJKWnoJNgBrdQF0gCNeNmZuAA8pE0ZGTpEbI3TTbiNGJUGaXgBPXP1DEzMLUCFGUVqBiWHRianuGc7apQWlihW10A3t5tj8cRJT0ASLbMBrqU5sV4ZeSgIKgBaMTK1caRJrRXhMKQDLYiKygkRAkFLZjgyE5b7oxiYtjYxhbS40ATMGgEQkZfHA0HE9ikwLNIA')">function make_lambda_expression(parameters, body) {
     return list("lambda_expression", parameters, body);
 }
 </pre></div></div>
@@ -2417,7 +2424,7 @@ $\ll \texttt{(}\textit{parameter}_1\texttt{, }\ldots\texttt{, } \textit{paramete
 	<kbd>is_empty_sequence</kbd> and 
 	<kbd>is_last_statement</kbd>,
 	respectively.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
-	    <div class='snippet' id='javascript_78_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajoGFkZuAEciOTJuEUYKCVddfQMTMwsUiJ5+IXy8gsVQACI0zOzuJs1ouITKWnpWrPJ1fLYKbgkXRnrC7R1DEuNTc3pvX3YqARnXLtjCUj7kgjt85lHxyfltxjnFspWvbh9r3Z6DpPoTU-OJqZfiwz3CobLb5Qo3br7RL9SoTKQUACeZwyQxy-z0gOWFSsJCIAlBDQhe16H0qAjY33YFxc6LuWMsLFx+JEIJer3w4hI+VAEiRg3aoCCoBsRjSIiaGEiyiMWSlKAArJFOtFeEwpOSESIrPzhiJeci2sNNLtOdz9WxDlzBaAdTkzlTfvJpvrbdxdqrGOq2JqrHDEQbUblzZabu61RqtSxyZSxo7RMGPqGVeHvSJjqKKPbY5d40iLYnjcnPRGvpmfjnnXmQ4WgA')">function first_statement(stmts) {
+	    <div class='snippet' id='javascript_78_15_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajoGFkZuAEciOTJuEUYKCVddfQMTMwsUiJ5+IXy8gsVQACI0zOzuJs1ouITKWnpWrPJ1fLYKbgkXRnrC7R1DEuNTc3pvX3YqARnXLtjCUj7kgjt85lHxyfltxjnFspWvbh9r3Z6DpPoTU-OJqZfiwz3CobLb5Qo3br7RL9SoTKQUACeZwyQxy-z0gOWFSsJCIAlBDQhe16H0qAjY33YFxc6LuWMsLFx+JEIJer3w4hI+VAEiRg3aoCCoBsRjSIiaGEiyiMWSlKAArJFOtFeEwpOSESIrPzhiJeci2sNNLtOdz9WxDlzBaAdTkzlTfvJpvrbdxdqrGOq2JqrHDEQbUblzZabu61RqtSxyZSxo7RMGPqGVeHvSJjqKKPbY5d40iLYnjcnPRGvpmfjnnXmQ4WgA')">function first_statement(stmts) {
    return head(stmts);
 }
 function rest_statements(stmts) {
@@ -2506,7 +2513,7 @@ function is_last_statement(stmts) {
 	The symbol is wrapped in a tagged list representing the name, and thus
 	<kbd>assignment_symbol</kbd> needs to
 	unwrap it.
-    <div class='snippet' id='javascript_78_15_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajoGFjZGRioOEgkXPycXbT1DY1NzSxZ2Lj5BYTyAxVAAIjSMrJz5Rs1ouITKWnoWzOyXZkYATwkAIxoBOudA3X1DEzMLL24fEXYqWe9fbdnxf3nXTTPuwlI+5MG2kYA3NgEidW4ADykTdP65gsXilZldabA5bWyHRz1M5dWL4cQkRgUUASMbMW7DeSjdgUbjtJFBUA2IyMbgiRpvUAEjCRTrRXhMKQCNhjETovGjCbTWYotHfO6YxFsHF4864emMRnM1l8jEUZiPZ6vD5fDJ0EQ8tkjQXCgpdIA')">function assignment_symbol(component) {
+    <div class='snippet' id='javascript_78_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajoGFjZGRioOEgkXPycXbT1DY1NzSxZ2Lj5BYTyAxVAAIjSMrJz5Rs1ouITKWnoWzOyXZkYATwkAIxoBOudA3X1DEzMLL24fEXYqWe9fbdnxf3nXTTPuwlI+5MG2kYA3NgEidW4ADykTdP65gsXilZldabA5bWyHRz1M5dWL4cQkRgUUASMbMW7DeSjdgUbjtJFBUA2IyMbgiRpvUAEjCRTrRXhMKQCNhjETovGjCbTWYotHfO6YxFsHF4864emMRnM1l8jEUZiPZ6vD5fDJ0EQ8tkjQXCgpdIA')">function assignment_symbol(component) {
     return symbol_of_name(head(tail(component))));
 }
 </pre></div></div>
@@ -2540,7 +2547,7 @@ function is_last_statement(stmts) {
 	<kbd>declaration_symbol</kbd> and
 	<kbd>declaration_value_expression</kbd> apply to both
 	kinds.
-	<div class='snippet' id='javascript_78_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajpQXm4yATYjNiSSZkYATwkAIxoBPycXbT1DEzMLUALi0uYaAmYSNgluEW9fdioy8X9nQM1NaLiEylp6VPTM7JnmADc2ASJ1bgAPKRNGRhnygNddfQNa83pekX6y26OR1zGJ-HESRgpQCXzmOYysnJ5dgUbhdeSgIKgGxGRjdABEAlMoC2ENAGEicPGuF4TCkGXyIisfwWORE31+aX+izoQOyoMqWJxjDxbAJxIBS0aJTK5PZ1NyHzpYKe0SZLLZlJJS1W602Oz2BzoZJ+fMBgpBwueQA')">function declaration_symbol(component) {
+	<div class='snippet' id='javascript_78_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajpQXm4yATYjNiSSZkYATwkAIxoBPycXbT1DEzMLUALi0uYaAmYSNgluEW9fdioy8X9nQM1NaLiEylp6VPTM7JnmADc2ASJ1bgAPKRNGRhnygNddfQNa83pekX6y26OR1zGJ-HESRgpQCXzmOYysnJ5dgUbhdeSgIKgGxGRjdABEAlMoC2ENAGEicPGuF4TCkGXyIisfwWORE31+aX+izoQOyoMqWJxjDxbAJxIBS0aJTK5PZ1NyHzpYKe0SZLLZlJJS1W602Oz2BzoZJ+fMBgpBwueQA')">function declaration_symbol(component) {
    return symbol_of_name(head(tail(component)));
 }
 function declaration_value_expression(component) {
@@ -2549,7 +2556,7 @@ function declaration_value_expression(component) {
 </pre></div></div>
 	We also declare a constructor for constant declarations, to be used by
 	<kbd>function_decl_to_constant_decl</kbd>:
-	<div class='snippet' id='javascript_78_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajoGFl5uMgE2IzYkkj8nF209Q2NTc0sWdi4+QWF8gMVQACJxEkZ2eWY0jKyc2hIm7QAfIf0S8ZSInn4hdvrneSUmgDcsqjYAIwF1bszs3MHQEbGJwysq6dq58X8FxqaEyn6u9L2+ukHouMJSJ+SJNgAa3UrXabE6u16uREJDYEm4SlWAiI6m4AA8pCZGIx+kUTqUzBZQLNRC06GCIa8of0mkpYfDEWxkaiMVicXRNF98KCKKAJABPF49fbPMEUbjw+SgIKgGxGRjcERNba8tHS0AYSKfXC8JhSTL8kRWSEiugiAVCt65ZhiiWFTk6vUGkQm94kG38iQbGgCc2C13W22S1wO3WMfVsQ0B55IlHMdGY7jY-p+y3Uug29ji4OaTlAA')">function make_constant_declaration(name, value_expression) {
+	<div class='snippet' id='javascript_78_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajoGFl5uMgE2IzYkkj8nF209Q2NTc0sWdi4+QWF8gMVQACJxEkZ2eWY0jKyc2hIm7QAfIf0S8ZSInn4hdvrneSUmgDcsqjYAIwF1bszs3MHQEbGJwysq6dq58X8FxqaEyn6u9L2+ukHouMJSJ+SJNgAa3UrXabE6u16uREJDYEm4SlWAiI6m4AA8pCZGIx+kUTqUzBZQLNRC06GCIa8of0mkpYfDEWxkaiMVicXRNF98KCKKAJABPF49fbPMEUbjw+SgIKgGxGRjcERNba8tHS0AYSKfXC8JhSTL8kRWSEiugiAVCt65ZhiiWFTk6vUGkQm94kG38iQbGgCc2C13W22S1wO3WMfVsQ0B55IlHMdGY7jY-p+y3Uug29ji4OaTlAA')">function make_constant_declaration(name, value_expression) {
     return list("constant_declaration", name, value_expression);
 }
 </pre></div></div>
@@ -2583,7 +2590,7 @@ $\ll \textbf{function}\ \textit{name} \texttt{(}\textit{parameter}_1\texttt{, }\
 	The syntax predicate
 	<kbd>is_declaration</kbd>
 	returns true for all three kinds of declarations.
-	<div class='snippet' id='javascript_78_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajoGFl5uMgE2IzYkkj8nF209Q2NTc0sWdi4+QWF8gMVQACJxEkZ2eWY0jKyc2hIm7QAfIf0S8ZSInn4hdvrneSUmgDcsqjYAIwF1bszs3MHQEbGJwysq6dq58X8FxqaEyn6u9L2+ukHouNxW9tAJACeLx6+2e7Ry3AkLlAQVANiMjG4Iia2wooAAHjDQBhIp9cLwmFJMgCRFZdr1ciJAcC3rlmOCKJDCppogTGES2CTyaC6PSARINjQBFSgdz3iR6exGVDAiz8YTiSIxXTVgIiOpuOipCZGIx+iKaRSwVKmbLIkA')">function is_declaration(component) {
+	<div class='snippet' id='javascript_78_19_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajoGFl5uMgE2IzYkkj8nF209Q2NTc0sWdi4+QWF8gMVQACJxEkZ2eWY0jKyc2hIm7QAfIf0S8ZSInn4hdvrneSUmgDcsqjYAIwF1bszs3MHQEbGJwysq6dq58X8FxqaEyn6u9L2+ukHouNxW9tAJACeLx6+2e7Ry3AkLlAQVANiMjG4Iia2wooAAHjDQBhIp9cLwmFJMgCRFZdr1ciJAcC3rlmOCKJDCppogTGES2CTyaC6PSARINjQBFSgdz3iR6exGVDAiz8YTiSIxXTVgIiOpuOipCZGIx+iKaRSwVKmbLIkA')">function is_declaration(component) {
     return is_tagged_list(component, "constant_declaration") ||
            is_tagged_list(component, "variable_declaration") ||
            is_tagged_list(component, "function_declaration");
@@ -2619,7 +2626,7 @@ $\ll \textbf{function}\ \textit{name} \texttt{(}\textit{parameter}_1\texttt{, }\
 	<kbd>evaluate</kbd>
 	transforms into a constant declaration whose
 	value expression is a lambda expression.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
-	<div class='snippet' id='javascript_78_19_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajoGFgTKWhJmXm4yATYjNiSSPycXbR0ASENQfUMTMwsUiJ5+IUZRcX9neSUAIjSirJy8gqLezWi4gYzQaboh3PzCjOYSNgluEoDXXVqDevN6NopmEwIt7sVQDAnYwlJ05LnM7MXRlZsCjYpuI0YLsq7aoHRrHU7cc6dUo9UDYW5TB5FWaIlavEbLeYAIxovAAngDAkC6qZDqAwWcCVcAMzw+6JGbPBYCVg0ZjiEjtNjyJmU8p7YwkxoSNgAa3U7M53LRSyKIn51QVBkZ0ve8zWG15CnliuqwrFgnWmN4bGY3AAHlITIxGBk5Tr7dVlcMZR8lt9fv8odtNFqHX6nW8MZlsXjeZp4UA')">function function_decl_to_constant_decl(component) {
+	<div class='snippet' id='javascript_78_20_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajoGFgTKWhJmXm4yATYjNiSSPycXbR0ASENQfUMTMwsUiJ5+IUZRcX9neSUAIjSirJy8gqLezWi4gYzQaboh3PzCjOYSNgluEoDXXVqDevN6NopmEwIt7sVQDAnYwlJ05LnM7MXRlZsCjYpuI0YLsq7aoHRrHU7cc6dUo9UDYW5TB5FWaIlavEbLeYAIxovAAngDAkC6qZDqAwWcCVcAMzw+6JGbPBYCVg0ZjiEjtNjyJmU8p7YwkxoSNgAa3U7M53LRSyKIn51QVBkZ0ve8zWG15CnliuqwrFgnWmN4bGY3AAHlITIxGBk5Tr7dVlcMZR8lt9fv8odtNFqHX6nW8MZlsXjeZp4UA')">function function_decl_to_constant_decl(component) {
     return make_constant_declaration(
                function_declaration_name(component),
                make_lambda_expression(
@@ -2681,7 +2688,7 @@ $\ll \textbf{function}\ \textit{name} \texttt{(}\textit{parameter}_1\texttt{, }\
 	<kbd>operator_combination_to_application</kbd>
 	to transform an operator combination into a function application whose
 	function expression is the name of the operator.
-	<div class='snippet' id='javascript_78_20_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0aAHAUwCcBDCmrszI0AtgCMqJPrRIAKYSLZ0OJCgEpQAbwCQoPaFz7QXDhSJd6TZqR5cAnq069+ghRKnU680UpIr1oAA+gYZGYQws7rYO7Nx8AkKiUZ5yCr7+agDcuAC+hKSUMhHWUvaOcS6J4pLSXmnKqho6RqF6JmYWxRQ8AOY9HAAmzAA2TBTeig0UADSgAEQ2ZbHOCW41KXNZufnkKcVRS07xrknrMhPpjVq6+q3GpuaWLN19gyNjF1OzcwcxR5VrDwyTbZPLEXZFZbHZiMOziGjDT5+K6aO7tR6gUaMCjMEwEJH+WYYLZggp7AhULjY8q8EgDAkotEPTpYnF4hkzUDYEk7Qp0UCMDjCOk0nh0jlNJkdeis3EcfH1ZGcgDMPN5eysL36Q1ZHNmFAAFhxmC9JUZ0Z0rGweJSJaAAGT20BGnj0xUZUAAXm9oENxpeoPw4L5T2YUhEHDtqPNzNDWreuvdqm+4Y4IO26qKIh4AGtjTw2GxRmRanJgylmBwAB5sEyMRgyWa2HpECOqSs1usNuiMM36C0yj5zAtFqgljazcsyDu1jj1xugZut-wzrsyXuBzP8qEA05AugmmjMEfF0tRu7C7GgHcCL3X-4JWHwxFJ9TZGPS4qLP4VVZ7s+vmodzhKAAD8oDZnmx6FqeKSyJBxqprIN5cGo0zASBmFYZiHwUlSOJQuKgFqEB2GgAAXBBub5jBY5nghYY8BGyEPqh6FkRxIG6nh1KEW6PhTGhGGcSJeiCsKQx8RKJGgkAA')">function operator_combination_to_application(component) {
+	<div class='snippet' id='javascript_78_21_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0aAHAUwCcBDCmrszI0AtgCMqJPrRIAKYSLZ0OJCgEpQAbwCQoPaFz7QXDhSJd6TZqR5cAnq069+ghRKnU680UpIr1oAA+gYZGYQws7rYO7Nx8AkKiUZ5yCr7+agDcuAC+hKSUMhHWUvaOcS6J4pLSXmnKqho6RqF6JmYWxRQ8AOY9HAAmzAA2TBTeig0UADSgAEQ2ZbHOCW41KXNZufnkKcVRS07xrknrMhPpjVq6+q3GpuaWLN19gyNjF1OzcwcxR5VrDwyTbZPLEXZFZbHZiMOziGjDT5+K6aO7tR6gUaMCjMEwEJH+WYYLZggp7AhULjY8q8EgDAkotEPTpYnF4hkzUDYEk7Qp0UCMDjCOk0nh0jlNJkdeis3EcfH1ZGcgDMPN5eysL36Q1ZHNmFAAFhxmC9JUZ0Z0rGweJSJaAAGT20BGnj0xUZUAAXm9oENxpeoPw4L5T2YUhEHDtqPNzNDWreuvdqm+4Y4IO26qKIh4AGtjTw2GxRmRanJgylmBwAB5sEyMRgyWa2HpECOqSs1usNuiMM36C0yj5zAtFqgljazcsyDu1jj1xugZut-wzrsyXuBzP8qEA05AugmmjMEfF0tRu7C7GgHcCL3X-4JWHwxFJ9TZGPS4qLP4VVZ7s+vmodzhKAAD8oDZnmx6FqeKSyJBxqprIN5cGo0zASBmFYZiHwUlSOJQuKgFqEB2GgAAXBBub5jBY5nghYY8BGyEPqh6FkRxIG6nh1KEW6PhTGhGGcSJeiCsKQx8RKJGgkAA')">function operator_combination_to_application(component) {
     const operator = operator_symbol(component);
     return is_unary_operator_combination(component)
            ? make_application(make_name(operator),
@@ -2931,13 +2938,13 @@ $\ll \textbf{function}\ \textit{name} \texttt{(}\textit{parameter}_1\texttt{, }\
 	introduces a new block whose body includes the declaration and all
 	subsequent statements of the statement sequence in which the
 	declaration occurs. For example, the program
-	<div class='snippet' id='javascript_78_21_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	<div class='snippet' id='javascript_78_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 display(1);
 let* x = 2;
 let* y = x + 3;
 display(x + y);</pre></div></div>
 	could be seen as a shorthand for
-	<div class='snippet' id='javascript_78_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	<div class='snippet' id='javascript_78_23_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 display(1);
 {
   let x = 2;
@@ -3017,7 +3024,7 @@ display(1);
 	this syntax, we can compute the greatest common divisor
 	of two numbers using the following function:
 	
-	<div class='snippet' id='javascript_78_23_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AczIBMAKAQwBpQAjASlABvXKFGgA7gAsqAGwCmoDqACEAXlW8BwsTtBUCSgHyahI3efagNlgLS8A3GfMBfUHJkBnBdvO6eV3lA7dkdfUGcASFEncJiAJzkKIjj6EIjcZ3wmNhRsbgxsPnsgA')">function gcd(a, b) {
+	<div class='snippet' id='javascript_78_24_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AczIBMAKAQwBpQAjASlABvXKFGgA7gAsqAGwCmoDqACEAXlW8BwsTtBUCSgHyahI3efagNlgLS8A3GfMBfUHJkBnBdvO6eV3lA7dkdfUGcASFEncJiAJzkKIjj6EIjcZ3wmNhRsbgxsPnsgA')">function gcd(a, b) {
     while (a !== b) {
         if(a > b) {
             a = a - b;
@@ -3052,7 +3059,7 @@ display(1);
 	    while loop. The
 	    <kbd>gcd</kbd> function would then
 	    look as follows:
-	    <div class='snippet' id='javascript_78_24_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuRQB3ACwEsAbAUwH0KB7egB1ABd7QAjK4gJzNasqAOy4BPUAGdWAVwAmI1pNwAzGcIDGrMvVEBzDXIAUAQwA0XAJSgA3rlAPi5anUZMjoI9YC8APlAmoACE3t5cZvaOUdGOXqB+tg5kKp6B-pzWdjHZOTmBYYEAtFwA3JG5FVEAvqBUFJI8WZXN0ZzxXKDFJmUtzVXlvdH9vZY9jrxUsryi3bhVQA')">function gcd(a, b) {
+	    <div class='snippet' id='javascript_78_25_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuRQB3ACwEsAbAUwH0KB7egB1ABd7QAjK4gJzNasqAOy4BPUAGdWAVwAmI1pNwAzGcIDGrMvVEBzDXIAUAQwA0XAJSgA3rlAPi5anUZMjoI9YC8APlAmoACE3t5cZvaOUdGOXqB+tg5kKp6B-pzWdjHZOTmBYYEAtFwA3JG5FVEAvqBUFJI8WZXN0ZzxXKDFJmUtzVXlvdH9vZY9jrxUsryi3bhVQA')">function gcd(a, b) {
     while_loop( () => a !== b,
                 () => {  if (a > b) {
                              a = a - b;
@@ -3129,7 +3136,7 @@ display(1);
 	that reverses a list, using a for
 	loop. 
 	
-	<div class='snippet' id='javascript_78_25_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwFMA3JhgZyYAoAPDgJSgA3rlDjQAGyYVGTDkUmyAvKBKLJAbjESCNBqG7TZZIg2YkVofptABCUFQ4B9dZMndT5ppYG2vFlYUAIZUHgE+FAJCohJxcgpKoKoADqEM3AAWTMEAJp5mgQIANAmKUdpxAL464swUZvTMiRTaNbjMbJw8kk4U3Bil2KUAzNGaQA')">function reverse(xs) {
+	<div class='snippet' id='javascript_78_26_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwFMA3JhgZyYAoAPDgJSgA3rlDjQAGyYVGTDkUmyAvKBKLJAbjESCNBqG7TZZIg2YkVofptABCUFQ4B9dZMndT5ppYG2vFlYUAIZUHgE+FAJCohJxcgpKoKoADqEM3AAWTMEAJp5mgQIANAmKUdpxAL464swUZvTMiRTaNbjMbJw8kk4U3Bil2KUAzNGaQA')">function reverse(xs) {
     let result = null;
     for (let current = xs; ! is_null(current); current = tail(current)) {
         result = pair(head(current), result);
@@ -3178,7 +3185,7 @@ display(1);
 	  <LI>
 	    Eva Lu Ator tries to combine for loops
 	    with lambda expressions in the following program.
-	    <div class='snippet' id='javascript_78_26_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwFMA3JhgZyYH1jzq6HABQAPDgEpQAb1yg5oADZMKjJhyIKVAXlAkNCgNyz5BGg1BClKskQbmdYg6ACEoKh256FCoTbvinP3tQCgBDKh8g8UkZeTjVdU1QHQAHcIYhIUktAD5QAAsmUIATX1sGcQAaBI0KAOM5AF8G1QpbemZEiiNGoA')">function reverse_functions(xs) {
+	    <div class='snippet' id='javascript_78_27_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwFMA3JhgZyYH1jzq6HABQAPDgEpQAb1yg5oADZMKjJhyIKVAXlAkNCgNyz5BGg1BClKskQbmdYg6ACEoKh256FCoTbvinP3tQCgBDKh8g8UkZeTjVdU1QHQAHcIYhIUktAD5QAAsmUIATX1sGcQAaBI0KAOM5AF8G1QpbemZEiiNGoA')">function reverse_functions(xs) {
     let result = null;
     for (let curr = xs; ! is_null(curr); curr = tail(curr)) {
         result = pair(() => head(curr), result);
@@ -3263,7 +3270,7 @@ display(1);
 	  <LI>
 	    According to this specification, what are the values of the
 	    following four programs?
-	    <div class='snippet' id='javascript_78_27_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	    <div class='snippet' id='javascript_78_28_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 1; 2; 3;
 
 1; { if (true) { } else { 2; } }
