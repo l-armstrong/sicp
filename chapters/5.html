@@ -2032,47 +2032,28 @@ Acknowledgments
     
     system.  For instance, the evaluator does not explain how the
     evaluation of a subexpression manages to return a value to the
-    expression that uses this value, nor does the evaluator explain how
-    some recursive
+    expression that uses this value.
     
       
-      functions
-    
-    generate iterative processes (that is, are evaluated
-    using constant space) whereas other recursive
-    
       
-      functions
-    
-    generate recursive
-    processes.  These questions remain unanswered because the metacircular
-    evaluator is itself a
-    
+        Also, the evaluator does not explain how some recursive
+        functions can generate iterative processes (that is, be
+        evaluated using constant space) whereas other recursive
+        functions will generate recursive processes.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
+      This chapter addresses both of these issues.
       
-      JavaScript
     
-    program and hence inherits the control structure of the underlying
-    
-      
-      JavaScript
-    
-    system.  In order to provide a more
-    complete description of the control structure of the
-    
-      
-      JavaScript
-    
-    evaluator, we must work at a more primitive level than
-    
-      
-      JavaScript
-    
-    itself.
   </p></div>
 
   <div class='permalink'>
 <a name='p2' class='permalink'></a><p>
-    In this chapter we will describe processes in terms of the step-by-step
+    
+      
+      
+        We
+      
+    
+    will describe processes in terms of the step-by-step
     operation of a traditional computer.  Such a computer, or 
     
     <EM>
@@ -2173,7 +2154,18 @@ Acknowledgments
 
   
 
-  
+  <hr>
+
+    <div class='footnote'>
+      <a class='footnote-number' id='footnote-1' href='#footnote-link-1'>[1] </a>
+    <FOOTNOTE>
+    
+        See remark in footnote&nbsp;<REF NAME="foot:eval_sequence"><a class="superscript" id="5-foot-link-5" href="./4.1.1.html#footnote-5">5</a></REF> in
+        section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="5-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>.
+      
+    </FOOTNOTE></div>
+
+    
 </CHAPTER></div></div>
 
     <div class='nav'>
