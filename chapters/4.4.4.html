@@ -3876,17 +3876,11 @@ function comma_separated(strings) {
 	  <div class='snippet' id='javascript_96_42_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwcgFYD2ARgBQAOAhgJYBOpARAELUAuAJte+wDYCmDADSgqdRkz4A7IaEkBXHjwCUS4aPoMAxoQC25Oaz60Z6xgHdqAL0q12M+YpVLcQA')">'job(pair("Bitdiddle", pair("Ben", null)), pair("computer", pair("wizard", null)))'
 </pre></div></div>
           To achieve the expected formatting,
-	  we add a clause to
+	  we add a clause in
 	  <kbd>unparse</kbd>
 	  that identifies list constructions
-	  with
-	  <kbd>is_list_construction</kbd>
 	  and formats them as applications of
-	  <kbd>list</kbd> to the list elements,
-	  which
-	  <kbd>element_expressions</kbd>
-	  extracts from the nested applications of 
-	  <kbd>pair</kbd>.
+	  <kbd>list</kbd> to the list element expressions.
 	  <kbd class='snippet'>function unparse(exp) {
     return is_name(exp)
            ? symbol_of_name(exp)
@@ -3969,7 +3963,7 @@ function name_to_variable(name) {
 </pre></div></div>
 	  Consequently the conversion function
 	  <kbd>variable_to_name</kbd> needs to
-	  distinguish the two different shapes a variable can have.
+	  distinguish the two different kinds of identifiers a variable can have.
           <div class='snippet' id='javascript_96_46_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwMwK4B2AxgC4CWA9oaAG4CGATufQEYA2ApgPqmXeF6AW04AKBszZcAlKADeWUEtDFqAZ1KhyAE06EKucp0agAvFt37yh490q5uElhzFOpnaQG5Fyxp1L4jDTkatwADvTkjKI6egZGjNI+yilKAPygQvQA1jyCIqKkkewxlvHGsgDUoABE3DWg1RrMhADm1gCeogAWnPTapXHWCdKjyanKAFyZOXnCYrFWNoneAL5AA')">function variable_to_name(variable) {
     const identifier = identifier_of_variable(variable);
     return is_pair(identifier)
