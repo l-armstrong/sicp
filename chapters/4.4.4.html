@@ -2028,17 +2028,17 @@ const output_prompt = "Query results:";
 
 function query_driver_loop() {
     const input = user_read(input_prompt) + ";";
-    const exp = parse(input);
-    const q = query_syntax_process(exp);
-    if (is_assertion(q)) {
-        add_rule_or_assertion(assertion_body(q));
+    const expression = parse(input);
+    const query = query_syntax_process(expression);
+    if (is_assertion(query)) {
+        add_rule_or_assertion(assertion_body(query));
         display("Assertion added to data base.");
     } else {
         display(output_prompt);
         display_stream(
             stream_map(
-                frame => unparse(instantiate(exp, frame)),
-                evaluate_query(q, singleton_stream(null))));
+                frame => unparse(instantiate(expression, frame)),
+                evaluate_query(query, singleton_stream(null))));
     }
     query_driver_loop();
 }
@@ -2059,16 +2059,15 @@ function query_driver_loop() {
 	  we further transform the syntax representation into
 	  into an abstract object at a conceptual level appropriate
 	  for the query system using
-	  <kbd>query_syntax_process</kbd>
-	  declared in section&nbsp;<REF NAME="sec:query-syntax"><a class="superscript" id="4.4.4-sec-link-4.4.4.7" href="./4.4.4.html#sec4.4.4.7">4.4.4.7</a></REF>,
+	  <kbd>query_syntax_process</kbd>,
+	  which is declared in section&nbsp;<REF NAME="sec:query-syntax"><a class="superscript" id="4.4.4-sec-link-4.4.4.7" href="./4.4.4.html#sec4.4.4.7">4.4.4.7</a></REF>
 	  along with the predicate
 	  <kbd>is_assertion</kbd>
 	  and the selector
 	  <kbd>assertion_body</kbd>. This
 	  transformation identifies names starting with a dollar sign and
 	  transforms them into <EM>variables</EM>,
-	  a data structure that allows more efficient processing in the query
-	  system.
+	  which makes the processing more efficient.
 	  The function <kbd>add_rule_or_assertion</kbd>
 	  is declared in section&nbsp;<REF NAME="sec:query-db"><a class="superscript" id="4.4.4-sec-link-4.4.4.5" href="./4.4.4.html#sec4.4.4.5">4.4.4.5</a></REF>.
 	  The frames resulting from query evaluation are used to instantiate
@@ -3748,9 +3747,9 @@ list("rule", list("append_to_form",
 	  <div class='snippet' id='javascript_96_38_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 job($x, list("computer", $type))</pre></div></div>
 	  is transformed into this query-language-specific representation:
-	  <kbd class='snippet'>list("job", 
-     $variable$-$for$-$\$x$,
-     list("computer", list("name", $variable$-$for$-$\$type$)))</kbd>
+	  <kbd class='snippet'>
+	    
+	  </kbd>
       </p></div>
       <div class='permalink'>
 <a name='p38' class='permalink'></a><p>
@@ -3795,7 +3794,7 @@ and(salary($person, $amount), javascript_value($amount > 50000))</pre></div></di
 	  <kbd>instantiate</kbd> uses
 	  <kbd>express_literal</kbd> and
 	  <kbd>express_pair</kbd> to convert
-	  the values of bindings in frames to expressions in JavaScript syntax
+	  the values of bindings in frames to expressions in the JavaScript syntax
 	  representation, using the syntax
 	  constructors of section&nbsp;<REF NAME="sec:representing-expressions"><a class="superscript" id="4.4.4-sec-link-4.1.2" href="./4.1.2.html">4.1.2</a></REF>.
 	  <div class='snippet' id='javascript_96_40_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwMwK4B2AxgC4CWA9oaAKYAeADgE60DObA+gDbmm3MAhtwAUAN2H5aASlABvLKCWhWpfMxoBbQQGtaPPgOHjJMgNxYAvniJkqNBi3ZdGg8sxEALWoIAmnR2YAGlBSN24ApmZZBWUVWjUNUG09TkFGRl5iQQpqERT9QkFNWhEAIld3MukgxTj6hsb63jZSLx9-QJCw8gjA6WkLSyA')">function express_literal(value) {
@@ -3818,24 +3817,24 @@ function express_pair(head_expr, tail_expr) {
       <div class='permalink'>
 <a name='p40' class='permalink'></a><p>
 	  The function <kbd>unparse</kbd>
-	  transforms a JavaScript expression given in syntax representation
+	  transforms a JavaScript expression given in the syntax representation
 	  into a string by applying the syntax rules
 	  of section&nbsp;<REF NAME="sec:representing-expressions"><a class="superscript" id="4.4.4-sec-link-4.1.2" href="./4.1.2.html">4.1.2</a></REF>
 	  from right to left.
 	  We only describe <kbd>unparse</kbd> as
 	  far as needed for the query processing language and leave the remaining cases
-	  as exercise&nbsp;<REF NAME="ex:parse"><a class="superscript" id="4.4.4-ex-link-4.2" href="./4.1.2.html#ex_4.2">4.2</a></REF>. A name is transformed into the
-	  symbol that identifies it, and a literal is transformed by
-	  <kbd>stringify</kbd>ing its value.
-	  An application is formatted by unparsing the function expression
-	  (here assumed to be a name) followed by the comma-separated unparsed
+	  as exercise&nbsp;<REF NAME="ex:parse"><a class="superscript" id="4.4.4-ex-link-4.2" href="./4.1.2.html#ex_4.2">4.2</a></REF>. A literal is transformed by
+	  <kbd>stringify</kbd>ing its value, and
+	  a name is transformed into the symbol that identifies it.
+	  An application is formatted by unparsing the function expression,
+	  which we can asume to be a name here, followed by the comma-separated unparsed
 	  argument expressions enclosed in parentheses.
 	  Binary operator combinations are formatted using infix notation.
 	  <kbd class='snippet'>function unparse(exp) {
-    return is_name(exp)
-           ? symbol_of_name(exp)
-           : is_literal(exp)
+    return is_literal(exp)
            ? stringify(literal_value(exp))
+           : is_name(exp)
+           ? symbol_of_name(exp)
            : is_application(exp) && is_name(function_expression(exp))
            ? symbol_of_name(function_expression(exp)) +
                  "(" +	   
@@ -3853,7 +3852,7 @@ function comma_separated(strings) {
     return accumulate((s, acc) => s + (acc === "" ? "" : ", " + acc),
                       "", strings);
 }</kbd>
-	  The output of this 
+	  This 
 	  <kbd>unparse</kbd> function
 	  yields correct strings for our instantiated queries,
 	  but they will become unnecessarily
@@ -3869,12 +3868,12 @@ function comma_separated(strings) {
 	  to
 	  <kbd>list("computer", "wizard")</kbd>
 	  in which case the expected query result string is:
-	  <div class='snippet' id='javascript_96_41_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwcgFYD2ARgBQA2AlgM4AupARAEKW0Amlbb5ApgwDShmPAHYMAlIKp1GAY0IBbAA4BXWjwBOAoQHdKALwCGGthPG4gA')">'job(list("Bitdiddle", "Ben"), list("computer", "wizard"))'
-</pre></div></div>
+	  <div class='snippet' id='javascript_96_41_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
+'job(list("Bitdiddle", "Ben"), list("computer", "wizard"))'</pre></div></div>
 	  However, <kbd>unparse</kbd>
 	  produces:
-	  <div class='snippet' id='javascript_96_42_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwcgFYD2ARgBQAOAhgJYBOpARAELUAuAJte+wDYCmDADSgqdRkz4A7IaEkBXHjwCUS4aPoMAxoQC25Oaz60Z6xgHdqAL0q12M+YpVLcQA')">'job(pair("Bitdiddle", pair("Ben", null)), pair("computer", pair("wizard", null)))'
-</pre></div></div>
+	  <div class='snippet' id='javascript_96_42_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
+'job(pair("Bitdiddle", pair("Ben", null)), pair("computer", pair("wizard", null)))'</pre></div></div>
           To achieve the expected formatting,
 	  we add a clause in
 	  <kbd>unparse</kbd>
@@ -3882,15 +3881,15 @@ function comma_separated(strings) {
 	  and formats them as applications of
 	  <kbd>list</kbd> to the list element expressions.
 	  <kbd class='snippet'>function unparse(exp) {
-    return is_name(exp)
-           ? symbol_of_name(exp)
-           : is_literal(exp)
+    return is_literal(exp)
            ? stringify(literal_value(exp))
-	   : is_list_construction(exp)
+           : is_name(exp)
+           ? symbol_of_name(exp)
+           : is_list_construction(exp)
 	   ? unparse(make_application(make_name("list"), 
                                       element_expressions(exp)))
            : is_application(exp) && is_name(function_expression(exp))
-	   $\vdots$
+           $\langle remaining$ $cases$ $as$ $above \rangle$
 }
 function is_list_construction(exp) {
     return (is_literal(exp) && is_null(literal_value(exp))) ||
@@ -3929,11 +3928,11 @@ function is_$_name(exp) {
       </p></div>
       <div class='permalink'>
 <a name='p42' class='permalink'></a><p>
-	Variables are tagged lists with the tag
+	In the query processor, variables are tagged lists with the tag
 	<kbd>"variable"</kbd>, whose
 	second element is a value that uniquely identifies the variable.
 	When we convert a name to a variable, we use the name's
-	symbol as identifier.
+	symbol as identifier. 
       <div class='snippet' id='javascript_96_44_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function make_variable(identifier) {
      return list("variable", identifier);
@@ -3947,6 +3946,14 @@ function identifier_of_variable(variable) {
 function name_to_variable(name) {
      return make_variable(symbol_of_name(name));
 }</pre></div></div>
+      Identifying names that start with a dollar
+	sign and transforming them into variables in
+	<kbd>query_syntax_process</kbd>
+	increases the efficiency of query processing, since it means
+	that the system can check to see if a value is a pattern variable
+	by checking whether the head of the value is the string
+	<kbd>"variable"</kbd>, rather than
+	having to extract characters from the symbol of the name.      
       </p></div>
 	<div class='permalink'>
 <a name='p43' class='permalink'></a><p>
@@ -3954,30 +3961,37 @@ function name_to_variable(name) {
 	  (in section&nbsp;<REF NAME="sec:query-unify"><a class="superscript" id="4.4.4-sec-link-4.4.4.4" href="./4.4.4.html#sec4.4.4.4">4.4.4.4</a></REF>) by 
 	  <kbd>make_new_variable</kbd>, which uses
 	  as identifier a pair consisting of a number and the symbol of a given
-	  variable. This increases the efficiency of the query processing,
-	  since it means that we can rename variables by constructing pairs
-	  rather than constructing new strings.
+	  variable. 
 	  <div class='snippet' id='javascript_96_45_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwMwK4B2AxgC4CWA9oaALYCGA1gKYD6hzA7qwG70BO5egCMANswAUfQSPEAaUP3zjW9AA5rR5YvQrVW5ACYBKUAG8soK4ual8-Ggxa8BQsZLX1y-CUpXrNbV0qQgNDBQBnAE9aYUpRVkpcdnpaSWk3cWNsgG4sAF8gA')">function make_new_variable(variable, rule_application_id) {
     return make_variable(pair(rule_application_id, symbol_of_name(variable)));
 }
 </pre></div></div>
-	  Consequently the conversion function
-	  <kbd>variable_to_name</kbd> needs to
-	  distinguish the two different kinds of identifiers a variable can have.
-          <div class='snippet' id='javascript_96_46_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwMwK4B2AxgC4CWA9oaAG4CGATufQEYA2ApgPqmXeF6AW04AKBszZcAlKADeWUEtDFqAZ1KhyAE06EKucp0agAvFt37yh490q5uElhzFOpnaQG5Fyxp1L4jDTkatwADvTkjKI6egZGjNI+yilKAPygQvQA1jyCIqKkkewxlvHGsgDUoABE3DWg1RrMhADm1gCeogAWnPTapXHWCdKjyanKAFyZOXnCYrFWNoneAL5AA')">function variable_to_name(variable) {
-    const identifier = identifier_of_variable(variable);
-    return is_pair(identifier)
-           ? make_name(tail(identifier) + "_" + stringify(head(identifier)))
-           : make_name(identifier);
-}
-</pre></div></div>
+	  This increases the efficiency of query processing,
+	  since it means that variables can be renamed by constructing pairs
+	  rather than new strings.
+	</p></div>
+	<div class='permalink'>
+<a name='p44' class='permalink'></a><p>
 	  The unique identifier for a rule application is a number, which is
 	  incremented each time a rule is applied.
-	  <div class='snippet' id='javascript_96_47_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwGwKYAuoATgK4ED6AxgPZkB2h+JoAvKAAwDcOAZo2qEAlrQagG+AO6VyVAIYAHRbmHV5IsZWEATABQBKUAG8soc6Qr4a9Ji3aWqdRs1YBqUAEZeF0kTIk4nLWznYkvAC+OIryJADO1gCOZCwAnpQAbiwARrQJegDk8nEJJIR6vpVV1ZUAOljBekqK+Aw6lIS0lHy0JAC2egwUuAA0oKljqQbTNTUFYwBEWSS5CQsGvDHxSSkk6cur+IXFpeWz5zX1jc2t7Z3dvQMxwiR6ZGMZBpNjz6-voAAvaZjUD1So3NodLo9fp6DLfQHTIwXarzUBLHJ5fDrXgASHMWD4LzihEo8gYcSkLGOyluUIesIAHgjVCS9At5AtFtkuejqLyFjp1gYChssCBQFsEpRkmlMpj8kVaZD7jCBszxmNWeUOQKeYt+YshdM0QscUA')">let rule_counter = 0;
+	  <div class='snippet' id='javascript_96_46_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwGwKYAuoATgK4ED6AxgPZkB2h+JoAvKAAwDcOAZo2qEAlrQagG+AO6VyVAIYAHRbmHV5IsZWEATABQBKUAG8soc6Qr4a9Ji3aWqdRs1YBqUAEZeF0kTIk4nLWznYkvAC+OIryJADO1gCOZCwAnpQAbiwARrQJegDk8nEJJIR6vpVV1ZUAOljBekqK+Aw6lIS0lHy0JAC2egwUuAA0oKljqQbTNTUFYwBEWSS5CQsGvDHxSSkk6cur+IXFpeWz5zX1jc2t7Z3dvQMxwiR6ZGMZBpNjz6-voAAvaZjUD1So3NodLo9fp6DLfQHTIwXarzUBLHJ5fDrXgASHMWD4LzihEo8gYcSkLGOyluUIesIAHgjVCS9At5AtFtkuejqLyFjp1gYChssCBQFsEpRkmlMpj8kVaZD7jCBszxmNWeUOQKeYt+YshdM0QscUA')">let rule_counter = 0;
 
 function new_rule_application_id() {
     rule_counter = rule_counter + 1;
     return rule_counter;
+}
+</pre></div></div>
+	</p></div>
+	<div class='permalink'>
+<a name='p45' class='permalink'></a><p>
+	  The conversion function
+	  <kbd>variable_to_name</kbd> needs to
+	  distinguish the two different kinds of identifiers a variable can have.
+          <div class='snippet' id='javascript_96_47_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwMwK4B2AxgC4CWA9oaAG4CGATufQEYA2ApgPqmXeF6AW04AKBszZcAlKADeWUEtDFqAZ1KhyAE06EKucp0agAvFt37yh490q5uElhzFOpnaQG5Fyxp1L4jDTkatwADvTkjKI6egZGjNI+yilKAPygQvQA1jyCIqKkkewxlvHGsgDUoABE3DWg1RrMhADm1gCeogAWnPTapXHWCdKjyanKAFyZOXnCYrFWNoneAL5AA')">function variable_to_name(variable) {
+    const identifier = identifier_of_variable(variable);
+    return is_pair(identifier)
+           ? make_name(tail(identifier) + "_" + stringify(head(identifier)))
+           : make_name(identifier);
 }
 </pre></div></div>
 	</p></div>
@@ -3993,7 +4007,7 @@ function new_rule_application_id() {
     
     
     <div class='permalink'>
-<a name='p44' class='permalink'></a><p>
+<a name='p46' class='permalink'></a><p>
       
 	
 	The functions <kbd>type</kbd>
@@ -4042,7 +4056,7 @@ function contents(exp) {
 </pre></div></div>
     </p></div>
     <div class='permalink'>
-<a name='p45' class='permalink'></a><p>
+<a name='p47' class='permalink'></a><p>
       The following
       
 	
@@ -4072,7 +4086,7 @@ function assertion_body(exp) {
 </pre></div></div>
     </p></div>
     <div class='permalink'>
-<a name='p46' class='permalink'></a><p>
+<a name='p48' class='permalink'></a><p>
       
 	
 	
@@ -4103,7 +4117,7 @@ function javascript_expression(exps) { return head(exps); }
 </pre></div></div>
     </p></div>
     <div class='permalink'>
-<a name='p47' class='permalink'></a><p>
+<a name='p49' class='permalink'></a><p>
       The following three
       
 	
@@ -4140,7 +4154,7 @@ function rule_body(rule) {
     
 
     <div class='permalink'>
-<a name='p48' class='permalink'></a><p>
+<a name='p50' class='permalink'></a><p>
       
       
       Frames are represented as lists of bindings, which are
