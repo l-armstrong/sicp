@@ -3851,7 +3851,7 @@ function comma_separated(strings) {
 	  This 
 	  <kbd>unparse</kbd> function
 	  yields correct strings for our instantiated queries,
-	  but they will become unnecessarily
+	  but they become unnecessarily
 	  verbose in cases where pattern variables are instantiated
 	  by lists. For example, processing of the query
 	  <kbd>job($x, pair("computer", $type))</kbd>
@@ -3877,14 +3877,9 @@ function comma_separated(strings) {
 	  and formats them as applications of
 	  <kbd>list</kbd> to the list element expressions.
 	  <kbd class='snippet'>function unparse(exp) {
-    return is_literal(exp)
-           ? stringify(literal_value(exp))
-           : is_name(exp)
-           ? symbol_of_name(exp)
-           : is_list_construction(exp)
+    return is_list_construction(exp)
 	   ? unparse(make_application(make_name("list"), 
                                       element_expressions(exp)))
-           : is_application(exp) && is_name(function_expression(exp))
            $\langle remaining$ $cases$ $as$ $above \rangle$
 }
 function is_list_construction(exp) {
@@ -3912,7 +3907,9 @@ function element_expressions(exp) {
       <div class='permalink'>
 <a name='p41' class='permalink'></a><p>
 	The syntax predicate
-	<kbd>is_$_name</kbd> 	
+	<kbd>is_$_name</kbd> used in
+	<kbd>instantiate</kbd> and
+	<kbd>query_syntax_process</kbd>
 	identifies JavaScript names that start with a dollar
 	sign. We assume there is a function <kbd>char_at</kbd> that
 	returns a string containing only the character of the given string
@@ -3949,7 +3946,7 @@ function name_to_variable(name) {
 	that the system can check to see if a value is a pattern variable
 	by checking whether the head of the value is the string
 	<kbd>"variable"</kbd>, rather than
-	having to extract characters from the symbol of the name.      
+	having to extract a character from the symbol of the name.      
       </p></div>
 	<div class='permalink'>
 <a name='p43' class='permalink'></a><p>
