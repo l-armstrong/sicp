@@ -3680,7 +3680,7 @@ list("job",
 and(salary($person, $amount), javascript_value($amount > 50000))</pre></div></div>
 	  <kbd>query_syntax_process</kbd> produces a data structure
 	  in which a JavaScript syntax respresentation is embedded in
-	  a query-language specific representation.
+	  a query-language specific representation:
 	  <div class='snippet' id='javascript_96_37_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
 list("and",
      list(list("salary",
@@ -3798,7 +3798,7 @@ list("application",
 	  The result of
 	  <kbd>instantiate_expression</kbd>
 	  applied to the JavaScript syntax representation of the query and
-	  the frame $g$ is
+	  the frame $g$ is:
 	  <div class='snippet' id='javascript_96_44_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
 list("application",
      list("name", "job"),
@@ -3813,9 +3813,6 @@ list("application",
                list("name", "list"),
                list(list("literal", "computer"),
                     list("literal", "wizard")))))</pre></div></div>
-	  which can be passed by
-	  <kbd>query_driver_loop</kbd>
-	  to <kbd>unparse</kbd> for display.
       </p></div>
       
       
@@ -3870,17 +3867,19 @@ function comma_separated(strings) {
 	  but they become unnecessarily
 	  verbose in cases where pattern variables are instantiated
 	  by lists. In the example above, where processing the query
-	  <kbd>job($x, list("computer", "wizard"))</kbd>
+	  <div class='snippet' id='javascript_96_45_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwKwPYBGAFACQAeANKADYCWAzgC7EBEAxvgLYAOArkwCmAJ1bVWAdzoAvAIbCAJqwCUyoA')">job($x, list("computer", "wizard"))
+</pre></div></div>
 	  yields a frame that binds 
 	  <kbd>$x</kbd>
 	  to
-	  <kbd>list("Bitdiddle", "Ben")</kbd>,
+	  <div class='snippet' id='javascript_96_46_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwBwIYCWATgBQBEAQoQC4AmhddANgKbkA0oBJFlrAO06gBAV2bMAlJKA')">pair("Bitdiddle", pair("Ben", null))
+</pre></div></div>
 	  the expected query result string is:
-	  <div class='snippet' id='javascript_96_45_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
+	  <div class='snippet' id='javascript_96_47_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
 'job(list("Bitdiddle", "Ben"), list("computer", "wizard"))'</pre></div></div>
 	  However, the <kbd>unparse</kbd> function
 	  above produces
-	  <div class='snippet' id='javascript_96_46_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
+	  <div class='snippet' id='javascript_96_48_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
 'job(pair("Bitdiddle", pair("Ben", null)), list("computer", "wizard"))'</pre></div></div>
 	  which explicitly constructs the two pairs that make up the first list.
           To achieve the more concise formatting used throughout 
@@ -3938,7 +3937,7 @@ function comma_separated(strings) {
 	sign. We assume there is a function <kbd>char_at</kbd> that
 	returns a string containing only the character of the given string
 	at the given position.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
-      <div class='snippet' id='javascript_96_47_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+      <div class='snippet' id='javascript_96_49_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function is_variable(exp) {
     return is_name(exp) && char_at(symbol_of_name(exp), 0) === "$";
 }</pre></div></div>
@@ -3950,7 +3949,7 @@ function is_variable(exp) {
 	  (in section&nbsp;<REF NAME="sec:query-unify"><a class="superscript" id="4.4.4-sec-link-4.4.4.4" href="./4.4.4.html#sec4.4.4.4">4.4.4.4</a></REF>) by 
 	  <kbd>make_new_variable</kbd>, using
 	  a given variable and a unique identifier.
-	  <div class='snippet' id='javascript_96_48_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwMwK4B2AxgC4CWA9oaALYCGA1gKYD6hzA7qwG70BO5egCMANswAUfQSPEAaUP3zjW9AA5rR5YvQrVW5ACYBKUAG8soK4ual8-Ggxbt6tSQGcAnrWGVRrSlwXNykBITFmUwBqUAAiVljQGPdSQUIAc3JcTwklFXVNbV0qQgMTYwBuLABfIA')">function make_new_variable(variable, rule_application_id) {
+	  <div class='snippet' id='javascript_96_50_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwMwK4B2AxgC4CWA9oaALYCGA1gKYD6hzA7qwG70BO5egCMANswAUfQSPEAaUP3zjW9AA5rR5YvQrVW5ACYBKUAG8soK4ual8-Ggxbt6tSQGcAnrWGVRrSlwXNykBITFmUwBqUAAiVljQGPdSQUIAc3JcTwklFXVNbV0qQgMTYwBuLABfIA')">function make_new_variable(variable, rule_application_id) {
     return make_name(symbol_of_name(variable) + "_" + stringify(rule_application_id));
 }
 </pre></div></div>
@@ -3959,7 +3958,7 @@ function is_variable(exp) {
 <a name='p41' class='permalink'></a><p>
 	  The unique identifier for a rule application is a number, which is
 	  incremented each time a rule is applied.
-	  <div class='snippet' id='javascript_96_49_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwGwKYAuoATgK4ED6AxgPZkB2h+JoAvKAAwDcOAZo2qEAlrQagG+AO6VyVAIYAHRbmHV5IsZWEATABQBKUAG8soc6Qr4a9Ji3aWqdRs1YBqUAEZeF0kTIk4nLWznYkvAC+OIryJADO1gCOZCwAnpQAbiwARrQJegDk8nEJJIR6vpVV1ZUAOljBekqK+Aw6lIS0lHy0JAC2egwUuAA0oKljqQbTNTUFYwBEWSS5CQsGvDHxSSkk6cur+IXFpeWz5zX1jc2t7Z3dvQMxwiR6ZGMZBpNjz6-voAAvaZjUD1So3NodLo9fp6DLfQHTIwXarzUBLHJ5fDrXgASHMWD4LzihEo8gYcSkLGOyluUIesIAHgjVCS9At5AtFtkuejqLyFjp1gYChssCBQFsEpRkmlMpj8kVaZD7jCBszxmNWeUOQKeYt+YshdM0QscUA')">let rule_counter = 0;
+	  <div class='snippet' id='javascript_96_51_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwGwKYAuoATgK4ED6AxgPZkB2h+JoAvKAAwDcOAZo2qEAlrQagG+AO6VyVAIYAHRbmHV5IsZWEATABQBKUAG8soc6Qr4a9Ji3aWqdRs1YBqUAEZeF0kTIk4nLWznYkvAC+OIryJADO1gCOZCwAnpQAbiwARrQJegDk8nEJJIR6vpVV1ZUAOljBekqK+Aw6lIS0lHy0JAC2egwUuAA0oKljqQbTNTUFYwBEWSS5CQsGvDHxSSkk6cur+IXFpeWz5zX1jc2t7Z3dvQMxwiR6ZGMZBpNjz6-voAAvaZjUD1So3NodLo9fp6DLfQHTIwXarzUBLHJ5fDrXgASHMWD4LzihEo8gYcSkLGOyluUIesIAHgjVCS9At5AtFtkuejqLyFjp1gYChssCBQFsEpRkmlMpj8kVaZD7jCBszxmNWeUOQKeYt+YshdM0QscUA')">let rule_counter = 0;
 
 function new_rule_application_id() {
     rule_counter = rule_counter + 1;
@@ -4009,7 +4008,7 @@ function new_rule_application_id() {
       
       in section&nbsp;<REF NAME="sec:manifest-types"><a class="superscript" id="4.4.4-sec-link-2.4.2" href="./2.4.2.html">2.4.2</a></REF>, except for the
       error message.
-      <div class='snippet' id='javascript_96_50_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCyUAzAVwDsBjAFwEsB7YgZwICdqBbCGeJVNARjQCYcRMlVqhKdAPoAbSuQCmjAIbSAFKVYAHWvOLkAlKADeWUGdCN55Qo2Lip5JQHMn8gCYyJ5dVp16ANKAARLIKytJB+gDcWAC+WMIUNHahiiqSAG4qhPI+LNrEugbG5qCm5pbWtqAAFvJKbqqOlGoa+X4G0XFCJEliLEoA1vKeYSqqWdI5hiallTYpXqohcmkRgZPTMfEJvaJ2EpKOLu6edN5tBUWB5HVHzjPlZvPVh5pKlIx5V3qGAGR-Wr1RqXDqGAC8kNAtxGx22PREyXskmIShYuVBhV+xieFisC2Rx1cHlk52+HUCQVR6Mi8N2iP6QxG1NydAAniwAEbUaSPOb46qk7xUtHyIKBdlcnldHaJfagSXc6SSaj4FGi8lY4qzCoCux1BpND6tXxa-QyhF9A5SJR0OiUJzEdF6TVFPm6qrW+4nElLTHXYK2+2O53kWndOVIoMOp1FSSKnmu7E6556oGG5pqA2NTNJzrm+GRsTRkNxzYjeQAD00ljtyTz7tTnvTOeNRpaDYL3XpVuRbnkpGkSmU+wbOP5zcORNOQrzlI09Ecekk-cHw6U+0ioAAPtvcaVzFPnMSzhdTQGgllGJQlJzpCNV0OR8kt7v9wfCceZ37zwFgkXiBXAcnw3F8LR7eVH3XfZ4w5JUxxTF47ATZVVXVdFVGzdsTXaM0u3iADQCg59aEybIK2rWt7VoBCniQltsMY-1fnwy15QGYZJAXc4lGXYjQJolkNnIyQqxreQ61oRs8WbWcgm4pdyCAtcSOIcVQCE0By1EyiJOo4hwMIw4hy5NwlB08TJOIWiPQJI8fVPOdghMzkzIsqiwMLPYkRctz3mUdEwlgqVpDoGymwJAZNFUFCVTVTSsNzZj8y8hkUjRVzzO5Nw2XCmSCUStskt-FLu0IjiRl88yxI8mj-NFMI6ECbK2Wk+i5Kq9y9JfQJ6sCxQmtAFrDO8sRDgA5SQNHZKZgASFKXF6Psk9Z2SykJv4zcLUIjbgOg5J0IxEq2rTIVJEsfAnJ4bbRrsXaVIEwC+qsAa8vywUvHO+RLrW0B+ButKCFuyb9tIlq3vaz6LqcgBmAHe3u5VyGoLjaB4vjgIhtMKtRxdeKUzb63fD9zER0HAJZBt-GJknQBxzqau6miadp0ngcJ0jnsaqmWdZoG0pB1TJHBmbWIgpFDiQ+NHAUUM8qWhwv19MlfqCKWeNlopwwI273sAxmrPltNCo7UW6SMqQFzcORknGGbx1s15FYc1aSvnWhrf2dIDf0189z5z8XZ-XCLytm3aHSDX5FDbXxbEMOveVcTrdIDcjpD5M6NOqHvqu+H5QT23lW4+QAEcchde3EOz84vp+t2-vzpFC4j5UVDCVEqAydOfm1LPZJz+uM-IQI4fN3XDjoMuK9IVlyBYPvHa9adle8c4F8pKfy90WfY8IreZ5GKPQzC9ftXMfuCuBRiz9YnbPlr4+ihi+fyDoRt6Kws-39S3tayUp+ehT6v3fg7PW0I2zfybmNKQ0dNDkDZPGaeO854L1AdXScUhiCEGkGoKBv95TGVtAAmW0dn5QLAQrFEOC1C5igSNQGhw7zUFIIMLGmDvQrWDr3SkzDWF711nwwYwtqA5XYVfDMbYzYRl1jjIRL806hhOgPMkQQhHqUAQYcejCpDUE0GkZGjBUZckoJ3esVd5oXwnHZKQJBhyIL0QY6gRi2iclMY9Mcb4A5MPcYwBx+iRzOOMW4sxNEZoEIlrY1EfiVQBI3EE1x7jprHWMJYswi00zLW-CrBuQQ7ExMcYElxrAQmPQETo4Wvj-FOOKSY0J1kLELWsU7Th2SzzD14VU2JNTglJM8jIwGhT4lGJQuIj6tdoa-WuhEsQ+AH5KSGcQEEKSUzgLOpMhu-0ZnIQHB7bpyglljMWBM3Ov0x5lVkUySQShNCaFkKnUcE0fbJECMOJwhBQxdSsugjJKjhQ3LuZQB5PV+ZWi+fpV5jB3mfOeWjBhvYhmGN6fUo4KMAX3I8VXXEClQCIucaAcEuK4lItGeE35NjJD5OqUU5FmLjq81AAAfjplc9FQKPE40pnixg+hqYB35STWcczGC10Wcs4e5p9AMoAFwss4my4FNFOUam5byhlAqPxCvmfs3i4re5qo1Yaj8U8rY6sOaLeFhCbS3IxckiVlDMnOy4TkjpgYbXsq2ts0FMFYUNJWZfaoJscL6ugXYN54LkhhSxUvBiuZioSrFoRBB+jVBiWURS94nxU3VilQHZlWE00ytAIoZgXwxKUhIIMYg1AADudhfXQjZPo8pvYFwKCAdmzQ6aWmZrLTmhlzLcyFoDrKktzjO0VuIFW2t9bdJWVAG2oodBY5YH8lPSQ28Ynd0YNyKeqgADkQZFDeCNQHAAOlgRgODcgAt0B4ZGkh8DOJYKobBuDAhsg-ZKo1+7KTbt3WKLoa6RibsQf+6ge7D12mPaoU9fML1XvvKoW9SzUWPufaoXtqhCAbF5aAT9oAsM4dAAAL3NIEUAF6DwofvSjJ9jAX0ZA-YEMj5o4OgF-cEcDU9wyWISNq3idAa2KAPTRtD9GX2VmY6AOSSh1JqPk6QeTbhIj6H3V0PAwGN05C3YoADonbl3vExhqT+HAiyfk5yRTynVOcaCLSIAA')">function type(exp) {
+      <div class='snippet' id='javascript_96_52_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCyUAzAVwDsBjAFwEsB7YgZwICdqBbCGeJVNARjQCYcRMlVqhKdAPoAbSuQCmjAIbSAFKVYAHWvOLkAlKADeWUGdCN55Qo2Lip5JQHMn8gCYyJ5dVp16ANKAARLIKytJB+gDcWAC+WMIUNHahiiqSAG4qhPI+LNrEugbG5qCm5pbWtqAAFvJKbqqOlGoa+X4G0XFCJEliLEoA1vKeYSqqWdI5hiallTYpXqohcmkRgZPTMfEJvaJ2EpKOLu6edN5tBUWB5HVHzjPlZvPVh5pKlIx5V3qGAGR-Wr1RqXDqGAC8kNAtxGx22PREyXskmIShYuVBhV+xieFisC2Rx1cHlk52+HUCQVR6Mi8N2iP6QxG1NydAAniwAEbUaSPOb46qk7xUtHyIKBdlcnldHaJfagSXc6SSaj4FGi8lY4qzCoCux1BpND6tXxa-QyhF9A5SJR0OiUJzEdF6TVFPm6qrW+4nElLTHXYK2+2O53kWndOVIoMOp1FSSKnmu7E6556oGG5pqA2NTNJzrm+GRsTRkNxzYjeQAD00ljtyTz7tTnvTOeNRpaDYL3XpVuRbnkpGkSmU+wbOP5zcORNOQrzlI09Ecekk-cHw6U+0ioAAPtvcaVzFPnMSzhdTQGgllGJQlJzpCNV0OR8kt7v9wfCceZ37zwFgkXiBXAcnw3F8LR7eVH3XfZ4w5JUxxTF47ATZVVXVdFVGzdsTXaM0u3iADQCg59aEybIK2rWt7VoBCniQltsMY-1fnwy15QGYZJAXc4lGXYjQJolkNnIyQqxreQ61oRs8WbWcgm4pdyCAtcSOIcVQCE0By1EyiJOo4hwMIw4hy5NwlB08TJOIWiPQJI8fVPOdghMzkzIsqiwMLPYkRctz3mUdEwlgqVpDoGymwJAZNFUFCVTVTSsNzZj8y8hkUjRVzzO5Nw2XCmSCUStskt-FLu0IjiRl88yxI8mj-NFMI6ECbK2Wk+i5Kq9y9JfQJ6sCxQmtAFrDO8sRDgA5SQNHZKZgASFKXF6Psk9Z2SykJv4zcLUIjbgOg5J0IxEq2rTIVJEsfAnJ4bbRrsXaVIEwC+qsAa8vywUvHO+RLrW0B+ButKCFuyb9tIlq3vaz6LqcgBmAHe3u5VyGoLjaB4vjgIhtMKtRxdeKUzb63fD9zER0HAJZBt-GJknQBxzqau6miadp0ngcJ0jnsaqmWdZoG0pB1TJHBmbWIgpFDiQ+NHAUUM8qWhwv19MlfqCKWeNlopwwI273sAxmrPltNCo7UW6SMqQFzcORknGGbx1s15FYc1aSvnWhrf2dIDf0189z5z8XZ-XCLytm3aHSDX5FDbXxbEMOveVcTrdIDcjpD5M6NOqHvqu+H5QT23lW4+QAEcchde3EOz84vp+t2-vzpFC4j5UVDCVEqAydOfm1LPZJz+uM-IQI4fN3XDjoMuK9IVlyBYPvHa9adle8c4F8pKfy90WfY8IreZ5GKPQzC9ftXMfuCuBRiz9YnbPlr4+ihi+fyDoRt6Kws-39S3tayUp+ehT6v3fg7PW0I2zfybmNKQ0dNDkDZPGaeO854L1AdXScUhiCEGkGoKBv95TGVtAAmW0dn5QLAQrFEOC1C5igSNQGhw7zUFIIMLGmDvQrWDr3SkzDWF711nwwYwtqA5XYVfDMbYzYRl1jjIRL806hhOgPMkQQhHqUAQYcejCpDUE0GkZGjBUZckoJ3esVd5oXwnHZKQJBhyIL0QY6gRi2iclMY9Mcb4A5MPcYwBx+iRzOOMW4sxNEZoEIlrY1EfiVQBI3EE1x7jprHWMJYswi00zLW-CrBuQQ7ExMcYElxrAQmPQETo4Wvj-FOOKSY0J1kLELWsU7Th2SzzD14VU2JNTglJM8jIwGhT4lGJQuIj6tdoa-WuhEsQ+AH5KSGcQEEKSUzgLOpMhu-0ZnIQHB7bpyglljMWBM3Ov0x5lVkUySQShNCaFkKnUcE0fbJECMOJwhBQxdSsugjJKjhQ3LuZQB5PV+ZWi+fpV5jB3mfOeWjBhvYhmGN6fUo4KMAX3I8VXXEClQCIucaAcEuK4lItGeE35NjJD5OqUU5FmLjq81AAAfjplc9FQKPE40pnixg+hqYB35STWcczGC10Wcs4e5p9AMoAFwss4my4FNFOUam5byhlAqPxCvmfs3i4re5qo1Yaj8U8rY6sOaLeFhCbS3IxckiVlDMnOy4TkjpgYbXsq2ts0FMFYUNJWZfaoJscL6ugXYN54LkhhSxUvBiuZioSrFoRBB+jVBiWURS94nxU3VilQHZlWE00ytAIoZgXwxKUhIIMYg1AADudhfXQjZPo8pvYFwKCAdmzQ6aWmZrLTmhlzLcyFoDrKktzjO0VuIFW2t9bdJWVAG2oodBY5YH8lPSQ28Ynd0YNyKeqgADkQZFDeCNQHAAOlgRgODcgAt0B4ZGkh8DOJYKobBuDAhsg-ZKo1+7KTbt3WKLoa6RibsQf+6ge7D12mPaoU9fML1XvvKoW9SzUWPufaoXtqhCAbF5aAT9oAsM4dAAAL3NIEUAF6DwofvSjJ9jAX0ZA-YEMj5o4OgF-cEcDU9wyWISNq3idAa2KAPTRtD9GX2VmY6AOSSh1JqPk6QeTbhIj6H3V0PAwGN05C3YoADonbl3vExhqT+HAiyfk5yRTynVOcaCLSIAA')">function type(exp) {
     return is_pair(exp)
            ? head(exp)
            : error(exp, "unknown expression type");
@@ -4043,7 +4042,7 @@ function contents(exp) {
 	  <kbd>assert(</kbd>$\textit{rule-or-assertion}$<kbd>)</kbd>:
 	
       
-      <div class='snippet' id='javascript_96_51_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCyUAzAVwDsBjAFwEsB7YgZwICdqBbCGeJVNARjQCYcRMlVqhKdAPoAbSuQCmjAIbSAFKVYAHWvOLkAlKADeWUGdCN55Qo2Lip5JQHMn8gCYyJ5dVp16ANKAARLIKytJB+gDcWAC+WMIUNHahiiqSAG4qhPI+LNrEugbG5qCm5pbWtqAAFvJKbqqOlGoa+X4G0XFCJEliLEoA1vKeYSqqWdI5hiallTYpXqohcmkRgZPTMfEJvaJ2EpKOLu6edN5tBUWB5HVHzjPlZvPVh5pKlIx5V3qGAGR-Wr1RqXDqGAC8kNAtxGx22PREyXskmIShYuVBhV+xieFisC2Rx1cHlk52+HUCQVR6Mi8N2iP6QxG1NydAAniwAEbUaSPOb46qk7xUtHyIKBdlcnldHaJfagSXc6SSaj4FGi8lY4qzCoCux1BpND6tXxa-QyhF9A5SJR0OiUJzEdF6TVFPm6qrW+4nElLTHXYK2+2O53kWndOVIoMOp1FSSKnmu7E6556oGG5pqA2NTNJzrm+GRsTRkNxzYjeQAD00ljtyTz7tTnvTOeNRpaDYL3XpVuRbnkpGkSmU+wbOP5zcORNOQrzlI09Ecekk-cHw6U+0ioAAPtvcaVzFPnMSzhdTQGgllGJQlJzpCNV0OR8kt7v9wfCceZ37zwFgkXiBXAcnw3F8LR7eVH3XfZ4w5JUxxTF47ATZVVXVdFVGzdsTXaM0u3iADQCg59aEybIK2rWt7VoBCniQltsMY-1fnwy15QGYZJAXc4lGXYjQJolkNnIyQqxreQ61oRs8WbWcgm4pdyCAtcSOIcVQCE0By1EyiJOo4hwMIw4hy5NwlB08TJOIWiPQJI8fVPOdghMzkzIsqiwMLPYkRctz3mUdEwlgqVpDoGymwJAZNFUFCVTVTSsNzZj8y8hkUjRVzzO5Nw2XCmSCUStskt-FLu0IjiRl88yxI8mj-NFMI6ECbK2Wk+i5Kq9y9JfQJ6sCxQmtAFrDO8sRDgA5SQNHZKZgASFKXF6Psk9Z2SykJv4zcLUIjbgOg5J0IxEq2rTIVJEsfAnJ4bbRrsXaVIEwC+qsAa8vywUvHO+RLrW0B+ButKCFuyb9tIlq3vaz6LqcgBmAHe3u5VyGoLjaB4vjgIhtMKtRxdeKUzb63fD9zER0HAJZBt-GJknQBxzqau6miadp0ngcJ0jnsaqmWdZoG0pB1TJHBmbWIgpFDiQ+NHAUUM8qWhwv19MlfqCKWeNlopwwI273sAxmrPltNCo7UW6SMqQFzcORknGGbx1s15FYc1aSvnWhrf2dIDf0189z5z8XZ-XCLytm3aHSDX5FDbXxbEMOveVcTrdIDcjpD5M6NOqHvqu+H5QT23lW4+QAEcchde3EOz84vp+t2-vzpFC4j5UVDCVEqAydOfm1LPZJz+uM-IQI4fN3XDjoMuK9IVlyBYPvHa9adle8c4F8pKfy90WfY8IreZ5GKPQzC9ftXMfuCuBRiz9YnbPlr4+ihi+fyDoRt6Kws-39S3tayUp+ehT6v3fg7PW0I2zfybmNKQ0dNDkDZPGaeO854L1AdXScUhiCEGkGoKBv95TGVtAAmW0dn5QLAQrFEOC1C5igSNQGhw7zUFIIMLGmDvQrWDr3SkzDWF711nwwYwtqA5XYVfDMbYzYRl1jjIRL806hhOgPMkQQhHqUAQYcejCpDUE0GkZGjBUZckoJ3esVd5oXwnHZKQJBhyIL0QY6gRi2iclMY9Mcb4A5MPcYwBx+iRzOOMW4sxNEZoEIlrY1EfiVQBI3EE1x7jprHWMJYswi00zLW-CrBuQQ7ExMcYElxrAQmPQETo4Wvj-FOOKSY0J1kLELWsU7Th2SzzD14VU2JNTglJM8jIwGhT4lGJQuIj6tdoa-WuhEsQ+AH5KSGcQEEKSUzgLOpMhu-0ZnIQHB7bpyglljMWBM3Ov0x5lVkUySQShNCaFkKnUcE0fbJECMOJwhBQxdSsugjJKjhQ3LuZQB5PV+ZWi+fpV5jB3mfOeWjBhvYhmGN6fUo4KMAX3I8VXXEClQCIucaAcEuK4lItGeE35NjJD5OqUU5FmLjq81AAAfjplc9FQKPE40pnixg+hqYB35STWcczGC10Wcs4e5p9AMoAFwss4my4FNFOUam5byhlAqPxCvmfs3i4re5qo1Yaj8U8rY6sOaLeFhCbS3IxckiVlDMnOy4TkjpgYbXsq2ts0FMFYUNJWZfaoJscL6ugXYN54LkhhSxUvBiuZioSrFoRBB+jVBiWURS94nxU3VilQHZlWE00ytAIoZgXwxKUhIIMYg1AADudhfXQjZPo8pvYFwKCAdmzQ6aWmZrLTmhlzLcyFoDrKktzjO0VuIFW2t9bdJWVAG2oodBY5xy9EGRQo401gPAcm3IW7ISEqCOuxgYYvXHpguDLdqzP7X0XR2tN4F-JT0kNvGJ3dGDcinqoAA5Oe1QRqA4AB0sCMBwbkAFugPDI0kPgZxLBVDYNwYENkyHJVGu-ZSd9n6xRdCfSMV9iCsPUC-b+u0G7-0AdZsB0D95VAQaWaimDcHVC9tUIQDYvLQAodAKx9joAABe5pAigGAweejUGUawcYPBjIyHAiCfNJR0AGHghEanuGSxCRtW8ToDWxQP7xOMak-ByscnQBySUOpNRVnSBWbcJEfQ36uh4Dwy+nIb7FDYYM7cyDRnmOma44ECzVnOQ2bsw5lTQRaRAA')">function is_assertion(exp) {
+      <div class='snippet' id='javascript_96_53_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCyUAzAVwDsBjAFwEsB7YgZwICdqBbCGeJVNARjQCYcRMlVqhKdAPoAbSuQCmjAIbSAFKVYAHWvOLkAlKADeWUGdCN55Qo2Lip5JQHMn8gCYyJ5dVp16ANKAARLIKytJB+gDcWAC+WMIUNHahiiqSAG4qhPI+LNrEugbG5qCm5pbWtqAAFvJKbqqOlGoa+X4G0XFCJEliLEoA1vKeYSqqWdI5hiallTYpXqohcmkRgZPTMfEJvaJ2EpKOLu6edN5tBUWB5HVHzjPlZvPVh5pKlIx5V3qGAGR-Wr1RqXDqGAC8kNAtxGx22PREyXskmIShYuVBhV+xieFisC2Rx1cHlk52+HUCQVR6Mi8N2iP6QxG1NydAAniwAEbUaSPOb46qk7xUtHyIKBdlcnldHaJfagSXc6SSaj4FGi8lY4qzCoCux1BpND6tXxa-QyhF9A5SJR0OiUJzEdF6TVFPm6qrW+4nElLTHXYK2+2O53kWndOVIoMOp1FSSKnmu7E6556oGG5pqA2NTNJzrm+GRsTRkNxzYjeQAD00ljtyTz7tTnvTOeNRpaDYL3XpVuRbnkpGkSmU+wbOP5zcORNOQrzlI09Ecekk-cHw6U+0ioAAPtvcaVzFPnMSzhdTQGgllGJQlJzpCNV0OR8kt7v9wfCceZ37zwFgkXiBXAcnw3F8LR7eVH3XfZ4w5JUxxTF47ATZVVXVdFVGzdsTXaM0u3iADQCg59aEybIK2rWt7VoBCniQltsMY-1fnwy15QGYZJAXc4lGXYjQJolkNnIyQqxreQ61oRs8WbWcgm4pdyCAtcSOIcVQCE0By1EyiJOo4hwMIw4hy5NwlB08TJOIWiPQJI8fVPOdghMzkzIsqiwMLPYkRctz3mUdEwlgqVpDoGymwJAZNFUFCVTVTSsNzZj8y8hkUjRVzzO5Nw2XCmSCUStskt-FLu0IjiRl88yxI8mj-NFMI6ECbK2Wk+i5Kq9y9JfQJ6sCxQmtAFrDO8sRDgA5SQNHZKZgASFKXF6Psk9Z2SykJv4zcLUIjbgOg5J0IxEq2rTIVJEsfAnJ4bbRrsXaVIEwC+qsAa8vywUvHO+RLrW0B+ButKCFuyb9tIlq3vaz6LqcgBmAHe3u5VyGoLjaB4vjgIhtMKtRxdeKUzb63fD9zER0HAJZBt-GJknQBxzqau6miadp0ngcJ0jnsaqmWdZoG0pB1TJHBmbWIgpFDiQ+NHAUUM8qWhwv19MlfqCKWeNlopwwI273sAxmrPltNCo7UW6SMqQFzcORknGGbx1s15FYc1aSvnWhrf2dIDf0189z5z8XZ-XCLytm3aHSDX5FDbXxbEMOveVcTrdIDcjpD5M6NOqHvqu+H5QT23lW4+QAEcchde3EOz84vp+t2-vzpFC4j5UVDCVEqAydOfm1LPZJz+uM-IQI4fN3XDjoMuK9IVlyBYPvHa9adle8c4F8pKfy90WfY8IreZ5GKPQzC9ftXMfuCuBRiz9YnbPlr4+ihi+fyDoRt6Kws-39S3tayUp+ehT6v3fg7PW0I2zfybmNKQ0dNDkDZPGaeO854L1AdXScUhiCEGkGoKBv95TGVtAAmW0dn5QLAQrFEOC1C5igSNQGhw7zUFIIMLGmDvQrWDr3SkzDWF711nwwYwtqA5XYVfDMbYzYRl1jjIRL806hhOgPMkQQhHqUAQYcejCpDUE0GkZGjBUZckoJ3esVd5oXwnHZKQJBhyIL0QY6gRi2iclMY9Mcb4A5MPcYwBx+iRzOOMW4sxNEZoEIlrY1EfiVQBI3EE1x7jprHWMJYswi00zLW-CrBuQQ7ExMcYElxrAQmPQETo4Wvj-FOOKSY0J1kLELWsU7Th2SzzD14VU2JNTglJM8jIwGhT4lGJQuIj6tdoa-WuhEsQ+AH5KSGcQEEKSUzgLOpMhu-0ZnIQHB7bpyglljMWBM3Ov0x5lVkUySQShNCaFkKnUcE0fbJECMOJwhBQxdSsugjJKjhQ3LuZQB5PV+ZWi+fpV5jB3mfOeWjBhvYhmGN6fUo4KMAX3I8VXXEClQCIucaAcEuK4lItGeE35NjJD5OqUU5FmLjq81AAAfjplc9FQKPE40pnixg+hqYB35STWcczGC10Wcs4e5p9AMoAFwss4my4FNFOUam5byhlAqPxCvmfs3i4re5qo1Yaj8U8rY6sOaLeFhCbS3IxckiVlDMnOy4TkjpgYbXsq2ts0FMFYUNJWZfaoJscL6ugXYN54LkhhSxUvBiuZioSrFoRBB+jVBiWURS94nxU3VilQHZlWE00ytAIoZgXwxKUhIIMYg1AADudhfXQjZPo8pvYFwKCAdmzQ6aWmZrLTmhlzLcyFoDrKktzjO0VuIFW2t9bdJWVAG2oodBY5xy9EGRQo401gPAcm3IW7ISEqCOuxgYYvXHpguDLdqzP7X0XR2tN4F-JT0kNvGJ3dGDcinqoAA5Oe1QRqA4AB0sCMBwbkAFugPDI0kPgZxLBVDYNwYENkyHJVGu-ZSd9n6xRdCfSMV9iCsPUC-b+u0G7-0AdZsB0D95VAQaWaimDcHVC9tUIQDYvLQAodAKx9joAABe5pAigGAweejUGUawcYPBjIyHAiCfNJR0AGHghEanuGSxCRtW8ToDWxQP7xOMak-ByscnQBySUOpNRVnSBWbcJEfQ36uh4Dwy+nIb7FDYYM7cyDRnmOma44ECzVnOQ2bsw5lTQRaRAA')">function is_assertion(exp) {
     return type(exp) === "assert";
 }
 function assertion_body(exp) {
@@ -4069,7 +4068,7 @@ function assertion_body(exp) {
 	
       
       (section&nbsp;<REF NAME="sec:query-eval"><a class="superscript" id="4.4.4-sec-link-4.4.4.2" href="./4.4.4.html#sec4.4.4.2">4.4.4.2</a></REF>):
-      <div class='snippet' id='javascript_96_52_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwMwK4B2AxgC4CWA9oaOQM4D6ApgLYAOpAng8dQFZEyVQgAomADzZ0AlKADeoAE5NS+RTXoNC+ADY6xkmQG5QAXzyCK1ULnKK6pHv0sGpshctXrQACyYBDABNXYzMLEisaZQcnQgEIuhD3JRU1GlJ-cn0JNxNzcKFrTVYObkD6eMLRHJl5FK8NRm09JLyCyJs7GPK6StIkus803wDgmuk2ggjhFO6Ky0TxwdTvDKzWsPaZwiYAc39SJkCGAEd8JkVOAY8Vmj8gjfypqtA+fwA3fzpiRXIOZkk0Towmu9WG9zGhgmmzY-nsTFO50uDHeFwARpQ6EwRAByL5YxT9UDEkmksnk8kAHSwil02P8bDYTEIx1IlAYuEoihYImaOgANKBOILONIxRSJaAcYKAESoxQYrEyiZYWHwxEXbjyxXYvF0AlEyVGinU2k6emM5ms9mc7kiWF2ET4QXvaQiwUOxROwUALzFgtA1LJDKZLIYbI5XJ573doD94uNFOloDl6MxTGVRiwAEhiXguo5-IQ6AB3C64kNW8M2qMicSxnT0foy-wy2Votsp4idmWBZXSHEqkCgNVYjXI7XpiuWsMR208+tCwWNhwiFs9juy7uyvti5MyzNAA')">function is_empty_conjunction(exps) { return is_null(exps); }
+      <div class='snippet' id='javascript_96_54_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwMwK4B2AxgC4CWA9oaOQM4D6ApgLYAOpAng8dQFZEyVQgAomADzZ0AlKADeoAE5NS+RTXoNC+ADY6xkmQG5QAXzyCK1ULnKK6pHv0sGpshctXrQACyYBDABNXYzMLEisaZQcnQgEIuhD3JRU1GlJ-cn0JNxNzcKFrTVYObkD6eMLRHJl5FK8NRm09JLyCyJs7GPK6StIkus803wDgmuk2ggjhFO6Ky0TxwdTvDKzWsPaZwiYAc39SJkCGAEd8JkVOAY8Vmj8gjfypqtA+fwA3fzpiRXIOZkk0Towmu9WG9zGhgmmzY-nsTFO50uDHeFwARpQ6EwRAByL5YxT9UDEkmksnk8kAHSwil02P8bDYTEIx1IlAYuEoihYImaOgANKBOILONIxRSJaAcYKAESoxQYrEyiZYWHwxEXbjyxXYvF0AlEyVGinU2k6emM5ms9mc7kiWF2ET4QXvaQiwUOxROwUALzFgtA1LJDKZLIYbI5XJ573doD94uNFOloDl6MxTGVRiwAEhiXguo5-IQ6AB3C64kNW8M2qMicSxnT0foy-wy2Votsp4idmWBZXSHEqkCgNVYjXI7XpiuWsMR208+tCwWNhwiFs9juy7uyvti5MyzNAA')">function is_empty_conjunction(exps) { return is_null(exps); }
 function first_conjunct(exps) { return head(exps); }
 function rest_conjuncts(exps) { return tail(exps); }
 
@@ -4095,7 +4094,7 @@ function javascript_expression(exps) { return head(exps); }
 	  define the query-language-specific representation of rules:
 	
       
-      <div class='snippet' id='javascript_96_53_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCyUAzAVwDsBjAFwEsB7YgZwICdqBbCGeJVNARjQCYcRMlVqhKdAPoAbSuQCmjAIbSAFKVYAHWvOLkAlKADeWUGdCN55Qo2Lip5JQHMn8gCYyJ5dVp16ANKAARLIKytJB+gDcWAC+WMIUNHahiiqSAG4qhPI+LNrEugbG5qCm5pbWtqAAFvJKbqqOlGoa+X4G0XFCJEliLEoA1vKeYSqqWdI5hiallTYpXqohcmkRgZPTMfEJvaJ2EpKOLu6edN5tBUWB5HVHzjPlZvPVh5pKlIx5V3qGAGR-Wr1RqXDqGAC8kNAtxGx22PREyXskmIShYuVBhV+xieFisC2Rx1cHlk52+HUCQVR6Mi8N2iP6QxG1NydAAniwAEbUaSPOb46qk7xUtHyIKBdlcnldHaJfagSXc6SSaj4FGi8lY4qzCoCux1BpND6tXxa-QyhF9A5SJR0OiUJzEdF6TVFPm6qrW+4nElLTHXYK2+2O53kWndOVIoMOp1FSSKnmu7E6556oGG5pqA2NTNJzrm+GRsTRkNxzYjeQAD00ljtyTz7tTnvTOeNRpaDYL3XpVuRbnkpGkSmU+wbOP5zcORNOQrzlI09Ecekk-cHw6U+0ioAAPtvcaVzFPnMSzhdTQGgllGJQlJzpCNV0OR8kt7v9wfCceZ37zwFgkXiBXAcnw3F8LR7eVH3XfZ4w5JUxxTF47ATZVVXVdFVGzdsTXaM0u3iADQCg59aEybIK2rWt7VoBCniQltsMY-1fnwy15QGYZJAXc4lGXYjQJolkNnIyQqxreQ61oRs8WbWcgm4pdyCAtcSOIcVQCE0By1EyiJOo4hwMIw4hy5NwlB08TJOIWiPQJI8fVPOdghMzkzIsqiwMLPYkRctz3mUdEwlgqVpDoGymwJAZNFUFCVTVTSsNzZj8y8hkUjRVzzO5Nw2XCmSCUStskt-FLu0IjiRl88yxI8mj-NFMI6ECbK2Wk+i5Kq9y9JfQJ6sCxQmtAFrDO8sRDgA5SQNHZKZgASFKXF6Psk9Z2SykJv4zcLUIjbgOg5J0IxEq2rTIVJEsfAnJ4bbRrsXaVIEwC+qsAa8vywUvHO+RLrW0B+ButKCFuyb9tIlq3vaz6LqcgBmAHe3u5VyGoLjaB4vjgIhtMKtRxdeKUzb63fD9zER0HAJZBt-GJknQBxzqau6miadp0ngcJ0jnsaqmWdZoG0pB1TJHBmbWIgpFDiQ+NHAUUM8qWhwv19MlfqCKWeNlopwwI273sAxmrPltNCo7UW6SMqQFzcORknGGbx1s15FYc1aSvnWhrf2dIDf0189z5z8XZ-XCLytm3aHSDX5FDbXxbEMOveVcTrdIDcjpD5M6NOqHvqu+H5QT23lW4+QAEcchde3EOz84vp+t2-vzpFC4j5UVDCVEqAydOfm1LPZJz+uM-IQI4fN3XDjoMuK9IVlyBYPvHa9adle8c4F8pKfy90WfY8IreZ5GKPQzC9ftXMfuCuBRiz9YnbPlr4+ihi+fyDoRt6Kws-39S3tayUp+ehT6v3fg7PW0I2zfybmNKQ0dNDkDZPGaeO854L1AdXScUhiCEGkGoKBv95TGVtAAmW0dn5QLAQrFEOC1C5igSNQGhw7zUFIIMLGmDvQrWDr3SkzDWF711nwwYwtqA5XYVfDMbYzYRl1jjIRL806hhOgPMkQQhHqUAQYcejCpDUE0GkZGjBUZckoJ3esVd5oXwnHZKQJBhyIL0QY6gRi2iclMY9Mcb4A5MPcYwBx+iRzOOMW4sxNEZoEIlrY1EfiVQBI3EE1x7jprHWMJYswi00zLW-CrBuQQ7ExMcYElxrAQmPQETo4Wvj-FOOKSY0J1kLELWsU7Th2SzzD14VU2JNTglJM8jIwGhT4lGJQuIj6tdoa-WuhEsQ+AH5KSGcQEEKSUzgLOpMhu-0ZnIQHB7bpyglljMWBM3Ov0x5lVkUySQShNCaFkKnUcE0fbJECMOJwhBQxdSsugjJKjhQ3LuZQB5PV+ZWi+fpV5jB3mfOeWjBhvYhmGN6fUo4KMAX3I8VXXEClQCIucaAcEuK4lItGeE35NjJD5OqUU5FmLjq81AAAfjplc9FQKPE40pnixg+hqYB35STWcczGC10Wcs4e5p9AMoAFwss4my4FNFOUam5byhlAqPxCvmfs3i4re5qo1Yaj8U8rY6sOaLeFhCbS3IxckiVlDMnOy4TkjpgYbXsq2ts0FMFYUNJWZfaoJscL6ugXYN54LkhhSxUvBiuZioSrFhbc6ODchBkUPsZRFKV6OTTYwfYlJGApvKb2Bcg5CD6VUIW+8mbA3X1zFW+Qd9dYNpEWIhtNavTYNwYxetKbJUMuZXJFQAB3JQbIHCFrFFKgOsqg2MXbWLfyU9JDbxid3Rg3Ip6qAAOS5u8EagOAAdLADbVAAt0B4ZGkh8DOJYKoLt0hAhsifZKo127KTrs3VOmIS6RirsQZ+6gW7d12nTaoA9fNj2nvPUs1F17b2qHeJ8VQhANi8tAM+0ASGviodAAAL3NIEUAx6DwwcvSjG9jA70ZCfYEAj5oIOgHfcEQDU9wyWISNq3idBh2KB3WRuDlG72Vlo6AId6k1ESdIBJtwkR9Dbq6HgX9K6chrsUF+-jtyL2CYQyJjDgRxO8KkzJuTzGgi0iAA')">function is_rule(assertion) {
+      <div class='snippet' id='javascript_96_55_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCyUAzAVwDsBjAFwEsB7YgZwICdqBbCGeJVNARjQCYcRMlVqhKdAPoAbSuQCmjAIbSAFKVYAHWvOLkAlKADeWUGdCN55Qo2Lip5JQHMn8gCYyJ5dVp16ANKAARLIKytJB+gDcWAC+WMIUNHahiiqSAG4qhPI+LNrEugbG5qCm5pbWtqAAFvJKbqqOlGoa+X4G0XFCJEliLEoA1vKeYSqqWdI5hiallTYpXqohcmkRgZPTMfEJvaJ2EpKOLu6edN5tBUWB5HVHzjPlZvPVh5pKlIx5V3qGAGR-Wr1RqXDqGAC8kNAtxGx22PREyXskmIShYuVBhV+xieFisC2Rx1cHlk52+HUCQVR6Mi8N2iP6QxG1NydAAniwAEbUaSPOb46qk7xUtHyIKBdlcnldHaJfagSXc6SSaj4FGi8lY4qzCoCux1BpND6tXxa-QyhF9A5SJR0OiUJzEdF6TVFPm6qrW+4nElLTHXYK2+2O53kWndOVIoMOp1FSSKnmu7E6556oGG5pqA2NTNJzrm+GRsTRkNxzYjeQAD00ljtyTz7tTnvTOeNRpaDYL3XpVuRbnkpGkSmU+wbOP5zcORNOQrzlI09Ecekk-cHw6U+0ioAAPtvcaVzFPnMSzhdTQGgllGJQlJzpCNV0OR8kt7v9wfCceZ37zwFgkXiBXAcnw3F8LR7eVH3XfZ4w5JUxxTF47ATZVVXVdFVGzdsTXaM0u3iADQCg59aEybIK2rWt7VoBCniQltsMY-1fnwy15QGYZJAXc4lGXYjQJolkNnIyQqxreQ61oRs8WbWcgm4pdyCAtcSOIcVQCE0By1EyiJOo4hwMIw4hy5NwlB08TJOIWiPQJI8fVPOdghMzkzIsqiwMLPYkRctz3mUdEwlgqVpDoGymwJAZNFUFCVTVTSsNzZj8y8hkUjRVzzO5Nw2XCmSCUStskt-FLu0IjiRl88yxI8mj-NFMI6ECbK2Wk+i5Kq9y9JfQJ6sCxQmtAFrDO8sRDgA5SQNHZKZgASFKXF6Psk9Z2SykJv4zcLUIjbgOg5J0IxEq2rTIVJEsfAnJ4bbRrsXaVIEwC+qsAa8vywUvHO+RLrW0B+ButKCFuyb9tIlq3vaz6LqcgBmAHe3u5VyGoLjaB4vjgIhtMKtRxdeKUzb63fD9zER0HAJZBt-GJknQBxzqau6miadp0ngcJ0jnsaqmWdZoG0pB1TJHBmbWIgpFDiQ+NHAUUM8qWhwv19MlfqCKWeNlopwwI273sAxmrPltNCo7UW6SMqQFzcORknGGbx1s15FYc1aSvnWhrf2dIDf0189z5z8XZ-XCLytm3aHSDX5FDbXxbEMOveVcTrdIDcjpD5M6NOqHvqu+H5QT23lW4+QAEcchde3EOz84vp+t2-vzpFC4j5UVDCVEqAydOfm1LPZJz+uM-IQI4fN3XDjoMuK9IVlyBYPvHa9adle8c4F8pKfy90WfY8IreZ5GKPQzC9ftXMfuCuBRiz9YnbPlr4+ihi+fyDoRt6Kws-39S3tayUp+ehT6v3fg7PW0I2zfybmNKQ0dNDkDZPGaeO854L1AdXScUhiCEGkGoKBv95TGVtAAmW0dn5QLAQrFEOC1C5igSNQGhw7zUFIIMLGmDvQrWDr3SkzDWF711nwwYwtqA5XYVfDMbYzYRl1jjIRL806hhOgPMkQQhHqUAQYcejCpDUE0GkZGjBUZckoJ3esVd5oXwnHZKQJBhyIL0QY6gRi2iclMY9Mcb4A5MPcYwBx+iRzOOMW4sxNEZoEIlrY1EfiVQBI3EE1x7jprHWMJYswi00zLW-CrBuQQ7ExMcYElxrAQmPQETo4Wvj-FOOKSY0J1kLELWsU7Th2SzzD14VU2JNTglJM8jIwGhT4lGJQuIj6tdoa-WuhEsQ+AH5KSGcQEEKSUzgLOpMhu-0ZnIQHB7bpyglljMWBM3Ov0x5lVkUySQShNCaFkKnUcE0fbJECMOJwhBQxdSsugjJKjhQ3LuZQB5PV+ZWi+fpV5jB3mfOeWjBhvYhmGN6fUo4KMAX3I8VXXEClQCIucaAcEuK4lItGeE35NjJD5OqUU5FmLjq81AAAfjplc9FQKPE40pnixg+hqYB35STWcczGC10Wcs4e5p9AMoAFwss4my4FNFOUam5byhlAqPxCvmfs3i4re5qo1Yaj8U8rY6sOaLeFhCbS3IxckiVlDMnOy4TkjpgYbXsq2ts0FMFYUNJWZfaoJscL6ugXYN54LkhhSxUvBiuZioSrFhbc6ODchBkUPsZRFKV6OTTYwfYlJGApvKb2Bcg5CD6VUIW+8mbA3X1zFW+Qd9dYNpEWIhtNavTYNwYxetKbJUMuZXJFQAB3JQbIHCFrFFKgOsqg2MXbWLfyU9JDbxid3Rg3Ip6qAAOS5u8EagOAAdLADbVAAt0B4ZGkh8DOJYKoLt0hAhsifZKo127KTrs3VOmIS6RirsQZ+6gW7d12nTaoA9fNj2nvPUs1F17b2qHeJ8VQhANi8tAM+0ASGviodAAAL3NIEUAx6DwwcvSjG9jA70ZCfYEAj5oIOgHfcEQDU9wyWISNq3idBh2KB3WRuDlG72Vlo6AId6k1ESdIBJtwkR9Dbq6HgX9K6chrsUF+-jtyL2CYQyJjDgRxO8KkzJuTzGgi0iAA')">function is_rule(assertion) {
     return is_tagged_list(assertion, "rule");
 }
 function conclusion(rule) {
@@ -4125,7 +4124,7 @@ function rule_body(rule) {
       
       Frames are represented as lists of bindings, which are
       variable-value pairs:
-      <div class='snippet' id='javascript_96_54_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCyUB7ABwFMAnAQwBcBLfAOwH1LyAjAG2IBpRCBXS0OToATUAHNilXGABmpfAFtQAYwAW5QpTKgAzKAAUAZ2LKa9XWh2WAlDhm86p2nUGHD+ZfoDWxAJ7dSE3xSYUNrUABvLFAY0EDKXlIXakMGOl42Nn1A5WDQ21jCwoB+UAdhYhlqOmJhaKKigC5QYgBHXnIsn39QVWJyYX0+geygkLDrAoaS3v7BnLyw+umY5vI3D28-bmZqLIXxyYBuLABfOwcncwVyHyZWDn1wqMLcukMBNg9O+-ZiUAAvKA2ClKPoAEQAKmYf0h4OsJ0K9kcZhcX3wXl4hC2vgYAEZuN0GAAmZ7LIpvD6gQy8FgwjiA1zuTxEgmgXZZL7KH704jHcmFagyAwpBjlSrVWpGWm8yaRAXTeKJFziqo1YSI6anFpsYzylavehUg6iIHrZk4kk7ch7aV0h58hEKhpKpKgUWqyXzMbCKYGlalT3q53+1bsm37H1OlbnQqx2LIq7Jd5kMGswl+K2gABunV4fP100pAhp9r+jPNm3T4dtXJ5Dv5KyFItSQalpdlZND1Mk91r3zYvw4nBD3Z4NtI+hBH0tbMIE8txO4ubY+cmI7HY45U4HQ8d0a1Or1L1DxbiPorGxZmaXNayHYbB-9zf0HpEEvVo1yITlJ8KAEgVmMSg+3vGUHRHQDNxWedqEnWDJyJW8VzXDdoM3bcHz+SYnSgmJtWIXV-j-MdgNAr88mXPM+U1f14waejQEYxNUVAYQUnnSg1H0BQu0VSRlVAJQARE0BwXRTFCHBUcGlKCSsRkpohMBUTwWqYxSEoaToNKdTU0UwpmjIeRJwUbhwQcLw6HwAB3FwiDIKhnFAABaFzwz+eFaKY8lXRcdjDE4tQTnOLAzwcihUT3RkbjuXknhOM8JAEIEIqc+g9wheSpKdM8+BSggSEi5xMrUlNNK8i4UWc2LiAYFhqnYugxH0XNSGoCCc2oviYj88c4Na8h2s6lCaLOLAWOchqRGqMQGDajq-n0aamrEHrzwSN1hkGFbZqdc5JvMXbmvm6jlsavbC16gS3W3Y61pCibLlY+6GGqBg5HIBRiEG4a-m4T7vvWvrK08BbOsBsaDue5ziAADy0ERfsW4cutXLhQEh4GbpcBCeNuOr7uRkbuoBiggcerB51IYwGHaMhcWzMgWHwYx9AAcnNVN9HQ0MAB0sFIDIfo0EgRCYfAPuCBR9HSTJuB6XwcPQ9nzKZ0gWeMSrqdp+nSEZ5nWZ+zm3G53n-QFoXHlF4hxcoSWZGl-Q8d4ZdrAV7gXe4AAvdcYgFoobbth2nezD3QF9uVzdVsT1c14hKqgia4I+BghEMGyyA5oPhAlqXSBluHw+nMFwXIcFzJYCuxOUavwWEeFrHZp08B1uq9YNjWjezwgxdz+388L4vQQhcvK7r2vzIbyYY-BLygA')">function make_binding(variable, value) {
+      <div class='snippet' id='javascript_96_56_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCyUB7ABwFMAnAQwBcBLfAOwH1LyAjAG2IBpRCBXS0OToATUAHNilXGABmpfAFtQAYwAW5QpTKgAzKAAUAZ2LKa9XWh2WAlDhm86p2nUGHD+ZfoDWxAJ7dSE3xSYUNrUABvLFAY0EDKXlIXakMGOl42Nn1A5WDQ21jCwoB+UAdhYhlqOmJhaKKigC5QYgBHXnIsn39QVWJyYX0+geygkLDrAoaS3v7BnLyw+umY5vI3D28-bmZqLIXxyYBuLABfOwcncwVyHyZWDn1wqMLcukMBNg9O+-ZiUAAvKA2ClKPoAEQAKmYf0h4OsJ0K9kcZhcX3wXl4hC2vgYAEZuN0GAAmZ7LIpvD6gQy8FgwjiA1zuTxEgmgXZZL7KH704jHcmFagyAwpBjlSrVWpGWm8yaRAXTeKJFziqo1YSI6anFpsYzylavehUg6iIHrZk4kk7ch7aV0h58hEKhpKpKgUWqyXzMbCKYGlalT3q53+1bsm37H1OlbnQqx2LIq7Jd5kMGswl+K2gABunV4fP100pAhp9r+jPNm3T4dtXJ5Dv5KyFItSQalpdlZND1Mk91r3zYvw4nBD3Z4NtI+hBH0tbMIE8txO4ubY+cmI7HY45U4HQ8d0a1Or1L1DxbiPorGxZmaXNayHYbB-9zf0HpEEvVo1yITlJ8KAEgVmMSg+3vGUHRHQDNxWedqEnWDJyJW8VzXDdoM3bcHz+SYnSgmJtWIXV-j-MdgNAr88mXPM+U1f14waejQEYxNUVAYQUnnSg1H0BQu0VSRlVAJQARE0BwXRTFCHBUcGlKCSsRkpohMBUTwWqYxSEoaToNKdTU0UwpmjIeRJwUbhwQcLw6HwAB3FwiDIKhnFAABaFzwz+eFaKY8lXRcdjDE4tQTnOLAzwcihUT3RkbjuXknhOM8JAEIEIqc+g9wheSpKdM8+BSggSEi5xMrUlNNK8i4UWc2LiAYFhqnYugxH0XNSGoCCc2oviYj88c4Na8h2s6lCaLOLAWOchqRGqMQGDajq-n0aamrEHrzwSN1hkGFbZqdc5JvMXbmvm6jlsavbC16gS3W3Y61pCibLlY+6GGqBg5HIBRiEG4a-m4T7vvWvrK08BbOsBsaDue5ziAADy0ERfsW4cutXLhQEh4GbpcBCeNuOr7uRkbuoBiggcerB51IYwGHaMhcWzMgWHwYx9AAcnNVN9HQ0MAB0sFIDIfo0EgRCYfAPuCBR9HSTJuB6XwcPQ9nzKZ0gWeMSrqdp+nSEZ5nWZ+zm3G53n-QFoXHlF4hxcoSWZGl-Q8d4ZdrAV7gXe4AAvdcYgFoobbth2nezD3QF9uVzdVsT1c14hKqgia4I+BghEMGyyA5oPhAlqXSBluHw+nMFwXIcFzJYCuxOUavwWEeFrHZp08B1uq9YNjWjezwgxdz+388L4vQQhcvK7r2vzIbyYY-BLygA')">function make_binding(variable, value) {
     return pair(variable, value);
 }
 function binding_variable(binding) {
@@ -4166,7 +4165,7 @@ function extend(variable, value, frame) {
       
       rather than being defined as follows:
       
-      <div class='snippet' id='javascript_96_55_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+      <div class='snippet' id='javascript_96_57_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function simple_query(query_pattern, frame_stream) {
     return stream_flatmap(
                frame =>
@@ -4234,7 +4233,7 @@ function disjoin(disjuncts, frame_stream) {
       a delayed expression in its body?
     
     What would be wrong with defining it as follows:
-    <div class='snippet' id='javascript_96_56_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_96_58_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function flatten_stream(stream) {
     return is_null(stream)
            ? null
@@ -4327,17 +4326,17 @@ function simple_flatten(stream) {
       
       should succeed if there is precisely one item in the data base satisfying
       a specified query.  For example,
-      <div class='snippet' id='javascript_96_57_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+      <div class='snippet' id='javascript_96_59_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 unique(job($x, list("computer", "wizard")))</pre></div></div>
       should print the one-item stream
-      <div class='snippet' id='javascript_96_58_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+      <div class='snippet' id='javascript_96_60_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 unique(job(list("Bitdiddle", "Ben"), list("computer", "wizard")))</pre></div></div>
       since Ben is the only computer wizard, and
-      <div class='snippet' id='javascript_96_59_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+      <div class='snippet' id='javascript_96_61_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 unique(job($x, list("computer", "programmer")))</pre></div></div>
       should print the empty stream, since there is more than one computer
       programmer.  Moreover,
-      <div class='snippet' id='javascript_96_60_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+      <div class='snippet' id='javascript_96_62_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 and(job($x, $j), unique(job($anyone, $j)))</pre></div></div>
       should list all the jobs that are filled by only one person, and the
       people who fill them.
@@ -4382,7 +4381,7 @@ and(job($x, $j), unique(job($anyone, $j)))</pre></div></div>
 	
       
       all you need to do is
-      <div class='snippet' id='javascript_96_61_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+      <div class='snippet' id='javascript_96_63_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 put("unique", "evaluate_query", uniquely_asserted);</pre></div></div>
       and
       
@@ -4593,7 +4592,7 @@ put("unique", "evaluate_query", uniquely_asserted);</pre></div></div>
 	functions.
       
       For example, in evaluating
-      <div class='snippet' id='javascript_96_62_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwMwK4B2AxgC4CWA9oaAM4CO+AhgE4CmAFAB4CUoA3llDDQ7UvhY0uoAFSguAbiwBfPETJUatfAFsA+pVx6GzdrW4AaUAE8+gkaLbjJdRq069QAalenOtpVVtfUNjNzMOAGYrFB4FIA')">function square(x) {
+      <div class='snippet' id='javascript_96_64_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwMwK4B2AxgC4CWA9oaAM4CO+AhgE4CmAFAB4CUoA3llDDQ7UvhY0uoAFSguAbiwBfPETJUatfAFsA+pVx6GzdrW4AaUAE8+gkaLbjJdRq069QAalenOtpVVtfUNjNzMOAGYrFB4FIA')">function square(x) {
     return x * x;
 }
 function sum_of_squares(x, y) {
