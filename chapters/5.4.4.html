@@ -2218,9 +2218,9 @@ EC-evaluate value:
 
   <div class='permalink'>
 <a name='p7' class='permalink'></a><p>
-    Of course, evaluating expressions in this way will take much longer
+    Of course, evaluating programs in this way will take much longer
     than if we had directly typed them into JavaScript, because of the
-    multiple levels of simulation involved.  Our expressions are evaluated
+    multiple levels of simulation involved.  Our programs are evaluated
     by the explicit-control-evaluator machine, which is being simulated by
     a JavaScript program, which is itself being evaluated by the
     JavaScript
@@ -2286,7 +2286,7 @@ EC-evaluate value:
     Note that the driver loop of the evaluator reinitializes the stack
     at the start of
     each interaction, so that the statistics printed will refer only to
-    stack operations used to evaluate the previous expression.
+    stack operations used to evaluate the previous program.
   </p></div>
 
   
