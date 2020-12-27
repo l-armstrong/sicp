@@ -2038,8 +2038,8 @@ function sqrt_iter(guess, x) {
       
       
         The metacircular implementation of the evaluator in chapter&nbsp;4 is
-        not tail-recursive, because apply in 4.1.1 needs to check whether the
-        evaluation of the function body yields a return value.
+        not tail-recursive, because of the need to check whether the
+        evaluation of the function body returns explicitly or not.
       
     
     With
@@ -2054,7 +2054,7 @@ function sqrt_iter(guess, x) {
 
   <div class='permalink'>
 <a name='p2' class='permalink'></a><p>
-    Our evaluator is tail-recursive, because in order to evaluate the 
+    Our evaluator is tail-recursive, because in order to evaluate 
     
       
       
@@ -2065,8 +2065,8 @@ function sqrt_iter(guess, x) {
     
       
       
-        <kbd>eval_dispatch</kbd> after unwinding the stack down to the next marker introduced
-        by <kbd>save_frame</kbd>.
+        <kbd>eval_dispatch</kbd> after having restored the stack using the marker introduced
+        by <kbd>save_marker</kbd>.
         Hence, evaluating a return statement in a function body—even if it contains a
       
     
@@ -2100,34 +2100,22 @@ function sqrt_iter(guess, x) {
 
     
       
+      
         <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
-          Note that JavaScript is only tail recursive in the presence of an
-          explicit return statement. Without this return statement, we must 
-          dispatch to the implicit return handler that ensures that the
-          function returned <kbd>undefined</kbd>.
-        </p></div>
-      
-    
-
-    
-      
-      
-        <div class='permalink'>
-<a name='p4' class='permalink'></a><p>
           If we did not think to take advantage of the fact that it was unnecessary to
           save information in this case, we might have implemented 
           <kbd>ev_return</kbd>
-          by first evaluating the return expression before unwinding the stack. 
+          by first evaluating the return expression before restoring the stack:
           <div class='snippet' id='javascript_114_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_return",
       assign("comp", list(op("return_expression"), reg("comp"))),
-      assign("continue", label("ev_unwind")),
+      assign("continue", label("ev_restore_stack")),
       save("continue"),
       go_to(label("eval_dispatch")),
 
-"ev_unwind",
-      restore_frame("continue"),
+"ev_restore_stack",
+      restore_marker("continue"),
       restore("continue"),
       go_to(reg("continue")),</pre></div></div>
         </p></div>
@@ -2135,12 +2123,11 @@ function sqrt_iter(guess, x) {
     
     
   <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
+<a name='p4' class='permalink'></a><p>
     
       
       
-        This may seem like a minor change to our previous code for
-        evaluation of a return statement.
+        This may seem like a minor change to <kbd>ev_return</kbd> as defined in section&nbsp;<REF NAME="sec:eceval-core"><a class="superscript" id="5.4.2-sec-link-5.4.1" href="./5.4.1.html">5.4.1</a></REF>.
       
     
     The interpreter will still give the same value for any
@@ -2155,11 +2142,10 @@ function sqrt_iter(guess, x) {
     
       
       
-        final expression inside the return statement
+        expression inside the return statement in order to undo the (useless) register save. Such extra saves 
       
     
-    in order to undo the (useless) register saves. These extra saves will
-    accumulate during a nest of
+    will accumulate during a nest of
     
       
       function
@@ -2196,6 +2182,20 @@ function count(n) {
     
     call.
   </p></div>
+
+  
+    
+      <div class='permalink'>
+<a name='p5' class='permalink'></a><p>
+        Note that our JavaScript implementation is only tail-recursive in the presence of an
+        explicit return statement. A function that ends without an explicit return statement will 
+        dispatch to the implicit return handler <kbd>return_undefined</kbd> that stores
+        <kbd>undefined</kbd> in the <kbd>val</kbd> register.
+        Thus, removing <kbd>return</kbd> from the above count function will
+        eventually run out of stack space.
+      </p></div>
+    
+  
 
     
     

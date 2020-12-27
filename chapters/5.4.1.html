@@ -2043,7 +2043,7 @@ component
       <kbd>eval_dispatch</kbd>
       
     
-    is a case analysis on the syntactic type of the expression to be
+    is a case analysis on the syntactic type of the component to be
     evaluated.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
     
     <div class='snippet' id='javascript_113_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
@@ -2054,8 +2054,6 @@ component
       branch(label("ev_name")),
       test(list(op("is_application"), reg("comp"))),
       branch(label("ev_application")),
-      test(list(op("is_operator_combination"), reg("comp"))),
-      branch(label("ev_operator_combination")),
       test(list(op("is_operator_combination"), reg("comp"))),
       branch(label("ev_operator_combination")),
       test(list(op("is_conditional"), reg("comp"))),
@@ -2074,7 +2072,7 @@ component
       branch(label("ev_declaration")),
       test(list(op("is_assignment"), reg("comp"))),
       branch(label("ev_assignment")),
-      go_to(label("unknown_expression_type")),</pre></div></div>
+      go_to(label("unknown_component_type")),</pre></div></div>
   </p></div>
 
   
@@ -2093,7 +2091,7 @@ component
 
     <div class='permalink'>
 <a name='p2' class='permalink'></a><p>
-    Numbers and strings ,
+    Numbers and strings,
     
       
       
@@ -2111,15 +2109,15 @@ component
     <kbd>val</kbd> register and continues
     execution at the entry point specified by
     <kbd>continue</kbd>.  Evaluation
-    of simple components is performed by the following controller code:
+    of simple expressions is performed by the following controller code:
     <div class='snippet' id='javascript_113_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_literal",
       assign("val", list(op("literal_value"), reg("comp"))),
       go_to(reg("continue")),
       
 "ev_name",
-      assign("val",
-        list(op("lookup_symbol_value"), reg("comp"), reg("env"))),
+      assign("val", list(op("symbol_of_name"), reg("comp"), reg("env"))),
+      assign("val", list(op("lookup_symbol_value"), reg("val"), reg("env"))),
       go_to(reg("continue")),
       
 "ev_lambda",
@@ -2143,7 +2141,7 @@ component
       
       <kbd>comp</kbd>
     
-    registers to hold the parameters and body of the lambda components so
+    registers to hold the parameters and body of the lambda expressions so
     that they can be passed to the
     
       
@@ -2222,6 +2220,15 @@ component
 
   <div class='permalink'>
 <a name='p4' class='permalink'></a><p>
+    Just like in the metacircular evaluator, operator combinations
+    are transformed into applications of primitive functions
+    corresponding to the operators. This takes place in <kbd>ev_operator_combination</kbd>
+    which performs this transformation in-place in <kbd>comp</kbd> and falls through to
+    <kbd>ev_application</kbd>. 
+  </p></div>
+
+  <div class='permalink'>
+<a name='p5' class='permalink'></a><p>
     We begin the evaluation of an application by evaluating the
     
       
@@ -2306,10 +2313,13 @@ component
     <kbd>continue</kbd>, which tells the controller where to
     continue after the application.
     <div class='snippet' id='javascript_113_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"ev_operator_combination",
+      assign("comp", list(op("operator_combination_to_application"),
+                          reg("comp"), reg("env"))),
 "ev_application",
       save("continue"),
       save("env"),
-      assign("unev", list(op("args"), reg("comp"))),
+      assign("unev", list(op("arg_expressions"), reg("comp"))),
       save("unev"),
       assign("comp", list(op("function_expression"), reg("comp"))),
       assign("continue", label("ev_appl_did_function_expression")),
@@ -2317,7 +2327,7 @@ component
   </p></div>
 
   <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
+<a name='p6' class='permalink'></a><p>
     
       
       
@@ -2399,18 +2409,18 @@ component
     loop:<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
   <div class='snippet' id='javascript_113_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_appl_did_function_expression",
-      restore("unev"), // the args
+      restore("unev"), // the argument expressions
       restore("env"),
       assign("argl", list(op("empty_arglist"))),
-      assign("fun", reg("val")), // the function_expression
-      test(list(op("has_no_argument_expressions"),
+      assign("fun", reg("val")), // the function
+      test(list(op("no_argument_expressions"),
                 reg("unev"))),
       branch(label("apply_dispatch")),
       save("fun"),</pre></div></div>
   </p></div>
 
   <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
+<a name='p7' class='permalink'></a><p>
     Each cycle of the argument-evaluation loop evaluates an 
   
     
@@ -2446,8 +2456,7 @@ component
     is made for the evaluation of the last
     
       
-      argument expression
-      
+      argument expression,
     
     which is handled at
     
@@ -2458,7 +2467,7 @@ component
     <div class='snippet' id='javascript_113_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_appl_argument_expression_loop",
       save("argl"),
-      assign("comp", list(op("first_arg"), reg("unev"))),
+      assign("comp", list(op("first_arg_exp"), reg("unev"))),
       test(list(op("is_last_argument_expression"),
                 reg("unev"))),
       branch(label("ev_appl_last_arg")),
@@ -2469,7 +2478,7 @@ component
   </p></div>
 
   <div class='permalink'>
-<a name='p7' class='permalink'></a><p>
+<a name='p8' class='permalink'></a><p>
     When an
   
     
@@ -2496,13 +2505,13 @@ component
       restore("argl"),
       assign("argl", list(op("adjoin_arg"),
                           reg("val"), reg("argl"))),
-      assign("unev", list(op("rest_args"), reg("unev"))),
+      assign("unev", list(op("rest_arg_exps"), reg("unev"))),
       go_to(label("ev_appl_argument_expression_loop")),</pre></div></div>
   </p></div>
 
   <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
-    Evaluation of the last argument is handled differently.  There is no
+<a name='p9' class='permalink'></a><p>
+    Evaluation of the last argument expression is handled differently.  There is no
     need to save the environment or the list of unevaluated 
   
     
@@ -2547,7 +2556,7 @@ component
   </p></div>
 
   <div class='permalink'>
-<a name='p9' class='permalink'></a><p>
+<a name='p10' class='permalink'></a><p>
     
     The details of the argument-evaluation loop determine the order in
     which the interpreter evaluates the
@@ -2559,18 +2568,18 @@ component
     left to right or right to left—see
     exercise&nbsp;<REF NAME="ex:order-of-evaluation"><a class="superscript" id="5.4.1-ex-link-3.8" href="./3.1.3.html#ex_3.8">3.8</a></REF>).  This order is not
     determined by the metacircular evaluator, which inherits its control
-    structure from the underlying Scheme in which it is implemented.<a class='superscript' id='footnote-link-5' href='#footnote-5'>[5]</a>
+    structure from the underlying JavaScript in which it is implemented.<a class='superscript' id='footnote-link-5' href='#footnote-5'>[5]</a>
     Because the
     
       
-      <kbd>first_arg</kbd>
+      <kbd>first_arg_exp</kbd>
       
     
     selector (used in
     
       
       
-	<kbd>ev_appl_argument_loop</kbd>
+	<kbd>ev_appl_argument_expression_loop</kbd>
       
     
     to extract successive
@@ -2587,7 +2596,7 @@ component
     
       
       
-	<kbd>rest_args</kbd>
+	<kbd>rest_arg_exps</kbd>
       
     
     selector is implemented as
@@ -2623,7 +2632,7 @@ component
 
   
   <div class='permalink'>
-<a name='p10' class='permalink'></a><p>
+<a name='p11' class='permalink'></a><p>
     The entry point
     
       
@@ -2699,7 +2708,7 @@ component
   </p></div>
 
   <div class='permalink'>
-<a name='p11' class='permalink'></a><p>
+<a name='p12' class='permalink'></a><p>
     
     We assume that each primitive is implemented so as to obtain its
     arguments from <kbd>argl</kbd> and place its result in
@@ -2755,7 +2764,7 @@ component
   </p></div>
 
   <div class='permalink'>
-<a name='p12' class='permalink'></a><p>
+<a name='p13' class='permalink'></a><p>
     
     To apply a compound
     
@@ -2789,19 +2798,39 @@ component
     
       
       
-        A little extra work is needed to handle function bodies
-        with a single non-return statement as these should return
-        <kbd>undefined</kbd>. In this
-        case, we set as continuation the label
+        A little extra work is needed to handle return statements
+        which should be allowed to return immediately to the point
+        where the function was called, bypassing any continuations
+        which may have been set up in-between. We handle this by
+        recording the top of the stack by pushing a special marker on
+        the stack. When a function returns, we will pop the stack
+        repeatedly until we hit the marker. This ensures that
+        the next <kbd>restore</kbd> will
+        be the continuation set up in <kbd>ev_application</kbd>.
+
+        To simplify this stack management, we extend the stack
+        in section&nbsp;<REF NAME="sec:machine-model"><a class="superscript" id="5.4.1-sec-link-5.2.1" href="./5.2.1.html">5.2.1</a></REF> with two new commands:
+        <kbd>save_marker</kbd> (for pushing the maker) and
+        <kbd>restore_marker</kbd> (for popping until the marker is reached).
+        
+        We must also handle function bodies
+        whose <EM>evaluation</EM> do not end in an explicit
+        return statement as such functions implicitly return
+        <kbd>undefined</kbd>.
+        To handle this case, we set as continuation the label
         <kbd>return_undefined</kbd>,
         which will overwrite the contents of
         <kbd>val</kbd> by
         <kbd>undefined</kbd> before
-        jumping back into the dispatch loop. This has implications
-        for tail-recursion, which is discussed in
-        section&nbsp;<REF NAME="sec:sequence-evaluation"><a class="superscript" id="5.4.1-sec-link-5.4.1" href="./5.4.1.html">5.4.1</a></REF>.
-        All other cases handle returns by themselves as part of
-        the normal dispatch loop.
+        restoring the continuation set up in
+        <kbd>ev_application</kbd>.
+
+        Because the <kbd>return_undefined</kbd>
+        continuation is installed after <kbd>save_marker</kbd>,
+        it will be skipped by an explicit return which causes the value in
+        <kbd>val</kbd> to be preserved. The behavior
+        of <kbd>return_undefined</kbd> and
+        <kbd>ev_return</kbd> is described below.
       
     
     
@@ -2812,25 +2841,25 @@ component
       assign("env", list(op("extend_environment"), 
                          reg("unev"), reg("argl"), reg("env"))),
       assign("comp", list(op("function_body"), reg("fun"))),
-      save_frame(),
+      save_marker(),
       assign("continue", label("return_undefined")),
       go_to(label("eval_dispatch")),
 
 "return_undefined",
-      restore_frame(),
+      restore_marker(),
       assign("val", constant(undefined)),
       restore("continue"),
       go_to(reg("continue")),
 
 "ev_return",
-      restore_frame(),
+      restore_marker(),
       restore("continue"),
       assign("comp", list(op("return_expression"), reg("comp"))),
       go_to(label("eval_dispatch")),</pre></div></div>
   </p></div>
 
   <div class='permalink'>
-<a name='p13' class='permalink'></a><p>
+<a name='p14' class='permalink'></a><p>
     
       
       
@@ -2866,38 +2895,27 @@ component
     
       
         <div class='permalink'>
-<a name='p14' class='permalink'></a><p>
-          To simplify the treatment of unwinding the stack after a function
-          call, we extend the stack in <REF NAME="sec:machine-model"><a class="superscript" id="5.4.1-sec-link-5.2.1" href="./5.2.1.html">5.2.1</a></REF> with two
-          new commands <kbd>save_frame</kbd> and
-          <kbd>restore_frame</kbd>. These commands can
-          be implemented using <kbd>save</kbd> and
-          <kbd>restore</kbd> and demarcates the
-          boundary of the current stack frame, and the new. This marker allows
-          returning from any point in a function, and dynamically unwinding the
-          stack using the marker as an end condition.
-        </p></div>
-        <div class='permalink'>
 <a name='p15' class='permalink'></a><p>
-          Inside a return statement, we unwind the stack before proceeding to
-          evaluate the expression that defines the return value. Unwinding the
-          stack <EM>before</EM> this evaluation does not pose a problem as
-          <kbd>env</kbd> and
-          <kbd>unev</kbd> are unaffected by operations
-          on the stack. 
+          The special handler <kbd>return_undefined</kbd>
+          sets <kbd>val</kbd> to
+          <kbd>undefined</kbd> before restoring
+          the continuation set up by <kbd>ev_application</kbd>. Because the 
+          marker is at the top of the stack, a simple
+          <kbd>restore</kbd> would suffice to remove it, but
+          we use <kbd>restore_frame</kbd> for uniformity. 
         </p></div>
         <div class='permalink'>
 <a name='p16' class='permalink'></a><p>
-          To deal with the JavaScript idiosyncrasy that functions that do not
-          explicitly return a value returns
-          <kbd>undefined</kbd>, the evaluator a
-          special handler <kbd>return_undefined</kbd>
-          that sets <kbd>val</kbd> to
-          <kbd>undefined</kbd>. All function calls are
-          set up with this continuation after the call to
-          <kbd>save_frame</kbd>. Thus, an explicit
-          return's call to <kbd>restore_frame</kbd>
-          will skip over the handler which preserves the return value.
+          To evaluate a return statement, we first pop the stack repeatedly to restore
+          its state from when the <kbd>save_marker</kbd> instruction
+          was executed just before the start of the evaluation of the body of the function which we are returning from.
+          This is handled by the <kbd>restore_marker</kbd> instruction.
+          We then evaluate the subexpression that defines the return value
+          using the current values of 
+          <kbd>env</kbd> and
+          <kbd>unev</kbd>.
+          Restoring the stack before evaluating the subexpression rather than after is
+          key to tail recursion which is discussed in section&nbsp;<REF NAME="sec:tail-recursion-return"><a class="superscript" id="5.4.1-sec-link-5.4.2" href="./5.4.2.html">5.4.2</a></REF>.
         </p></div>
       
     
@@ -2921,7 +2939,14 @@ component
         <kbd>ev_sequence</kbd> is analogous to the
         metacircular evaluator's
         <kbd>eval_sequence</kbd> function. It handles
-        sequences of expressions in blocks or at the top level.
+        sequences of statements in function bodies, blocks or at the top level.
+
+        The handling of returns in the explicit-control evaluator deviates from
+        the metacircular evaluator in order to support tail recursion. By using
+        the marker to pop everything on the stack down to the continuation of
+        the current function call the sequence does not need to cooperate in its
+        own abortion, or even be aware of the existence of explicit returns in
+        the language.
       
     
   </p></div>
@@ -2932,20 +2957,20 @@ component
       
       Sequences of statements
     
-    are evaluated by placing the 
+    are evaluated 
     
       
       
-	sequence
+	      in <kbd>ev_sequence_start</kbd> by placing the sequence of statements
       
     
     to be evaluated in
     <kbd>unev</kbd>, saving
     <kbd>continue</kbd> on the
-    stack, and jumping to
+    stack, and
     
       
-      <kbd>ev_sequence</kbd>.
+      proceeding to the next entry <kbd>ev_sequence</kbd>.
     
     
     <div class='snippet' id='javascript_113_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
@@ -2956,18 +2981,10 @@ component
     
     
       
-      All sequences in function
-    
-    bodies are handled by jumping to
-    
       
-      <kbd>ev_sequence</kbd> via
-    
-    
-      
-      <kbd>ev_sequence_start</kbd>.
-      The latter takes care to save <kbd>continue</kbd>
-      to allow the register to be used in the iteration over the statements in the sequence.
+        Saving <kbd>continue</kbd> allows
+        the register to be used in the iteration over the statements in the
+        sequence. 
       
     
   </p></div>
@@ -3098,13 +3115,8 @@ component
     saved by
     
       
-      <kbd>ev_application</kbd>
-      
-    
-    or
-    
-      
-      <kbd>ev_seq</kbd>.)
+      <kbd>ev_application</kbd>, <kbd>ev_sequence_start</kbd> or
+      <kbd>ev_conditional</kbd>.)
     
     Rather than setting up <kbd>continue</kbd> to arrange for
     
@@ -3173,9 +3185,9 @@ component
       
         Most common JavaScript implementations today do not interpret the
         JavaScript source code directly. Instead, source is transformed
-        into an intermediate representation called bytecode which is
+        into an intermediate representation called <EM>bytecode</EM> which is
         typically interpreted in a loop similar to our dispatch functions.
-        Some JavaScript interpreters are register machines, like ours --
+        Some JavaScript interpreters are register machines, like ours;
         others are stack machines, in which operations pop and push
         operands from and to a stack instead of keeping a large number of
         registers. For performance reasons, most JavaScript interpreters
@@ -3207,7 +3219,7 @@ component
     would work but might save more registers than necessary; this could be
     an important consideration in a system where stack operations are
     expensive.  Saving registers whose contents will not be needed later
-    may also hold onto useless data that could otherwise be
+    may also hold on to useless data that could otherwise be
     garbage-collected, freeing space to be reused.
     </FOOTNOTE></div>
 
@@ -3244,8 +3256,8 @@ function adjoin_arg(arg, arglist) {
   
     in a combination:
     <div class='snippet' id='javascript_113_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function is_last_argument_expression(ops) {
-    return is_null(tail(ops));
+function is_last_argument_expression(arg_expression) {
+    return is_null(tail(arg_expression));
 }</pre></div></div>
   
     </FOOTNOTE></div>
@@ -3298,13 +3310,19 @@ function is_last_argument_expression(ops) {
     <div class='footnote'>
       <a class='footnote-number' id='footnote-5' href='#footnote-link-5'>[5] </a>
     <FOOTNOTE>
-    The
+    Consequently, the
     order of
     
     
     argument expression
   
-  evaluation in the metacircular evaluator is determined by
+  evaluation
+  
+    
+    
+      in our explicit-control evaluator is left-to-right, as opposed to the metacircular evaluator where the order is determined by
+    
+  
     the order of evaluation of the arguments to
     
       
@@ -3317,7 +3335,7 @@ function is_last_argument_expression(ops) {
     
     
       
-      <kbd>list_of_values</kbd>
+      alternative implementation of <kbd>list_of_values</kbd>
       
     
     of section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="5.4.1-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>

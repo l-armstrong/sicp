@@ -2147,7 +2147,7 @@ Acknowledgments
 "ev_assignment",
       assign("unev", list(op("assignment_symbol"), reg("comp"))),
       save("unev"), // save variable for later
-      assign("comp", list(op("assignment_value"), reg("comp"))),
+      assign("comp", list(op("assignment_value_expression"), reg("comp"))),
       save("env"),
       save("continue"),
       assign("continue", label("ev_assignment_1")),
@@ -2169,20 +2169,28 @@ Acknowledgments
       
       
         Declarations of variables and constants are handled in a similar way.
-        Note that declarations do not returns
-        <kbd>undefined</kbd> instead of the result of
-        the expression used to initialize the variable. This is handled by
+        Note that whereas the value of an assignment is the value that was assigned,
+        the value of a declaration is
+        <kbd>undefined</kbd>. This is handled by
         setting <kbd>val</kbd> to
-        <kbd>undefined</kbd> before continuing.
+        <kbd>undefined</kbd> before continuing. 
+        Like in the metacircular evaluator, we transform a function declaration
+        into a constant declaration whose value expression is a lambda expression. This happens in
+        <kbd>ev_function_declaration</kbd> which makes the
+        transformation in-place in <kbd>comp</kbd> and
+        falls through to <kbd>ev_declaration</kbd>.
       
       
 
 
     <div class='snippet' id='javascript_115_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"ev_function_declaration",
+      assign("comp", list(op("function_decl_to_constant_decl"), reg("comp"))),
+
 "ev_declaration",
       assign("unev", list(op("declaration_symbol"),
                           reg("comp"))),
-      save("unev"), // save variable for later
+      save("unev"), // save declared name
       assign("comp", list(op("declaration_value_expression"),
                           reg("comp"))),
       save("env"),
@@ -2218,17 +2226,21 @@ Acknowledgments
       
         
 
-        Evaluation of blocks evaluates the body of the block with
+        The body of a block is evaluated with
         respect to the current environment extended by a binding
         of all local names to the value
-        <kbd>"*undefined*"</kbd>.
+        <kbd>"*unassigned*"</kbd>.
+        We temporarily make us of the <kbd>comp</kbd>
+        register to hold the list of all variables declared in the block
+        which are obtained by the function <kbd>scan_out_declarations</kbd>
+        from section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="5.4.3-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>.
       
     <div class='snippet' id='javascript_115_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_block",
       assign("comp", list(op("block_body"), reg("comp"))),
       assign("val", list(op("scan_out_declarations"), reg("comp"))),
 
-      save("comp"), // temporarily store to comp
+      save("comp"), // temporarily use for *unassigned* values
       assign("comp", list(op("list_of_unassigned"), reg("val"))),
       assign("env", list(op("extend_environment"), 
                          reg("val"), 
@@ -2258,7 +2270,7 @@ Acknowledgments
 	<kbd>while_loop</kbd> in front of user programs.
 	You may <QUOTE>cheat</QUOTE> and assume that the syntax transformer
 	<kbd>while_to_application</kbd> is available
-	as machine operation.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a> Refer to
+	as a machine operation.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a> Refer to
 	exercise&nbsp;<REF NAME="ex:while_loop"><a class="superscript" id="5.4.3-ex-link-4.7" href="./4.1.2.html#ex_4.7">4.7</a></REF> to discuss whether
 	this approach works if return, break and continue statements are allowed
 	inside the while loop. If not,
@@ -2282,8 +2294,8 @@ Acknowledgments
     <a name="ex_5.24" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.24">Exercise 5.24 </a></b> 
   
         Implement the equivalent of
-        <kbd>save_frame</kbd> and
-        <kbd>restore_frame</kbd> by using save to
+        <kbd>save_marker</kbd> and
+        <kbd>restore_marker</kbd> by using save to
         store a special marker value on the stack. Use a restoring loop for
         implicit and explicit returns that restores from the stack until it hits
         the marker.
@@ -2306,16 +2318,17 @@ Acknowledgments
     
       
       
-        Implement <kbd>save_frame</kbd> and
-        <kbd>restore_frame</kbd>. Extend the evaluator
+        Implement <kbd>save_marker</kbd> and
+        <kbd>restore_marker</kbd>. Extend the evaluator
         with two new instructions implemented as the nullary functions
-        save_frame and restore_frame, similar to save and restore. You will have
-        to add dispatch cases in the stack,
-        <kbd>make_save_frame</kbd> and
-        <kbd>make_restore_frame</kbd> functions. Note
-        that you do not need to actually insert a marker in the stack, but keep
+        <kbd>save_marker</kbd> and
+        <kbd>restore_marker</kbd>, similar to
+        <kbd>save</kbd> and
+        <kbd>restore</kbd>. You will have
+        add cases to the stack's dispatch function as well. Note
+        that you do not need to actually insert a marker in the stack, but can keep
         a parallel structure that only keeps track of the position of the last
-        save before a call to <kbd>save_frame</kbd>.
+        save before a call to <kbd>save_marker</kbd>.
       
     
       
