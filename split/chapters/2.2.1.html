@@ -2193,19 +2193,7 @@ one-through-four</pre><pre class='prettyprintoutput'>
         and <kbd>4</kbd>.
     </span>    </td>
           <td></td>
-          <td><span style="color:blue">
-      Box notation is sometimes difficult to read. In this book, when we want to
-      indicate the list nature of a data structure, we shall often employ the
-      alternative <EM>list notation</EM>: We simply use whenever possible applications
-      of <kbd>list</kbd> whose evaluation would result in the
-      desired structure. For example, instead of the box notation
-      <div class='snippet' id='javascript_33_4_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
-[1, [[2, 3], [[4, [5, null]], [6, null]]]]</pre></div></div>
-      we can write
-      <div class='snippet' id='javascript_33_5_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
-list(1, [2, 3], list(4, 5), 6)</pre></div></div>
-      in list notation.<a class='superscript' id='footnote-link-2' href='#footnote-2'style="color:blue">[2]</a>
-    </span></td></tr></table>
+          <td></td></tr></table>
   </p></div>
   <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
@@ -2234,7 +2222,7 @@ list(1, [2, 3], list(4, 5), 6)</pre></div></div>
       <span style="color:blue"><kbd>tail</kbd></span>
     
     can be used to extract the second, third, and subsequent items in the
-    list.<span style="color:green"><a class='superscript' id='footnote-link-3' href='#footnote-3'style="color:green">[3]</a></span>
+    list.<span style="color:green"><a class='superscript' id='footnote-link-2' href='#footnote-2'style="color:green">[2]</a></span>
     The constructor 
     
     
@@ -2247,10 +2235,10 @@ list(1, [2, 3], list(4, 5), 6)</pre></div></div>
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_33_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_33_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (car one-through-four)</pre><pre class='prettyprintoutput'>
             1</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_33_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsGMB7AOwGcAXUYgUwH0yALAJwIFcBzemgM1cdAF5QAGwCW5ABSYANKhkBmGQBYAlAG5c9KgEMAJuOp0mrDt15qgA')">head(one_through_four);
+            <td><div class='snippet' id='javascript_33_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsGMB7AOwGcAXUYgUwH0yALAJwIFcBzemgM1cdAF5QAGwCW5ABSYANKhkBmGQBYAlAG5c9KgEMAJuOp0mrDt15qgA')">head(one_through_four);
 </pre><pre class='prettyprintoutput'>
 1</pre></div></div></td></tr></table>
     
@@ -2258,10 +2246,10 @@ list(1, [2, 3], list(4, 5), 6)</pre></div></div>
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_33_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_33_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (cdr one-through-four)</pre><pre class='prettyprintoutput'>
             (2 3 4)</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_33_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsGMB7AOwGcAXUYgUwH0yALAJwIFcBzemgM1cdAF5QAGwCW5ABSYANKhkBmGQBYAlAG5cZAIYih46nSasO3XmqA')">tail(one_through_four);
+            <td><div class='snippet' id='javascript_33_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsGMB7AOwGcAXUYgUwH0yALAJwIFcBzemgM1cdAF5QAGwCW5ABSYANKhkBmGQBYAlAG5cZAIYih46nSasO3XmqA')">tail(one_through_four);
 </pre><pre class='prettyprintoutput'>
 [2, [3, [4, null]]]</pre></div></div></td></tr></table>
     <table width="100%">
@@ -2275,39 +2263,35 @@ list(1, [2, 3], list(4, 5), 6)</pre></div></div>
       </span>    </td>
           <td></td>
           <td><span style="color:blue">
-	or in list notation
-    <div class='snippet' id='javascript_33_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-</pre><pre class='prettyprintoutput'>
-list(2, 3, 4)</pre></div></div>
       </span></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_33_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_33_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (car (cdr one-through-four))</pre><pre class='prettyprintoutput'>
             2</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_33_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsGMB7AOwGcAXUYgUwH0yALAJwIFcBzemgM1cdAF5QAGwCW5ABSYANKhkBmGQBYAlAG5c9KgEMAJuLJaRQ8dTpNWHbr2VqgA')">head(tail(one_through_four));
+            <td><div class='snippet' id='javascript_33_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsGMB7AOwGcAXUYgUwH0yALAJwIFcBzemgM1cdAF5QAGwCW5ABSYANKhkBmGQBYAlAG5c9KgEMAJuLJaRQ8dTpNWHbr2VqgA')">head(tail(one_through_four));
 </pre><pre class='prettyprintoutput'>
 2</pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_33_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_33_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (cons 10 one-through-four)</pre><pre class='prettyprintoutput'>
 (10 1 2 3 4)</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_33_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsGMB7AOwGcAXUYgUwH0yALAJwIFcBzemgM1cdAF5QAGwCW5ABSYANKhkBmGQBYAlAG5cABwCGIxpIAMM6nSasO3XmqA')">pair(10, one_through_four);
+            <td><div class='snippet' id='javascript_33_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsGMB7AOwGcAXUYgUwH0yALAJwIFcBzemgM1cdAF5QAGwCW5ABSYANKhkBmGQBYAlAG5cABwCGIxpIAMM6nSasO3XmqA')">pair(10, one_through_four);
 </pre><pre class='prettyprintoutput'>
 [10, [1, [2, [3, [4, null]]]]]</pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_33_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_33_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (cons 5 one-through-four)</pre><pre class='prettyprintoutput'>
             (5 1 2 3 4)</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_33_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsGMB7AOwGcAXUYgUwH0yALAJwIFcBzemgM1cdAF5QAGwCW5ABSYANKhkBmGQBYAlAG5cABwCGIxuICsM6nSasO3XmqA')">pair(5, one_through_four);
+            <td><div class='snippet' id='javascript_33_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsGMB7AOwGcAXUYgUwH0yALAJwIFcBzemgM1cdAF5QAGwCW5ABSYANKhkBmGQBYAlAG5cABwCGIxuICsM6nSasO3XmqA')">pair(5, one_through_four);
 </pre><pre class='prettyprintoutput'>
 [5, [1, [2, [3, [4, null]]]]]</pre></div></div></td></tr></table>
     <table width="100%">
@@ -2324,7 +2308,7 @@ list(2, 3, 4)</pre></div></div>
         
         <EM>empty list</EM>.  The word <EM>nil</EM> is a contraction of the
 	Latin word <EM>nihil</EM>, which means
-	<QUOTE>nothing.</QUOTE><a class='superscript' id='footnote-link-4' href='#footnote-4'style="color:green">[4]</a>
+	<QUOTE>nothing.</QUOTE><a class='superscript' id='footnote-link-3' href='#footnote-3'style="color:green">[3]</a>
     </span>    </td>
           <td></td>
           <td><span style="color:blue">
@@ -2332,9 +2316,35 @@ list(2, 3, 4)</pre></div></div>
 	the chain of pairs, can be thought of as a sequence of no elements, the 
         
         
-        <EM>empty list</EM>.<a class='superscript' id='footnote-link-5' href='#footnote-5'style="color:blue">[5]</a>
+        <EM>empty list</EM>.<a class='superscript' id='footnote-link-4' href='#footnote-4'style="color:blue">[4]</a>
     </span></td></tr></table>
-  </p></div>
+</p></div>
+<table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr><td>    </td>
+          <td></td>
+          <td><span style="color:blue">
+    <div class='permalink'>
+<a name='p4' class='permalink'></a><p>
+      Box notation is sometimes difficult to read. In this book, when we want to
+      indicate the list nature of a data structure, we will employ the
+      alternative <EM>list notation</EM>: Whenever possible, list notation uses
+      applications
+      of <kbd>list</kbd> whose evaluation would result in the
+      desired structure. For example, instead of the box notation
+      <div class='snippet' id='javascript_33_9_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
+[1, [[2, 3], [[4, [5, null]], [6, null]]]]</pre></div></div>
+      we write
+      <div class='snippet' id='javascript_33_10_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
+list(1, [2, 3], list(4, 5), 6)</pre></div></div>
+      in list notation.<a class='superscript' id='footnote-link-5' href='#footnote-5'style="color:blue">[5]</a>
+    </p></div>
+  </span></td></tr></table>
   
       <div class='permalink'>
         <a name='h1' class='permalink'></a><h2>
@@ -2345,7 +2355,7 @@ list(2, 3, 4)</pre></div></div>
   
   
   <div class='permalink'>
-<a name='p4' class='permalink'></a><p>
+<a name='p5' class='permalink'></a><p>
     The use of pairs to represent sequences of elements as lists is accompanied
     by conventional programming techniques for manipulating lists by
     successively 
@@ -2414,12 +2424,12 @@ list(2, 3, 4)</pre></div></div>
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_33_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_33_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (list-ref items n)
   (if (= n 0)
       (car items)
       (list-ref (cdr items) (- n 1))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_33_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQAbCgZzIH0AnAUzwAoKyOAtowA0oIgEpQAb2yg5oTmQJtatALwbQABlny98gPygAFhwCGAE178h43fr0Auek1aceZMxTrXBjcaK0ALSgmOIA3NgAvrgkNMygjACOBGacjKBqLszcmKIALKIAnKKYAGyiKACsEbgMzOxc3Mmp6aIAzBFAA')">function list_ref(items, n) {
+            <td><div class='snippet' id='javascript_33_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQAbCgZzIH0AnAUzwAoKyOAtowA0oIgEpQAb2yg5oTmQJtatALwbQABlny98gPygAFhwCGAE178h43fr0Auek1aceZMxTrXBjcaK0ALSgmOIA3NgAvrgkNMygjACOBGacjKBqLszcmKIALKIAnKKYAGyiKACsEbgMzOxc3Mmp6aIAzBFAA')">function list_ref(items, n) {
     return n === 0
            ? head(items)
            : list_ref(tail(items), n - 1);
@@ -2429,11 +2439,11 @@ list(2, 3, 4)</pre></div></div>
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_33_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_33_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define squares (list 1 4 9 16 25))
 (list-ref squares 3)</pre><pre class='prettyprintoutput'>
 16</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_33_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQAbCgZzIH0AnAUzwAoKyOAtowA0oIgEpQAb2yg5oTmQJtatALwbQABlny98gPygAFhwCGAE178h43fr0Auek1aceZMxTrXBjcaK0ALSgmOIA3NgAvrgkNMygjACOBGacjKBqLszcmKIALKIAnKKYAGyiKACsEbgMzOxc3Mmp6aIAzBFAA')">const squares = list(1, 4, 9, 16, 25);
+            <td><div class='snippet' id='javascript_33_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQAbCgZzIH0AnAUzwAoKyOAtowA0oIgEpQAb2yg5oTmQJtatALwbQABlny98gPygAFhwCGAE178h43fr0Auek1aceZMxTrXBjcaK0ALSgmOIA3NgAvrgkNMygjACOBGacjKBqLszcmKIALKIAnKKYAGyiKACsEbgMzOxc3Mmp6aIAzBFAA')">const squares = list(1, 4, 9, 16, 25);
 
 list_ref(squares, 3);
 </pre><pre class='prettyprintoutput'>
@@ -2442,7 +2452,7 @@ list_ref(squares, 3);
     
   </p></div>
   <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
+<a name='p6' class='permalink'></a><p>
     Often we
     
       <span style="color:green">
@@ -2481,12 +2491,12 @@ list_ref(squares, 3);
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_33_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_33_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (length items)
   (if (null? items)
       0
       (+ 1 (length (cdr items)))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_33_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQAbAUyIHMyALACgrIYFsBnAJSgA3tlATQAJwZkCU2hX4B9IgTp0uPAYPGT9kgPygADHoP6AXKEygA1PSatOZAIYVN3PkMEBubAC+uCQ0-GSgVAAmkfygALz0SmQcmAA0oADM6QCs6QDsfriMLOwcUTF+QA')">function length(items) {
+            <td><div class='snippet' id='javascript_33_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQAbAUyIHMyALACgrIYFsBnAJSgA3tlATQAJwZkCU2hX4B9IgTp0uPAYPGT9kgPygADHoP6AXKEygA1PSatOZAIYVN3PkMEBubAC+uCQ0-GSgVAAmkfygALz0SmQcmAA0oADM6QCs6QDsfriMLOwcUTF+QA')">function length(items) {
     return is_null(items)
            ? 0
            : 1 + length(tail(items));
@@ -2496,10 +2506,10 @@ list_ref(squares, 3);
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_33_15_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_33_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define odds (list 1 3 5 7))
 (length odds)</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_33_15_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsGMB7AOwGcAXUAgEypNAF5QAbAS3IApMAaUAZh4CsPAOwBKANy4mAUyIBzMgAt21WhKA')">const odds = list(1, 3, 5, 7);
+            <td><div class='snippet' id='javascript_33_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsGMB7AOwGcAXUAgEypNAF5QAbAS3IApMAaUAZh4CsPAOwBKANy4mAUyIBzMgAt21WhKA')">const odds = list(1, 3, 5, 7);
 
 length(odds);
 </pre><pre class='prettyprintoutput'>
@@ -2532,14 +2542,14 @@ length(odds);
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_33_16_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_33_15_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (length items)
   (define (length-iter a count)
     (if (null? a)
         count
         (length-iter (cdr a) (+ 1 count))))
   (length-iter items 0))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_33_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQAbAUyIHMyALACgrIYFsBnAJSgA3tlATQhUpRr0mrNgH1uDAE4cAhgBpQJKsTLCxk06DUMyBNbQr8lRAnTpbB4sx8kB+PQaJl3Tw8ALnkWdhUeDTJNChdNQV19Q1AAalBMQQBuQNAAX1yLKxswxUj1Lh4BXQAGbOwC7H0ifjJQKgATDv5QAF56OzIOTF0AZl0AVl0AdnrsRnDOTu7soA')">function length(items) {
+            <td><div class='snippet' id='javascript_33_15_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQAbAUyIHMyALACgrIYFsBnAJSgA3tlATQhUpRr0mrNgH1uDAE4cAhgBpQJKsTLCxk06DUMyBNbQr8lRAnTpbB4sx8kB+PQaJl3Tw8ALnkWdhUeDTJNChdNQV19Q1AAalBMQQBuQNAAX1yLKxswxUj1Lh4BXQAGbOwC7H0ifjJQKgATDv5QAF56OzIOTF0AZl0AVl0AdnrsRnDOTu7soA')">function length(items) {
     function length_iter(a, count) {
         return is_null(a)
                ? count
@@ -2550,7 +2560,7 @@ length(odds);
 </pre></div></div></td></tr></table>
   </p></div>
   <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
+<a name='p7' class='permalink'></a><p>
     Another conventional programming technique is to 
     
     
@@ -2580,10 +2590,10 @@ length(odds);
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_33_17_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_33_16_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (append squares odds)</pre><pre class='prettyprintoutput'>
 (1 4 9 16 25 1 3 5 7)</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_33_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQBDABwYFMiATACgBsKBnMzABpQPfigCUoAN7ZQc0ACdmZAgtp8A+kQJcu3PgPGz5J+QH4RBlMdMmAXKAZ0KCjgAtmdTqMPDGLdg4yZz0fTHFhHwlxAG5sAF9cEhp+UF4ARwI6JV5QAF5Lfg4hUAAWYQBOYUwANmEUAFZYpJSyUCo2NlyCn2LhAGZhBuEAdmbsf1ZODKyc4Q6u2KA')">append(squares, odds);
+            <td><div class='snippet' id='javascript_33_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQBDABwYFMiATACgBsKBnMzABpQPfigCUoAN7ZQc0ACdmZAgtp8A+kQJcu3PgPGz5J+QH4RBlMdMmAXKAZ0KCjgAtmdTqMPDGLdg4yZz0fTHFhHwlxAG5sAF9cEhp+UF4ARwI6JV5QAF5Lfg4hUAAWYQBOYUwANmEUAFZYpJSyUCo2NlyCn2LhAGZhBuEAdmbsf1ZODKyc4Q6u2KA')">append(squares, odds);
 </pre><pre class='prettyprintoutput'>
 list(1, 4, 9, 16, 25, 1, 3, 5, 7)
 (list notation)</pre></div></div></td></tr></table>
@@ -2591,15 +2601,15 @@ list(1, 4, 9, 16, 25, 1, 3, 5, 7)
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_33_18_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_33_17_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (append odds squares)</pre><pre class='prettyprintoutput'>
 (1 3 5 7 1 4 9 16 25)</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_33_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQBDABwYFMiATACgBsKBnMzABpQPfigCUoAN7ZQc0ACdmZAgtp8A+kQJcu3PgPGz5J+QH4RBlMdMmAXKAZ0KCjgAtmdTqMPDGLdg4yZz0fTHFhHwlxAG5sAF9cEhp+UF4ARwI6JV5QAF5Lfg4hUAAWYQBOYUwANmEUAFZYpJSyUCo2NlyCn2LhAGZhBuEAdmbsf1ZODq7hDKyc2KA')">append(odds, squares);
+            <td><div class='snippet' id='javascript_33_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQBDABwYFMiATACgBsKBnMzABpQPfigCUoAN7ZQc0ACdmZAgtp8A+kQJcu3PgPGz5J+QH4RBlMdMmAXKAZ0KCjgAtmdTqMPDGLdg4yZz0fTHFhHwlxAG5sAF9cEhp+UF4ARwI6JV5QAF5Lfg4hUAAWYQBOYUwANmEUAFZYpJSyUCo2NlyCn2LhAGZhBuEAdmbsf1ZODq7hDKyc2KA')">append(odds, squares);
 </pre><pre class='prettyprintoutput'>
 list(1, 3, 5, 7, 1, 4, 9, 16, 25)</pre></div></div></td></tr></table>
   </p></div>
   <div class='permalink'>
-<a name='p7' class='permalink'></a><p>
+<a name='p8' class='permalink'></a><p>
     
       <span style="color:green"><kbd>Append</kbd></span>
       <span style="color:blue">The function <kbd>append</kbd>
@@ -2646,12 +2656,12 @@ list(1, 3, 5, 7, 1, 4, 9, 16, 25)</pre></div></div></td></tr></table>
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_33_19_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_33_18_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (append list1 list2)
   (if (null? list1)
       list2
       (cons (car list1) (append (cdr list1) list2))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_33_19_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsGMB7AOwGcAXUEgRwFcBDAJwFMTQBeUAGwEtyAKTABpQAFmEBOYZgBswlAFYAlAG5chUhQIATLaw49+Q0AGZh84QHYVuAGY0ieMt2Kg6ABzdMiWvgbJG-FEVQAG9sUAjQZjIaBiJQXgB9IhpOTl9ef0VwyNzIgH4uTJQcvNyALlA3Om4GPgALJjofP0xFYXdPbz4yGvTW9qLyIOsAX1xOrx9qemYSYW1dFSA')">function append(list1, list2) {
+            <td><div class='snippet' id='javascript_33_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsGMB7AOwGcAXUEgRwFcBDAJwFMTQBeUAGwEtyAKTABpQAFmEBOYZgBswlAFYAlAG5chUhQIATLaw49+Q0AGZh84QHYVuAGY0ieMt2Kg6ABzdMiWvgbJG-FEVQAG9sUAjQZjIaBiJQXgB9IhpOTl9ef0VwyNzIgH4uTJQcvNyALlA3Om4GPgALJjofP0xFYXdPbz4yGvTW9qLyIOsAX1xOrx9qemYSYW1dFSA')">function append(list1, list2) {
     return is_null(list1)
            ? list2
            : pair(head(list1), append(tail(list1), list2));
@@ -2681,10 +2691,10 @@ list(1, 3, 5, 7, 1, 4, 9, 16, 25)</pre></div></div></td></tr></table>
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_33_20_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_33_19_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (last-pair (list 23 72 149 34))</pre><pre class='prettyprintoutput'>
 (34)</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_33_20_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChslADYCGAzgC4D6ADkQJYBOoZA9qAEYCmoA5rQG4cAduwCeocgFcAJkLK5i5anXoAKArXIqUAZgA0oAOwp9mACwBOfdtMBKGwG4gA')">last_pair(list(23, 72, 149, 34));
+            <td><div class='snippet' id='javascript_33_19_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChslADYCGAzgC4D6ADkQJYBOoZA9qAEYCmoA5rQG4cAduwCeocgFcAJkLK5i5anXoAKArXIqUAZgA0oAOwp9mACwBOfdtMBKGwG4gA')">last_pair(list(23, 72, 149, 34));
 </pre><pre class='prettyprintoutput'>
 list(34)</pre></div></div></td></tr></table>
     
@@ -2697,9 +2707,9 @@ list(34)</pre></div></div></td></tr></table>
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_33_21_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_33_20_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_33_21_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChslADYCGAzgC4D6ADkQJYBOoZA9qAEYCmoA5rQG4cAduwCeocgFcAJkLK4AZhMEBjMrWbDi5anXoAKWmQ4BbEgEpQAb2yhboehzIT6w2iQqCJBAnrJ0fhibmZjZ2YXYA-KCBpqHhYQBchKSUNAy+-gZGpmZmANzYAL64Wqm6egRuZHooAMwANKAA7CiNmAAsAJyNte25eUA')">function last_pair(items) {
+            <td><div class='snippet' id='javascript_33_20_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChslADYCGAzgC4D6ADkQJYBOoZA9qAEYCmoA5rQG4cAduwCeocgFcAJkLK4AZhMEBjMrWbDi5anXoAKWmQ4BbEgEpQAb2yhboehzIT6w2iQqCJBAnrJ0fhibmZjZ2YXYA-KCBpqHhYQBchKSUNAy+-gZGpmZmANzYAL64Wqm6egRuZHooAMwANKAA7CiNmAAsAJyNte25eUA')">function last_pair(items) {
     return is_null(tail(items))
            ? items
            : last_pair(tail(items));
@@ -2727,10 +2737,10 @@ list(34)</pre></div></div></td></tr></table>
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_33_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_33_21_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (reverse (list 1 4 9 16 25))</pre><pre class='prettyprintoutput'>
             (25 16 9 4 1)</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_33_22_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsCcBTANwLwGcCAKAGwEsyAXSzAGlABY2BONzANjYoArAEoRAbiA')">reverse(list(1, 4, 9, 16, 25));
+            <td><div class='snippet' id='javascript_33_21_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsCcBTANwLwGcCAKAGwEsyAXSzAGlABY2BONzANjYoArAEoRAbiA')">reverse(list(1, 4, 9, 16, 25));
 </pre><pre class='prettyprintoutput'>
 list(25, 16, 9, 4, 1)</pre></div></div></td></tr></table>
     
@@ -2740,7 +2750,7 @@ list(25, 16, 9, 4, 1)</pre></div></div></td></tr></table>
       <div class="solution_content collapse" id="solution_33_2_div"><SOLUTION>
     
       Naive reverse (what is the run time?):
-      <div class='snippet' id='javascript_33_23_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQAnAUwDcG6BnBgCgrIYFs2ASlABvbKAn0GZAnVoU2AfSIEANqu68Bg8ZL2SA-KBXrd+vQC5QAQwAOthkQAmnRi3Zcy1ihp78hggA02ACQ5ua23nScABYM1i5+2oHGaqqCggDc2AC+uG6sHJyqCmScmCkALCkArCkAnCmYAGwpKDUZmUA')">function reverse(items) {
+      <div class='snippet' id='javascript_33_22_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQAnAUwDcG6BnBgCgrIYFs2ASlABvbKAn0GZAnVoU2AfSIEANqu68Bg8ZL2SA-KBXrd+vQC5QAQwAOthkQAmnRi3Zcy1ihp78hggA02ACQ5ua23nScABYM1i5+2oHGaqqCggDc2AC+uG6sHJyqCmScmCkALCkArCkAnCmYAGwpKDUZmUA')">function reverse(items) {
     return is_null(items)
            ? null
            : append(reverse(tail(items)),
@@ -2748,7 +2758,7 @@ list(25, 16, 9, 4, 1)</pre></div></div></td></tr></table>
 }
 </pre></div></div>
       A better version:
-      <div class='snippet' id='javascript_33_24_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQAnAUwDcG6BnBgCgrIYFs2ASlABvbKAmhCpSjXrNWHAPo9W3XgIA08tgQA2ZYWMkn5ZAnVoU2Sovr3r+Q8adeSA-Dv1kXb1wC55FnYGFV46TjIAQwoHVQFBTWwASD800wAHGIiACwYogBNHBO1GXQNBQQBuX1AAX1rGc0sgxVDVCPi2bTs9PWrsBuxGYI5OPWsyTkxtABZtAFZtAE5tTAA2bRQFyqqgA')">function reverse(items) {
+      <div class='snippet' id='javascript_33_23_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQAnAUwDcG6BnBgCgrIYFs2ASlABvbKAmhCpSjXrNWHAPo9W3XgIA08tgQA2ZYWMkn5ZAnVoU2Sovr3r+Q8adeSA-Dv1kXb1wC55FnYGFV46TjIAQwoHVQFBTWwASD800wAHGIiACwYogBNHBO1GXQNBQQBuX1AAX1rGc0sgxVDVCPi2bTs9PWrsBuxGYI5OPWsyTkxtABZtAFZtAE5tTAA2bRQFyqqgA')">function reverse(items) {
     function reverse_iter(items, result) {
         return is_null(items)
                ? result
@@ -2798,7 +2808,7 @@ list(25, 16, 9, 4, 1)</pre></div></div></td></tr></table>
       It would be nicer
       to be able to supply a list of coins to be used for making change.
     <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
+<a name='p9' class='permalink'></a><p>
       We want to rewrite the
       
 	<span style="color:green">procedure</span>
@@ -2812,11 +2822,11 @@ list(25, 16, 9, 4, 1)</pre></div></div></td></tr></table>
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_33_25_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_33_24_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define us-coins (list 50 25 10 5 1))
 
 (define uk-coins (list 100 50 20 10 5 2 1))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_33_25_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsGMB7AOwGcAXUAVxIH1CBLU0AXlABt7yAKTABl4A0oAKyDUwoXyETQmAJQBufMXJUA1nQKMSLdpzI9+0sSjFSRQlJMVA')">const us_coins = list(100, 50, 25, 10, 5, 1);
+            <td><div class='snippet' id='javascript_33_24_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsGMB7AOwGcAXUAVxIH1CBLU0AXlABt7yAKTABl4A0oAKyDUwoXyETQmAJQBufMXJUA1nQKMSLdpzI9+0sSjFSRQlJMVA')">const us_coins = list(100, 50, 25, 10, 5, 1);
 const uk_coins = list(100, 50, 20, 10, 5, 2, 1);
 </pre></div></div></td></tr></table>
       We could then call <kbd>cc</kbd> as follows:
@@ -2824,10 +2834,10 @@ const uk_coins = list(100, 50, 20, 10, 5, 2, 1);
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_33_26_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_33_25_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (cc 100 us-coins)</pre><pre class='prettyprintoutput'>
               292</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_33_26_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChslAGYCWATgM4AuA+gCYCmAdgPYC2RDAhhUUwwDSg6ADwDGdAA7Vi5avWZtO3XnjAcGNUMyosmJOqApNQAI30BzIgDdGJgJ6hKAVzkVcBRwxFKGoESIAUHDoeFAIiTOxUlhwANo50ZACUoADe2KAZoHoUjiQ+QUwhoAC8paAADOmZ1ZkA-KA4NU0AXKAFRQA8FaAAPj2aTNq6dP7hkdFxCYlVTXUVM7OgrX6BwQyhC4vVwmKSVNKUtIys7Fw8DKMRDFGx8UnTW9UA1JuLK+3roAC0hKSHcidFOdLuNblMBK9HmNrhM7okANzYAC+uHCDEooEcZCo0LIJVAMSIlH8mHK5QEAFZyagKQJSZS6QjsGiMY4ANY4q544oEokUElkynUlDU+mgWmoRmI5kBUnUrGc9hJeFAA')">cc(100, us_coins);
+            <td><div class='snippet' id='javascript_33_25_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChslAGYCWATgM4AuA+gCYCmAdgPYC2RDAhhUUwwDSg6ADwDGdAA7Vi5avWZtO3XnjAcGNUMyosmJOqApNQAI30BzIgDdGJgJ6hKAVzkVcBRwxFKGoESIAUHDoeFAIiTOxUlhwANo50ZACUoADe2KAZoHoUjiQ+QUwhoAC8paAADOmZ1ZkA-KA4NU0AXKAFRQA8FaAAPj2aTNq6dP7hkdFxCYlVTXUVM7OgrX6BwQyhC4vVwmKSVNKUtIys7Fw8DKMRDFGx8UnTW9UA1JuLK+3roAC0hKSHcidFOdLuNblMBK9HmNrhM7okANzYAC+uHCDEooEcZCo0LIJVAMSIlH8mHK5QEAFZyagKQJSZS6QjsGiMY4ANY4q544oEokUElkynUlDU+mgWmoRmI5kBUnUrGc9hJeFAA')">cc(100, us_coins);
 </pre><pre class='prettyprintoutput'>
 293</pre></div></div></td></tr></table>
       To do this will require changing the program
@@ -2838,7 +2848,7 @@ const uk_coins = list(100, 50, 20, 10, 5, 2, 1);
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_33_27_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_33_26_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (cc amount coin-values)
   (cond ((= amount 0) 1)
         ((or (< amount 0) (no-more? coin-values)) 0)
@@ -2848,7 +2858,7 @@ const uk_coins = list(100, 50, 20, 10, 5, 2, 1);
             (cc (- amount
                    (first-denomination coin-values))
                 coin-values)))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_33_27_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChslAGYCWATgM4AuA+gCYCmAdgPYC2RDAhhUUwwDSg6ADwDGdAA7Vi5avWZtO3XnjAcGNUMyosmJOqApNQAI30BzIgDdGJgJ6hKAVzkVcI3pVCOyVd+zKgALygADZElAAUmAAM0QIArHGo8QIxCakAlADc2O4Mno4A1r5M-kGh4RRRsQlJKElpoCmomTnYBI4MIkoMoCIiERw6nRQCfgxUlhwhjnRkGaAA3tigq6B6FI4kvUNMI0GBwdEra6drAPygOGc3AFygu-sAPKDRoAA+75pM2rp0EeNJtNZvMTjcLq8weDQPd+oNhgxRlDoadhGJJFRpJRaIxWOwuDwGADShMpjM5hkMsjoQBqanguGPRGgAC0hFI2LkeMUhOJ7CB5PmAnpKMBZJB2WwAF83AMYklvCV-NkgA')">function cc(amount, coin_values) {
+            <td><div class='snippet' id='javascript_33_26_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChslAGYCWATgM4AuA+gCYCmAdgPYC2RDAhhUUwwDSg6ADwDGdAA7Vi5avWZtO3XnjAcGNUMyosmJOqApNQAI30BzIgDdGJgJ6hKAVzkVcI3pVCOyVd+zKgALygADZElAAUmAAM0QIArHGo8QIxCakAlADc2O4Mno4A1r5M-kGh4RRRsQlJKElpoCmomTnYBI4MIkoMoCIiERw6nRQCfgxUlhwhjnRkGaAA3tigq6B6FI4kvUNMI0GBwdEra6drAPygOGc3AFygu-sAPKDRoAA+75pM2rp0EeNJtNZvMTjcLq8weDQPd+oNhgxRlDoadhGJJFRpJRaIxWOwuDwGADShMpjM5hkMsjoQBqanguGPRGgAC0hFI2LkeMUhOJ7CB5PmAnpKMBZJB2WwAF83AMYklvCV-NkgA')">function cc(amount, coin_values) {
     return amount === 0
            ? 1
            : amount < 0 || no_more(coin_values)
@@ -2902,9 +2912,9 @@ const uk_coins = list(100, 50, 20, 10, 5, 2, 1);
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_33_28_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_33_27_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_33_28_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChslAGYCWATgM4AuA+gCYCmAdgPYC2RDAhhUUwwDSg6ADwDGdAA7Vi5avWZtO3XnjAcGNUMyosmJOqApNQAI30BzIgDdGJgJ6hKAVzkVcBRwxFKGoESIAUHDoeFAIiTOxUlhwANo50ZACUoADe2KAZoHoUjiQ+QUwhoAC8paAADOmZ1ZkA-KA4NU0AXKAFRQA8FaAAPj2aTNq6dP7hkdFxCYlVTXUVM7OgrX6BwQyhC4vVwmKSVNKUtIys7Fw8DKMRDFGx8UnTW9UA1JuLK+3roAC0hKSHcidFOdLuNblMBK9HmNrhM7okANzYAC+uHCDEooEcZCo0LIJVAMSIlH8mHK5QEAFZyagKQJSZS6QjsGiMY4ANY4q544oEokUElkynUlDU+mgWmoRmI7DuTzeX4yI7yU7eEEwsFJVILbK5HwACzoHBoapukySiJRsq850EogkUj+smOCjOvBNsKmWuqOryBg4RBi7o1TMtHmtvAGQz0QbNyTS3roOV9RKoDEcMUD0NNcItqICpOpWM57HNQA')">function first_denomination(coin_values) {
+            <td><div class='snippet' id='javascript_33_27_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChslAGYCWATgM4AuA+gCYCmAdgPYC2RDAhhUUwwDSg6ADwDGdAA7Vi5avWZtO3XnjAcGNUMyosmJOqApNQAI30BzIgDdGJgJ6hKAVzkVcBRwxFKGoESIAUHDoeFAIiTOxUlhwANo50ZACUoADe2KAZoHoUjiQ+QUwhoAC8paAADOmZ1ZkA-KA4NU0AXKAFRQA8FaAAPj2aTNq6dP7hkdFxCYlVTXUVM7OgrX6BwQyhC4vVwmKSVNKUtIys7Fw8DKMRDFGx8UnTW9UA1JuLK+3roAC0hKSHcidFOdLuNblMBK9HmNrhM7okANzYAC+uHCDEooEcZCo0LIJVAMSIlH8mHK5QEAFZyagKQJSZS6QjsGiMY4ANY4q544oEokUElkynUlDU+mgWmoRmI7DuTzeX4yI7yU7eEEwsFJVILbK5HwACzoHBoapukySiJRsq850EogkUj+smOCjOvBNsKmWuqOryBg4RBi7o1TMtHmtvAGQz0QbNyTS3roOV9RKoDEcMUD0NNcItqICpOpWM57HNQA')">function first_denomination(coin_values) {
     return head(coin_values);
 }
 function except_first_denomination(coin_values) {
@@ -2949,22 +2959,22 @@ function no_more(coin_values) {
 	initial parameters (if any) will have as values the initial arguments, 
         as usual, but the final parameter's value will be a <EM>list</EM>
 	of any remaining arguments. For instance, given the definition
-        <div class='snippet' id='javascript_33_29_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+        <div class='snippet' id='javascript_33_28_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (f x y . z) ^$\langle \textit{body} \rangle$^)</pre></div></div>
         the procedure <kbd>f</kbd> can be called with two or
 	more arguments. If we evaluate
-        <div class='snippet' id='javascript_33_30_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+        <div class='snippet' id='javascript_33_29_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (f 1 2 3 4 5 6)</pre></div></div>
         then in the body of <kbd>f</kbd>,
 	<kbd>x</kbd> will be 1,
 	<kbd>y</kbd> will be 2, and
 	<kbd>z</kbd> will be the list
 	<kbd>(3 4 5 6)</kbd>. Given the definition
-        <div class='snippet' id='javascript_33_31_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+        <div class='snippet' id='javascript_33_30_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (g . w) ^$\langle \textit{body} \rangle$^)</pre></div></div>
         the procedure <kbd>g</kbd> can be called with zero or
 	more arguments. If we evaluate
-        <div class='snippet' id='javascript_33_32_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+        <div class='snippet' id='javascript_33_31_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (g 1 2 3 4 5 6)</pre></div></div>
         then in the body of <kbd>g</kbd>,
 	<kbd>w</kbd> will be the list
@@ -2973,12 +2983,12 @@ function no_more(coin_values) {
 	<kbd>same-parity</kbd> that takes one or more integers
         and returns a list of all the arguments that have the same even-odd
         parity as the first argument.  For example, 
-        <div class='snippet' id='javascript_33_33_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+        <div class='snippet' id='javascript_33_32_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 ;; same-parity to be given by student</pre></div></div>
-        <div class='snippet' id='javascript_33_34_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+        <div class='snippet' id='javascript_33_33_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (same-parity 1 2 3 4 5 6 7)</pre><pre class='prettyprintoutput'>
 (1 3 5 7)</pre></div></div>
-        <div class='snippet' id='javascript_33_35_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+        <div class='snippet' id='javascript_33_34_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (same-parity 2 3 4 5 6 7)</pre><pre class='prettyprintoutput'>
 (2 4 6)</pre></div></div>
       
@@ -3011,7 +3021,7 @@ function no_more(coin_values) {
 	languages such as Haskell<a class='superscript' id='footnote-link-7' href='#footnote-7'style="color:blue">[7]</a> and
 	Ocaml. In JavaScript, a curried
 	version of <kbd>plus</kbd> looks as follows.
-	<div class='snippet' id='javascript_33_36_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQAHAGwIGcB9EggJ04oFMATABQAPAJSgA3gEhQs0NjmhOvMl1oBPUAF4AfKGGgA1KHUBubAF9cjFuy48BggMyjBAFlGmgA')">function plus_curried(x) {	    
+	<div class='snippet' id='javascript_33_35_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQAHAGwIGcB9EggJ04oFMATABQAPAJSgA3gEhQs0NjmhOvMl1oBPUAF4AfKGGgA1KHUBubAF9cjFuy48BggMyjBAFlGmgA')">function plus_curried(x) {	    
     return y => x + y;
 }
 </pre></div></div>
@@ -3024,7 +3034,7 @@ function no_more(coin_values) {
 	same effect as
 	<kbd>plus_curried(3)(4)</kbd>:
 	
-	<div class='snippet' id='javascript_33_37_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQAHAGwIGcB9EggJ04oFMATABQAPAJSgA3gEhQs0NjmhOvMl1oBPUAF4AfKGGgA1KHUBubAF9cIUACNOVKgGtmoMlTu9QAdx5kyvLS2mmQAFl7MqvyBZLj2ji6CjCzsXDwCADSgDBSRggDMWQAsoqKmQA')">brooks(plus_curried, list(3, 4));
+	<div class='snippet' id='javascript_33_36_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQAHAGwIGcB9EggJ04oFMATABQAPAJSgA3gEhQs0NjmhOvMl1oBPUAF4AfKGGgA1KHUBubAF9cIUACNOVKgGtmoMlTu9QAdx5kyvLS2mmQAFl7MqvyBZLj2ji6CjCzsXDwCADSgDBSRggDMWQAsoqKmQA')">brooks(plus_curried, list(3, 4));
 </pre><pre class='prettyprintoutput'>
 7</pre></div></div>
 	While we are at it, we might as well curry the function
@@ -3032,15 +3042,15 @@ function no_more(coin_values) {
 	<kbd>brooks_curried</kbd> that can be applied
 	as follows:
 	
-	<div class='snippet' id='javascript_33_38_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQAHAGwIGcB9EggJ04oFMATABQAPAJSgA3gEhQs0NjmhOvMl1oBPUAF4AfKGGgA1KHUBubAF9cIUACNOVKgGs2Hbn36gyVO71AB3HjIyXlpbTTIACz9mVX5Qslx7Rxd2Lh4BQQYKWMFGFjT3AQAaUABmUoAWUVFTIA')">brooks_curried(list(plus_curried, 3, 4));
+	<div class='snippet' id='javascript_33_37_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQAHAGwIGcB9EggJ04oFMATABQAPAJSgA3gEhQs0NjmhOvMl1oBPUAF4AfKGGgA1KHUBubAF9cIUACNOVKgGs2Hbn36gyVO71AB3HjIyXlpbTTIACz9mVX5Qslx7Rxd2Lh4BQQYKWMFGFjT3AQAaUABmUoAWUVFTIA')">brooks_curried(list(plus_curried, 3, 4));
 </pre><pre class='prettyprintoutput'>
 7</pre></div></div>
 	With this function <kbd>brooks_curried</kbd>,
 	what are the results of evaluating the following two statements?
-	<div class='snippet' id='javascript_33_39_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQAHAGwIGcB9EggJ04oFMATABQAPAJSgA3gEhQs0NjmhOvMl1oBPUAF4AfKGGgA1KHUBubAF9cIUACNOVKgGs2Hbn36gyVO71AB3HjIyXlpbTTIACz9mVX5Qslx7Rxd2Lh4BQQYKWMFk51d0jwAaBUVyisVs3MYWNPcBYtAAZiaAFlFO0yA')">brooks_curried(list(brooks_curried,
+	<div class='snippet' id='javascript_33_38_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQAHAGwIGcB9EggJ04oFMATABQAPAJSgA3gEhQs0NjmhOvMl1oBPUAF4AfKGGgA1KHUBubAF9cIUACNOVKgGs2Hbn36gyVO71AB3HjIyXlpbTTIACz9mVX5Qslx7Rxd2Lh4BQQYKWMFk51d0jwAaBUVyisVs3MYWNPcBYtAAZiaAFlFO0yA')">brooks_curried(list(brooks_curried,
                     list(plus_curried, 3, 4)));
 </pre></div></div>
-	<div class='snippet' id='javascript_33_40_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQAHAGwIGcB9EggJ04oFMATABQAPAJSgA3gEhQs0NjmhOvMl1oBPUAF4AfKGGgA1KHUBubAF9cIUACNOVKgGs2Hbn36gyVO71AB3HjIyXlpbTTIACz9mVX5Qslx7Rxd2Lh4BQQYKWMFk51d0jwAaBUVyisVs3PzUtwz+YvlKltbQarJBRhY09wEmgGYmgBZRMdFTIA')">brooks_curried(list(brooks_curried,
+	<div class='snippet' id='javascript_33_39_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQAHAGwIGcB9EggJ04oFMATABQAPAJSgA3gEhQs0NjmhOvMl1oBPUAF4AfKGGgA1KHUBubAF9cIUACNOVKgGs2Hbn36gyVO71AB3HjIyXlpbTTIACz9mVX5Qslx7Rxd2Lh4BQQYKWMFk51d0jwAaBUVyisVs3PzUtwz+YvlKltbQarJBRhY09wEmgGYmgBZRMdFTIA')">brooks_curried(list(brooks_curried,
                     list(brooks_curried, 
                          list(plus_curried, 3, 4))));
 </pre></div></div>
@@ -3052,7 +3062,7 @@ function no_more(coin_values) {
     
 	  <OL type="a">
 	    <LI>
-	      <div class='snippet' id='javascript_33_41_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQAHAGwIGcB9EggJ04oFMATABQAPAJSgA3gEhQs0NjmhOvMl1oBPUAF4AfKGGgA1KHUBubAF9cIUACNOVKgGtmoMlTu9QAdx5kyvLS2mmQAFl7MqvyBZLiEpJQ0dg7OzIJ4ADSgFAEAtsziEgpyyqqctBRsRAQMDII5vPmixYqtAPygeC2tcgBcyY4u6YLhAIZCDU2iWWSjFHWTBaLmVtj2g2mMLOxcPAJZDJVkggDMWQAsostAA')">function brooks(f, items) {
+	      <div class='snippet' id='javascript_33_40_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQAHAGwIGcB9EggJ04oFMATABQAPAJSgA3gEhQs0NjmhOvMl1oBPUAF4AfKGGgA1KHUBubAF9cIUACNOVKgGtmoMlTu9QAdx5kyvLS2mmQAFl7MqvyBZLiEpJQ0dg7OzIJ4ADSgFAEAtsziEgpyyqqctBRsRAQMDII5vPmixYqtAPygeC2tcgBcyY4u6YLhAIZCDU2iWWSjFHWTBaLmVtj2g2mMLOxcPAJZDJVkggDMWQAsostAA')">function brooks(f, items) {
     return is_null(items)
            ? f
            : brooks(f(head(items)), tail(items));
@@ -3060,20 +3070,20 @@ function no_more(coin_values) {
 </pre></div></div>
 	    </LI>
 	    <LI>
-	      <div class='snippet' id='javascript_33_42_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQAHAGwIGcB9EggJ04oFMATABQAPAJSgA3gEhQs0NjmhOvMl1oBPUAF4AfKGGgA1KHUBubAF9chUpRqgARpypUA1s0F4ANKApleALbM4hIKcsqqnLQUbEQEDAyCfoHBYYrpAPygeGnpcgBcjs5uHniCABa8AIZCyUGioj5kVRSJdcGi5lbYIEUu7uxcPAKgZFSOvKAA7jxk-rQOmmSVoMyq-LxEZNbE5NQLxQMc3Hy1-vWSuRFqfSUV1WcpjaMtbecdXbhO-WzHw0IMGJkQSMFiDE4CHwAZh8ABYGqYgA')">function brooks_curried(items) {
+	      <div class='snippet' id='javascript_33_41_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQAHAGwIGcB9EggJ04oFMATABQAPAJSgA3gEhQs0NjmhOvMl1oBPUAF4AfKGGgA1KHUBubAF9chUpRqgARpypUA1s0F4ANKApleALbM4hIKcsqqnLQUbEQEDAyCfoHBYYrpAPygeGnpcgBcjs5uHniCABa8AIZCyUGioj5kVRSJdcGi5lbYIEUu7uxcPAKgZFSOvKAA7jxk-rQOmmSVoMyq-LxEZNbE5NQLxQMc3Hy1-vWSuRFqfSUV1WcpjaMtbecdXbhO-WzHw0IMGJkQSMFiDE4CHwAZh8ABYGqYgA')">function brooks_curried(items) {
     return brooks(head(items), tail(items));
 }
 </pre></div></div>
 	    </LI>
 	    <LI>
 	      The statement 
-	      <div class='snippet' id='javascript_33_43_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQAHAGwIGcB9EggJ04oFMATABQAPAJSgA3gEhQs0NjmhOvMl1oBPUAF4AfKGGgA1KHUBubAF9chUpRqgARpypUA1s0F4ANKApleALbM4hIKcsqqnLQUbEQEDAyCfoHBYYrpAPygeGnpcgBcjs5uHniCABa8AIZCyUGioj5kVRSJdcGi5lb4xOTUtE4u7uxcPAJJ-vWSuRFqRUMelTUTKY2gza0r9Z2WuIMlI9x8QgwxZIL7wxxHAl65eQ9yp8znjCyHY-w+AMw+ACwNTpAA')">brooks_curried(list(brooks_curried,
+	      <div class='snippet' id='javascript_33_42_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQAHAGwIGcB9EggJ04oFMATABQAPAJSgA3gEhQs0NjmhOvMl1oBPUAF4AfKGGgA1KHUBubAF9chUpRqgARpypUA1s0F4ANKApleALbM4hIKcsqqnLQUbEQEDAyCfoHBYYrpAPygeGnpcgBcjs5uHniCABa8AIZCyUGioj5kVRSJdcGi5lb4xOTUtE4u7uxcPAJJ-vWSuRFqRUMelTUTKY2gza0r9Z2WuIMlI9x8QgwxZIL7wxxHAl65eQ9yp8znjCyHY-w+AMw+ACwNTpAA')">brooks_curried(list(brooks_curried,
                     list(plus_curried, 3, 4)));
 </pre></div></div>
 	      of course evaluates to 7, as does
 	    </LI>
 	    <LI>
-	      <div class='snippet' id='javascript_33_44_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQAHAGwIGcB9EggJ04oFMATABQAPAJSgA3gEhQs0NjmhOvMl1oBPUAF4AfKGGgA1KHUBubAF9chUpRqgARpypUA1s0F4ANKApleALbM4hIKcsqqnLQUbEQEDAyCfoHBYYrpAPygeGnpcgBcjs5uHniCABa8AIZCyUGioj5kVRSJdcGi5lb4xOTUtE4u7uxcPAJJ-vWSuRFqRUMelTUTKY2gza0r9Z2WuIMlI9x8QgwxZIL7wxxHAl65eQ9yp8znl2zXY-w+94+-T2eCRgsQ6fHwAZh8ABYGg1TEA')">brooks_curried(list(brooks_curried,
+	      <div class='snippet' id='javascript_33_43_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQAHAGwIGcB9EggJ04oFMATABQAPAJSgA3gEhQs0NjmhOvMl1oBPUAF4AfKGGgA1KHUBubAF9chUpRqgARpypUA1s0F4ANKApleALbM4hIKcsqqnLQUbEQEDAyCfoHBYYrpAPygeGnpcgBcjs5uHniCABa8AIZCyUGioj5kVRSJdcGi5lb4xOTUtE4u7uxcPAJJ-vWSuRFqRUMelTUTKY2gza0r9Z2WuIMlI9x8QgwxZIL7wxxHAl65eQ9yp8znl2zXY-w+94+-T2eCRgsQ6fHwAZh8ABYGg1TEA')">brooks_curried(list(brooks_curried,
                     list(brooks_curried, 
                          list(plus_curried, 3, 4))));
 </pre></div></div>
@@ -3094,7 +3104,7 @@ function no_more(coin_values) {
   
   
   <div class='permalink'>
-<a name='p9' class='permalink'></a><p>
+<a name='p10' class='permalink'></a><p>
     One extremely useful operation is to apply some transformation to each
     element in a list and generate the list of results. For instance, the
     following
@@ -3107,13 +3117,13 @@ function no_more(coin_values) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_33_45_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_33_44_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (scale-list items factor)
   (if (null? items)
       nil
       (cons (* (car items) factor)
             (scale-list (cdr items) factor))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_33_45_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQBnEgQwBsBTAfWYrrIAoKyrALZ0ANKDyNyVAE4BKUAG9soVaBmsyBGbW7siBZs36CRclWstqA-KANGLVywC5QAB0YUZvABatGACYmwnQKAFQSUmSy4o5O8aoMLBxcPLxknsYCIXLiktLycgDc2AC+uElsnNx8qXyY4ijiAMziACziAKy5oJgADMVAA')">function scale_list(items, factor) {
+            <td><div class='snippet' id='javascript_33_44_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQBnEgQwBsBTAfWYrrIAoKyrALZ0ANKDyNyVAE4BKUAG9soVaBmsyBGbW7siBZs36CRclWstqA-KANGLVywC5QAB0YUZvABatGACYmwnQKAFQSUmSy4o5O8aoMLBxcPLxknsYCIXLiktLycgDc2AC+uElsnNx8qXyY4ijiAMziACziAKy5oJgADMVAA')">function scale_list(items, factor) {
     return is_null(items)
            ? null
            : pair(head(items) * factor, 
@@ -3123,7 +3133,7 @@ function no_more(coin_values) {
     
   </p></div>
   <div class='permalink'>
-<a name='p10' class='permalink'></a><p>
+<a name='p11' class='permalink'></a><p>
     We can abstract this general idea and capture it as a common pattern
     expressed as a higher-order
     
@@ -3158,13 +3168,13 @@ function no_more(coin_values) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_33_46_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_33_45_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (map proc items)
   (if (null? items)
       nil
       (cons (proc (car items))
             (map proc (cdr items)))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_33_46_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNQG5sAX1yFSlGqAC2dAA4sTAGlAUywi0y68BQ0eNoUmAPpEBAA2ISzOru58XrEqoMFhMXECmtZ0FIJ2xCwAFsJ0ACYRLm4cHI7JKdVWtg6gZBnhkWXl+kbYtSyMTI4h-mQsWpgKjugArI7DmGgAbI6YAOxtQA')">function map(fun, items) {
+            <td><div class='snippet' id='javascript_33_45_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNQG5sAX1yFSlGqAC2dAA4sTAGlAUywi0y68BQ0eNoUmAPpEBAA2ISzOru58XrEqoMFhMXECmtZ0FIJ2xCwAFsJ0ACYRLm4cHI7JKdVWtg6gZBnhkWXl+kbYtSyMTI4h-mQsWpgKjugArI7DmGgAbI6YAOxtQA')">function map(fun, items) {
     return is_null(items)
            ? null
            : pair(fun(head(items)), 
@@ -3175,26 +3185,26 @@ function no_more(coin_values) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_33_47_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_33_46_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (map abs (list -10 2.5 -11.6 17))</pre><pre class='prettyprintoutput'>
             (10 2.5 11.6 17)</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_33_47_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNQG5sAX1yFSlGqAC2dAA4sTAGlAUywi0y68BQ0eNoUmAPpEBAA2ISzOru58XrEqoMFhMXECmtZ0FIJ2xCwAFsJ0ACYRLm4cHI7JKdVWtg6gZBnhkWXl+kbYtSyMTI4h-mQsWpgKjugArI7DmGgAbI6YAOxtQA')">map(abs, list(-10, 2.5, -11.6, 17));
+            <td><div class='snippet' id='javascript_33_46_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNQG5sAX1yFSlGqAC2dAA4sTAGlAUywi0y68BQ0eNoUmAPpEBAA2ISzOru58XrEqoMFhMXECmtZ0FIJ2xCwAFsJ0ACYRLm4cHI7JKdVWtg6gZBnhkWXl+kbYtSyMTI4h-mQsWpgKjugArI7DmGgAbI6YAOxtQA')">map(abs, list(-10, 2.5, -11.6, 17));
 </pre><pre class='prettyprintoutput'>
 [10, [2.5, [11.6, [17, null]]]]</pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_33_48_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_33_47_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (map (lambda (x) (* x x))
      (list 1 2 3 4))</pre><pre class='prettyprintoutput'>
 (1 4 9 16)</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_33_48_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQBbAQwAcAKQogGlArIFM6AzgEpQAb2yhJoAE68yBabQoCA+kQIAbDSx79hEqYakB+UOq0GjhgFygmDCtLbEWAC14MAJjr6ChQrksrYMlGVnYuMgdtXT9-AG5sAF9cMJYAD1AAXgA+UEyAKnyuDWUyFkwuFC4AZi4AFgSgA')">map(x => x * x, list(1, 2, 3, 4));
+            <td><div class='snippet' id='javascript_33_47_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQBbAQwAcAKQogGlArIFM6AzgEpQAb2yhJoAE68yBabQoCA+kQIAbDSx79hEqYakB+UOq0GjhgFygmDCtLbEWAC14MAJjr6ChQrksrYMlGVnYuMgdtXT9-AG5sAF9cMJYAD1AAXgA+UEyAKnyuDWUyFkwuFC4AZi4AFgSgA')">map(x => x * x, list(1, 2, 3, 4));
 </pre><pre class='prettyprintoutput'>
 [1, [4, [9, [16, null]]]]</pre></div></div></td></tr></table>
   </p></div>
   <div class='permalink'>
-<a name='p11' class='permalink'></a><p>
+<a name='p12' class='permalink'></a><p>
     Now we can give a new definition of
     
       <span style="color:green"><kbd>scale-list</kbd></span>
@@ -3205,18 +3215,18 @@ function no_more(coin_values) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_33_49_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_33_48_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (scale-list items factor)
   (map (lambda (x) (* x factor))
        items))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_33_49_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQBnEgQwBsBTAfWYrrIAoKyrALZ0ANKDyNyVAE4BKUAG9soVaBmsyBGbSGMADrwAeoALwA+UCYBUEqWVniBwunIDc2AL64GLDlx5eAL5McRRxAGZxABZxAFY5cUwABncgA')">function scale_list(items, factor) {
+            <td><div class='snippet' id='javascript_33_48_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQBnEgQwBsBTAfWYrrIAoKyrALZ0ANKDyNyVAE4BKUAG9soVaBmsyBGbSGMADrwAeoALwA+UCYBUEqWVniBwunIDc2AL64GLDlx5eAL5McRRxAGZxABZxAFY5cUwABncgA')">function scale_list(items, factor) {
     return map(x => x * factor, items);
 }
 </pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
-<a name='p12' class='permalink'></a><p>
+<a name='p13' class='permalink'></a><p>
     
       <span style="color:green"><kbd>Map</kbd></span>
       <span style="color:blue">The function <kbd>map</kbd>
@@ -3283,11 +3293,11 @@ function no_more(coin_values) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_33_50_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_33_49_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 ;; square-list to be given by student
 (square-list (list 1 2 3 4))</pre><pre class='prettyprintoutput'>
 (1 4 9 16)</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_33_50_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsGcBHAVwEMAnAUwH0AbASzwBcAKep5zAGlW4GZuALAEohAbiA')">square_list(list(1, 2, 3, 4));
+            <td><div class='snippet' id='javascript_33_49_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsGcBHAVwEMAnAUwH0AbASzwBcAKep5zAGlW4GZuALAEohAbiA')">square_list(list(1, 2, 3, 4));
 </pre><pre class='prettyprintoutput'>
 [1, [4, [9, [16, null]]]]</pre></div></div></td></tr></table>
     Here are two different definitions of
@@ -3310,14 +3320,14 @@ function no_more(coin_values) {
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#solution_33_6_div" data-toggle="collapse">Solution</button></div>
       <div class="solution_content collapse" id="solution_33_6_div"><SOLUTION>
     
-      <div class='snippet' id='javascript_33_51_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQBnARwIEMAnAUwAoAPASlADe2UCNAcyBVrW6gAVKG4BubAF9chUpRr0mbdgH0ANhTplOFMuwC2dfkNFj2EqaBP6iBQ4fOWbvYQ6BoAD8oB5eAUGiAFygAA7MFKycjCwcnAAW7MwAJj7WtrwANNgAkFGiqXpGJmZkid4WBbwtymrYVRw1ppzGPZhFqIMAzIMALK1AA')">function square_list(items) {
+      <div class='snippet' id='javascript_33_50_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQBnARwIEMAnAUwAoAPASlADe2UCNAcyBVrW6gAVKG4BubAF9chUpRr0mbdgH0ANhTplOFMuwC2dfkNFj2EqaBP6iBQ4fOWbvYQ6BoAD8oB5eAUGiAFygAA7MFKycjCwcnAAW7MwAJj7WtrwANNgAkFGiqXpGJmZkid4WBbwtymrYVRw1ppzGPZhFqIMAzIMALK1AA')">function square_list(items) {
     return is_null(items)
            ? null
            : pair(square(head(items)),
 	          square_list(tail(items)));
 }
 </pre></div></div>
-      <div class='snippet' id='javascript_33_52_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQBnARwIEMAnAUwAoAPASlADe2UCNAcyBVrW6gAVKG4BubAF9chUpRr0mbdgH0ANhTplOFMuwC2dfkNFj2EqaCvMADp0YsOAGlAW1rbKatjeekYmZsamnJj+KP4AzP4ALLy8ikA')">function square_list(items) {
+      <div class='snippet' id='javascript_33_51_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQBnARwIEMAnAUwAoAPASlADe2UCNAcyBVrW6gAVKG4BubAF9chUpRr0mbdgH0ANhTplOFMuwC2dfkNFj2EqaCvMADp0YsOAGlAW1rbKatjeekYmZsamnJj+KP4AzP4ALLy8ikA')">function square_list(items) {
     return map(square, items);
 }
 </pre></div></div>
@@ -3344,7 +3354,7 @@ function no_more(coin_values) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_33_53_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_33_52_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (square-list items)
   (define (iter things answer)
     (if (null? things)
@@ -3353,7 +3363,7 @@ function no_more(coin_values) {
               (cons (square (car things))
                     answer))))
   (iter items nil))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_33_53_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQBnARwIEMAnAUwAoAPASlADe2UCNAcyBVrW6gAVKG4BubAF9cIUABUAEpGR7QAOQDym0AEFQ0YwCUbAUWhnwxgDIBVTZGOHchUpQ09Exs7AD6ADYUdGScFGTsALZ0-EKioP7k1LTx7KycZAAWFEQA5nQANKDMRHQA7nmpwumi4pI5dGFEBBERBcVlKaDNLaMiAPzVtQ2sI2MtAFyguflkzBR9RSXlvFVz8wegAA7r+YwsHJyF7MwAJv3bKbvDh6+jNfWNvMrpaultUmWCXyuWSVW6vW+qlw51CkWisSiMU4mCqKCqAGYqgAWXjfIA')">function square_list(items) {
+            <td><div class='snippet' id='javascript_33_52_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQBnARwIEMAnAUwAoAPASlADe2UCNAcyBVrW6gAVKG4BubAF9cIUABUAEpGR7QAOQDym0AEFQ0YwCUbAUWhnwxgDIBVTZGOHchUpQ09Exs7AD6ADYUdGScFGTsALZ0-EKioP7k1LTx7KycZAAWFEQA5nQANKDMRHQA7nmpwumi4pI5dGFEBBERBcVlKaDNLaMiAPzVtQ2sI2MtAFyguflkzBR9RSXlvFVz8wegAA7r+YwsHJyF7MwAJv3bKbvDh6+jNfWNvMrpaultUmWCXyuWSVW6vW+qlw51CkWisSiMU4mCqKCqAGYqgAWXjfIA')">function square_list(items) {
     function iter(things, answer) {
         return is_null(things) 
                ? answer
@@ -3372,7 +3382,7 @@ function no_more(coin_values) {
     this way produces the answer list in the reverse order of the one desired.
     Why?
     <div class='permalink'>
-<a name='p13' class='permalink'></a><p>
+<a name='p14' class='permalink'></a><p>
       Louis then tries to fix his bug by interchanging the arguments to
     
       <span style="color:green"><kbd>cons</kbd>:</span>
@@ -3382,7 +3392,7 @@ function no_more(coin_values) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_33_54_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_33_53_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (square-list items)
   (define (iter things answer)
     (if (null? things)
@@ -3391,7 +3401,7 @@ function no_more(coin_values) {
               (cons answer
                     (square (car things))))))
   (iter items nil))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_33_54_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQBnARwIEMAnAUwAoAPASlADe2UCNAcyBVrW6gAVKG4BubAF9cIUABUAEpGR7QAOQDym0AEFQ0YwCUbAUWhnwxgDIBVTZGOHchUpQ09Exs7AD6ADYUdGScFGTsALZ0-EKi-uTUtPHsrJxkABYURADmdAA0oMxEdADuuanCoqLiktl0YUQEERH5RaUpTc3DogD8VTX1rEMjwwBcoDl5ZMwUvYXFZbyVM7N7IgAOq3nVdbk7+5ezjCwcnAXszAAmfZspvB-Komot7BJSiwSeRyyUqXR6vGUamwN1CkWisSiMU4mEqKEqAGZKgAWT5AA')">function square_list(items) {
+            <td><div class='snippet' id='javascript_33_53_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChsDMBXAOwGMAXASwHsjQBnARwIEMAnAUwAoAPASlADe2UCNAcyBVrW6gAVKG4BubAF9cIUABUAEpGR7QAOQDym0AEFQ0YwCUbAUWhnwxgDIBVTZGOHchUpQ09Exs7AD6ADYUdGScFGTsALZ0-EKi-uTUtPHsrJxkABYURADmdAA0oMxEdADuuanCoqLiktl0YUQEERH5RaUpTc3DogD8VTX1rEMjwwBcoDl5ZMwUvYXFZbyVM7N7IgAOq3nVdbk7+5ezjCwcnAXszAAmfZspvB-Komot7BJSiwSeRyyUqXR6vGUamwN1CkWisSiMU4mEqKEqAGZKgAWT5AA')">function square_list(items) {
    function iter(things, answer) {
        return is_null(things)
               ? answer
@@ -3486,14 +3496,14 @@ function no_more(coin_values) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_33_55_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_33_54_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (for-each 
    (lambda (x) (newline) (display x))
    (list 57 321 88))</pre><pre class='prettyprintoutput'>
 57
 321
 88</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_33_55_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChslAGYD2ATgPoCmAhgMYAWoALkaAEYWgDmAlgG4UA7NgE9QAZ0YBXACaDGuYuWr0AFAA9QAXgB8oadzEAHADZVh6gJQAaUNlD2HD4wcYqArAHYbAZhSYbABwBFhYA3EA')">for_each(x => display(x), 
+            <td><div class='snippet' id='javascript_33_54_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChslAGYD2ATgPoCmAhgMYAWoALkaAEYWgDmAlgG4UA7NgE9QAZ0YBXACaDGuYuWr0AFAA9QAXgB8oadzEAHADZVh6gJQAaUNlD2HD4wcYqArAHYbAZhSYbABwBFhYA3EA')">for_each(x => display(x), 
          list(57, 321, 88));
 </pre><pre class='prettyprintoutput'>
 57
@@ -3520,9 +3530,9 @@ function no_more(coin_values) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_33_56_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_33_55_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_33_56_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChslAGYD2ATgPoCmAhgMYAWoALkaAEYWgDmAlgG4UA7NgE9QAZ0YBXACaDGuApIE1G3IkOLlq9ABSKBAGlDdGFALZiAlKADe2UA+MFQO7mLIDJAGy+vTFy0s7RxDQEgopEiElWQJuAQppAG57RwBfUAovMQ5g0Id9HTpqaT9zK0sU-ILSSlo6PSUjRipuXxNywKr07DSFWu0GgA9QAF4APlBpNwAHLyphHSHLI1TqrzdGHQBWAHYjAGYUTCMADlOuoA')">function for_each(fun, items) {
+            <td><div class='snippet' id='javascript_33_55_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToIwChslAGYD2ATgPoCmAhgMYAWoALkaAEYWgDmAlgG4UA7NgE9QAZ0YBXACaDGuApIE1G3IkOLlq9ABSKBAGlDdGFALZiAlKADe2UA+MFQO7mLIDJAGy+vTFy0s7RxDQEgopEiElWQJuAQppAG57RwBfUAovMQ5g0Id9HTpqaT9zK0sU-ILSSlo6PSUjRipuXxNywKr07DSFWu0GgA9QAF4APlBpNwAHLyphHSHLI1TqrzdGHQBWAHYjAGYUTCMADlOuoA')">function for_each(fun, items) {
     if (is_null(items)){
         return undefined;
     } else {
@@ -3550,21 +3560,8 @@ function no_more(coin_values) {
     </FOOTNOTE></div>
     
     
-    <div class='footnote'><span style="color:blue">
-      <a class='footnote-number' id='footnote-2' href='#footnote-link-2' style="color:blue">[2] </a>
-    <FOOTNOTE>
-    In the JavaScript environment used for this
-      book, a primitive function
-      <kbd>display_list</kbd> is available
-      that works like the primitive function
-      <kbd>display</kbd>, except that
-      it uses list notation instead of box notation.
-    
-    </FOOTNOTE></span></div>
-    
-    
     <div class='footnote'><span style="color:green">
-      <a class='footnote-number' id='footnote-3' href='#footnote-link-3' style="color:green">[3] </a>
+      <a class='footnote-number' id='footnote-2' href='#footnote-link-2' style="color:green">[2] </a>
     <FOOTNOTE>
     Since nested applications of
     <kbd>car</kbd> and <kbd>cdr</kbd> are
@@ -3591,7 +3588,7 @@ function no_more(coin_values) {
     
     
     <div class='footnote'><span style="color:green">
-      <a class='footnote-number' id='footnote-4' href='#footnote-link-4' style="color:green">[4] </a>
+      <a class='footnote-number' id='footnote-3' href='#footnote-link-3' style="color:green">[3] </a>
     <FOOTNOTE>
     It's remarkable how much energy
 	in the standardization of Lisp dialects has been dissipated in
@@ -3617,12 +3614,25 @@ function no_more(coin_values) {
     
     
     <div class='footnote'><span style="color:blue">
-      <a class='footnote-number' id='footnote-5' href='#footnote-link-5' style="color:blue">[5] </a>
+      <a class='footnote-number' id='footnote-4' href='#footnote-link-4' style="color:blue">[4] </a>
     <FOOTNOTE>
     The value
 	<kbd>null</kbd> is used in JavaScript for
 	various purposes, but in this book we shall only use it to
 	represent the empty list.
+    </FOOTNOTE></span></div>
+    
+    
+    <div class='footnote'><span style="color:blue">
+      <a class='footnote-number' id='footnote-5' href='#footnote-link-5' style="color:blue">[5] </a>
+    <FOOTNOTE>
+    In the JavaScript environment used for this
+      book, a primitive function
+      <kbd>display_list</kbd> is available
+      that works like the primitive function
+      <kbd>display</kbd>, except that
+      it uses list notation instead of box notation.
+    
     </FOOTNOTE></span></div>
     
     
@@ -3633,7 +3643,7 @@ function no_more(coin_values) {
 	<kbd>f</kbd> and <kbd>g</kbd> using
         
         <kbd>lambda</kbd> we would write
-        <div class='snippet' id='javascript_33_57_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+        <div class='snippet' id='javascript_33_56_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define f (lambda (x y . z) body))
 (define g (lambda w body))</pre></div></div>
     </FOOTNOTE></span></div>
@@ -3661,10 +3671,10 @@ function no_more(coin_values) {
     $n$ lists, and applies the procedure to all the
     first elements of the lists, all the second elements of the lists, and so
     on, returning a list of the results.  For example:
-    <div class='snippet' id='javascript_33_58_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_33_57_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (map + (list 1 2 3) (list 40 50 60) (list 700 800 900))</pre><pre class='prettyprintoutput'>
             (741 852 963)</pre></div></div>
-      <div class='snippet' id='javascript_33_59_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+      <div class='snippet' id='javascript_33_58_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (map (lambda (x y) (+ x (* 2 y)))
      (list 1 2 3)
      (list 4 5 6))</pre></div></div>
