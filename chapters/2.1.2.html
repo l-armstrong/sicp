@@ -2239,11 +2239,11 @@ function denom(x) {
     you'll need a way to print points:
     <div class='snippet' id='javascript_29_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function print_point(p) {
-    display("(");
-    display(x_point(p));
-    display(",");
-    display(y_point(p));
-    display(")");
+    return display("(" + 
+                   stringify(x_point(p)) +
+                   ", " +
+                   stringify(y_point(p)) +
+                   ")");
 }</pre></div></div>
     
     
@@ -2253,7 +2253,7 @@ function print_point(p) {
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#solution_29_1_div" data-toggle="collapse">Solution</button></div>
       <div class="solution_content collapse" id="solution_29_1_div"><SOLUTION>
             
-      <div class='snippet' id='javascript_29_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEY0oFA4GYCuAdgMYAuAlgPbGgAOATpceQPr3UvkAU9AlKADeOUGNAATSgGd6AGwCGATx4AiNaADUoUeL17p5ZsQDmlfCoAeHLqz79BmnAEg9qgDShVWlwaMszCx4lG257R19xVX5ogG4cAF88IjIqWlBrTjDLQRE9RgBTckJGOgALAoUJHhz4pJSKGjoQrLsc4V0xQuLS0HIFSjka-jqCEkb0gFsFAGsC0LbPJVzO0G6SunoBxhqlkcSx1KbQabm2aQKTSYK7QwVGdlbyTxuJBfIV-KKNhm2eO4e73cr3e+3q4zSdAB7AuVxuvHaeXE616FSqw1GDUhoBBsOubU+yO+vX6gwxByxxwUADcCowFCYCjwFJ4AEaErrEujMrSgdmgMAoTEQ46TShvJ7nS74hEc0CkWiGUAKUAAXlA0KlcIJ8T0CuIStZapxxDeePh5K+PTop3mT2ZtPpjJq72Z-Hcq30Xu9Psytl47Pdnp9IZpdIZTJa-rdHpDcfjUbCgbBeH1Sto8zKCjk+GNtq1Mp4+ftAAZPCX3Tp49XvcXoxhPBgHPEmNxXWKJf6CxaM2wsznm0A')">function x_point(x) {
+      <div class='snippet' id='javascript_29_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEY0oFA4GYCuAdgMYAuAlgPbGgAOATpceQPr3UvkAU9AlKADeOUGNCMApuUKM6AE0oBnegBsAhgE8eAIl2gA1KFHjTZ80vLNiAc0r5tADw5dWffoIMnzP0zoA0oDqG3r6+ltZ2DjyaLtzunqFh5jr8qQDcOAC+eERkVLSgzpzxjoIiplIycqAAFpLq8jxlmTl5FDR0sSVuZcKhVbJ05OqUqs38rQQkHYUAtuoA1pJxvYGa5QPSQwyjjM3rk9nT+Z2gC8tsSpI2c5JuluqM7D3kgffyq+Sblds19HseI9nl9-B8vkc2jMCnRgexrrd7rw+hVxIMavVGhMpu0YaBwQi7r0fmi-sNRuMWsdcWd1AA3SSMdQ2SQ8dSBABGJLE6LobMMoC5oDAKBx0LOc0on1eVxuROR3NApFollA6lAAF5QHDZYjiZlTMriKqOZr8cRPoSkdittU6BcVq82QymSzml82fx-Elkr7TMVXLwuV6fX7TPTGczWd1A57vWGE+IY-Fg5C8EbVbQVrV1Kp8GaHbr5TxC06AAyBMte4yJxOl2MYQIYDyZJjcD2S6WBovWrNsHN5ltAA')">function x_point(x) {
     return head(x);
 }
 function y_point(x) {

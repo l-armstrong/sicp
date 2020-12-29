@@ -2051,10 +2051,26 @@ const b = 2;
       </p></div>
       <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
-	In section <REF NAME="sec:conditionals"><a class="superscript" id="2.3.1-sec-link-1.1.6" href="./1.1.6.html">1.1.6</a></REF>, we applied the primitive
-	predicate <kbd>===</kbd> to numbers. From now
-	on, we shall allow <kbd>===</kbd> to take
-	strings as arguments, in which case it returns true if and only
+	
+	In section <REF NAME="sec:conditionals"><a class="superscript" id="2.3.1-sec-link-1.1.6" href="./1.1.6.html">1.1.6</a></REF>, we introduced
+	<kbd>===</kbd> and
+	<kbd>!==</kbd>
+	as  primitive predicates on numbers.
+        
+	
+	
+	
+	
+	From now
+	on, we shall allow
+	<kbd>===</kbd> and
+	<kbd>!==</kbd> to take two
+	strings as arguments. The predicate
+	<kbd>===</kbd> 	
+	returns true if and only
+	if the two strings are the same, and 
+	<kbd>===</kbd> 	
+	returns false if and only
 	if the two strings are the same.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
 	Using&nbsp;<kbd>===</kbd>, we can implement
 	a useful function called <kbd>member</kbd>.

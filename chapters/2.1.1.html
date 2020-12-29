@@ -2312,13 +2312,23 @@ function denom(x) {
     
       
       
-	denominator:<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+	denominator.
+	We use the primitive function
+	
+	
+	
+        
+        
+	<kbd>stringify</kbd> to turn any value (here
+	a number) into a string. The operator
+	<kbd>+</kbd> in JavaScript is
+	<EM>overloaded</EM>; it can be applied to two numbers or to two strings,
+	and in the latter case it returns the result of <EM>concatenating</EM>
+	the two strings.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
       
     
-    <div class='snippet' id='javascript_28_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQCcGyAKIgGlAATAJSgA3tlDTQHFmQIdaABwYUOfQaIDc2AL75i5arSIE6LDQA8xkmbPmLaACxYMhPG7oOFSlGsIsRFR0nrZSMnIKSqBkagA2Yd64IKDKHBRElEQA5rGustwmDPGgmaA0LKDxmVVyAI4E6iwAzqAtIVUtZBm52KmMRBTKBPFFNABc7T2ZORR4AJ6xTm0MoGZ0AEaWZVlUoGvdvXn9YAxEQvlVVMqW3FQcoADUoCTnoNsHyso1LJdk+yOszaeAep2mx1eNDeZCC4yIhj8JjSvTInG4YQkEWkQgoLR+DAWPCBuXmRI2ljCYheACJgDTnhDZmSeEIgiEqSJktgSDRuhUiOxnCU8KAALz0ZjsLi8DCCFBc3DpTJomU8SpsYXxPBcoA')">function print_rat(x) {
-    display(numer(x));
-    display("/");
-    display(denom(x));
+    <div class='snippet' id='javascript_28_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQCcGyAKIgGlAATAJSgA3tlDTQHFmQIdaABwYUOfQaIDc2AL75i5arSIE6LDQA8xkmbPmLaACxYMhPG7oOFSlGsIsRFR0nrZSMnIKSqBkagA2Yd64vsYByhwURGSc3GESEdJRTsIUAM7K8QwAnnzmlvkA1KAARKBgbc1CQSFhIsnYJDRlZKA07M4M8XigALz0zOxcvBiCKP24GVk5yzzjbJPT-UA')">function print_rat(x) {
+    return display(numer(x) + " / " + denom(x));
 }
 </pre></div></div>
     
@@ -2331,24 +2341,24 @@ function denom(x) {
       
       functions:
     
-    <div class='snippet' id='javascript_28_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQCcGyAKIgGlAATAJSgA3tlDTQHFmQIdaABwYUOfQaIDc2AL75i5arSIE6LDQA8xkmbPmLaACxYMhPG7oOFSlGsIsRFR0nrZSMnIKSqBkagA2Yd64IKDKHBRElEQA5rGustwmDPGgmaA0LKDxmVVyAI4E6iwAzqAtIVUtZBm52KmMRBTKBPFFNABc7T2ZORR4AJ6xTm0MoGZ0AEaWZVlUoGvdvXn9YAxEQvlVVMqW3FQcoADUoCTnoNsHyso1LJdk+yOszaeAep2mx1eNDeZCC4yIhj8JjSvTInG4YQkEWkQgoLR+DAWPCBuXmRI2ljCYheACJgDTnhDZmSeEIgiEqSJktgSDRuhUiOxnCU8KAALz0ZjsLi8DCCFBc3DpTJomU8SpsYXxPBcoA')">const one_half = make_rat(1, 2);
+    <div class='snippet' id='javascript_28_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQCcGyAKIgGlAATAJSgA3tlDTQHFmQIdaABwYUOfQaIDc2AL75i5arSIE6LDQA8xkmbPmLaACxYMhPG7oOFSlGsIsRFR0nrZSMnIKSqBkagA2Yd64vsYByhwURGSc3GESEdJRTsIUAM7K8QwAnnzmlvkA1KAARKBgbc1CQSFhIsnYJDRlZKA07M4M8XigALz0zOxcvBiCKP24GVk5yzzjbJPT-UA')">const one_half = make_rat(1, 2);
 
 print_rat(one_half);
 </pre><pre class='prettyprintoutput'>
-1 / 2</pre></div></div>
+"1 / 2"</pre></div></div>
     
     <div class='snippet' id='javascript_28_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 const one_third = make_rat(1, 3);</pre></div></div>
 
-    <div class='snippet' id='javascript_28_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQCcGyAKIgGlAATAJSgA3tlDTQHFmQIdaABwYUOfQaIDc2AL75i5arSIE6LDQA8xkmbPmLaACxYMhPG7oOFSlGsIsRFR0nrZSMnIKSqBkagA2Yd64vsYB7kKc3J6CAJ7h9lFO9MzsXLxmFtZiAFSBwaH5oADUoJWWPE11QkEhYfwR9kPDMj0NYaDdvY0iIsmp-rQAzgQARlm8VnkFkY4xjKwbfOYdNpP1fU0AtG0nGl0XoTYDI69DY31nU+P5c-qGfhM9AI8SOW1ATTsu2itAOZWy7Wq50RnRELzeGI+T1qj1Rfx8RkWwgoADcwdsJIMHDCSodyscqhNvpc0VSMcMsUzbozfvNCUCWABHAgMUH08GQqlFGIor64poAXiV3I6D05Xn+2BINCWZFANHYzlFeFACtp8N4GEEKD+Wp1eoNbDIznUQlN5qOVtAAGZbSBQMoOBQiJQiABzWKuWTcEyi0DB-VEFigeLB5NyYXqFhLUBLELJ3VB8PYf2MIgUZQgmM0ABcubIRbDFDwuViThzDG5q0s8ZDVFAncLwYjJbADCIbudyaoyks3CoHBaoBI49A3YHymUqZYk-7Q-DObwC9H9cby5oK7IQWrRABaRURbIYJ20iEFCWW4YuR4+6bLYZpyzEuABEwDAUuv7Nt+6qzPiuCBsGT70hkRyOka8R4IIjrOq6szaEAA')">print_rat(add_rat(one_half, one_third));
+    <div class='snippet' id='javascript_28_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQCcGyAKIgGlAATAJSgA3tlDTQHFmQIdaABwYUOfQaIDc2AL75i5arSIE6LDQA8xkmbPmLaACxYMhPG7oOFSlGsIsRFR0nrZSMnIKSqBkagA2Yd64vsYB7kKc3J6CAJ7h9lFO9MzsXLxmFtZiAFSBwaH5oADUoJWWPE11QkEhYfwR9kPDMj0NYaDdvY0iIsmp-rQAzgQARlm8VnkFkY4xjKwbfOYdNpP1fU0AtG0nGl0XoTYDI69DY31nU+P5c-qGfhM9AI8SOW1ATTsu2itAOZWy7Wq50RnRELzeGI+T1qj1Rfx8RkWwgoADcwdsJIMHDCSodyscqhNvpc0VSMcMsUzbozfvNCUCWABHAgMUH08GQqlFGIor64poAXiV3I6D05Xn+2BINCWZFANHYzlFeFACtp8N4GEEKD+Wp1eoNbDIznUQlN5qOVtAAGZbQsgcoOBQiGQwTtpNLaEIKEtlPEGLkGacxK0AESgMDp1rq2bJbCB4Oh+kZI6Oo3xPCCR3O125oA')">print_rat(add_rat(one_half, one_third));
 </pre><pre class='prettyprintoutput'>
-5 / 6</pre></div></div>
-    <div class='snippet' id='javascript_28_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQCcGyAKIgGlAATAJSgA3tlDTQHFmQIdaABwYUOfQaIDc2AL75i5arSIE6LDQA8xkmbPmLaACxYMhPG7oOFSlGsIsRFR0nrZSMnIKSqBkagA2Yd64vsYB7kKc3J6CAJ7h9lFO9MzsXLxmFtZiAFSBwaH5oADUoJWWPE11QkEhYfwR9kPDMj0NYaDdvY0iIsmp-rQAzgQARlm8VnkFkY4xjKwbfOYdNpP1fU0AtG0nGl0XoTYDI69DY31nU+P5c-qGfhM9AI8SOW1ATTsu2itAOZWy7Wq50RnRELzeGI+T1qj1Rfx8RkWwgoADcwdsJIMHDCSodyscqhNvpc0VSMcMsUzbozfvNCUCWABHAgMUH08GQqlFGIor64poAXiV3I6D05Xn+2BINCWZFANHYzlFeFACtp8N4GEEKD+Wp1eoNbDIznUQlN5qOVtAAGZbSBQMoOBQiJQiABzWKuWTcEyi0DB-VEFigeLB5NyYXqFhLUBLELJ3VB8PYf2MIgUZQgmM0ABcubIRbDFDwuViThzDG5q0s8ZDVFAncLwYjJbADCIbudyaoyks3CoHBaoBI49A3YHymUqZYk-7Q-DObwC9H9cby5oK7IQWrRABaRURbIYJ20iEFCWW4YuR4+6bLYZpyzEuABEwDAUuv7Nt+6qzPiuCBsGT70nQIJHI6RrxHggiOs6rqzNoQA')">print_rat(mul_rat(one_half, one_third));
+"5 / 6"</pre></div></div>
+    <div class='snippet' id='javascript_28_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQCcGyAKIgGlAATAJSgA3tlDTQHFmQIdaABwYUOfQaIDc2AL75i5arSIE6LDQA8xkmbPmLaACxYMhPG7oOFSlGsIsRFR0nrZSMnIKSqBkagA2Yd64vsYB7kKc3J6CAJ7h9lFO9MzsXLxmFtZiAFSBwaH5oADUoJWWPE11QkEhYfwR9kPDMj0NYaDdvY0iIsmp-rQAzgQARlm8VnkFkY4xjKwbfOYdNpP1fU0AtG0nGl0XoTYDI69DY31nU+P5c-qGfhM9AI8SOW1ATTsu2itAOZWy7Wq50RnRELzeGI+T1qj1Rfx8RkWwgoADcwdsJIMHDCSodyscqhNvpc0VSMcMsUzbozfvNCUCWABHAgMUH08GQqlFGIor64poAXiV3I6D05Xn+2BINCWZFANHYzlFeFACtp8N4GEEKD+Wp1eoNbDIznUQlN5qOVtAAGZbQsgcoOBQiGQwTtpNLaEIKEtlPEGLkGacxK0AESgMDp1rq2bJbCB4Oh+l0EFHR1G+J4QSO52u3NAA')">print_rat(mul_rat(one_half, one_third));
 </pre><pre class='prettyprintoutput'>
-1 / 6</pre></div></div>
-    <div class='snippet' id='javascript_28_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQCcGyAKIgGlAATAJSgA3tlDTQHFmQIdaABwYUOfQaIDc2AL75i5arSIE6LDQA8xkmbPmLaACxYMhPG7oOFSlGsIsRFR0nrZSMnIKSqBkagA2Yd64vsYB7kKc3J6CAJ7h9lFO9MzsXLxmFtZiAFSBwaH5oADUoJWWPE11QkEhYfwR9kPDMj0NYaDdvY0iIsmp-rQAzgQARlm8VnkFkY4xjKwbfOYdNpP1fU0AtG0nGl0XoTYDI69DY31nU+P5c-qGfhM9AI8SOW1ATTsu2itAOZWy7Wq50RnRELzeGI+T1qj1Rfx8RkWwgoADcwdsJIMHDCSodyscqhNvpc0VSMcMsUzbozfvNCUCWABHAgMUH08GQqlFGIor64poAXiV3I6D05Xn+2BINCWZFANHYZGc6iEoAVtPhvAwggAzH9sCBQMoOBQiJQiABzWKuWTcEyi0Cu-VEFigeKu0NyYXqFhLUBLEKh3Uuz0OsCMIgUZQgv00ABc8bIKY9FDwuViTjjDG5q0sgbdVFA1eTrq9aabRFNRtDVGUlm4VA4LVAJAYtFrTeUynDLC7jZbnrjeEH7YXXu1pG4QVzRABaRUKbIYJ20iEFCW04YuR4a9L19ls2HACJgE-h7eyzx1bN8bhna6j3pDIjgNNgjRNQRQPAjhRDmIA')">print_rat(add_rat(one_third, one_third));
+"1 / 6"</pre></div></div>
+    <div class='snippet' id='javascript_28_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQCcGyAKIgGlAATAJSgA3tlDTQHFmQIdaABwYUOfQaIDc2AL75i5arSIE6LDQA8xkmbPmLaACxYMhPG7oOFSlGsIsRFR0nrZSMnIKSqBkagA2Yd64vsYB7kKc3J6CAJ7h9lFO9MzsXLxmFtZiAFSBwaH5oADUoJWWPE11QkEhYfwR9kPDMj0NYaDdvY0iIsmp-rQAzgQARlm8VnkFkY4xjKwbfOYdNpP1fU0AtG0nGl0XoTYDI69DY31nU+P5c-qGfhM9AI8SOW1ATTsu2itAOZWy7Wq50RnRELzeGI+T1qj1Rfx8RkWwgoADcwdsJIMHDCSodyscqhNvpc0VSMcMsUzbozfvNCUCWABHAgMUH08GQqlFGIor64poAXiV3I6D05Xn+2BINCWZFANHYZGc6iEoAVtPhvAwggAzH8AWkVBwKEQyGCdtJpbQhBQlsp4gxcgzTmJWgAiUBgCOtdWzZLYZTO11HDJHA1sI0mwTpzMcURzIA')">print_rat(add_rat(one_third, one_third));
 </pre><pre class='prettyprintoutput'>
-6 / 9</pre></div></div>
+"6 / 9"</pre></div></div>
   </p></div>
   <div class='permalink'>
 <a name='p12' class='permalink'></a><p>
@@ -2382,9 +2392,9 @@ const one_third = make_rat(1, 3);</pre></div></div>
   <div class='permalink'>
 <a name='p13' class='permalink'></a><p>
     Now we have
-    <div class='snippet' id='javascript_28_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEZMChsDMBXAOwGMAXASwHsjQiCBbAUwCcAKADwEpQBvbUINAsmZAi1oALJgEMAJpy4BubAF98xctVpymRKg0V8BQkWImgyMigBtFK9RtKUaoAOYkFMgDSgARjz8QsKi4rR+oAC80aAADKAA-KAyoABc7p5sfr4pAKT+ymq4hM7aoAwyANZMAPosMmRsRL5ygSaCJDQAzmTuURkKzaCtKsFmYaAADtbstGBuLaDzhY4lWq7ycnUNnL4Anm1joRYV1duN9Mzs3KAAVMN6BmwHoADUdIyszzz3uvqG3G87WCINBgj+Txuv0ehgOKyc61oXQIfnOu1ALyCpmOtFOtXqF0+1x+D3+31AAFoPldydCyYDgWCmaTISSIbCuPC1i5cQQbGiOPtDtjzLiqvidpcvlDqV8DkDmYqWQC2TDvlzNDzhhQAG4CoXGI6i8ritFS4l3ZXfBVKpnsoz3c3qhwIrVMACOBBk-IJ6MxwPGFidMvtL2ikVl7BedNZLuwnSIPVANFqZEkFBYcn6eLRGF8AGZCq6yjnfUNWoaRRNphmmi0NaVXMHhYJA1JZApuC7uWV7Tcsa2cZZrHYu0VsCApiwKERKEQ3JZpMIGtpvaAZ8miExQDYZ9uRJ6M0wuqAugZtz1p-OJ2AKkQKJM+SuaOlLzO3BQ8HtLGETylLn4rDrrOVDJKeZBXguN7JEQWZptuVCTKwDRUCwbygCQMjhNuMiTJMu5MHBoFvvOJ54Kh0EkQuCaYWQejPkQxauJMV5kAKLbal0+EyHsbBUZ+vHNjw7wAETACJ6H8V+bB9py8LYCxM5sb6mxoimNRphmci+OpmmZpyShAA')">print_rat(add_rat(one_third, one_third));
+    <div class='snippet' id='javascript_28_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEZMChsDMBXAOwGMAXASwHsjQiCBbAUwCcAKADwEpQBvbUINAsmZAi1oALJgEMAJpy4BubAF98xctVpymRKg0V8BQkWImgyMigBtFK9RtKUaoAOYkFMgDSgARjz8QsKi4rR+oAC80aAADKAA-KAyoABc7p5sfr4pAKT+ymq4hM7aoAwyANZMAPosMmRsRL5ygSaCJDQAzmTuURkKzaCtKsFmYaAADtbstGBuLaDzhY4lWq7ycnUNnL4Anm1joRYV1duN9Mzs3KAAVMN6BmwHoADUdIyszzz3uvqG3G87WCINBgj+Txuv0ehgOKyc61oXQIfnOu1ALyCpmOtFOtXqF0+1x+D3+31AAFoPldydCyYDgWCmaTISSIbCuPC1i5cQQbGiOPtDtjzLiqvidpcvlDqV8DkDmYqWQC2TDvlzNDzhhQAG4CoXGI6i8ritFS4l3ZXfBVKpnsoz3c3qhwIrVMACOBBk-IJ6MxwPGFidMvtL2ikVl7BedNZLuwnSIPVANFqZEkFBYcn6eLRGF8AGZCq6yjnfUNWoaRRNphmmi0NaVXMHhYJA1JZApuC7uWV7Tcsa2cZZrHYu0Vi65JiwKEQyAKWyFjXIKF1JjYZHsmkSjO8AERLUD7959zlxqczue+zZolM1NMZuS+W-3zOnoA')">print_rat(add_rat(one_third, one_third));
 </pre><pre class='prettyprintoutput'>
-2 / 3</pre></div></div>
+"2 / 3"</pre></div></div>
     
     as desired.  This modification was accomplished by changing the constructor
     

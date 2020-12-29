@@ -2030,10 +2030,13 @@ Acknowledgments
     
       
       
+        
+        
         One kind of statement you might type is an 
         expression statement, which consists of an
         <EM>expression</EM> followed by a semicolon.
 	One kind of primitive expression is a number.
+	
 	
       
     
@@ -2104,6 +2107,7 @@ Acknowledgments
         
         Combinations that are formed by an 
         
+        
         <EM>operator</EM> symbol in the middle, and
         
         <EM>operand</EM> expressions to the left and right of it, 
@@ -2139,6 +2143,7 @@ Acknowledgments
         stands for 
         <div class='snippet' id='javascript_6_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCwCgMygBUoArAJSgDUouKADKGAEzkDcQA')">(3 * 5) + (10 / 2);
 </pre></div></div>
+        	
         We say that <kbd>*</kbd> and
 	<kbd>/</kbd> have <EM>higher precedence</EM>
 	than <kbd>+</kbd> and
@@ -2146,6 +2151,7 @@ Acknowledgments
 	subtractions are read from left to right, as are sequences of
 	multiplications and divisions. Thus,
         
+        	
         <div class='snippet' id='javascript_6_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCy0BaUAVlDACZQAqUAFlAGpQBmAbiA')">1 - 5 / 2 * 4 + 3;
 </pre></div></div>
         stands for 
@@ -2157,6 +2163,8 @@ Acknowledgments
         <kbd>*</kbd> and
         <kbd>/</kbd> are 
         <EM>left-associative</EM>.
+	
+	
       </p></div>
     
   
@@ -2195,10 +2203,15 @@ Acknowledgments
       statement,
     
     and prints the result. This mode of operation is often expressed by saying
-    that the interpreter runs in a 
+    that the interpreter runs in a
     
+      
+      
+	
+	
+	<EM>read-evaluate-print loop</EM>.
+      
     
-    <EM>read-eval-print loop</EM>.
     Observe in particular that it is not necessary to explicitly instruct the
     interpreter to print the value of the
     

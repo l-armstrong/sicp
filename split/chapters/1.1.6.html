@@ -2110,6 +2110,8 @@ Acknowledgments
 	
 	
 	
+	
+	
         Conditional expressions begin with a
         $\textit{predicate}$—that is, 
         an expression whose value is either
@@ -2388,8 +2390,8 @@ Acknowledgments
 	
 	
 	
-	
         
+	
 	
 	
 	
@@ -2443,6 +2445,7 @@ Acknowledgments
           <LI>
 	    
 	    
+	    
             <kbd>!</kbd>
 	    $\textit{expression}$<br>
 	    This operation expresses <EM>logical negation</EM>, meaning
@@ -2461,7 +2464,7 @@ Acknowledgments
         expression is not always evaluated. The operator
         <kbd>!</kbd>, on the other hand, 
         follows the evaluation rule of section
-	<REF NAME="sec:evaluating-combinations"><a class="superscript" id="1.1.6-sec-link-1.1.3" href="./1.1.3.html">1.1.3</a></REF>. 
+	<REF NAME="sec:evaluating-combinations"><a class="superscript" id="1.1.6-sec-link-1.1.3" href="./1.1.3.html">1.1.3</a></REF>.
         It is a <EM>unary</EM> operator, which means that it takes only
 	one argument, whereas the arithmetic operators and primitive predicates
 	discussed so far
@@ -2472,6 +2475,8 @@ Acknowledgments
 	which is the expression <kbd>- x</kbd>
 	in the function <kbd>abs</kbd>
 	at the beginning of this section.
+        
+        	
       </p></div>
     </span></td></tr></table>
 
@@ -2506,7 +2511,7 @@ x > 5 && x < 10</pre></div></div>
         has lower precedence than the comparison operators
         <kbd>></kbd>
 	and&nbsp;<kbd><</kbd>, and that
-	the conditional expression operator
+	the conditional expression syntactic form
 	$\cdots$<kbd>?</kbd>$\cdots$<kbd>:</kbd>$\cdots$
 	has lower precedence than any other operator we encountered so far,
 	a property we used in
@@ -2515,7 +2520,16 @@ x > 5 && x < 10</pre></div></div>
     </span></td></tr></table>
   <div class='permalink'>
 <a name='p12' class='permalink'></a><p>
-    As another example, we can define a predicate to test whether one
+    As another example, we can
+    
+      <span style="color:green">
+	define
+      </span>
+      <span style="color:blue">
+	declare
+      </span>
+    
+    a predicate to test whether one
     number is greater than or equal to another as
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
@@ -2697,7 +2711,10 @@ x > 5 && x < 10</pre></div></div>
         <div class='snippet' id='javascript_11_21_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsGMB7AOwGcAXUAQ1AF5QBmAbl0NIoCNarQBqVZ7NRrDQAFlAB+UJlAAuUJ2F1xUmXwDsvbvIBMAVkZA')">a === 4 ? 6 : b === 4 ? 6 + 7 + a : 25;
 </pre></div></div>
         consists of two conditional expressions, where the second one forms the
-	alternative of the first one; we say that the conditional expression operator
+	alternative of the first one; we say that the conditional expression syntactic form
+	
+	
+	
 	is <EM>right-associative</EM>. As with long arithmetic expressions, we
 	use line breaks to visually separate the major components of long
 	conditional expressions:
@@ -2712,12 +2729,14 @@ x > 5 && x < 10</pre></div></div>
 	  is handled informally here, without mention of the implied
 	  right-associativity of the ternary conditional expression operators.
 	</span>
-	Conditional expressions can appear inside arithmetic expressions. The
+	
+	Conditional expressions can appear inside operator combinations. The
 	parentheses in the following examples are necessary because the
-	conditional expression operator has lower precedence than the arithmetic
+	conditional expression syntactic form has lower precedence than the arithmetic
 	operators
 	<kbd>+</kbd> and
 	<kbd>*</kbd>.
+	
       </span></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
@@ -3124,7 +3143,6 @@ function test(x, y) {
             alternative surface structures for things that can be written in more
             uniform ways are sometimes called <EM>syntactic sugar</EM>, to use a
             phrase coined by Peter Landin.
-            
             
             
 	    

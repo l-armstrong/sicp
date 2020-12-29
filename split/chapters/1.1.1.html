@@ -2054,10 +2054,13 @@ Acknowledgments
       </span>    </td>
           <td></td>
           <td><span style="color:blue">
+        
+        
         One kind of statement you might type is an 
         expression statement, which consists of an
         <EM>expression</EM> followed by a semicolon.
 	One kind of primitive expression is a number.
+	
 	
       </span></td></tr></table>
     (More precisely, the expression that you type consists of the numerals that
@@ -2109,8 +2112,6 @@ Acknowledgments
         expression representing a
         
         
-        
-        
         primitive procedure (such as 
         <kbd>+</kbd> or <kbd>*</kbd>) to
 	form a compound expression that represents the application of the
@@ -2119,7 +2120,6 @@ Acknowledgments
 (+ 137 349)</pre><pre class='prettyprintoutput'>
 486</pre></div></div>
         
-        
         <div class='snippet' id='javascript_6_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (- 1000 334)</pre><pre class='prettyprintoutput'>
 666</pre></div></div>
@@ -2127,7 +2127,6 @@ Acknowledgments
         <div class='snippet' id='javascript_6_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (* 5 99)</pre><pre class='prettyprintoutput'>
 495</pre></div></div>
-        
         
         <div class='snippet' id='javascript_6_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (/ 10 5)</pre><pre class='prettyprintoutput'>
@@ -2218,6 +2217,7 @@ Acknowledgments
         
         Combinations that are formed by an 
         
+        
         <EM>operator</EM> symbol in the middle, and
         
         <EM>operand</EM> expressions to the left and right of it, 
@@ -2296,6 +2296,7 @@ Acknowledgments
         stands for 
         <div class='snippet' id='javascript_6_19_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCwCgMygBUoArAJSgDUouKADKGAEzkDcQA')">(3 * 5) + (10 / 2);
 </pre></div></div>
+        	
         We say that <kbd>*</kbd> and
 	<kbd>/</kbd> have <EM>higher precedence</EM>
 	than <kbd>+</kbd> and
@@ -2303,6 +2304,7 @@ Acknowledgments
 	subtractions are read from left to right, as are sequences of
 	multiplications and divisions. Thus,
         
+        	
         <div class='snippet' id='javascript_6_20_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCy0BaUAVlDACZQAqUAFlAGpQBmAbiA')">1 - 5 / 2 * 4 + 3;
 </pre></div></div>
         stands for 
@@ -2314,6 +2316,8 @@ Acknowledgments
         <kbd>*</kbd> and
         <kbd>/</kbd> are 
         <EM>left-associative</EM>.
+	
+	
       </p></div>
     </span></td></tr></table>
   <table width="100%">
@@ -2382,10 +2386,19 @@ Acknowledgments
       <span style="color:blue">statement,</span>
     
     and prints the result. This mode of operation is often expressed by saying
-    that the interpreter runs in a 
+    that the interpreter runs in a
     
+      <span style="color:green">
+	
+	
+	<EM>read-eval-print loop</EM>.
+      </span>
+      <span style="color:blue">
+	
+	
+	<EM>read-evaluate-print loop</EM>.
+      </span>
     
-    <EM>read-eval-print loop</EM>.
     Observe in particular that it is not necessary to explicitly instruct the
     interpreter to print the value of the
     
