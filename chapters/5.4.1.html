@@ -2079,14 +2079,7 @@ component
       <div class='permalink'>
         <a name='h1' class='permalink'></a><h2>
     
-    Evaluating 
-    
-      
-      
-        literal values, names and lambda expressions
-      
-    
-    
+    Evaluating simple expressions
   </h2></div>
 
   
@@ -2167,12 +2160,12 @@ component
       <div class='permalink'>
         <a name='h2' class='permalink'></a><h2>
      
-    Evaluating
     
       
-      function
+        
+        Evaluating function applications and operator combinations
+      
     
-    applications
   </h2></div>
 
   
@@ -2227,10 +2220,10 @@ component
 
   <div class='permalink'>
 <a name='p4' class='permalink'></a><p>
-    Just like in the metacircular evaluator, operator combinations
+    As in the metacircular evaluator, operator combinations
     are transformed into applications of primitive functions
-    corresponding to the operators. This takes place in <kbd>ev_operator_combination</kbd>
-    which performs this transformation in-place in <kbd>comp</kbd> and falls through to
+    corresponding to the operators. This takes place at <kbd>ev_operator_combination</kbd>
+    which performs this transformation in place in <kbd>comp</kbd> and falls through to
     <kbd>ev_application</kbd>. 
   </p></div>
 
@@ -2705,11 +2698,9 @@ component
     
     <div class='snippet' id='javascript_113_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "apply_dispatch",
-      test(list(op("is_primitive_function"),
-                reg("fun"))),
+      test(list(op("is_primitive_function"), reg("fun"))),
       branch(label("primitive_apply")),
-      test(list(op("is_compound_function"),
-                reg("fun"))),
+      test(list(op("is_compound_function"), reg("fun"))),
       branch(label("compound_apply")),
       go_to(label("unknown_function_type")),</pre></div></div>
   </p></div>
@@ -2915,7 +2906,7 @@ component
 <a name='p16' class='permalink'></a><p>
           To evaluate a return statement, we first pop the stack repeatedly to restore
           its state from when the <kbd>save_marker</kbd> instruction
-          was executed just before the start of the evaluation of the body of the function which we are returning from.
+          was executed just before the start of the evaluation of the body of the function we are returning from.
           This is handled by the <kbd>restore_marker</kbd> instruction.
           We then evaluate the subexpression that defines the return value
           using the current values of 
@@ -2974,17 +2965,17 @@ component
     to be evaluated in
     <kbd>unev</kbd>, saving
     <kbd>continue</kbd> on the
-    stack, and
+    stack, and jumping to 
     
       
-      proceeding to the next entry <kbd>ev_sequence</kbd>.
+      <kbd>ev_sequence</kbd>.
     
     
     <div class='snippet' id='javascript_113_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_sequence_start",
       save("continue"),
-      assign("unev", list(op("sequence_statements"), reg("comp"))),</pre></div></div>
-
+      assign("unev", list(op("sequence_statements"), reg("comp"))),
+      go_to(label("ev_sequence")),</pre></div></div>
     
     
       
@@ -3156,7 +3147,7 @@ component
 "ev_sequence",
       assign("comp", list(op("first_statement"), reg("unev"))),
       test(list(op("is_last_statement"), reg("unev"))),
-      branch(label("ev_sequence_last_exp")),
+      branch(label("ev_sequence_last_statement")),
       save("unev"),
       save("env"),
       assign("continue", label("ev_sequence_continue")),
@@ -3168,7 +3159,7 @@ component
       assign("unev", list(op("rest_statements"), reg("unev"))),
       go_to(label("ev_sequence")),
 
-"ev_sequence_last_exp",
+"ev_sequence_last_statement",
       restore("continue"),
       go_to(label("eval_dispatch")),</pre></div></div>
   </p></div>

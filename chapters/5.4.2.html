@@ -2142,7 +2142,7 @@ function sqrt_iter(guess, x) {
     
       
       
-        expression inside the return statement in order to undo the (useless) register save. Such extra saves 
+        expression inside the return statement in order to undo the (useless) register save. These extra saves 
       
     
     will accumulate during a nest of
@@ -2166,7 +2166,7 @@ function sqrt_iter(guess, x) {
     mechanism:
     <div class='snippet' id='javascript_114_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function count(n) {
-    display(n, "\n");
+    display(n);
     return count(n + 1);
 }</pre></div></div>
     Without tail recursion, such a
@@ -2187,9 +2187,9 @@ function count(n) {
     
       <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
-        Note that our JavaScript implementation is only tail-recursive in the presence of an
+        Note that our JavaScript implementation is tail-recursive only in the presence of an
         explicit return statement. A function that ends without an explicit return statement will 
-        dispatch to the implicit return handler <kbd>return_undefined</kbd> that stores
+        go to the implicit return handler <kbd>return_undefined</kbd>, which stores
         <kbd>undefined</kbd> in the <kbd>val</kbd> register.
         Thus, removing <kbd>return</kbd> from the above count function will
         eventually run out of stack space.

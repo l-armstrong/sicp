@@ -2174,10 +2174,10 @@ Acknowledgments
         <kbd>undefined</kbd>. This is handled by
         setting <kbd>val</kbd> to
         <kbd>undefined</kbd> before continuing. 
-        Like in the metacircular evaluator, we transform a function declaration
+        As in the metacircular evaluator, we transform a function declaration
         into a constant declaration whose value expression is a lambda expression. This happens in
         <kbd>ev_function_declaration</kbd> which makes the
-        transformation in-place in <kbd>comp</kbd> and
+        transformation in place in <kbd>comp</kbd> and
         falls through to <kbd>ev_declaration</kbd>.
       
       
@@ -2230,9 +2230,9 @@ Acknowledgments
         respect to the current environment extended by a binding
         of all local names to the value
         <kbd>"*unassigned*"</kbd>.
-        We temporarily make us of the <kbd>comp</kbd>
-        register to hold the list of all variables declared in the block
-        which are obtained by the function <kbd>scan_out_declarations</kbd>
+        We temporarily make use of the <kbd>comp</kbd>
+        register to hold the list of all variables declared in the block,
+        which is obtained by the function <kbd>scan_out_declarations</kbd>
         from section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="5.4.3-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>.
       
     <div class='snippet' id='javascript_115_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
@@ -2295,7 +2295,7 @@ Acknowledgments
   
         Implement the equivalent of
         <kbd>save_marker</kbd> and
-        <kbd>restore_marker</kbd> by using save to
+        <kbd>restore_marker</kbd> by using <kbd>save</kbd> to
         store a special marker value on the stack. Use a restoring loop for
         implicit and explicit returns that restores from the stack until it hits
         the marker.
@@ -2319,16 +2319,16 @@ Acknowledgments
       
       
         Implement <kbd>save_marker</kbd> and
-        <kbd>restore_marker</kbd>. Extend the evaluator
+        <kbd>restore_marker</kbd> by extending the evaluator
         with two new instructions implemented as the nullary functions
         <kbd>save_marker</kbd> and
         <kbd>restore_marker</kbd>, similar to
         <kbd>save</kbd> and
         <kbd>restore</kbd>. You will have
-        add cases to the stack's dispatch function as well. Note
+        to add cases to the stack's dispatch function as well. Note
         that you do not need to actually insert a marker in the stack, but can keep
-        a parallel structure that only keeps track of the position of the last
-        save before a call to <kbd>save_marker</kbd>.
+        a parallel structure that keeps track of the position of the last
+        <kbd>save</kbd> before a call to <kbd>save_marker</kbd>.
       
     
       
