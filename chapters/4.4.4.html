@@ -1995,7 +1995,7 @@ Acknowledgments
   
       <div class='permalink'>
         <a name='sec4.4.4.1' class='permalink'></a><h1>
-    4.4.4.1&nbsp;&nbsp;&nbsp;The Driver Loop and Instantiation</h1></div>
+    4.4.4.1&nbsp;&nbsp;&nbsp;The Driver Loop </h1></div>
     
 
     <div class='permalink'>
@@ -2049,15 +2049,14 @@ function query_driver_loop() {
       
 	
 	
-	  Here, as in the other evaluators in this chapter,
-	  we transform a component of the query language given as a string
-	  into a JavaScript syntax representation using 
-	  <kbd>parse</kbd>. (We append a
+	  Here, as in the other evaluators in this chapter, we use
+	  <kbd>parse</kbd> to
+	  transform a component of the query language given as a string
+	  into a JavaScript syntax representation. (We append a
 	  semicolon to the input expression string because
 	  <kbd>parse</kbd> expects a statement.)
-	  In this section,
-	  we further transform the syntax representation 
-	  into an abstract object at a conceptual level appropriate
+	  Then we further transform the syntax representation 
+	  to a conceptual level appropriate
 	  for the query system using
 	  <kbd>query_syntax_process</kbd>,
 	  which is declared in section&nbsp;<REF NAME="sec:query-syntax"><a class="superscript" id="4.4.4-sec-link-4.4.4.7" href="./4.4.4.html#sec4.4.4.7">4.4.4.7</a></REF>
@@ -3556,7 +3555,8 @@ function flatten_stream(stream) {
       
 	<div class='permalink'>
 <a name='p34' class='permalink'></a><p>
-	  The driver loop first transforms an input string into the JavaScript
+	  We saw in section&nbsp;<REF NAME="sec:query-driver"><a class="superscript" id="4.4.4-sec-link-4.4.4.1" href="./4.4.4.html#sec4.4.4.1">4.4.4.1</a></REF> that 
+	  the driver loop first transforms an input string into the JavaScript
 	  syntax representation.
 	  The input is designed to look like a
 	  JavaScript expression, so that we can use the
@@ -3605,8 +3605,9 @@ list("job", list("name", "$x"), list("computer", "wizard"))</pre></div></div>
 	  operate on the query-language-specific representation using 
 	  selectors and predicates such as 
 	  <kbd>type</kbd>,
-	  <kbd>contents</kbd>, and
-	  <kbd>is_rule</kbd> declared below.	  
+	  <kbd>contents</kbd>, 
+	  <kbd>is_rule</kbd>, and
+	  <kbd>first_conjunct</kbd> declared below.	  
 	  Figure&nbsp;<REF NAME="fig:syntax-abstraction-lp"><a class="superscript" id="4.4.4-fig-link-4.8" href="./4.4.4.html#fig_4.8">4.8</a></REF> depicts the three
 	  abstraction barriers used by the query system and how the transformation functions
 	  <kbd>parse</kbd>,
@@ -3625,15 +3626,17 @@ list("job", list("name", "$x"), list("computer", "wizard"))</pre></div></div>
       <div class='permalink'>
         <a name='h11' class='permalink'></a><h2>
     
-	The query-language-specific representation
+	Handling pattern variables
       </h2></div>
 
       <div class='permalink'>
 <a name='p35' class='permalink'></a><p>
-	The syntax predicate
-	<kbd>is_variable</kbd>, also used on the
-	JavaScript syntax representation, 
-	identifies names that start with a dollar sign.
+	The predicate
+	<kbd>is_variable</kbd> is used on the 
+	query-language-specific representation during query processing and
+	on the JavaScript syntax representation during instantiation
+	and unparsing
+	to identify names that start with a dollar sign.
 	We assume there is a function <kbd>char_at</kbd> that
 	returns a string containing only the character of the given string
 	at the given position.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
@@ -3645,111 +3648,22 @@ function is_variable(exp) {
 	<div class='permalink'>
 <a name='p36' class='permalink'></a><p>
 	  Unique variables are constructed during rule application
-	  (in section&nbsp;<REF NAME="sec:query-unify"><a class="superscript" id="4.4.4-sec-link-4.4.4.4" href="./4.4.4.html#sec4.4.4.4">4.4.4.4</a></REF>) by 
-	  <kbd>make_new_variable</kbd>, using
-	  a given variable and a unique identifier.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
-	  <div class='snippet' id='javascript_96_36_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwMwK4B2AxgC4CWA9oaALYCGA1gKYD6hzA7qwG70BO5egCMANswAUfQSPEAaUP3zjW9AA5rR5YvQrVW5ACYBKUAG8soK4ual8-Ggxbt6tSQGcAnrWGVRrSlwXNykBITFmUwBqUAAiVljQGPdSQUIAc3JcTwklFXVNbV0qQgMTYwBuLABfIA')">function make_new_variable(variable, rule_application_id) {
-    return make_name(symbol_of_name(variable) + "_" + stringify(rule_application_id));
-}
-</pre></div></div>
-	</p></div>
-	<div class='permalink'>
-<a name='p37' class='permalink'></a><p>
+	  (in section&nbsp;<REF NAME="sec:query-unify"><a class="superscript" id="4.4.4-sec-link-4.4.4.4" href="./4.4.4.html#sec4.4.4.4">4.4.4.4</a></REF>) by means of the
+	  following functions. 
 	  The unique identifier for a rule application is a number, which is
-	  incremented each time a rule is applied.
-	  <div class='snippet' id='javascript_96_37_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwGwKYAuoATgK4ED6AxgPZkB2h+JoAvKAAwDcOAZo2qEAlrQagG+AO6VyVAIYAHRbmHV5IsZWEATABQBKUAG8soc6Qr4a9Ji3aWqdRs1YBqUAEZeF0kTIk4nLWznYkvAC+OIryJADO1gCOZCwAnpQAbiwARrQJegDk8nEJJIR6vpVV1ZUAOljBekqK+Aw6lIS0lHy0JAC2egwUuAA0oKljqQbTNTUFYwBEWSS5CQsGvDHxSSkk6cur+IXFpeWz5zX1jc2t7Z3dvQMxwiR6ZGMZBpNjz6-voAAvaZjUD1So3NodLo9fp6DLfQHTIwXarzUBLHJ5fDrXgASHMWD4LzihEo8gYcSkLGOyluUIesIAHgjVCS9At5AtFtkuejqLyFjp1gYChssCBQFsEpRkmlMpj8kVaZD7jCBszxmNWeUOQKeYt+YshdM0QscUA')">let rule_counter = 0;
+	  incremented each time a rule is applied.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
+	  <div class='snippet' id='javascript_96_36_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwGwKYAuoATgK4ED6AxgPZkB2h+JoAvKAAwDcOAZo2qEAlrQagG+AO6VyVAIYAHRbmHV5IsZWEATABQBKUAG8soc6Qr4a9Ji3aWqdRs1YBqUAEZeF0kTIk4nLWznYkvAC+-IKa4gC28gDW1pIyAG7yJMLyAEYEehlZuQQANI7WSipqGqIM2jpGpr4k-oGgCcmUDPJx+HoAzgCecTm0uJS0fF09fYXZefhGHgBElMugHv2EWQwA5sJ8g3rBlJWq6rH1BgaRQA')">let rule_counter = 0;
 
 function new_rule_application_id() {
     rule_counter = rule_counter + 1;
     return rule_counter;
 }
+
+function make_new_variable(variable, rule_application_id) {
+    return make_name(symbol_of_name(variable) + "_" + stringify(rule_application_id));
+}
 </pre></div></div>
 	</p></div>
-
-
-    
-    <div class='permalink'>
-<a name='p38' class='permalink'></a><p>
-      The functions <kbd>type</kbd>
-      and <kbd>contents</kbd>, used by
-      <kbd>evaluate_query</kbd>
-      (section&nbsp;<REF NAME="sec:query-eval"><a class="superscript" id="4.4.4-sec-link-4.4.4.2" href="./4.4.4.html#sec4.4.4.2">4.4.4.2</a></REF>), specify that a
-      syntactic form of a query-language-specific representation
-      is identified by
-      the string in its head.
-      They are the same as the
-      <kbd>type_tag</kbd>
-      and <kbd>contents</kbd>
-      functions
-      in section&nbsp;<REF NAME="sec:manifest-types"><a class="superscript" id="4.4.4-sec-link-2.4.2" href="./2.4.2.html">2.4.2</a></REF>, except for the
-      error message.
-      <div class='snippet' id='javascript_96_38_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCyUAzAVwDsBjAFwEsB7YgZwICdqBbCGeJVNARjQCYcRMlVqhKdAPoAbSuQCmjAIbSAFKVYAHWvOLkAlKADeWUGdCN55Qo2Lip5JQHMn8gCYyJ5dVp16ANKAARLIKytJB+gDcWAC+WMIUNHahiiqSAG4qhPI+LNrEugbG5qCm5pbWtqAAFvJKbqqOlGoa+X4G0XFCJEliLEoA1vKeYSqqWdI5hiallTYpXqohcmkRgZPTMfEJvaJ2EpKOLu6edN5tBUWB5HVHzjPlZvPVh5pKlIx5V3qGAGR-Wr1RqXDqGAC8kNAtxGx22PREyXskmIShYuVBhV+xieFisC2Rx1cHlk52+HUCQVR6Mi8N2iP6QxG1NydAAniwAEbUaSPOb46qk7xUtHyIKBdlcnldHaJfagSXc6SSaj4FGi8lY4qzCoCux1BpND6tXxa-QyhF9A5SJR0OiUJzEdF6TVFPm6qrW+4nElLTHXYK2+2O53kWndOVIoMOp1FSSKnmu7E6556oGG5pqA2NTNJzrm+GRsTRkNxzYjeQAD00ljtyTz7tTnvTOeNRpaDYL3XpVuRbnkpGkSmU+wbOP5zcORNOQrzlI09Ecekk-cHw6U+0ioAAPtvcaVzFPnMSzhdTQGgllGJQlJzpCNV0OR8kt7v9wfCceZ37zwFgkXiBXAcnw3F8LR7eVH3XfZ4w5JUxxTF47ATZVVXVdFVGzdsTXaM0u3iADQCg59aEybIK2rWt7VoBCniQltsMY-1fnwy15QGYZJAXc4lGXYjQJolkNnIyQqxreQ61oRs8WbWcgm4pdyCAtcSOIcVQCE0By1EyiJOo4hwMIw4hy5NwlB08TJOIWiPQJI8fVPOdghMzkzIsqiwMLPYkRctz3mUdEwlgqVpDoGymwJAZNFUFCVTVTSsNzZj8y8hkUjRVzzO5Nw2XCmSCUStskt-FLu0IjiRl88yxI8mj-NFMI6ECbK2Wk+i5Kq9y9JfQJ6sCxQmtAFrDO8sRDgA5SQNHZKZgASFKXF6Psk9Z2SykJv4zcLUIjbgOg5J0IxEq2rTIVJEsfAnJ4bbRrsXaVIEwC+qsAa8vywUvHO+RLrW0B+ButKCFuyb9tIlq3vaz6LqcgBmAHe3u5VyGoLjaB4vjgIhtMKtRxdeKUzb63fD9zER0HAJZBt-GJknQBxzqau6miadp0ngcJ0jnsaqmWdZoG0pB1TJHBmbWIgpFDiQ+NHAUUM8qWhwv19MlfqCKWeNlopwwI273sAxmrPltNCo7UW6SMqQFzcORknGGbx1s15FYc1aSvnWhrf2dIDf0189z5z8XZ-XCLytm3aHSDX5FDbXxbEMOveVcTrdIDcjpD5M6NOqHvqu+H5QT23lW4+QAEcchde3EOz84vp+t2-vzpFC4j5UVDCVEqAydOfm1LPZJz+uM-IQI4fN3XDjoMuK9IVlyBYPvHa9adle8c4F8pKfy90WfY8IreZ5GKPQzC9ftXMfuCuBRiz9YnbPlr4+ihi+fyDoRt6Kws-39S3tayUp+ehT6v3fg7PW0I2zfybmNKQ0dNDkDZPGaeO854L1AdXScUhiCEGkGoKBv95TGVtAAmW0dn5QLAQrFEOC1C5igSNQGhw7zUFIIMLGmDvQrWDr3SkzDWF711nwwYwtqA5XYVfDMbYzYRl1jjIRL806hhOgPMkQQhHqUAQYcejCpDUE0GkZGjBUZckoJ3esVd5oXwnHZKQJBhyIL0QY6gRi2iclMY9Mcb4A5MPcYwBx+iRzOOMW4sxNEZoEIlrY1EfiVQBI3EE1x7jprHWMJYswi00zLW-CrBuQQ7ExMcYElxrAQmPQETo4Wvj-FOOKSY0J1kLELWsU7Th2SzzD14VU2JNTglJM8jIwGhT4lGJQuIj6tdoa-WuhEsQ+AH5KSGcQEEKSUzgLOpMhu-0ZnIQHB7bpyglljMWBM3Ov0x5lVkUySQShNCaFkKnUcE0fbJECMOJwhBQxdSsugjJKjhQ3LuZQB5PV+ZWi+fpV5jB3mfOeWjBhvYhmGN6fUo4KMAX3I8VXXEClQCIucaAcEuK4lItGeE35NjJD5OqUU5FmLjq81AAAfjplc9FQKPE40pnixg+hqYB35STWcczGC10Wcs4e5p9AMoAFwss4my4FNFOUam5byhlAqPxCvmfs3i4re5qo1Yaj8U8rY6sOaLeFhCbS3IxckiVlDMnOy4TkjpgYbXsq2ts0FMFYUNJWZfaoJscL6ugXYN54LkhhSxUvBiuZioSrFoRBB+jVBiWURS94nxU3VilQHZlWE00ytAIoZgXwxKUhIIMYg1AADudhfXQjZPo8pvYFwKCAdmzQ6aWmZrLTmhlzLcyFoDrKktzjO0VuIFW2t9bdJWVAG2oodBY5YH8lPSQ28Ynd0YNyKeqgADkQZFDeCNQHAAOlgRgODcgAt0B4ZGkh8DOJYKobBuDAhsg-ZKo1+7KTbt3WKLoa6RibsQf+6ge7D12mPaoU9fML1XvvKoW9SzUWPufaoXtqhCAbF5aAT9oAsM4dAAAL3NIEUAF6DwofvSjJ9jAX0ZA-YEMj5o4OgF-cEcDU9wyWISNq3idAa2KAPTRtD9GX2VmY6AOSSh1JqPk6QeTbhIj6H3V0PAwGN05C3YoADonbl3vExhqT+HAiyfk5yRTynVOcaCLSIAA')">function type(exp) {
-    return is_pair(exp)
-           ? head(exp)
-           : error(exp, "unknown expression type");
-}
-function contents(exp) {
-    return is_pair(exp)
-           ? tail(exp)
-           : error(exp, "unknown expression contents");
-}
-</pre></div></div>
-    </p></div>
-    <div class='permalink'>
-<a name='p39' class='permalink'></a><p>
-      The following functions used in the driver loop
-      specify
-      that rules and assertions are added to the data base as pairs
-      of the form
-      <kbd>["assert", </kbd>$\textit{rule-or-assertion}$<kbd>]</kbd>:
-      <div class='snippet' id='javascript_96_39_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCyUAzAVwDsBjAFwEsB7YgZwICdqBbCGeJVNARjQCYcRMlVqhKdAPoAbSuQCmjAIbSAFKVYAHWvOLkAlKADeWUGdCN55Qo2Lip5JQHMn8gCYyJ5dVp16ANKAARLIKytJB+gDcWAC+WMIUNHahiiqSAG4qhPI+LNrEugbG5qCm5pbWtqAAFvJKbqqOlGoa+X4G0XFCJEliLEoA1vKeYSqqWdI5hiallTYpXqohcmkRgZPTMfEJvaJ2EpKOLu6edN5tBUWB5HVHzjPlZvPVh5pKlIx5V3qGAGR-Wr1RqXDqGAC8kNAtxGx22PREyXskmIShYuVBhV+xieFisC2Rx1cHlk52+HUCQVR6Mi8N2iP6QxG1NydAAniwAEbUaSPOb46qk7xUtHyIKBdlcnldHaJfagSXc6SSaj4FGi8lY4qzCoCux1BpND6tXxa-QyhF9A5SJR0OiUJzEdF6TVFPm6qrW+4nElLTHXYK2+2O53kWndOVIoMOp1FSSKnmu7E6556oGG5pqA2NTNJzrm+GRsTRkNxzYjeQAD00ljtyTz7tTnvTOeNRpaDYL3XpVuRbnkpGkSmU+wbOP5zcORNOQrzlI09Ecekk-cHw6U+0ioAAPtvcaVzFPnMSzhdTQGgllGJQlJzpCNV0OR8kt7v9wfCceZ37zwFgkXiBXAcnw3F8LR7eVH3XfZ4w5JUxxTF47ATZVVXVdFVGzdsTXaM0u3iADQCg59aEybIK2rWt7VoBCniQltsMY-1fnwy15QGYZJAXc4lGXYjQJolkNnIyQqxreQ61oRs8WbWcgm4pdyCAtcSOIcVQCE0By1EyiJOo4hwMIw4hy5NwlB08TJOIWiPQJI8fVPOdghMzkzIsqiwMLPYkRctz3mUdEwlgqVpDoGymwJAZNFUFCVTVTSsNzZj8y8hkUjRVzzO5Nw2XCmSCUStskt-FLu0IjiRl88yxI8mj-NFMI6ECbK2Wk+i5Kq9y9JfQJ6sCxQmtAFrDO8sRDgA5SQNHZKZgASFKXF6Psk9Z2SykJv4zcLUIjbgOg5J0IxEq2rTIVJEsfAnJ4bbRrsXaVIEwC+qsAa8vywUvHO+RLrW0B+ButKCFuyb9tIlq3vaz6LqcgBmAHe3u5VyGoLjaB4vjgIhtMKtRxdeKUzb63fD9zER0HAJZBt-GJknQBxzqau6miadp0ngcJ0jnsaqmWdZoG0pB1TJHBmbWIgpFDiQ+NHAUUM8qWhwv19MlfqCKWeNlopwwI273sAxmrPltNCo7UW6SMqQFzcORknGGbx1s15FYc1aSvnWhrf2dIDf0189z5z8XZ-XCLytm3aHSDX5FDbXxbEMOveVcTrdIDcjpD5M6NOqHvqu+H5QT23lW4+QAEcchde3EOz84vp+t2-vzpFC4j5UVDCVEqAydOfm1LPZJz+uM-IQI4fN3XDjoMuK9IVlyBYPvHa9adle8c4F8pKfy90WfY8IreZ5GKPQzC9ftXMfuCuBRiz9YnbPlr4+ihi+fyDoRt6Kws-39S3tayUp+ehT6v3fg7PW0I2zfybmNKQ0dNDkDZPGaeO854L1AdXScUhiCEGkGoKBv95TGVtAAmW0dn5QLAQrFEOC1C5igSNQGhw7zUFIIMLGmDvQrWDr3SkzDWF711nwwYwtqA5XYVfDMbYzYRl1jjIRL806hhOgPMkQQhHqUAQYcejCpDUE0GkZGjBUZckoJ3esVd5oXwnHZKQJBhyIL0QY6gRi2iclMY9Mcb4A5MPcYwBx+iRzOOMW4sxNEZoEIlrY1EfiVQBI3EE1x7jprHWMJYswi00zLW-CrBuQQ7ExMcYElxrAQmPQETo4Wvj-FOOKSY0J1kLELWsU7Th2SzzD14VU2JNTglJM8jIwGhT4lGJQuIj6tdoa-WuhEsQ+AH5KSGcQEEKSUzgLOpMhu-0ZnIQHB7bpyglljMWBM3Ov0x5lVkUySQShNCaFkKnUcE0fbJECMOJwhBQxdSsugjJKjhQ3LuZQB5PV+ZWi+fpV5jB3mfOeWjBhvYhmGN6fUo4KMAX3I8VXXEClQCIucaAcEuK4lItGeE35NjJD5OqUU5FmLjq81AAAfjplc9FQKPE40pnixg+hqYB35STWcczGC10Wcs4e5p9AMoAFwss4my4FNFOUam5byhlAqPxCvmfs3i4re5qo1Yaj8U8rY6sOaLeFhCbS3IxckiVlDMnOy4TkjpgYbXsq2ts0FMFYUNJWZfaoJscL6ugXYN54LkhhSxUvBiuZioSrFoRBB+jVBiWURS94nxU3VilQHZlWE00ytAIoZgXwxKUhIIMYg1AADudhfXQjZPo8pvYFwKCAdmzQ6aWmZrLTmhlzLcyFoDrKktzjO0VuIFW2t9bdJWVAG2oodBY5xy9EGRQo401gPAcm3IW7ISEqCOuxgYYvXHpguDLdqzP7X0XR2tN4F-JT0kNvGJ3dGDcinqoAA5Oe1QRqA4AB0sCMBwbkAFugPDI0kPgZxLBVDYNwYENkyHJVGu-ZSd9n6xRdCfSMV9iCsPUC-b+u0G7-0AdZsB0D95VAQaWaimDcHVC9tUIQDYvLQAodAKx9joAABe5pAigGAweejUGUawcYPBjIyHAiCfNJR0AGHghEanuGSxCRtW8ToDWxQP7xOMak-ByscnQBySUOpNRVnSBWbcJEfQ36uh4Dwy+nIb7FDYYM7cyDRnmOma44ECzVnOQ2bsw5lTQRaRAA')">function is_assertion(exp) {
-    return type(exp) === "assert";
-}
-function assertion_body(exp) {
-    return head(contents(exp));
-}
-</pre></div></div>
-    </p></div>
-    <div class='permalink'>
-<a name='p40' class='permalink'></a><p>
-      Here are the declarations of the predicates and selectors
-      for the <kbd>and</kbd>,
-      <kbd>or</kbd>, <kbd>not</kbd>, and
-      <kbd>javascript_value</kbd>
-      syntactic forms
-      (section&nbsp;<REF NAME="sec:query-eval"><a class="superscript" id="4.4.4-sec-link-4.4.4.2" href="./4.4.4.html#sec4.4.4.2">4.4.4.2</a></REF>):
-      <div class='snippet' id='javascript_96_40_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwMwK4B2AxgC4CWA9oaOQM4D6ApgLYAOpAng8dQFZEyVQgAomADzZ0AlKADeoAE5NS+RTXoNC+ADY6xkmQG5QAXzyCK1ULnKK6pHv0sGpshctXrQACyYBDABNXYzMLEisaZQcnQgEIuhD3JRU1GlJ-cn0JNxNzcKFrTVYObkD6eMLRHJl5FK8NRm09JLyCyJs7GPK6StIkus803wDgmuk2ggjhFO6Ky0TxwdTvDKzWsPaZwiYAc39SJkCGAEd8JkVOAY8Vmj8gjfypqtA+fwA3fzpiRXIOZkk0Towmu9WG9zGhgmmzY-nsTFO50uDHeFwARpQ6EwRAByL5YxT9UDEkmksnk8kAHSwil02P8bDYTEIx1IlAYuEoihYImaOgANKBOILONIxRSJaAcYKAESoxQYrEyiZYWHwxEXbjyxXYvF0AlEyVGinU2k6emM5ms9mc7kiWF2ET4QXvaQiwUOxROwUALzFgtA1LJDKZLIYbI5XJ573doD94uNFOloDl6MxTGVRiwAEhiXguo5-IQ6AB3C64kNW8M2qMicSxnT0foy-wy2Votsp4idmWBZXSHEqkCgNVYjXI7XpiuWsMR208+tCwWNhwiFs9juy7uyvti5MyzNAA')">function is_empty_conjunction(exps) { return is_null(exps); }
-function first_conjunct(exps) { return head(exps); }
-function rest_conjuncts(exps) { return tail(exps); }
-
-function is_empty_disjunction(exps) { return is_null(exps); }
-function first_disjunct(exps) { return head(exps); }
-function rest_disjuncts(exps) { return tail(exps); }
-
-function negated_query(exps) { return head(exps); }
-
-function javascript_expression(exps) { return head(exps); }
-</pre></div></div>
-    </p></div>
-    <div class='permalink'>
-<a name='p41' class='permalink'></a><p>
-      The following three
-      functions
-      define the query-language-specific representation of rules:
-      <div class='snippet' id='javascript_96_41_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCyUAzAVwDsBjAFwEsB7YgZwICdqBbCGeJVNARjQCYcRMlVqhKdAPoAbSuQCmjAIbSAFKVYAHWvOLkAlKADeWUGdCN55Qo2Lip5JQHMn8gCYyJ5dVp16ANKAARLIKytJB+gDcWAC+WMIUNHahiiqSAG4qhPI+LNrEugbG5qCm5pbWtqAAFvJKbqqOlGoa+X4G0XFCJEliLEoA1vKeYSqqWdI5hiallTYpXqohcmkRgZPTMfEJvaJ2EpKOLu6edN5tBUWB5HVHzjPlZvPVh5pKlIx5V3qGAGR-Wr1RqXDqGAC8kNAtxGx22PREyXskmIShYuVBhV+xieFisC2Rx1cHlk52+HUCQVR6Mi8N2iP6QxG1NydAAniwAEbUaSPOb46qk7xUtHyIKBdlcnldHaJfagSXc6SSaj4FGi8lY4qzCoCux1BpND6tXxa-QyhF9A5SJR0OiUJzEdF6TVFPm6qrW+4nElLTHXYK2+2O53kWndOVIoMOp1FSSKnmu7E6556oGG5pqA2NTNJzrm+GRsTRkNxzYjeQAD00ljtyTz7tTnvTOeNRpaDYL3XpVuRbnkpGkSmU+wbOP5zcORNOQrzlI09Ecekk-cHw6U+0ioAAPtvcaVzFPnMSzhdTQGgllGJQlJzpCNV0OR8kt7v9wfCceZ37zwFgkXiBXAcnw3F8LR7eVH3XfZ4w5JUxxTF47ATZVVXVdFVGzdsTXaM0u3iADQCg59aEybIK2rWt7VoBCniQltsMY-1fnwy15QGYZJAXc4lGXYjQJolkNnIyQqxreQ61oRs8WbWcgm4pdyCAtcSOIcVQCE0By1EyiJOo4hwMIw4hy5NwlB08TJOIWiPQJI8fVPOdghMzkzIsqiwMLPYkRctz3mUdEwlgqVpDoGymwJAZNFUFCVTVTSsNzZj8y8hkUjRVzzO5Nw2XCmSCUStskt-FLu0IjiRl88yxI8mj-NFMI6ECbK2Wk+i5Kq9y9JfQJ6sCxQmtAFrDO8sRDgA5SQNHZKZgASFKXF6Psk9Z2SykJv4zcLUIjbgOg5J0IxEq2rTIVJEsfAnJ4bbRrsXaVIEwC+qsAa8vywUvHO+RLrW0B+ButKCFuyb9tIlq3vaz6LqcgBmAHe3u5VyGoLjaB4vjgIhtMKtRxdeKUzb63fD9zER0HAJZBt-GJknQBxzqau6miadp0ngcJ0jnsaqmWdZoG0pB1TJHBmbWIgpFDiQ+NHAUUM8qWhwv19MlfqCKWeNlopwwI273sAxmrPltNCo7UW6SMqQFzcORknGGbx1s15FYc1aSvnWhrf2dIDf0189z5z8XZ-XCLytm3aHSDX5FDbXxbEMOveVcTrdIDcjpD5M6NOqHvqu+H5QT23lW4+QAEcchde3EOz84vp+t2-vzpFC4j5UVDCVEqAydOfm1LPZJz+uM-IQI4fN3XDjoMuK9IVlyBYPvHa9adle8c4F8pKfy90WfY8IreZ5GKPQzC9ftXMfuCuBRiz9YnbPlr4+ihi+fyDoRt6Kws-39S3tayUp+ehT6v3fg7PW0I2zfybmNKQ0dNDkDZPGaeO854L1AdXScUhiCEGkGoKBv95TGVtAAmW0dn5QLAQrFEOC1C5igSNQGhw7zUFIIMLGmDvQrWDr3SkzDWF711nwwYwtqA5XYVfDMbYzYRl1jjIRL806hhOgPMkQQhHqUAQYcejCpDUE0GkZGjBUZckoJ3esVd5oXwnHZKQJBhyIL0QY6gRi2iclMY9Mcb4A5MPcYwBx+iRzOOMW4sxNEZoEIlrY1EfiVQBI3EE1x7jprHWMJYswi00zLW-CrBuQQ7ExMcYElxrAQmPQETo4Wvj-FOOKSY0J1kLELWsU7Th2SzzD14VU2JNTglJM8jIwGhT4lGJQuIj6tdoa-WuhEsQ+AH5KSGcQEEKSUzgLOpMhu-0ZnIQHB7bpyglljMWBM3Ov0x5lVkUySQShNCaFkKnUcE0fbJECMOJwhBQxdSsugjJKjhQ3LuZQB5PV+ZWi+fpV5jB3mfOeWjBhvYhmGN6fUo4KMAX3I8VXXEClQCIucaAcEuK4lItGeE35NjJD5OqUU5FmLjq81AAAfjplc9FQKPE40pnixg+hqYB35STWcczGC10Wcs4e5p9AMoAFwss4my4FNFOUam5byhlAqPxCvmfs3i4re5qo1Yaj8U8rY6sOaLeFhCbS3IxckiVlDMnOy4TkjpgYbXsq2ts0FMFYUNJWZfaoJscL6ugXYN54LkhhSxUvBiuZioSrFhbc6ODchBkUPsZRFKV6OTTYwfYlJGApvKb2Bcg5CD6VUIW+8mbA3X1zFW+Qd9dYNpEWIhtNavTYNwYxetKbJUMuZXJFQAB3JQbIHCFrFFKgOsqg2MXbWLfyU9JDbxid3Rg3Ip6qAAOS5u8EagOAAdLADbVAAt0B4ZGkh8DOJYKoLt0hAhsifZKo127KTrs3VOmIS6RirsQZ+6gW7d12nTaoA9fNj2nvPUs1F17b2qHeJ8VQhANi8tAM+0ASGviodAAAL3NIEUAx6DwwcvSjG9jA70ZCfYEAj5oIOgHfcEQDU9wyWISNq3idBh2KB3WRuDlG72Vlo6AId6k1ESdIBJtwkR9Dbq6HgX9K6chrsUF+-jtyL2CYQyJjDgRxO8KkzJuTzGgi0iAA')">function is_rule(assertion) {
-    return is_tagged_list(assertion, "rule");
-}
-function conclusion(rule) {
-    return head(tail(rule));
-}
-function rule_body(rule) {
-    return is_null(tail(tail(rule)))
-           ? list("always_true")
-           : head(tail(tail(rule)));
-}
-</pre></div></div>
-    </p></div>
-
 
       
       <div class='permalink'>
@@ -3758,7 +3672,7 @@ function rule_body(rule) {
       The function query_syntax_process
       </h2></div>
       <div class='permalink'>
-<a name='p42' class='permalink'></a><p>
+<a name='p37' class='permalink'></a><p>
 	  
 	  
 	  The function <kbd>query_syntax_process</kbd>
@@ -3779,14 +3693,14 @@ function rule_body(rule) {
 	  of section&nbsp;<REF NAME="sec:query-match"><a class="superscript" id="4.4.4-sec-link-4.4.4.3" href="./4.4.4.html#sec4.4.4.3">4.4.4.3</a></REF> and
 	  <kbd>unify_match</kbd>
 	  of section&nbsp;<REF NAME="sec:query-unify"><a class="superscript" id="4.4.4-sec-link-4.4.4.4" href="./4.4.4.html#sec4.4.4.4">4.4.4.4</a></REF> 
-	  can directly operate on the intended pairs and
+	  can operate directly on the intended pairs and
 	  lists rather than on the syntax representation generated by the parser.
 	  The (one-element) argument list of a 
 	  <kbd>javascript_value</kbd>
 	  syntactic form remains unprocessed, as explained below.
 	  A variable remains unchanged, and
 	  a literal is simplified to the primitive value it contains. 
-	  <div class='snippet' id='javascript_96_42_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCyUAzAVwDsBjAFwEsB7YgZwICdqBbCGeJVNARjQCYcRMlVqhKdAPoAbSuQCmjAIbSAFKVYAHWvOLkAlKADeWUGdCN55Qo2Lip5JQHMn8gCYyJ5dVp16ANKAARLIKytJB+gDcWAC+WMIUNHahiiqSAG4qhPI+LNrEugbG5qCm5pbWtqAAFvJKbqqOlGoa+X4G0XFCJEliLEoA1vKeYSqqWdI5hiallTYpXqohcmkRgZPTMfEJvaJ2EpKOLu6edN5tBUWB5HVHzjPlZvPVh5pKlIx5V3qGAGR-Wr1RqXDqGAC8kNAtxGx22PREyXskmIShYuVBhV+xieFisC2Rx1cHlk52+HUCQVR6Mi8N2iP6QxG1NydAAniwAEbUaSPOb46qk7xUtHyIKBdlcnldHaJfagSXc6SSaj4FGi8lY4qzCoCux1BpND6tXxa-QyhF9A5SJR0OiUJzEdF6TVFPm6qrW+4nElLTHXYK2+2O53kWndOVIoMOp1FSSKnmu7E6556oGG5pqA2NTNJzrm+GRsTRkNxzYjeQAD00ljtyTz7tTnvTOeNRpaDYL3XpVuRbnkpGkSmU+wbOP5zcORNOQrzlI09Ecekk-cHw6U+0ioAAPtvcaVzFPnMSzhdTQGgllGJQlJzpCNV0OR8kt7v9wfCceZ37zwFgkXiBXAcnw3F8LR7eVH3XfZ4w5JUxxTF47ATZVVXVdFVGzdsTXaM0u3iADQCg59aEybIK2rWt7VoBCniQltsMY-1fnwy15QGYZJAXc4lGXYjQJolkNnIyQqxreQ61oRs8WbWcgm4pdyCAtcSOIcVQCE0By1EyiJOo4hwMIw4hy5NwlB08TJOIWiPQJI8fVPOdghMzkzIsqiwMLPYkRctz3mUdEwlgqVpDoGymwJAZNFUFCVTVTSsNzZj8y8hkUjRVzzO5Nw2XCmSCUStskt-FLu0IjiRl88yxI8mj-NFMI6ECbK2Wk+i5Kq9y9JfQJ6sCxQmtAFrDO8sRDgA5SQNHZKZgASFKXF6Psk9Z2SykJv4zcLUIjbgOg5J0IxEq2rTIVJEsfAnJ4bbRrsXaVIEwC+qsAa8vywUvHO+RLrW0B+ButKCFuyb9tIlq3vaz6LqcgBmAHe3u5VyGoLjaB4vjgIhtMKtRxdeKUzb63fD9zER0HAJZBt-GJknQBxzqau6miadp0ngcJ0jnsaqmWdZoG0pB1TJHBmbWIgpFDiQ+NHAUUM8qWhwv19MlfqCKWeNlopwwI273sAxmrPltNCo7UW6SMqQFzcORknGGbx1s15FYc1aSvnWhrf2dIDf0189z5z8XZ-XCLytm3aHSDX5FDbXxbEMOveVcTrdIDcjpD5M6NOqHvqu+H5QT23lW4+QAEcchde3EOz84vp+t2-vzpFC4j5UVDCVEqAydOfm1LPZJz+uM-IQI4fN3XDjoMuK9IVlyBYPvHa9adle8c4F8pKfy90WfY8IreZ5GKPQzC9ftXMfuCuBRiz9YnbPlr4+ihi+fyDoRt6Kws-39S3tayUp+ehT6v3fg7PW0I2zfybmNKQ0dNDkDZPGaeO854L1AdXScUhiCEGkGoKBv95TGVtAAmW0dn5QLAQrFEOC1C5igSNQGhw7zUFIIMLGmDvQrWDr3SkzDWF711nwwYwtqA5XYVfDMbYzYRl1jjIRL806hhOgPMkQQhHqUAQYcejCpDUE0GkZGjBUZckoJ3esVd5oXwnHZKQJBhyIL0QY6gRi2iclMY9Mcb4A5MPcYwBx+iRzOOMW4sxNEZoEIlrY1EfiVQBI3EE1x7jprHWMJYswi00zLW-CrBuQQ7ExMcYElxrAQmPQETo4Wvj-FOOKSY0J1kLELWsU7Th2SzzD14VU2JNTglJM8jIwGhT4lGJQuIj6tdoa-WuhEsQ+AH5KSGcQEEKSUzgLOpMhu-0ZnIQHB7bpyglljMWBM3Ov0x5lVkUySQShNCaFkKnUcE0fbJECMOJwhBQxdSsugjJKjhQ3LuZQB5PV+ZWi+fpV5jB3mfOeWjBhvYhmGN6fUo4KMAX3I8VXXEClQCIucaAcEuK4lItGeE35NjJD5OqUU5FmLjq81AAAfjplc9FQKPE40pnixg+hqYB35STWcczGC10Wcs4e5p9AMoAFwss4my4FNFOUam5byhlAqPxCvmfs3i4re5qo1Yaj8U8rY6sOaLeFhCbS3IxckiVlDMnOy4TkjpgYbXsq2ts0FMFYUNJWZfaoJscL6ugXYN54LkhhSxUvBiuZioSrFoRbeMT2R6CUJWSQNYWF6VUGJaSlB8CgFUIcBVHi83STMDiiaKECUKjgjyOKh1VBPN0obctMQPwFqLdW+t0gCVQiCAAKyUFkOgpBrzwLIlMMUFaDz0XeJ8ZtwMUKQqcBGtGubqxdg-LEUA8hQryDASTHFWbZ52lOG8hghKoqqGTYg1NjgM2nr0qu9d9BN2aG3azeiPaQr9sJUEBdjAgjqoPMyoDmFr7PvPR4S9vLY1tmg1PWDUL37mlA6UWVv6lT-ucl4EDRqmWgCQxe1DGHzCyog9hnkvVmBnuQ9c1DXQd24l3fuqe4hC3FqkFeG8d5cjlqPRFaoYkO3mDYwekoeAxL2FAKkcI75IZjGVOWD9zHxPdn8lPSQd7MiKG5FPVQAByIMihvCEb5gAHSwIwHBuQAW6A8MjSQ+BnEsFUNg3BgQ2TeclUaozlJu6MAMzOmIWmRi6aCyF4zpnGDmYs7Taztn7yqAc0s1FLm3OqAg4QDY8GfPEY+F8XLoAABe5pAigGsweNLTmUaucYO5jI3nAjlfNAlgLwQovUCnuGSxCRtW8ToAAd0UDF25jmMsNfc5WFrcmlhBCUOpNRy3SDLbcJEfQRmuh4HCzpnIMTuuGZMxN9LznpuqFm6AArcklu8NW+tzbnWgi0iAA')">function query_syntax_process(exp) {
+	  <div class='snippet' id='javascript_96_37_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCyUAzAVwDsBjAFwEsB7YgZwICdqBbCGeJVNARjQCYcRMlVqhKdAPoAbSuQCmjAIbSAFKVYAHWvOLkAlKADeWUGdCN55Qo2Lip5JQHMn8gCYyJ5dVp16ANKAARLIKytJB+gDcWAC+WMIUNHahiiqSAG4qhPI+LNrEugbG5qCm5pbWtqAAFvJKbqqOlGoa+X4G0XFCJEliLEoA1vKeYSqqWdI5hiallTYpXqohcmkRgZPTMfEJvaJ2EpKOLu6edN5tBUWB5HVHzjPlZvPVh5pKlIx5V3qGAGR-Wr1RqXDqGAC8kNAtxGx22PREyXskmIShYuVBhV+xieFisC2Rx1cHlk52+HUCQVR6Mi8N2iP6QxG1NydAAniwAEbUaSPOb46qk7xUtHyIKBdlcnldHaJfagSXc6SSaj4FGi8lY4qzCoCux1BpND6tXxa-QyhF9A5SJR0OiUJzEdF6TVFPm6qrW+4nElLTHXYK2+2O53kWndOVIoMOp1FSSKnmu7E6556oGG5pqA2NTNJzrm+GRsTRkNxzYjeQAD00ljtyTz7tTnvTOeNRpaDYL3XpVuRbnkpGkSmU+wbOP5zcORNOQrzlI09Ecekk-cHw6U+0ioAAPtvcaVzFPnMSzhdTQGgllGJQlJzpCNV0OR8kt7v9wfCceZ37zwFgkXiBXAcnw3F8LR7eVH3XfZ4w5JUxxTF47ATZVVXVdFVGzdsTXaM0u3iADQCg59aEybIK2rWt7VoBCniQltsMY-1fnwy15QGYZJAXc4lGXYjQJolkNnIyQqxreQ61oRs8WbWcgm4pdyCAtcSOIcVQCE0By1EyiJOo4hwMIw4hy5NwlB08TJOIWiPQJI8fVPOdghMzkzIsqiwMLPYkRctz3mUdEwlgqVpDoGymwJAZNFUFCVTVTSsNzZj8y8hkUjRVzzO5Nw2XCmSCUStskt-FLu0IjiRl88yxI8mj-NFMI6ECbK2Wk+i5Kq9y9JfQJ6sCxQmtAFrDO8sRDgA5SQNHZKZgASFKXF6Psk9Z2SykJv4zcLUIjbgOg5J0IxEq2rTIVJEsfAnJ4bbRrsXaVIEwC+qsAa8vywUvHO+RLrW0B+ButKCFuyb9tIlq3vaz6LqcgBmAHe3u5VyGoLjaB4vjgIhtMKtRxdeKUzb63fD9zER0HAJZBt-GJknQBxzqau6miadp0ngcJ0jnsaqmWdZoG0pB1TJHBmbWIgpFDiQ+NHAUUM8qWhwv19MlfqCKWeNlopwwI273sAxmrPltNCo7UW6SMqQFzcORknGGbx1s15FYc1aSvnWhrf2dIDf0189z5z8XZ-XCLytm3aHSDX5FDbXxbEMOveVcTrdIDcjpD5M6NOqHvqu+H5QT23lW4+QAEcchde3EOz84vp+t2-vzpFC4j5UVDCVEqAydOfm1LPZJz+uM-IQI4fN3XDjoMuK9IVlyBYPvHa9adle8c4F8pKfy90WfY8IreZ5GKPQzC9ftXMfuCuBRiz9YnbPlr4+ihi+fyDoRt6Kws-39S3tayUp+ehT6v3fg7PW0I2zfybmNKQ0dNDkDZPGaeO854L1AdXScUhiCEGkGoKBv95TGVtAAmW0dn5QLAQrFEOC1C5igSNQGhw7zUFIIMLGmDvQrWDr3SkzDWF711nwwYwtqA5XYVfDMbYzYRl1jjIRL806hhOgPMkQQhHqUAQYcejCpDUE0GkZGjBUZckoJ3esVd5oXwnHZKQJBhyIL0QY6gRi2iclMY9Mcb4A5MPcYwBx+iRzOOMW4sxNEZoEIlrY1EfiVQBI3EE1x7jprHWMJYswi00zLW-CrBuQQ7ExMcYElxrAQmPQETo4Wvj-FOOKSY0J1kLELWsU7Th2SzzD14VU2JNTglJM8jIwGhT4lGJQuIj6tdoa-WuhEsQ+AH5KSGcQEEKSUzgLOpMhu-0ZnIQHB7bpyglljMWBM3Ov0x5lVkUySQShNCaFkKnUcE0fbJECMOJwhBQxdSsugjJKjhQ3LuZQB5PV+ZWi+fpV5jB3mfOeWjBhvYhmGN6fUo4KMAX3I8VXXEClQCIucaAcEuK4lItGeE35NjJD5OqUU5FmLjq81AAAfjplc9FQKPE40pnixg+hqYB35STWcczGC10Wcs4e5p9AMoAFwss4my4FNFOUam5byhlAqPxCvmfs3i4re5qo1Yaj8U8rY6sOaLeFhCbS3IxckiVlDMnOy4TkjpgYbXsq2ts0FMFYUNJWZfaoJscL6ugXYN54LkhhSxUvBiuZioSrFoRbeMT2R6CUJWSQNYWF6VUGJaSlB8CgFUIcBVHi83STMDiiaKECUKjgjyOKh1VBPN0obctMQPwFqLdW+t0gCVQiCAAKyUFkOgpBrzwLIlMMUFaDz0XeJ8ZtwMUKQqcBGtGubqxdg-LEUA8hQryDASTHFWbZ52lOG8hghKoqqGTYg1NjgM2nr0qu9d9BN2aG3azeiPaQr9sJUEBdjAgjqoPMyoDmFr7PvPR4S9vLY1tmg1PWDUL37mlA6UWVv6lT-ucl4EDRqmWgCQxe1DGHzCyog9hnkvVmBnuQ9c1DXQd24l3fuqe4hC3FqkFeG8d5cjlqPRFaoYkO3mDYwekoeAxL2FAKkcI75IZjGVOWD9zHxPdn8lPSQd7MiKG5FPVQAByIMihvCEb5gAHSwIwHBuQAW6A8MjSQ+BnEsFUNg3BgQ2TeclUaozlJu6MAMzOmIWmRi6aCyF4zpnGDmYs7Taztn7yqAc0s1FLm3OqAg4QDY8GfPEY+F8XLoAABe5pAigGsweNLTmUaucYO5jI3nAjlfNAlgLwQovUCnuGSxCRtW8ToAAd0UDF25jmMsNfc5WFrcmlhBCUOpNRy3SDLbcJEfQRmuh4HCzpnIMTuuGZMxN9LznpuqFm6AArcklu8NW+tzbnWgi0iAA')">function query_syntax_process(exp) {
     if (is_application(exp)) {
       const function_symbol = symbol_of_name(function_expression(exp));
       if (function_symbol === "javascript_value") {
@@ -3808,7 +3722,7 @@ function rule_body(rule) {
 </pre></div></div>
       </p></div>
       <div class='permalink'>
-<a name='p43' class='permalink'></a><p>
+<a name='p38' class='permalink'></a><p>
 	  An exception to this processing is the
 	  <kbd>javascript_value</kbd>
 	  syntactic form. Since the instantiated JavaScript syntax
@@ -3822,12 +3736,12 @@ function rule_body(rule) {
 	  of the argument expression.
 	  In this example
 	  of section&nbsp;<REF NAME="sec:deductive-info-retrieval"><a class="superscript" id="4.4.4-sec-link-4.4.1" href="./4.4.1.html">4.4.1</a></REF>
-	  <div class='snippet' id='javascript_96_43_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	  <div class='snippet' id='javascript_96_38_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 and(salary($person, $amount), javascript_value($amount > 50000))</pre></div></div>
 	  <kbd>query_syntax_process</kbd> produces a data structure
 	  in which a JavaScript syntax respresentation is embedded in
 	  a query-language specific representation:
-	  <div class='snippet' id='javascript_96_44_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
+	  <div class='snippet' id='javascript_96_39_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
 list("and",
      list("salary", list("name", "$person"), list("name", "$amount")),
      list("javascript_value",
@@ -3859,17 +3773,18 @@ list("and",
 
       
       <div class='permalink'>
-<a name='p44' class='permalink'></a><p>
-	The functions <kbd>javascript_value</kbd>
+<a name='p39' class='permalink'></a><p>
+	The function <kbd>javascript_value</kbd>
 	of section&nbsp;<REF NAME="sec:query-eval"><a class="superscript" id="4.4.4-sec-link-4.4.4.2" href="./4.4.4.html#sec4.4.4.2">4.4.4.2</a></REF> and the driver loop
-	of section&nbsp;<REF NAME="sec:query-driver"><a class="superscript" id="4.4.4-sec-link-4.4.4.1" href="./4.4.4.html#sec4.4.4.1">4.4.4.1</a></REF> call 
-	<kbd>instantiate_expression</kbd> on an expression
-	in JavaScript syntax representation and a frame.
-	Instantiation proceeds by copying the expression, replacing any 
-	variable by another expression in JavaScript syntax representation.
-	The replacement results from instantiating the variable and
-	reverse-interpreting any pairs in the result so they can be unparsed.
-	  <div class='snippet' id='javascript_96_45_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCyUB7ABwFMAnAQwBcBLfAOwH1LyAjAG2IBpRCBXS0OToATUAHNilXGABmpfAFtQAYwAW5QpTKgAzKAAUAZ2LKa9XWh2WAlDhm86p2nUGHD+ZfoDWxAJ7dSE3xSYUNrUABvLFAY0EDKXlIXakMGOl42Nn1A5WDQ21jCwoB+UAdhYhlqOmJhaKKigC5QYgBHXnIsn39QVWJyYX0+geygkLDrAoaS3v7BnLyw+umY5vI3D28-bmZqLIXxyYBuLABfOwcncwVyHyZWDn1wqMLcukMBNg9O+-ZiUAAvKA2ClKPoAEQAKmYf0h4OsJ0K9kcZhcX3wXl4hC2vgYAEZuN0GAAmZ7LIpvD6gQy8FgwjiA1zuTxEgmgXZZL7KH704jHcmFagyAwpBjlSrVWpGWm8yaRAXTeKJFziqo1YSI6anFpsYzylavehUg6iIHrZk4kk7ch7aV0h58hEKhpKpKgUWqyXzMbCKYGlalT3q53+1bsm37H1OlbnQqx2LIq7Jd5kMGswl+K2gABunV4fP100pAhp9r+jPNm3T4dtXJ5Dv5KyFItSQalpdlZND1Mk91r3zYvw4nBD3Z4NtI+hBH0tbMIE8txO4ubY+cmI7HY45U4HQ8d0a1Or1L1DxbiPorGxZmaXNayHYbB-9zf0HpEEvVo1yITlJ8KAEgVmMSg+3vGUHRHQDNxWedqEnWDJyJW8VzXDdoM3bcHz+SYnSgmJtWIXV-j-MdgNAr88mXPM+U1f14waejQEYxNUVAYQUnnSg1H0BQu0VSRlVAJQARE0BwXRTFCHBUcGlKCSsRkpohMBUTwWqYxSEoaToNKdTU0UwpmjIeRJwUbhwQcLw6HwAB3FwiDIKhnFAABaFzwz+eFaKY8lXRcdjDE4tQTnOLAzwcihUT3RkbjuXknhOM8JAEIEIqc+g9wheSpKdM8+BSggSEi5xMrUlNNK8i4UWc2LiAYFhqnYugxH0XNSGoCCc2oviYj88c4Na8h2s6lCaLOLAWOchqRGqMQGDajq-n0aamrEHrzwSN1hkGFbZqdc5JvMXbmvm6jlsavbC16gS3W3Y61pCibLlY+6GGqBg5HIBRiEG4a-m4T7vvWvrK08BbOsBsaDue5ziAADy0ERfsW4cutXLhQEh4GbpcBCeNuOr7uRkbuoBiggcep7qvMUVmDECRhAYacwVyBRCHoYg6EoHY+nuNaro2wTRTx1n2ZqLnwgAMkl2YRlFjmJZUoFKF5unKcO5JUjoL6fvl8XKGxzbNb5hmmdBfQ9c57mxO177KtCjX3XeZguY6rQmDIBR9C0UgzMx8mCxIl9RXBpafd49bDWd0B7sZV73sh73PbJnWnyKPq3wqNUpXuv1u1KcODNiZp1JdmgqDq8Pzpmk7Rur1brBTinyQIoj3WFV9Ujx8PfxDPq8dLoRy-dqvtqT33G-91PuCL6ZB9diuPd972I3H3im8dbzW+PUA8HD91DEEHh2oUagaGzf5Rr7nH2U9rfxqppNzwv0hjDermyEIeI18NoXUlDx4PdFIF09opEuXcFxANDKUWqDANCEBBNyVE+M7i2x+uCBC8I0LoW7MzUYL837VB9l-SQQw5g-0brPHBhRAgELqkQz+39tw9xwmA3eYB94pCPl-agp9z6X2okXWBIIfadB-urGGNNnZDzdnVeGJC3DOH0PIwIij6Ab3Wo7XIhBfDKLhgowwzhI6xAzv-IaKMfoqOIGougedoHPzIIQj+pASFgnnsPSuns9EGOcBoux-pwEMDxlYmx-iDSlBFkQXRY8QmGPoOuUAVCixRJXraWJRjJhUKMvo1RcS6D3xoTfbRuj0nxMpvOV+dV2hkFxC-Fg+BjD6AAOTmlTPoahBoAA6WBSAZB+vAzmjNKD4A+sEL26RMjcB6L4HC6EmnmTqQ04glUKlv2qaQWpZB6mNJaW4NpHSVjdN6Y8AZIgmAjJkGM-QeNeDLknj0G53AABeCTQDdKKKcoZFyrnZimc82Z1D5liUWcYSqUEJpwQ+HA94NkyDNM+ec0Zy84Z-OBObcE5BwTmRYFisSyhcXgmEPCawTSnR4FWVU-MGz5pbKWfCwgJAznDKRV7FFoAeh4IxQSnF5l8XmSJZMIF4IvJAA')">function instantiate_expression(expression, frame) {
+	of section&nbsp;<REF NAME="sec:query-driver"><a class="superscript" id="4.4.4-sec-link-4.4.4.1" href="./4.4.4.html#sec4.4.4.1">4.4.4.1</a></REF> call
+	<kbd>instantiate</kbd> on a given
+	expression to obtain a copy in which any variable in the
+	expression is replaced by its value in a given frame.
+	The input and result expressions use the JavaScript syntax
+	representation, so any value that results from instantiating a
+	variable needs to be converted from its form in the binding back to
+	the JavaScript syntax representation.
+	  <div class='snippet' id='javascript_96_40_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCyUB7ABwFMAnAQwBcBLfAOwH1LyAjAG2IBpRCBXS0OToATUAHNilXGABmpfAFtQAYwAW5QpTKgAzKAAUAZ2LKa9XWh2WAlDhm86p2nUGHD+ZfoDWxAJ7dSE3xSYUNrUABvLFAY0EDKXlIXakMGOl42Nn1A5WDQ21jCwoB+UAdhYhlqOmJhaKKigC5QYgBHXnIsn39QVWJyYX0+geygkLDrAoaS3v7BnLyw+umY5vI3D28-bmZqLIXxyYBuLABfOwcncwVyHyZWDn1wqMLcukMBNg9O+-ZiUAAvKA2ClKPoAEQAKmYf0h4OsJ0K9kcZhcX3wXl4hC2vgYAEZuN0GAAmZ7LIpvD6gQy8FgwjiA1zuTxEgmgXZZL7KH704jHcmFagyAwpBjlSrVWpGWm8yaRAXTeKJFziqo1YSI6anFpsYzylavehUg6iIHrZk4kk7ch7aV0h58hEKhpKpKgUWqyXzMbCKYGlalT3q53+1bsm37H1OlbnQqx2LIq7Jd5kMGswl+K2gABunV4fP100pAhp9r+jPNm3T4dtXJ5Dv5KyFItSQalpdlZND1Mk91r3zYvw4nBD3Z4NtI+hBH0tbMIE8txO4ubY+cmI7HY45U4HQ8d0a1Or1L1DxbiPorGxZmaXNayHYbB-9zf0HpEEvVo1yITlJ8KAEgVmMSg+3vGUHRHQDNxWedqEnWDJyJW8VzXDdoM3bcHz+SYnSgmJtWIXV-j-MdgNAr88mXPM+U1f14waejQEYxNUVAYQUnnSg1H0BQu0VSRlVAJQARE0BwXRTFCHBUcGlKCSsRkpohMBUTwWqYxSEoaToNKdTU0UwpmjIeRJwUbhwQcLw6HwAB3FwiDIKhnFAABaFzwz+eFaKY8lXRcdjDE4tQTnOLAzwcihUT3RkbjuXknhOM8JAEIEIqc+g9wheSpKdM8+BSggSEi5xMrUlNNK8i4UWc2LiAYFhqnYugxH0XNSGoCCc2oviYj88c4Na8h2s6lCaLOLAWOchqRGqMQGDajq-n0aamrEHrzwSN1hkGFbZqdc5JvMXbmvm6jlsavbC16gS3W3Y61pCibLlY+6GGqBg5HIBRiEG4a-m4T7vvWvrK08BbOsBsaDue5ziAADy0ERfsW4cutXLhQEh4GbpcBCeNuOr7uRkbuoBiggcep7qvMUVmDECRhAYacwVyBRCHoYg6EoHY+nuNaro2wTRTx1n2ZqLnwgAMkl2YRlFjmJZUoFKF5unKcO5JUjoL6fvl8XKGxzbNb5hmmdBfQ9c57mxO177KtCjX3XeZguY6rQmDIBR9C0UgzMx8mCxIl9RXBpafd49bDWd0B7sZV73sh73PbJnWnyKPq3wqNUpXuv1u1KcODNiZp1JdmgqDq8Pzpmk7Rur1brBTinyQIoj3WFV9Ujx8PfxDPq8dLoRy-dqvtqT33G-91PuCL6ZB9diuPd972I3H3im8dbzW+PUA8HD91DEEHh2oUagaGzf5Rr7nH2U9rfxqppNzwv0hjDermyEIeI18NoXUlDx4PdFIF09opEuXcFxANDKUWqDANCEBBNyVE+M7i2x+uCBC8I0LoW7MzUYL837VB9l-SQQw5g-0brPHBhRAgELqkQz+39tw9xwmA3eYB94pCPl-agp9z6X2okXWBIIfadB-urGGNNnZDzdnVeGJC3DOH0PIwIij6Ab3Wo7XIhBfDKLhgowwzhI6xAzv-IaKMfoqOIGougedoHPzIIQj+pASFgnnsPSuns9EGOcBoux-pwEMDxlYmx-iDSlBFkQXRY8QmGPoOuUAVCixRJXraWJRjJhUKMvo1RcS6D3xoTfbRuj0nxMpvOV+dV2hkFxC-Fg+BjD6AAOTmlTPoahBoAA6WBSAZB+vAzmjNKD4A+sEL26RMjcB6L4HC6EmnmTqQ04glUKlv2qaQWpZB6mNJaW4NpHSVjdN6Y8AZIgmAjJkGM-QeNeDLknj0G53AABeCTQDdKKKcoZFyrnZimc82Z1D5liUWcYSqUEJpwQ+HA94NkyDNM+ec0Zy84Z-OBObcE5BwTmRYFisSyhcXgmEPCawTSnR4FWVU-MGz5pbKWfCwgJAznDKRV7FFoAeh4IxQSnF5l8XmSJZMIF4IvJAA')">function instantiate_expression(expression, frame) {
     function copy(expression) {
         return is_variable(expression)
                ? reverse_interpret(instantiate_term(expression, frame))
@@ -3881,7 +3796,7 @@ list("and",
     return copy(expression);
 }
 </pre></div></div>
-	  The function 
+	  The function
 	  <kbd>instantiate_term</kbd> takes
 	  a variable, pair, or primitive value as first argument and a frame
 	  as second argument and recursively replaces the variables in
@@ -3902,7 +3817,7 @@ list("and",
 	 $[3, 5]$.
 	  
 	  
-	  <div class='snippet' id='javascript_96_46_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwMwK4B2AxgC4CWA9oaOYQM6kCGhFTpApgPqcBOAtgAo+-ADShcvJvw4BKUAG8soFbVyhB5elwBuTXuSYAjADYdhHAbPlLVd0MWqNQRugBM6Ac1ABeF+68uOi5JaXMRcVCZWQBuZXsVXg5SfF4aLS4iNw5cOg43QVdCD0JPWXiEyoB+UBEKyvsALloGZlZDTh5LISKSz10mE3xzXq9ZSKlouLsAX1AOE3oONQ0MgAcmcl4LKxt6uySUtNANrc1WljZOkUEACw4mApFxiUm5cX2GyrpGS47uG7McgmHb8F5ROSxepzBZLRSgEC1bq0eigJgnAz8cgUHTLPRDDifRLJVI0ETTVQzLAzIA')">function instantiate_term(term, frame) {
+	  <div class='snippet' id='javascript_96_41_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwMwK4B2AxgC4CWA9oaOYQM6kCGhFTpApgPqcBOAtgAo+-ADShcvJvw4BKUAG8soFbVyhB5elwBuTXuSYAjADYdhHAbPlLVd0MWqNQRugBM6Ac1ABeF+68uOi5JaXMRcVCZWQBuZXsVXg5SfF4aLS4iNw5cOg43QVdCD0JPWXiEyoB+UBEKyvsALloGZlZDTh5LISKSz10mE3xzXq9ZSKlouLsAX1AOE3oONQ0MgAcmcl4LKxt6uySUtNANrc1WljZOkUEACw4mApFxiUm5cX2GyrpGS47uG7McgmHb8F5ROSxepzBZLRSgEC1bq0eigJgnAz8cgUHTLPRDDifRLJVI0ETTVQzLAzIA')">function instantiate_term(term, frame) {
     if (is_variable(term)) {
         const binding = binding_in_frame(term, frame);
         return is_undefined(binding)
@@ -3918,9 +3833,10 @@ list("and",
 </pre></div></div>
 	  The function
 	  <kbd>reverse_interpret</kbd>
-	  constructs a JavaScript syntax representation for a given variable,
-	  pair or primitive value.
-	  <div class='snippet' id='javascript_96_47_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwMwK4B2AxgC4CWA9oaAE4CmAbvbQM70D65hpLADg1IAKXrQC2ASlABvLKHl16pfLRrlWHRgENa5LQCMANvREtJchZYUB+UKLEWrlgFyh1HPlvK1T4iY6d5WzEtAGtOLT4+Q3JiLQpqIRDwjkItMRMAIk9vTIkAGgDA4pL5GNZhBmY2Tm5RASUhAAt6LQATX0kCotLekqqWdi4efkERL0NOiWn-XtcQOzM3VlAtUAFyMXIKZlBtQ3x6HsDkzhjRLUn7CQBuLABfIA')">function reverse_interpret(term) {
+	  constructs a JavaScript syntax representation for a variable,
+	  pair, or primitive value returned by
+	  <kbd>instantiate_term</kbd>.
+	  <div class='snippet' id='javascript_96_42_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwMwK4B2AxgC4CWA9oaAE4CmAbvbQM70D65hpLADg1IAKXrQC2ASlABvLKHl16pfLRrlWHRgENa5LQCMANvREtJchZYUB+UKLEWrlgFyh1HPlvK1T4iY6d5WzEtAGtOLT4+Q3JiLQpqIRDwjkItMRMAIk9vTIkAGgDA4pL5GNZhBmY2Tm5RASUhAAt6LQATX0kCotLekqqWdi4efkERL0NOiWn-XtcQOzM3VlAtUAFyMXIKZlBtQ3x6HsDkzhjRLUn7CQBuLABfIA')">function reverse_interpret(term) {
     return is_variable(term)
            ? term
            : is_pair(term)
@@ -3933,23 +3849,23 @@ list("and",
 </pre></div></div>
 	  
 	  To illustrate these three functions, consider what happens when the query
-	  <div class='snippet' id='javascript_96_48_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwKwPYBGAFACQAeANKADYCWAzgC7EBEAxvgLYAOArkwCmAJ1bVWAdzoAvAIbCAJqwCUyoA')">job($x, list("computer", "wizard"))
+	  <div class='snippet' id='javascript_96_43_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwKwPYBGAFACQAeANKADYCWAzgC7EBEAxvgLYAOArkwCmAJ1bVWAdzoAvAIbCAJqwCUyoA')">job($x, list("computer", "wizard"))
 </pre></div></div>
 	  whose JavaScript syntax representation is given above is
 	  processed by the driver loop.
 	  Let's say a frame $g$ of the result stream
-	  binds the variable 
+	  binds the variannble 
 	  <kbd>$x</kbd> to the pair
-	  $[\texttt{"Bitdiddle"}, \texttt{\$y}]$, and 
+	  $[\texttt{"Bitdiddle"}, \texttt{\$y}]$ and 
 	  the variable <kbd>$y</kbd> to the pair
 	  [\texttt{"Ben"}, \texttt{null}]. Then,
 	  <kbd class='snippet'>instantiate_term(list("name", "$\$$x"), $g$)</kbd>
-	  returns 
-	  <div class='snippet' id='javascript_96_49_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
+	  returns the list
+	  <div class='snippet' id='javascript_96_44_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
 list("Bitdiddle", "Ben")</pre></div></div>
 	  which
 	  <kbd>reverse_interpret</kbd> transforms into
-	  <div class='snippet' id='javascript_96_50_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
+	  <div class='snippet' id='javascript_96_45_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
 list("application",
      list("name", "pair"),	      
      list(list("literal", "Bitdiddle"),
@@ -3961,7 +3877,7 @@ list("application",
 	  <kbd>instantiate_expression</kbd>
 	  applied to the JavaScript syntax representation of the query and
 	  the frame $g$ is:
-	  <div class='snippet' id='javascript_96_51_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
+	  <div class='snippet' id='javascript_96_46_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
 list("application",
      list("name", "job"),
      list(list("application",
@@ -3976,7 +3892,7 @@ list("application",
                list(list("literal", "computer"),
                     list("literal", "wizard")))))</pre></div></div>
 	  The driver loop unparses this representation and displays it as:
-	  <div class='snippet' id='javascript_96_52_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
+	  <div class='snippet' id='javascript_96_47_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
 'job(list("Bitdiddle", "Ben"), list("computer", "wizard")))'</pre></div></div>
       </p></div>
       
@@ -3988,7 +3904,7 @@ list("application",
       </h2></div>
 
       <div class='permalink'>
-<a name='p45' class='permalink'></a><p>
+<a name='p40' class='permalink'></a><p>
 	  The function <kbd>unparse</kbd>
 	  transforms a component given in the  JavaScript syntax representation
 	  into a string by applying the syntax rules
@@ -3999,7 +3915,7 @@ list("application",
 	  and the remaining kinds of expressions
 	  as exercise&nbsp;<REF NAME="ex:parse"><a class="superscript" id="4.4.4-ex-link-4.2" href="./4.1.2.html#ex_4.2">4.2</a></REF>. A literal is transformed by
 	  <kbd>stringify</kbd>ing its value, and
-	  a name is transformed into the symbol that identifies it.
+	  a name is transformed into its symbol.
 	  An application is formatted by unparsing the function expression,
 	  which we can asume to be a name here, followed by the comma-separated 
 	  argument expression strings enclosed in parentheses.
@@ -4032,25 +3948,23 @@ function comma_separated(strings) {
 	  The function
 	  <kbd>unparse</kbd>
 	  would work fine without the clause
-	  <div class='snippet' id='javascript_96_53_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwLlAJYDOA+gDbEAuJAxgPYB2RlATgK42UGMAUApgA8ADgEosAflBsGQgIYsifHgFtZAaz4lZQoRRqyuvVRpINZypQCIKzSyIA0oLKBeu37jx75k+FhtUEhFj4iIm4mfmERaKA')">: is_list_construction(exp)
+	  <div class='snippet' id='javascript_96_48_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwLlAJYDOA+gDbEAuJAxgPYB2RlATgK42UGMAUApgA8ADgEosAflBsGQgIYsifHgFtZAaz4lZQoRRqyuvVRpINZypQCIKzSyIA0oLKBeu37jx75k+FhtUEhFj4iIm4mfmERaKA')">: is_list_construction(exp)
 ? unparse(make_application(make_name("list"), 
                            element_expressions(exp)))
 </pre></div></div>
-	  but the output string would become unnecessarily
+	  but the output string would be unnecessarily
 	  verbose in cases where pattern variables are instantiated
 	  by lists. In the example above, where processing the query
-	  <div class='snippet' id='javascript_96_54_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwKwPYBGAFACQAeANKADYCWAzgC7EBEAxvgLYAOArkwCmAJ1bVWAdzoAvAIbCAJqwCUyoA')">job($x, list("computer", "wizard"))
+	  <div class='snippet' id='javascript_96_49_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwKwPYBGAFACQAeANKADYCWAzgC7EBEAxvgLYAOArkwCmAJ1bVWAdzoAvAIbCAJqwCUyoA')">job($x, list("computer", "wizard"))
 </pre></div></div>
 	  yields a frame that binds 
 	  <kbd>$x</kbd>
-	  to
-	  <div class='snippet' id='javascript_96_55_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwBwIYCWATgBQBEAQoQC4AmhddANgKbkA0oBJFlrAO06gBAV2bMAlJKA')">pair("Bitdiddle", pair("Ben", null))
-</pre></div></div>
+	  to $[\texttt{"Bitdiddle"}, [\texttt{"Ben"}, \texttt{null}]]$,
 	  <kbd>unparse</kbd> produces
-	  <div class='snippet' id='javascript_96_56_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
+	  <div class='snippet' id='javascript_96_50_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
 'job(list("Bitdiddle", "Ben"), list("computer", "wizard"))'</pre></div></div>
 	  However, without the clause it would produce
-	  <div class='snippet' id='javascript_96_57_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
+	  <div class='snippet' id='javascript_96_51_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
 'job(pair("Bitdiddle", pair("Ben", null)), list("computer", "wizard"))'</pre></div></div>
 	  which explicitly constructs the two pairs that make up the first list.
           To achieve the more concise formatting used throughout 
@@ -4065,7 +3979,7 @@ function comma_separated(strings) {
 	  an application of
 	  <kbd>pair</kbd>
 	  whose second argument is itself a list construction.
-	  <div class='snippet' id='javascript_96_58_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	  <div class='snippet' id='javascript_96_52_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function is_list_construction(exp) {
     return (is_literal(exp) && is_null(literal_value(exp))) ||
            (is_application(exp) && is_name(function_expression(exp)) &&
@@ -4076,7 +3990,7 @@ function is_list_construction(exp) {
 	  amounts to collecting the first arguments of applications of
 	  <kbd>pair</kbd> until the literal	  
 	  <kbd>null</kbd> is reached.
-	  <div class='snippet' id='javascript_96_59_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	  <div class='snippet' id='javascript_96_53_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function element_expressions(list_constr) {
     return is_literal(list_constr)
            ? null // list_constr is literal null
@@ -4086,6 +4000,99 @@ function element_expressions(list_constr) {
 }</pre></div></div>
       </p></div>
 
+      
+      <div class='permalink'>
+        <a name='h15' class='permalink'></a><h2>
+    
+	Predicates and selectors for the query-language-specific representation
+      </h2></div>
+
+    
+    <div class='permalink'>
+<a name='p41' class='permalink'></a><p>
+      The functions <kbd>type</kbd>
+      and <kbd>contents</kbd>, used by
+      <kbd>evaluate_query</kbd>
+      (section&nbsp;<REF NAME="sec:query-eval"><a class="superscript" id="4.4.4-sec-link-4.4.4.2" href="./4.4.4.html#sec4.4.4.2">4.4.4.2</a></REF>), specify that a
+      syntactic form of a query-language-specific representation
+      is identified by
+      the string in its head.
+      They are the same as the
+      <kbd>type_tag</kbd>
+      and <kbd>contents</kbd>
+      functions
+      in section&nbsp;<REF NAME="sec:manifest-types"><a class="superscript" id="4.4.4-sec-link-2.4.2" href="./2.4.2.html">2.4.2</a></REF>, except for the
+      error message.
+      <div class='snippet' id='javascript_96_54_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCyUAzAVwDsBjAFwEsB7YgZwICdqBbCGeJVNARjQCYcRMlVqhKdAPoAbSuQCmjAIbSAFKVYAHWvOLkAlKADeWUGdCN55Qo2Lip5JQHMn8gCYyJ5dVp16ANKAARLIKytJB+gDcWAC+WMIUNHahiiqSAG4qhPI+LNrEugbG5qCm5pbWtqAAFvJKbqqOlGoa+X4G0XFCJEliLEoA1vKeYSqqWdI5hiallTYpXqohcmkRgZPTMfEJvaJ2EpKOLu6edN5tBUWB5HVHzjPlZvPVh5pKlIx5V3qGAGR-Wr1RqXDqGAC8kNAtxGx22PREyXskmIShYuVBhV+xieFisC2Rx1cHlk52+HUCQVR6Mi8N2iP6QxG1NydAAniwAEbUaSPOb46qk7xUtHyIKBdlcnldHaJfagSXc6SSaj4FGi8lY4qzCoCux1BpND6tXxa-QyhF9A5SJR0OiUJzEdF6TVFPm6qrW+4nElLTHXYK2+2O53kWndOVIoMOp1FSSKnmu7E6556oGG5pqA2NTNJzrm+GRsTRkNxzYjeQAD00ljtyTz7tTnvTOeNRpaDYL3XpVuRbnkpGkSmU+wbOP5zcORNOQrzlI09Ecekk-cHw6U+0ioAAPtvcaVzFPnMSzhdTQGgllGJQlJzpCNV0OR8kt7v9wfCceZ37zwFgkXiBXAcnw3F8LR7eVH3XfZ4w5JUxxTF47ATZVVXVdFVGzdsTXaM0u3iADQCg59aEybIK2rWt7VoBCniQltsMY-1fnwy15QGYZJAXc4lGXYjQJolkNnIyQqxreQ61oRs8WbWcgm4pdyCAtcSOIcVQCE0By1EyiJOo4hwMIw4hy5NwlB08TJOIWiPQJI8fVPOdghMzkzIsqiwMLPYkRctz3mUdEwlgqVpDoGymwJAZNFUFCVTVTSsNzZj8y8hkUjRVzzO5Nw2XCmSCUStskt-FLu0IjiRl88yxI8mj-NFMI6ECbK2Wk+i5Kq9y9JfQJ6sCxQmtAFrDO8sRDgA5SQNHZKZgASFKXF6Psk9Z2SykJv4zcLUIjbgOg5J0IxEq2rTIVJEsfAnJ4bbRrsXaVIEwC+qsAa8vywUvHO+RLrW0B+ButKCFuyb9tIlq3vaz6LqcgBmAHe3u5VyGoLjaB4vjgIhtMKtRxdeKUzb63fD9zER0HAJZBt-GJknQBxzqau6miadp0ngcJ0jnsaqmWdZoG0pB1TJHBmbWIgpFDiQ+NHAUUM8qWhwv19MlfqCKWeNlopwwI273sAxmrPltNCo7UW6SMqQFzcORknGGbx1s15FYc1aSvnWhrf2dIDf0189z5z8XZ-XCLytm3aHSDX5FDbXxbEMOveVcTrdIDcjpD5M6NOqHvqu+H5QT23lW4+QAEcchde3EOz84vp+t2-vzpFC4j5UVDCVEqAydOfm1LPZJz+uM-IQI4fN3XDjoMuK9IVlyBYPvHa9adle8c4F8pKfy90WfY8IreZ5GKPQzC9ftXMfuCuBRiz9YnbPlr4+ihi+fyDoRt6Kws-39S3tayUp+ehT6v3fg7PW0I2zfybmNKQ0dNDkDZPGaeO854L1AdXScUhiCEGkGoKBv95TGVtAAmW0dn5QLAQrFEOC1C5igSNQGhw7zUFIIMLGmDvQrWDr3SkzDWF711nwwYwtqA5XYVfDMbYzYRl1jjIRL806hhOgPMkQQhHqUAQYcejCpDUE0GkZGjBUZckoJ3esVd5oXwnHZKQJBhyIL0QY6gRi2iclMY9Mcb4A5MPcYwBx+iRzOOMW4sxNEZoEIlrY1EfiVQBI3EE1x7jprHWMJYswi00zLW-CrBuQQ7ExMcYElxrAQmPQETo4Wvj-FOOKSY0J1kLELWsU7Th2SzzD14VU2JNTglJM8jIwGhT4lGJQuIj6tdoa-WuhEsQ+AH5KSGcQEEKSUzgLOpMhu-0ZnIQHB7bpyglljMWBM3Ov0x5lVkUySQShNCaFkKnUcE0fbJECMOJwhBQxdSsugjJKjhQ3LuZQB5PV+ZWi+fpV5jB3mfOeWjBhvYhmGN6fUo4KMAX3I8VXXEClQCIucaAcEuK4lItGeE35NjJD5OqUU5FmLjq81AAAfjplc9FQKPE40pnixg+hqYB35STWcczGC10Wcs4e5p9AMoAFwss4my4FNFOUam5byhlAqPxCvmfs3i4re5qo1Yaj8U8rY6sOaLeFhCbS3IxckiVlDMnOy4TkjpgYbXsq2ts0FMFYUNJWZfaoJscL6ugXYN54LkhhSxUvBiuZioSrFoRBB+jVBiWURS94nxU3VilQHZlWE00ytAIoZgXwxKUhIIMYg1AADudhfXQjZPo8pvYFwKCAdmzQ6aWmZrLTmhlzLcyFoDrKktzjO0VuIFW2t9bdJWVAG2oodBY5YH8lPSQ28Ynd0YNyKeqgADkQZFDeCNQHAAOlgRgODcgAt0B4ZGkh8DOJYKobBuDAhsg-ZKo1+7KTbt3WKLoa6RibsQf+6ge7D12mPaoU9fML1XvvKoW9SzUWPufaoXtqhCAbF5aAT9oAsM4dAAAL3NIEUAF6DwofvSjJ9jAX0ZA-YEMj5o4OgF-cEcDU9wyWISNq3idAa2KAPTRtD9GX2VmY6AOSSh1JqPk6QeTbhIj6H3V0PAwGN05C3YoADonbl3vExhqT+HAiyfk5yRTynVOcaCLSIAA')">function type(exp) {
+    return is_pair(exp)
+           ? head(exp)
+           : error(exp, "unknown expression type");
+}
+function contents(exp) {
+    return is_pair(exp)
+           ? tail(exp)
+           : error(exp, "unknown expression contents");
+}
+</pre></div></div>
+    </p></div>
+    <div class='permalink'>
+<a name='p42' class='permalink'></a><p>
+      The following functions used in the driver loop
+      specify
+      that rules and assertions are added to the data base by an
+      <kbd>assert</kbd> command, which
+      <kbd>query_syntax_process</kbd> transforms
+      into a pair of the form
+      <kbd>["assert", </kbd>$\textit{rule-or-assertion}$<kbd>]</kbd>:
+      <div class='snippet' id='javascript_96_55_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCyUAzAVwDsBjAFwEsB7YgZwICdqBbCGeJVNARjQCYcRMlVqhKdAPoAbSuQCmjAIbSAFKVYAHWvOLkAlKADeWUGdCN55Qo2Lip5JQHMn8gCYyJ5dVp16ANKAARLIKytJB+gDcWAC+WMIUNHahiiqSAG4qhPI+LNrEugbG5qCm5pbWtqAAFvJKbqqOlGoa+X4G0XFCJEliLEoA1vKeYSqqWdI5hiallTYpXqohcmkRgZPTMfEJvaJ2EpKOLu6edN5tBUWB5HVHzjPlZvPVh5pKlIx5V3qGAGR-Wr1RqXDqGAC8kNAtxGx22PREyXskmIShYuVBhV+xieFisC2Rx1cHlk52+HUCQVR6Mi8N2iP6QxG1NydAAniwAEbUaSPOb46qk7xUtHyIKBdlcnldHaJfagSXc6SSaj4FGi8lY4qzCoCux1BpND6tXxa-QyhF9A5SJR0OiUJzEdF6TVFPm6qrW+4nElLTHXYK2+2O53kWndOVIoMOp1FSSKnmu7E6556oGG5pqA2NTNJzrm+GRsTRkNxzYjeQAD00ljtyTz7tTnvTOeNRpaDYL3XpVuRbnkpGkSmU+wbOP5zcORNOQrzlI09Ecekk-cHw6U+0ioAAPtvcaVzFPnMSzhdTQGgllGJQlJzpCNV0OR8kt7v9wfCceZ37zwFgkXiBXAcnw3F8LR7eVH3XfZ4w5JUxxTF47ATZVVXVdFVGzdsTXaM0u3iADQCg59aEybIK2rWt7VoBCniQltsMY-1fnwy15QGYZJAXc4lGXYjQJolkNnIyQqxreQ61oRs8WbWcgm4pdyCAtcSOIcVQCE0By1EyiJOo4hwMIw4hy5NwlB08TJOIWiPQJI8fVPOdghMzkzIsqiwMLPYkRctz3mUdEwlgqVpDoGymwJAZNFUFCVTVTSsNzZj8y8hkUjRVzzO5Nw2XCmSCUStskt-FLu0IjiRl88yxI8mj-NFMI6ECbK2Wk+i5Kq9y9JfQJ6sCxQmtAFrDO8sRDgA5SQNHZKZgASFKXF6Psk9Z2SykJv4zcLUIjbgOg5J0IxEq2rTIVJEsfAnJ4bbRrsXaVIEwC+qsAa8vywUvHO+RLrW0B+ButKCFuyb9tIlq3vaz6LqcgBmAHe3u5VyGoLjaB4vjgIhtMKtRxdeKUzb63fD9zER0HAJZBt-GJknQBxzqau6miadp0ngcJ0jnsaqmWdZoG0pB1TJHBmbWIgpFDiQ+NHAUUM8qWhwv19MlfqCKWeNlopwwI273sAxmrPltNCo7UW6SMqQFzcORknGGbx1s15FYc1aSvnWhrf2dIDf0189z5z8XZ-XCLytm3aHSDX5FDbXxbEMOveVcTrdIDcjpD5M6NOqHvqu+H5QT23lW4+QAEcchde3EOz84vp+t2-vzpFC4j5UVDCVEqAydOfm1LPZJz+uM-IQI4fN3XDjoMuK9IVlyBYPvHa9adle8c4F8pKfy90WfY8IreZ5GKPQzC9ftXMfuCuBRiz9YnbPlr4+ihi+fyDoRt6Kws-39S3tayUp+ehT6v3fg7PW0I2zfybmNKQ0dNDkDZPGaeO854L1AdXScUhiCEGkGoKBv95TGVtAAmW0dn5QLAQrFEOC1C5igSNQGhw7zUFIIMLGmDvQrWDr3SkzDWF711nwwYwtqA5XYVfDMbYzYRl1jjIRL806hhOgPMkQQhHqUAQYcejCpDUE0GkZGjBUZckoJ3esVd5oXwnHZKQJBhyIL0QY6gRi2iclMY9Mcb4A5MPcYwBx+iRzOOMW4sxNEZoEIlrY1EfiVQBI3EE1x7jprHWMJYswi00zLW-CrBuQQ7ExMcYElxrAQmPQETo4Wvj-FOOKSY0J1kLELWsU7Th2SzzD14VU2JNTglJM8jIwGhT4lGJQuIj6tdoa-WuhEsQ+AH5KSGcQEEKSUzgLOpMhu-0ZnIQHB7bpyglljMWBM3Ov0x5lVkUySQShNCaFkKnUcE0fbJECMOJwhBQxdSsugjJKjhQ3LuZQB5PV+ZWi+fpV5jB3mfOeWjBhvYhmGN6fUo4KMAX3I8VXXEClQCIucaAcEuK4lItGeE35NjJD5OqUU5FmLjq81AAAfjplc9FQKPE40pnixg+hqYB35STWcczGC10Wcs4e5p9AMoAFwss4my4FNFOUam5byhlAqPxCvmfs3i4re5qo1Yaj8U8rY6sOaLeFhCbS3IxckiVlDMnOy4TkjpgYbXsq2ts0FMFYUNJWZfaoJscL6ugXYN54LkhhSxUvBiuZioSrFoRBB+jVBiWURS94nxU3VilQHZlWE00ytAIoZgXwxKUhIIMYg1AADudhfXQjZPo8pvYFwKCAdmzQ6aWmZrLTmhlzLcyFoDrKktzjO0VuIFW2t9bdJWVAG2oodBY5xy9EGRQo401gPAcm3IW7ISEqCOuxgYYvXHpguDLdqzP7X0XR2tN4F-JT0kNvGJ3dGDcinqoAA5Oe1QRqA4AB0sCMBwbkAFugPDI0kPgZxLBVDYNwYENkyHJVGu-ZSd9n6xRdCfSMV9iCsPUC-b+u0G7-0AdZsB0D95VAQaWaimDcHVC9tUIQDYvLQAodAKx9joAABe5pAigGAweejUGUawcYPBjIyHAiCfNJR0AGHghEanuGSxCRtW8ToDWxQP7xOMak-ByscnQBySUOpNRVnSBWbcJEfQ36uh4Dwy+nIb7FDYYM7cyDRnmOma44ECzVnOQ2bsw5lTQRaRAA')">function is_assertion(exp) {
+    return type(exp) === "assert";
+}
+function assertion_body(exp) {
+    return head(contents(exp));
+}
+</pre></div></div>
+    </p></div>
+    <div class='permalink'>
+<a name='p43' class='permalink'></a><p>
+      Here are the declarations of the predicates and selectors
+      for the <kbd>and</kbd>,
+      <kbd>or</kbd>, <kbd>not</kbd>, and
+      <kbd>javascript_value</kbd>
+      syntactic forms
+      (section&nbsp;<REF NAME="sec:query-eval"><a class="superscript" id="4.4.4-sec-link-4.4.4.2" href="./4.4.4.html#sec4.4.4.2">4.4.4.2</a></REF>):
+      <div class='snippet' id='javascript_96_56_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwMwK4B2AxgC4CWA9oaOQM4D6ApgLYAOpAng8dQFZEyVQgAomADzZ0AlKADeoAE5NS+RTXoNC+ADY6xkmQG5QAXzyCK1ULnKK6pHv0sGpshctXrQACyYBDABNXYzMLEisaZQcnQgEIuhD3JRU1GlJ-cn0JNxNzcKFrTVYObkD6eMLRHJl5FK8NRm09JLyCyJs7GPK6StIkus803wDgmuk2ggjhFO6Ky0TxwdTvDKzWsPaZwiYAc39SJkCGAEd8JkVOAY8Vmj8gjfypqtA+fwA3fzpiRXIOZkk0Towmu9WG9zGhgmmzY-nsTFO50uDHeFwARpQ6EwRAByL5YxT9UDEkmksnk8kAHSwil02P8bDYTEIx1IlAYuEoihYImaOgANKBOILONIxRSJaAcYKAESoxQYrEyiZYWHwxEXbjyxXYvF0AlEyVGinU2k6emM5ms9mc7kiWF2ET4QXvaQiwUOxROwUALzFgtA1LJDKZLIYbI5XJ573doD94uNFOloDl6MxTGVRiwAEhiXguo5-IQ6AB3C64kNW8M2qMicSxnT0foy-wy2Votsp4idmWBZXSHEqkCgNVYjXI7XpiuWsMR208+tCwWNhwiFs9juy7uyvti5MyzNAA')">function is_empty_conjunction(exps) { return is_null(exps); }
+function first_conjunct(exps) { return head(exps); }
+function rest_conjuncts(exps) { return tail(exps); }
+
+function is_empty_disjunction(exps) { return is_null(exps); }
+function first_disjunct(exps) { return head(exps); }
+function rest_disjuncts(exps) { return tail(exps); }
+
+function negated_query(exps) { return head(exps); }
+
+function javascript_expression(exps) { return head(exps); }
+</pre></div></div>
+    </p></div>
+    <div class='permalink'>
+<a name='p44' class='permalink'></a><p>
+      The following three
+      functions
+      define the query-language-specific representation of rules:
+      <div class='snippet' id='javascript_96_57_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCyUAzAVwDsBjAFwEsB7YgZwICdqBbCGeJVNARjQCYcRMlVqhKdAPoAbSuQCmjAIbSAFKVYAHWvOLkAlKADeWUGdCN55Qo2Lip5JQHMn8gCYyJ5dVp16ANKAARLIKytJB+gDcWAC+WMIUNHahiiqSAG4qhPI+LNrEugbG5qCm5pbWtqAAFvJKbqqOlGoa+X4G0XFCJEliLEoA1vKeYSqqWdI5hiallTYpXqohcmkRgZPTMfEJvaJ2EpKOLu6edN5tBUWB5HVHzjPlZvPVh5pKlIx5V3qGAGR-Wr1RqXDqGAC8kNAtxGx22PREyXskmIShYuVBhV+xieFisC2Rx1cHlk52+HUCQVR6Mi8N2iP6QxG1NydAAniwAEbUaSPOb46qk7xUtHyIKBdlcnldHaJfagSXc6SSaj4FGi8lY4qzCoCux1BpND6tXxa-QyhF9A5SJR0OiUJzEdF6TVFPm6qrW+4nElLTHXYK2+2O53kWndOVIoMOp1FSSKnmu7E6556oGG5pqA2NTNJzrm+GRsTRkNxzYjeQAD00ljtyTz7tTnvTOeNRpaDYL3XpVuRbnkpGkSmU+wbOP5zcORNOQrzlI09Ecekk-cHw6U+0ioAAPtvcaVzFPnMSzhdTQGgllGJQlJzpCNV0OR8kt7v9wfCceZ37zwFgkXiBXAcnw3F8LR7eVH3XfZ4w5JUxxTF47ATZVVXVdFVGzdsTXaM0u3iADQCg59aEybIK2rWt7VoBCniQltsMY-1fnwy15QGYZJAXc4lGXYjQJolkNnIyQqxreQ61oRs8WbWcgm4pdyCAtcSOIcVQCE0By1EyiJOo4hwMIw4hy5NwlB08TJOIWiPQJI8fVPOdghMzkzIsqiwMLPYkRctz3mUdEwlgqVpDoGymwJAZNFUFCVTVTSsNzZj8y8hkUjRVzzO5Nw2XCmSCUStskt-FLu0IjiRl88yxI8mj-NFMI6ECbK2Wk+i5Kq9y9JfQJ6sCxQmtAFrDO8sRDgA5SQNHZKZgASFKXF6Psk9Z2SykJv4zcLUIjbgOg5J0IxEq2rTIVJEsfAnJ4bbRrsXaVIEwC+qsAa8vywUvHO+RLrW0B+ButKCFuyb9tIlq3vaz6LqcgBmAHe3u5VyGoLjaB4vjgIhtMKtRxdeKUzb63fD9zER0HAJZBt-GJknQBxzqau6miadp0ngcJ0jnsaqmWdZoG0pB1TJHBmbWIgpFDiQ+NHAUUM8qWhwv19MlfqCKWeNlopwwI273sAxmrPltNCo7UW6SMqQFzcORknGGbx1s15FYc1aSvnWhrf2dIDf0189z5z8XZ-XCLytm3aHSDX5FDbXxbEMOveVcTrdIDcjpD5M6NOqHvqu+H5QT23lW4+QAEcchde3EOz84vp+t2-vzpFC4j5UVDCVEqAydOfm1LPZJz+uM-IQI4fN3XDjoMuK9IVlyBYPvHa9adle8c4F8pKfy90WfY8IreZ5GKPQzC9ftXMfuCuBRiz9YnbPlr4+ihi+fyDoRt6Kws-39S3tayUp+ehT6v3fg7PW0I2zfybmNKQ0dNDkDZPGaeO854L1AdXScUhiCEGkGoKBv95TGVtAAmW0dn5QLAQrFEOC1C5igSNQGhw7zUFIIMLGmDvQrWDr3SkzDWF711nwwYwtqA5XYVfDMbYzYRl1jjIRL806hhOgPMkQQhHqUAQYcejCpDUE0GkZGjBUZckoJ3esVd5oXwnHZKQJBhyIL0QY6gRi2iclMY9Mcb4A5MPcYwBx+iRzOOMW4sxNEZoEIlrY1EfiVQBI3EE1x7jprHWMJYswi00zLW-CrBuQQ7ExMcYElxrAQmPQETo4Wvj-FOOKSY0J1kLELWsU7Th2SzzD14VU2JNTglJM8jIwGhT4lGJQuIj6tdoa-WuhEsQ+AH5KSGcQEEKSUzgLOpMhu-0ZnIQHB7bpyglljMWBM3Ov0x5lVkUySQShNCaFkKnUcE0fbJECMOJwhBQxdSsugjJKjhQ3LuZQB5PV+ZWi+fpV5jB3mfOeWjBhvYhmGN6fUo4KMAX3I8VXXEClQCIucaAcEuK4lItGeE35NjJD5OqUU5FmLjq81AAAfjplc9FQKPE40pnixg+hqYB35STWcczGC10Wcs4e5p9AMoAFwss4my4FNFOUam5byhlAqPxCvmfs3i4re5qo1Yaj8U8rY6sOaLeFhCbS3IxckiVlDMnOy4TkjpgYbXsq2ts0FMFYUNJWZfaoJscL6ugXYN54LkhhSxUvBiuZioSrFhbc6ODchBkUPsZRFKV6OTTYwfYlJGApvKb2Bcg5CD6VUIW+8mbA3X1zFW+Qd9dYNpEWIhtNavTYNwYxetKbJUMuZXJFQAB3JQbIHCFrFFKgOsqg2MXbWLfyU9JDbxid3Rg3Ip6qAAOS5u8EagOAAdLADbVAAt0B4ZGkh8DOJYKoLt0hAhsifZKo127KTrs3VOmIS6RirsQZ+6gW7d12nTaoA9fNj2nvPUs1F17b2qHeJ8VQhANi8tAM+0ASGviodAAAL3NIEUAx6DwwcvSjG9jA70ZCfYEAj5oIOgHfcEQDU9wyWISNq3idBh2KB3WRuDlG72Vlo6AId6k1ESdIBJtwkR9Dbq6HgX9K6chrsUF+-jtyL2CYQyJjDgRxO8KkzJuTzGgi0iAA')">function is_rule(assertion) {
+    return is_tagged_list(assertion, "rule");
+}
+function conclusion(rule) {
+    return head(tail(rule));
+}
+function rule_body(rule) {
+    return is_null(tail(tail(rule)))
+           ? list("always_true")
+           : head(tail(tail(rule)));
+}
+</pre></div></div>
+    </p></div>
+
+      
       
     
 
@@ -4101,12 +4108,12 @@ function element_expressions(list_constr) {
     
 
     <div class='permalink'>
-<a name='p46' class='permalink'></a><p>
+<a name='p45' class='permalink'></a><p>
       
       
       Frames are represented as lists of bindings, which are
       variable-value pairs:
-      <div class='snippet' id='javascript_96_60_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCyUB7ABwFMAnAQwBcBLfAOwH1LyAjAG2IBpRCBXS0OToATUAHNilXGABmpfAFtQAYwAW5QpTKgAzKAAUAZ2LKa9XWh2WAlDhm86p2nUGHD+ZfoDWxAJ7dSE3xSYUNrUABvLFAY0EDKXlIXakMGOl42Nn1A5WDQ21jCwoB+UAdhYhlqOmJhaKKigC5QYgBHXnIsn39QVWJyYX0+geygkLDrAoaS3v7BnLyw+umY5vI3D28-bmZqLIXxyYBuLABfOwcncwVyHyZWDn1wqMLcukMBNg9O+-ZiUAAvKA2ClKPoAEQAKmYf0h4OsJ0K9kcZhcX3wXl4hC2vgYAEZuN0GAAmZ7LIpvD6gQy8FgwjiA1zuTxEgmgXZZL7KH704jHcmFagyAwpBjlSrVWpGWm8yaRAXTeKJFziqo1YSI6anFpsYzylavehUg6iIHrZk4kk7ch7aV0h58hEKhpKpKgUWqyXzMbCKYGlalT3q53+1bsm37H1OlbnQqx2LIq7Jd5kMGswl+K2gABunV4fP100pAhp9r+jPNm3T4dtXJ5Dv5KyFItSQalpdlZND1Mk91r3zYvw4nBD3Z4NtI+hBH0tbMIE8txO4ubY+cmI7HY45U4HQ8d0a1Or1L1DxbiPorGxZmaXNayHYbB-9zf0HpEEvVo1yITlJ8KAEgVmMSg+3vGUHRHQDNxWedqEnWDJyJW8VzXDdoM3bcHz+SYnSgmJtWIXV-j-MdgNAr88mXPM+U1f14waejQEYxNUVAYQUnnSg1H0BQu0VSRlVAJQARE0BwXRTFCHBUcGlKCSsRkpohMBUTwWqYxSEoaToNKdTU0UwpmjIeRJwUbhwQcLw6HwAB3FwiDIKhnFAABaFzwz+eFaKY8lXRcdjDE4tQTnOLAzwcihUT3RkbjuXknhOM8JAEIEIqc+g9wheSpKdM8+BSggSEi5xMrUlNNK8i4UWc2LiAYFhqnYugxH0XNSGoCCc2oviYj88c4Na8h2s6lCaLOLAWOchqRGqMQGDajq-n0aamrEHrzwSN1hkGFbZqdc5JvMXbmvm6jlsavbC16gS3W3Y61pCibLlY+6GGqBg5HIBRiEG4a-m4T7vvWvrK08BbOsBsaDue5ziAADy0ERfsW4cutXLhQEh4GbpcBCeNuOr7uRkbuoBiggcerB51IYwGHaMhcWzMgWHwYx9AAcnNVN9HQ0MAB0sFIDIfo0EgRCYfAPuCBR9HSTJuB6XwcPQ9nzKZ0gWeMSrqdp+nSEZ5nWZ+zm3G53n-QFoXHlF4hxcoSWZGl-Q8d4ZdrAV7gXe4AAvdcYgFoobbth2nezD3QF9uVzdVsT1c14hKqgia4I+BghEMGyyA5oPhAlqXSBluHw+nMFwXIcFzJYCuxOUavwWEeFrHZp08B1uq9YNjWjezwgxdz+388L4vQQhcvK7r2vzIbyYY-BLygA')">function make_binding(variable, value) {
+      <div class='snippet' id='javascript_96_58_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCyUB7ABwFMAnAQwBcBLfAOwH1LyAjAG2IBpRCBXS0OToATUAHNilXGABmpfAFtQAYwAW5QpTKgAzKAAUAZ2LKa9XWh2WAlDhm86p2nUGHD+ZfoDWxAJ7dSE3xSYUNrUABvLFAY0EDKXlIXakMGOl42Nn1A5WDQ21jCwoB+UAdhYhlqOmJhaKKigC5QYgBHXnIsn39QVWJyYX0+geygkLDrAoaS3v7BnLyw+umY5vI3D28-bmZqLIXxyYBuLABfOwcncwVyHyZWDn1wqMLcukMBNg9O+-ZiUAAvKA2ClKPoAEQAKmYf0h4OsJ0K9kcZhcX3wXl4hC2vgYAEZuN0GAAmZ7LIpvD6gQy8FgwjiA1zuTxEgmgXZZL7KH704jHcmFagyAwpBjlSrVWpGWm8yaRAXTeKJFziqo1YSI6anFpsYzylavehUg6iIHrZk4kk7ch7aV0h58hEKhpKpKgUWqyXzMbCKYGlalT3q53+1bsm37H1OlbnQqx2LIq7Jd5kMGswl+K2gABunV4fP100pAhp9r+jPNm3T4dtXJ5Dv5KyFItSQalpdlZND1Mk91r3zYvw4nBD3Z4NtI+hBH0tbMIE8txO4ubY+cmI7HY45U4HQ8d0a1Or1L1DxbiPorGxZmaXNayHYbB-9zf0HpEEvVo1yITlJ8KAEgVmMSg+3vGUHRHQDNxWedqEnWDJyJW8VzXDdoM3bcHz+SYnSgmJtWIXV-j-MdgNAr88mXPM+U1f14waejQEYxNUVAYQUnnSg1H0BQu0VSRlVAJQARE0BwXRTFCHBUcGlKCSsRkpohMBUTwWqYxSEoaToNKdTU0UwpmjIeRJwUbhwQcLw6HwAB3FwiDIKhnFAABaFzwz+eFaKY8lXRcdjDE4tQTnOLAzwcihUT3RkbjuXknhOM8JAEIEIqc+g9wheSpKdM8+BSggSEi5xMrUlNNK8i4UWc2LiAYFhqnYugxH0XNSGoCCc2oviYj88c4Na8h2s6lCaLOLAWOchqRGqMQGDajq-n0aamrEHrzwSN1hkGFbZqdc5JvMXbmvm6jlsavbC16gS3W3Y61pCibLlY+6GGqBg5HIBRiEG4a-m4T7vvWvrK08BbOsBsaDue5ziAADy0ERfsW4cutXLhQEh4GbpcBCeNuOr7uRkbuoBiggcerB51IYwGHaMhcWzMgWHwYx9AAcnNVN9HQ0MAB0sFIDIfo0EgRCYfAPuCBR9HSTJuB6XwcPQ9nzKZ0gWeMSrqdp+nSEZ5nWZ+zm3G53n-QFoXHlF4hxcoSWZGl-Q8d4ZdrAV7gXe4AAvdcYgFoobbth2nezD3QF9uVzdVsT1c14hKqgia4I+BghEMGyyA5oPhAlqXSBluHw+nMFwXIcFzJYCuxOUavwWEeFrHZp08B1uq9YNjWjezwgxdz+388L4vQQhcvK7r2vzIbyYY-BLygA')">function make_binding(variable, value) {
     return pair(variable, value);
 }
 function binding_variable(binding) {
@@ -4147,7 +4154,7 @@ function extend(variable, value, frame) {
       
       rather than being defined as follows:
       
-      <div class='snippet' id='javascript_96_61_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+      <div class='snippet' id='javascript_96_59_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function simple_query(query_pattern, frame_stream) {
     return stream_flatmap(
                frame =>
@@ -4215,7 +4222,7 @@ function disjoin(disjuncts, frame_stream) {
       a delayed expression in its body?
     
     What would be wrong with defining it as follows:
-    <div class='snippet' id='javascript_96_62_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_96_60_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function flatten_stream(stream) {
     return is_null(stream)
            ? null
@@ -4308,17 +4315,17 @@ function simple_flatten(stream) {
       
       should succeed if there is precisely one item in the data base satisfying
       a specified query.  For example,
-      <div class='snippet' id='javascript_96_63_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+      <div class='snippet' id='javascript_96_61_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 unique(job($x, list("computer", "wizard")))</pre></div></div>
       should print the one-item stream
-      <div class='snippet' id='javascript_96_64_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+      <div class='snippet' id='javascript_96_62_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 unique(job(list("Bitdiddle", "Ben"), list("computer", "wizard")))</pre></div></div>
       since Ben is the only computer wizard, and
-      <div class='snippet' id='javascript_96_65_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+      <div class='snippet' id='javascript_96_63_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 unique(job($x, list("computer", "programmer")))</pre></div></div>
       should print the empty stream, since there is more than one computer
       programmer.  Moreover,
-      <div class='snippet' id='javascript_96_66_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+      <div class='snippet' id='javascript_96_64_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 and(job($x, $j), unique(job($anyone, $j)))</pre></div></div>
       should list all the jobs that are filled by only one person, and the
       people who fill them.
@@ -4363,7 +4370,7 @@ and(job($x, $j), unique(job($anyone, $j)))</pre></div></div>
 	
       
       all you need to do is
-      <div class='snippet' id='javascript_96_67_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+      <div class='snippet' id='javascript_96_65_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 put("unique", "evaluate_query", uniquely_asserted);</pre></div></div>
       and
       
@@ -4574,7 +4581,7 @@ put("unique", "evaluate_query", uniquely_asserted);</pre></div></div>
 	functions.
       
       For example, in evaluating
-      <div class='snippet' id='javascript_96_68_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwMwK4B2AxgC4CWA9oaAM4CO+AhgE4CmAFAB4CUoA3llDDQ7UvhY0uoAFSguAbiwBfPETJUatfAFsA+pVx6GzdrW4AaUAE8+gkaLbjJdRq069QAalenOtpVVtfUNjNzMOAGYrFB4FIA')">function square(x) {
+      <div class='snippet' id='javascript_96_66_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHTpQKCwMwK4B2AxgC4CWA9oaAM4CO+AhgE4CmAFAB4CUoA3llDDQ7UvhY0uoAFSguAbiwBfPETJUatfAFsA+pVx6GzdrW4AaUAE8+gkaLbjJdRq069QAalenOtpVVtfUNjNzMOAGYrFB4FIA')">function square(x) {
     return x * x;
 }
 function sum_of_squares(x, y) {
@@ -4773,8 +4780,8 @@ sum_of_squares(3, 4);
 	  would mark pattern variables with a separate tag in the
 	  query-language-specific representation and use pair
 	  construction rather than string concatenation to create
-	  new variables. We chose the less efficient solution for
-	  the sake of simplicity of presentation.
+	  new variables. We chose the less efficient solution 
+	  to simplify the presentation.
     </FOOTNOTE></div>
 
     
