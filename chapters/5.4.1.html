@@ -3181,7 +3181,7 @@ may overwrite the saved registers as part of its evaluation.
       </p></div>
       <div class='permalink'>
 <a name='p22' class='permalink'></a><p>
-With the exception of return statements, which we shall soon address, after
+With the exception of <kbd>return</kbd> statements, which we shall soon address, after
 evaluating an instruction, the stack will hold at its top precisely what is
 about to be restored by its continuation. For example, when we construct the
 list of arguments to a function in
@@ -3223,7 +3223,7 @@ before jumping to the dispatcher to evaluate the statement in
       </p></div>
       <div class='permalink'>
 <a name='p24' class='permalink'></a><p>
-If the return statement did not exist, we would do two saves before and two
+If the <kbd>return</kbd> statement did not exist, we would do two saves before and two
 restores after each statement, except the last, and at the evaluation of the
 last statement, in <kbd>ev_sequence_last_statement</kbd>,
 restore the continuation saved in <kbd>ev_sequence_start</kbd>.
@@ -3232,7 +3232,7 @@ when we jumped to <kbd>ev_sequence_start</kbd>.
       </p></div>
       <div class='permalink'>
 <a name='p25' class='permalink'></a><p>
-When we evaluate a return statement inside a function
+When we evaluate a <kbd>return</kbd> statement inside a function
 <kbd>f</kbd>, we must skip all remaining statements in
 <kbd>f</kbd>'s body and after evaluating the
 return expression jump to the continuation of the call to
@@ -3242,14 +3242,14 @@ never pop their values from the stack.
       </p></div>
       <div class='permalink'>
 <a name='p26' class='permalink'></a><p>
-In the example above, the continuation cancelled by the return statement is
+In the example above, the continuation cancelled by the <kbd>return</kbd> statement is
 <kbd>ev_sequence_continue</kbd>, which means that
 <kbd>env</kbd> and
 <kbd>unev</kbd> must be popped from the stack. If the
-return statement was inside a nested sequence (which would be the case if there
+<kbd>return</kbd> statement was inside a nested sequence (which would be the case if there
 were more statements in the consequent branch of the conditional), there would
 also be a continuation for the nested sequence and associated saves on the
-stack to remove. This illustrates that different return statements must remove differently
+stack to remove. This illustrates that different <kbd>return</kbd> statements must remove differently
 many values from the stack depending on the structure of the program where they appear.
       </p></div>
       <div class='permalink'>
@@ -3266,7 +3266,7 @@ to simplify this stack management.
 <a name='p28' class='permalink'></a><p>
 Because all non-primitive function calls involve a
 <kbd>save_marker</kbd>, also functions whose
-evaluation end without a return statement must use
+evaluation end without a <kbd>return</kbd> statement must use
 <kbd>restore_marker</kbd> to remove the marker from
 the stack, as is visible in
 <kbd>return_undefined</kbd>.
