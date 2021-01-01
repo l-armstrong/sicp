@@ -3739,7 +3739,7 @@ function make_new_variable(variable, rule_application_id) {
 and(salary($person, $amount), javascript_value($amount > 50000))</pre></div></div>
 	  <kbd>query_syntax_process</kbd> produces a data structure
 	  in which a JavaScript syntax respresentation is embedded in
-	  a query-language specific representation:
+	  a query-language-specific representation:
 	  <div class='snippet' id='javascript_96_39_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
 list("and",
      list("salary", list("name", "$person"), list("name", "$amount")),
@@ -4037,7 +4037,8 @@ function contents(exp) {
     </p></div>
     <div class='permalink'>
 <a name='p42' class='permalink'></a><p>
-      The following functions used in the driver loop
+      The following functions, used by
+      <kbd>query_driver_loop</kbd>      
       (section&nbsp;<REF NAME="sec:query-driver"><a class="superscript" id="4.4.4-sec-link-4.4.4.1" href="./4.4.4.html#sec4.4.4.1">4.4.4.1</a></REF>)
       specify that rules and assertions are added to the data base by an
       <kbd>assert</kbd> command, which
@@ -4665,8 +4666,8 @@ sum_of_squares(3, 4);
       
 	
 	
-	  with an expression involving
 	  <kbd>$y</kbd>
+	  with an expression involving
 	
       
       
@@ -4689,73 +4690,20 @@ sum_of_squares(3, 4);
       
 	
 	
-	  It is sometimes possible to syntactically form an expression that appears
-	  to be the solution.  For example,
+	  This is not possible if we allow only finite trees as fixed points.
+	  Logic programming systems that use finite trees as the underlying domain
+	  implement an optimized version of the
+	  <kbd>depends_on</kbd>
+	  test, which is known as the <EM>occurs check</EM>.
+	  Using a domain that permits cyclic references, a fixed point
+	  for
 	  <kbd>$y</kbd>
+	  $ = \textit{expression involving}$	  
+	  may exist. Most logic programming systems today allow such cyclic
+	  references, and the underlying domain is known as <EM>rational trees</EM>.
 	
       
-      $=$
-      
 	
-	<kbd>list("f", $y)</kbd>
-	
-      
-      seems to have the fixed point
-      
-	
-	
-	  <kbd>list("f", list("f", list("f",</kbd>
-	  …
-	  <kbd>)))</kbd>,
-	
-      
-      which we can produce by beginning with the expression
-      
-	
-	<kbd>list("f", $y)</kbd>
-	
-      
-      and repeatedly substituting
-      
-	
-	<kbd>list("f", $y)</kbd>
-	
-      
-      for
-      
-	
-	<kbd>$y</kbd>.
-      
-      Unfortunately, not every such equation has a meaningful fixed point.  The
-      issues that arise here are similar to the issues of manipulating 
-      
-      infinite series in mathematics.  For example, we know that 2 is the
-      solution to the equation $y = 1 + y/2$.
-      Beginning with the expression $1 + y/2$ and
-      repeatedly substituting $1 + y/2$ for
-      $y$ gives
-      
-        \[ 2 = y = 1 + y/2 = 1 + (1+y/2)/2 = 1 + 1/2 + y/4 =\cdots, \]
-      
-      which leads to
-      
-        \[ 2 = 1 + 1/2 + 1/4 + 1/8 +\cdots. \]
-      
-      However, if we try the same manipulation beginning with the
-      observation that $-1$ is the solution to the
-      equation $y = 1 + 2y$, we obtain
-      
-        \[ -1 = y = 1 + 2y = 1 + 2(1 + 2y) = 1 + 2 + 4y = \cdots, \]
-      
-      which leads to 
-      
-        \[ -1 = 1 + 2 + 4 + 8 +\cdots. \]
-      
-      Although the formal manipulations used in deriving these two equations
-      are identical, the first result is a valid assertion about infinite
-      series but the second is not.  Similarly, for our unification results,
-      reasoning with an arbitrary syntactically constructed expression may
-      lead to errors.
     </FOOTNOTE></div>
 
     
