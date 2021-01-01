@@ -2058,6 +2058,9 @@ Acknowledgments
     
     that takes a tag and contents and produces a tagged data object.  A
     straightforward way to implement this is to use ordinary list structure:
+            
+            
+            
     <div class='snippet' id='javascript_44_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0oFA4GYCuAdgMYAuAlgPbGgCG559pAFgPrMDmAFOQJ4AHAKad6XADShStcsOLkAzgEpQAbxygtoAE7DyhHXUH1KOvkNHcpMhfKXKA3DgC+BEhRp0BIsbwAmjIQAtqoa2rr6hnSUiuwmZjyBBqGaEemgAPygrML0-klBqRnpAFygwjo61ObJIVIARABG+aDcXML+oHXBoAC0fW2Wfg1Oru5kVLTSsvaKhSlhaVp6BkagsfGmtUXKyyVZbaYANgshewfa5ZXVOymNLV3tnd1F-YO2cgqKo85uOLZFORQPh2ABGUAAXlAx1i5B4DQAgg0pBgxoDgcF+Ox8HoAI6EeSkbEQ6H7RjMNh+BG44QEonY2FAlEg8FjHA+KziHhYnH4wlkElOIA')">function attach_tag(type_tag, contents) {
     return pair(type_tag, contents);
 }
@@ -2092,6 +2095,8 @@ function contents(datum) {
       <kbd>is_polar</kbd>,
     
     which recognize rectangular and polar numbers, respectively:
+            
+            
     <div class='snippet' id='javascript_44_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function is_rectangular(z) {
     return type_tag(z) === "rectangular";
@@ -2121,6 +2126,12 @@ function is_polar(z) {
     and for Alyssa to append <kbd>polar</kbd> to the names of
     hers. Here is Ben's revised rectangular representation from
     section&nbsp;<REF NAME="sec:representations-complex-numbers"><a class="superscript" id="2.4.2-sec-link-2.4.1" href="./2.4.1.html">2.4.1</a></REF>:
+            
+            
+            
+            
+            
+            
     <div class='snippet' id='javascript_44_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0oFA4GYCuAdgMYAuAlgPbGgCG559pAFgPrMDmAFOQJ4AHAKad6XADShStcsOLkAzgEpQAbxygtoAE7DyhHXUH1KOvkNHcpMhfKXKA3DgC+BEhRp0BIsbwAmjIQAtqoa2rr6hnSUiuwmZjyBBqGaEemgAPygrML0-klBqRnpAFygwjo61ObJIVIARABG+aDcXML+oHXBoAC0fW2Wfg1Oru5kVLTSsvaKhSlhaVp6BkagsfGmtUXKyyVZbaYANgshewfa5ZXVOymNLV3tnd1F-YO2cgqKo85uE55pooAI6Eeh6HgADyWEVW0VAkNAACoEX88ERJl5IvRjlsdOR2HoKPRiFxCMdwTwAF4w7Rw9a5fLUsZuDGAmLBcR4glE5ik8mUmnqfb07wnZlotlTOicrjESgGfyiXkkskU8xC8J0qLrTnkDgg-E8EFgiF6HHcwnCYn89XMi6XR2gADU+ydGRN4OEPEosstKttguUwclHmlDFJx2V1r5aqDwthOpljA4jBJPr9JnxVptcY1ygkbvdiYtWZ5MdVAvzLIB4c5AGtRPhqsErRbfVyA3moVJ+LSVkmGEwWBxuDwGl2qw1C8XLglzJDeyHxlKsQ2my32H7VTnY1WeDopPR+5E1nRGMw2H5x5P1dOi7OtPOD8jQHqODJ5sepDpX+-2IolDEDwx7Lv8tiKOQoBNPIcQyOwxAhKAAC8b70I27DNtQrbbqSu6VnaACQWgPo+WgAMxoAADFIVFoAA7GMOAdlw-oVoG5ifHMPAwcQcHUAh5xOEAA')">function real_part_rectangular(z) {
     return head(z);
 }
@@ -2209,6 +2220,10 @@ function make_from_mag_ang_polar(r, a) {
       function
     
     as required:
+    
+    
+    
+    
     <div class='snippet' id='javascript_44_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0oFA4GYCuAdgMYAuAlgPbGgCG559pAFgPrMDmAFOQJ4AHAKad6XADShStcsOLkAzgEpQAbxygtoAE7DyhHXUH1KOvkNHcpMhfKXKA3DgC+BEhRp0BIsbwAmjIQAtqoa2rr6hnSUiuwmZjyBBqGaEemgAPygrML0-klBqRnpAFygwjo61ObJIVIARABG+aDcXML+oHXBoAC0fW2Wfg1Oru5kVLTSsvaKhSlhaVp6BkagsfGmtUXKyyVZbaYANgshewfa5ZXVOymNLV3tnd1F-YO2cgqKo85uE55pps9BR6MQuIRjvRzAAvJYRVbRIa+bg8OGgAC8WNADRBzHBkOhDT+AKmMTigmoUNh8O0iPWPis4jRqixGJxlOpxPGpK8oEUAEdCNDhDwAB60lZRdZi0AAKlAYpJvOmenoxy2OnI7DxYIh1JZ6n29LouXyLJJREmfMowXEmu1uoJBvR4Tp0u8Jwt4ytgLodq4xEoBn8oid+uhhrdUrW-sYHEFWp4guFeh4ao1Ji1OuEoOdkbhF0uxdAAGp9iWMimRTxbfas47c-iIzTlGM3L6yQxwccw029YSaUaER7QHbyBxGGDawGHTm8y2WRIK5WR+q5+HByz2yq4wBrUT4arBHPrutcefNrdiqT8SWRWMMJgsDio3H9-M6BrL1eXBLmG9QDvHdOz5O0D3YI9qBPWc9UvAcDR0KR6HvE0n2YNg-B4d8F0Hb8V1-LR-3TeUx3jdgZHmFCpB0UjxwTShiB4FC22VUDVTyTNoW1TkC1Q0cAyDENRF4ocFXoijqConsRKpPiQI8LtzznUSo2NATxCEwhQ3iOSxLIid2EURjmJk3SXVYn1FLAzTg202SLOHd1HzNAo4Utazpj1XtzL4pyYyRZhKFOdyrOtaZwMPY9Tw1ZTVMAu9-IfJFGAw19mQaUT8MIkpiIkxNyGTIUawlMt+WKtNgJ-HLiwkqcmP4KQJUsjtPP3KLoPYWDwV88wkIYfjH1Sl8sMyvTv1AYj+pYti2sidcGzUkdH2BD9FzhAiImyDMNzWrdPjmbdNquDYKT0lljq0bbOJU86Du+I6S2uKoajRRoSD3YhqAAd28Sx3nmritV+MK-Q2WdFtddSVriTcLMuw44u4+DPx4e6lEe4tyk2VSNpLbIkezVT0fmQsEee243pxD6vt+5FhABwnyBB1rwrjQM7NDJbnKRVbcPh-GyI54SUcXEnMcubGzoF4tskEzmHMjcWyaeioXthd7iE+n6-pEAH5eElnd27Lhe25gL1j5q8ZcubJvL7fmldmB6Vax07eouwX7Y95W23JtXKZhTXtbpxkAfto2cFsRRyAYY5+EURR6DiGR2GIEJMTIiCoJg+04NUgBILQEZygBmNAAAYpArtAAHYxhwJnmPjxPk8ktPzkcIA')">function real_part(z) {
     return is_rectangular(z)
            ? real_part_rectangular(contents(z))
@@ -2293,6 +2308,8 @@ function add_complex(z1, z2) {
     reasonable choice is to construct rectangular numbers whenever we have
     real and imaginary parts and to construct polar numbers whenever we have
     magnitudes and angles:
+     
+     
     <div class='snippet' id='javascript_44_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0oFA4GYCuAdgMYAuAlgPbGgCG559pAFgPrMDmAFOQJ4AHAKad6XADShStcsOLkAzgEpQAbxygtoAE7DyhHXUH1KOvkNHcpMhfKXKA3DgC+BEhRp0BIsbwAmjIQAtqoa2rr6hnSUiuwmZjyBBqGaEemgAPygrML0-klBqRnpAFygwjo61ObJIVIARABG+aDcXML+oHXBoAC0fW2Wfg1Oru5kVLTSsvaKhSlhaVp6BkagsfGmtUXKyyVZbaYANgshewfa5ZXVOymNLV3tnd1F-YO2cgqKo85uE55pps9BR6MQuIRjvRzAAvJYRVbRIa+bg8OGgAC8WNADRBzHBkOhDT+AKmMTigmoUNh8O0iPWPis4jRqixGJxlOpxPGpK8oEUAEdCNDhDwAB60lZRdZi0AAKlAYpJvOmenoxy2OnI7DxYIh1JZ6n29LouXyLJJREmfMowXEmu1uoJBvR4Tp0u8Jwt4ytgLodq4xEoBn8oid+uhhrdUrW-sYHEFWp4guFeh4ao1Ji1OuEoOdkbhF0uxdAAGp9iWMimRTxbfas47c-iIzTlGM3L6yQxwccw029YSaUaER7QHbyBxGGDawGHTm8y2WRIK5WR+q5+HByz2yq4wBrUT4arBHPrutcefNrdiqT8SWRWMMJgsDio3H9-M6BrL1eXBLmG9QDvHdOz5O0D3YI9qBPWc9UvAcDR0KR6HvE0n2YNg-B4d8F0Hb8V1-LR-3TeUx3jdgZHmFCpB0UjxwTShiB4FC22VUDVTyTNoW1TkC1Q0cAyDENRF4ocFXoijqConsRKpPiQI8LtzznUSo2NATxCEwhQ3iOSxLIid2EURjmJk3SXVYn1FLAzTg202SLOHd1HzNAo4Utazpj1XtzL4pyYyRZhKFOdyrOtaZwMPY9Tw1ZTVMAu9-IfJFGAw19mQaUT8MIkpiIkxNyGTIUawlMt+WKtNgJ-HLiwkqcmP4KQJUsjtPP3KLoPYWDwV88wkIYfjH1Sl8sMyvTv1AYj+pYti2sidcGzUkdH2BD9FzhAiImyDMNzWrdPjmbdNquDYKT0lljq0bbOJU86Du+I6S2uKoajRRoSD3YhqAAd28Sx3nmritV+MK-Q2WdFtddSVriTcLMuw44u4+DPx4e6lEe4tyk2VSNpLbIkezVT0fmQsEee243pxD6vt+5FhABwnyBB1rwrjQM7NDJbnKRVbcPh-GyI54SUcXEnMcubGzoF4tskEzmHMjcWyaeioXthd7iE+n6-pEAH5eElnd27Lhe25gL1j5q8ZcubJvL7fmldmB6Vax07eouwX7Y95W23JtXKZhTXtbpxkAfto3jciyDop289xVvQakWjqCTzj2c4cjBKFLZsiINTrr7T1dNkKT9YU+i7qL1U6adxwWxFHIBhjn4RRFHoOIZHYYgQkxPOOpgovwR4ABILQEZygBmNAAAYpBntAAHYxhwJnmJbtuO8k7vzkcIA')">function make_from_real_imag(x, y) {
     return make_from_real_imag_rectangular(x, y);
 }

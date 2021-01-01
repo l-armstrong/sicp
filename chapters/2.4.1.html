@@ -2117,6 +2117,10 @@ make_from_mag_ang(magnitude(z), angle(z));</pre></div></div>
     above, we can add and subtract complex numbers in terms of real and
     imaginary parts while multiplying and dividing complex numbers in terms of
     magnitudes and angles:
+            
+            
+            
+            
     <div class='snippet' id='javascript_43_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function add_complex(z1, z2) {
     return make_from_real_imag(
@@ -2171,6 +2175,12 @@ function div_complex(z1, z2) {
     $(r, A)$.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
     Ben's representation is therefore given by the following selectors
     and constructors:
+           
+           
+           
+           
+           
+           
     <div class='snippet' id='javascript_43_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0EYBQuAzAVwDsBjAFwEsB7E0AQwBMmB9MmgWwAcAbAUwAeACgBe2ADShRKAJSgA3rlArQAJ34Uia+pwYBrfqwJqurDQ16sqegObDlqp85UWr3Bmopjs8gNTq-JasHl5ichKOLtE2DLYhnt7i-qCx8aFJcrIA3LgAvoSklLT0AM5EAEbsXHxCPlIy8kpOGlo6oHqGxqac5kFWaQ7Rw24JYcmgALSBwRnhspHDMXZjSb5TqStzjTn5heTUdB1EVhw8AiLiDXKKUYFtugZGJmYrDCT2d0sqdiRUWkx+D55AAqDpxP4AoGNRbfJzvWwCYGgAIIpE7XIFYgHEqgJhUABu1XOdSu0huzVUrW0jy6L16bw+Qzhql+-yIgORYDZUPmsJZjA+6PW0zR0KymPw2OKR1KAEciJ4gYImndqe1BKAwYJJfsZfRRttVS1NDTQAALIJMMS7LFFQ70NKrG23E0PUAUBhUXg2yXSh3g2yQjnQ41U03tPQUc2seVhL7feWKjTCQ2JG0pBNLJNK4ROo2yW16gNil2U1wRx7R1gMT0kFB5rbp0QLNPjQt++24zrPHp9YKDQRSACeYYr7o8VDUwiHoFHnZxRx73VecRrTLUUgYY-uZsn07UWvB1Y4pWE26kh7BUZjpSoJHPHb2uA4JFKFA6w+qrBIRF62FAABecE6T7UZBnQABWKRJgABjQSDdlfd9P2-X9ehQICQN7MxwLsYQoJg+DENyF86BQjRyl4D9gOYNgzlqEROC-Dgfz-VhJFALMWU4E5iUY4RmLQ9iUCkbiBR+FiaDYjCn1wfN00ok4KByIA')">function real_part(z) {
     return head(z);
 }
@@ -2205,6 +2215,12 @@ function make_from_mag_ang(r, a) {
     
     trigonometric relations to obtain the real and imaginary parts.
     Alyssa's representation is:
+    
+    
+    
+    
+    
+    
     <div class='snippet' id='javascript_43_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0EYBQuAzAVwDsBjAFwEsB7E0AQwBMmB9MmgWwAcAbAUwAeACgBe2ADShRKAJSgA3rlArQAJ34Uia+pwYBrfqwJqurDQ16sqegObDlqp85UWr3Bmopjs8gNTq-JasHl5ichKOLtE2DLYhnt7i-qCx8aFJcrIA3LgAvoSklLT0AM5EAEbsXHxCPlIy8kpOGlo6oHqGxqac5kFWaQ7Rw24JYcmgALSBwRnhspHDMXZjSb5TqStzjTn5heTUdB1EVhw8AiLiDXKKUYFtugZGJmYrDCT2d0sqdiRUWkx+D55AAqDpxP4AoGNRbfJzvWwCYGgAIIpE7XIFYgHEqgJhUABu1XOdSu0huzVUrW0jy6L16bw+Qzhql+-yIgORYDZUPmsJZjA+6PW0zR0KymPw2OKR1KAEciJ4gYImndqe1BKAwYJJfsZfRRttVS1NDTwbZIRzoaDwRQABbVUrCMViWS7LFFQ70NKrV23E0Pc2WzmiG16e2sUpUEjOoXW916r1B9kh41U03tO1BJiuyXSpMu0P+9OBigMKi8XN7fO4zrPHp9YKDQRSACeadcGfoHioamE4Yd8rC8sVGmEKpRoBHSuE7YWXzhA9YDDLJBQs6kKoTNaOde6rziy6ZaikDA79zNPb7J8YCdwHBIpQoHVb1VYJCIvWwoAAvOC6Q2oyDOgACsUiTAADGgIG7A+T4vm+H69Cgv7-vWZhAXYwigeBUEwbk950PBGjlLwz5-swbBnLUIicK+HDvp+rCSKAC4CpwJzEjR-b0TQjHIVIbECqyvH8awEr4D6cwkScFA5EAA')">function real_part(z) {
     return magnitude(z) * math_cos(angle(z));
 }

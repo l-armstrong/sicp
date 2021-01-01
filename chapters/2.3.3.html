@@ -2024,7 +2024,7 @@ Acknowledgments
       
       <kbd>adjoin_set</kbd>.
     
-    
+      
     
       
       
@@ -2032,7 +2032,7 @@ Acknowledgments
       
     
     is a predicate that determines whether a given element is a member of a set.
-    
+      
     
       
       The function <kbd>adjoin_set</kbd>
@@ -2040,7 +2040,7 @@ Acknowledgments
     
     takes an object and a set as arguments and returns a set that contains the
     elements of the original set and also the adjoined element.
-    
+      
     
       
       The function <kbd>union_set</kbd>
@@ -2048,7 +2048,7 @@ Acknowledgments
     
     computes the union of two sets, which is the set containing each element
     that appears in either argument.
-    
+      
     
       
       The function
@@ -2109,6 +2109,7 @@ Acknowledgments
       
       just numbers or strings:
     
+    
     <div class='snippet' id='javascript_40_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQBDAEwCsqKiB9AZwFMyAKAB4AaUDzIBKUAG9soOaABOvAgtoVO7bgBtuAW25Ey7Kni69BIseNnzb8gPyjeNu7YBcoAA50KCi04kAbmwAX1xCUkoaUHVNHX1DY1MxfytpFyUyFTUNIgItLT40l1dQRzw6LR4S1w9uAEcCSv8AC25GIt5xa1KHUDIFAm4auw9Y7T0DIxMzfmF+n0KrcWCw7HH4qaTZvgBGAFYhEsYWNh3dgAYRE9YOFIPr5ludlCvQPILu7sCgA')">function is_element_of_set(x, set) {
    return is_null(set) 
           ? false
@@ -2131,6 +2132,7 @@ Acknowledgments
       <kbd>pair</kbd>
     
     to add the object to the list that represents the set:
+    
     <div class='snippet' id='javascript_40_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQKBnAfQFMAbZgW2aLMar0b1mZABQAPADSghZAJSgA3tlAqATsIKraDRkQKtWImfOUqz5gPyg8AQ1ZDT58wC5QzAI4E74qQAtmNgAmRsKyso5OKlZkqgTMEZGuOmyc3Lz8gsI+oGQ2FIbGsgDc2AC+uISklDSgQQBWVBREmaKS0qGKEepkmtpMKVw8fAIy2cYJkVYyE06uAA55qmOhJeXY9Y3NowCMAAxSG00tItsArAeBDUejKPugegZhxUA')">function adjoin_set(x, set) {
     return is_element_of_set(x, set)
            ? set
@@ -2165,6 +2167,7 @@ Acknowledgments
     
       
       function:
+    
     
     <div class='snippet' id='javascript_40_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQKBnAfQFMAbZgW2aLMar0b1mZABQAPADSghZAJSgA3tlAqATsIKraDRkQKtWImfOUqz5gPyg8AQ1ZDT58wC5QzAI4E74qQAtmNgAmRsKyso5OKlZkqgTMEZGuOmyc3Lz8gsI+oGQ2FIbGsgDc2AC+uISklDSgQQBWVBREmaKS0qGKEepkmtpMKVw8fAIy2cYJkVYyE06uAA55qmOhJeX4xOTU2jzMqkKbNC0hZACMUjIo8krm3b10THoGxyfyAD6v97r6BcKXM5agR6sf5mJL9diDdIjLL+ILPWTnX7hSJOKwLChLWHBGQvCQglEqJpkXb7arNUa5fLwxFkS7IgkqJI7PbMA7krKUn6nBHtWnFMq4Ikk1lko6OeqNdmiE4ABikEqaRxQctqgQaitGGBVQLCCPFaslR1l8oNGqyJwArCb1VKRMqpDrdUUgA')">function intersection_set(set1, set2) {
     return is_null(set1) || is_null(set2)
@@ -2233,7 +2236,7 @@ Acknowledgments
     <a name="ex_2.59" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_2.59">Exercise 2.59 </a></b> 
   
     Implement the
-    
+     
     
       
       <kbd>union_set</kbd>
@@ -2388,6 +2391,7 @@ function union_set(set1, set2) {
     In checking for the presence of an item, we no longer have to scan the
     entire set.  If we reach a set element that is larger than the item we
     are looking for, then we know that the item is not in the set:
+    
     <div class='snippet' id='javascript_40_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQKBnAfQFMAbZgW2aLMar0b1mZABQAPADRCyASlABvbKGWgATsIKraDRkQKtWI6XKUqzKgPyg8AQ1ZDT5swC5QY0AF4voABbMbACZGwjKOTspWZKoEzGHhru4APL7+QcZxTla29rHhLnRMbJzcvPyCwuISoGQ2FIbGMgDc2AC+uDpFXDx8AtIiAIwArFWsDKL9AAxVQ1UoEzJNQA')">function is_element_of_set(x,set) {
     return is_null(set) 
            ? false
@@ -2459,6 +2463,7 @@ function union_set(set1, set2) {
       
       function:
     
+    
     <div class='snippet' id='javascript_40_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQKiyBTAJwGdHzqiB9dsgCj4BGADSg+KAJSgA3tlAK6eUPwqtuRAgBstgxmSHSAPkbrrNOvWSnS5i+6Gb6CzWha0BueYoC+oRlrsst4OoCQ0rGSgAB5CoAC8oAAWjACGACZWhl6hCuFEkTEoCclpmRKSOblOZC60sQnxidEoIbkOAPygAA6pFMz8sWL0TGwclDS8+vxkfbrCkiJt7Sura7MU8-o2ksurAFwxcQA8RaB7K10jLOyck3wzc1mL4tu7a-aHIEegAHxF2AAkCtrmM7jwHsIlh8YSsNltrJJKm0fNhUdhQbcJhDpiEtGoBEIAAxiFAk0AYImLPEE-jEsRCACspKplSAA')">function intersection_set(set1, set2) {
     if (is_null(set1) || is_null(set2)) {
         return null;
@@ -2496,7 +2501,7 @@ function union_set(set1, set2) {
     <a name="ex_2.61" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_2.61">Exercise 2.61 </a></b> 
   
     Give an implementation of
-    
+     
     
       
       <kbd>adjoin_set</kbd>
@@ -2541,7 +2546,7 @@ function union_set(set1, set2) {
   
     
     Give a $\Theta(n)$ implementation of
-    
+     
     
       
       <kbd>union_set</kbd>
@@ -2643,6 +2648,10 @@ function union_set(set1, set2) {
     that there is no subtree connected there.  We can describe this
     representation by the following
     functions:<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
+     
+      
+      
+      
     <div class='snippet' id='javascript_40_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQBTIsgJwE8AKZuugSlAG9soIUzpkCTWgAs6AQwAmHETwDc2AL75i5arQA2dPGQD6AIyYzSkxV14ChoEWImhp8jjIq7rPbqo2FSShoHCgBzSWMzCxIrTh5+QWFRcSlZBTIPLwzPb248v01AnVAAWxkAazojOLYGZhYAGn1DBqYwiNtEh2TnXQoAZzJaxlYmgzJW9rJfdVw61jZE5sjzS0X7EPCV6Ksu+zLK6qU2AEYABga9jev7IgJdXUub5-2KqpqMC6uXn42D9+OKAudweDRBum4T1+0I24Ly8OUQA')">function entry(tree) {
    return head(tree);
 }
@@ -2670,6 +2679,7 @@ function make_tree(entry,left,right) {
       
     function
     using the strategy described above:
+    
     <div class='snippet' id='javascript_40_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQBTIsgJwE8AKZuugSlAG9soIUzpkCTWgAs6AQwAmHETwDc2AL75i5arQA2dPGQD6AIyYzSkxV14ChoEWImhp8jjIq7rPbqo2FSShoHCgBzSWMzCxIrTh5+QWFRcSlZBTIPLwzPb248v01AnVAAWxkAazojOLYGZhYAGn1DBqYwiNtEh2TnXQoAZzJaxlYmgzJW9rJfdVwA7WCBozp9ErqjKjwjftE2AA8G0B3phPtup1ologJdL2PeLrOzgH5QPBldHcenoQAuUD2oAAvCD6CN2PdQN8fq9mAQ6NCnv9AQAeMH1Nj3REvUBLFZ0NaMDZbY77Q7NSLmSyY0R5bH2f4gAGgAB86NYNOm9LOeNW602212BxC4Up0Ss9xmGmwvIJ-JJuxQAAZDo8ypVqko2ABGFXY663BrY9VVGoYPU-H4mzVcNjKw4G3QOm66bhGy1PR15XxAA')">function is_element_of_set(x, set) {
     return is_null(set) 
            ? false
@@ -2701,6 +2711,7 @@ function make_tree(entry,left,right) {
     
       
       function:
+    
     
     
     <div class='snippet' id='javascript_40_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQBTIsgJwE8AKZuugSlAG9soIUzpkCTWgAs6AQwAmHETwDc2AL75i5arQA2dPGQD6AIyYzSkxV14ChoEWImhp8jjIq7rPbqo2FSShoHCgBzSWMzCxIrTh5+QWFRcSlZBTIPLwzPb248v01AnVAAWxkAazojOLYGZhYAGn1DBqYwiNtEh2TnXQoAZzJaxlYmgzJW9rJfdVwA7WD5ACsqCiIjftE2AA8GzemE+26nWgGjIgJdL33uLqOjgH5Siqqa3dALq4aPy91b+4BAC5QNtQABeCH0EbsG53AGgJ77OFAkGgAA8UPqbFh8Mez0q1SUwyxNwayNxFOWq3W+x232akXMlmxojyZIpHKObXCjOiVhu-w5wJAqIAfJjWCzpuSAWUCTU6pLSTLOUcGaYmTEpdx2aqOVS1hstu9uRENXztflZtgDTStgBGAAM31tRqG9oArC65CtDbSUM6flc8r4gA')">function adjoin_set(x,set) {
@@ -2779,7 +2790,7 @@ function make_tree(entry,left,right) {
     
     
     binary tree to a list.
-    
+      
     <div class='snippet' id='javascript_40_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQBTIsgJwE8AKZuugSlAG9soIUzpkCTWgAs6AQwAmHETwDc2AL75i5arQA2dPGQD6AIyYzSkxV14ChoEWImhp8jjIq7rPbqo2FSShoHCgBzSWMzCxIrTh5+QWFRcSlZBTIPLwzPb248v01AnVAAWxkAazojOLYGZhYAGn1DBqYwiNtEh2TnXQoAZzJaxlYmgzJW9rJfdVwA7WC46qojPsGjAEZchPtup1oBoyICXSylbi7d3YB+UGPTy6uhAC5QGQAHd4Z0pWXVgeMW2akXMlly3Aajye0KE7w8TGG9VykJhqJhSzIKzWgLYbXCIOisXOeRmaiAA')">function tree_to_list_1(tree) {
     return is_null(tree)
            ? null
@@ -2917,6 +2928,7 @@ function make_tree(entry,left,right) {
       <kbd>tail</kbd>
     
     is the list of elements not included in the tree.
+     
     <div class='snippet' id='javascript_40_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQBTIsgJwE8AKZuugSlAG9soIUzpkCTWgAs6AQwAmHETwDc2AL75i5arQA2dPGQD6AIyYzSkxV14ChoEWImhp8jjIq7rPbqo2FSShoHCgBzSWMzCxIrTh5+QWFRcSlZBTIPLwzPb248v01AnVAAWxkAazojOLYGZhYAGn1DBqYwiNtEh2TnXQoAZzJaxlYmgzJW9rJfdVwA7WC+weqqaqVa-RK6-s77bqdUtwAHGSZKGV01rg26LcZ+saJQsis6Te28mf8tINoTs4oFyudA2ZAeoCIu3sFDwoDYtAAvEjQAAGKF7JIHUAnChMeEEXS6BpvMEzPZqei6fp0BIY+wkGiDUDNYz9CgALxpCNKMheRjwuioVDx8NAAFpQABGXhgFBkumgBlEJksowifoEsigbn-c6XGok8Gqtmc+V0pUq8bA7UuNJsVXqzVmjEWrVEGhGVWGm3ZLwOuga3TTVQKxWMrVtcKsjlciHiuHGmOgADUUude1doBeAyMdVYNtcCndRE9VsN6fp4ZCUbVAc1Nt1gP16198I9XqDOwaXVDvb7-erESMJpUPYzVcjQ7iBbtk+MjqDFaEmZEZQoRHXoVznZ9mTYc9rgeDY-sjhS2I8eLKlWBHEkObzjVAJ4HA9VcQaz9f39PU2B3G7H8MVXDwNyebdSRDewNA0bAlmMMhVhqeC2ElFFPxQdDQAwNFfCAA')">function list_to_tree(elements) {
     return head(partial_tree(elements,length(elements)));
 }
@@ -3016,8 +3028,8 @@ function partial_tree(elts, n) {
     <div class="permalink">
     <a name="ex_2.65" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_2.65">Exercise 2.65 </a></b> 
   
-    
-    
+     
+     
     Use the results of exercises&nbsp;<REF NAME="ex:tree-to-list"><a class="superscript" id="2.3.3-ex-link-2.63" href="./2.3.3.html#ex_2.63">2.63</a></REF>
     and&nbsp;<REF NAME="ex:list-to-tree"><a class="superscript" id="2.3.3-ex-link-2.64" href="./2.3.3.html#ex_2.64">2.64</a></REF> to give
     $\Theta(n)$ implementations of
@@ -3093,7 +3105,7 @@ function partial_tree(elts, n) {
     For an accounting system, it might be a transaction number.  Whatever
     the key is, when we define the record as a data structure we should
     include a
-    
+      
     <kbd>key</kbd> selector
     
       
@@ -3125,6 +3137,7 @@ function partial_tree(elts, n) {
     
     For example, if the set of records is implemented as an unordered list, we
     could use
+    
     
     <div class='snippet' id='javascript_40_19_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQCcWSqOATABSsAngBpQfBmQYBKUAG8AkKFDYVKrmQIdaABwYUOQlmIlTZAbmwBffMXLVaIgVx78589aq+bttABYsDIKuvHwyVraEpJQ0ZtIu3GEeauq+OqDSFAA2iW7hkbjRDnHZVFRMBLoCAOYUAG4sRGwi4gDOLGRsVHicSfxtKT6dfqAUbWxEBNm5HV09ffmDqV6rAPygeAzZHSur6gBcoCwAjgTbtQ1NLSbizoHBAnPdvaEDMh97+6AbD4LPCzefGW3y8RzKFSql0azVamQMs06L0WYUGERsuAhlWqGHE2XGZAEjFYKP4AhQ4gARAA1JoENqUmTiL6glTE9hAgQAVipCCqFDILA4jNELNZ7NJggALFSALIMDgMpli0ESzm40CUgCiCrI-hFKu+av6ggAbFTwFI-IyPhYgA')">function lookup(given_key, set_of_records) {
     return is_null(set_of_records)

@@ -2031,6 +2031,7 @@ Acknowledgments
     of section&nbsp;<REF NAME="sec:trees"><a class="superscript" id="2.2.3-sec-link-2.2.2" href="./2.2.2.html">2.2.2</a></REF>, which takes a tree as argument
     and computes the sum of the squares of the leaves that are odd:
     
+     
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -2051,6 +2052,7 @@ Acknowledgments
              sum_odd_squares(tail(tree));
 }
 </pre></div></div></td></tr></table>
+     
     
   </p></div>
   <div class='permalink'>
@@ -2065,6 +2067,7 @@ Acknowledgments
     ${\textrm{Fib}}(k)$, where
     $k$ is less than or equal to a given integer
     $n$:
+     
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -2328,6 +2331,7 @@ list(1, 4, 9, 16, 25)</pre></div></div></td></tr></table>
 <a name='p9' class='permalink'></a><p>
     Filtering a sequence to select only those elements that satisfy a given
     predicate is accomplished by
+     
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -2364,7 +2368,6 @@ list(1, 3, 5)</pre></div></div></td></tr></table>
   <div class='permalink'>
 <a name='p10' class='permalink'></a><p>
   Accumulations can be implemented by
-  
   
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
@@ -2426,6 +2429,7 @@ list(1, 2, 3, 4, 5)</pre></div></div></td></tr></table>
     
     we need to generate the sequence of integers in a given range, which we
     can do as follows:
+     
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -2457,6 +2461,7 @@ list(2, 3, 4, 5, 6, 7)</pre></div></div></td></tr></table>
 <a name='p12' class='permalink'></a><p>
     To enumerate the leaves of a tree, we can use<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
     
+     
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -2507,6 +2512,7 @@ list(1, 2, 3, 4, 5)</pre></div></div></td></tr></table>
     </span>
     we enumerate the sequence of leaves of the tree, filter this to keep only
     the odd numbers in the sequence, square each element, and sum the results:
+     
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -2538,6 +2544,7 @@ list(1, 2, 3, 4, 5)</pre></div></div></td></tr></table>
     the Fibonacci number for each of these integers, filter the resulting
     sequence to keep only the even elements, and accumulate the results
     into a list:
+     
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -2710,6 +2717,9 @@ list(0, 1, 1, 4, 9, 25, 64, 169, 441, 1156, 3025)</pre></div></div></td></tr></t
     Fill in the missing expressions to complete the following definitions of
     some basic list-manipulation operations as accumulations:
     
+    
+    
+    
     <kbd class='snippet'>function map(f, sequence) {
     return accumulate((x, y) => $\langle ??\rangle$, 
                       null, sequence);
@@ -2836,6 +2846,7 @@ function length(sequence) {
       </span>
     
     from section&nbsp;<REF NAME="sec:trees"><a class="superscript" id="2.2.3-sec-link-2.2.2" href="./2.2.2.html">2.2.2</a></REF> as an accumulation:
+    
     <kbd class='snippet'>function count_leaves(t) {
     return accumulate($\langle ??\rangle$, $\langle ??\rangle$, map($\langle ??\rangle$, $\langle ??\rangle$));
 }</kbd>
@@ -2927,6 +2938,7 @@ list(list( 1,  2,  3),
       <span style="color:blue"><kbd>accumulate_n</kbd>:
       </span>
     
+     
     <kbd class='snippet'>function accumulate_n(op, init, seqs) {
     return is_null(head(seqs))
            ? null
@@ -3041,6 +3053,7 @@ list(list(1, 2, 3, 4),
       </LI>
     </UL>
     We can define the dot product as<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
+     
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -3075,6 +3088,9 @@ list(list(1, 2, 3, 4),
       </span>
     
     exercise&nbsp;<REF NAME="ex:accumulate-n"><a class="superscript" id="2.2.3-ex-link-2.37" href="./2.2.3.html#ex_2.37">2.37</a></REF>.)
+     
+     
+    
     <kbd class='snippet'>function matrix_times_vector(m, v) {
     return map($\langle ??\rangle$, m);
 }
@@ -3122,8 +3138,8 @@ function matrix_times_matrix(n, m) {
     <a name="ex_2.39" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_2.39">Exercise 2.39 </a></b> 
   
     
-    
-    
+     
+      
     The
     
       <span style="color:green"><kbd>accumulate</kbd></span>
@@ -3151,6 +3167,7 @@ function matrix_times_matrix(n, m) {
       <span style="color:blue"><kbd>fold_right</kbd>,</span>
     
     except that it combines elements working in the opposite direction:
+     
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -3293,7 +3310,7 @@ function matrix_times_matrix(n, m) {
     <a name="ex_2.40" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_2.40">Exercise 2.40 </a></b> 
   
     Complete the following definitions of <kbd>reverse</kbd>
-    
+     
     (exercise&nbsp;<REF NAME="ex:reverse"><a class="superscript" id="2.2.3-ex-link-2.18" href="./2.2.1.html#ex_2.18">2.18</a></REF>) in terms of
     
       <span style="color:green"><kbd>fold-right</kbd></span>
@@ -3485,6 +3502,7 @@ function matrix_times_matrix(n, m) {
       <span style="color:green">procedure:</span>
       <span style="color:blue">function:</span>
     
+     
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -3535,6 +3553,7 @@ function matrix_times_matrix(n, m) {
     with&nbsp;$x$.  Combining these sequences for
     all $x$ gives all the permutations
     of&nbsp;$S$:<a class='superscript' id='footnote-link-8' href='#footnote-8'>[8]</a>
+    
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -3578,6 +3597,7 @@ function matrix_times_matrix(n, m) {
     used in <kbd>permutations</kbd> returns all the items in
     a given sequence except for a given item.  This can be expressed as a
     simple filter:
+     
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -3603,7 +3623,7 @@ function matrix_times_matrix(n, m) {
       <span style="color:green">procedure</span>
       <span style="color:blue">function</span>
     
-    
+      
     
       <span style="color:green"><kbd>unique-pairs</kbd></span>
       <span style="color:blue"><kbd>unique_pairs</kbd>
@@ -3763,6 +3783,7 @@ function triples_that_sum_to(s, n) {
       that returns the sequence of all ways to place queens in the first
       $k$ columns of the board.
     
+      
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -3979,7 +4000,7 @@ flatmap(new_row =>
     <FOOTNOTE>
     This is, in fact,
     precisely the 
-    
+      
     
       <span style="color:green"><kbd>fringe</kbd></span>
       <span style="color:blue"><kbd>fringe</kbd></span>

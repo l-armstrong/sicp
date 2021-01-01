@@ -2099,23 +2099,23 @@ Acknowledgments
     
     To combine images, we use various operations that construct new painters
     from given painters. For example, the
-    
+      
     <kbd>beside</kbd> operation takes two painters and
     produces a new, compound painter that draws the first painter's image
     in the left half of the frame and the second painter's image in the
     right half of the frame. Similarly,
-    
+      
     <kbd>below</kbd> takes two painters and produces a
     compound painter that draws the first painter's image below the
     second painter's image. Some operations transform a single painter
     to produce a new painter.  For example,
-    
+      
     
       
       <kbd>flip_vert</kbd>
     
     takes a painter and produces a painter that draws its image upside-down, and
-    
+      
     
       
       <kbd>flip_horiz</kbd>
@@ -2179,6 +2179,7 @@ const wave4 = below(wave2, wave2);
     
     For example, we can abstract the pattern in
     <kbd>wave4</kbd> as
+     
     <div class='snippet' id='javascript_36_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&ext=RUNES&prgrm=PTAEGUEkGEAVQFLlAJgHToCwChsDMBXAOwGMAXASwHsjQ8AbCgByYFMATAfSYEMKAnAM4AKXhSJlW-AJSgA3tlBLQJGoLKgxEqSlABeUACNWgiu1ai+2-gBo6jJpwBuUspfGSZ0gNyLl-VjICflp1HhIAa3drFDstTxQfbABfXFUidVAAC1YefjJMfXtmNi4xIWEcvLIkwSyqAHdK3PzMHyA')">function flipped_pairs(painter) {
     const painter2 = beside(painter, flip_vert(painter));
     return below(painter2, painter2);
@@ -2226,6 +2227,7 @@ const wave4 = below(wave2, wave2);
 	figures&nbsp;<REF NAME="fig:split-plans-2"><a class="superscript" id="2.2.4-fig-link-2.13" href="./2.2.4.html#fig_2.13">2.13</a></REF>.
       
     
+     
     <div class='snippet' id='javascript_36_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&ext=RUNES&prgrm=PTAEGUEkGEAVQFLlAJgHToCwChsDMBXAOwGMAXASwHsjQAnCgcwAsyB9AZwAcAbCsgBRcAhhSJkApnQA0oIgEpQAb2yg1oCnlADaAXn2gADIpXqz9CWQJ1aIsZLoBuVeoC+oCTw4TlL86BIaDjJQDgBbYR4eKVBdeiZWTl5+IVFxKVlaAFpQAEZ5Z381OktrWgAjCQ4KABMJVPsM0LJhEgBrAXDI6JlQiKipeQK-UFdsMewOZioAdwEGFnZuPkFmCWE6MllMIccgA')">function right_split(painter, n) {
     if (n === 0) {
         return painter;
@@ -2239,6 +2241,7 @@ const wave4 = below(wave2, wave2);
     the right (see exercise&nbsp;<REF NAME="ex:up-split"><a class="superscript" id="2.2.4-ex-link-2.44" href="./2.2.4.html#ex_2.44">2.44</a></REF> and
     figures&nbsp;<REF NAME="fig:split-plans"><a class="superscript" id="2.2.4-fig-link-2.12" href="./2.2.4.html#fig_2.12">2.12</a></REF>
     and&nbsp;<REF NAME="fig:split-plans-2"><a class="superscript" id="2.2.4-fig-link-2.13" href="./2.2.4.html#fig_2.13">2.13</a></REF>):
+     
     <div class='snippet' id='javascript_36_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&ext=RUNES&prgrm=PTAEGUEkGEAVQFLlAJgHToCwChsDMBXAOwGMAXASwHsjQAnCgcwAsyB9AZwAcAbCsgBRcAhhSJkApnQA0oIgEpQAb2yg1oCnlADaAXn2gADIpXqz9CWQJ1aIsZLoBuVeoC+oCTw4TlL86BIaDjJQDgBbYR4eKVBdeiZWTl5+IVFxKVlaAFpQAEZ5Z381OktrWgAjCQ4KABMJVPsM0LJhEgBrAXDI6JlQiKipeQK-UFdsMfxicmpaAi4kvkE7dN6FXzNNbT0DY3WikqsbUGWHQrcPLx9TIsCiYL7umLi5hZSTpuy84aKLQ9pg1odSrVOqdfo9WRdAZ0eSyd4ws5qMYTQikSg0AJUGxSV5LNIOTImEabHSxHZE-alI7wxGjC7ePbmW73OaxUAvbiLBorTKgHL5WnqZkhBgsEJxUWJTlvfEfPlfQVqYWgMhUebRPDi0DA2r1OayObffzK8pUMiqsJsSVagHtATW2TWo1MoIhQLYuhs91EHHSvGNVbygUjdQHMrNQECHWg1XqiSa2TewbSEM-IrR+rw2Sm81US1O52jca4DjMKgAdwESbouIEzAkwjoZFkmCGjiAA')">function corner_split(painter, n) {
     if (n === 0) {
        return painter;
@@ -2290,6 +2293,7 @@ const wave4 = below(wave2, wave2);
     whose application to <kbd>wave</kbd> and
     <kbd>rogers</kbd> is shown in
     figure&nbsp;<REF NAME="fig:sqlimit-designs"><a class="superscript" id="2.2.4-fig-link-2.9" href="./2.2.4.html#fig_2.9">2.9</a></REF>:
+     
     <div class='snippet' id='javascript_36_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&ext=RUNES&prgrm=PTAEGUEkGEAVQFLlAJgHToCwChsDMBXAOwGMAXASwHsjQAnCgcwAsyB9AZwAcAbCsgBRcAhhSJkApnQA0oIgEpQAb2yg1oCnlADaAXn2gADIpXqz9CWQJ1aIsZLoBuVeoC+oCTw4TlL86BIaDjJQDgBbYR4eKVBdeiZWTl5+IVFxKVlaAFpQAEZ5Z381OktrWgAjCQ4KABMJVPsM0LJhEgBrAXDI6JlQiKipeQK-UFdsMfxicmpaAi4kvkE7dN6FXzNNbT0DY3WikqsbUGWHQrcPLx9TIsCiYL7umLi5hZSTpuy84aKLQ9pg1odSrVOqdfo9WRdAZ0eSyd4ws5qMYTQikSg0AJUGxSV5LNIOTImEabHSxHZE-alI7wxGjC7ePbmW73OaxUAvbiLBorTKgHL5WnqZkhBgsEJxUWJTlvfEfPlfQVqYWgMhUebRPDi0DA2r1OayObffzK8pUMiqsJsSVagHtATW2TWo1MoIhQLYuhs91EHHSvGNVbygUjdQHMrNQECHWg1XqiSa2TewbSEM-IrR+rw2Sm81US1O52jca4VHTDEcACOBGEJTYfDCMoDhMZmLuISrNYcXqxProuO5BLkheVcy4OOYkS0cQzAjwfHmzCxFAAXgIO3QHLDQOvN7TlTwqAB3ceTtkzv5sOYgiRsGpHohr6sb5OptNv8xzijzABuUkEO8GQswyOW0OlHE8eDwWQD2PPsJ0g4YJg4RdD06dcb3rFJmAkTtZEwIZHCAA')">function square_limit(painter, n) {
     const quarter = corner_split(painter, n);
     const half = beside(flip_horiz(quarter), quarter);
@@ -2307,7 +2311,7 @@ const wave4 = below(wave2, wave2);
       
       Declare the function
     
-    
+      
     
       
       <kbd>up_split</kbd>
@@ -2401,6 +2405,7 @@ const wave4 = below(wave2, wave2);
     <kbd>br</kbd> are the transformations to apply to the
     top left copy, the top right copy, the bottom left copy, and the bottom
     right copy, respectively.
+     
     <div class='snippet' id='javascript_36_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&ext=RUNES&prgrm=PTAEGUEkGEAVQFLlAJgHToCwChsDMBXAOwGMAXASwHsjQKATAUyMrIE8AKADwEpQBvbKGGgATozIFRtLgG5sAX1yFSlGqADOARwIBDcQH0qeA3ipSOZADYAaUGVF2ARrdBPRfQSLESptAA66FCyMoqAAvAB8mmS6JADWHE6MGgyMllYcgcFkoTx2DllBIR75Qt4VlVUVyalMSZnZJfluokU5eTw88krYGgAWVADuHNp6hsam5m2S0gYE-nWMBvTDRHZpLBTsduXV+6A6+rmiBrNEBqIUAOb9ZHZHoidnfgZWjHhkPHvCHP2Mx2+3m6QA')">function square_of_four(tl, tr, bl, br) {
     return painter => {
         const top = beside(tl(painter), tr(painter));	
@@ -2422,6 +2427,7 @@ const wave4 = below(wave2, wave2);
       <kbd>square_of_four</kbd>
       
        as follows:<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
+     
     <div class='snippet' id='javascript_36_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&ext=RUNES&prgrm=PTAEGUEkGEAVQFLlAJgHToCwChsDMBXAOwGMAXASwHsjQBnARwIEMAnAUwH0q9O8qCrABRkANgBpQZVpIBGE0LNYBKUAG9soLaA5lBtAA7MKRMu1agAvAD56ZZiQDWQ2ezoUAJuxGihRk2YqktJ+xqbmysrimtqxcfEJWq7uXi6+-uFBisIZgZHKANzYAL64hKSUNKCe7KYUZACeQgAeqhqxuvqgzUWl+MTk1LR4ohQGBuwenP6sdKEBEeoxWiQ0dGSgqwC2sibsmFb0TGxcPHwCwnqsRJwEBilcHlQA7kSSI2OcAG7mZJLLiUBQPiHwMnAAFlRWBQAF6SGp1RqFAGda6bKg7PaYeaZZF9OiQ55CUETKYzObg9hsMiRApAA')">function flipped_pairs(painter) {
     const combine4 = square_of_four(identity, flip_vert, 
                                     identity, flip_vert);
@@ -2436,6 +2442,7 @@ const wave4 = below(wave2, wave2);
       
     
     can be expressed as<a class='superscript' id='footnote-link-5' href='#footnote-5'>[5]</a>
+     
     <div class='snippet' id='javascript_36_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&ext=RUNES&prgrm=PTAEGUEkGEAVQFLlAJgHToCwChsDMBXAOwGMAXASwHsjQBnARwIEMAnAUwH0q9O8qCrABRkANgBpQZVpIBGE0LNYBKUAG9soLaA5lBtAA7MKRMu1agAvAD56ZZiQDWQ2ezoUAJuxGihRk2YqktJ+xqbmysrimtqxcfEJWq7uXi6+-uFBisIZgZHKANzYAL64hKSUNKCe7KYUZACeQgAeqhqxuvqgzUWl+MTk1LSsFADmABZknHQGovWhAeaSRG0xWhR4oEK0lrugAAyriZ2shmGBRbHFoOyidOzqa3EkNHRk9AC2zKKi5lY6Y0m01m81yS1AtAAtKAAIyFJ4ddh6U6KNw1BaZSRvBzOOhfH7gvHfX4qeFXEplAaVWgEAzAuZkDGBZZHbQbLY7PaHR7HJFdMGsS7aa63e48hIvIhvT7Ev6WUC0+mg87gqGwskJE60bFOFxo1JEgkyGVGqKgAUarSlPrlQZVF6ncxKxkClni9abbZWLmsuJa80qwVPEV3B7teKS6W0-6KmYMpmq0DQuFC56vd4jCbveWZoFx5WLY1qlMIrSR95kKh0354bOolLeWmSWmW2LlxRUMiVj6cXN1nXOPuSPut7Tth1EOWgCdO-MuwPLJPq1OI5Ha+y65LoyvV9i1yQzoKlxLxLepV0drtUHsj1vWykVIb0JhsLhzD4FzEQ33T9O-j6yCY7CYP8jAsBw3C8PwghCHgcx0uMVAjAAXpINR1I0kjHieOE4WunC0g2nAeFQADuRCSHBFB0gAbuYZCtv6LwAUBmBCIezoJkWkS9LgdCIaRQhga+nDvvM4zsGwZCSJgPFAA')">function square_limit(painter, n) {
     const combine4 = square_of_four(flip_horiz, identity, 
                                     rotate180, flip_vert);
@@ -2466,7 +2473,7 @@ const wave4 = below(wave2, wave2);
       
       Declare a function
     
-    
+      
     <kbd>split</kbd> with the property that evaluating
     
     <div class='snippet' id='javascript_36_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&ext=RUNES&prgrm=PTAEGUEkGEAVQFLlAJgHToCwChslAGYCuAdgMYAuAlgPYmgDOADgDZUWgU2gBGApqADuAJ3YU+9HgE9GFIgBMJFXGToMOogOYALCgH1mbDgF5GrdgAp+DKooA0vPixqCAlAG5sqkutBEmBuYmZkZWTi4O1rZ8HkA')">const right_split = split(beside, below);
@@ -2543,27 +2550,27 @@ right_split(rogers, 4);
     vectors.  In accordance with data abstraction, we need not be specific yet
     about how frames are represented, other than to say that there is a
     constructor
-    
+       
     
       
       <kbd>make_frame</kbd>,
     
     which takes three vectors and produces a frame, and three corresponding
     selectors
-    
+       
     
       
       <kbd>origin_frame</kbd>,
       
     
-    
+       
     
       
       <kbd>edge1_frame</kbd>,
       
     
     and
-    
+       
     
       
       <kbd>edge2_frame</kbd>
@@ -2604,6 +2611,7 @@ right_split(rogers, 4);
     center of the frame.  We can create a frame's coordinate map with
     the following
     function:<a class='superscript' id='footnote-link-6' href='#footnote-6'>[6]</a>
+     
     <div class='snippet' id='javascript_36_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToCwChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQDcXyAKADwA0oAJ4BKUAG9soGaABOLMgTm0ADgwpz+QsQG5sAX3zFy1WnxJU5nbmR5dyV8VNnzFy2gAsWDACb3bJ30jQlJKGhFLawc7GKdJaVkFJRVQMg0AGwDHOVFg4zCzUABnEgYM9hiePAYcoTjchNdkj3pmSttq2rIrUAAqUAsrG14G0SFE1ynp1xqc-sjhqrG8wwLTCL9fEdjAuQBGer2UZ0m3FNpGVh3+KJuG-fFQM5nXmQBqQbvl4-Hnt4BMmE306DyeL0BU0+wKWoN+qxCJnCtGKBAARvc9odQA0Tk0ku5UlcOrwhtE4TlHjIIZDZABaL6w0a-Ca014w8nMyngtkzBkczE5E4I3ChDaXdpsPByBh0Fg8KwUADmFCIQhYviVLGxGq1eJcBIuoAyFGKdkVKrVoF12vVmpYJ3yYuRoAtqqlMrl1U9LFOzUJtBNZrYCjw3tlLCEAAYRc6ijb9h6I+G5X7Da0g2QQyww9KI0JHk6kfH7Sgk1686n8TIWqlM9ncz6hI61usXZX2JYrNtGKoU77q+dWhxQABeAB8oC2NzdRHL8o7fxpvNk06qpXKJLsZPuS5X+8hCfn-dEe4PvI3FRuAuWZ-P99cNrLHZPp5F2EsRDN9GEbFnY7aa4qmxFtP2-OhfxtNh9gA4kbgAZiETBVjAsgfzYKCUFgyUqgAViEAA2FCaHA38O2w64Xwgv85GVVUhGoqDsUY+02FAki0Oors5B7BhVAAjs2G43i+2oxd9FQ9CGgorceBA4iv0439e1UDUdl6Ud0OEthex4aixn0aiVLUhpdCAA')">function frame_coord_map(frame) {
     return v => add_vect(origin_frame(frame), 
                          add_vect(scale_vect(xcor_vect(v), 
@@ -2645,19 +2653,19 @@ right_split(rogers, 4);
     $x$-coordinate and a
     $y$-coordinate.  Implement a data abstraction
     for vectors by giving a constructor
-    
+       
     
       
       <kbd>make_vect</kbd>
     
     and corresponding selectors
-    
+       
     
       
       <kbd>xcor_vect</kbd>
     
     and
-    
+       
     
       
       <kbd>ycor_vect</kbd>.
@@ -2667,18 +2675,18 @@ right_split(rogers, 4);
       
       functions
     
-    
+       
     
       
       <kbd>add_vect</kbd>,
     
-    
+       
     
       
       <kbd>sub_vect</kbd>,
     
     and
-    
+       
     
       
       <kbd>scale_vect</kbd>
@@ -2734,6 +2742,7 @@ function sub_vect(vector1, vector2) {
     <a name="ex_2.47" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_2.47">Exercise 2.47 </a></b> 
   
     Here are two possible constructors for frames:
+     
     <div class='snippet' id='javascript_36_18_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function make_frame(origin, edge1, edge2) {
     return list(origin, edge1, edge2);
@@ -2824,7 +2833,7 @@ function edge2_frame(frame) {
       
       function
     
-    
+      
     
       
       <kbd>draw_line</kbd>
@@ -2838,6 +2847,7 @@ function edge2_frame(frame) {
     painter in figure&nbsp;<REF NAME="fig:wave"><a class="superscript" id="2.2.4-fig-link-2.10" href="./2.2.4.html#fig_2.10">2.10</a></REF>, from lists of line
     segments as follows:<a class='superscript' id='footnote-link-7' href='#footnote-7'>[7]</a>
     
+     
     <div class='snippet' id='javascript_36_21_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToCwChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQDcXyAKADwA0oAJ4BKUAG9soGaABOLMgTm0ADgwpz+QsQG5sAX3zFy1WnxJU5nbmR5dyV8VNnzFy2gAsWDACb3bJ30jQlJKGhFLawc7GKdJaVkFJRVQMg0AGwDHOVFg4zCzUABnEgYM9hiePAYcoTjchNdkj3pmSttq2rIrUAAqUAsrG14G0SFE1ynp1xqc-sjhqrG8wwLTCL9fEdjAuQBGer2UZ0m3FNpGVh3+KJuG-fFQM5nXmQBqQbvl4-Hnt4BMmE306DyeL0BU0+wKWoN+qxCJnCtGKBAARvc9odQA0Tk0ku5UlcOrwhtE4TlHjIIZDZABaL6w0a-Ca014w8nMyngtkzBkczE5E4I3ChDaXdpsPByBh0Fg8KwUADmFCIQhYviVLGxGq1eJcBIuoAyFGKdkVKrVoF12vVmpYJ3yYuRoAtqqlMrl1U9LFOzUJtBNZrYCjw3tlLCEAAYRc6ijb9h6I+G5X7Da0g2QQyww9KI0JHk6kfH7Sgk1686n8TIWqlM9ncz6hI61usXZX2JYrNtGKoU77q+dWhxQABeAB8oC2NzdRHL8o7fxpvNk06qpXKJLsZPuS5X+8hCfn-dEe4PvI3FRuAuWZ-P99cNrLHZPp5FbaKxLYxRYSrlRFib90jkMh6jYFgiF8NMawDUB1E0ewgIYECwIgqCi0KCIzWQrMfz-CDYmgodUm8Px7FjYsIjQ79f3-QjB1rWh0goLIOHfEBQAAIl8GUAHdVSVKdjVVFhONAbwFBKCg6AIDIGDIDVsA4tFhDguRVUoIhBLIbxQC7ORfFVeSWGKV08CUsAdJYEpgLIKdIOtByqDwNJdJNIgWA-CIeIYXi2Hc+UOCQlCcXAyCiMM4pVDk4QeE4gKbJwgSpzITjVlcSLooYWKguwkD0tkTKYrihK0OS+S0v0DLTSynKwvQ1s4yw2iCOKNgejYeCAJYLQ8Lo-zTTIIjGNADsx0nZcZjwYYfBITweD6gjxv+B9ph8vyAv7Nh9J7Bg+0XSbVpmBbbJo-CAIWlqANPVkjrZDttqobs2F7E9Dru1weGoxaLp+oabpW1a-oGs130sIgzXoYQ2FnMc2muKpsRbcHIboaGbTYfY4a-KoAGYhEwVYUbstHwPtNgUGxyUqgAViEAA2ImaFR6GxtHeH2BfUnZyEUmMexPnyZbbBiah4Ksyx9mcc6KMCyZiGSfRyDMaphHOmxQsReZxWzv6yWOd1gieFJvKJd5pXtkLABIaZcFFk3TspqXqZl5t5ZZ+qKdVrceBQN39Ht6Hgadg2-uNoPHfNz3HRtqY7e1sWuoUuQ4b+tqOqTnqeHeyFM3Dw2AMxqPg9PfRsFJzOtFJxddCAA')">function segments_to_painter(segment_list) {
     return frame => 
                for_each(segment => 
@@ -2885,21 +2895,21 @@ function edge2_frame(frame) {
     the segment. Use your vector representation from
     exercise&nbsp;<REF NAME="ex:vectors"><a class="superscript" id="2.2.4-ex-link-2.46" href="./2.2.4.html#ex_2.46">2.46</a></REF> to define a representation for
     segments with a constructor
-    
+      
     
       
       <kbd>make_segment</kbd>
       
     
     and selectors
-    
+      
     
       
       <kbd>start_segment</kbd>
       
     
     and
-    
+      
     
       
       <kbd>end_segment</kbd>.
@@ -3093,6 +3103,7 @@ const diamond_painter = segments_to_painter(
     frame's origin and the other two specify the ends of its edge vectors.
     Thus, arguments within the unit square specify a frame contained within the
     original frame.
+     
     <div class='snippet' id='javascript_36_26_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToCwChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQDcXyAKADwA0oAJ4BKUAG9soGaABOLMgTm0ADgwpz+QsQG5sAX3zFy1WnxJU5nbmR5dyV8VNnzFy2gAsWDACb3bJ30jQlJKGhFLawc7GKdJaVkFJRVQMg0AGwDHOVFg4zCzUABnEgYM9hiePAYcoTjchNdkj3pmSttq2rIrUAAqUAsrG14G0SFE1ynp1xqc-sjhqrG8wwLTCL9fEdjAuQBGer2UZ0m3FNpGVh3+KJuG-fFQM5nXmQBqQbvl4-Hnt4BMmE306DyeL0BU0+wKWoN+qxCJnCtGKBAARvc9odQA0Tk0ku5UlcOrwhtE4TlHjIIZDZABaL6w0a-Ca014w8nMyngtkzBkczE5E4I3ChDaXdpsPByBh0Fg8KwUADmFCIQhYviVLGxGq1eJcBIuoAyFGKdkVKrVoF12vVmpYJ3yYuRoAtqqlMrl1U9LFOzUJtBNZrYCjw3tlLCEAAYRc6ijb9h6I+G5X7Da0g2QQyww9KI0JHk6kfH7Sgk1686n8TIWqlM9ncz6hI61usXZX2JYrNtGKoU77q+dWhxQABeAB8oC2NzdRHL8o7fxpvNk06qpXKJLsZPuS5X+8hCfn-dEe4PvI3FRuAuWZ-P99cNrLHZPp5FbaKxLYxRYSrlRFib90jkMh6jYFgiF8NMawDUB1E0ewgIYECwIgqCi0KCIzWQrMfz-CDYmgodUm8Px7FjYsIjQ79f3-QjB1rWh0goLIOHfEBQAAIl8GUAHdVSVKdjVVFhONAbwFBKCg6AIDIGDIDVsA4tFhDguRVUoIhBLIbxQC7ORfFVeSWGKV08CUsAdJYEpgLIKdIOtByqDwNJdJNIgWA-CIeIYXi2Hc+UOCQlCcXAyCiMM4pVDk4QeE4gKbJwgSpzITjVlcSLooYWKguwkD0tkTKYrihK0OS+S0v0DLTSynKwvQ1s4yw2iCOKNgejYeCAJYLQ8Lo-zTTIIjGNADsx0nZcZjwYYfBITweD6gjxv+B9ph8vyAv7Nh9J7Bg+0XSbVpmBbbJo-CAIWlqANPVkjrZDttqobs2F7E9Dru1weGoxaLp+oabpW1a-oGs130sIgzVdAgyAC4Ks32Mc2muKoo2jVZwchqhodh6iEdHJGtx4bEY30DG7KxmGRLO-q8YJ6mCIVbGqby+Hbo+yEKZxyC2ELbAyahymPLhtgUERr8qmJ9GaExpmheo0X8fFzpsV5-nOeZq6swVum-sZwX2BZkW2fZgF1bl7mWzV2WDdOgBmMXJQlgspYh8nrfqth7cVx3OlR0BVelt39fpgDPYd65dbNm2cM942TdeKOPdtl2ZeDw3MHDwm-YD12Ba57YM+95HfbR0nA7zjXzqzQudc1vXYfTuP4+mRPqMwFOg9hrqFLkRG-rajru56nh3vPTN68rmmm+bxPgZQARsAASGXxfZFnzXY6Xle1-d4H29WPny+ICgs1nTObj9knD9z4+sxtHnz6d0Ar-52-wPtEXH5L-2O9AN+xqLuwF8b9ZzTyOm-e+hxR4HggR-FsXlaB4BNKoGwIEeBD0aAaGCRoyAyghtNOQdBOoaG6loDBYDXhK14NnP4oAOIeV4q6dSlpoGyCoXYFWtD6EsEYWhMy1p7T7FYTIdhPBL6nl0HQsADDHK+H4U+RqlEmJ4OKAQohGD0EkJ7kIUBwjIRRA8gcIQBier6jOCNABk4sEAn5nQRGD0dovT2ieKq+jy4MLYGfRWCpmGqgKoCEaGivwvj0WyDxoDAYm1RBiKodAeAmIOHeZuMxwm+KIEk9m0SbhxISScChyTUnKj8RI96Bh8jX0hkgigqhVAak8e7DBY5DpVJQVwNBicMEHxabU7YHStHD3-j6PIQA')">function transform_painter(painter, origin,
                            corner1, corner2) {
     return frame => {
@@ -3108,6 +3119,7 @@ const diamond_painter = segments_to_painter(
 }
 </pre></div></div>
     Here's how to flip painter images vertically:
+     
     <div class='snippet' id='javascript_36_27_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToCwChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQDcXyAKADwA0oAJ4BKUAG9soGaABOLMgTm0ADgwpz+QsQG5sAX3zFy1WnxJU5nbmR5dyV8VNnzFy2gAsWDACb3bJ30jQlJKGhFLawc7GKdJaVkFJRVQMg0AGwDHOVFg4zCzUABnEgYM9hiePAYcoTjchNdkj3pmSttq2rIrUAAqUAsrG14G0SFE1ynp1xqc-sjhqrG8wwLTCL9fEdjAuQBGer2UZ0m3FNpGVh3+KJuG-fFQM5nXmQBqQbvl4-Hnt4BMmE306DyeL0BU0+wKWoN+qxCJnCtGKBAARvc9odQA0Tk0ku5UlcOrwhtE4TlHjIIZDZABaL6w0a-Ca014w8nMyngtkzBkczE5E4I3ChDaXdpsPByBh0Fg8KwUADmFCIQhYviVLGxGq1eJcBIuoAyFGKdkVKrVoF12vVmpYJ3yYuRoAtqqlMrl1U9LFOzUJtBNZrYCjw3tlLCEAAYRc6ijb9h6I+G5X7Da0g2QQyww9KI0JHk6kfH7Sgk1686n8TIWqlM9ncz6hI61usXZX2JYrNtGKoU77q+dWhxQABeAB8oC2NzdRHL8o7fxpvNk06qpXKJLsZPuS5X+8hCfn-dEe4PvI3FRuAuWZ-P99cNrLHZPp5FbaKZBlRGKeCsdDYdRVTIFgtCAogQLkIRZwEZdzyiIhQOxBDQP1M5a1oDsx0nA1AUsH8yHoMdQA7NguzkHsGD7Rd9FpfCzVARCAHc2FnYi6AVORlVVVZaQw0BwMgnhiWPOCH2Y1iuMtVkH1eVEMSqDiUIOO9ZLZCTZ1UtTZHkm4lKsRC5BOGTtNpDSpJ409aIBAx8g-CIROKFglTlCD7DYM0GDkMh6jYFgiF8NMawDASNC0DgPPSbzfP8wKi0KCJPO8jznNc2IgqHVJvD8exY2LCJYpSlz-PSwd+PSCgsg4d8QFAAAiXwZSY1UlSnY1VRYOrQG8BQSgoOgCAyBgQN8bBarRYQBK4iCWrSbxQHI3xVWGlhildPAxrAMh5qSwiGAC60DqoPA5pYdrEPs2hGoYFiTUQ9zdpigKMqW4pVCG4QeDqu6zt22bhrq3jZFe96GE+iLdqBmQQY+r6fsOpaiFagGodAGGwfc2L3zjRLUpK4o2B6QCNAg0CeCc4qILYTMMv4rCJ3+Nk-2sHwSE8cm8Yg7DGdMtGmupjr+zIqhuzYXsTzE3mZHJqKswptKOcpshTxMqXXlIxaxaoiW1YBHhCvlkrFbSt9VfvQ2qZpuz6MIqgCDIH7Iq8rN9nYyUqijaNVht117cdwrXdHNpriqbEY30H27YdjqirSthA+D9gLfNP2Y92+Ozd1qYo-9gL4+9mgGJztPZbYFA3ZDzow4LgjfejxC-Lz8ug5E0OCxrovU4b5Oy4rpPOZT+uk9LlBM6z2Ri4bwqW0jrvh+dtgAGY+5ubFC2wWeh8b7Zl5b93Ok90B183x2e93xPY6Nyf5+Sxex-Huvc53jvbbnp3kswFePfbiPC9frfCqfz3pXXgh9w4bz-o-NOA82BAIvsnBUb906YHvuPa+29YEvygQ3QSoFiLJwJkTXBWhJbnkzIgrePdsSkLUugnuo9sAAEhmGMInkgmBd8mEsLYZQmBmArK4B9sQCgWY2LAK3DwMBWDhFZhtPHL+Vcva-1rjIvy9pe7iJuIfY+kDVH0wvi+VRMEeZS1UXIw4ND9xmPUS2S6JETSqBsN5HgxDaYhS-PtX8-5ibATJsQ1BMxW4H3bkIUAtVmKugskQSxMggm8DXn8MJYAImxXWtae0+wYkX2-qAGMeQkmMRYExBGaSnyth9ngBxqgNSsTfsQscYlKkUEcVwZx6DXH6HwFUmp7SSZCT0T6PIQA')">function flip_vert(painter) {
     return transform_painter(painter, 
                 make_vect(0, 1),  // new origin
@@ -3129,6 +3141,7 @@ const diamond_painter = segments_to_painter(
       it is given:
       
     
+     
     <div class='snippet' id='javascript_36_28_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToCwChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQDcXyAKADwA0oAJ4BKUAG9soGaABOLMgTm0ADgwpz+QsQG5sAX3zFy1WnxJU5nbmR5dyV8VNnzFy2gAsWDACb3bJ30jQlJKGhFLawc7GKdJaVkFJRVQMg0AGwDHOVFg4zCzUABnEgYM9hiePAYcoTjchNdkj3pmSttq2rIrUAAqUAsrG14G0SFE1ynp1xqc-sjhqrG8wwLTCL9fEdjAuQBGer2UZ0m3FNpGVh3+KJuG-fFQM5nXmQBqQbvl4-Hnt4BMmE306DyeL0BU0+wKWoN+qxCJnCtGKBAARvc9odQA0Tk0ku5UlcOrwhtE4TlHjIIZDZABaL6w0a-Ca014w8nMyngtkzBkczE5E4I3ChDaXdpsPByBh0Fg8KwUADmFCIQhYviVLGxGq1eJcBIuoAyFGKdkVKrVoF12vVmpYJ3yYuRoAtqqlMrl1U9LFOzUJtBNZrYCjw3tlLCEAAYRc6ijb9h6I+G5X7Da0g2QQyww9KI0JHk6kfH7Sgk1686n8TIWqlM9ncz6hI61usXZX2JYrNtGKoU77q+dWhxQABeAB8oC2NzdRHL8o7fxpvNk06qpXKJLsZPuS5X+8hCfn-dEe4PvI3FRuAuWZ-P99cNrLHZPp5FbaKZBlRGKeCsdDYdRVTIFgtCAogQLkIRZwEZdzyiIhQOxBDQP1M5a1oDsx0nA1AUsH8yHoMdQA7NguzkHsGD7Rd9FpfCzVARCAHc2FnYi6AVORlVVVZaQw0BwMgnhiWPOCH2Y1iuMtVkH1eVEMSqDiUIOO9ZLZCTZ1UtTZHkm4lKsRC5BOGTtNpDSpJ409aIBAx8g-CIROKFglTlCD7DYM0GDkMh6jYFgiF8NMawDASNC0DgPPSbzfP8wKi0KCJPO8jznNc2IgqHVJvD8exY2LCJYpSlz-PSwd+PSCgsg4d8QFAAAiXwZSY1UlSnY1VRYOrQG8BQSgoOgCAyBgQN8bBarRYQBK4iCWrSbxQHI3xVWGlhildPAxrAMh5qSwiGAC60DqoPA5pYdrEPs2hGoYFiTUQ9zdpigKMqW4pVCG4QeDqu6zt22bhrq3jZFe96GE+iLdqBmQQY+r6fsOpaiFagGodAGGwfc2L3zjRLUpK4o2B6QCNAg0CeCc4qILYTMMv4rCJ3+Nk-2sHwSE8cm8Yg7DGdMtGmupjr+zIqhuzYXsTzE3mZHJqKswptKOcpshTxMqXXlIxaxaoiW1YBHhCvlkrFbSt9VfvQ2qZpuz6MIqgCDIH7Iq8rN9nYyUqijaNVht117cdwrXdHNpriqbEY30H27YdjqirSthA+D9gLfNP2Y92+Ozd1qYo-9gL4+9mgGJztPZbYFA3ZDzow4LgjfejxC-Lz8ug5E0OCxrovU4b5Oy4rpPOZT+uk9LlBM6z2Ri4bwqW0jrvh+dtgAGY+5ubFC2wWeh8b7Zl5b93Ok90B183x2e93xPY6Nyf5+Sxex-Huvc53jvbbnp3kswFePfbiPC9frfCqfz3pXXgh9w4bz-o-NOA82BAIvsnBUb906YHvuPa+29YEvygQ3QSoFiLJwJkTXBWhJbnkzIgrePdsSkLUugnuo9sAAEhmGMInkgmBd8mEsLYZQmBmArK4B9sQCgWY2LAK3DwMBWDhFZhtPHL+Vcva-1rjIvy9pe7iJuIfY+kDVH0wvi+VRMEeZS1UXIw4ND9xmPUS2S6JRPDTSYITKgbACCqFUKBEMypPB2GIbTEKX59q-n-MTYCZNiGoPvK3A+aAACs0Y4laW0tE3gYdEmRPPCkuwUY4nt3fD7YoDjiBOPQcQscYlCmOOca49xnipI+IoY7Px+hsCVOKaxN+xCeB6J9HkIAA')">function shrink_to_upper_right(painter) {
     return transform_painter(painter, 
                              make_vect(0.5, 0.5), 
@@ -3142,6 +3155,7 @@ const diamond_painter = segments_to_painter(
 <a name='p19' class='permalink'></a><p>
     Other transformations rotate images counterclockwise by 90
     degrees<a class='superscript' id='footnote-link-9' href='#footnote-9'>[9]</a>
+     
     <div class='snippet' id='javascript_36_29_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToCwChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQDcXyAKADwA0oAJ4BKUAG9soGaABOLMgTm0ADgwpz+QsQG5sAX3zFy1WnxJU5nbmR5dyV8VNnzFy2gAsWDACb3bJ30jQlJKGhFLawc7GKdJaVkFJRVQMg0AGwDHOVFg4zCzUABnEgYM9hiePAYcoTjchNdkj3pmSttq2rIrUAAqUAsrG14G0SFE1ynp1xqc-sjhqrG8wwLTCL9fEdjAuQBGer2UZ0m3FNpGVh3+KJuG-fFQM5nXmQBqQbvl4-Hnt4BMmE306DyeL0BU0+wKWoN+qxCJnCtGKBAARvc9odQA0Tk0ku5UlcOrwhtE4TlHjIIZDZABaL6w0a-Ca014w8nMyngtkzBkczE5E4I3ChDaXdpsPByBh0Fg8KwUADmFCIQhYviVLGxGq1eJcBIuoAyFGKdkVKrVoF12vVmpYJ3yYuRoAtqqlMrl1U9LFOzUJtBNZrYCjw3tlLCEAAYRc6ijb9h6I+G5X7Da0g2QQyww9KI0JHk6kfH7Sgk1686n8TIWqlM9ncz6hI61usXZX2JYrNtGKoU77q+dWhxQABeAB8oC2NzdRHL8o7fxpvNk06qpXKJLsZPuS5X+8hCfn-dEe4PvI3FRuAuWZ-P99cNrLHZPp5FbaKZBlRGKeCsdDYdRVTIFgtCAogQLkIRZwEZdzyiIhQOxBDQP1M5a1oDsx0nA1AUsH8yHoMdQA7NguzkHsGD7Rd9FpfCzVARCAHc2FnYi6AVORlVVVZaQw0BwMgnhiWPOCH2Y1iuMtVkH1eVEMSqDiUIOO9ZLZCTZ1UtTZHkm4lKsRC5BOGTtNpDSpJ409aIBAx8g-CIROKFglTlCD7DYM0GDkMh6jYFgiF8NMawDASNC0DgPPSbzfP8wKi0KCJPO8jznNc2IgqHVJvD8exY2LCJYpSlz-PSwd+PSCgsg4d8QFAAAiXwZSY1UlSnY1VRYOrQG8BQSgoOgCAyBgQN8bBarRYQBK4iCWrSbxQHI3xVWGlhildPAxrAMh5qSwiGAC60DqoPA5pYdrEPs2hGoYFiTUQ9zdpigKMqW4pVCG4QeDqu6zt22bhrq3jZFe96GE+iLdqBmQQY+r6fsOpaiFagGodAGGwfc2L3zjRLUpK4o2B6QCNAg0CeCc4qILYTMMv4rCJ3+Nk-2sHwSE8cm8Yg7DGdMtGmupjr+zIqhuzYXsTzE3mZHJqKswptKOcpshTxMqXXlIxaxaoiW1YBHhCvlkrFbSt9VfvQ2qZpuz6MIqgCDIH7Iq8rN9nYyUqijaNVht117cdwrXdHNpriqbEY30H27YdjqirSthA+D9gLfNP2Y92+Ozd1qYo-9gL4+9mgGJztPZbYFA3ZDzow4LgjfejxC-Lz8ug5E0OCxrovU4b5Oy4rpPOZT+uk9LlBM6z2Ri4bwqW0jrvh+dtgAGY+5ubFC2wWeh8b7Zl5b93Ok90B183x2e93xPY6Nyf5+Sxex-Huvc53jvbbnp3kswFePfbiPC9frfCqfz3pXXgh9w4bz-o-NOA82BAIvsnBUb906YHvuPa+29YEvygQ3QSoFiLJwJkTXBWhJbnkzIgrePdsSkLUugnuo9sAAEhmGMInkgmBd8mEsLYZQmBmArK4B9sQCgWY2LAK3DwMBWDhFZhtPHL+Vcva-1rjIvy9pe7iJuIfY+kDVH0wvi+VRMEeZS1UXIw4ND9xmPUS2S68gqDpBAgATijDwYhtMQpfn2r+f8xNgJk2Iag+8rdFGgBjEE88ITeBry0tpKJdgpHvh9nIBxK1tjoOIWOMSKTHEsBcRQx27j9DYByWk1ib9iE8D0T6PIQA')">function rotate90(painter) {
     return transform_painter(painter, 
                              make_vect(1, 0), 
@@ -3151,6 +3165,7 @@ const diamond_painter = segments_to_painter(
 </pre></div></div>
     
     or squash images towards the center of the frame:<a class='superscript' id='footnote-link-10' href='#footnote-10'>[10]</a>
+     
     <div class='snippet' id='javascript_36_30_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToCwChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQDcXyAKADwA0oAJ4BKUAG9soGaABOLMgTm0ADgwpz+QsQG5sAX3zFy1WnxJU5nbmR5dyV8VNnzFy2gAsWDACb3bJ30jQlJKGhFLawc7GKdJaVkFJRVQMg0AGwDHOVFg4zCzUABnEgYM9hiePAYcoTjchNdkj3pmSttq2rIrUAAqUAsrG14G0SFE1ynp1xqc-sjhqrG8wwLTCL9fEdjAuQBGer2UZ0m3FNpGVh3+KJuG-fFQM5nXmQBqQbvl4-Hnt4BMmE306DyeL0BU0+wKWoN+qxCJnCtGKBAARvc9odQA0Tk0ku5UlcOrwhtE4TlHjIIZDZABaL6w0a-Ca014w8nMyngtkzBkczE5E4I3ChDaXdpsPByBh0Fg8KwUADmFCIQhYviVLGxGq1eJcBIuoAyFGKdkVKrVoF12vVmpYJ3yYuRoAtqqlMrl1U9LFOzUJtBNZrYCjw3tlLCEAAYRc6ijb9h6I+G5X7Da0g2QQyww9KI0JHk6kfH7Sgk1686n8TIWqlM9ncz6hI61usXZX2JYrNtGKoU77q+dWhxQABeAB8oC2NzdRHL8o7fxpvNk06qpXKJLsZPuS5X+8hCfn-dEe4PvI3FRuAuWZ-P99cNrLHZPp5FbaKZBlRGKeCsdDYdRVTIFgtCAogQLkIRZwEZdzyiIhQOxBDQP1M5a1oDsx0nA1AUsH8yHoMdQA7NguzkHsGD7Rd9FpfCzVARCAHc2FnYi6AVORlVVVZaQw0BwMgnhiWPOCH2Y1iuMtVkH1eVEMSqDiUIOO9ZLZCTZ1UtTZHkm4lKsRC5BOGTtNpDSpJ409aIBAx8g-CIROKFglTlCD7DYM0GDkMh6jYFgiF8NMawDASNC0DgPPSbzfP8wKi0KCJPO8jznNc2IgqHVJvD8exY2LCJYpSlz-PSwd+PSCgsg4d8QFAAAiXwZSY1UlSnY1VRYOrQG8BQSgoOgCAyBgQN8bBarRYQBK4iCWrSbxQHI3xVWGlhildPAxrAMh5qSwiGAC60DqoPA5pYdrEPs2hGoYFiTUQ9zdpigKMqW4pVCG4QeDqu6zt22bhrq3jZFe96GE+iLdqBmQQY+r6fsOpaiFagGodAGGwfc2L3zjRLUpK4o2B6QCNAg0CeCc4qILYTMMv4rCJ3+Nk-2sHwSE8cm8Yg7DGdMtGmupjr+zIqhuzYXsTzE3mZHJqKswptKOcpshTxMqXXlIxaxaoiW1YBHhCvlkrFbSt9VfvQ2qZpuz6MIqgCDIH7Iq8rN9nYyUqijaNVht117cdwrXdHNpriqbEY30H27YdjqirSthA+D9gLfNP2Y92+Ozd1qYo-9gL4+9mgGJztPZbYFA3ZDzow4LgjfejxC-Lz8ug5E0OCxrovU4b5Oy4rpPOZT+uk9LlBM6z2Ri4bwqW0jrvh+dtgAGY+5ubFC2wWeh8b7Zl5b93Ok90B183x2e93xPY6Nyf5+Sxex-Huvc53jvbbnp3kswFePfbiPC9frfCqfz3pXXgh9w4bz-o-NOA82BAIvsnBUb906YHvuPa+29YEvygQ3QSoFiLJwJkTXBWhJbnkzIgrePdsSkLUugnuo9sAAEhmGMInkgmBd8mEsLYZQmBmArK4B9sQCgWY2LAK3DwMBWDhFZhtPHL+Vcva-1rjIvy9pe7iJuIfY+kDVH0wvi+VRMEeZS1UXIw4ND9xmPUS2S6JQACOBAGDFE8GwVUTEvK+GKDwYhtMQpfn2r+f8xNgJk2Iag+8rcD5ewieeKJoC0AADYACs0Y0CL2SVpbS8S7BRnSak0AeSUkCKMBA2uxRHHOO8NsdBxCxxiQqU4lxbiiAeIot42pJNIKrGwI0qpGpWJv2ITwPRPo8hAA')">function squash_inwards(painter) {
     return transform_painter(painter, 
                              make_vect(0, 0), 
@@ -3175,6 +3190,7 @@ const diamond_painter = segments_to_painter(
     compound painter. When the compound painter is given a frame, it calls the
     first transformed painter to paint in the left half of the frame and calls
     the second transformed painter to paint in the right half of the frame:
+     
     <div class='snippet' id='javascript_36_31_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToCwChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQDcXyAKADwA0oAJ4BKUAG9soGaABOLMgTm0ADgwpz+QsQG5sAX3zFy1WnxJU5nbmR5dyV8VNnzFy2gAsWDACb3bJ30jQlJKGhFLawc7GKdJaVkFJRVQMg0AGwDHOVFg4zCzUABnEgYM9hiePAYcoTjchNdkj3pmSttq2rIrUAAqUAsrG14G0SFE1ynp1xqc-sjhqrG8wwLTCL9fEdjAuQBGer2UZ0m3FNpGVh3+KJuG-fFQM5nXmQBqQbvl4-Hnt4BMmE306DyeL0BU0+wKWoN+qxCJnCtGKBAARvc9odQA0Tk0ku5UlcOrwhtE4TlHjIIZDZABaL6w0a-Ca014w8nMyngtkzBkczE5E4I3ChDaXdpsPByBh0Fg8KwUADmFCIQhYviVLGxGq1eJcBIuoAyFGKdkVKrVoF12vVmpYJ3yYuRoAtqqlMrl1U9LFOzUJtBNZrYCjw3tlLCEAAYRc6ijb9h6I+G5X7Da0g2QQyww9KI0JHk6kfH7Sgk1686n8TIWqlM9ncz6hI61usXZX2JYrNtGKoU77q+dWhxQABeAB8oC2NzdRHL8o7fxpvNk06qpXKJLsZPuS5X+8hCfn-dEe4PvI3FRuAuWZ-P99cNrLHZPp5FbaKZBlRGKeCsdDYdRVTIFgtCAogQLkIRZwEZdzyiIhQOxBDQP1M5a1oDsx0nA1AUsH8yHoMdQA7NguzkHsGD7Rd9FpfCzVARCAHc2FnYi6AVORlVVVZaQw0BwMgnhiWPOCH2Y1iuMtVkH1eVEMSqDiUIOO9ZLZCTZ1UtTZHkm4lKsRC5BOGTtNpDSpJ409aIBAx8mwejCOICgszY0c2muKoo2jVYHNAJysxtNh9nYyUqmxGN9F8-y2EClAQo8zovNAQt7JoBjoqwtyRJfaKYP+UzXGiwLDjE+8ivtNgWw-CIROKFglTlCD7DYM0GDkMh6hiohfDTGsAwEjQtA4Fr0nazqWG62NiwiVr2pa+rGtiXqh1Sbw-HsKbCgiCbtjqhqJqWwd+PSCgsg4d8QFAAAiXwZSY1UlSnY1VRYK7QG8BQSgoOgCAyBgQN8bBLrRYQBK4iCHrSbxQHI3xVX+lhildPAgbAMhodmwiGG660caoPAoZYZ7EOq2hboYFiTUQ5rMfGybBzh4pVD+4QeCuqmicxyH-qu3jZEZ5mGFZ4bMb5mQBZZtmOdxuGiEenmxdACWheanb3zjGaFoO4o2B6QCNAg0CeD2xa2EzZb+MyydStmYYfBITxja1iDsPygrycpl7+zIqhuzYXsTxtgrjdGrMTYOp39og08TIKt5SNh-2qMDuPAR4Hb5qjuxw+jmO3YfHOs3NuzfL4Ea2qzYKstCxLvMitLCLLjOq-crceGxFLS8z02W9q53t3LubsSD+8m+6oKfIbwZB6zOLq4S3hwsngjp4zufW5uJLO6nsvC8q+L2EL-gZ8q2PU9X8eWy7wTQOIwudb1m+tBHldM2Pvfh-P6Zd-7yqrNwMuT8eAZR9KsUmoA0SIwoL4eUT9sRPzQq4XyTMTRZlUFQYCB9N5oAAKx1zOL5QSZscyETcl+bGv5-z62AkbOBZ81IiU8t5ehskUHOUAhgiCLCHyMNrslf+SCp5EKkp4UhaRvyULkABIBCDuH3jYWgzhHV87aV4YvZhKiGE114FGXBBYBHplSFbQcgIiEVDwHYGiL9hHKlESeaybxbKtkgcUaB8pAEG0gkIDxNDcjAKIOwmiQA')">function beside(painter1, painter2) {
     const split_point = make_vect(0.5, 0);
     const paint_left = transform_painter(painter1, 
@@ -3223,7 +3239,7 @@ const diamond_painter = segments_to_painter(
       Declare
     
     the transformation
-    
+      
     
       
       <kbd>flip_horiz</kbd>,
@@ -3245,6 +3261,7 @@ const diamond_painter = segments_to_painter(
 	    <kbd>flip_horiz</kbd>:
 	    
 	  
+           
           <div class='snippet' id='javascript_36_32_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToCwChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQDcXyAKADwA0oAJ4BKUAG9soGaABOLMgTm0ADgwpz+QsQG5sAX3zFy1WnxJU5nbmR5dyV8VNnzFy2gAsWDACb3bJ30jQlJKGhFLawc7GKdJaVkFJRVQMg0AGwDHOVFg4zCzUABnEgYM9hiePAYcoTjchNdkj3pmSttq2rIrUAAqUAsrG14G0SFE1ynp1xqc-sjhqrG8wwLTCL9fEdjAuQBGer2UZ0m3FNpGVh3+KJuG-fFQM5nXmQBqQbvl4-Hnt4BMmE306DyeL0BU0+wKWoN+qxCJnCtGKBAARvc9odQA0Tk0ku5UlcOrwhtE4TlHjIIZDZABaL6w0a-Ca014w8nMyngtkzBkczE5E4I3ChDaXdpsPByBh0Fg8KwUADmFCIQhYviVLGxGq1eJcBIuoAyFGKdkVKrVoF12vVmpYJ3yYuRoAtqqlMrl1U9LFOzUJtBNZrYCjw3tlLCEAAYRc6ijb9h6I+G5X7Da0g2QQyww9KI0JHk6kfH7Sgk1686n8TIWqlM9ncz6hI61usXZX2JYrNtGKoU77q+dWhxQABeAB8oC2NzdRHL8o7fxpvNk06qpXKJLsZPuS5X+8hCfn-dEe4PvI3FRuAuWZ-P99cNrLHZPp5FbaKZBlRGKeCsdDYdRVTIFgtCAogQLkIRZwEZdzyiIhQOxBDQP1M5a1oDsx0nA1AUsH8yHoMdQA7NguzkHsGD7Rd9FpfCzVARCAHc2FnYi6AVORlVVVZaQw0BwMgnhiWPOCH2Y1iuMtVkH1eVEMSqDiUIOO9ZLZCTZ1UtTZHkm4lKsRC5BOGTtNpDSpJ409aIBAx8mwejCOICgszY0c2muKoo2jVYHNAJysxtNh9nYyUqmxGN9F8-y2EClAQo8zovNAQt7JoBjoqwtyRJfaKYP+UzXGiwLDjE+8ivtNgWw-CIROKFglTlCD7DYM0GDkMh6hiohfDTGsAwEjQtA4Fr0nazqWG62NiwiVr2pa+rGtiXqh1Sbw-HsKbCgiCbtjqhqJqWwd+PSCgsg4d8QFAAAiXwZSY1UlSnY1VRYK7QG8BQSgoOgCAyBgQN8bBLrRYQBK4iCHrSbxQHI3xVX+lhildPAgbAMhodmwiGG660caoPAoZYZ7EOq2hboYFiTUQ5rMfGybBzh4pVD+4QeCuqmicxyH-qu3jZEZ5mGFZ4bMb5mQBZZtmOdxuGiEenmxdACWheanb3zjGaFoO4o2B6QCNAg0CeD2xa2EzZb+MyydStmYYfBITxja1iDsPygrycpl7+zIqhuzYXsTxtgrjdGrMTYOp39og08TIKt5SNh-2qMDuPAR4Hb5qjuxw+jmO3YfHOs3NuzfL4Ea2qzYKstCxLvMitLCLLjOq-crceGxFLS8z02W9q53t3LubsSD+8m+6oKfIbwZB6zOLq4S3hwsngjp4zufW5uJLO6nsvC8q+L2EL-gZ8q2PU9X8eWy7wTQOIwudb1m+tBHldM2Pvfh-P6Zd-7yqrNwMuT8eAZR9KsUmJETSqDYJ4RUAAvHgT8Lb9S-NjX8-59bASNk-M+AIRJhW8kIUAl1mKugskQF+eDa6gBjIQ4hLAmIy2Rtae0+wKE10XgWKyRCwAkJ2kwp8rY8CQOgXA4+iDgFEGcvOPIQA')">function flip_horiz(painter) {
     return transform_painter(painter, 
                make_vect(1, 0),  // new origin
@@ -3261,6 +3278,7 @@ const diamond_painter = segments_to_painter(
 	    <kbd>rotate180</kbd>:
 	    
 	  
+           
           <div class='snippet' id='javascript_36_33_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToCwChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQDcXyAKADwA0oAJ4BKUAG9soGaABOLMgTm0ADgwpz+QsQG5sAX3zFy1WnxJU5nbmR5dyV8VNnzFy2gAsWDACb3bJ30jQlJKGhFLawc7GKdJaVkFJRVQMg0AGwDHOVFg4zCzUABnEgYM9hiePAYcoTjchNdkj3pmSttq2rIrUAAqUAsrG14G0SFE1ynp1xqc-sjhqrG8wwLTCL9fEdjAuQBGer2UZ0m3FNpGVh3+KJuG-fFQM5nXmQBqQbvl4-Hnt4BMmE306DyeL0BU0+wKWoN+qxCJnCtGKBAARvc9odQA0Tk0ku5UlcOrwhtE4TlHjIIZDZABaL6w0a-Ca014w8nMyngtkzBkczE5E4I3ChDaXdpsPByBh0Fg8KwUADmFCIQhYviVLGxGq1eJcBIuoAyFGKdkVKrVoF12vVmpYJ3yYuRoAtqqlMrl1U9LFOzUJtBNZrYCjw3tlLCEAAYRc6ijb9h6I+G5X7Da0g2QQyww9KI0JHk6kfH7Sgk1686n8TIWqlM9ncz6hI61usXZX2JYrNtGKoU77q+dWhxQABeAB8oC2NzdRHL8o7fxpvNk06qpXKJLsZPuS5X+8hCfn-dEe4PvI3FRuAuWZ-P99cNrLHZPp5FbaKZBlRGKeCsdDYdRVTIFgtCAogQLkIRZwEZdzyiIhQOxBDQP1M5a1oDsx0nA1AUsH8yHoMdQA7NguzkHsGD7Rd9FpfCzVARCAHc2FnYi6AVORlVVVZaQw0BwMgnhiWPOCH2Y1iuMtVkH1eVEMSqDiUIOO9ZLZCTZ1UtTZHkm4lKsRC5BOGTtNpDSpJ409aIBAx8mwejCOICgszY0c2muKoo2jVYHNAJysxtNh9nYyUqmxGN9F8-y2EClAQo8zovNAQt7JoBjoqwtyRJfaKYP+UzXGiwLDjE+8ivtNgWw-CIROKFglTlCD7DYM0GDkMh6hiohfDTGsAwEjQtA4Fr0nazqWG62NiwiVr2pa+rGtiXqh1Sbw-HsKbCgiCbtjqhqJqWwd+PSCgsg4d8QFAAAiXwZSY1UlSnY1VRYK7QG8BQSgoOgCAyBgQN8bBLrRYQBK4iCHrSbxQHI3xVX+lhildPAgbAMhodmwiGG660caoPAoZYZ7EOq2hboYFiTUQ5rMfGybBzh4pVD+4QeCuqmicxyH-qu3jZEZ5mGFZ4bMb5mQBZZtmOdxuGiEenmxdACWheanb3zjGaFoO4o2B6QCNAg0CeD2xa2EzZb+MyydStmYYfBITxja1iDsPygrycpl7+zIqhuzYXsTxtgrjdGrMTYOp39og08TIKt5SNh-2qMDuPAR4Hb5qjuxw+jmO3YfHOs3NuzfL4Ea2qzYKstCxLvMitLCLLjOq-crceGxFLS8z02W9q53t3LubsSD+8m+6oKfIbwZB6zOLq4S3hwsngjp4zufW5uJLO6nsvC8q+L2EL-gZ8q2PU9X8eWy7wTQOIwudb1m+tBHldM2Pvfh-P6Zd-7yqrNwMuT8eAZR9KsUm8gqDpBAvsAAHFGHgT8Lb9S-NjX8-59bASNi-J+Z8AQiTCgWP4oBLrMVdBZIgL98G12SkQkhLAmIy2Rtae0+xKE10Xt5PIxCwCkJ2kwp8rY5CQIRrA+BgCDaQVEMAogzl5x5CAA')">function rotate180(painter) {
     return transform_painter(
                painter, 
@@ -3278,6 +3296,7 @@ const diamond_painter = segments_to_painter(
 	    <kbd>rotate270</kbd>:
 	    
 	  
+           
           <div class='snippet' id='javascript_36_34_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToCwChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQDcXyAKADwA0oAJ4BKUAG9soGaABOLMgTm0ADgwpz+QsQG5sAX3zFy1WnxJU5nbmR5dyV8VNnzFy2gAsWDACb3bJ30jQlJKGhFLawc7GKdJaVkFJRVQMg0AGwDHOVFg4zCzUABnEgYM9hiePAYcoTjchNdkj3pmSttq2rIrUAAqUAsrG14G0SFE1ynp1xqc-sjhqrG8wwLTCL9fEdjAuQBGer2UZ0m3FNpGVh3+KJuG-fFQM5nXmQBqQbvl4-Hnt4BMmE306DyeL0BU0+wKWoN+qxCJnCtGKBAARvc9odQA0Tk0ku5UlcOrwhtE4TlHjIIZDZABaL6w0a-Ca014w8nMyngtkzBkczE5E4I3ChDaXdpsPByBh0Fg8KwUADmFCIQhYviVLGxGq1eJcBIuoAyFGKdkVKrVoF12vVmpYJ3yYuRoAtqqlMrl1U9LFOzUJtBNZrYCjw3tlLCEAAYRc6ijb9h6I+G5X7Da0g2QQyww9KI0JHk6kfH7Sgk1686n8TIWqlM9ncz6hI61usXZX2JYrNtGKoU77q+dWhxQABeAB8oC2NzdRHL8o7fxpvNk06qpXKJLsZPuS5X+8hCfn-dEe4PvI3FRuAuWZ-P99cNrLHZPp5FbaKZBlRGKeCsdDYdRVTIFgtCAogQLkIRZwEZdzyiIhQOxBDQP1M5a1oDsx0nA1AUsH8yHoMdQA7NguzkHsGD7Rd9FpfCzVARCAHc2FnYi6AVORlVVVZaQw0BwMgnhiWPOCH2Y1iuMtVkH1eVEMSqDiUIOO9ZLZCTZ1UtTZHkm4lKsRC5BOGTtNpDSpJ409aIBAx8mwejCOICgszY0c2muKoo2jVYHNAJysxtNh9nYyUqmxGN9F8-y2EClAQo8zovNAQt7JoBjoqwtyRJfaKYP+UzXGiwLDjE+8ivtNgWw-CIROKFglTlCD7DYM0GDkMh6hiohfDTGsAwEjQtA4Fr0nazqWG62NiwiVr2pa+rGtiXqh1Sbw-HsKbCgiCbtjqhqJqWwd+PSCgsg4d8QFAAAiXwZSY1UlSnY1VRYK7QG8BQSgoOgCAyBgQN8bBLrRYQBK4iCHrSbxQHI3xVX+lhildPAgbAMhodmwiGG660caoPAoZYZ7EOq2hboYFiTUQ5rMfGybBzh4pVD+4QeCuqmicxyH-qu3jZEZ5mGFZ4bMb5mQBZZtmOdxuGiEenmxdACWheanb3zjGaFoO4o2B6QCNAg0CeD2xa2EzZb+MyydStmYYfBITxja1iDsPygrycpl7+zIqhuzYXsTxtgrjdGrMTYOp39og08TIKt5SNh-2qMDuPAR4Hb5qjuxw+jmO3YfHOs3NuzfL4Ea2qzYKstCxLvMitLCLLjOq-crceGxFLS8z02W9q53t3LubsSD+8m+6oKfIbwZB6zOLq4S3hwsngjp4zufW5uJLO6nsvC8q+L2EL-gZ8q2PU9X8eWy7wTQOIwudb1m+tBHldM2Pvfh-P6Zd-7yqrNwMuT8eAZR9KsUm8gqDpBAigAA7FGHgT8Lb9S-NjX8-59bASNi-J+Z8AQiU8gWP4oBLrMVdBZIgL98G11ADGIQxCwCkJ2sja09p9iUJrovbyeR6GMRYExGWzCnytjkJAhGsD4GAINpBUQwCiDOXnHkIAA')">function rotate270(painter) {
     return transform_painter(
                painter, 
@@ -3302,7 +3321,7 @@ const diamond_painter = segments_to_painter(
       Declare
     
     the
-    
+      
     <kbd>below</kbd> operation for painters.
     
       
@@ -3538,6 +3557,7 @@ const diamond_painter = segments_to_painter(
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#solution_36_9_div" data-toggle="collapse">Solution</button></div>
       <div class="solution_content collapse" id="solution_36_9_div"><SOLUTION>
     
+       
       <div class='snippet' id='javascript_36_37_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&ext=RUNES&prgrm=PTAEGUEkGEAVQFLlAJgHToCwChsDMBXAOwGMAXASwHsjQBnARwIEMAnAUwH0q9O8qCrABRkANgBpQZVpIBGE0LNYBKUAG9soLaA5lBtAA7MKRMu1agAvAD56ZZiQDWQ2ezoUAJuxGihRk2YqktJ+xqbmysrimtqxcfEJWq7uXi6+-uFBisIZgZHKANzYAL64hKSUNKCe7KYUZACeQgAeqhqxuvqgzUWl+MTk1LSsFADmABZknHQGovWhAeaSRG0xWhR4oEK0lrugAAyriZ2shmGBRbHFoOyidOzqa3EkNHRk9AC2zKKi5lY6Y0m01m81yS1AtAAtKAAIyFJ4ddh6U6KNw1BaZSRvBzOOhfH7gvHfX4qeFXEplAaVWgEAzAuZkDGBZZHbQbLY7PaHR7HJFdMGsS7aa63e48hIvIhvT7Ev6WUC0+mg87gqGwskJE60bFOFxo1JEgkyGVGqKgAUarSlPrlQZVF6ncxKxkClni9abbZWLmsuJa80qwVPEV3B7teKS6W0-6KmYMpmq0DQuFC56vd4jCbveWZoFx5WLY1qlMIrSR95kKh0354bOolLeWmSWmW2LlxRUMiVj6cXN1nXOPuSPut7Tth1EOWgCdO-MuwPLJPq1OI5Ha+y65LoyvV9i1yQzoKlxLxLepV0drtUHsj1vWykVIb0JhsLhzD4FzEQ33T9O-j6yCY7CYP8jAsBw3C8PwghCHgcx0uMVAjAAXpINR1I0kjHieOE4WunC0g2nAeFQADuRCSHBFB0gAbuYZCtv6LwAUBmBCIezoJkWkS9LgICgNAcxOKA4zmA8lbmqIzANKApH1OMoDMEQMnMLIbysA41LYPxBD3B4oD8BYYGvpw771LgdCIaRQjGRBZmMqJbBkJImA8UAA')">// Click here to play with any abstraction
 // used for square_limit
 </pre></div></div>
@@ -3669,6 +3689,7 @@ const diamond_painter = segments_to_painter(
     <FOOTNOTE>
     Equivalently, we could
     write
+     
     <div class='snippet' id='javascript_36_38_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&ext=RUNES&prgrm=PTAEGUEkGEAVQFLlAJgHToCwChsDMBXAOwGMAXASwHsjQBnARwIEMAnAUwH0q9O8qCrABRkANgBpQZVpIBGE0LNYBKUAG9soLaA5lBtAA7MKRMu1agAvAD56ZZiQDWQ2ezoUAJuxGihRk2YqktJ+xqbmysrimtqxcfEJWq7uXi6+-uFBisIZgZHKANzYAL64hKSUNKCe7KYUZACeQgAeqhqxuvqgzUWl2CQ0dGSgeKIUBgbsHpz+rHRWMVqMLBzcvPyCIvqcBAYpXB5UAO5EkqPjnABu5mSSi4mJ5wacABZUrBQAXpI1dY2FuDobyOQiek2mszoQhe7DYZEiBSAA')">const flipped_pairs =
     square_of_four(identity, flip_vert, identity, flip_vert);
 </pre></div></div>

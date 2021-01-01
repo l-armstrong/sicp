@@ -2025,6 +2025,7 @@ Acknowledgments
     of section&nbsp;<REF NAME="sec:trees"><a class="superscript" id="2.2.3-sec-link-2.2.2" href="./2.2.2.html">2.2.2</a></REF>, which takes a tree as argument
     and computes the sum of the squares of the leaves that are odd:
     
+     
     <div class='snippet' id='javascript_35_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQBnARwIEMAnAUwAoAPASlADe2UCNAcyBVrW6gAVKG4BubAF9chUpRqgKdAPpUAJoc5F+Q0WPYSpoWgFJUoALyvQARmVr8xctVp0BAC2BsZ6jCwcdJxkHOzmwqLikrS6ekQEADaZMXG8iZaFAPygAAwFhaIAXKAAhDr6AA7MFKy57PEVlaAlaUYmsR38JRFsXIPxoDXl3ZY1gSH94Uxj0QAW7MwDefwA1F2zC6GGy5Hs0WQtORO8vF64R0ujUZyZumSv75woADSgmLw-m86B8ACx-ACstzuQA')">function sum_odd_squares(tree) {
     return is_null(tree)
            ? 0
@@ -2034,6 +2035,7 @@ Acknowledgments
              sum_odd_squares(tail(tree));
 }
 </pre></div></div>
+     
     
   </p></div>
   <div class='permalink'>
@@ -2048,6 +2050,7 @@ Acknowledgments
     ${\textrm{Fib}}(k)$, where
     $k$ is less than or equal to a given integer
     $n$:
+     
     <div class='snippet' id='javascript_35_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQKBnAfQFMA3ZogCiIEpQBvbKGGgATszIFRtWgFJUoALzLQABgDc2AL65CpSjVB4KAI259BIsRKkylK1UKvPQAfjVOXIgFyhayxVAARk8vN2DQr19jM1oAWmC+AGojU25QBJQeTR18YnJqWjYORhj6cwFQvQLDImYADzJOAGsLSJEKPFAW0AA+Pzawq3FJaT8CABsJzTCtUGYJ+mZKoZESGnoyIyVUs1aZ1etR2gYWdi48HnbD4XcABwBDClFOPAAaPwam5tAUoJ4rjcop9Gj0-tlrqAdFZoSIRrYQU1VBDcsUiKVTOUAJzZIA')">function even_fibs(n) {
     function next(k) {
         if (k > n) {
@@ -2272,6 +2275,7 @@ list(1, 4, 9, 16, 25)</pre></div></div>
 <a name='p9' class='permalink'></a><p>
     Filtering a sequence to select only those elements that satisfy a given
     predicate is accomplished by
+     
     <div class='snippet' id='javascript_35_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQ8KAbMgUwCcAKAB1eYBMKSAQxYAaUAGdmARwLNSzAJSgA3tlDrQPMgVa0K4gPpECDBu0ky5JRWo12NAflDHTt+3YBcobnwHDm7AAWzIK85tKy8goKbu7qTpyCFBzBoeGWUWKxcXH0TGxcPPxCoqBkSWYWkdbRMTkaXnksHD7F-mLljOnVigoA3NgAvriEpJQ0oPoGVLxhREqqdlo6tLQApKigALw7oACMA8NNBVMzvGIM+mTse2IoYphiACxiAKzRfUA')">function filter(predicate, sequence) {
     return is_null(sequence)
            ? null
@@ -2290,7 +2294,6 @@ list(1, 3, 5)</pre></div></div>
   <div class='permalink'>
 <a name='p10' class='permalink'></a><p>
   Accumulations can be implemented by
-  
   
     <div class='snippet' id='javascript_35_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQBDEkggWwIBs6yBTACioAcANKApEKlOm2EBnLgEcCXUlwCUoAN7ZQ20ACcuZArtoVpAfSLs2PWQqUlVWnc50B+EWIlsnL5wC5QAR4ACy46ABMbeUVlFWEfX0SGJlYObj4hD3EKSWEyOgprWxiHFTKAbmwAXyA')">function accumulate(op, initial, sequence) {
     return is_null(sequence)
@@ -2321,6 +2324,7 @@ list(1, 2, 3, 4, 5)</pre></div></div>
     
     we need to generate the sequence of integers in a given range, which we
     can do as follows:
+     
     <div class='snippet' id='javascript_35_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQBTIggWzoCcBDMugfQqK9YA3dgBsAFCKoB3ADSgAFhQDm8gJSgA3tlA7QrOmQKtakqaAB8C5fO267ugPyhGIkbft2AXKAAO7CqwS0jLuHmE6DMxsnDx8AsLipqAA1KAAjHKKKqqqANzYAL64kSwcXLz8bAliKHIA7HlAA')">function enumerate_interval(low, high) {
     return low > high
            ? null
@@ -2336,6 +2340,7 @@ list(2, 3, 4, 5, 6, 7)</pre></div></div>
 <a name='p12' class='permalink'></a><p>
     To enumerate the leaves of a tree, we can use<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
     
+     
     <div class='snippet' id='javascript_35_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQBTIggWzoCcBDMugfTNbroAKPgICUoAN7ZQM0PzIFWtCgGdujADYbh-OqOmzDsgPyhNGg0cMAuUAEJQq7gAd2FVjrGWrM0xtVknnrePrbszs4MACaCDMxsnDwiQgAWdOwxyaKiADQhPgVxLBxcvLrCbtpZ2QDc2AC+uEUJpcmC-iqBAIw5oB2BKL39gpi9ACzZvQCstUA')">function enumerate_tree(tree) {
     return is_null(tree)
            ? null
@@ -2369,6 +2374,7 @@ list(1, 2, 3, 4, 5)</pre></div></div>
     
     we enumerate the sequence of leaves of the tree, filter this to keep only
     the odd numbers in the sequence, square each element, and sum the results:
+     
     <div class='snippet' id='javascript_35_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQBnARwIEMAnAUwAoAPASlADe2UCNAcyBVrW6gAVKG4BubAF9chUpRqgADgBsCdHgBpQAT35DRY9hKkLQAanPK1+YuWq0KdAPpUAEwDOIkthUXFJWloAUlRQAF4k0ABGV3UPLVp2IgIAW3ZWZjJ2XzIOLnL2djDrSPsfX1y9PU4qmvDrLoB+UGa9Tq7RAC5QAEJQRp1mClY2it5BodBevR8yeerF5etR5h0dHOCc-MLi0vbOAAt2ZmD23l5jJZ3lk4KikrKKtpnWh8e6Xcmi89Hy-iCvkYLA4RgegkG9VozBIJHyBD0504+kMpher2WAAY8QTSaA8vtONC2OwSWT6XgKHoSnNGoEAnT6VzrO8zl9LgDAapcHRweyoUwaUY1nQNjKNihTJgnqB5ZwACymACsj14iiAA')">function sum_odd_squares(tree) {
     return accumulate(plus, 
                       0, 
@@ -2389,6 +2395,7 @@ list(1, 2, 3, 4, 5)</pre></div></div>
     the Fibonacci number for each of these integers, filter the resulting
     sequence to keep only the even elements, and accumulate the results
     into a list:
+     
     <div class='snippet' id='javascript_35_15_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQKBnAfQFMA3ZogCiIEpQBvbKGGgATszIFRtWgFJUoALzLQABgDc2AL65CpSjVB4KAI259BIsRKkylK1UKvPQAfjVOXIgFyhayxVAARk8vN2DQr19jM1oAWmC+AGojU25QBJQeTR18YnJqWg4CAFtmUQBDMmZGCiJq0VYKgBtOZqoAdwAaUAALCgBzXotQ8UlpUHaO0AA+PsHeyJd3IgJm5qXnXwAHCopRNs6uzbCRYrLK6tr68qbWqdAUoJ7+oZ5s7V18gyL2IkYYvRzAJRjYJhUSCRSmsqsxOLt9j0TqdnKt1kiUZjUs0GpwGCw-hiscSRCUKttODEiSSacJzuVYdcGndOKoerx3h9cmwOADTECAJzZIA')">function even_fibs(n) {
     return accumulate(pair, 
                       null, 
@@ -2505,6 +2512,9 @@ list(0, 1, 1, 4, 9, 25, 64, 169, 441, 1156, 3025)</pre></div></div>
     Fill in the missing expressions to complete the following definitions of
     some basic list-manipulation operations as accumulations:
     
+    
+    
+    
     <kbd class='snippet'>function map(f, sequence) {
     return accumulate((x, y) => $\langle ??\rangle$, 
                       null, sequence);
@@ -2613,6 +2623,7 @@ function length(sequence) {
       
     
     from section&nbsp;<REF NAME="sec:trees"><a class="superscript" id="2.2.3-sec-link-2.2.2" href="./2.2.2.html">2.2.2</a></REF> as an accumulation:
+    
     <kbd class='snippet'>function count_leaves(t) {
     return accumulate($\langle ??\rangle$, $\langle ??\rangle$, map($\langle ??\rangle$, $\langle ??\rangle$));
 }</kbd>
@@ -2689,6 +2700,7 @@ list(list( 1,  2,  3),
       <kbd>accumulate_n</kbd>:
       
     
+     
     <kbd class='snippet'>function accumulate_n(op, init, seqs) {
     return is_null(head(seqs))
            ? null
@@ -2780,6 +2792,7 @@ list(list(1, 2, 3, 4),
       </LI>
     </UL>
     We can define the dot product as<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
+     
     <div class='snippet' id='javascript_35_28_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQAHAGwIGcAKADwBpQBPASlABvbKFGgATgFMyBcbXagA1LwDc2AL65CpSjVCUAtpLZdeA4WInTZ80ACpVGrcXLVaAQxIkCBgg3dkkgD6RKxUdNwURBRk3MySAI7M5iJiUjJyoBTMIX4MrAAWku4AJqzxSXx8qZa1APygRHk1tWIAXPTuFOKsnt6+-oFhEVnRsaAG7nQcoAC8AHygRaUcfHGJyWstrTugfT5+AcGh4ZFj3JPTCgv6Xfnsa6AVm3xqmvguurQlVGRBdOIqCUCORWAA3bgAdxSlnSNj2XgOg0krEYLG4AAZuNtdrj9gMjiFWIZjNwAIzcBjZMjgqFVV5ObA-P4AoEgmlU5g0imoR6cmmYbgAFiqKiAA')">function dot_product(v, w) {
     return accumulate(plus, 0, 
                       accumulate_n(times, 1, list(v, w)));
@@ -2804,6 +2817,9 @@ list(list(1, 2, 3, 4),
       
     
     exercise&nbsp;<REF NAME="ex:accumulate-n"><a class="superscript" id="2.2.3-ex-link-2.36" href="./2.2.3.html#ex_2.36">2.36</a></REF>.)
+     
+     
+    
     <kbd class='snippet'>function matrix_times_vector(m, v) {
     return map($\langle ??\rangle$, m);
 }
@@ -2845,8 +2861,8 @@ function matrix_times_matrix(n, m) {
     <a name="ex_2.38" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_2.38">Exercise 2.38 </a></b> 
   
     
-    
-    
+     
+      
     The
     
       
@@ -2873,6 +2889,7 @@ function matrix_times_matrix(n, m) {
       <kbd>fold_right</kbd>,
     
     except that it combines elements working in the opposite direction:
+     
     <div class='snippet' id='javascript_35_30_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQ8qAbAEwH0GBTPMgCioAcANKApEKlAIYMhAZ3YBHAu1LsAlKADe2UNrrFy1WmPYAnbsfbSCDMkPPSyazTuehzZAscPSWRKwzMWDlouIToA-K4WVmTBoSEAXMJkJrx8AZbWQgAW7OJM6Q4qQrFxpdpk4hT+doUA3CUAviVuHobJpiJiFJIy8orKKvVN+IysHFzcDBT2Qr4MUqBT9twAjEIoQpgqg0A')">function fold_left(op, initial, sequence) {
     function iter(result, rest) {
         return is_null(rest)
@@ -2955,7 +2972,7 @@ function matrix_times_matrix(n, m) {
     <a name="ex_2.39" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_2.39">Exercise 2.39 </a></b> 
   
     Complete the following definitions of <kbd>reverse</kbd>
-    
+     
     (exercise&nbsp;<REF NAME="ex:reverse"><a class="superscript" id="2.2.3-ex-link-2.18" href="./2.2.1.html#ex_2.18">2.18</a></REF>) in terms of
     
       
@@ -3113,6 +3130,7 @@ function matrix_times_matrix(n, m) {
       
       function:
     
+     
     <div class='snippet' id='javascript_35_48_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQAcGKAnNgZwJ0AFF14BKUAG9soOaB4syBHrQA2FfmWEALFgwAmo7j3EAaUHsPCy3NcYnnQs+a7fyrRsadABqS-pGthT23uLhANzYAL64hKSUNKD8AI4EDIrCAB6SMq6KyqqgWaAAVMVRsfjE5NS0-IxqaixabAYUAG6aVDzCRLkucgUqtHgURAZtnd29RBYo4pXVCXWgYxNTXfw9fRZkLWSbMwP5SiPJaRksNgdH2z4AfKBEg+5yAPzPr28AXKDtXQMLRurQBMws-W+7k++1B03uULcf3WkzB912oFhhzRPT8oAAjIsYstakkwUD+MIGBYAEYneTDIo00AAUlADFAAF5uaAAAxLEmJWiaTg8Ch0a79aSvRm0WjcznJRrNOFbHb9AXxUnC-ii8XsQQiMLS06FHV6iW6QIOHz+Tw2Ow28JEqpaoVrNQMMiMDjCPAWfgsFL0oZnIoMEgkIQET37KkcDgsCYQmNqCw+v0BoORYmC1ZJoQsHhe9jjfY8DoMexqKgAdwsOgoAHMdCGFGH1HXQE9Gy3Ea5PkRU-35H9vMIa-WR285AWJcX9mwy0XK9Wu-58Q3m62XXEau6OGKJQIhJwTJSpXkGR36AxfYxWGfeCe6BZp24xmpy8IRYf9S+3xnIC5DwWMMwoLkngzAArSDQA0LQfwsaCnHfYD0NcOcixLJciHLVdhE3UAIIAWgJcIzDQjD5CwhdSzwlcq0IiFnV3bA-2PQ0nx4SkADZFiAA')">function prime_sum_pairs(n) {
     return map(make_pair_sum, 
                filter(is_prime_sum, 
@@ -3150,6 +3168,7 @@ function matrix_times_matrix(n, m) {
     with&nbsp;$x$.  Combining these sequences for
     all $x$ gives all the permutations
     of&nbsp;$S$:<a class='superscript' id='footnote-link-8' href='#footnote-8'>[8]</a>
+    
     <div class='snippet' id='javascript_35_49_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQ8AbAQzIFtGAHACjwBpQBnAKYBHAJSgA3tlAzQAJ0FkCc2oxIkCLAkzKDOHdoKIATPkW30+bLrwEjRogNzYAvrkKlKNUIblayzNRE-Jz84lKy8orKtBT8APrm9PSh4pHpsiCggizsZACedmQA-NIZkcWg9HFknEn0aeUyWULCBEYkgqAkNAEURP0A5tm5BUVlTaAAXHQ61pwAHqAAvAB8oPPsK+vsjBRyi3zsojwTk+dNvv6BNCEKLFQAbnoLfGEOpxfnYc5u2FcEAJeYKcar8WoARj4KD4mAcjiAA')">function permutations(s) {
     return is_null(s)             // empty set?
            ? list(null)           // sequence containing empty set
@@ -3181,6 +3200,7 @@ function matrix_times_matrix(n, m) {
     used in <kbd>permutations</kbd> returns all the items in
     a given sequence except for a given item.  This can be expressed as a
     simple filter:
+     
     <div class='snippet' id='javascript_35_50_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQAnAUwFsqA3BgCgrOYBpQAzgwCOBBqQYBKUAG9soBfQZkCdWngoAbHnQ4APUAF4AfKACEofUcOHQ3ZpN7zFL166GjxJKQG5sAX1xNcQBzMgALDkYWdg5Mfk0KATIOAEZ+FH540AAWfgBWSSKfIA')">function remove(item, sequence) {
     return filter(x => ! (x === item),
                   sequence);
@@ -3198,7 +3218,7 @@ function matrix_times_matrix(n, m) {
       
       function
     
-    
+      
     
       
       <kbd>unique_pairs</kbd>
@@ -3346,6 +3366,7 @@ function triples_that_sum_to(s, n) {
       that returns the sequence of all ways to place queens in the first
       $k$ columns of the board.
     
+      
     <div class='snippet' id='javascript_35_53_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQ8AbAQzIFtGAHACjwBpQBnAKYBHAJSgA3tlAzQAJ0FkCc2oxIkCLAkzKDOHdoKIATPkW30+bLrwEjRogNzYAvrkKlKNUEc2C5zIIA+hREunIAboz0nPRUAO58ABYUAOZJ4lKy8orKtHHxoAB8oCnp0tmVoAD8oOb09BVVsgBcoOyMFHKxCTxNzQO+LP6BIWH+UTEFoADUoACMyWkZTq7uxOTUtMIEgkb8nABGVIxyxkH8FABegpn9HpveO3tEQSRU9AcA1ncDCkoqUBfUAAXjBoAADP0BrJavQKPwyJxBCx2GQAJ5BY6nYyiaEw0BtPAUejhTj4gmydhUS5eIj8UElBEXRh4PRfPjU2lbfiiPgUyl0HTWTgKRFBKh4ILPfaM0ACwUwkVEQTxIJyBJyhWKxWMYwAKyooSCXIodM4KrVGsSQL6OvtDqqYrIEqlMvpfPljodQxGujG4UmnEWoGxZwu11ufO1jvdbw+31AAFoFg5VrI3LJ-nlQHH3p8jidw5cbqs3Nh3QcABxOIA')">function queens(board_size) {
     function queen_cols(k) {
         return k === 0
@@ -3509,7 +3530,7 @@ flatmap(new_row =>
     <FOOTNOTE>
     This is, in fact,
     precisely the 
-    
+      
     
       
       <kbd>fringe</kbd>

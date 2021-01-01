@@ -2082,7 +2082,7 @@ Acknowledgments
       function
     
     of section&nbsp;<REF NAME="sec:sequences"><a class="superscript" id="2.2.2-sec-link-2.2.1" href="./2.2.1.html">2.2.1</a></REF> with the
-    
+      
     
     
       
@@ -2247,6 +2247,7 @@ list(list(list(1, 2), 3, 4),
     
     which tests whether its argument is a pair. Here is the complete
     function:<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
+    
     <div class='snippet' id='javascript_34_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHTpQKCwMwK4B2AxgC4CWA9oaMZUaQPoA2ApgIYBurAzgBQAPAJSgA3llCTQAJ1al80muR6NC+Zs0FCJU3VID8oAAw69ugFygAhKGWMADu3LStps5MMBGN+8t0GLBzc-AAWHAAmWiIA1D7utPSETGxcvHykTprCQgDcWAC+OP5Jgan8js58zMqkfJ4ANKhCjdU8tQDMjQAsQr05QA')">function count_leaves(x) {
     return is_null(x)
            ? 0
@@ -2408,7 +2409,7 @@ const y = list(4, 5, 6);
       function
     
     of exercise&nbsp;<REF NAME="ex:reverse"><a class="superscript" id="2.2.2-ex-link-2.18" href="./2.2.1.html#ex_2.18">2.18</a></REF> to produce a
-    
+      
     
     
       
@@ -2462,7 +2463,7 @@ list(list(4, 3), list(2, 1))</pre></div></div>
       
       function
     
-    
+      
     
     
       
@@ -2711,6 +2712,7 @@ function branch_structure(b) {
       <kbd>count_leaves</kbd>:
       
     
+     
     <div class='snippet' id='javascript_34_38_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHTpQKCwMwK4B2AxgC4CWA9oaAM7ECGANgKYD6pATiywBRc8ANKFwMylTgEpQAbyygFobqXyca5Wm0L4mTftxaT5ik4oD8obbuOmTALlABCUBrYAHBuU76eR26YsBFlAAKhExUgkbf1AHDy9eemZ2IN4ACxYGABMfQ2FRcSlhaJjbJNYOA35PPSDJfIiJSUkAbiwAXxxylKqmDVJeAEZhPtoBlBH+3gBmYQAWetAAVkXRgYA2YQB2ZsES20GABlagA')">function scale_tree(tree, factor) {
     return is_null(tree)
            ? null
@@ -2741,6 +2743,7 @@ list(10, list(20, list(30, 40), 50), list(60, 70))</pre></div></div>
     list of results.  In the base case, where the tree is a leaf, we simply
     multiply by the factor:
     
+     
     <div class='snippet' id='javascript_34_40_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHTpQKCwMwK4B2AxgC4CWA9oaAM7ECGANgKYD6pATiywBRc8ANKFwMylTgEpQAbyygFobqXycaAWwYAHXrXwAjDtxagAvAD5Q5Wmy0NynXQaM9J8xR89fvoAPx1GVhc+PUMBFmFRcSl3HzifAC46Z3DQACoRMVIJYVj4hXDJAG4sAF8cemZ2cN4ma1JeAEZhOtoGlBb63gBmYQAWSWEAVkHQVoaANmEAdklBvO9GgAZioA')">function scale_tree(tree, factor) {
     return map(sub_tree => is_pair(sub_tree)
                            ? scale_tree(sub_tree, factor)
@@ -2838,7 +2841,7 @@ list(1, list(4, list(9, 16), 25), list(36, 49)))</pre></div></div>
       
       function
     
-    
+      
     
       
       <kbd>tree_map</kbd>
@@ -2908,6 +2911,7 @@ list(null, list(3), list(2), list(2, 3),
     
     that generates the set of subsets of a set and give a clear explanation of
     why it works:
+    
     <kbd class='snippet'>function subsets(s) {
     if (is_null(s)) {
         return list(null);

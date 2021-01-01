@@ -2065,7 +2065,7 @@ Acknowledgments
     diagrams as a diagonal line
     
     and in programs as 
-    
+     
     
     
       <span style="color:green">the value of the variable <kbd>nil</kbd>.</span>
@@ -2148,6 +2148,7 @@ Acknowledgments
           <td><span style="color:blue">
         Our interpreter prints pairs using a textual representation of
 	box-and-pointer diagrams, which we shall call <EM>box notation</EM>.
+	
 	
 	The result of <kbd>pair(1, 2)</kbd>
         is printed as <kbd>[1, 2]</kbd>, and
@@ -2305,17 +2306,18 @@ one-through-four</pre><pre class='prettyprintoutput'>
         The value of <kbd>nil</kbd>, used to terminate the
 	chain of pairs, can be thought of as a sequence of no elements, the 
         
-        
+         
         <EM>empty list</EM>.  The word <EM>nil</EM> is a contraction of the
 	Latin word <EM>nihil</EM>, which means
 	<QUOTE>nothing.</QUOTE><a class='superscript' id='footnote-link-3' href='#footnote-3'style="color:green">[3]</a>
     </span>    </td>
           <td></td>
           <td><span style="color:blue">
+        
         The value <kbd>null</kbd>, used to terminate
 	the chain of pairs, can be thought of as a sequence of no elements, the 
         
-        
+         
         <EM>empty list</EM>.<a class='superscript' id='footnote-link-4' href='#footnote-4'style="color:blue">[4]</a>
     </span></td></tr></table>
 </p></div>
@@ -2331,6 +2333,8 @@ one-through-four</pre><pre class='prettyprintoutput'>
           <td><span style="color:blue">
     <div class='permalink'>
 <a name='p4' class='permalink'></a><p>
+      
+      
       Box notation is sometimes difficult to read. In this book, when we want to
       indicate the list nature of a data structure, we will employ the
       alternative <EM>list notation</EM>: Whenever possible, list notation uses
@@ -2359,7 +2363,6 @@ list(1, [2, 3], list(4, 5), 6)</pre></div></div>
     The use of pairs to represent sequences of elements as lists is accompanied
     by conventional programming techniques for manipulating lists by
     successively 
-    
     
     
       <span style="color:green">
@@ -2474,6 +2477,7 @@ list_ref(squares, 3);
     
     
     
+    
       <span style="color:green">
       <kbd>null?</kbd>,</span>
       <span style="color:blue"><kbd>is_null</kbd>,</span>
@@ -2487,6 +2491,7 @@ list_ref(squares, 3);
     
     <kbd>length</kbd>, which returns the number of items in
     a list, illustrates this typical pattern of use:
+    
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -2538,6 +2543,7 @@ length(odds);
     </UL>
     We could also compute <kbd>length</kbd> in an iterative
     style:
+    
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -2564,7 +2570,6 @@ length(odds);
     Another conventional programming technique is to 
     
     
-    
       <span style="color:green">
 	<QUOTE><kbd>cons</kbd> up</QUOTE>
 	the heads and tails of an answer list while
@@ -2581,6 +2586,7 @@ length(odds);
     
       <span style="color:green">procedure</span>
       <span style="color:blue">function</span>
+    
     
     
     
@@ -2652,6 +2658,7 @@ list(1, 3, 5, 7, 1, 4, 9, 16, 25)</pre></div></div></td></tr></table>
 	
       </LI>
     </UL>
+    
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -2678,7 +2685,7 @@ list(1, 3, 5, 7, 1, 4, 9, 16, 25)</pre></div></div></td></tr></table>
       <span style="color:green">procedure</span>
       <span style="color:blue">function</span>
     
-    
+      
     
     
       <span style="color:green"><kbd>last-pair</kbd></span>
@@ -2729,7 +2736,7 @@ list(34)</pre></div></div></td></tr></table>
       <span style="color:green">procedure</span>
       <span style="color:blue">function</span>
     
-    
+      
     
     <kbd>reverse</kbd> that takes a list as argument and
     returns a list of the same elements in reverse order:
@@ -3008,6 +3015,8 @@ function no_more(coin_values) {
     <div class="permalink">
     <a name="ex_2.21" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_2.21">Exercise 2.21 </a></b> 
   
+	
+	
 	In the presence of higher-order functions, it is not strictly necessary
 	for functions to have multiple parameters; one would
 	suffice. If we have a function such as
@@ -3113,6 +3122,7 @@ function no_more(coin_values) {
       <span style="color:blue">function</span>
     
     scales each number in a list by a given factor:
+    
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -3163,7 +3173,7 @@ function no_more(coin_values) {
       <span style="color:blue">function</span>
     
     to each element in the list:<span style="color:green"><a class='superscript' id='footnote-link-8' href='#footnote-8'style="color:green">[8]</a></span>
-    
+      
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -3211,6 +3221,7 @@ function no_more(coin_values) {
       <span style="color:blue"><kbd>scale_list</kbd></span>
     
     in terms of <kbd>map</kbd>:
+    
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -3452,7 +3463,7 @@ function no_more(coin_values) {
       <span style="color:green">procedure</span>
       <span style="color:blue">function</span>
     
-    
+      
     
       <span style="color:green"><kbd>for-each</kbd></span>
       <span style="color:blue"><kbd>for_each</kbd></span>
@@ -3568,7 +3579,7 @@ function no_more(coin_values) {
     cumbersome to write, Lisp dialects provide abbreviations for
     them—for instance, 
     
-    
+      
     <p>
       <kbd>(cadr arg)</kbd> =
       <kbd>(car (cdr arg))</kbd>
@@ -3576,6 +3587,7 @@ function no_more(coin_values) {
     The names of all such procedures start with <kbd>c</kbd>
     and end with <kbd>r</kbd>.  Each
     <kbd>a</kbd> between them stands for a 
+    
     
     <kbd>car</kbd> operation and each
     <kbd>d</kbd> for a <kbd>cdr</kbd>
@@ -3596,7 +3608,7 @@ function no_more(coin_values) {
 	<kbd>nil</kbd> be an ordinary name? Should the value
 	of <kbd>nil</kbd> be a symbol?  Should it be a list?
         Should it be a pair?  
-        
+         [ordinary@as ordinary variable in Scheme] 
         In Scheme, <kbd>nil</kbd> is an ordinary name, which
 	we use in this section as a variable whose value is the end-of-list
 	marker (just as <kbd>true</kbd> is an ordinary
@@ -3663,7 +3675,7 @@ function no_more(coin_values) {
     
     	  
     Scheme standardly provides a 
-    
+      
     <kbd>map</kbd>
     procedure that is more general than the one described here. This more
     general <kbd>map</kbd> takes a procedure of

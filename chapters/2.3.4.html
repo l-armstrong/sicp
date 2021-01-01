@@ -2286,6 +2286,10 @@ BACADAEAFABBAAAGAH
       
     
     the symbol at the leaf, and the weight:
+            
+            
+            
+            
     <div class='snippet' id='javascript_41_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0AbNpggCgDOATwYAjGlwA0oAO5sqAcwAWFAJSgA3rlC6ATmwpE99LlUEV+AIh58rMkeMkz5S1WoDcuAL6FSlWnpzbl4BGjEAKzZKDW1dUAMjE1BlXgATfnComNAAXnzQG1CrL19icmo6UEcJLhC+fgAPWJ0Ew2N6VKYMiiYqLia1Tx8-CsC5BRUKeoFmrVa2pM70-l7+1b6B5qHS-DI6C0ZhGbzGVk5bASsAQXtQAA5h3Fcpmf4GY8vPIA')">function make_leaf(symbol, weight) {
    return list("leaf", symbol, weight);
 }
@@ -2322,6 +2326,7 @@ function weight_leaf(x) {
       function
     
     we defined in section&nbsp;<REF NAME="sec:sequences"><a class="superscript" id="2.3.4-sec-link-2.2.1" href="./2.2.1.html">2.2.1</a></REF>:
+     
     <div class='snippet' id='javascript_41_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0AbNpggCgDOATwYAjGlwA0oAO5sqAcwAWFAJSgA3rlC6ATmwpE99LlUEV+AIh58rMkeMkz5S1WoDcuAL6FSlWnpzbl4BGjEAKzZKDW1dUAMjE1BlXgATfnComNAAXnzQG1CrL19icmo6UEcJLhC+fgAPWJ0Ew2N6VKYMiiYqLia1Tx8-CsC5BRUKeoFmrVa2pM70-l7+1b6B5qHS-HKAqp4CabE9JnJlVYM2FvjFjpSVtYGKa52R-cr6PTcTs4urmwbvM7okHl0epsNutXkChsMyv4vtVRLVBIDgXF4mDksFbAJYTcFnc7gB+UBmCxCVGSGYYobEkm6ABcj260JeUOe9Phu0+41cU3pIOx7VxgjphLUjKZ5MFqklbxlJNZEI56u5mre8IReyR42Y7A4ZBoaU4hP4RwoUh+U1uoqWFPMlisJrNHEJ9gpbGOMltqikyqZ8SYAAdQ2wSBkapJ0Va1A4aVx0f71Amg8GJr9LT71KAANRZoWp96+XAmkgWRjCGYcACMeUYrE4+OsAEEvQAOYYVqsMGv4jgoRuGluhawAIS9GGGuFHxtN5uu-H7tbrMlXg5QniAA')">function make_code_tree(left,right) {
     return list("code_tree", left, right,
                 append(symbols(left), symbols(right)),
@@ -2330,6 +2335,10 @@ function weight_leaf(x) {
 </pre></div></div>
     
     If we make a tree in this way, we have the following selectors:
+     
+     
+     
+     
     <div class='snippet' id='javascript_41_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0AbNpggCgDOATwYAjGlwA0oAO5sqAcwAWFAJSgA3rlC6ATmwpE99LlUEV+AIh58rMkeMkz5S1WoDcuAL6FSlWnpzbl4BGjEAKzZKDW1dUAMjE1BlXgATfnComNAAXnzQG1CrL19icmo6UEcJLhC+fgAPWJ0Ew2N6VKYMiiYqLia1Tx8-CsC5BRUKeoFmrVa2pM70-l7+1b6B5qHS-HKAquZ2DjIaNM4KAzZ+HgIKKT03dXn4xY7QMwtrU-OOS7Y2PYPmw7jJHlMpAtXtDXkwAA5wtgkDI1SSCG4g9QOUS1dHg9xqSEw4nxVxTDF3DQAagmT34+PUw18owOpkxHDEeiY5GUqyuLVeiXeXR6mz5AJ2I32lXoDI5XJ54rYAviQuSIo26zWA3+yslZX8MuqOLRSpV+nayWCtgEurUUOJAH4PuZLKi6jazfaSfEAFwpFbazU6sV2oZMllGsmqM0vVWWoKCGZmh0w53R6aeu2p6H+jVBguh0P88MR3CnEgWRjCGYcACMeUYrE4nqsAEEgQAOYYVqsMGs2jgoRtHFuhawAISBGB7dD7Nd1I+bJzOFyu-H7tbrMk3g5Qw1wGY3C-5HiAA')">function left_branch(tree) {
     return head(tail(tree));
 }
@@ -2398,7 +2407,7 @@ function weight(tree) {
     
     implements the decoding algorithm. It takes as arguments a list of zeros
     and ones, together with a Huffman tree.
-
+     
     <div class='snippet' id='javascript_41_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0AbNpggCgDOATwYAjGlwA0oAO5sqAcwAWFAJSgA3rlC6ATmwpE99LlUEV+AIh58rMkeMkz5S1WoDcuAL6FSlWnpzbl4BGjEAKzZKDW1dUAMjE1BlXgATfnComNAAXnzQG1CrL19icmo6UEcJLhC+fgAPWJ0Ew2N6VKYMiiYqLia1Tx8-CsC5BRUKeoFmrVa2pM70-l7+1b6B5qHS-HKAqp4CabE9JnJlVYM2FvjFjpSVtYGKa52R-cr6PTcTs4urmwbvM7okHl0epsNutXkChsMyv4vtVRLVBIDgXF4mDksFbAJYTcFnc7gB+UBmCxCVGSGYYobEkm6ABcj260JeUOe9Phu0+41cU3pIOx7VxgjphLUjKZ5MFqklbxlJNZEI56u5mre8IReyR42Y7A4ZBoaU4hP4RwoUh+U1uoqWFPMlisJrNHEJ9gpbGOMltqikyqZ8SYAAdQ2wSBkapJ0Va1A4aVx0f71Amg8GJr9LT71KAANRZoWp96+UYHehmt1sfhiKgUQQyKUi3T8qpV02cACMtfrjdAZGMBhIf3OZGU9qZVAIoH4wRIRC4AzrDaGLcz92SC6XXkz3lAbGTbHXmZNJAsoBIbEao4ueQHyhoNEEnFOY8uapXgnTG9-f6Zg56MOt7jsM-44kEEr4vwV43hwb4XNK-7BuSoZ9Ho1JOHU0GwSBE6BshyEdu6Pbcl+CagFKSGEXcrLEd26rkTIuHwf8oG7sGvh3FxDoPPRHA9l+TZvHy+pVOOT4vqx769taoAIaB64QfJ9Z5AUAAMGa6OSVrSQCCkTlpoCsiuam5KAXZGeSqZ6eOtZsYZf6smwQE0BhK4yFYYjdCpFCgAAtP5D6Sa+DlWLquBnheDDCDMAn3oanDQVYACCXoABzDFFfkxXFKAJawSWhNYABCXoYMMkV0NFsWEgVRrVh61z8Ll+ICTIrWhBwKCVfRlrOvw6kyF2w0yOpFG5VKHhAA')">function decode(bits, tree) {
     function decode_1(bits, current_branch) {
         if (is_null(bits)) {
@@ -2505,6 +2514,7 @@ function choose_branch(bit, branch) {
     described in exercise&nbsp;<REF NAME="ex:adjoin-set"><a class="superscript" id="2.3.4-ex-link-2.61" href="./2.3.3.html#ex_2.61">2.61</a></REF>; however, items
     are compared by their weights, and the element being added to the set is
     never already in it.
+    
     <div class='snippet' id='javascript_41_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0AbNpggCgDOATwYAjGlwA0oAO5sqAcwAWFAJSgA3rlC6ATmwpE99LlUEV+AIh58rMkeMkz5S1WoDcuAL6FSlWnpzbl4BGjEAKzZKDW1dUAMjE1BlXgATfnComNAAXnzQG1CrL19icmo6UEcJLhC+fgAPWJ0Ew2N6VKYMiiYqLia1Tx8-CsC5BRUKeoFmrVa2pM70-l7+1b6B5qHS-HKAqp4CabE9JnJlVYM2FvjFjpSVtYGKa52R-cr6PTcTs4urmwbvM7okHl0epsNutXkChsMyv4vtVRLVBIDgXF4mDksFbAJYTcFnc7gB+UBmCxCVGSGYYobEkm6ABcj260JeUOe9Phu0+41cU3pIOx7VxgjphLUjKZ5MFqklbxlJNZEI56u5mre8IReyR426ERoVBIHEEhiaDkMt1FS1AwRIRC4A3N6mVZIp5kszXd8VZ8u9GgAPBNfvw1a6GUySeSAA59PSW6rW30s0DxqiJiPWmSG42m11J7mR96+XBkOgWRjCGYcACMeUYrE4+OsAEF7KAABzDCskKsMGv4jgoRvMdh0qwAIU7GGGuDzJrNFsHtbrubSRqXhdXw5QMkdzp2QA')">function adjoin_set(x, set) {
     return is_null(set)
            ? list(x)
@@ -2533,6 +2543,7 @@ list(list("A", 4), list("B", 2), list("C", 1), list("D", 1))</pre></div></div>
     
     and constructs an initial ordered set of leaves, ready to be merged
     according to the Huffman algorithm:
+     
     <div class='snippet' id='javascript_41_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0AbNpggCgDOATwYAjGlwA0oAO5sqAcwAWFAJSgA3rlC6ATmwpE99LlUEV+AIh58rMkeMkz5S1WoDcuAL6FSlWnpzbl4BGjEAKzZKDW1dUAMjE1BlXgATfnComNAAXnzQG1CrL19icmo6UEcJLhC+fgAPWJ0Ew2N6VKYMiiYqLia1Tx8-CsC5BRUKeoFmrVa2pM70-l7+1b6B5qHS-HKAqp4CabE9JnJlVYM2FvjFjpSVtYGKa52R-cr6PTcTs4urmwbvM7okHl0epsNutXkChsMyv4vtVRLVBIDgXF4mDksFbAJYTcFnc7gB+UBmCxCVGSGYYobEkm6ABcj260JeUOe9Phu0+41cU3pIOx7VxgjphLUjKZ5MFqklbxlJNZEI56u5mre8IReyR426ERoVBIHEEhiaDkMt1FS1AwRIRC4A3N6mVZIp5kszXd8VZ8u9GgAPBNfvw1a6GUySeSAA59PSW6rW30s0DxqiJiPWmSG42m11J7mR96+UYHejMdgzM0WjN6QQ23RUAigfgOp0DeuNpsknH0R3Orx3bygNhcc0iplkOgWUAETMWDj1vJsjLd4bR+7JPMm2uWVNbxisTj48MrBcN6b1tQyaMgFFOLiHo9HtXcy9Lm9DGQPggGABHIg2HIYQX2jKtT1Cfd1Q3d4RxGXBIJrQtPSpY9qzPKwAEF7FAbBb3ArdkKwgAhPCUEI19qJI0JrGgPCAEYqOoo9aIaKwABEmI0XiPCAA')">function make_leaf_set(pairs) {
     if (is_null(pairs)) {
         return null;
@@ -2600,6 +2611,7 @@ const sample_message =
     
     takes as arguments a message and a tree and produces the list of bits that
     gives the encoded message.
+     
     <div class='snippet' id='javascript_41_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0BYBQuRQBTAOwGMB7AEyIH0BnATwFsAjCgG1ADMBXcgC4BLCiVACKoVkVAB3AE5CBA0lMah6A3jRID6+PoJFjSlGgApmRevQCGAcyIAacfKJEAlKADeuUP9A3LXkxIXpaEl4ODktrO0cPPwDkgIB+UEjopJTkgC5QWwAHQtIqc1NqOiY2TnMACyJbMqsbB08XATd27Jze5IqLAVshGJb49td3Dw8AblwAXyA')">function encode(message, tree) {
     return is_null(message)
            ? null
@@ -2672,6 +2684,7 @@ const sample_message =
     takes as its argument a list of symbol-frequency pairs (where no symbol
     appears in more than one pair) and generates a Huffman encoding tree
     according to the Huffman algorithm.
+     
     <div class='snippet' id='javascript_41_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0AbNpggCgDOATwYAjGlwA0oAO5sqAcwAWFAJSgA3rlC6ATmwpE99LlUEV+AIh58rMkeMkz5S1WoDcuAL6FSlWnpzbl4BGjEAKzZKDW1dUAMjE1BlXgATfnComNAAXnzQG1CrL19icmo6UEcJLhC+fgAPWJ0Ew2N6VKYMiiYqLia1Tx8-CsC5BRUKeoFmrVa2pM70-l7+1b6B5qHS-HKAqp4CabE9JnJlVYM2FvjFjpSVtYGKa52R-cr6PTcTs4urmwbvM7okHl0epsNutXkChsMyv4vtVRLVBIDgXF4mDksFbAJYTcFnc7gB+UBmCxCVGSGYYobEkm6ABcj260JeUOe9Phu0+41cU3pIOx7VxgjphLUjKZ5MFqklbxlJNZEI56u5mre8IReyR426ERoVBIHEEhiaDkMt1FS1AwRIRC4A3N6mVZIp5kszXd8VZ8u9GgAPBNfvw1a6GUySeSAA59PSW6rW30s0DxqiJiPWmSG42m11J7mR96+UYHejMdgzM0WjN6QQ23RUAigfgOp0DeuNpsknH0R3Orx3bygNhcc0iplkOgWUAETMWDj1vJsjLd4bR+7JPMm2uWVNbxisTj48MrBcN6b1tQyaMgFFOLiHo9HtXcy9Lm9DGQPggGABHIg2HIYQX2jKtT1Cfd1Q3d4RxGXAH0EIgyDINhBEEKgADdOAYNg9EUNh531KoKBoUAxGI2QfgoCgQMo4RqiMNIQIoPUxiqIiSAIph6I4ZQiAIAhmFNQl+A3Kd+2qVD0MwnC8IIoj+EgmtCzg0ogA')">function generate_huffman_tree(pairs) {
    return successive_merge(make_leaf_set(pairs));
 }

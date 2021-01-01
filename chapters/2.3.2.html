@@ -2241,6 +2241,7 @@ Acknowledgments
       
       function:
     
+    
     <div class='snippet' id='javascript_39_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvniJkqteswZsAtgNadu-YSwCMAGlAsUE6XPlFZVVmdi5eQSF3CQAyGJkAxKtHcJco31A47zdQAF587xRDEwISChoQ9UJbPSkE2QUlFWSABzZKDlqsgAsBNgATWvzc0AAiAGpR4tMyizpbNgBrBwZqoTZPUDYM-zlG4NA+RnIhCdGvDYvfadLzCtAF5aYWjmp+wgohW03bHfrApp0I4aU4AKnODx+12MMzulgG-QExEGDD8-32zV6AyE5HafCEqIMMNu5XhhG0SJRaICGLoWMGuMo+MZ+MJRJKZlJlRebw+J3EdRpQWaajaHS6MVA9KGBVG4JunLmD0IfCoLSOAk6qMFe2FdL6DLxBLE7NhXOVqso6sopDYyONOoaeqlBpxRpZxpNCtm90RXBYQgEIhaXjCzkE1N1gOSxGqPE1geDYn+SVAAH5QAAGFNJABcyTDEWEQZaydTAQzahs9hS4eLwdDTiLEgzOXz2fLcnzVbWJbLnfTDyWKzWfsoAYRlMTpcbqQjHhzA6SY4n5KnfdndZNi4C3eYPPenz7O7kGceI5q5+er0PJ1sKrVGs6G5PS7fchXXwfVqOtvtL-fQDAMLFwTQXIDUyvA8+SET970ta0EwAiCUNTED51fVDIO-a0-0GPttyXfNNVeZ8GzGEhFmIagAHc6BLBQGAYe5yAATxaARQAAWi40AV1GU0cE-YETjlCERLBCFRhEKTWIErwJLOLxpIhDAwLGGSDCAA')">function deriv(exp, variable) {
     return is_number(exp)
            ? 0
@@ -2319,6 +2320,7 @@ Acknowledgments
 	  
 	
 	
+         
         <div class='snippet' id='javascript_39_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvnjXsuvQUIBEIgJ4AvawaA')">function is_variable(x) {
     return is_string(x);
 }
@@ -2332,6 +2334,7 @@ Acknowledgments
           
 	
 	
+         
 	<div class='snippet' id='javascript_39_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvniJkqteswZsAtgNadu-YSwCMAGlAsUE6XPlFZVVmdi5eQSF3CQAyGJkAxKtHcJco31A47zdQAF587xRDExw1G3sU50iAIhEATwAvaq9axuqDIA')">function is_same_variable(v1, v2) {
     return is_variable(v1) &&
            is_variable(v2) && v1 === v2;
@@ -2341,10 +2344,12 @@ Acknowledgments
       <LI>
 	Sums and products are constructed as lists:
 	
+         
 	<div class='snippet' id='javascript_39_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGgC2AhgNYCmA+gA4BO1AJoQoAKegEYANAxQBKUAG8coJaG6tyhbnQA2lAM7khAIgBUhyWPMyA3DgC+eImSq0GLDrsL0hjCaEYz5RWVVdU1QHX0jAGozP19-aRt7HCY2dg8vVI4efkEDQwAPWIxpczcuXgFhQwBPWMMAL0NpRKA')">function make_sum(a1, a2) {
     return list("+", a1, a2);
 }
 </pre></div></div>
+         
 	<div class='snippet' id='javascript_39_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGgC2AhgNYCmA+gM6H0AUjARgA0oRigCUoAN45Qc0ACdW5QgroAbSp3K8ARAGpdIwcYkBuHAF88RMlVoMWHAA4LqAE0IVe9YQwnSsvJKKmqgmtp6AFRGDH705lZ4TGxcPD5O7K4eXjq6AB6xGOIiKS5unt66AJ6xugBeuuLiZkA')">function make_product(m1, m2) {
     return list("*", m1, m2);
 }
@@ -2358,6 +2363,7 @@ Acknowledgments
 	  
         
         
+         
         <div class='snippet' id='javascript_39_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGgC2AhgNYCmA+gM6H0AUjARgA0oRigCUoAN45Qc0ACdW5QgroAbSp3K8ARAGpdIwcYkBuHAF88RMlVqgtXHrwAekmfMXLVdJwAdGSgU3SQAyMNAAC1ZGABNQ0ABeFNADXQtrHCduPiY2Zz5dVyNQDHFxMyA')">function is_sum(x) {
     return is_pair(x) && head(x) === "+";
 }
@@ -2366,6 +2372,7 @@ Acknowledgments
       <LI>
 	The addend is the second item of the sum list:
         
+         
         <div class='snippet' id='javascript_39_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGgC2AhgNYCmA+gM6H0AUjARgA0oRigCUoAN45Qc0ACdW5QgroAbSp3K8ARAGpdIwcYkBuHAF88RMlVqiAJo9bFHvTpJnzFy1XQALVkZ3ckZKdQ9xcQtrHBCXN14mNi4ePQAPI1AMaLMgA')">function addend(s) {
     return head(tail(s));
 }
@@ -2374,6 +2381,7 @@ Acknowledgments
       <LI>
 	The augend is the third item of the sum list:
         
+         
         <div class='snippet' id='javascript_39_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGgC2AhgNYCmA+gM6H0AUjARgA0oRigCUoAN45Qc0ACdW5QgroAbSp3K8ARAGpdIwcYkBuHAF88RMlVqjCAc1bEAJr06SZ8xctV0ABasjB7kjJTqvOGRnuLxFtY4jM6uHkxsXDx6AB5GoBgJQA')">function augend(s) {
     return head(tail(tail(s)));
 }
@@ -2387,6 +2395,7 @@ Acknowledgments
 	  
         
         
+         
         <div class='snippet' id='javascript_39_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGgC2AhgNYCmA+gM6H0AUjARgA0oRigCUoAN45Qc0ACdW5QgroAbSp3K8ARAGpdIwcYkBuHAF88RMlVoMWHAA4LqAE0IVe9YQwnSsvJKKmqgmtp6AFRGDH705lY2JBQ0dFrsrh5eOgAekjLyisqq6ZyZjJQKvPmgAGR1oAAWrIzuNZIAvN2gujEW1jgZWZ7eTGyZbqM6urmxGOLiZkA')">function is_product(x) {
     return is_pair(x) && head(x) === "*";
 }
@@ -2394,6 +2403,7 @@ Acknowledgments
       </LI>
       <LI>
 	The multiplier is the second item of the product list:
+        
         
         <div class='snippet' id='javascript_39_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGgC2AhgNYCmA+gM6H0AUjARgA0oRigCUoAN45Qc0ACdW5QgroAbSp3K8ARAGpdIwcYkBuHAF88RMlVoMWHAA4LqAE0IVe9YQwnSsvJKKmqgmtp6AFRGDH705lY2JBQ0dPSE6lTOmqwKvJySMvKKyqp0ABasjO685IyU6gXi4hbWOBlZlDmUeT5O7K4eXjq6AB6xGC1mQA')">function multiplier(s) {
     return head(tail(s));
@@ -2403,6 +2413,7 @@ Acknowledgments
       <LI>
 	The multiplicand is the third item of the product list:
         
+         
         <div class='snippet' id='javascript_39_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGgC2AhgNYCmA+gM6H0AUjARgA0oRigCUoAN45Qc0ACdW5QgroAbSp3K8ARAGpdIwcYkBuHAF88RMlVoMWHAA4LqAE0IVe9YQwnSsvJKKmqgmtp6AFRGDH705lY2JBQ0dPSE6lTOmqSMxO68nJIy8orKqnQAFqyMheSMlOq8DU1F4h0W1jgZWZQ5lHkFPk7srh5eOroAHrEYnUA')">function multiplicand(s) {
     return head(tail(tail(s)));
 }
@@ -2466,6 +2477,7 @@ list("+", list("*", list("*", "x", "y"),
     
     will return the other summand.
     
+     
     <div class='snippet' id='javascript_39_15_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGjGEC2ARgKYBOA+qwI6ECGAGwAUrAB4AHADT0mASlABvHKFWh2rcoXZ1KAZ04MWHUZIUAyc6HETQAXgezGAbhwBfPETJVaoRvwBrVk49JmF+AEYZfhQFZTV1TW06IzYuXgERSJkABjkVBMLQAH5QGIKitQAuJzTuPiFwlFz8yoTSyIq2mv1DJjTwiIsrXtSTGNa21Q6I0ABqMtwp1RrBfXJhACI5zeioxblXDxx-IJCw5tAMQ6A')">function make_sum(a1, a2) {
     return number_equal(a1, 0)
            ? a2
@@ -2487,6 +2499,7 @@ list("+", list("*", list("*", "x", "y"),
     
     which checks whether an expression is equal to a given number:
     
+     
     <div class='snippet' id='javascript_39_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGjGEC2ARgKYBOA+qwI6ECGAGwAUrAB4AHADT0mASlABvHKFWh2rcoXZ1KAZ04MWHUZIUAyc6HETQAXgezGAbhwBfPEbZdeAkRhkMOWcgA')">function number_equal(exp, num) {
     return is_number(exp) && exp === num;
 }
@@ -2500,6 +2513,7 @@ list("+", list("*", list("*", "x", "y"),
     to build in the rules that 0 times anything is 0 and 1 times anything is
     the thing itself:
     
+     
     <div class='snippet' id='javascript_39_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGjGEC2ARgKYBOA+qwI6ECGAGwAUrAB4AHADT0mASlABvHKFWh2rcoXZ1KAZ04MWHUZIUAyc6HETQAXgezGAbhwBfPETJVaoRvwBrVk4JdmoAE0IKYUYARhlGFAVlNXVNbTojNi5eARE4mQAGBQAfEqds7j4hGJQiuRVUptAAflBCxua1AC4Kjiq8mPjQWIau1LbEzvHerP7cmsSZUemuydjV5t79QyZsoYsrHbn2WrHx1XXQACo-XAvVXsF9cmEAImu3hOHEuVcPHD+IIhMKRaJ1UAYP5AA')">function make_product(m1, m2) {
     return number_equal(m1, 0) || number_equal(m2, 0)
            ? 0
