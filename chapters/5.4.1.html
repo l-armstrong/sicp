@@ -2801,8 +2801,9 @@ component
         where the function was called, bypassing any continuations
         which may have been set up in-between. We handle this by
         recording the top of the stack by pushing a special marker on
-        the stack. When a function returns, we will pop the stack
-        repeatedly until we hit the marker. This ensures that
+        the stack. When a function returns, it will restore the stack
+        to the state right before the marker was inserted by repeatedly
+        popping elements off the stack until we hit the marker. This ensures that
         the next <kbd>restore</kbd> will
         be the continuation set up in <kbd>ev_application</kbd>.
 
@@ -2823,10 +2824,12 @@ component
         restoring the continuation set up in
         <kbd>ev_application</kbd>.
 
-        Because the <kbd>return_undefined</kbd>
-        continuation is installed after <kbd>save_marker</kbd>,
-        it will be skipped by an explicit return which causes the value in
-        <kbd>val</kbd> to be preserved. The behavior
+        Because the <kbd>save_marker</kbd>
+        command is issued before the 
+        <kbd>return_undefined</kbd>
+        continuation is assigned to continue, this continuation 
+        will be skipped by an explicit return. This leaves the function's return value
+        in <kbd>val</kbd> to be used by the next instruction. The behavior
         of <kbd>return_undefined</kbd> and
         <kbd>ev_return</kbd> is described below.
       
@@ -2937,7 +2940,7 @@ component
         <kbd>ev_sequence</kbd> is analogous to the
         metacircular evaluator's
         <kbd>eval_sequence</kbd> function. It handles
-        sequences of statements in function bodies, blocks or at the top level.
+        sequences of statements in function bodies or at the top level.
 
         The handling of returns in the explicit-control evaluator deviates from
         the metacircular evaluator in order to support tail recursion. By using
