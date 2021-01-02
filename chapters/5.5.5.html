@@ -2005,7 +2005,7 @@ Acknowledgments
       
       function
     
-    by calling <kbd>compile</kbd> (the <kbd>\</kbd> characters below are needed in JavaScript to support line breaks in strings):
+    by calling <kbd>compile</kbd> (the <kbd>\</kbd> characters below are needed in JavaScript to allow a string literal to span multiple lines<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>):
     <div class='snippet' id='javascript_122_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 compile(parse("                   \
 function factorial(n) {           \
@@ -2915,7 +2915,7 @@ function factorial(n) {
       
       <kbd>a + 1</kbd>
     
-    might be compiled into something as simple as<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
+    might be compiled into something as simple as<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
     <div class='snippet' id='javascript_122_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 assign("val", list(op("lookup_symbol_value"), 
                    constant("a"), reg("env")),
@@ -3081,6 +3081,15 @@ assign("val", list(op("+"), reg("val"), constant(1))</pre></div></div>
 
     <div class='footnote'>
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1'>[1] </a>
+    <FOOTNOTE>
+    The \ character is not part of the strings, but simply tells the parser that the string literal continues on the next line. The string <div class='snippet' id='javascript_122_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAVgHTpQKCwIgIagA6WoARrkA')">"a \
+ b"
+</pre></div></div>parses exactly like the string <kbd>"a  b"</kbd>.
+    </FOOTNOTE></div>
+
+    
+    <div class='footnote'>
+      <a class='footnote-number' id='footnote-2' href='#footnote-link-2'>[2] </a>
     <FOOTNOTE>
     We have used
     the same symbol <kbd>+</kbd> here to denote both the
