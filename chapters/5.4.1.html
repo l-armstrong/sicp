@@ -3452,13 +3452,16 @@ function is_last_argument_expression(arg_expression) {
     
       
       
-        The order of argument-expression evaluation in the metacircular evaluator is
-        determined by the order of evaluation of the arguments to
-        <kbd>pair</kbd> which is used 
-        to construct the argument list 
-        indirectly in the implementation of <kbd>map</kbd> or directly in the alternative
-        implementation <kbd>list_of_values</kbd> in footnote 6 
-        in section&nbsp;<REF NAME="sec:mc-eval"><a class="superscript" id="5.4.1-sec-link-4.1" href="./4.1.html">4.1</a></REF>.
+        The order of argument-expression evaluation by the
+        <kbd>list_of_values</kbd> in the metacircular
+        evaluator is determined by the order of evaluation of the arguments to
+        <kbd>pair</kbd>, which is used to construct the
+        argument list. The version of
+        <kbd>list_of_values</kbd>
+        in footnote&nbsp;<REF NAME="foot:mceval-higher-order"><a class="superscript" id="5.4.1-foot-link-3" href="./4.1.1.html#footnote-3">3</a></REF> of section&nbsp;<REF NAME="sec:mc-eval"><a class="superscript" id="5.4.1-sec-link-4.1" href="./4.1.html">4.1</a></REF> calls <kbd>pair</kbd>
+        directly; the version in the text uses
+        <kbd>map</kbd>, which calls
+        <kbd>pair</kbd>.
       
     
     
