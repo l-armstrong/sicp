@@ -1801,7 +1801,7 @@ Acknowledgments
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-116" aria-expanded="false" aria-controls="sidebar-collapse-116">
                 <a href="./5.4.3.html"> 5.4.3 
-    Conditionals, Assignments, Declarations, and Blocks
+    Conditionals, Assignments, and Declarations
   </a>
               </span>
             </h5>
@@ -2106,7 +2106,7 @@ function sqrt_iter(guess, x) {
           If we did not think to take advantage of the fact that it was unnecessary to
           save information in this case, we might have implemented 
           <kbd>ev_return</kbd>
-          by first evaluating the return expression before restoring the stack:
+          in a more intuitive way, by first evaluating the return expression before popping the stack (down to the marker):
           <div class='snippet' id='javascript_114_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_return",
       assign("comp", list(op("return_expression"), reg("comp"))),
