@@ -2163,6 +2163,7 @@ list(2, "b") list(3, "a") list(3, "b")</pre></div></div>
     evaluator over and over, making random choices and hoping to find a
     non-failing value, but it is better to 
     
+    
     <EM>systematically search</EM> all possible execution paths. The
     <kbd>amb</kbd> evaluator that we will develop and work
     with in this section implements a systematic search as follows: When the
@@ -2457,6 +2458,7 @@ amb-evaluate value:
     providing for a built-in depth-first search strategy.  
     
     
+    
     Sussman, Winograd, and Charniak (1971) implemented a subset of this language,
     called 
     
@@ -2468,10 +2470,12 @@ amb-evaluate value:
     section&nbsp;<REF NAME="sec:logic-programming"><a class="superscript" id="4.3.1-sec-link-4.4" href="./4.4.html">4.4</a></REF>).  After sufficient
     frustration with automatic search, 
     
+    
     McDermott and Sussman (1972) developed a language called 
     
     Conniver, which included mechanisms for placing the search strategy under
     programmer control.  This proved unwieldy, however, and 
+    
     
     Sussman and Stallman (1975) found a more tractable approach while
     investigating methods of symbolic analysis for electrical circuits.  They
@@ -2482,6 +2486,7 @@ amb-evaluate value:
     <EM>dependency-directed backtracking</EM>.  Although their method was
     complex, it produced reasonably efficient programs because it did little
     redundant search.  
+    
     
     <CITATION>Doyle 1979</CITATION> and McAllester
     (<CITATION>McAllester 1978</CITATION>, <CITATION>McAllester 1980</CITATION>)
@@ -2496,6 +2501,7 @@ amb-evaluate value:
       
     
     use some form of truth-maintenance system as a substrate.  See 
+    
     
     <CITATION>Forbus and de Kleer 1993</CITATION> for a discussion of elegant
     ways to build truth-maintenance systems and applications using truth
