@@ -2035,7 +2035,7 @@ const rand = make_rand();
       <kbd>rand_update</kbd>:
       
     
-	
+    
 	
     <div class='snippet' id='javascript_74_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFZMChslAIKgBuApgE4CeoAzgJYC2ADgDamjkCGAdgCYD6AVya9OAF3YAzQdwDGYugHtuoWYuaCJNUJ1DdBDAEYU8YSeXWgADKAAUdOS0H0yASlBjFoAExWrGADYrABYATisARhQIu10WTnIAc3YmckZSV1NQc0tdYk4ndgAPUENqBkEWBVZKB0TQOjFQAHdGgAsdVWUaMR4mzgAaLM5eXjrOtW4evtKBnT4PNtIVXoBrcbEljlIGTgdeE3xFSVAx4jox7nrG0upN9niklLSGUjRQAHV2Z1JeBqaluR2FlJIpyA0WE4elwFMpQMoWJQ5jw-rwvNxFE1ZPFGPNqFlpgoenRZAVQKlFEwKApSDQ0NhJj1QAxQABeHx+QIhcJRCIAblADO6-TZoAiESsKAwEQw3mCGD5QqmTUMooi3hQ8sV2GkclhKi4fCEInEpFsRXcAG9sKBbdsxIJyCpbLoAFSgEoAalK7gApMzFQBfXCMpqGtEMfgOG7s9WawIAdgAHKFtaGOCj1Px9EYKNpWTa7Uw9uRbOGs9GxEM7TXbbZ3KyAHy0MRAziR3ZMMso42iCRzcuRnPGcg0VyubWkfIsfjQ0jt7t8LPDvNzDAToA')">const random_numbers =
     pair(random_init,
@@ -2051,8 +2051,8 @@ const rand = make_rand();
       
     
     stream:
-	
-	
+     
+     
     <div class='snippet' id='javascript_74_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFZMChslAIKgBuApgE4CeoAzgJYC2ADgDamjkCGAdgCYD6AVya9OAF3YAzQdwDGYugHtuoWYuaCJNUJ1DdBDAEYU8YSeXWgADKAAUdOS0H0yASlBjFoAExWrGADYrABYATisARhQIu10WTnIAc3YmckZSV1NQc0tdYk4ndgAPUENqBkEWBVZKB0TQOjFQAHdGgAsdVWUaMR4mzgAaLM5eXjrOtW4evtKBnT4PNtIVXoBrcbEljlIGTgdeE3xFSVAx4jox7nrG0upN9niklLSGUjRQAHV2Z1JeBqaluR2FlJIpyA0WE4elwFMpQMoWJQ5jw-rwvNxFE1ZPFGPNqFlpgoenRZAVQKlFEwKApSDQ0NhJj1QAxQABeHx+QIhcJRCIAblADO6-TZoAiESsKAwEQw3mCGD5QqmTUMooi3hQ8sV2GkclhKi4fCEInEpFsRXcAG9sKBbdsxIJyCpbLoAFSgEoAalK7gApMzFQBfXCMpqGtEMfgOG7s9WawIAdgAHKFtaGOCj1Px9EYKNpWTa7Uw9uRbOGs9GxEM7TXbbZ3KyAHy0MRAziR3ZMMso42iCRzcuRnPGcg0VyubW6+RKFSJWS8F1zQxWwu2oEOp2lNms9k2AD8nQAXKA5wvDMjQP7l0HcFP9czOEx+DRBLJZLSXKR+MW6KPbJI5jHUBrRrddHRUH9S0kWwlhGWwxzmWCF2hUh234Xo6BYeDx1cOZa1XWtCLrBtm07Z9X3fGhP2-EsaFsAiiMY2sAMFJi2NrFC0IwrDOMjbjsJwm90zGNJZDaNgxGfVtUJZAsazIl83w-OgyBo386LscgIgHbwSJPecy20jhdO3WNq3Yiy10zIcDBHMdtVIfIWCktsGFsESSXE0hJN4uZfAnIA')">function map_successive_pairs(f, s) {
     return pair(f(head(s), head(stream_tail(s))),      
                 () => map_successive_pairs(
@@ -2084,7 +2084,7 @@ const dirichlet_stream =
     trials to perform.  Better estimates of $\pi$
     (from performing more experiments) are obtained by looking farther into the
     <kbd>pi</kbd> stream:
-	
+    
     <div class='snippet' id='javascript_74_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFZMChslAIKgBuApgE4CeoAzgJYC2ADgDamjkCGAdgCYD6AVya9OAF3YAzQdwDGYugHtuoWYuaCJNUJ1DdBDAEYU8YSeXWgADKAAUdOS0H0yASlBjFoAExWrGADYrABYATisARhQIu10WTnIAc3YmckZSV1NQc0tdYk4ndgAPUENqBkEWBVZKB0TQOjFQAHdGgAsdVWUaMR4mzgAaLM5eXjrOtW4evtKBnT4PNtIVXoBrcbEljlIGTgdeE3xFSVAx4jox7nrG0upN9niklLSGUjRQAHV2Z1JeBqaluR2FlJIpyA0WE4elwFMpQMoWJQ5jw-rwvNxFE1ZPFGPNqFlpgoenRZAVQKlFEwKApSDQ0NhJj1QAxQABeHx+QIhcJRCIAblADO6-TZoAiESsKAwEQw3mCGD5QqmTUMooi3hQ8sV2GkclhKi4fCEInEpFsRXcAG9sKBbdsxIJyCpbLoAFSgEoAalK7gApMzFQBfXCMpqGtEMfgOG7s9WawIAdgAHKFtaGOCj1Px9EYKNpWTa7Uw9uRbOGs9GxEM7TXbbZ3KyAHy0MRAziR3ZMMso42iCRzcuRnPGcg0VyubW6+RKFSJWS8F1zQxWwu2oEOp2lNms9k2AD8nQAXKA5wvDMjQP7l0HcFP9czOEx+DRBLJZLSXKR+MW6KPbJI5jHUBrRrddHRUH9S0kWwlhGWwxzmWCF2hUh234Xo6BYeDx1cOZa1XWtCLrBtm07Z9X3fGhP2-EsaFsAiiMY2sAMFJi2NrFC0IwrDOMjbjsJwm90zGNJZDaNgxGfVtUJZAsazIl83w-OgyBo386LscgIgHbwSJPecy20jhdO3WNq3Yiy10zIcDBHMdJxkac4QYZQJH4UlyBYRRbFIIoqReZZJN4uZiyo345kkPY2F4K1CIIu8Zz0XyxFsUKaHC7Iot+FdGLAzdINSzgwr+MBCuK0BvUizDsvMyza3rNlSNcr8PK8+DpK4qKfL8ih0m4IKOoYXCGLq0aazSjKqui8dFRrYNQNIDcVCQ7r-L6ga2yGkbawPbhkrK9K-m9Iypuy7aa2PPaihSibeAirKjrFCdsGDJUmSYOhRV4-hO1SxqH02Z8AEdyBSgJQDAJhhrGwiXP6lqEjakSSXExapM2uYrExmbcG+oFoI+uYJSsCcgA')">function monte_carlo(experiment_stream, passed, failed) {      
     function next(passed, failed) {
         return pair(passed / (passed + failed),
@@ -2223,7 +2223,7 @@ const pi = stream_map(p => math_sqrt(6 / p),
     monitors the balance in a bank account.  In
     section&nbsp;<REF NAME="sec:costs-of-assignment"><a class="superscript" id="3.5.5-sec-link-3.1.3" href="./3.1.3.html">3.1.3</a></REF> we implemented a
     simplified version of such a processor:
-	
+     
     <div class='snippet' id='javascript_74_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function make_simplified_withdraw(balance) {
     return amount => {
@@ -2255,7 +2255,7 @@ function make_simplified_withdraw(balance) {
     
     that takes as input a balance and a stream of amounts to withdraw and
     produces the stream of successive balances in the account:
-	
+     
     <div class='snippet' id='javascript_74_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFZMChsDMBXAOwGMAXASwHsjQBnMgJwFMBDAWwH0B3CsgCwAmjVtwAUAI1YAbVqWYAaUByrEynBiw4BKUAG9Qho9iOgWZAo1oAHVhUaSZckopOn3HsboC8APnpMbFy8AsKiYm4eUdFGUrLyoAC0oPxsgmIqahqBOgqRMQWmmkGcZHbSGeyqROrFOtraANzGAL64JDQMoOwAnpyZNXSg3qDSFAylVNla7GJjDGIYAAxKAIxLK6AALEsNjdgdRF29-SQdWXXswwEzPHxCIuIATBtKJwNkdE0AkNjMAG4yaZBMTvM7VWo5dhKFBNIA')">function stream_withdraw(balance, amount_stream) {      
     return pair(balance,
                 () => stream_withdraw(

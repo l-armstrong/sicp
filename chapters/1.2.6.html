@@ -2369,7 +2369,7 @@ function divides(a, b) {
     
     
     
-    <div class='snippet' id='javascript_20_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0DYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAx+VQ0tSlp6X39AuwcnEnCKUwtrFMdXUXFJaXpmNi5uTLNk4PZBAD5QEgL3FoB+RuaW8QAuUByqS1MKrOrU8JdOrtB2yuyg1Mmu3sSA-tSw0FnRx1AAalQo9UJSON1+wYZuVnCAI3z3Iu8b0ABSUFZQAF5v0AAGaM0Jx09Hs5gADuwqHoeC5hJ1HvR6N9PvojCYqmsQi4AcdtPFNlDOAEIYTzLNnPdxNYGGDDKwAJ4U1QPTzFRgUDgWEnQslZDYAc08ZMJ3H4hxiQPxZk54MhPPJ6XZMuo0MpYgRoFB3Jh-EWbQ8YMcXLlPEFFhVPEEAFolexzYTdVN3L0KOwiJwAbFgQajbKRZw6WCGEThaq4e5qbSGdwAEQKeSKGOHCP2KOMgOsIMhi3i-AW4km3lmbgAFgAzFEgA')">function timed_prime_test(n) {
+    <div class='snippet' id='javascript_20_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0DYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAx+VQ0tSlp6X39AuwcnEnCKUwtrFMdXUXFJaXpmNi5uTLNk4PZBAD5QEgL3FoB+RuaW8QAuUByqS1MKrOrU8JdOrtB2yuyg1Mmu3sSA-tSw0FnRx1AAalQo9UJSON1+wYZuVnCAI3z3Iu8b0ABSUFZQAF5v0AAGaM0Jx09Hs5gADuwqHoeC5hJ1HvR6N9PvojCYqmsQi4AcdtPFNlDOAEIYTzLNnPdxNYGGDDKwAJ4U1QPTzFRgUDgWEnQslZDYAc08ZMJ3H4hxiQPxZk54MhPPJ6XZMuo0MpYgRoFB3Jh-EWbQ8YMcXLlPEFFhVPEEAFolexzYTdVN3L0KOwiJwAbFgQajbKRZw6WCGEThaq4e5qbSGdwAEQKeSKGOHFleeiRumMgOsIMhi3i-AW4km3lmbgAFgAzFEgA')">function timed_prime_test(n) {
     display(n);
     return start_prime_test(n, get_time());
 }
@@ -2380,7 +2380,7 @@ function start_prime_test(n, start_time) {
 }
 function report_prime(elapsed_time) {
     display(" *** ");
-    display(elapsed_time);
+    return display(elapsed_time);
 }
 </pre></div></div>
     
@@ -2425,7 +2425,7 @@ function report_prime(elapsed_time) {
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#solution_20_2_div" data-toggle="collapse">Solution</button></div>
       <div class="solution_content collapse" id="solution_20_2_div"><SOLUTION>
     
-      <div class='snippet' id='javascript_20_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0DYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAx+VQ0tSlp6X39AuwcnEnCKUwtrFMdXUXFJaXpmNi5uTLNk4PZBAD5QEgL3FoB+RuaW8QAuUByqS1MKrOrU8JdOrtB2yuyg1Mmu3sSA-tSw0FnRx1AAalQo9UJSON1+wYZuVnCAI3z3Iu8b0ABSUFZQAF5v0AAGaM0Jx09Hs5gADuwqHoeC5hJ1HvR6N9PvojCYqmsQi4AcdtPFNlDOAEIYTzLNnPdxNYGGDDKwAJ4U1QPTzFRgUDgWEnQslZDYAc08ZMJ3H4hxiQPxZk54MhPPJ6XZMuo0MpYgRoFB3Jh-EWbQ8YMcXLlPEFFhVPEEAFolexzYTdVN3L0KOwiJwAbFgQajbKRZw6WCGEThaq4e5qbSGdwAEQKeSKGOHCP2KOMgOsIMhi3iwF43TBjhkAAW5gIjj90Mu0rtGUJDDVHi89AtDC+P1+evcMzdnC7PVtFFADQwoAAZGPB68Iu2UZ2neJ2oX2CWyxXtdWOXa9qg61XHQvQCBNQRQAB3TigM2gUiDRJE0BWhpUChtj7a-tiXqg2+ce+WCpCWJE1eTMbgawoMVQE-aZGE4ItS3LdhKyGCCdwwPdTEfA4YN6ZdVyQlDN05dDMIbHF8MQ9cTUuFBfno35wgAZkOY9KLXZCN24OiGMY0AWNUNj4JXKjOJo7jePo5ioiAA')">function search_for_primes(start, times) {
+      <div class='snippet' id='javascript_20_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0DYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAx+VQ0tSlp6X39AuwcnEnCKUwtrFMdXUXFJaXpmNi5uTLNk4PZBAD5QEgL3FoB+RuaW8QAuUByqS1MKrOrU8JdOrtB2yuyg1Mmu3sSA-tSw0FnRx1AAalQo9UJSON1+wYZuVnCAI3z3Iu8b0ABSUFZQAF5v0AAGaM0Jx09Hs5gADuwqHoeC5hJ1HvR6N9PvojCYqmsQi4AcdtPFNlDOAEIYTzLNnPdxNYGGDDKwAJ4U1QPTzFRgUDgWEnQslZDYAc08ZMJ3H4hxiQPxZk54MhPPJ6XZMuo0MpYgRoFB3Jh-EWbQ8YMcXLlPEFFhVPEEAFolexzYTdVN3L0KOwiJwAbFgQajbKRZw6WCGEThaq4e5qbSGdwAEQKeSKGOHFleeiRumMgOsIMhi3iwF43TBjhkAAW5gIjj90Mu0rtGUJDDVHlTBJrXx+vz17hmbs43Z6toooAaGFAADJx0PXhEOyiu07xO1i+wyxWq9raxy7XtUA2a47F6AQJqCKAAO6cUBm0CkQaJImgK0NKgUBjvUDagdiXqgu+cB9LAqQliRNXkzG4OsKDFUBv2mRhOBLctK3Yashig3cMH3UwnwOODehXNcULQrdOUw7CmxxQjkI3E1LhQX5GN+cIAGZDhPaj11QzduAYpjmNANjVA4xDVxo7i6N4-jGNYqIgA')">function search_for_primes(start, times) {
     return times === 0
            ? true
            : start > 2 && start % 2 === 0

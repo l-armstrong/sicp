@@ -2099,10 +2099,6 @@ Acknowledgments
     
     
     
-    
-    
-    
-    
     The primitive mutators for pairs are
     
       
@@ -2345,7 +2341,7 @@ Acknowledgments
     <kbd>pair</kbd>.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
 
   
-            
+  
   <div class='snippet' id='javascript_61_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChslACoAWApqAEYD2lA1qAA4BOl9lAziW6AIYOMCWAW34AXfgDcyAMwCuAOwDGYynNABzEiID6ckgHct9bv0Zo8YcP0VkE3cd3AKB9EaAAmlTqDmVXTSuL8bmRsMgpEPKCyispyADSgADaaAORs5u4kUlZkojxcUpSJiZR6bAmFjKAipKBs3DRklFLVtSQAHtyC9Mlm2NFK-Crqmjr6hsaMABQAlKAA3tigy6CMmjKMqkYmU-LB2bpuCXtZOW4zANzYAL64iytR8oPD29PtCQCec-cPKwoqbFcUjWbAiAF4RtpdAZXrMrr8VhxtKRuG4psDOEQEu1LksEXVRiJjIl0SCsaAvvD8WsRBtVBjQVTlrdzHjlrDYZgEgAmGYJAAslwAkA8bkA')">function pair(x, y) {
     const fresh = get_new_pair();
     set_head(fresh, x);
@@ -2371,8 +2367,7 @@ Acknowledgments
     for appending lists was introduced in
     section&nbsp;<REF NAME="sec:sequences"><a class="superscript" id="3.3.1-sec-link-2.2.1" href="./2.2.1.html">2.2.1</a></REF>:
     
-    
-            
+     
     <div class='snippet' id='javascript_61_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQBDABwYFMiATACgA8AaUATwCUoAN7ZQE0ACdmZAlNoUAzgH0iBADYbug8ZP2SA-AL0H9ALlAM6FKRwAWzOpy6C+jFuw5kb213yFBAG5sAF9cD1ZODWUyDkw+FDdQGKU4gFY+AHY+AE5BYKA')">function append(x, y) {
     return is_null(x)
            ? y
@@ -2418,8 +2413,7 @@ Acknowledgments
       
     
     with an empty&nbsp;<kbd>x</kbd>.)
-    
-    
+     
     <div class='snippet' id='javascript_61_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAbAQwGcyB9ABwYoCcAKADwCUoAN7ZQE0NwCmZAt1oUmrIgTp1eZLhqGDxkg5ID8ofvsMGAXPWZtOPTdoGDBAbmwBfXIVKUaoBnZ2aSIAE1YAWwItMio+fgAaUABPYTEDJllWLQoNRhYOLnjBJNT3Axk5BVN3DyA')">function append_mutator(x, y) {
     set_tail(last_pair(x), y);
     return x;
@@ -2437,7 +2431,7 @@ Acknowledgments
     
     that returns the last pair in its argument:
     
-            
+     
     <div class='snippet' id='javascript_61_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAbAQwGcyB9ABwYoCcAKADwCUoAN7ZQE0NwCmZAt1oUmrIgTp1eZLhqGDxkg5ID8ofvsMGAXPWZtOPTdoGDBAbmwBfXIxYcufOiUyXkwAGgAmUJRQgBZQgFYXVyA')">function last_pair(x) {
     return is_null(tail(x))
            ? x
@@ -2456,7 +2450,7 @@ Acknowledgments
 ["a", ["b", ["c", ["d, null]]]]</pre></div></div>
     <div class='snippet' id='javascript_61_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQBDABwYFMiATACgA8AaUATwCUoAN7ZQE0ACdmZAlNoUAzgH0iBADYbug8ZP2SA-AL0H9ALlAM6FKRwAWzOpy6C+jFuw5kb213yFBAG5sAF9cQlJKGlANOiUyFWtbHVFTaVl5RVV1LW9fHV0zA2MudOLLOISkmzsfCj9BYLCI4nJqWg9WNhUAWwIfMio7XgFhMX0lWRV67SrE5JG3MZD9GTkFUC4Q8OwSGgSt0ABeWOUyDgAiOku+S4AjS+a9g7IBE7OEq5Jb0Eu2J4hF5EQ4ALw+XS8oyEQNBQNmOiCQA')">tail(x);
 </pre><pre class='prettyprintoutput'>
-response</pre></div></div>
+^$response$^</pre></div></div>
     <div class='snippet' id='javascript_61_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQBDABwYFMiATACgA8AaUATwCUoAN7ZQE0ACdmZAlNoUAzgH0iBADYbug8ZP2SA-AL0H9ALlAM6FKRwAWzOpy6C+jFuw5kb213yFBAG5sAF9cQlJKGlANOiUyFWtbHVFTaVl5RVV1LW9fHV0zA2MudOLLOISkmzsfCj9BYLCI4nJqWg9WNhUAWwIfMio7XgFhMX0lWRV67SrE5JG3MZD9GTkFUC4Q8OwSGgSt0ABeWOUyDgAiOku+S4AjS+a9g7IBE7OEq5Jb0Eu2J4hF5EQ4ALw+XS8oyEQNBQNmOiB+xBbwA7hCmN0+gM6EMRgFgkA')">const w = append_mutator(x, y);
 </pre></div></div>
     <div class='snippet' id='javascript_61_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQBDABwYFMiATACgA8AaUATwCUoAN7ZQE0ACdmZAlNoUAzgH0iBADYbug8ZP2SA-AL0H9ALlAM6FKRwAWzOpy6C+jFuw5kb213yFBAG5sAF9cQlJKGlANOiUyFWtbHVFTaVl5RVV1LW9fHV0zA2MudOLLOISkmzsfCj9BYLCI4nJqWg9WNhUAWwIfMio7XgFhMX0lWRV67SrE5JG3MZD9GTkFUC4Q8OwSGgSt0ABeWOUyDgAiOku+S4AjS+a9g7IBE7OEq5Jb0Eu2J4hF5EQ4ALw+XS8oyEQNBQNmOiB+xBbwA7hCmN0+gM6EMRgFnqigkA')">w;
@@ -2464,7 +2458,7 @@ response</pre></div></div>
 ["a", ["b", ["c", ["d", null]]]]</pre></div></div>
     <div class='snippet' id='javascript_61_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQBDABwYFMiATACgA8AaUATwCUoAN7ZQE0ACdmZAlNoUAzgH0iBADYbug8ZP2SA-AL0H9ALlAM6FKRwAWzOpy6C+jFuw5kb213yFBAG5sAF9cQlJKGlANOiUyFWtbHVFTaVl5RVV1LW9fHV0zA2MudOLLOISkmzsfCj9BYLCI4nJqWg9WNhUAWwIfMio7XgFhMX0lWRV67SrE5JG3MZD9GTkFUC4Q8OwSGgSt0ABeWOUyDgAiOku+S4AjS+a9g7IBE7OEq5Jb0Eu2J4hF5EQ4ALw+XS8oyEQNBQNmOiB+xBbwA7hCmN0+gM6EMRgFnqj4QVXEEgA')">tail(x);
 </pre><pre class='prettyprintoutput'>
-response</pre></div></div>
+^$response$^</pre></div></div>
     What are the missing
     $\textit{response}$s?
     Draw box-and-pointer diagrams to explain your answer.
@@ -2503,7 +2497,7 @@ response</pre></div></div>
       function
     
     defined in exercise&nbsp;<REF NAME="ex:append"><a class="superscript" id="3.3.1-ex-link-3.12" href="./3.3.1.html#ex_3.12">3.12</a></REF>:
-            
+     
     <div class='snippet' id='javascript_61_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAbAQwGcyB9ABwYoCcAKADwCUoAN7ZQE0NwCmZAt1oUmrIgTp1eZLhqGDxkg5ID8ofvsMGAXPWZtOPTdoGDBAbmwBfXIVKUaoAFsGAGtpVhIATxI6aWdRc1AmWVYtCg1GFg4uPiEAGlM3BJk5BVN3L2wSGhZQAC9QAF5AkLDI6Ni6JTJeACIGHvyegCMB0B6SHpdXIA')">function make_cycle(x) {
     set_tail(last_pair(x), x);
     return x;
@@ -2539,8 +2533,7 @@ response</pre></div></div>
       function
     
     is quite useful, although obscure:
-    
-    
+     
     <div class='snippet' id='javascript_61_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsGMB7AOwGcAXUAN1AF5QAbAS3IAoAiAQzYBpQ2AjHnzxC2AEzYBKANy4AZgFcieMo2KgAtgE9yAUwBOWlgA9JoAN7ZQ10IuWr19AgQAOJ3lrOWbP0IzmgLMwA+kQK9PQmkl5WvnH6umQK+kSgWrJx1gC+oLr0JLoWsZk2hKQUZLoaLrSgZByMkaYZJTYFZMH1je5pMsWtCUkpDM5uldW8zf0+Wf2zPoPJqU6uPWERfbP4xOSgAO612nqGLJQyQA')">function mystery(x) {
     function loop(x, y) {
         if (is_null(x)) {
@@ -2954,7 +2947,7 @@ const z1 = pair(x, x);
       
       function
     
-            
+     
     <div class='snippet' id='javascript_61_27_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQSriyB9ABwEMKAnAZwAoAPAJSgA3tlATQnAKZkCnWgEJQFbqw6cBg8ZN2SA-KAAMOvboBcdBkWbsufABbS2AEy3CA1KFNnd9Rur2vGQcADbuoF6YANzYAL5AA')">function count_pairs(x) {
     return ! is_pair(x)
            ? 0
@@ -3079,9 +3072,9 @@ const z1 = pair(x, x);
       
       functions:
     
-            
-            
-            
+    
+    
+    
     <div class='snippet' id='javascript_61_28_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAHAQwoCcAKADwBpQBPASlABvbKFGhCpSjVAATCgGdGZEgAtWAWwHCxO0MwCmZAs1rrQAXkugARCv0MZ1kbpdiA-KHbPXLgFygzS3MbMiYAGycfVw8ebyixf31mZio2dW5rYhl9PAoifRlQKjokhilaAFoK+iZmaz4AbjiAXziDIxNZBSVVBoBIF2xWnXxicmpaOwdWAC8tPUNjWhnWW3tHRtBhsVHJCdBQijDZ+fal0BXrQ4jN1uwSGnkyTwsallZMbgAmRuwpmQ4jSAA')">function pair(x, y) {
     function dispatch(m) {
         return m === "head"
@@ -3121,11 +3114,11 @@ function tail(z) { return z("tail"); }
     
     in section&nbsp;<REF NAME="sec:local-state-variables"><a class="superscript" id="3.3.1-sec-link-3.1.1" href="./3.1.1.html">3.1.1</a></REF>:
     
-            
-            
-            
-            
-            
+    
+    
+    
+    
+    
     <div class='snippet' id='javascript_61_29_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAHAQwoCcAKADwBpQBPASlABvbKFGhCpSjVABnAKZkA+u1YA3AYNDtQAXlCqA3KAC+IsRPLVa8pTzUbeu-UdNjQzBQWa0AtroB8oH46IaAARAAWcgwAJmFmbomJAPxaCUkZAFxBuqFhZEwANvEZpaCpPOllYtnBeTaKUbEl1SmyCspVrbW5emENBRTFXdWpDZWtidlyzMxUbD7cYcQxcngURHIxoFR0MwxStAC0R-RMzGF8BtiuYvjEltJNMawAXg4eZF60r6yR0XEriZcBZDqBBoU3h9PN5QL98kVLi4QQ8wQ1nm9uJsAO6KVQMQoEOQadLw9EAy6sHF4glEq7pT7fOHXUz3SRWdpKCGY0DU-GE4lCUl-AaIvhUuS4-l065uRmw14s3AkGgyMhaJyMFisTDcABM9PJsQ43BQ9Ix7CuQA')">function pair(x, y) {
     function set_x(v) { x = v; }
     function set_y(v) { y = v; }
@@ -3223,6 +3216,7 @@ set_head(tail(z), 17);
 	The functions <kbd>set_head</kbd> and
 	<kbd>set_tail</kbd> return the value
 	<kbd>undefined</kbd>.
+	
 	
 	
 	

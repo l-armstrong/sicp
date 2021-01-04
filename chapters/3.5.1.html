@@ -2013,8 +2013,7 @@ Acknowledgments
     To see why this is true, let us compare two programs for computing the
     sum of all the prime numbers in an interval.  The first program is
     written in standard iterative style:<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
-    
-        
+     
     <div class='snippet' id='javascript_70_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAAmflUNLUpael9-QLsHJxJwilMLa1THV1FxSWl6ZjYubiyzFOD2QQA+UBJC91aAfiaW1vEALlBcqktTSuyatPCXLu7QDqqcoLSp7r6kgIG0sNA5scdQAGpQbGj1QlJ43QGhhm5WcIAjAvdi7zvQAFJQVlAAXl-QAAYYpozjp6PZzAAHdhUPQ8FzCLrPej0X7ffRGEzVdYhFxA07aBKMIh6SHQ2HXW6gB4I9xxUGgKhZJxkGikCjhVhkMjEx7TJGgFls0CNO5LaZiDqc7l6MXivrgqEwniCkgUfiy6YdRmcZms1X7Q7hFUUA1Snka5YMpncY0G7Acrk81TuDRPTwlK06m7hf7HDS4BjE0lK64AdnC2AAHFFlEA')">function sum_primes(a, b) {
     function iter(count, accum) {
         return count > b
@@ -2030,7 +2029,7 @@ Acknowledgments
     The second program performs the same computation using the sequence
     operations of
     section&nbsp;<REF NAME="sec:sequences-conventional-interfaces"><a class="superscript" id="3.5.1-sec-link-2.2.3" href="./2.2.3.html">2.2.3</a></REF>:
-        
+     
     <div class='snippet' id='javascript_70_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAAmflUNLUpael9-QLsHJxJwilMLa1THV1FxSWl6ZjYubiyzFOD2QQA+UBJC91aAfiaW1vEALlBcqktTSuyatPCXLu7QDqqcoLSp7r6kgIG0sNA5scdQAGpQbGj1QlJ43QGhhm5WcIAjAvdi7zvQAFJQVlAAXl-QAAYYpozjp6PZzAAHdhUPQ8FzCLrPej0X7ffRGEzVdYhFxA07aBKgTgkIiw9isLLmPxZdg2IzcQw0ADu4QAFlQAOasx5FTwlUCMpmgRrsrlLdpNIjGcXuPoQ1hUJyC0Iy6biYmkzjkynUrV0wwM5n7Q5sznc44afHnUqkyHQ2HXW6gB4Ip587ysMhkUlSik8PjhACegm+jTkB0DKrV0da-yjMYTvkMNO44KhMM44VVCejGrJfqpJBp+pu9345bxDFt6Yd3AA7OFsAAOKLKIA')">function sum_primes(a, b) {
     return accumulate((x, y) => x + y,
                       0,
@@ -2123,16 +2122,19 @@ head(tail(filter(is_prime,
 	<kbd>tail(s)</kbd>, i.e. evaluate
 	<kbd>tail(s)()</kbd>. For convenience, we
 	therefore define
+         
         <div class='snippet' id='javascript_70_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwoCcBTAQwFsB9C9qgDYAKJmy4BKUAG9coOaDYUizen0EiWHTuKHiA3LgC++UVt79hAB37MhAFgA0oXaAC8APlDWqtjE5ceoCREAgLi4XpAA')">function stream_tail(stream) {
     return tail(stream)();
 }
 </pre></div></div>
+        
         
 	The tail of a stream is <QUOTE>wrapped</QUOTE> in a function. It is a
 	<EM>delayed expression</EM>, a <QUOTE>promise</QUOTE> to evaluate an
 	expression at some future time.
 	Correspondingly, <kbd>stream_tail</kbd>
 	<EM>forces</EM>
+	
 	the tail to fulfill its promise.  It selects the
 	<kbd>tail</kbd> of the pair and evaluates the
 	delayed expression found there to obtain the next pair of the stream.
@@ -2147,6 +2149,9 @@ head(tail(filter(is_prime,
         chapter&nbsp;2, such as  <kbd>list_ref</kbd>,
 	<kbd>map</kbd>, and
 	<kbd>for_each</kbd>:<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+	 
+	 
+	 
         <div class='snippet' id='javascript_70_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwoCcBTAQwFsB9C9qgDYAKJmy4BKUAG9coOaDYUizen0EiWHTuKHiA3LgC++YuWp1GmrtzYERAGlAlJM+QtZKVT0AF4-oAAZZNxDQAH5QAAsOABMRcWDQ+QAuSzEeWw103n5hBnFHegBaUGx9I0JSSlp6US1uTnYAByECR3zpRPdPeioGbhIiATyEpLcIweGupNSm-mZWoWj2OPyC6bGQ3V8APjT6xpa2-es1EfFy41NqizrrAhpmbg4ySNbSdpcuqgJQIT6BkNzp0xoplKpmERWAY3IZQKwBAxWCCkqYlrF4uVQR5wSceA8ni83qZ2lYeGdMTD5MZjLgyHQmKBOABPbh3Ti+UBzKgLAAsjm2Pj23IWGAFkiFTiBFwMMT6TQE7GZWXqmRZbLJjjK5XpJEZ6vZ3AATJzDYchAAPXagK0AalKjgNZPKhoJz3YryEcoYCqVjtZhqN+iAA')">function stream_ref(s, n) {
     return n === 0
            ? head(s)
@@ -2171,6 +2176,7 @@ function stream_for_each(fun, s) {
 	The function
         <kbd>stream_for_each</kbd> is useful for
 	viewing streams:
+	 
         <div class='snippet' id='javascript_70_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwoCcBTAQwFsB9C9qgDYAKJmy4BKUAG9coOaDYUizen0EiWHTuKHiA3LgC++MnSahO7AB7cAJlQYAHAewCeoALygAnAeLlqOlB7JxdXblEtEUkZeVB-Slp6EOc3CM0ubioKVmYNABpQEhjZOPkqAlAhB24SIgFhJnESsvlDUFYBBlZQCqr6D0HQAAYW1rKUsKEAcmnCgCI0Jfn9Utb2zu7pNfG5SbchAAsOWw1mg124-fDIzOzcjTEeNUaKcUL6AFpQbFXd4ziAPk13STyyOTyDEKlhs11WxlwphI5k4NwynE8oEc-DyABZCrpPAA+LE4oQYAmSDwkuoNc64EG3ThCVGgrT6IA')">function display_stream(s) {
     return stream_for_each(display, s);
 }
@@ -2252,7 +2258,7 @@ function stream_for_each(fun, s) {
         using the stream analog of the <kbd>filter</kbd>
 	function
         (section&nbsp;<REF NAME="sec:sequences-conventional-interfaces"><a class="superscript" id="3.5.1-sec-link-2.2.3" href="./2.2.3.html">2.2.3</a></REF>):
-
+	 
         <div class='snippet' id='javascript_70_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwoCcBTAQwFsB9C9qgDYAKJmy4BKUAG9coOaDYUizen0EiWHTuKHiA3LgC++MnSahO7AB7cAJlQYAHAewCeoALygAnAeLlqOlB7JxdXblEtEUkZeVB-Slp6EOc3CM0ubioKVmYNABpQEhjZOPkqAlAhB24SIgFhJnESsvlDUFYBBlZQCqr6D0HQAAYW1rKUsKEAcmnCgCI0Jfn9Utb2zu7pNfG5SbchAAsOWw1mg124-fDIzOzcjTEeNUaKcUL6AFpQbFXd4ziAPk13STyyOTyDEKlhs11WxkIpESQVuPAIgghQkcbFshVRYzkimU9BqdQajy04h24wA-EV6gJqa0AFygbGsU7HdinfFUy5yOmOfh5Lk8jLafJM-lyXSeAB8jHF3HRAkx7NxoCl0u1u1RvH4ryezT5-NZepVapxeKVLwpEnhJjMFAsN3FnjZwqEGEKso8CqFVDyADYfZI-R7A0IAOyh+X0hrGgymEjmTjhC25DmgrSeHbmjEPKxxosAUlAACZPENhtDXUaDCDUUI08qCzjsxI9EA')">function stream_filter(pred, stream) {
     return is_null(stream)
            ? null
@@ -2341,7 +2347,6 @@ pair(head(stream),
 
       <div class='permalink'>
 <a name='p14' class='permalink'></a><p>
-        
 	When we construct stream pairs, we delay the evaluation of their tail
 	expressions by wrapping these expressions in a function. We force their
 	evaluation when needed, by applying the function.
@@ -2349,7 +2354,7 @@ pair(head(stream),
 
       <div class='permalink'>
 <a name='p15' class='permalink'></a><p>
-        
+         
         
         This implementation suffices for streams to work as advertised, but
 	there is an important optimization that we shall consider where needed.
@@ -2368,6 +2373,7 @@ pair(head(stream),
 	The first time the memoized function is run, it saves the computed
 	result.	On subsequent evaluations, it simply returns
 	the result.<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
+         
         <div class='snippet' id='javascript_70_15_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AWwFMGaAKYkgSlAG8BIUENC5hoADZMKoAIbiATkxkATAJ4B9eaVABeUATkBnJgG5RwydMWGi46XtLKmBKiSbKzYxRSLz6bHh0APj5zMXCxKgJQNgBCOUUVDS1uUIj0iOtbe31SAM8MwtkFJTVNbT0KLVMwosypX3osuwK6oQBfUCZxYzS2+p8-UGaKVrb22vT2swnCUkpaekMARyIZRXUAFgC+oTI6QysmGztdUE3QACpzk0FhWuUqQwAHcRlVNgAiBmyqV6oyDJqHRQID5PIqO5QDQiBRPlwxt5GsNjtkZrh9iRDowWDR1Cs1hsLnpmKw2AT1kwtgjcI8Xm8PqS8RSiQEEaAQKBDAALGgAd0MoG+v1eaDQn1pT1e7zYTPxq0pWzZJg5YGUNGOoBINGkPP5Qp+dj+4jFnyAA')">function memo(fun) {	    
     let already_run = false;
     let result = undefined;
@@ -2389,6 +2395,7 @@ pair(head(stream),
 <a name='p16' class='permalink'></a><p>
 	We can make use of <kbd>memo</kbd> whenever
 	we construct a stream pair. For example, instead of 
+         
         <div class='snippet' id='javascript_70_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwoCcBTAQwFsB9T9gBwAUBADSMAlKADeuUHNBsKRZvSoNuJIgBstghuNnyj8gPyhNOw8aMAuUP3ZVmwwQAsOAEz3jxIq9YC5QUkAXgA+RhYOHj4hUUi2Lm4KR119HwBuXABffDI6JlBOAE9uJkTOUBD7R2cAFjFgqoiHJ0EMRtCIiy1MvIKKItLy6O4AJir-EaTYwQ81fi12YrESsqiucSzcaZ42AkE13fGxbC2djb3WA6PLk9AzrJBQCndzIk4AI1ZmUAxQNSMVw0ADu9AoIKoZFYuGe3zI7CIDFYLzeDC4KI8rCWxVYHlhYBonwAVqxKACGKACDRmNCPC9IdCgA')">function stream_map(f, s) {
     return is_null(s)
            ? null
@@ -2400,6 +2407,7 @@ pair(head(stream),
 	we can define an optimized function
 	<kbd>stream_map</kbd>	as
 	follows:
+         
 	<div class='snippet' id='javascript_70_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AWwFMGaAKYkgSlAG8BIUENC5hoADZMKoAIbiATkxkATAJ4B9eaVABeUATkBnJgG5RwydMWGi46XtLKmBKiSbKzYxRSLz6bHh0APj5zMXCxKgJQNgBCOUUVDS1uUIj0iOtbe31SAM8MwtkFJTVNbT0KLVMwosypX3osuwK6oQBfUCZxYzS2+p8-UGaKVrb22vT2swnCUkpaekMqpQZ1BhkAB3UaTeoGKgAvdw4AGlBDHl5a70bQKkN1EltxNkvJiIB+UGfxcQ-wgAuUCbGRUeQcNgAC1Kby4XFOALqzFYbBigRCy0Saw2212+yOJyR-TaBHOWNW6goYNelx48Jm+DIdGWjA0FJkDF0ILBEIALOcAroQqDwWwMIKMT8XgymSzpAx2StOeoAEy6WocnFbNjKB6bcQyVTnRXqLVcMy4LWaZxsU3W1XnbAWq3KtaKAh2pXYtVOl0gUAUGHShgAIyY8lAGHuhguUJoAHd6BQE1QyExcAHw2QZERekGmBdOYWnIbVO5M2AaKGAFZMSgx-Q0eTp5SB1PpuUkVn2t3qFAasTW3E7PZUA7HZS6-Vlk3e1Yu10+j1es19lB+szWle9n0b0DOswBgsh8OR6MPOOJ+h0cSqUB0TtZ+u5-PBkYP6IEZtkVwAc0rQNg1LI13AfWt62kS8URoQllCAA')">function stream_map_optimized(f, s) {
     return is_null(s)
            ? null
@@ -2420,6 +2428,7 @@ pair(head(stream),
 	that takes a binary function and two streams as arguments and returns
 	a stream whose elements are the results of applying the function
 	pairwise to the corresponding elements of the argument streams.
+         
 	<div class='snippet' id='javascript_70_18_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function stream_map_2(f, s1, s2) {
     ...

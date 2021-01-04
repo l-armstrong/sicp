@@ -2120,6 +2120,7 @@ function withdraw(amount) {
 balance = balance - amount;</pre></div></div>
     
     
+    
       
       
       
@@ -2172,9 +2173,10 @@ balance = balance - amount;</pre></div></div>
   <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
     
-    
       
       
+	
+	
 	The function <kbd>withdraw</kbd> also uses a
 	<EM>statement sequence</EM> to cause two statements to be evaluated
 	in the case where the <kbd>if</kbd> test is
@@ -2383,6 +2385,7 @@ const new_withdraw = make_withdraw_100();
     
     specifies the initial amount of money in the
     account.<a class='superscript' id='footnote-link-6' href='#footnote-6'>[6]</a>
+     
     <div class='snippet' id='javascript_52_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQHcKyALAEwBODDgAoARgwA2DUiwCUoAN7ZQq0AJZkCA2gzpViZUAF4AfEpVqrFPKHFSZJFqFPHQeg0TILlVv2olpWRNQQMdnAFp3fUMAbkt-Kw0tHVCHWXjE0ABfUBZJAGdnXyy1ZO1aACJIIgKCPDwKEgoWL1BCIj4CyszE7ISc+P7sEhoCowB1DBDGVk5ufiFRDAAGFbl40drJgCYZ5nYuXkFhEVX12KA')">function make_withdraw(balance) {
     return amount => {
         if (balance >= amount) {
@@ -2434,6 +2437,7 @@ const W2 = make_withdraw(100);
     
     that returns a <QUOTE>bank-account object</QUOTE> with a specified initial
     balance:
+     
     <div class='snippet' id='javascript_52_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQZJKuLIAoARgwA2DUiwCUoAN7ZQ80IVKUaoAO4UyACwAmAJwZq+DOjyJkpshddAU8oQSLEkWoAHwBeUCbMWZcm0ChUXFQL2DnVwBab1NeAG4AwOs9FjICPVoI8UTk0ABfUBZhAGdXKzyFVPTM0AAiSCISgjw8ChIKFnNFYh0Sutzk-KSCkaVyalodFgAHKhLNYzjzSxHrbJcw0A3XAGpY30HA6oyspxyR4etxlSmKEpmGMhItPjpVvJPaujCPLzqNNp9IY6mtKqAAPzqTS6AxqMGVABc9F+-2mcwWZFB4JsUPR800CLyyJYej0VD0bwANPViEwiFQ1LRUgBHAgsEpkUBRGKMVgcLi+OoSI6jFJpU6gHT3R7PLSJYbYbhNLmcEhbPnsNW+PgYAAMepFuDVfABMOBamFfAArIb4kA')">function make_account(balance) {
     function withdraw(amount) {
         if (balance >= amount) {
@@ -2559,7 +2563,7 @@ const W2 = make_withdraw(100);
       
       function
     
-    
+     
     
       
       <kbd>make_accumulator</kbd>
@@ -2616,7 +2620,7 @@ const W2 = make_withdraw(100);
       
       function
     
-    
+     
     
     
     
@@ -2901,6 +2905,8 @@ function make_account(balance, p) {
     
       
       
+	
+	
 	The value of an assignment is the value being assigned to the name.
 	Assignment expression statements look similar to and should not be
 	confused with constant and variable declarations of the form

@@ -2056,6 +2056,7 @@ $x_3$ = rand_update($x_2$);</kbd>
     random number, and also stores this as the new value of
     <kbd>x</kbd>.
     
+     
     <div class='snippet' id='javascript_53_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEY0CYBQuRQBBUANwFMAnAT1AGcBLAWwAcAbc0SgQwDsATAPoBXFv24AXTgDNhvAMYSGAe16h5y1sKl1Q3UL2FMARlQJhplTaAAMoABQMFbYYwoBKUBOWhsNmwCsAGw2ACwAnDYYKBgO+mzclADmnCyUzOTu5qCW1vqk3C6cAB6gxrRMwmxK7NROSaAMEqAA7k0AFnrqqnQSfM3cADTZ3Pz89V0avL39ZYN6Al7t5Gp9ANYTEstc5EzcTvxmhMrSoOOkDOO8DU1ltFucCcmp6UzkaKAA6pyu5PyNzWWlE42WkykojTYLl6PCUqlAqjY1HmfH+-B8vGUzXkCWYC1o2RmSl6DHkhVAaWULCoSnIdDQuCmvVATFAAF5fP5gmFItEMABuUCMnoDdmgDAYGwoAIYALYUIBfnC6bNYxijDYFAKpW4WQKOFqHgCERiSTkezFTwAb1woDtOwkwkoans+gAVKBSgBqMqeACkLKVAF98Ezmkb0UxBE5bhyNVrggB2AAc4R1esUKjUezW5EEEfs1ttdo4zVKHIjmmjvCaSvtwMdzocnjZAD5QDb7V3y1xUSbxFILe46127Q2nWpiiPQEHg8rmRGxTm8wXh-hxnR2NxqPZV2uN1ud3ulQeEkfUYXh0A')">function make_rand() {
    let x = random_init;
    return () => {
@@ -2145,9 +2146,9 @@ const rand = make_rand();
 
   <div class='permalink'>
 <a name='p7' class='permalink'></a><p>
-            
-            
-            
+     
+     
+     
     <div class='snippet' id='javascript_53_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEY0CYBQuRQBBUANwFMAnAT1AGcBLAWwAcAbc0SgQwDsATAPoBXFv24AXTgDNhvAMYSGAe16h5y1sKl1Q3UL2FMARlQJhplTaAAMoABQMFbYYwoBKUBOWhsNmwCsAGw2ACwAnDYYKBgO+mzclADmnCyUzOTu5qCW1vqk3C6cAB6gxrRMwmxK7NROSaAMEqAA7k0AFnrqqnQSfM3cADTZ3Pz89V0avL39ZYN6Al7t5Gp9ANYTEstc5EzcTvxmhMrSoOOkDOO8DU1ltFucCcmp6UzkaKAA6pyu5PyNzWWlE42WkykojTYLl6PCUqlAqjY1HmfH+-B8vGUzXkCWYC1o2RmSl6DHkhVAaWULCoSnIdDQuCmvVATFAAF5fP5gmFItEMABuUCMnoDdmgDAYGwoAIYALYUIBfnC6bNYxijDYFAKpW4WQKOFqHgCERiSTkezFTwAb1woDtOwkwkoans+gAVKBSgBqMqeACkLKVAF98Ezmkb0UxBE5bhyNVrggB2AAc4R1esUKjUezW5EEEfs1ttdo4zVKHIjmmjvCaSvtwMdzocnjZAD5QDb7V3y1xUSbxFILe46127Q2nWpiiPQEHg8rmRGxTm8wXh-gMwbQEl5PxXfNjEWu+Om2q2WfbKAAPxdABcW539mMKNAAYPc91ckz8LpSj2UkELAMPYEjpIUdCHvW5CNtmkjtIIdAAI6UBI9hBKAYBMKo-5kpQbDKMBoFsHQ8zjOk8jtKWgg6BI7hriGXYfvqWZnAwZEUVBVE-oWHbFmOUETveu6rvMq4tueAq4CGjFftmWF5jheEEQwYHzOQxTUq8Kw0TxXYbsxTRUEpYH5rs+w1tc8wgcpREAdwdB0H8EGjg6AlWcZwJ7DG1zsueNi8c5znXm5NksHZDn-GAwV0P5AVdneakaRkvAoVksUBdeBmUEZNkeWZEwALTisMaUlfaUW2fZfygD6GCpaV9p3pl2V0CZnnmQ0hUYPMMX1aO5WhZV-Brl29GQdBAKGVF8w2HR+A-swZoAUBkr+DN-JAA')">function estimate_pi(trials) {
     return math_sqrt(6 / monte_carlo(trials, dirichlet_test));
 }
@@ -2181,7 +2182,7 @@ function monte_carlo(trials, experiment) {
      
     directly rather than <kbd>rand</kbd>, the way we would be
     forced to proceed if we did not use assignment to model local state:
-            
+     
     <div class='snippet' id='javascript_53_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEY0CYBQuRQBBUANwFMAnAT1AGcBLAWwAcAbc0SgQwDsATAPoBXFv24AXTgDNhvAMYSGAe16h5y1sKl1Q3UL2FMARlQJhplTaAAMoABQMFbYYwoBKUBOWhsNmwCsAGw2ACwAnDYYKBgO+mzclADmnCyUzOTu5qCW1vqk3C6cAB6gxrRMwmxK7NROSaAMEqAA7k0AFnrqqnQSfM3cADTZ3Pz89V0avL39ZYN6Al7t5Gp9ANYTEstc5EzcTvxmhMrSoOOkDOO8DU1ltFucCcmp6UzkaKAA6pyu5PyNzWWlE42WkykojTYLl6PCUqlAqjY1HmfH+-B8vGUzXkCWYC1o2RmSl6DHkhVAaWULCoSnIdDQuCmvVATFAAF5fP5gmFItEMABuUCMnoDdmgDAYGwoAIYALYUIBfnC6bNYxijDYFAKpW4WQKOFqHgCERiSTkezFTwAb1woDtOwkwkoans+gAVKBSgBqMqeACkLKVAF98Ezmkb0UxBE5bhyNVrggB2AAc4R1esUKjUezW5EEEfs1ttdo4zVKHIjmmjvCaSvtwMdzocnjZAD5QDb7V3y1xUSbxFILe46127Q2nWpiiPQEHg8rmRGxTm8wXh-gMwbQEl5PxXfNjEWu+Om2q2WfbKAAPxdABcW539mMKNAAYPc91ckz8LpSj2UkELAMPYEjpIUdCHvW5CNtmkjtIIdAAI6UBI9hBKAYCVlG25CDoKEgQwYHzJh1ZNO4a4hh++pZr2AhVthgi4cBoFsHQ8wxkohSCJaHbFnaG7UU0VBMQRLH5rs+w1tc8z4WBAHcHQdB-PM3GdqOdphp6sQVn2ogDualrTqOGnFNgYoRv2ZoWhga5qWOUETl4zF0GJewxtc7LnjYvG2aO14yaJLDyYp-xgP5dDeT59p3thVnKdgLbnhgEWRVeAJCWFLkSRMAC04rzMlKVqRlgUKX8oA+hgcVZIVXZ3oJlDCbJwKuZJDS5ZVQo1SlxVBUpnrxYZIZHvZTb1Y1LHzDYbE1hxbBceR+A-swZoAUBkr+DYw5AA')">function estimate_pi(trials) {
     return math_sqrt(6 / random_gcd_test(trials, random_init));
 }
@@ -2320,7 +2321,7 @@ function random_gcd_test(trials, initial_x) {
       
       function
     
-    
+     
     
       
       <kbd>estimate_integral</kbd>
@@ -2381,7 +2382,7 @@ function random_gcd_test(trials, initial_x) {
 	input.
       
     
-              
+     
     <div class='snippet' id='javascript_53_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwEMSATGgWwAoSBKUAN65QIxgFMKRBvQ5MKACwD6BADY0aDLrIWLmbTl34AqUHwDcuAL75i5anUYt2HRVRK6WAczFc1AdwAaUHkqT3l+IVFQMjoAZwpHEm9QAF5g0PlQAFpQfwsohgkpen9QAGpE5y49b14La1w9Z1d3Gp8ADgAGbs6g9oweuqA')">function random_in_range(low, high) {
     const range = high - low;
     return low + random(range);

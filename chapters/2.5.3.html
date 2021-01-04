@@ -2967,7 +2967,7 @@ const rf = make_rational(p2, p1);</pre></div></div>
 function gcd(a, b) {
     return b === 0
            ? a
-           : gcd(b, remainder(a, b));
+           : gcd(b, a % b);
 }</pre></div></div>
     Using this, we could make the obvious modification to define a GCD
     operation that works on term lists:

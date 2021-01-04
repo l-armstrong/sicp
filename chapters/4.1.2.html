@@ -2020,6 +2020,7 @@ Acknowledgments
 	<kbd>declaration_value_expression</kbd> would be
 	difficult
 	and error-prone to implement by examining the program text.
+	
 	In this section, we therefore
 	introduce a function 
 	<kbd>parse</kbd> that translates program text
@@ -2109,6 +2110,7 @@ list("sequence",
       <b><a class="caption" href="./4.1.2.html#fig_4.2">Figure 4.2 </a></b>Syntax abstraction in the evaluator.</div>
     </FIGURE>
   
+	
 	Figure&nbsp;<REF NAME="fig:parse-abstraction"><a class="superscript" id="4.1.2-fig-link-4.2" href="./4.1.2.html#fig_4.2">4.2</a></REF> depicts the abstraction barrier
 	formed by the syntax predicates and selectors,
 	which interface the evaluator to the tagged-list representation of programs,
@@ -2129,13 +2131,14 @@ list("sequence",
       <div class='permalink'>
         <a name='h1' class='permalink'></a><h2>
     
-    Literal values
+    Literal expression
   </h2></div>
-      
+  
+  
   <div class='permalink'>
 <a name='p4' class='permalink'></a><p>
 	
-	Literal values are parsed into tagged lists with
+	Literal expressions are parsed into tagged lists with
 	tag <kbd>"literal"</kbd> and
 	the actual value.
 	
@@ -2158,7 +2161,7 @@ list("literal", "hello world")</pre></div></div>
 	<div class='snippet' id='javascript_78_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAHAQwCcBnAUwAoAiAOwFcAbJgbhoEpWg')">parse("null;");
 </pre><pre class='prettyprintoutput'>
 list("literal", null)</pre></div></div>
-	The syntax predicate for literal values is 
+	The syntax predicate for literal expressions is 
 	<kbd>is_literal</kbd>.
 	<div class='snippet' id='javascript_78_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0AbKigUwCcBDVgBRkaAWwAOdTiQoBKUAG9coZaG6cKRbvSbMKvAOb7OAEzZMKQ0RJJSKAGlAAidlz6tHMgNy4AvoVKUtPQuPPzMAG78RJyW4pLScvIqoEoqahpaoAAWnLzGAnpUgsJxNglevvjCJIwUoCIAnsxi3DT6fCKgALygYrzcjDGOFNzRnqAYnh7e1bX1TSPRzLW8XCK23aDstcxqBAKNza3tvCIOAAwVOiFuBwujnMt6a7ZeQA')">function is_literal(component) {
     return is_tagged_list(component, "literal");
@@ -2176,7 +2179,7 @@ list("literal", null)</pre></div></div>
 }
 </pre></div></div>
 	
-	The second element of the list that results from parsing a literal value
+	The second element of the list that results from parsing a literal expression
 	is its actual JavaScript value.
 	The selector for retrieving the value is
 	<kbd>literal_value</kbd>.
@@ -2203,7 +2206,8 @@ null</pre></div></div>
     
     Names
   </h2></div>
-
+  
+  
   <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
     The tagged-list representation for names
@@ -2240,7 +2244,8 @@ null</pre></div></div>
     
     Expression statements
   </h2></div>
-
+  
+  
   <div class='permalink'>
 <a name='p6' class='permalink'></a><p>
     We do not need to distinguish between expressions and expression statements.
@@ -2262,6 +2267,8 @@ null</pre></div></div>
     
     Function applications
   </h2></div>
+  
+  
 
   <div class='permalink'>
 <a name='p7' class='permalink'></a><p>
@@ -2295,7 +2302,10 @@ null</pre></div></div>
     
     Conditionals
   </h2></div>
-
+  
+  
+  
+  
   <div class='permalink'>
 <a name='p8' class='permalink'></a><p>
     Conditional expressions are parsed as follows:
@@ -2342,6 +2352,8 @@ $\ll \textbf{if}\ \texttt{(} \textit{predicate} \texttt{)}\ \textit{consequent-b
     
     Lambda expressions
   </h2></div>
+  
+  
 
   <div class='permalink'>
 <a name='p9' class='permalink'></a><p>
@@ -2352,9 +2364,9 @@ $\ll \textbf{if}\ \texttt{(} \textit{predicate} \texttt{)}\ \textit{consequent-b
     
     
 \begin{eqnarray*}      
-& \ll \texttt{(}\textit{parameter}_1\texttt{, }\ldots\texttt{, } \textit{parameter}_n \texttt{) =>}\ \textit{expression} \gg \\
+& \ll \texttt{(}\textit{name}_1\texttt{, }\ldots\texttt{, } \textit{name}_n \texttt{) =>}\ \textit{expression} \gg \\
 & = \\
-& \ll \texttt{(}\textit{parameter}_1\texttt{, }\ldots\texttt{, } \textit{parameter}_n \texttt{) => \{}\ \textbf{return} \ \textit{expression}\texttt{;}\ \texttt{\}} \gg
+& \ll \texttt{(}\textit{name}_1\texttt{, }\ldots\texttt{, } \textit{name}_n \texttt{) => \{}\ \textbf{return} \ \textit{expression}\texttt{;}\ \texttt{\}} \gg
 \end{eqnarray*}
 	
     
@@ -2363,11 +2375,11 @@ $\ll \textbf{if}\ \texttt{(} \textit{predicate} \texttt{)}\ \textit{consequent-b
 		
 		
 	      
-$\ll \texttt{(}\textit{parameter}_1\texttt{, }\ldots\texttt{, } \textit{parameter}_n \texttt{) =>}\ \textit{block} \gg\ \ =$
+$\ll \texttt{(}\textit{name}_1\texttt{, }\ldots\texttt{, } \textit{name}_n \texttt{) =>}\ \textit{block} \gg\ \ =$
 	
 		
 	<kbd class='snippet'>list("lambda_expression",
-     list(list("name", $\textit{parameter}_1$), ..., list("name", $\textit{parameter}_n$)),
+     list($\ll name_1 \gg$, $\ldots$, $\ll name_n \gg$),
      $\ll block \gg$)</kbd>
 	      </blockquote>
 
@@ -2389,7 +2401,7 @@ $\ll \texttt{(}\textit{parameter}_1\texttt{, }\ldots\texttt{, } \textit{paramete
     return list("lambda_expression", parameters, body);
 }
 </pre></div></div>
-	    
+
 	    </p></div>
 
   
@@ -2398,6 +2410,8 @@ $\ll \texttt{(}\textit{parameter}_1\texttt{, }\ldots\texttt{, } \textit{paramete
     
     Sequences
   </h2></div>
+  
+  
 
   <div class='permalink'>
 <a name='p10' class='permalink'></a><p>
@@ -2445,6 +2459,8 @@ function is_last_statement(stmts) {
     
     Blocks
   </h2></div>
+  
+  
 
 <div class='permalink'>
 <a name='p11' class='permalink'></a><p>
@@ -2470,6 +2486,8 @@ function is_last_statement(stmts) {
     
     Return statements
   </h2></div>
+  
+  
 
   <div class='permalink'>
 <a name='p12' class='permalink'></a><p>
@@ -2496,6 +2514,8 @@ function is_last_statement(stmts) {
     
     Assignments
   </h2></div>
+  
+  
 
   <div class='permalink'>
 <a name='p13' class='permalink'></a><p>
@@ -2525,6 +2545,10 @@ function is_last_statement(stmts) {
     
     Constant, variable, and function declarations
   </h2></div>
+  
+  
+  
+  
 
     <div class='permalink'>
 <a name='p14' class='permalink'></a><p>
@@ -2562,17 +2586,19 @@ function declaration_value_expression(component) {
     </p></div>
     <div class='permalink'>
 <a name='p15' class='permalink'></a><p>
+  
+  
       Function declarations are parsed as follows:
 	<blockquote class='blockquote'>
 	  
 	  
 	      
-$\ll \textbf{function}\ \textit{name} \texttt{(}\textit{parameter}_1\texttt{, }\ldots\texttt{, } \textit{parameter}_n \texttt{)} \ \textit{block} \ \gg\ \ =$ 
+$\ll \textbf{function}\ \textit{name} \texttt{(}\textit{name}_1\texttt{, }\ldots\texttt{, } \textit{name}_n \texttt{)} \ \textit{block} \ \gg\ \ =$ 
 	
 	  
 	<kbd class='snippet'>list("function_declaration",
      $\ll \textit{name} \gg$,
-     list($\ll \textit{parameter}_1 \gg $, ..., $\ll \textit{parameter}_n \gg$),
+     list($\ll name_1 \gg$, $\ldots$, $\ll name_n\gg$),
      $\ll \textit{block} \gg$)</kbd>
 	      </blockquote>
 
@@ -2597,9 +2623,8 @@ $\ll \textbf{function}\ \textit{name} \texttt{(}\textit{parameter}_1\texttt{, }\
 </pre></div></div>
 	
     </p></div>
-
-
-
+    
+  
 
   
     
@@ -2625,6 +2650,8 @@ $\ll \textbf{function}\ \textit{name} \texttt{(}\textit{parameter}_1\texttt{, }\
 	<kbd>evaluate</kbd>
 	transforms into a constant declaration whose
 	value expression is a lambda expression.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+	  
+	  
 	<div class='snippet' id='javascript_78_20_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajoGFgTKWhJmXm4yATYjNiSSPycXbR0ASENQfUMTMwsUiJ5+IUZRcX9neSUAIjSirJy8gqLezWi4gYzQaboh3PzCjOYSNgluEoDXXVqDevN6NopmEwIt7sVQDAnYwlJ05LnM7MXRlZsCjYpuI0YLsq7aoHRrHU7cc6dUo9UDYW5TB5FWaIlavEbLeYAIxovAAngDAkC6qZDqAwWcCVcAMzw+6JGbPBYCVg0ZjiEjtNjyJmU8p7YwkxoSNgAa3U7M53LRSyKIn51QVBkZ0ve8zWG15CnliuqwrFgnWmN4bGY3AAHlITIxGBk5Tr7dVlcMZR8lt9fv8odtNFqHX6nW8MZlsXjeZp4UA')">function function_decl_to_constant_decl(component) {
     return make_constant_declaration(
                function_declaration_name(component),
@@ -2640,6 +2667,8 @@ $\ll \textbf{function}\ \textit{name} \texttt{(}\textit{parameter}_1\texttt{, }\
       
       <div class='permalink'>
 <a name='p18' class='permalink'></a><p>
+	  
+	  
 	Similarly, we define operator combinations in terms of
 	function applications. 
 	Operator combinations are unary or binary and carry their operator symbol as second element
@@ -2683,6 +2712,8 @@ $\ll \textbf{function}\ \textit{name} \texttt{(}\textit{parameter}_1\texttt{, }\
      <kbd>first_operand</kbd>, and
      <kbd>second_operand</kbd>.
 	
+	
+	
 	The evaluator uses 
 	<kbd>operator_combination_to_application</kbd>
 	to transform an operator combination into a function application whose
@@ -2711,6 +2742,7 @@ $\ll \textbf{function}\ \textit{name} \texttt{(}\textit{parameter}_1\texttt{, }\
 	
 	
 	
+	
       </p></div>
       
     
@@ -2725,6 +2757,7 @@ $\ll \textbf{function}\ \textit{name} \texttt{(}\textit{parameter}_1\texttt{, }\
     <div class="permalink">
     <a name="ex_4.2" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.2">Exercise 4.2 </a></b> 
   
+	
 	The inverse of <kbd>parse</kbd>
 	is called <kbd>unparse</kbd>. It takes
 	as argument a
@@ -2802,10 +2835,10 @@ $\ll \textbf{function}\ \textit{name} \texttt{(}\textit{parameter}_1\texttt{, }\
     <a name="ex_4.4" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.4">Exercise 4.4 </a></b> 
    
     
-    
-    
       
       
+	
+    
 	Recall from section&nbsp;<REF NAME="sec:conditionals"><a class="superscript" id="4.1.2-sec-link-1.1.6" href="./1.1.6.html">1.1.6</a></REF> that the
 	logical composition operations
 	<kbd>&&</kbd>
@@ -2878,32 +2911,35 @@ $\ll \textbf{function}\ \textit{name} \texttt{(}\textit{parameter}_1\texttt{, }\
       
 	<OL type="a">
 	  <LI>
-	In JavaScript, lambda expressions must not have duplicate parameters. The
-	<kbd>evaluate</kbd> function in
-	section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.2-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> does not check for this.
-	<UL>
-	  <LI>
-	    Modify <kbd>evaluate</kbd> so
-	    that any attempt to apply a function with duplicate parameters
-	    raises an error.
+	    
+	    In JavaScript, lambda expressions must not have duplicate parameters. The
+	    <kbd>evaluate</kbd> function in
+	    section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.2-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> does not check for this.
+	    <UL>
+	      <LI>
+		Modify <kbd>evaluate</kbd> so
+		that any attempt to apply a function with duplicate parameters
+		raises an error.
+	      </LI>
+	      <LI>
+		Implement a <kbd>verify</kbd> function that
+		checks whether any lambda expression in a given program contains
+		duplicate parameters. With such a function, we could check the entire
+		program before we pass it to
+		<kbd>evaluate</kbd>.
+	      </LI>
+	    </UL>
+	    In order to implement this check in an evaluator for JavaScript, which
+	    of these two approaches would you prefer? Why?
 	  </LI>
 	  <LI>
-	    Implement a <kbd>verify</kbd> function that
-	    checks whether any lambda expression in a given program contains
-	    duplicate parameters. With such a function, we could check the entire
-	    program before we pass it to
-	    <kbd>evaluate</kbd>.
-	  </LI>
-	</UL>
-	In order to implement this check in an evaluator for JavaScript, which
-	of these two approaches would you prefer? Why?
-	</LI>
-	<LI>
-	The names declared in the body of a lambda expression must be
-	distinct from the names of
-	the parameters of the lambda expression. Use your preferred approach
-	above to check for this as well.
-        </LI>
+	    
+	    
+	    The names declared in the body of a lambda expression must be
+	    distinct from the names of
+	    the parameters of the lambda expression. Use your preferred approach
+	    above to check for this as well.
+          </LI>
         </OL>
       
     
@@ -3322,7 +3358,7 @@ display(1);
 	    forms; see footnote&nbsp;<REF NAME="foot:function-decl-vs-lambda"><a class="superscript" id="4.1.2-foot-link-2" href="./1.3.2.html#footnote-2">2</a></REF>
 	    in chapter 1.
 	    Exercise&nbsp;<REF NAME="ex:hoisting"><a class="superscript" id="4.1.2-ex-link-4.18" href="./4.1.6.html#ex_4.18">4.18</a></REF> addresses these differences.
-            
+          
     </FOOTNOTE></div>
 
     

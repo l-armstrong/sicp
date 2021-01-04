@@ -2126,7 +2126,7 @@ Acknowledgments
       <LI>
 	a constructor:
 	<br>
-          
+         
           
 	    
 	    <kbd>make_queue()</kbd>
@@ -2139,7 +2139,7 @@ Acknowledgments
       <LI>
         two selectors:
         <br>
-          
+         
           
 	    
 	    
@@ -2150,7 +2150,7 @@ Acknowledgments
           tests if the queue is empty.
 	  
 	  <br>
-          
+           
           
 	    
 	    
@@ -2165,7 +2165,7 @@ Acknowledgments
       <LI>
         two mutators:
 	<br>
-          
+         
           
 	    
 	    
@@ -2177,7 +2177,7 @@ Acknowledgments
           queue as its value.
 	  
 	  <br>
-          
+           
           
 	    
 	    <kbd>delete_queue(</kbd>$\textit{queue}$<kbd>)</kbd>
@@ -2288,10 +2288,10 @@ Acknowledgments
     which enable us to select and to modify the front and rear pointers of a
     queue:
     
-            
-            
-            
-            
+     
+     
+     
+     
     <div class='snippet' id='javascript_62_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToEwChsDMBXAOwGMAXASwHsjQ8AnGsgfQAcz6AKARwIFN+ASlABvbKAmh6fMgXq0AFnwCGAEx78hAbmwBffMXLVa05fTYcNAvsLGSpMubTLKKAGyva9B0pRqgAZxlmBiYLLl5rABpQCjI+AFtbcUkgliU1Tz4YuMTBHX1CX2NA4NNzdgjNbNj4pNEUiTTmF3csnLr872wSGgCyUG5QAF5QVlcuAEYYzC7m0KIWSp4YgBZZrQBIfEZF8J58oA')">function front_ptr(queue) {
     return head(queue);
 }
@@ -2312,7 +2312,7 @@ function set_rear_ptr(queue, item) {
     Now we can implement the actual queue operations.  We will consider a
     queue to be empty if its front pointer is the empty list:
     
-            
+     
     <div class='snippet' id='javascript_62_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToEwChsDMBXAOwGMAXASwHsjQ8AnGsgfQAcz6AKARwIFN+ASlABvbKAmh6fMgXq0AFnwCGAEx78hAbmwBffMXLVa05fTYcNAvsLGSpMubTLKKAGyva9B0pRqgAZxlmBiYLLl5rABpQCjI+AFtbcUkgliU1Tz4YuMTBHX1CX2NA4NNzdgjNbNj4pNEUiTTmF3csnLr87x8jfwoA5kT2AE9mSP4s5PtpWXlYgaICNw9QohZKya79bBIaALJQblAAXlBWVy5F5ZjMLv7BhJGx6p58oA')">function is_empty_queue(queue) {
     return is_null(front_ptr(queue));
 }
@@ -2334,7 +2334,7 @@ function set_rear_ptr(queue, item) {
     
     are both the empty list:
     
-            
+     
     <div class='snippet' id='javascript_62_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToEwChsDMBXAOwGMAXASwHsjQ8AnGsgfQAcz6AKARwIFN+ASlABvbKAmh6fMgXq0AFnwCGAEx78hAbmwBffMXLVa05fTYcNAvsLGSpMubTLKKAGyva9B0pRqgAZxlmBiYLLl5rABpQCjI+AFtbcUkgliU1Tz4YuMTBHX1CX2NA4NNzdgjNbNj4pNEUiTTmF3csnLr87x8jfwTlAGs+Zkj+TmT7aVl5UFZXLiICNzcYxeWu-WwSGgCyUG5QAF5QfqGR6vGdUKIWSp58oA')">function make_queue() {
     return pair(null, null);
 }
@@ -2346,7 +2346,7 @@ function set_rear_ptr(queue, item) {
     
     of the pair indicated by the front pointer:
     
-            
+     
     <div class='snippet' id='javascript_62_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToEwChsDMBXAOwGMAXASwHsjQ8AnGsgfQAcz6AKARwIFN+ASlABvbKAmh6fMgXq0AFnwCGAEx78hAbmwBffMXLVa05fTYcNAvsLGSpMubTLKKAGyva9B0pRqgAZxlmBiYLLl5rABpQCjI+AFtbcUkgliU1Tz4YuMTBHX1CX2NA4NNzdgjNbNj4pNEUiTTmF3csnLr87x8jfwoA5kT2AE9mSP4s5PtpWXlYgaICNw9QohZKya79Hr9aVZZxvkmG6cc5-sGEkbHqycb7ewB+UD56Riro0AAifZvrUBIymWfFUoAA7nEFKBlLQhmRhqBDl9BPcHhIAFygDLqX4bQ6CLa4Eg0AJkRGgAC8oFYri4NIoXAAjFFMIIYigur9Djx8kA')">function front_queue(queue) {
     return is_empty_queue(queue)
            ? error(queue, "front_queue called with an empty queue")
@@ -2395,7 +2395,7 @@ function set_rear_ptr(queue, item) {
       
     
     
-            
+     
     <div class='snippet' id='javascript_62_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToEwChsDMBXAOwGMAXASwHsjQ8AnGsgfQAcz6AKARwIFN+ASlABvbKAmh6fMgXq0AFnwCGAEx78hAbmwBffMXLVa05fTYcNAvsLGSpMubTLKKAGyva9B0pRqgAZxlmBiYLLl5rABpQCjI+AFtbcUkgliU1Tz4YuMTBHX1CX2NA4NNzdgjNbNj4pNEUiTTmF3csnLr87x8jfwoA5kT2AE9mSP4s5PtpWXlYgaICNw9QohZKya79Hr9aBOUAaz4x6s4pyRmnUFZXLkXlmPu3Ldwi3tpVPjcZY-G+SYa9goeFAnH6gwSIxO1k2gPskj49EYVWioAARJ9vvFofxQCRlMs+KpQAB3OIKUDKWhDMjDUB-NFdey6UBfIJw+GlFirdaWP4xVorRhrcKbJmchyzWh-HTM7pvXaxIhBegsP7tWp5Dl4mgBMigIh8ElsW6gAC811uYLqjyWz1lkmBoPBNNG6r+gnOnOaPNF-INRpNFHo4u9ZRUFT51UegZuwdDoBZbL42vszUFnHKfuqghjxrjIYdYZYWY2-sN+duCf000ccxl3RIuv13AAjObQPsjjj-l0KMrEWrTm2YmjlIytPZsP2VUOYSP0QAjCdTzE-Hs8VtdNfY91brRAA')">function insert_queue(queue, item) {
     const new_pair = pair(item, null);
     if (is_empty_queue(queue)) {
@@ -2436,7 +2436,7 @@ function set_rear_ptr(queue, item) {
   
       
     
-            
+     
     <div class='snippet' id='javascript_62_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToEwChsDMBXAOwGMAXASwHsjQ8AnGsgfQAcz6AKARwIFN+ASlABvbKAmh6fMgXq0AFnwCGAEx78hAbmwBffMXLVa05fTYcNAvsLGSpMubTLKKAGyva9B0pRqgAZxlmBiYLLl5rABpQCjI+AFtbcUkgliU1Tz4YuMTBHX1CX2NA4NNzdgjNbNj4pNEUiTTmF3csnLr87x8jfwoA5kT2AE9mSP4s5PtpWXlYgaICNw9QohZKya79Hr9aBOUAaz4x6s4pyRmnUFZXLkXlmPu3Ldwi3toKIiD6FnG+dtqeQa9hINACZFARD4AHc2LdQABea63Ti5BKPJbPHT2Ch4UCogZDMijP6bYH2VLBVbrSx-R4wuEUehdCmUljlcIAqGwm5MlmSXSgPhuILk1nNVoeDkbP6Cek82788VlFQVWnVeWM5nYgWNByzWh-AqvQy7UCqYUyY6k2Vi2J4gmDBIjE7WMl2VlC+iMKrRUAAIgtbitrv4oBIymWfFUoGhcQUoGUtCJw1Af39StAguFoo9ypY1M5dNAks4hZl1UEVZ1rMucyNev021BXwh3AAjIjQPsjqH-l1Pt9fqcOzF-coM1p7NhB3wfn2eO2xwAjSfToMhm3trob+ILjv5IA')">function delete_queue(queue) {
     if (is_empty_queue(queue)) {
         error(queue, "delete_queue called with an empty queue");
@@ -2504,7 +2504,7 @@ function set_rear_ptr(queue, item) {
       
       function
     
-    
+     
     
       
       <kbd>print_queue</kbd>
