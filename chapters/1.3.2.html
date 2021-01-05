@@ -2382,6 +2382,7 @@ x         =>                   x    +   4
            : base * expmod(base, exp - 1, m) % m;
 }
 </pre></div></div>
+      
       This would make the function not just inefficient, but actually
       non-terminating! The problem is that the constant declaration appears
       outside the conditional expression, which means that it is executed even

@@ -2050,6 +2050,7 @@ Acknowledgments
     for adding two intervals.  She reasons that the minimum value the sum could
     be is the sum of the two lower bounds and the maximum value it could be is
     the sum of the two upper bounds:
+    
     <div class='snippet' id='javascript_31_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0qSK2AnAG5MANgAoAHgBpQATwCUoAN6hcoNaD5sKRPvQAOTKnwnT5AbhUBfQqUq16wmgHd+HAEY1SAE1FUFy1XVNbV1QAAs2Jh8-M1xrYnJqOlAiPT1XD29ffxV1DS0degpDMRi4-BBQPT5uahIAc1AKCNBa-iFhVvo6NlBhbl7NAEciIzYAZ1BxmgZe8YoahtxK5hIqPSJhJiSSAC4phe56qgIZJsLJplASIgY3fi6KGlAr+cXG5bAmEi8mlpp0nxtjQ+KAANSgMjfUD3F5pfpsX5PA7vSYEEGfFFHSF0KG8Ejbew2RL2KqLChcHjtETZJSBNTBQqgABEAG0WWoIW8jicZKJHC4+O5PD9sgoIfS8nlmaBpDKuYcGrzRKlAcKsn5xRyALrM2LWYl2ZJRLyU3iCGlSWT+SWM0LMdhm6liAUZEU+cRa11CzKi+SSSVSoPB9Sqt1ZT3glJpcN+uRyfX4aq1J0WsQm1MdUQOzhtNOiDDSFByaSBkPloM5zM0gDM0gArPGE0A')">function add_interval(x, y) {
     return make_interval(lower_bound(x) + lower_bound(y),
                          upper_bound(x) + upper_bound(y));
@@ -2073,7 +2074,7 @@ Acknowledgments
     
     
     primitives that find the minimum or maximum of any number of arguments.)
-
+    
     <div class='snippet' id='javascript_31_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0qSK2AnAG5MANgAoAHgBpQATwCUoAN6hcoNaD5sKRPvQAOTKnwnT5AbhUBfQqUq16wmgHd+HAEY1SAE1FUFy1XVNbV1QAAs2Jh8-M1xrYnJqOlAiPT1XD29ffxV1DS0degpDMRi4-BBQPT5uahIAc1AKCNBa-iFhVvo6NlBhbl7NAEciIzYAZ1BxmgZe8YoahtxK5hIqPSJhJiSSAC4phe56qgIZJsLJplASIgY3fi6KGlAr+cXG5bAmEi8mlpp0nxtjQ+KAANSgMjfUD3F5pfpsX5PA7vSYEEGfFFHSF0KG8Ejbew2RL2KqLChcHjtETZJSBNTBQqgABEAG0WWoIW8jicZKJHC4+O5PD9sgoIfS8nlmaBpDKuYcGrzRKlAcKsn5xRyALrM2LWYl2ZIMTaU3iCGlSWT+SVkOjzKoYUAAXj6zgyIp84gUACo3YL1aLzLb7RQqigXf6PVlvaA-aro0G5LE8naSA69ABmSMJoWZUWxv0CxM+YOp0NVbA5tIliS+lI1vOe0RloIFULMdhm6liZjNDgMbiiPQYaR6FBjzNj7BySSSqULxfqPthAdMcTD0fhyfTuTJ8q4aq1bsW3umtqn0SdzgXjqiLcoWe5Jcv1-Xk93qegACse+TQA')">function mul_interval(x, y) {
     const p1 = lower_bound(x) * lower_bound(y);
     const p2 = lower_bound(x) * upper_bound(y);
@@ -2087,6 +2088,7 @@ Acknowledgments
     the second.  Note that the bounds of the reciprocal interval are
     the reciprocal of the upper bound and the reciprocal of the lower bound, in
     that order.
+    
     <div class='snippet' id='javascript_31_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0qSK2AnAG5MANgAoAHgBpQATwCUoAN6hcoNaD5sKRPvQAOTKnwnT5AbhUBfQqUq16wmgHd+HAEY1SAE1FUFy1XVNbV1QAAs2Jh8-M1xrYnJqOlAiPT1XD29ffxV1DS0degpDMRi4-BBQPT5uahIAc1AKCNBa-iFhVvo6NlBhbl7NAEciIzYAZ1BxmgZe8YoahtxK5hIqPSJhJiSSAC4phe56qgIZJsLJplASIgY3fi6KGlAr+cXG5bAmEi8mlpp0nxtjQ+KAANSgMjfUD3F5pfpsX5PA7vSYEEGfFFHSF0KG8Ejbew2RL2KqLChcHjtETZJSBNTBQqgABEAG0WWoIW8jicZKJHC4+O5PD9sgoIfS8nlmaBpDKuYcGrzRKlAcKsn5xRyALrM2LWYl2ZIMTaU3iCGlSWT+SVkOjzKoYUAAXj6zgyIp84gUACo3YL1aLzLb7RQqigXf6PVlvaA-aro0G5LE8naSA69ABmSMJoWZUWxv0CxM+YOp0NVbA5tIliS+lI1vOe0RloIFULMdhm6liZjNDgMbiiPQYaR6FBjzNj7BySSSqULxfqPthAdMcTD0fhyfTuTJ8qGnagLxUATdi1iK3yOl5Rkd01tC8mRisTiPjqiJ1gXOB0uz+dLoBQGAV+UZNlk8h7vq+DVLU54fieZ7vjSnZvlST5bigs65MBuF5Kh8E0lOoAAKx7smQA')">function div_interval(x, y) {
     return mul_interval(x, make_interval(1 / upper_bound(y),
                                          1 / lower_bound(y)));
@@ -2329,6 +2331,9 @@ function mul_interval(x, y) {
     $[3.35, 3.65]$. Alyssa returns to her desk and
     fixes this problem by supplying an alternate constructor and alternate
     selectors:
+    
+    
+    
     <div class='snippet' id='javascript_31_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0qSK2AnAG5MANgAoAHgBpQATwCUoAN6hcoNaD5sKRPvQAOTKnwnT5AbhUBfQqUq16wmgHd+HAEY1SAE1FUFy1XVNbV1QAAs2Jh8-M1xrYnJqOlAiPT1XD29ffxV1DS0degpDMRi4-AS7ZOZ2DjI2HlcnKi8KMNEyaSd-QLVgwsZWTm5eQREO0ABaUCdpMlAAahm5WPjbJPp6xuM-JV78kPpRRxc+d08SaIUl1PSzzMvshTAUVZtE+xmWtuy9vP7QqJbhkLlcpqATiCsn5nqg3rgyHQAM4URgyLjbITCUAAXkGtS2ow4zVa7Qw0gADGgAKwrXAkn4MdEjfhYlZAA')">function make_center_width(c, w) {
     return make_interval(c - w, c + w);
 }

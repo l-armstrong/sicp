@@ -2191,6 +2191,7 @@ const primitive_constant_values =
       JavaScript
     
     system:<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+     
     <div class='snippet' id='javascript_80_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0oFA4GYCuAdgMYAuAlgPbGiUDOA+uQIYDm7ApgCZMA2jcgApS1ALYAHWl2LkANKHIALLiw4BKUAG8cofaABOXcoUN1GTSa0qHRE6cVnktAMlehVrHvaky5WgC8wUqq6uwA3DgAvnhEZFS09MyShpTilFQAbmrxFDTEwvFaugbGpubJ4dx8ggwi8YoARKnpmZQ5TRpRsXmJdK0Z2Wrpkvxc4s6s-UUkJXr65WZ0Xj5slPyzxBrdMXhixPWg4gCeVmlDHWpjhAyggQv6dSItF+2disIAHoonQQB8oC+oAA1KATqBugBIAygHA8RhjVgnYSWQbvXIkfK0YSnc5tYZWfi3HZRBEMJEo9GE0bjSZyaYFXFnalXIkk3YELH9UCsSRjFlvQl9JmNXmGdjPeawpaVPkCpiUYhMEg8LiGfgnJXsJgAK1YWVYDFIaUkIkesMtsNZOUVUjpUxmxXkFqtVtYEqlEUtexw8s1+MutpFOLxNuuxIYimewgwigATKSgA')">function apply_primitive_function(fun, arglist) {
     return apply_in_underlying_javascript(
                 primitive_implementation(fun),
@@ -2405,6 +2406,9 @@ M-evaluate value:
 	Thus, the <kbd>arglist</kbd> is transformed into 
         a vector—here using a while
 	loop (see exercise&nbsp;<REF NAME="ex:while_loop"><a class="superscript" id="4.1.4-ex-link-4.7" href="./4.1.2.html#ex_4.7">4.7</a></REF>):
+	
+	
+	
 	<div class='snippet' id='javascript_80_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function apply_in_underlying_javascript(prim, arglist) {
    const arg_vector = [];               // empty vector
