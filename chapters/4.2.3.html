@@ -1996,6 +1996,7 @@ Acknowledgments
     
     
     
+    
     In section&nbsp;<REF NAME="sec:delayed-lists"><a class="superscript" id="4.2.3-sec-link-3.5.1" href="./3.5.1.html">3.5.1</a></REF>, we showed how to
     implement streams as delayed lists.
     
@@ -2049,9 +2050,9 @@ Acknowledgments
     pairs as
     functions:<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
     
-      
-      
-      
+    
+    
+    
     <div class='snippet' id='javascript_87_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&variant=lazy&prgrm=PTAEGUEkGEAVQFLlAFgHQCY0GYBQuAzAVwDsBjAFwEsB7E0ABwEMqAnACgA8AaUATwCUoAN4BIXKEmhWAUwpFW9ALagAvAD5QSrr0EBuXAF9CpSrXoALGUwAm7AF5DhU0BKmz5i0Pfah2DXgBHIQ1GUAEDY2JyajpQChYAGwcnN0kPBXofPwDQYLVNQPDI-CtbdgSqZOY2dgBGXhqObF4MAXaIoA')">function pair(x, y) {	
     return m => m(x, y);
 }
@@ -2074,8 +2075,8 @@ function tail(z) {
      
      
      
-      
-      
+    
+    
     <div class='snippet' id='javascript_87_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&variant=lazy&prgrm=PTAEGUEkGEAVQFLlAFgHQCY0GYBQuAzAVwDsBjAFwEsB7E0ABwEMqAnACgA8AaUATwCUoAN4BIXKEmhWAUwpFW9ALagAvAD5QSrr0EBuXAF9CpSrXoALGUwAm7AF5DhU0BKmz5i0Pfah2DXgBHIQ1GUAEDY2JyajpQChYAGwcnN0kPBXofPwDQYLVNQPDI-GizOMSqAGcKAH1ZAnYqChklKt4SJ3EXDK96VQHQAAY0lxcAflArWyaWtoFRsckALlBKmvqZRoSqZObWqoEO0ABaUABGCKMTGPMtJgZ2aN59+ZFRKVHe+mrakiJEns5odFktJv9AaCxqtmGwnqR2NM7K9DkcoUsxkoHvCSLwdkCDgIiSUyrF6FUyExEjJausKLMDrwCExKDRWKkenJMvdHpwCqA+QAqUDM1msF7Aq5RUxk0C2Gy06oUKrsOnnXh0jAc9xcry-CHJNULDETNZKjDoqSrfUAw3moSfE1SSZqy0rRgsDhI1VKy6gADUU2sdk1aKdTvlipqKvxPpqlzxSTjFC1xOuZDoNVAdBkVTUHrh6uzJFzVwzJCzVBILQA5jJWHnVAWOEXI3SVTn2qAq7X66i9EA')">function list_ref(items, n) {	
     return n === 0
            ? head(items)
@@ -2147,7 +2148,6 @@ L-evaluate value:
       
       
 	
-	
 	additional lambda expressions for delays, beyond the ones required to
 	construct a stream pair.
       
@@ -2165,7 +2165,7 @@ L-evaluate value:
     to integrate lists and solve differential equations as we originally
     intended in section&nbsp;<REF NAME="sec:streams-and-delayed-evaluation"><a class="superscript" id="4.2.3-sec-link-3.5.4" href="./3.5.4.html">3.5.4</a></REF>:
     
-      
+    
     <div class='snippet' id='javascript_87_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&variant=lazy&prgrm=PTAEGUEkGEAVQFLlAFgHQCY0GYBQuAzAVwDsBjAFwEsB7E0ABwEMqAnACgA8AaUATwCUoAN4BIXKEmhWAUwpFW9ALagAvAD5QSrr0EBuXAF9CpSrXoALGUwAm7AF5DhU0BKmz5i0Pfah2DXgBHIQ1GUAEDY2JyajpQChYAGwcnN0kPBXofPwDQYLVNQPDI-GizOMSqAGcKAH1ZAnYqChklKt4SJ3EXDK96VQHQAAY0lxcAflArWyaWtoFRsckALlBKmvqZRoSqZObWqoEO0ABaUABGCKMTGPMtJgZ2aN59+ZFRKVHe+mrakiJEns5odFktJv9AaCxqtmGwnqR2NM7K9DkcoUsxkoHvCSLwdkCDgIiSUyrF6FUyExEjJausKLMDrwCExKDRWKkenJMvdHpwCqA+QAqUDM1msF7Aq5RUxk0C2Gy06oUKrsOnnXh0jAc9xcry-CHJNULDETNZKjDoqSrfUAw3moSfE1SSZqy0rRgsDhI1VKy6gADUU2sdk1aKdTvlipqKvxPpqlzxSTjFC1xOuZDoNVAdBkVTUHrh6uzJFzVwzJCzVBILQA5jJWHnVAWOEXI3SVTn2qAq7X66iDDdyj9qzIa6wqU0R2OmCQbC8SM0qFTagA3KlEGS8GwULqjcuV6tqdGwjhVxfLteJDfcN1SNtKlUUqk0umT2vj2dbnc38O-yQ9tNOU8YcKBJGU7iqGhEhXGQnl0IYv21SR9wofh8x7Udx2SGw+HgxCDBcFDQBw-MsUeAhdCuIDuT4Eo6U2RpIOg2C+VCHgLl4IY0CGIYtV4ABWHiIiAA')">function integral(integrand, initial_value, dt) {	
     const int =
         pair(initial_value,

@@ -2169,9 +2169,6 @@ function divides(a, b) {
       
       function
     
-    
-    
-    
     <kbd>random</kbd>, which we assume 
     
       
@@ -2181,24 +2178,26 @@ function divides(a, b) {
     
       
       
-        The function <kbd>random</kbd>
+	
+	
+	
+	
+        The primitive function <kbd>math_random</kbd>
+	returns a nonnegative number less than 1.  Hence, to obtain
+	a random number between 1 and $n-1$, we multiply
+	the return value of <kbd>math_random</kbd> with
+	$n-1$, round down the result with the
+	primitive function <kbd>math_floor</kbd>
+	and add 1:
       
     
-    returns a nonnegative integer less than its integer input.  Hence, to obtain
-    a random number between 1 and $n-1$, we call
-    <kbd>random</kbd> with an input of
-    $n-1$ and add 1 to the result:
-
-    
-
     
     
-    
-    <div class='snippet' id='javascript_20_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0DYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUFQYB9TgDdOJbiUEjxEzlJmh6AUlAZQAXk+gADKo2FSSlp6Tl4ABwBbGgATbgAjVgZOABpQULDUiKtRcUlpEPCPL28cmzKAflRSsvEALj1DEzNudP5qmtBK5jYuFvCo2ISk1PTQMAxM-kEXCPaa+vjEzgU0-pjF4dWw0ABaVEnp0Ai-TUCdenZWEmiaCItsmzyHCNYKAAsDAgAbGhp2bhe7wMl2ut24gkUlhOAW0wVABE47EBBgonAYFHuwmqWiCugo7AAngYqBjWA8Ok8CpF1qxUiQ6YJPO5QKxVDYNI87PlQPiiSTuChQABqCRXG53eh7FBTaEIpGvFFojEATgA7PxlEA')">function fermat_test(n) {
+    <div class='snippet' id='javascript_20_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0DYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUFQYB9TgDdOJbiUEjxEzlJmh6AUlAZQAXk+gADKo2FSSlp6Tl4ABwBbGgATbgAjVgZOABpQULDUiKtRcUlpEPCPL28cmzKAflRSsvEALj1DEzNudP5qmtBK5jYuFvCo2ISk1PTQMAxM-kEXCPaa+vjEzgU0-pjF4dWw0ABaVEnp0Ai-TUCdenZWEmiaCItsmzyHCNYKAAsDAgAbGhp2bhe7wMl2ut24gkUlhOAW0wVABE47EBBgonAYFHuwmqWiCugo7AAngYqBjWA8Ok8CpF1qxUiQ6YJPO5QKxVDYNI87PlQPiiSTuChQABqI6vD7fX7-QEfEE3O4Q0AWXaoKb8aEIpGvFFojEATgA7GqgA')">function fermat_test(n) {
     function try_it(a) {
         return expmod(a, n, n) === a;
     }
-    return try_it(1 + random(n - 1));
+    return try_it(1 + math_floor(math_random() * (n - 1)));
 }
 </pre></div></div>
 
@@ -2215,7 +2214,7 @@ function divides(a, b) {
     runs the test a given number of times, as specified by a parameter.  Its
     value is true if the test succeeds every time, and false otherwise.
     
-    <div class='snippet' id='javascript_20_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0DYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUFQYB9TgDdOJbiUEjxEzlJmh6AUlAZQAXk+gADKo2FSSlp6Tl4ABwBbGgATbgAjVgZOABpQULDUiKtRcUlpEPCPL28cmzKAflRSsvEALj1DEzNudP5qmtBK5jYuFvCo2ISk1PTQMAxM-kEXCPaa+vjEzgU0-pjF4dWw0ABaVEnp0Ai-TUCdenZWEmiaCItsmzyHCNYKAAsDAgAbGhp2bhe7wMl2ut24gkUlhOAW0wVABE47EBBgonAYFHuwmqWiCugo7AAngYqBjWA8Ok8CpF1qxUiQ6YJPO5QKxVDYNI87PlQPiiSTuChQABqCRXG53eh7FBTaE487wxIUYmGMLsKgRHj0nnqtHksSU7UahhFZklDo2Sr4oicOZleoIpGvFFojGWW0WhXo5UGVU6iypahG3aoNrmuoKr5JWWK72+jXcACcAHZUgBmfjKIA')">function fast_is_prime(n, times) {
+    <div class='snippet' id='javascript_20_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0DYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUFQYB9TgDdOJbiUEjxEzlJmh6AUlAZQAXk+gADKo2FSSlp6Tl4ABwBbGgATbgAjVgZOABpQULDUiKtRcUlpEPCPL28cmzKAflRSsvEALj1DEzNudP5qmtBK5jYuFvCo2ISk1PTQMAxM-kEXCPaa+vjEzgU0-pjF4dWw0ABaVEnp0Ai-TUCdenZWEmiaCItsmzyHCNYKAAsDAgAbGhp2bhe7wMl2ut24gkUlhOAW0wVABE47EBBgonAYFHuwmqWiCugo7AAngYqBjWA8Ok8CpF1qxUiQ6YJPO5QKxVDYNI87PlQPiiSTuChQABqI6vD7fX7-QEfEE3O4Q0AWXaoKb8aE487wxIUYmGMLsKgRHj0nmGtHksSU01GhhFZklDo2Sr4oicOZleoIpGvFFojGWd1OrXo3UGfVmiypag25UoNqOupar5JdXa0Pho3cACcAHZUgBmNVAA')">function fast_is_prime(n, times) {
     return times === 0
            ? true
            : fermat_test(n)
@@ -2359,6 +2358,8 @@ function divides(a, b) {
     
     prints three asterisks<a class='superscript' id='footnote-link-7' href='#footnote-7'>[7]</a> followed by the amount of
     time used in performing the test.
+    
+      
     
     
     
@@ -2569,7 +2570,7 @@ function find_divisor(n, test_divisor) {
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#solution_20_4_div" data-toggle="collapse">Solution</button></div>
       <div class="solution_content collapse" id="solution_20_4_div"><SOLUTION>
     
-      <div class='snippet' id='javascript_20_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0DYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUFQYB9TgDdOJbiUEjxEzlJmh6AUlAZQAXk+gADKo2FSSlp6Tl4ABwBbGgATbgAjVgZOABpQULDUiKtRcUlpEPCPL28cmzKAflRSsvEALj1DEzNudP5qmtBK5jYuFvCo2ISk1PTQMAxM-kEXCPaa+vjEzgU0-pjF4dWw0ABaVEnp0Ai-TUCdenZWEmiaCItsmzyHCNYKAAsDAgAbGhp2bhe7wMl2ut24gkUlhOAW0wVABE47EBBgonAYFHuwmqWiCugo7AAngYqBjWA8Ok8CpF1qxUiQ6YJPO5QKxVDYNI87PlQPiiSTuChQABqCRXG53eh7FBTaE487wxIUYmGMLsKgRHj0nnqtHksSU7UahhFZklDo2Sr4oicOZleoIpGvFFojGWW0WhXo5UGVU6iypahG3aoNrmuoKr5JWVnOGBzjRH1qjXO9GY6ziaL6MJfVgE+5s3JchzojhK33J1GprUAczsKL9MvUMNx9BL7DLSc4KddqTbSrjets9noBEV3vLmsyrw+31+-0BHx+1fuU3d4kqXDCfw7ftr-Ybwb79Y1obDoHqVs4JzlcM328Tfs4ObCSQTA6xNkzDGzue4ACIFHkRQ-34AsxC-H88yfVgX3jY9OFAptcDjBMJ27AVvEwgB2RCQENOC0MrDEUEw7wAE5cLAFCHwrF0MO8ABmHDVDw6jCLokjSIY1IGMo-DUM7dDOO8FAyJ4vi2MEoj6O8AAWbjQF4liqJ1ASdSE0jMIUpTcFY1SaK7aThMY7SJP09jU2MpjxOUIA')">function timed_prime_test(n) {
+      <div class='snippet' id='javascript_20_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0DYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUFQYB9TgDdOJbiUEjxEzlJmh6AUlAZQAXk+gADKo2FSSlp6Tl4ABwBbGgATbgAjVgZOABpQULDUiKtRcUlpEPCPL28cmzKAflRSsvEALj1DEzNudP5qmtBK5jYuFvCo2ISk1PTQMAxM-kEXCPaa+vjEzgU0-pjF4dWw0ABaVEnp0Ai-TUCdenZWEmiaCItsmzyHCNYKAAsDAgAbGhp2bhe7wMl2ut24gkUlhOAW0wVABE47EBBgonAYFHuwmqWiCugo7AAngYqBjWA8Ok8CpF1qxUiQ6YJPO5QKxVDYNI87PlQPiiSTuChQABqI6vD7fX7-QEfEE3O4Q0AWXaoKb8aE487wxIUYmGMLsKgRHj0nmGtHksSU01GhhFZklDo2Sr4oicOZleoIpGvFFojGWd1OrXo3UGfVmiypag25UoNqOupar5JdVnOHRzjRMMGo2+9GY6ziaL6MJfVgE+5s3Jchzojg68O51H5k0AczsKIjUxOGrhdfYDZznDz-tS-Z1GYttns9AI2tDjeNmTFnx+fwBK5+rfuU0D4kqXDCf0HEfbE67yvHnaN8YToHqLs4PbTukPx+zEc4ZbCSSzk6xNjFgwpbltwABECjyIoYFqtUQEgRWX6sD+mbXpwsH+BmWaLiOArePhADssEgNaqE4c2GIoPh3gAJzEWAWEfk2fp4d4ADMRGqCRjHkSxVHUWxqRsfRpHYUOuH8d4KA0UJIk8eJFGsd4AAsgmgMJXEMWaYlmhJ1H4WpGm4Nx2lMcOimSexhlyaZvH5pZHGycoQA')">function timed_prime_test(n) {
     display(n);
     return start_prime_test(n, get_time());
 }

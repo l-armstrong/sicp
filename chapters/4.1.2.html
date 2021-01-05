@@ -2838,7 +2838,8 @@ $\ll \textbf{function}\ \textit{name} \texttt{(}\textit{name}_1\texttt{, }\ldots
       
       
 	
-    
+	
+	
 	Recall from section&nbsp;<REF NAME="sec:conditionals"><a class="superscript" id="4.1.2-sec-link-1.1.6" href="./1.1.6.html">1.1.6</a></REF> that the
 	logical composition operations
 	<kbd>&&</kbd>
@@ -2863,6 +2864,8 @@ $\ll \textbf{function}\ \textit{name} \texttt{(}\textit{name}_1\texttt{, }\ldots
     
       
       
+	
+	
 	
 	They are parsed as follows:
 	<blockquote class='blockquote'>
@@ -3047,6 +3050,10 @@ display(1);
 	JavaScript supports
 	<EM>while loops</EM> that execute a given
 	statement repeatedly. Specifically,
+	
+	
+	
+	
 	<kbd class='snippet'>while ($predicate$) { $body$ }</kbd>
 	evaluates the $\textit{predicate}$, and
 	if the result is true, evaluates the
@@ -3132,11 +3139,19 @@ display(1);
 	  </LI>
 	  <LI>
 	    Following this direct approach, implement a
+	    
+	    
+	    
+	    
 	    <kbd>break;</kbd> statement that immediately
 	    terminates the loop in which it is evaluated.
 	  </LI>
 	  <LI>
 	    Implement a 
+	    
+	    
+	    
+	    
 	    <kbd>continue;</kbd> statement that terminates
 	    only the loop iteration in which it is evaluated, and continues with
 	    evaluating the
@@ -3170,6 +3185,10 @@ display(1);
 	every execution, the update statement is evaluated. Here is a function
 	that reverses a list, using a for
 	loop. 
+	
+	
+	
+	
 	
 	<div class='snippet' id='javascript_78_26_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwFMA3JhgZyYAoAPDgJSgA3rlDjQAGyYVGTDkUmyAvKBKLJAbjESCNBqG7TZZIg2YkVofptABCUFQ4B9dZMndT5ppYG2vFlYUAIZUHgE+FAJCohJxcgpKoKoADqEM3AAWTMEAJp5mgQIANAmKUdpxAL464swUZvTMiRTaNbjMbJw8kk4U3Bil2KUAzNGaQA')">function reverse(xs) {
     let result = null;

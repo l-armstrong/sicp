@@ -2033,7 +2033,7 @@ Acknowledgments
         This construct is called a <EM>case analysis</EM>, and
         there is a special form in Lisp for notating such a case
         analysis.  It is called 
-        
+         
         
         
         <kbd>cond</kbd> (which stands for
@@ -2165,7 +2165,6 @@ Acknowledgments
       <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
 	
-	
         To evaluate a conditional expression,
 	the interpreter starts by evaluating the 
         $\textit{predicate}$ 
@@ -2194,6 +2193,11 @@ Acknowledgments
         The word <EM>predicate</EM> is used for procedures that return true
         or false, as well as for expressions that evaluate to true or false.
         The absolute-value procedure <kbd>abs</kbd> makes use of the 
+           
+           
+           
+        
+        
         
         
         
@@ -2278,6 +2282,8 @@ Acknowledgments
     x))</pre></div></div>
         
         
+        
+        
         This uses the special form <kbd>if</kbd>, a restricted 
         type of conditional that can be used when there are precisely 
         
@@ -2327,9 +2333,11 @@ Acknowledgments
 	there are logical composition operations, which enable us to construct
 	compound predicates.  The three most frequently used are these:
         <UL>
-          
-          
           <LI>
+             
+            
+            
+            
 	    <kbd>(and</kbd>
 	    $\langle e_1\rangle \ldots \langle e_n \rangle$
 	    
@@ -2346,10 +2354,11 @@ Acknowledgments
 	    evaluate to true values, the value of the
 	    <kbd>and</kbd>
             expression is the value of the last one.
-
-          
           </LI>
           <LI>
+             
+            
+            
             
             <kbd>(or</kbd> $\langle e_1 \rangle\ldots \langle e_n \rangle$<kbd>)</kbd><br>
             The interpreter evaluates the expressions 
@@ -2364,8 +2373,9 @@ Acknowledgments
 	    evaluate to false, the value of the
 	    <kbd>or</kbd> expression is false.
           </LI>
-          
           <LI>
+             
+            
             <kbd>(not</kbd>
 	    $\langle e \rangle$<kbd>) 	    </kbd><br>
             The value of a <kbd>not</kbd> expression is true
@@ -2374,6 +2384,8 @@ Acknowledgments
           </LI>
         </UL>
         
+        
+        -->
         Notice that <kbd>and</kbd> and
 	<kbd>or</kbd> are special forms, not procedures,
         because the subexpressions are not necessarily all evaluated.
@@ -2384,18 +2396,17 @@ Acknowledgments
           <td><span style="color:blue">
       <div class='permalink'>
 <a name='p9' class='permalink'></a><p>
+	
+         
+	
+	
+	
+	
+	
+	
+	
+	
         
-	
-	
-	
-	
-	
-	
-        
-	
-	
-	
-	
         In addition to primitive predicates such as
         <kbd>>=</kbd>, 
         <kbd>></kbd>, 
@@ -2407,7 +2418,6 @@ Acknowledgments
 	there are logical composition operations, which enable us to construct
 	compound predicates. The three most frequently used are these:
         <UL>
-          
           <LI>
 	    
 	    
@@ -2442,7 +2452,6 @@ Acknowledgments
 	    $\textit{expression}_2$.
 
           </LI>
-          
           <LI>
 	    
 	    
@@ -2456,7 +2465,6 @@ Acknowledgments
 	    evaluates to false, and false otherwise.
           </LI>
         </UL>
-        
 	
 	
         Notice that <kbd>&&</kbd> and 
@@ -2993,7 +3001,6 @@ function test(x, y) {
       interpreter that uses normal-order evaluation?  Explain your answer.
       
       
-      
       (Assume that the evaluation rule for 
       
 	<span style="color:green">
@@ -3063,8 +3070,9 @@ function test(x, y) {
     
         
 	
-        \ind*{t@<kbd>\#t</kbd>}
-        \ind*{f@<kbd>\#f</kbd>}
+        
+	
+        
 	 
         <QUOTE>Interpreted as either true or false</QUOTE>
         means this: In Scheme, there are two distinguished values that are
@@ -3085,8 +3093,6 @@ function test(x, y) {
       <a class='footnote-number' id='footnote-2' href='#footnote-link-2' style="color:blue">[2] </a>
     <FOOTNOTE>
     
-        
-        
 	
 	
         In JavaScript, other values of the predicate in conditionals
@@ -3102,6 +3108,7 @@ function test(x, y) {
     
 	<kbd>Abs</kbd> also uses
         
+        
         the <QUOTE>minus</QUOTE> operator <kbd>-</kbd>, 
         which, when used with a single
         operand, as in <kbd>(- x)</kbd>, 
@@ -3114,6 +3121,7 @@ function test(x, y) {
     <FOOTNOTE>
     A minor 
         difference
+        
         
         
 	between <kbd>if</kbd> and 
