@@ -2016,7 +2016,6 @@ Acknowledgments
 </pre></div></div>
     
     
-    
     The second computes the sum of the cubes of the integers in the given range:
     <div class='snippet' id='javascript_22_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0oFA4GYCuAdgMYAuAlgPbGimEBGApgBQAeAlKAN46gDQAJ2blCQuu1AAqUFNnsA3DgC+eImSq1QAZ0IBbAPoMWO1gEMANKEbc+g4aPF1zoAHw3+D76AD8oAAYvH0EALnomNnNuAGpdA2NIs1c4lGtbZTUcPSMTZjMMawB2TkUgA')">function sum_cubes(a, b) {
     return a > b
@@ -2026,14 +2025,12 @@ Acknowledgments
 </pre></div></div>
     
     
-    
     The third computes the sum of a sequence of terms in the series
     
       \[ \frac{1}{1\cdot3}+\frac{1}{5\cdot7}+\frac{1}{9\cdot11}+\cdots \]
     
     which converges to $\pi/8$ (very
     slowly):<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
-    
     
     <div class='snippet' id='javascript_22_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0oFA4GYCuAdgMYAuAlgPbGgAOlA+gM6EC2AFAIYA0oAIwCUoAN45Qk0ACcApuULS63UAD5BEqVqkB+UAAZN2rQC5UoMD1AAqUFYDUoAExCRjxqw4PQAFn7CAbhwAXzwADhsGZjYuFH4UfUShAKA')">function pi_sum(a, b) {
     return a > b
@@ -2127,7 +2124,6 @@ function sum(term, a, next, b) {
            : term(a) + sum(term, next(a), next, b);
 }</pre></div></div>
     
-    
   </p></div>
   <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
@@ -2154,8 +2150,6 @@ function sum(term, a, next, b) {
       
       
       <kbd>sum_cubes</kbd>:
-    
-    
     
     
     
@@ -2191,8 +2185,6 @@ function sum_cubes(a, b) {
     
     in terms of <kbd>sum</kbd>:
     
-    
-    
     <div class='snippet' id='javascript_22_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0oFA4GYCuAdgMYAuAlgPbGiUAmApsVeQJ4AUAHgJSgBvHKBGgATk3KExdbgG4cAXzyMWbLgBYATLzlA')">function identity(x) {
     return x;
 }
@@ -2217,10 +2209,7 @@ function sum_cubes(a, b) {
       
     
     in the same way:<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
-
     
-    
-
     <div class='snippet' id='javascript_22_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0oFA4GYCuAdgMYAuAlgPbGgDOhAtgBTkCmATkwDSgCGfYuwAe5PgCMAlKADeOUItCd25Qpzr9QAPlASFSw0oD8oAAwGjhgFygO3FvxkBqBszZdeoYWMdShouJ6UgDcOAC+eERkVLSgAA6UAPqMrILBcpag0RQ0dIlJ9qwiMvJWiipqGqigYCwioABUoPWgrgBMUqFZkYY5sfnJPuT1pVmGlep0Da4ALGGGvUqT1aksBUV86QXDkt2ROAAcTQnJayh8KGbXoUA')">function pi_sum(a, b) {
     function pi_term(x) {
         return 1 / (x * (x + 2));
@@ -2269,7 +2258,6 @@ function sum_cubes(a, b) {
     
       
       function:
-    
     
     
     <div class='snippet' id='javascript_22_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0oFA4GYCuAdgMYAuAlgPbGgDOhAtgBTkCmATkwDSgCGfYuwAe5PgCMAlKADeOUItCd25Qpzr9QAPlASFSw0oD8oAAwGjhgFygO3FvxkBqBszZdeoYWMdShouJ6UgDcOAC+eERkVLSgpIQS7CwiMvKGKmoaoCKgAFQ5+TlhkQQkFDR0lMQcAOac-AA2LPh8gnp8ACapcpag0RVx-J2dAPrdKWl9GarqdLmu3WGGkTNZdIysrQKgi7lgAExtI+MikjIFSxF41XUNzQlJfGZ8KM9oZiihQA')">function integral(f, a, b, dx) {
@@ -2370,7 +2358,6 @@ function simpsons_rule_integral(f, a, b, n) {
     <a name="ex_1.30" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_1.30">Exercise 1.30 </a></b> 
    
     
-    
     The <kbd>sum</kbd>
     
       
@@ -2422,7 +2409,6 @@ function simpsons_rule_integral(f, a, b, n) {
     <a name="ex_1.31" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_1.31">Exercise 1.31 </a></b> 
    
     
-    
     <OL type="a">
       <LI>
 	The <kbd>sum</kbd>
@@ -2440,7 +2426,6 @@ function simpsons_rule_integral(f, a, b, n) {
 	called <kbd>product</kbd> that returns the product of
 	the values of a function at points over a given range. Show how to
 	define 
-	
 	
 	<kbd>factorial</kbd> in terms of
 	<kbd>product</kbd>.  Also use
@@ -2502,9 +2487,6 @@ function product_i(term, a, next, b) {
     <div class="permalink">
     <a name="ex_1.32" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_1.32">Exercise 1.32 </a></b> 
   
-    
-    
-    
     
     
     
@@ -2620,7 +2602,6 @@ function product_i(term, a, next, b) {
     <div class="permalink">
     <a name="ex_1.33" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_1.33">Exercise 1.33 </a></b> 
    
-    
     
     You can obtain an even more general version of
     <kbd>accumulate</kbd>

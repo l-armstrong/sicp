@@ -2045,7 +2045,7 @@ component
     
     is a case analysis on the syntactic type of the component to be
     evaluated.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
-    
+   
     <div class='snippet' id='javascript_113_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "eval_dispatch",
       test(list(op("is_literal"), reg("comp"))),
@@ -2110,6 +2110,9 @@ component
     execution at the entry point specified by
     <kbd>continue</kbd>.  Evaluation
     of simple expressions is performed by the following controller code:
+     
+     
+     
     <div class='snippet' id='javascript_113_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_literal",
       assign("val", list(op("literal_value"), reg("comp"))),
@@ -2312,6 +2315,8 @@ component
     has been evaluated.  First, however, we save the old value of
     <kbd>continue</kbd>, which tells the controller where to
     continue after the application.
+     
+     
     <div class='snippet' id='javascript_113_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_operator_combination",
       assign("comp", list(op("operator_combination_to_application"),
@@ -2582,7 +2587,6 @@ component
       
     
     
-	
       
       
 	
@@ -2668,6 +2672,7 @@ component
       
       function.
     
+     
     <div class='snippet' id='javascript_113_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "apply_dispatch",
       test(list(op("is_primitive_function"), reg("fun"))),
@@ -2724,6 +2729,7 @@ component
     the value of the primitive application, we restore
     <kbd>continue</kbd> and go
     to the designated entry point.
+     
     <div class='snippet' id='javascript_113_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "primitive_apply",
       assign("val", list(op("apply_primitive_function"), 
@@ -2849,7 +2855,7 @@ The sequence of instructions labeled
       </p></div>
       
     
-    
+     
     <div class='snippet' id='javascript_113_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "compound_apply",
       assign("unev", list(op("function_parameters"), reg("fun"))),
@@ -3008,7 +3014,7 @@ The sequence of instructions labeled
       
       <kbd>ev_sequence</kbd>.
     
-    
+     
     <div class='snippet' id='javascript_113_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_sequence_start",
       save("continue"),
@@ -3182,6 +3188,7 @@ The sequence of instructions labeled
 	statement.
       
     
+    [with tail recursion] 
     <div class='snippet' id='javascript_113_15_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_sequence",
       assign("comp", list(op("first_statement"), reg("unev"))),
@@ -3376,9 +3383,11 @@ to simplify this stack management.
       functions
     
     for manipulating argument lists:
+     
+     
     <div class='snippet' id='javascript_113_17_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 const empty_arglist = list();
- 
+
 function adjoin_arg(arg, arglist) {
     return append(arglist, list(arg));
 }</pre></div></div>
@@ -3393,6 +3402,7 @@ function adjoin_arg(arg, arglist) {
     argument expression
   
     in a combination:
+     
     <div class='snippet' id='javascript_113_18_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function is_last_argument_expression(arg_expression) {
     return is_null(tail(arg_expression));

@@ -2027,9 +2027,6 @@ function divides(a, b) {
     
     
     
-    
-    
-    
   </p></div>
 
   <div class='permalink'>
@@ -2037,7 +2034,6 @@ function divides(a, b) {
     We can test whether a number is prime as follows:
     $n$ is prime if and only if
     $n$ is its own smallest divisor.
-    
     
     <div class='snippet' id='javascript_20_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0DYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAx+VQ0tSlp6X39AuwcnEnCKUwtrFMdXUXFJaXpmNi5uTLNk4PZBAD5QEgL3FoB+RuaW8QAuUByqS1MKrOrU8JdOrtB2yuyg1Mmu3sSA-tSw0FnRx1AAalQo9UJSON1+wYZuVnCAI3z3Iu8b0ABSUFZQAF5v0AAGaM0Jx09Hs5gADuwqHoeC5hJ1HvR6N9PvojCYqmsQi4AbhQRCoTwACyRZRAA')">function is_prime(n) {
     return n === smallest_divisor(n);
@@ -2218,6 +2214,7 @@ function divides(a, b) {
      
     runs the test a given number of times, as specified by a parameter.  Its
     value is true if the test succeeds every time, and false otherwise.
+    
     <div class='snippet' id='javascript_20_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0DYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUFQYB9TgDdOJbiUEjxEzlJmh6AUlAZQAXk+gADKo2FSSlp6Tl4ABwBbGgATbgAjVgZOABpQULDUiKtRcUlpEPCPL28cmzKAflRSsvEALj1DEzNudP5qmtBK5jYuFvCo2ISk1PTQMAxM-kEXCPaa+vjEzgU0-pjF4dWw0ABaVEnp0Ai-TUCdenZWEmiaCItsmzyHCNYKAAsDAgAbGhp2bhe7wMl2ut24gkUlhOAW0wVABE47EBBgonAYFHuwmqWiCugo7AAngYqBjWA8Ok8CpF1qxUiQ6YJPO5QKxVDYNI87PlQPiiSTuChQABqCRXG53eh7FBTaE487wxIUYmGMLsKgRHj0nnqtHksSU7UahhFZklDo2Sr4oicOZleoIpGvFFojGWW0WhXo5UGVU6iypahG3aoNrmuoKr5JWWK72+jXcACcAHZUgBmfjKIA')">function fast_is_prime(n, times) {
     return times === 0
            ? true
@@ -2226,9 +2223,6 @@ function divides(a, b) {
            : false;
 }
 </pre></div></div>
-
-    
-    
     
   </p></div>
 
@@ -2368,7 +2362,6 @@ function divides(a, b) {
     
     
     
-    
     <div class='snippet' id='javascript_20_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0DYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAx+VQ0tSlp6X39AuwcnEnCKUwtrFMdXUXFJaXpmNi5uTLNk4PZBAD5QEgL3FoB+RuaW8QAuUByqS1MKrOrU8JdOrtB2yuyg1Mmu3sSA-tSw0FnRx1AAalQo9UJSON1+wYZuVnCAI3z3Iu8b0ABSUFZQAF5v0AAGaM0Jx09Hs5gADuwqHoeC5hJ1HvR6N9PvojCYqmsQi4AcdtPFNlDOAEIYTzLNnPdxNYGGDDKwAJ4U1QPTzFRgUDgWEnQslZDYAc08ZMJ3H4hxiQPxZk54MhPPJ6XZMuo0MpYgRoFB3Jh-EWbQ8YMcXLlPEFFhVPEEAFolexzYTdVN3L0KOwiJwAbFgQajbKRZw6WCGEThaq4e5qbSGdwAEQKeSKGOHFleeiRumMgOsIMhi3i-AW4km3lmbgAFgAzFEgA')">function timed_prime_test(n) {
     display(n);
     return start_prime_test(n, get_time());
@@ -2447,7 +2440,6 @@ function report_prime(elapsed_time) {
     <a name="ex_1.23" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_1.23">Exercise 1.23 </a></b> 
   
      
-    
     
     The 
     
@@ -2609,7 +2601,6 @@ function report_prime(elapsed_time) {
     <kbd>expmod</kbd>. After all, she says, since we already
     know how to compute exponentials, we could have simply written
     
-    
     <div class='snippet' id='javascript_20_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0DYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUFQYB9TgDdOJbiUEjxEzlJmh6AUlAZQAXk+gADKo2FSSlp6AlYGCiNeAAcKbgAjABpHK1FxSWl6ek93H1SbfIB+VDz88QAuPUMTMwt+EtLQIuY2Lm5Q8MiY+KT6MAx+OoabCriFUHaIzmjYxMdQAFpUfj9NQJ16KaiAWxoAE3iwziTNpK2Um3SHTY8vb3rSopR7-Ir9I1NzTcGhsSaWDh4mx2+zih2O0VAfVOA1ALi2z2GoAODE4YyBe2RR1A10WKGhgjhKwC2mC2OiwMx4Ki0OEJUuITCk2mlLJUQJoC2RPR+wALEkAMxJACsyyAA')">function expmod(base, exp, m) {
     return fast_expt(base, exp) % m;
 }
@@ -2687,8 +2678,6 @@ function report_prime(elapsed_time) {
 }
 </pre></div></div>
     
-    
-
     <QUOTE>I don't see what difference that could make,</QUOTE>
     says Louis. <QUOTE>I do.</QUOTE>  says Eva. <QUOTE>By writing the 
     

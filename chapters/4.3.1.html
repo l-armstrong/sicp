@@ -1997,7 +1997,7 @@ Acknowledgments
 
   <div class='permalink'>
 <a name='p1' class='permalink'></a><p>
-    
+     
     To extend
     
       
@@ -2058,7 +2058,7 @@ list(2, "b") list(3, "a") list(3, "b")</pre></div></div>
     Using this idea, we can express the requirement that a particular predicate
     expression <kbd>p</kbd> must be true as follows:
     
-      
+     
       
     <div class='snippet' id='javascript_89_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AJwFMBHIq5gCgAcBKUAN65QIxkwpEG9AIShuoAPygAhgFsARp34AuUACJwy6gGcCVJgBMxbDkz0BuUaNwBffGTrGKoAB6gAvCoanNgANKAY4QCs4QDs4QCcvPa4zDZcfgB8gSjJuD4pIKCwzMbG+gBKpHqgBDQMoBQAFky1HF6gxjQANkTUdGigACoAntxMuEXMFAwjk2BU9M2tFQCisAAyoHSNLYxUAOZNFOF1Dar1rV29-STGQA')">function require(p) {
     return ! p ? amb() : "Satisfied require";      
@@ -2078,7 +2078,7 @@ list(2, "b") list(3, "a") list(3, "b")</pre></div></div>
     used above:
     
       
-      
+       
     <div class='snippet' id='javascript_89_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AQxIH0BTAG1YFtWSLmaBABRUK3AM4BKUAG9coBaABOrAI5EqKoQEJQVccxJF27EWK5TJAbnmKVFIkvoMuAIyEALVgwAmZiZIANIwsHNy8-IJCFAxUpqIBkta4AL74ZHTiFKAAHuKgALyg7PoUQgBEDAAOVZzlweWuTM31oOVkSkyurEpKAJ7lyUxsnDx8AsJ51gCQuCCgsCri+eUASqTloAQ0SqAUXluaWaDiNOxE1HRooAAqfVWsc2D2-U969PusoKsAorAAMqA6HsDkoqABzDwUYLbXZcHZfU7nS4kcRAA')">function an_element_of(items) {
     require(! is_null(items));
     return amb(head(items), an_element_of(tail(items)));
@@ -2105,7 +2105,7 @@ list(2, "b") list(3, "a") list(3, "b")</pre></div></div>
     given&nbsp;$n$:
     
       
-      
+       
     <div class='snippet' id='javascript_89_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AQxIH0qSKBTAcw4CdmAzhQa9qJLswK8aAWwAUJAJSgA3rlAbQvDhSK96DGQCMFAGkYs2nHvyEixEqbIWgA1KGyLFAblwBffDI6IVAAD1AAXgtWdm4+QWFRNkdpeU9fbQBHIiptOXCAPij0AFYfXFDfEFBYbQEBUAAiACVSRtACGl5QCgALDg7ckIEaABsiajo0UAAVAE8ABw5cau0KXjmVsDYe-tBmgFFYABlQOl2B3iouXopzTu6ZLoGR8cmSASA')">function an_integer_starting_from(n) {
     return amb(n, an_integer_starting_from(n + 1));
 }
@@ -2216,7 +2216,7 @@ list(2, "b") list(3, "a") list(3, "b")</pre></div></div>
       
       
 	This is signaled by typing 
-	
+	 
 	<kbd>retry</kbd>.
 	If any other input except <kbd>retry</kbd>
 	is given, the interpreter will start a new problem, discarding the

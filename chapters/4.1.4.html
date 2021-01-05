@@ -2288,7 +2288,7 @@ function driver_loop(env) {
                      prepare(tail(object)))
               : object;
     }
-    display(prepare(object), string);
+    display(string + " " + stringify(prepare(object)));
 }
 </pre></div></div>
     

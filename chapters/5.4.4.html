@@ -2055,8 +2055,8 @@ Acknowledgments
     The following instructions form the beginning of the
     explicit-control evaluator's controller sequence:<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
     
-    
-    
+     
+     
     <div class='snippet' id='javascript_116_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "read_eval_print_loop",
       perform(list(op("initialize_stack"))),
@@ -2120,9 +2120,9 @@ function set_global_environment(env) {
       
     
     we print an error message and return to the driver loop.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
-    
-    
-    
+     
+     
+     
     <div class='snippet' id='javascript_116_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "unknown_component_type",
       assign("val", constant("unknown syntax")),
@@ -2254,7 +2254,6 @@ EC-evaluate value:
       <kbd>print_result</kbd>
     
     entry point to print the statistics:
-    
     
     <kbd class='snippet'>"print_result",
     perform(op("print_stack_statistics")), // added instruction
@@ -2430,6 +2429,7 @@ function factorial(n) {
   
     
     Monitor the stack operations in the tree-recursive Fibonacci computation:
+    
     <div class='snippet' id='javascript_116_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function fib(n) {
     return n < 2 ? n : fib(n - 1) + fib(n - 2);

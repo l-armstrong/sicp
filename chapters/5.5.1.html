@@ -2054,11 +2054,11 @@ Acknowledgments
       The function <kbd>compile</kbd>
      performs a case analysis on the
     syntactic type of the expression to be compiled.  For
-    each type of expression, it dispatches to a specialized 
-    <a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
-    <EM>code
-    generator</EM>:
+    each type of expression, it dispatches to a
+    specialized<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
     
+    <EM>code generator</EM>:
+     
     <div class='snippet' id='javascript_118_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile(component, target, linkage) {
     return is_literal(component)
@@ -2256,7 +2256,7 @@ go_to(reg("continue"));</pre></div></div>
       
       function
     
-    
+     
     called
     
       
@@ -2287,7 +2287,7 @@ $seq_2$</kbd>
     
     Whenever registers might need to be saved, the compiler's code
     generators use
-    
+     
     <kbd>preserving</kbd>, which is a more subtle method for
     combining instruction sequences.
     
@@ -2412,7 +2412,7 @@ $seq_2$</kbd>
 
     We will represent an instruction sequence as a list of its three
     parts.  The constructor for instruction sequences is thus
-    
+     
     <div class='snippet' id='javascript_118_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function make_instruction_sequence(needs, modifies, instructions) {
     return list(needs, modifies, instructions);
@@ -2451,7 +2451,7 @@ make_instruction_sequence(
 	instructions:
       
     
-    
+     
     <div class='snippet' id='javascript_118_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function empty_instruction_sequence() {
     return make_instruction_sequence(null, null, null);
@@ -2477,7 +2477,7 @@ function empty_instruction_sequence() {
   
     
     
-    
+     
     In evaluating a
     
       

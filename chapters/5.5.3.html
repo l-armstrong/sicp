@@ -2166,7 +2166,7 @@ $\langle \text{\it compilation of function call with given target and linkage}\r
       function
     
     call.
-    
+     
     <div class='snippet' id='javascript_120_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_application(exp, target, linkage) {
     const fun_code = compile(function_expression(exp), "fun", "next"); 
@@ -2299,7 +2299,7 @@ assign(argl, constant(null));</pre></div></div>
       <kbd>compile_application</kbd>.
       
     
-    
+     
     <div class='snippet' id='javascript_120_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function construct_arglist(arg_codes) {
     const rev_arg_codes = reverse(arg_codes);
@@ -2454,7 +2454,7 @@ $\ensuremath{\text{\textrm{\sl linkage}}}$
       
       <kbd>compile_conditional</kbd>.)
     
-    
+     
     <div class='snippet' id='javascript_120_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_function_call(target, linkage) {
     const primitive_branch = make_label("primitive_branch");
@@ -2869,6 +2869,7 @@ go_to(reg("val")),</pre></div></div>
       
       function.
     
+     
     <div class='snippet' id='javascript_120_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_fun_appl(target, linkage) {
     if (linkage === "return_undefined") {
@@ -3021,6 +3022,7 @@ and therefore these languages
     points of computer architecture.  (See 
     
     <CITATION>Appel 1987</CITATION> and 
+    
     
     Miller and Rozas 1994 for opposing views on this issue.)
     </FOOTNOTE></div>

@@ -2038,6 +2038,7 @@ Acknowledgments
         
         <kbd>cond</kbd> (which stands for
         <QUOTE>conditional</QUOTE>), and it is used as follows:
+         
         <div class='snippet' id='javascript_11_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (abs x)
   (cond ((> x 0) x)
@@ -2234,7 +2235,7 @@ Acknowledgments
       <div class='permalink'>
 <a name='p6' class='permalink'></a><p>
         Another way to write the absolute-value procedure is
-        
+         
         <div class='snippet' id='javascript_11_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (abs x)
   (cond ((< x 0) (- x))
@@ -2269,7 +2270,7 @@ Acknowledgments
       <div class='permalink'>
 <a name='p7' class='permalink'></a><p>
         Here is yet another way to write the absolute-value procedure:
-        
+         
         <div class='snippet' id='javascript_11_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (abs x)
   (if (< x 0)
@@ -2531,6 +2532,11 @@ x > 5 && x < 10</pre></div></div>
     
     a predicate to test whether one
     number is greater than or equal to another as
+    
+      <span style="color:green">
+	 
+      </span>
+    
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -2543,6 +2549,11 @@ x > 5 && x < 10</pre></div></div>
 }
 </pre></div></div></td></tr></table>
     or alternatively as
+    
+      <span style="color:green">
+	 
+      </span>
+    
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -2554,7 +2565,6 @@ x > 5 && x < 10</pre></div></div>
     return ! (x < y);
 }
 </pre></div></div></td></tr></table>
-
     
     <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
@@ -3053,8 +3063,9 @@ function test(x, y) {
     
         
 	
-        
-        
+        \ind*{t@<kbd>\#t</kbd>}
+        \ind*{f@<kbd>\#f</kbd>}
+	 
         <QUOTE>Interpreted as either true or false</QUOTE>
         means this: In Scheme, there are two distinguished values that are
         denoted by the constants 

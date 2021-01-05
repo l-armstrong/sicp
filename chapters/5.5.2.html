@@ -2070,7 +2070,7 @@ Acknowledgments
     
     to that label, an instruction that does not need or modify
     any registers.
-    
+     
     <div class='snippet' id='javascript_119_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_linkage(target, linkage) {
     return linkage === "return"
@@ -2102,7 +2102,7 @@ function compile_linkage(target, linkage) {
     If the given instruction sequence modifies
     <kbd>continue</kbd> and the linkage code needs it,
     <kbd>continue</kbd> will be saved and restored.
-    
+     
     <div class='snippet' id='javascript_119_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function end_with_linkage(target, linkage, instruction_sequence) {
     return preserving(list("continue"),
@@ -2131,9 +2131,8 @@ function end_with_linkage(target, linkage, instruction_sequence) {
     construct instruction
     sequences that assign the required value to the target register
     and then proceed as specified by the linkage descriptor.
-    
-    
-    
+     
+     
     <div class='snippet' id='javascript_119_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_literal(component, target, linkage) {
     return end_with_linkage(target, linkage,
@@ -2222,8 +2221,8 @@ function compile_name(component, target, linkage) {
     since the environment is needed for setting or defining the variable and the
     code for the variable value could be the compilation of a complex expression
     that might modify the registers in arbitrary ways.
-    
-    
+     
+     
     <div class='snippet' id='javascript_119_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_assignment(component, target, linkage) {
     const symbol = assignment_symbol(component);
@@ -2342,7 +2341,7 @@ function compile_assignment_returning(
     
     the true branch ends with a jump around
     the code for the false branch to the label at the end of the conditional.
-    
+     
     <div class='snippet' id='javascript_119_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_conditional(component, target, linkage) {
     let t_branch = make_label("true_branch");
@@ -2459,7 +2458,7 @@ function compile_conditional(component, target, linkage) {
     <kbd>env</kbd> (needed for the rest of the sequence) and
     <kbd>continue</kbd> (possibly needed for the linkage at
     the end of the sequence) are preserved.
-    
+     
     <div class='snippet' id='javascript_119_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_sequence(seq, target, linkage) {
     return is_last_statement(seq) || is_return_statement(first_statement(seq))
@@ -2582,7 +2581,7 @@ $\langle compilation$ $of$ $function$ $body \rangle$
       function
     
     body (a newly generated label).<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
-    
+     
     <div class='snippet' id='javascript_119_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_lambda_expression(exp, target, linkage) {
     let fun_entry = make_label("entry");
@@ -2752,7 +2751,6 @@ function compile_return_statement(stmt, target, linkage) {
       <div class='permalink'>
 <a name='p13' class='permalink'></a><p>
 	
-
 	A block is compiled by prepending an assignment instruction to the compiled
 	body of the block. The assignment extends the current environment with bindings
 	of the declared names of the block to the value 
@@ -2839,7 +2837,7 @@ function compile_block(stmt, target, linkage) {
     
       
     
-    
+     
     <div class='snippet' id='javascript_119_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 let label_counter = 0;
 
@@ -2869,10 +2867,10 @@ function make_label(name) {
       functions
     
     described in section&nbsp;<REF NAME="sec:eval-data-structures"><a class="superscript" id="5.5.2-sec-link-4.1.3" href="./4.1.3.html">4.1.3</a></REF>:
-    
-    
-    
-    
+     
+     
+     
+     
     <div class='snippet' id='javascript_119_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function make_compiled_function(entry, env) {
     return list("compiled_function", entry, env);
