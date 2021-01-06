@@ -2170,7 +2170,7 @@ function compile_name(component, target, linkage) {
     Assignments and
     
       
-      the two kinds of declaration
+      the two kinds of declarations
     
     are handled much as they are in the
     interpreter.
@@ -2304,7 +2304,7 @@ function compile_assignment_returning(
     
     compiled with a given target and linkage has the form
     <kbd class='snippet'>  $\langle compilation$ $of$ $predicate,$ $target$ val, $linkage$ next$\rangle$
-  test(list(op("is_falsy"), reg("val"))),
+  test(list(op("is_truthy"), reg("val"))),
   branch(label("true_branch")),
 "false_branch",
   $\langle compilation$ $of$ $alternative$ $with$ $given$ $target$ $and$ $linkage\rangle$
@@ -2413,8 +2413,8 @@ function compile_conditional(component, target, linkage) {
         statement sequences (inside blocks)
       
     
-    parallels their evaluation.
-    Each
+    parallels their evaluation in the explicit-control evaluator with one exception: if a return statement appears in the middle of a sequence, we treat it as if it was the last statement in the sequence.
+    With this caveat, each
     
       
       
@@ -2468,15 +2468,19 @@ function compile_sequence(seq, target, linkage) {
                compile_sequence(rest_statements(seq), target, linkage));
 }</pre></div></div>
 
-    The check
-    <kbd>is_return_statement(first_statement(seq))</kbd>
-    detects <QUOTE>dead code</QUOTE>, meaning code that follows in
-    sequence after a return statement and therefore never will be
-    executed. Not compiling dead code is good for several reasons:
-    it shortens the compilation time, it reduces the size of the
-    executable, and it removes a possible security hazard if a
-    malicious user could trick the program to execute the dead
-    code.
+    Treating return statements as if they always appear as the last statement in a sequence
+    using the check <kbd>is_return_statement(first_statement(seq))</kbd>
+    serves two purposes. First, it avoids saving
+    <kbd>env</kbd> and
+    <kbd>continue</kbd> to the stack to allow us to
+    jump directly to <kbd>continue</kbd> in the
+    evaluation of the return statement. Second, it avoids compiling the
+    <QUOTE>dead code</QUOTE> after the return statement which
+    therefore never will be executed. Not compiling dead code is good for
+    several reasons: it shortens the compilation time, it reduces the size of
+    the executable by emitting fewer instructions, and it removes possible
+    security hazards if a malicious user could trick the program to execute the
+    dead code.
   </p></div>
 
   
