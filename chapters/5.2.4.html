@@ -2026,7 +2026,7 @@ list(list("initialize_stack",
       <kbd>make_stack</kbd>:
     
     
-    <div class='snippet' id='javascript_108_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0BnCpslgBQBKUAG9QuUFNAAbNhVA8+LUAF5QJIjJkBuSdLkLNDAEZsAThwAORLgAs2XNaAAMe6bPmMmADw4ATNisKO2c3fSlDUDIic3M2EgoAoJCw92licmo6UBt7AR8RUQiPRV5+ZysmKnMCgBoy5SF00o0iUwtrWwcndWMzSzye0ABqUABGFtKYuISkwODQ9Rn4xOTF0Ympj2Y-BdT1ZhCOXYEVufWQht3Lu2aSj3iKWPoAIn86NlepgF8SzMotHoVhoVmEYge0ioBFAAioXA4mm0AiU-CERUhrQs5hotVebAYwQAno0KgBaMm5UGve6tKQ-UBsGRcNgQunTOg8UAUUHOBxMfwo8osWns6SolTqXhUGRCprbOnnNb7JbRWKreYpUKUyaY0pPF7c0EK+klP4eAHZehUEhUahMGRUABebHBxXZEucSN0ev6nSGjjSepuKqD7KVmo26nC7IN5jeHxIX1+-1IgJyVnMNqSSmoPCoZC4br1-nhVhkTCJAlePN4MjJAd6oFemx4WZIAHNoVW-YNuo4RGNXgAdEg0k2gUtccuV6u7KgMdpk0PqFtjNs2rsEKshrWD5uj8dm1NZIGTstMChkOwCBiOLhMDtsDGx+SGu9cB9PtSqVdDV56nSAD8uTdIBrQAFyMPej6sr+f7UuBpQgSCYJCEhHhQR+X5wb+zY2naVAOs6XwYdIIEEfajousIZFSFhMHfvBzaZtm3C8Hm1CFgBYqtCh7Y5hx8JcUW6G8aUUHYrit6MWwDSvKQLAkDQADu9DxAAjkQjgKBSpIsEeHjmtIcb0FOVRXnYeg-EAA')">function make_stack() { 
+    <div class='snippet' id='javascript_108_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0BnCpslgBQBKUAG9QuUFNAAbNhVA8+LUAF5QJIjJkBuSdLkLNDAEZsAThwAORLgAs2XNaAAMe6bPmMmADw4ATNisKO2c3fSlDUDIic3M2EgoAoJCw92licmo6UBt7AR8RUQiPRV5+ZysmKnMCgBoy5SF00o0iUwtrWwcndWMzSzye0ABqUABGFtKYuISkwODQ9Rn4xOTF0Ympj2Y-BdT1ZhCOXYEVufWQht3Lu2aSj3iKWPoAIn86NlepgF8SzMotHoVhoVmEYge0ioBFAAioXA4mm0AiU-CERUhrQs5hotVebAYwQAno0KgBaMm5UGve6tKQ-UBsGRcNgQunTOg8UAUUHOBxMfwo8osWns6SolTqXhUGRCprbOnnNb7JbRWKreYpUKUyaY0pPF7c0EK+klP4eAHZehUEhUahMGRUABebHBxXZEucSN0ev6nSGjjSepuKqD7KVmo26nC7IN5jeHxIX1+-1IgJyVnMNqSSmoPCoZC4br1-nhVhkTCJAlePN4Mly3UD6lemx4WZIAHNoVW-YNG1x0SbQKWuOXK9XdlQGO1h1rnC2xm2bV2CFWQ1rB2bU1kgcOy0wKGQ7AIGI4uEwO2wMbH5IbT1xz5e1Kpm0NXnq6QB+Bv2D+tABcjBnherIvq+1J-qU34gmCQiQR4gH3o+oEvqArw2naVAOs6XzwdI34YfajousIeFSIhwFPmBaGZtm3C8Hm1CFu+YqtNB7Y5gx8JMUWcGsaUgHYriJ6UWwDSvKQLAkDQADu9DxAAjkQjgKBSpIsDSKaPLe8Z7qOB5HnoPxAA')">function make_stack() { 
     let stack = null;
     let number_pushes = 0;
     let max_depth = 0;
@@ -2056,8 +2056,8 @@ list(list("initialize_stack",
         return "done";
     }
     function print_statistics() {
-        display("total-pushes = " + stringify(number_pushes) + "\n");
-        display("maximum-depth = " + stringify(max_depth) + "\n");
+        display("total pushes = " + stringify(number_pushes));
+        display("maximum depth = " + stringify(max_depth));
     }
     function dispatch(message) {
         return message === "push"
@@ -2077,15 +2077,15 @@ list(list("initialize_stack",
 
   <div class='permalink'>
 <a name='p2' class='permalink'></a><p>
-    Exercises&nbsp;<REF NAME="ex:instruction-count"><a class="superscript" id="5.2.4-ex-link-5.15" href="./5.2.4.html#ex_5.15">5.15</a></REF>
-    through&nbsp;<REF NAME="ex:breakpoints"><a class="superscript" id="5.2.4-ex-link-5.19" href="./5.2.4.html#ex_5.19">5.19</a></REF>
+    Exercises&nbsp;<REF NAME="ex:instruction-count"><a class="superscript" id="5.2.4-ex-link-5.14" href="./5.2.4.html#ex_5.14">5.14</a></REF>
+    through&nbsp;<REF NAME="ex:breakpoints"><a class="superscript" id="5.2.4-ex-link-5.18" href="./5.2.4.html#ex_5.18">5.18</a></REF>
     describe other useful monitoring and debugging features that can be
     added to the register-machine simulator.
   </p></div>
   
   
     <div class="permalink">
-    <a name="ex_5.14" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.14">Exercise 5.14 </a></b> 
+    <a name="ex_5.13" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.13">Exercise 5.13 </a></b> 
   
     
     Measure the number of pushes and the maximum stack depth required to
@@ -2132,7 +2132,7 @@ list(list("initialize_stack",
 
   
     <div class="permalink">
-    <a name="ex_5.15" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.15">Exercise 5.15 </a></b> 
+    <a name="ex_5.14" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.14">Exercise 5.14 </a></b> 
   
     Add 
     
@@ -2153,14 +2153,14 @@ list(list("initialize_stack",
 
   
     <div class="permalink">
-    <a name="ex_5.16" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.16">Exercise 5.16 </a></b> 
+    <a name="ex_5.15" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.15">Exercise 5.15 </a></b> 
   
     Augment the simulator to provide for 
     
     
     <EM>instruction tracing</EM>.
     That is, before each instruction is executed, the simulator should print
-    the text of the instruction.  Make the machine model accept
+    the type of the instruction.  Make the machine model accept
     
       
       
@@ -2185,14 +2185,14 @@ list(list("initialize_stack",
 
   
     <div class="permalink">
-    <a name="ex_5.17" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.17">Exercise 5.17 </a></b> 
+    <a name="ex_5.16" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.16">Exercise 5.16 </a></b> 
   
     Extend the instruction tracing of
-    exercise&nbsp;<REF NAME="ex:reg-machine-instruction-trace"><a class="superscript" id="5.2.4-ex-link-5.16" href="./5.2.4.html#ex_5.16">5.16</a></REF> so that
+    exercise&nbsp;<REF NAME="ex:reg-machine-instruction-trace"><a class="superscript" id="5.2.4-ex-link-5.15" href="./5.2.4.html#ex_5.15">5.15</a></REF> so that
     before printing an instruction, the simulator prints any labels that
     immediately precede that instruction in the controller sequence.  Be
     careful to do this in a way that does not interfere with instruction
-    counting (exercise&nbsp;<REF NAME="ex:instruction-count"><a class="superscript" id="5.2.4-ex-link-5.15" href="./5.2.4.html#ex_5.15">5.15</a></REF>).
+    counting (exercise&nbsp;<REF NAME="ex:instruction-count"><a class="superscript" id="5.2.4-ex-link-5.14" href="./5.2.4.html#ex_5.14">5.14</a></REF>).
     You will have to make the simulator retain the necessary label information.
   
       <div class="Solution">
@@ -2205,7 +2205,7 @@ list(list("initialize_stack",
 
   
     <div class="permalink">
-    <a name="ex_5.18" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.18">Exercise 5.18 </a></b> 
+    <a name="ex_5.17" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.17">Exercise 5.17 </a></b> 
   
     
     
@@ -2235,7 +2235,7 @@ list(list("initialize_stack",
 
   
     <div class="permalink">
-    <a name="ex_5.19" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.19">Exercise 5.19 </a></b> 
+    <a name="ex_5.18" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.18">Exercise 5.18 </a></b> 
   
     
     Alyssa P. Hacker wants a 
