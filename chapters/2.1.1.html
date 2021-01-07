@@ -2297,16 +2297,12 @@ const z = pair(x, y);
       
       <kbd>numer</kbd>, and <kbd>denom</kbd>
       are readily implemented as follows:<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
-
-    <div class='snippet' id='javascript_28_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQCcGyAKIgGlAATAJSgA3tlDTQHFmQIdaABwYUOfQaIDc2AL75i5arSIE6LDQA8xkmbPmLaACxYMhPG7oOFSlGsIsRFR0nrZSMnIKSqBkagA2Yd64ZhYajKyc3DwoggDMIiLaQA')">function make_rat(n, d) {
-    return pair(n, d);
-}
-function numer(x) {
-    return head(x);
-}
-function denom(x) {
-    return tail(x);
-}
+    
+    
+    
+    <div class='snippet' id='javascript_28_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQCcGyAKIgGlAATAJSgA3qA4syBDrQAODChz6DRAblABffMXLVaRAnRaqAHmMnTZ80AAsWDIT0tbdhUpRrCWRKnSuVlIycrRkygA2Qe64xqaqjKyc3DwoggDMIiIaQA')">function make_rat(n, d) { return pair(n, d); }
+function numer(x) { return head(x); }
+function denom(x) { return tail(x); }
 </pre></div></div>
     
   </p></div>
@@ -2334,7 +2330,7 @@ function denom(x) {
 	the two strings.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
       
     
-    <div class='snippet' id='javascript_28_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQCcGyAKIgGlAATAJSgA3tlDTQHFmQIdaABwYUOfQaIDc2AL75i5arSIE6LDQA8xkmbPmLaACxYMhPG7oOFSlGsIsRFR0nrZSMnIKSqBkagA2Yd64vsYByhwURGSc3GESEdJRTsIUAM7K8QwAnjxlZJlEAOYUeLVmFtYiYgDUoABEoGCDffWNLW08QkEhYd3J2CQ09aA07M4M8XigALz0zOxcvBiCKCK62BlZOUc8a2wbW+dAA')">function print_rat(x) {
+    <div class='snippet' id='javascript_28_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQCcGyAKIgGlAATAJSgA3qA4syBDrQAODChz6DRAblABffMXLVaRAnRaqAHmMnTZ80AAsWDIT0tbdhUpRrCWRKnSuVlIycrRkygA2Qe64ngY+ChwURGSc3EES2KA5Iba0QhQAzgqRDACePEVkyUQA5hR4lcamFiJiANSgAESgYL1d1bUNTTxCfgFB7RrYutgkNNWgNOz2DJF4oAC89MzsXLwYgigiM9hJKWkHPCtsaxunQA')">function print_rat(x) {
     return display(stringify(numer(x)) + " / " + stringify(denom(x)));
 }
 </pre></div></div>
@@ -2348,7 +2344,7 @@ function denom(x) {
       
       functions:
     
-    <div class='snippet' id='javascript_28_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQCcGyAKIgGlAATAJSgA3tlDTQHFmQIdaABwYUOfQaIDc2AL75i5arSIE6LDQA8xkmbPmLaACxYMhPG7oOFSlGsIsRFR0nrZSMnIKSqBkagA2Yd64vsYByhwURGSc3GESEdJRTsIUAM7K8QwAnjxlZJlEAOYUeLVmFtYiYgDUoABEoGCDffWNLW08QkEhYd3J2CQ09aA07M4M8XigALz0zOxcvBiCKCK62BlZOUc8a2wbW+dAA')">const one_half = make_rat(1, 2);
+    <div class='snippet' id='javascript_28_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQCcGyAKIgGlAATAJSgA3qA4syBDrQAODChz6DRAblABffMXLVaRAnRaqAHmMnTZ80AAsWDIT0tbdhUpRrCWRKnSuVlIycrRkygA2Qe64ngY+ChwURGSc3EES2KA5Iba0QhQAzgqRDACePEVkyUQA5hR4lcamFiJiANSgAESgYL1d1bUNTTxCfgFB7RrYutgkNNWgNOz2DJF4oAC89MzsXLwYgigiM9hJKWkHPCtsaxunQA')">const one_half = make_rat(1, 2);
 
 print_rat(one_half);
 </pre><pre class='prettyprintoutput'>
@@ -2357,13 +2353,13 @@ print_rat(one_half);
     <div class='snippet' id='javascript_28_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 const one_third = make_rat(1, 3);</pre></div></div>
 
-    <div class='snippet' id='javascript_28_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQCcGyAKIgGlAATAJSgA3tlDTQHFmQIdaABwYUOfQaIDc2AL75i5arSIE6LDQA8xkmbPmLaACxYMhPG7oOFSlGsIsRFR0nrZSMnIKSqBkagA2Yd64vsYB7kKc3J6CAJ7h9lFO9MzsXLxmFtZiAFSBwaH5oADUoJWWPE11QkEhYfwR9kPDMj0NYaDdvY0iIsmp-rQAzgQARlm8VnkFkY4xjKwbfOYdNpP1fU0AtG0nGl0XoTYDI69DY31nU+P5c-qGfhM9AI8SOW1ATTsu2itAOZWy7Wq50RnRELzeGI+T1qj1Rfx8RkWwgoADcwdsJIMHDCSodyscqhNvpc0VSMcMsUzbozfvNCUCWABHAgMUH08GQqlFGIor64poAXiV3I6D05Xn+2BINCWZFANHYzlFeFACtp8N4GEEKD+Wp1eoNbDIznUQlN5qOVtAAGZbQsgcoOBQiGQwTtpNLaEIKEtlPEGLkeLqg0QAOYUPCJ2WzFqgABEoDABdayeD6czPHVs3xuEDwdD9IyR0dRvieEEjudrtm2iAA')">print_rat(add_rat(one_half, one_third));
+    <div class='snippet' id='javascript_28_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQCcGyAKIgGlAATAJSgA3qA4syBDrQAODChz6DRAblABffMXLVaRAnRaqAHmMnTZ80AAsWDIT0tbdhUpRrCWRKnSuVlIycrRkygA2Qe64ngY+zkKc3K6CAJ5W2KA5Iba0jKwpvMamFmIAVL7+gZmgANSgpWY8dVVCfgFB-Nm5ff0D1V2WoO2dtSIiGtge+t60AM4EAEbFaaB14r05NmH0zOxcJSYtI2M1rWIAtE0nqm1DgZY9g6-9HRdnj5dTM3pehnoBEia3MGSyfV2dkKh1SzXKo1uZUuLzeaI+w0q30yv1mAJ8QgoADdQeCJNs8nsYWt4UFERiJqi0a8GXSqrScdM8QlaCwAI4EBggo7rTYUqFGO5s7FiAC88qRLQerLcf2wJBoCzIoBo7HsQrwoFl+yKIowghQv3Vmu1urYZHsKiERpNsN45tAAGYrfF5qAFBwKEQyKCIbkJcIKAsFJEGOkeFrA0QAOYUPDx2mWMSNABEoDAecaiaDqfTPBVk1xuADQZDIqSazt+sieEEdodTsmGiAA')">print_rat(add_rat(one_half, one_third));
 </pre><pre class='prettyprintoutput'>
 "5 / 6"</pre></div></div>
-    <div class='snippet' id='javascript_28_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQCcGyAKIgGlAATAJSgA3tlDTQHFmQIdaABwYUOfQaIDc2AL75i5arSIE6LDQA8xkmbPmLaACxYMhPG7oOFSlGsIsRFR0nrZSMnIKSqBkagA2Yd64vsYB7kKc3J6CAJ7h9lFO9MzsXLxmFtZiAFSBwaH5oADUoJWWPE11QkEhYfwR9kPDMj0NYaDdvY0iIsmp-rQAzgQARlm8VnkFkY4xjKwbfOYdNpP1fU0AtG0nGl0XoTYDI69DY31nU+P5c-qGfhM9AI8SOW1ATTsu2itAOZWy7Wq50RnRELzeGI+T1qj1Rfx8RkWwgoADcwdsJIMHDCSodyscqhNvpc0VSMcMsUzbozfvNCUCWABHAgMUH08GQqlFGIor64poAXiV3I6D05Xn+2BINCWZFANHYzlFeFACtp8N4GEEKD+Wp1eoNbDIznUQlN5qOVtAAGZbQsgcoOBQiGQwTtpNLaEIKEtlPEGLkeLqg0QAOYUPCJ2WzFqgABEoDABdayeD6czPHVs3xuEDwdD9LoIKOjqN8Twgkdztds20QA')">print_rat(mul_rat(one_half, one_third));
+    <div class='snippet' id='javascript_28_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQCcGyAKIgGlAATAJSgA3qA4syBDrQAODChz6DRAblABffMXLVaRAnRaqAHmMnTZ80AAsWDIT0tbdhUpRrCWRKnSuVlIycrRkygA2Qe64ngY+zkKc3K6CAJ5W2KA5Iba0jKwpvMamFmIAVL7+gZmgANSgpWY8dVVCfgFB-Nm5ff0D1V2WoO2dtSIiGtge+t60AM4EAEbFaaB14r05NmH0zOxcJSYtI2M1rWIAtE0nqm1DgZY9g6-9HRdnj5dTM3pehnoBEia3MGSyfV2dkKh1SzXKo1uZUuLzeaI+w0q30yv1mAJ8QgoADdQeCJNs8nsYWt4UFERiJqi0a8GXSqrScdM8QlaCwAI4EBggo7rTYUqFGO5s7FiAC88qRLQerLcf2wJBoCzIoBo7HsQrwoFl+yKIowghQv3Vmu1urYZHsKiERpNsN45tAAGYrfF5qAFBwKEQyKCIbkJcIKAsFJEGOkeFrA0QAOYUPDx2mWMSNABEoDAecaiaDqfTPBVk1xuADQZDIrowLWdv1kTwgjtDqdkw0QA')">print_rat(mul_rat(one_half, one_third));
 </pre><pre class='prettyprintoutput'>
 "1 / 6"</pre></div></div>
-    <div class='snippet' id='javascript_28_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQCcGyAKIgGlAATAJSgA3tlDTQHFmQIdaABwYUOfQaIDc2AL75i5arSIE6LDQA8xkmbPmLaACxYMhPG7oOFSlGsIsRFR0nrZSMnIKSqBkagA2Yd64vsYB7kKc3J6CAJ7h9lFO9MzsXLxmFtZiAFSBwaH5oADUoJWWPE11QkEhYfwR9kPDMj0NYaDdvY0iIsmp-rQAzgQARlm8VnkFkY4xjKwbfOYdNpP1fU0AtG0nGl0XoTYDI69DY31nU+P5c-qGfhM9AI8SOW1ATTsu2itAOZWy7Wq50RnRELzeGI+T1qj1Rfx8RkWwgoADcwdsJIMHDCSodyscqhNvpc0VSMcMsUzbozfvNCUCWABHAgMUH08GQqlFGIor64poAXiV3I6D05Xn+2BINCWZFANHYZGc6iEoAVtPhvAwggAzH8AWkVBwKEQyGCdtJpbQhBQlsp4gxcjxdc6iABzCh4IOy2YtUAAIlAYETrRDLojUZ46tm+NwylDbvpGSOBrYRpNglL5Y4ojmQA')">print_rat(add_rat(one_third, one_third));
+    <div class='snippet' id='javascript_28_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQCcGyAKIgGlAATAJSgA3qA4syBDrQAODChz6DRAblABffMXLVaRAnRaqAHmMnTZ80AAsWDIT0tbdhUpRrCWRKnSuVlIycrRkygA2Qe64ngY+zkKc3K6CAJ5W2KA5Iba0jKwpvMamFmIAVL7+gZmgANSgpWY8dVVCfgFB-Nm5ff0D1V2WoO2dtSIiGtge+t60AM4EAEbFaaB14r05NmH0zOxcJSYtI2M1rWIAtE0nqm1DgZY9g6-9HRdnj5dTM3pehnoBEia3MGSyfV2dkKh1SzXKo1uZUuLzeaI+w0q30yv1mAJ8QgoADdQeCJNs8nsYWt4UFERiJqi0a8GXSqrScdM8QlaCwAI4EBggo7rTYUqFGO5s7FiAC88qRLQerLcf2wJBoCzIoBo7DI9hUQlAsv2RRFGEEAGZfv8eaAFBwKEQyKCIbkJcIKAsFJEGOkeFrHUQAOYUPD+2mWMSNABEoDAccagadofDPBVk1xuAdTpdIqSa11bH1hsERZLHFEUyAA')">print_rat(add_rat(one_third, one_third));
 </pre><pre class='prettyprintoutput'>
 "6 / 9"</pre></div></div>
   </p></div>
@@ -2399,7 +2395,7 @@ const one_third = make_rat(1, 3);</pre></div></div>
   <div class='permalink'>
 <a name='p13' class='permalink'></a><p>
     Now we have
-    <div class='snippet' id='javascript_28_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEZMChsDMBXAOwGMAXASwHsjQiCBbAUwCcAKADwEpQBvbUINAsmZAi1oALJgEMAJpy4BubAF98xctVpymRKg0V8BQkWImgyMigBtFK9RtKUaoAOYkFMgDSgARjz8QsKi4rR+oAC80aAADKAA-KAyoABc7p5sfr4pAKT+ymq4hM7aoAwyANZMAPosMmRsRL5ygSaCJDQAzmTuURkKzaCtKsFmYaAADtbstGBuLaDzhY4lWq7ycnUNnL4Anm1joRYV1duN9Mzs3KAAVMN6BmwHoADUdIyszzz3uvqG3G87WCINBgj+Txuv0ehgOKyc61oXQIfnOu1ALyCpmOtFOtXqF0+1x+D3+31AAFoPldydCyYDgWCmaTISSIbCuPC1i5cQQbGiOPtDtjzLiqvidpcvlDqV8DkDmYqWQC2TDvlzNDzhhQAG4CoXGI6i8ritFS4l3ZXfBVKpnsoz3c3qhwIrVMACOBBk-IJ6MxwPGFidMvtL2ikVl7BedNZLuwnSIPVANFqZEkFBYcn6eLRGF8AGZCq6yjnfUNWoaRRNphmmi0NaVXMHhYJA1JZApuC7uWV7Tcsa2cZZrHYu0Vi65JiwKEQyAKWyFjXIKF1JjYZHs2D1p0Q3BQ8Jvmzx3gAiJagM-vbczvcHth9znw7BTmdz32bNEpmppjNyXxfn9M05JQgA')">print_rat(add_rat(one_third, one_third));
+    <div class='snippet' id='javascript_28_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEZMChsDMBXAOwGMAXASwHsjQiCBbAUwCcAKADwEpQBvbUINAsmZAi1oALJgEMAJpy4BubAF98xctVpymRKg0V8BQkWImgyMigBtFK9RtKUaoAOYkFMgDSgARjz8QsKi4rR+oAC80aAADKAA-KAyoABc7p5sfr4pAKT+ymq4hM7aoAwyANZMAPosMmRsRL5ygSaCJDQAzmTuURkKzaCtKsFmYaAADtbstGBuLaDzhY4lWq7ycnUNnL4Anm1joRYV1duN9Mzs3KAAVMN6BmwHoADUdIyszzz3uvqG3G87WCINBgj+Txuv0ehgOKyc61oXQIfnOu1ALyCpmOtFOtXqF0+1x+D3+31AAFoPldydCyYDgWCmaTISSIbCuPC1i5cQQbGiOPtDtjzLiqvidpcvlDqV8DkDmYqWQC2TDvlzNDzhhQAG4CoXGI6i8ritFS4l3ZXfBVKpnsoz3c3qhwIrVMACOBBk-IJ6MxwPGFidMvtL2ikVl7BedNZLuwnSIPVANFqZEkFBYcn6eLRGF8AGZCq6yjnfUNWnwQsbphmmi1lKB1NyysHAlWJtJ5PZG8XXPabrx2xYrLZu6tNWVJiwKEQyALhYJAzoKF1JjYZHs2D1p0Q3BQ8JvWzx3gAiJagM-vbczvcHtj9znw7BTmdz32bNEpmppjNyXxfn9M05JQgA')">print_rat(add_rat(one_third, one_third));
 </pre><pre class='prettyprintoutput'>
 "2 / 3"</pre></div></div>
     

@@ -2270,6 +2270,9 @@ function return_value_content(value) {
       <kbd>tail</kbd>
     
     of the list.  The empty environment is simply the empty list.
+    
+    
+    
     <div class='snippet' id='javascript_79_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0GYBQuAzAVwDsBjAFwEsB7E0AU3IBsaBnKkgcwH0mA3KgCc6AWyYUAFAICUoAN65Qy0EIYUiQ+hQCGVZtJL8ZAblwBfQqUq16BYWwo8CQneMPGFSlWo1bQABYMOgAmHqYWuGR0jqAUQXyiAA4UAJ58RsJiEqAAvKAkRMzMZrjxDIkp6QJZJOIkFCZAA')">function enclosing_environment(env) {
     return tail(env);
 }
@@ -2287,6 +2290,9 @@ const the_empty_environment = null;
     
     bound in that frame and a list of the associated
     values.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+    
+    
+    
     
     <div class='snippet' id='javascript_79_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0GYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0CAnJhtgBQBnAJ4MARjQA2QgDSgAbkylE2QgJSgA3rlB7Q3NhSLd6AByZVuwsZJnylKteoDcuAL6FSlWvR59OUQlpIQF-fk0tfVBdfUNjU1AACzYmABMw3gi3T2JyajpQcM5HVVDiyOjYvXiTegpLKUyA1w98MjohCkYRLiy2UABeRlZOYoEpKi6BACIADxn5GZEZ9XlJ6Yx5ACZ1VuKOILtQhl6KlyA')">function make_frame(symbols, values) {
     return pair(symbols, values);
@@ -2319,6 +2325,7 @@ function frame_values(frame) {
       symbols
     
     does not match the number of values.
+     
     <div class='snippet' id='javascript_79_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0GYBQuAzAVwDsBjAFwEsB7E0AU3IBsaBnKkgcwH0mA3KgCc6AWyYUAFAICUoAN65Qy0EIYUiQ+hQCGVZtJL8ZAblwBfQqUq16BYWwo8CQneMPGFSlWo1bQABYMOgAmHqYWuGR0jqAUQXyiAA4UAJ58RsJiEqAAvKAkRMzMZlbk1HSgojoA1gzOru5sqaIARjTMbAA0oPw6zEQMbHKKKqrqmvRJekKSzW0d3b39g8NmlsTltqAubvXz7Z2Su+IjY97KvpOBwWEnDBEb1hV2jfV9A0PHb2cqF+N+bR6Az3R74TY2SoMAAeFCYIQyghEJHEJCkB0WPQ+S1aOjY9VkXjGV38zCYXHicxah2GeVy+TJ3Ep2Jk-zGKgA-KBpsJJNU6g09lSFp0sf1hj1cfjEaz2XKAFygRkUgLCmlyAA8SvJzPFsrlYy5DCEIlmACIKDQaFUdCRUqAdEIuERURQ2KA2EQkklmFQGCFFWbQABqUBsg0GxxCThcKgEVJqxZyUNmnpB0PhiPsqMxuMJln6rOK42myQWq07BgAdwdTpdEndnu9vv9gZDYaznZz3Dzic6ydAqcH7czneU3dj8ckBfW+BhcJICIEWRREkkvscZehQ7NqR3AC8zTIuqOxxupBgegAmHrYY+nzvxAnJNKIleu0xAA')">function extend_environment(symbols, vals, base_env) {
     return length(symbols) === length(vals)
            ? pair(make_frame(symbols, vals), base_env)

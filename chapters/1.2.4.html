@@ -2019,6 +2019,7 @@ Acknowledgments
     $\Theta(n)$ steps and
     $\Theta(n)$ space.  Just as with factorial, we
     can readily formulate an equivalent linear iteration:
+    
     <div class='snippet' id='javascript_18_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0BYBQuAzAVwDsBjAFwEsB7E0AUwA8AHCgCgCMAaEgSlABvXKFGgATgwpFx9ZmwD6VCg3Fde3FHwDcuAL6FSlWnNYUlKtTzI1Sl7i3E0AJkUoDhYiVJn0bd1VAAXhDQAAYRLyjQAH5QRxc3CkjosQAuRjMLVXVQfxJLUABaVG5QTlAAKninV3ddA1x5DgBmMuwdIA')">function expt(b,n) {
     return expt_iter(b,n,1);
 }
@@ -2072,7 +2073,7 @@ function expt_iter(b,counter,product) {
       
       function:
     
-
+    
     <div class='snippet' id='javascript_18_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0BYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUFQYB9TgDdOJbiUEjxEzlJmh6AUlAZQAXk+gADKo2FSSlp6AlYGCiNeAAcKbgAjABpHK1FxSWl6ek93H1SbfIB+VDz88QAuPUMTMwt+EtLQIuY2Lm5Q8MiY+KT6MAx+OoabCriFUHaIzmjYxMdQAFpUfj9NMMnp7gBmJOxloA')">function fast_expt(b, n) {
     return n === 0
            ? 1
@@ -2096,6 +2097,7 @@ function expt_iter(b,counter,product) {
       
     
     by
+    
     <div class='snippet' id='javascript_18_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0BYBQuAzAVwDsBjAFwEsB7E0KgZwH0BTAN1ZIAoSBKUAG9coUaABOrCkXH16AUlAZQAXjWgADAG5cAX3xM2nHgHY+WoA')">function is_even(n) {
     return n % 2 === 0;
 }
