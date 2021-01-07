@@ -2551,7 +2551,9 @@ function compile_function_call(target, linkage) {
     <kbd>val</kbd> and returns by executing the instruction
     
       
-      <kbd>go_to(reg("continue"))</kbd>.
+      <kbd>go_to(reg("continue"))</kbd> after 
+      restoring the stack using the marker and restoring the 
+      <kbd>continue</kbd> register.
       
     
     Thus, we might expect the code for a
@@ -2567,6 +2569,8 @@ function compile_function_call(target, linkage) {
     
     with a given target and linkage to look like this if the linkage is a label
     <kbd class='snippet'>$$  assign("continue", label("fun_return")),
+  save("continue"),
+  save_marker(),
   assign("val", list(op("compiled_function_entry"), reg("fun"))),
   go_to(reg("val")),
 "fun_return",
@@ -2582,6 +2586,8 @@ function compile_function_call(target, linkage) {
     
     <kbd class='snippet'>$$  save("continue"),
   assign("continue", label("fun_return")),
+  save("continue"),
+  save_marker(),
   assign("val", list(op("compiled_function_entry"), reg("fun"))),
   go_to(reg("val")),
 "fun_return",
@@ -2595,10 +2601,13 @@ function compile_function_call(target, linkage) {
         of, finally, if the linkage is <kbd>"return_undefined"</kbd>.
         <kbd class='snippet'>$$  save("continue"),
   assign("continue", label("return_undefined")),
+  save("continue"),
+  save_marker(),
   assign("val", list(op("compiled_function_entry"), reg("fun"))),
   go_to(reg("val")),
 "return_undefined",
   assign($\ensuremath{\text{\textrm{\sl target}}}$, constant(undefined)),   // included even if target is val
+  restore_marker(),
   restore("continue"),
   go_to(reg("continue")),         // linkage code</kbd>
 
@@ -2666,6 +2675,18 @@ function compile_function_call(target, linkage) {
       <kbd>after_call</kbd>
     
     label.)
+    
+      
+        As we did for the explicit-control evaluator, we save 
+        <kbd>continue</kbd> before using 
+        <kbd>save_marker()</kbd> when calling
+        a function. This marker is removed as the function is returning 
+        as part of  evaluating <kbd>return</kbd> statements. 
+        To remove the marker also when there is no explicit return, we place an additional 
+        <kbd>restore_marker()</kbd> in 
+        <kbd>return_undefined</kbd>. 
+
+    
   </p></div>
 
   <div class='permalink'>
@@ -2741,6 +2762,8 @@ go_to(reg("val")),</kbd>
     
     above.)
     <kbd class='snippet'>assign("continue", label($\ensuremath{\text{\textrm{\sl linkage}}}$)),
+save("continue"),
+save_marker(),
 assign("val", list(op("compiled_function_entry"), reg("fun"))),
 go_to(reg("val")),</kbd>
 
@@ -2802,10 +2825,10 @@ go_to(reg("val")),</pre></div></div>
       
       function
     
-    as the final step in a
+    as the 
     
       
-      function
+      return expression in a function
     
     body does a direct transfer, without saving any information on the stack.
   </p></div>
@@ -2851,24 +2874,10 @@ go_to(reg("val")),</pre></div></div>
       function
     
     body can change the registers in arbitrary ways.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
-    Also note that the code sequence for the case with target
-    <kbd>val</kbd> and linkage
     
       
-      
-	<kbd>"return"</kbd>
-      
     
-    is declared to need
-    <kbd>continue</kbd>:  Even though
-    <kbd>continue</kbd> is not explicitly used in the
-    two-instruction sequence, we must be sure that
-    <kbd>continue</kbd> will have the correct
-    value when we enter the compiled
-    
-      
-      function.
-    
+
      
     <div class='snippet' id='javascript_120_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_fun_appl(target, linkage) {
@@ -2879,8 +2888,9 @@ function compile_fun_appl(target, linkage) {
             all_regs,
             list(
                 assign("continue", label(return_undefined)),
-                assign("val", list(op("compiled_function_entry"), 
-                                   reg("fun"))),
+                save("continue"),
+                save_marker(),
+                assign("val", list(op("compiled_function_entry"), reg("fun"))),
                 go_to(reg("val")),
                 return_undefined,
                 assign(target, constant(undefined)),
@@ -2891,8 +2901,9 @@ function compile_fun_appl(target, linkage) {
             all_regs,
             list(
                 assign("continue", label(linkage)),
-                assign("val", list(op("compiled_function_entry"), 
-                                   reg("fun"))),
+                save("continue"),
+                save_marker(),
+                assign("val", list(op("compiled_function_entry"), reg("fun"))),
                 go_to(reg("val"))));
     } else if (target !== "val" && linkage !== "return") {
         const fun_return = make_label("fun_return");
@@ -2901,19 +2912,21 @@ function compile_fun_appl(target, linkage) {
             all_regs,
             list(
                 assign("continue", label(fun_return)),
-                assign("val", list(op("compiled_function_entry"), 
-                                   reg("fun"))),
+                save("continue"),
+                save_marker(),
+                assign("val", list(op("compiled_function_entry"), reg("fun"))),
                 go_to(reg("val")),
                 fun_return,
                 assign(target, reg("val")),
                 go_to(label(linkage))));
     } else if (target === "val" && linkage === "return") {
         return make_instruction_sequence(
-            list("fun", "continue"),
+            list("fun"),
             all_regs,
             list(
-                assign("val", list(op("compiled_function_entry"), 
-                                   reg("fun"))),
+                save("continue"),
+                save_marker(),
+                assign("val", list(op("compiled_function_entry"), reg("fun"))),
                 go_to(reg("val"))));
     } else if (target !== "val" && linkage === "return") {
         error(target, "return linkage, target not val -- compile");

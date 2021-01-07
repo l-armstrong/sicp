@@ -2007,14 +2007,12 @@ Acknowledgments
     
     by calling <kbd>compile</kbd> (the <kbd>\</kbd> characters below are needed in JavaScript to allow a string literal to span multiple lines<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>):
     <div class='snippet' id='javascript_122_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-compile(parse("                   \
-function factorial(n) {           \
-    return n === 1                \
-           ? 1                    \
-           : n * factorial(n - 1);\
-}                              "),
-       "val",
-       "next");</pre></div></div>
+compile(parse("                                \
+    function factorial(n) {                        \
+        return n === 1 ? 1 : n * factorial(n - 1); \
+    }"),
+    "val",
+    "next");</pre></div></div>
 
     We have specified that the value of the
     
@@ -2405,6 +2403,8 @@ return n === 1
   branch(label("primitive_branch17")),
 "compiled_branch16",
   assign("continue", label("after_call15")),
+  save("continue"),
+  save_marker(),
   assign("val", list(op("compiled_function_entry"), reg("fun"))),
   go_to(reg("val")),
 "primitive_branch17",
@@ -2426,6 +2426,8 @@ return n === 1
     to
     <div class='snippet' id='javascript_122_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 assign("val", constant(1)),
+restore_marker(),
+restore("continue"),
 go_to(reg("continue"))</pre></div></div>
 
     The code for the false branch is another a
@@ -2579,6 +2581,8 @@ function factorial(n) {
     list(op("extend_environment"), constant(list("n")),
          reg("argl"), reg("env"))),
 // begin actual procedure body
+  restore_marker(),
+  restore("continue"),
   save("continue"),
   save("env"),
 
@@ -2594,6 +2598,8 @@ function factorial(n) {
   branch(label("primitive_branch17")),
 "compiled_branch16",
   assign("continue", label("after_call15")),
+  save("continue"),
+  save_marker(),
   assign(val, list(op("compiled_function_entry"), 
                    reg("fun"))),
   go_to(reg("val")),
@@ -2604,15 +2610,15 @@ function factorial(n) {
 "after_call15",            // val now contains result of n === 1
   restore("env"),
   restore("continue"),
-  test(list(op("is_truthy"), reg("val"))),
-  branch(label("true_branch5")),
+  test(list(op("is_falsy"), reg("val"))),
+  branch(label("false_branch4")),
+"true_branch5",            // return 1
+  assign("val", constant(1)),
+  go_to(reg("continue")),
 "false_branch4",
 // compute & return factorial(n - 1) * n
   assign("fun", list(op("lookup_symbol_value"),
-                     constant("*"), reg("env"))),
-"true_branch5",            // return 1
-  assign("val", constant(1)),
-  go_to(reg("continue")),</pre></div></div>
+                     constant("*"), reg("env"))),</pre></div></div>
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./5.5.5.html#fig_5.17">Figure 5.17 </a></b>
     Compilation of the declaration of the <kbd>factorial</kbd>
@@ -2651,6 +2657,8 @@ function factorial(n) {
   branch(label("primitive_branch8")),
 "compiled_branch7"
   assign("continue", label("after_call6")),
+  save("continue"),
+  save_marker(),
   assign(val, list(op("compiled_function_entry"), reg("fun"))),
   go_to(reg("val")),
 "primitive_branch8",
@@ -2665,6 +2673,8 @@ function factorial(n) {
   branch(label("primitive_branch11")),
 "compiled_branch10",
   assign("continue", label("after_call9")),
+  save("continue"),
+  save_marker(),
   assign(val, list(op("compiled_function_entry"), reg("fun"))),
   go_to(reg("val")),
 "primitive_branch11",
@@ -2749,6 +2759,8 @@ function factorial(n) {
   branch(label("primitive_branch19")),
 "compiled_branch18",
   assign("continue", label("after_call17")),
+  save("continue"),
+  save_marker(),
   assign(val, list(op("compiled_function_entry"), 
                    reg("fun"))),
   go_to(reg("val")),
@@ -2762,6 +2774,8 @@ function factorial(n) {
   branch(label("primitive_branch22")),
 "compiled_branch21",
   assign("continue", label("after_call20")),
+  save("continue"),
+  save_marker(),
   assign(val, list(op("compiled_function_entry"), 
                    reg("fun"))),
   go_to(reg("val")),</kbd>

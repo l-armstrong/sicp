@@ -2209,8 +2209,10 @@ assign("val", constant(5));</pre></div></div>
     
     should produce the instructions
     <div class='snippet' id='javascript_118_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-assign("val", constant(5));
-go_to(reg("continue")); // note the absence of restore_marker</pre></div></div>
+assign("val", constant(5)),
+restore_marker(),
+restore("continue"),
+go_to(reg("continue")),</pre></div></div>
 
     In the first case, execution will continue with the next instruction
     in the sequence. In the second case, we will return from a
@@ -2349,7 +2351,7 @@ $seq_2$</kbd>
     individual code  generators.
     In fact no <kbd>save</kbd> or
     <kbd>restore</kbd> instructions are explicitly
-    produced by the code generators.
+    produced by the code generators, except in relation to calling and returning from functions.
   </p></div>
 
   <div class='permalink'>
@@ -2474,11 +2476,6 @@ function empty_instruction_sequence() {
       
         
         
-        As the compiler emits a specific sequence of instructions
-        for each return statement and is able to reason about what
-        register values are saved on the stack at that point in
-        the program, there is no need for any marker instructions
-        in the compiled code.
       
     
   </p></div>
