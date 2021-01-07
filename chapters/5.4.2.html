@@ -2103,11 +2103,12 @@ function sqrt_iter(guess, x) {
       
         <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
-          If we did not think to take advantage of the fact that it was unnecessary to
-          save information in this case, we might have implemented 
-          <kbd>ev_return</kbd>
-          in a more intuitive way, by first evaluating the return expression before popping the stack (down to the marker):
-	  
+          If we did not think to take advantage of the fact that it was
+          unnecessary to save information in this case, we might have
+          implemented <kbd>ev_return</kbd> in a more
+          intuitive way, by first evaluating the return expression before
+          popping the stack (down to the marker):
+	        
           <div class='snippet' id='javascript_114_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_return",
       assign("comp", list(op("return_expression"), reg("comp"))),
