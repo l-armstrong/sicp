@@ -2133,10 +2133,10 @@ list("sequence",
     
     Literal expression
   </h2></div>
-  
-  
   <div class='permalink'>
 <a name='p4' class='permalink'></a><p>
+    
+    
 	
 	Literal expressions are parsed into tagged lists with
 	tag <kbd>"literal"</kbd> and
@@ -2210,10 +2210,10 @@ null</pre></div></div>
     
     Names
   </h2></div>
-  
-  
   <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
+    
+    
     The tagged-list representation for names
     includes the tag <kbd>"name"</kbd> as first
     element and the string representing the name as second element.
@@ -2251,10 +2251,10 @@ null</pre></div></div>
     
     Expression statements
   </h2></div>
-  
-  
   <div class='permalink'>
 <a name='p6' class='permalink'></a><p>
+    
+    
     We do not need to distinguish between expressions and expression statements.
     Consequently, 
     <kbd>parse</kbd> can ignore the difference
@@ -2274,11 +2274,11 @@ null</pre></div></div>
     
     Function applications
   </h2></div>
-  
-  
 
   <div class='permalink'>
 <a name='p7' class='permalink'></a><p>
+    
+    
 	Function applications are parsed as follows:
 	
 	  \begin{eqnarray*}
@@ -2313,12 +2313,13 @@ null</pre></div></div>
     
     Conditionals
   </h2></div>
-  
-  
-  
-  
+
   <div class='permalink'>
 <a name='p8' class='permalink'></a><p>
+    
+    
+    
+    
     Conditional expressions are parsed as follows:
     <blockquote class='blockquote'>
 	
@@ -2367,11 +2368,11 @@ $\ll \textbf{if}\ \texttt{(} \textit{predicate} \texttt{)}\ \textit{consequent-b
     
     Lambda expressions
   </h2></div>
-  
-  
 
   <div class='permalink'>
 <a name='p9' class='permalink'></a><p>
+    
+    
     A lambda expression whose body is an expression is parsed as if the
     body consisted of a block containing a single return statement whose
     return expression is the body of the lambda expression.
@@ -2429,14 +2430,14 @@ $\ll \texttt{(}\textit{name}_1\texttt{, }\ldots\texttt{, } \textit{name}_n \text
     
     Sequences
   </h2></div>
-  
-  
 
   <div class='permalink'>
 <a name='p10' class='permalink'></a><p>
-	    A sequence statement packages a sequence of statements into a
-	    single statement. A sequence of statements is parsed as follows:
-	
+    
+    
+    A sequence statement packages a sequence of statements into a
+    single statement. A sequence of statements is parsed as follows:
+    
 	  \begin{eqnarray*}
 &	  \ll \textit{statement}_1 \cdots \textit{statement}_n   \gg \\
 &	  = \\
@@ -2444,24 +2445,24 @@ $\ll \texttt{(}\textit{name}_1\texttt{, }\ldots\texttt{, } \textit{name}_n \text
 \ll \textit{statement}_1 \gg \texttt{, } \ldots \texttt{, }
 \ll \textit{statement}_n \gg \texttt{))}
 	  \end{eqnarray*}
-	
-	
-	The syntax predicate is <kbd>is_sequence</kbd> and
-	the selector is <kbd>sequence_statements</kbd>.
-	We retrieve the first of a list of statements using
-	<kbd>first_statement</kbd> and
-	the remaining statements using
-	<kbd>rest_statements</kbd>, and test
-	whether the list is empty or contains only one element using
-	the predicates 
-	<kbd>is_empty_sequence</kbd> and 
-	<kbd>is_last_statement</kbd>,
-	respectively.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
-	    
-	    
-	    
-	    
-	    <div class='snippet' id='javascript_78_15_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajoGFkZuAEciOTJuEUYKCVddfQMTMwsUiJ5+IXy8gsVQACI0zOzuJs1ouITKWnpWrPJ1fLYKbgkXRnrC7R1DEuNTc3pvX3YqARnXLtjCUj7kgjt85lHxyfltxjnFspWvbh9r3Z6DpPoTU-OJqZfiwz3CobLb5Qo3br7RL9SoTKQUACeZwyQxy-z0gOWFSsJCIAlBDQhe16H0qAjY33YFxc6LuWMsLFx+JEIJer3w4hI+VAEiRg3aoCCoBsRjSIiaGEiyiMWSlKAArJFOtFeEwpOSESIrPzhiJeci2sNNLtOdz9WxDlzBaAdTkzlTfvJpvrbdxdqrGOq2JqrHDEQbUblzZabu61RqtSxyZSxo7RMGPqGVeHvSJjqKKPbY5d40iLYnjcnPRGvpmfjnnXmQ4WgA')">function first_statement(stmts) {
+    
+    
+    The syntax predicate is <kbd>is_sequence</kbd> and
+    the selector is <kbd>sequence_statements</kbd>.
+    We retrieve the first of a list of statements using
+    <kbd>first_statement</kbd> and
+    the remaining statements using
+    <kbd>rest_statements</kbd>, and test
+    whether the list is empty or contains only one element using
+    the predicates 
+    <kbd>is_empty_sequence</kbd> and 
+    <kbd>is_last_statement</kbd>,
+    respectively.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
+  
+  
+  
+  
+  <div class='snippet' id='javascript_78_15_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajoGFkZuAEciOTJuEUYKCVddfQMTMwsUiJ5+IXy8gsVQACI0zOzuJs1ouITKWnpWrPJ1fLYKbgkXRnrC7R1DEuNTc3pvX3YqARnXLtjCUj7kgjt85lHxyfltxjnFspWvbh9r3Z6DpPoTU-OJqZfiwz3CobLb5Qo3br7RL9SoTKQUACeZwyQxy-z0gOWFSsJCIAlBDQhe16H0qAjY33YFxc6LuWMsLFx+JEIJer3w4hI+VAEiRg3aoCCoBsRjSIiaGEiyiMWSlKAArJFOtFeEwpOSESIrPzhiJeci2sNNLtOdz9WxDlzBaAdTkzlTfvJpvrbdxdqrGOq2JqrHDEQbUblzZabu61RqtSxyZSxo7RMGPqGVeHvSJjqKKPbY5d40iLYnjcnPRGvpmfjnnXmQ4WgA')">function first_statement(stmts) {
    return head(stmts);
 }
 function rest_statements(stmts) {
@@ -2483,13 +2484,13 @@ function is_last_statement(stmts) {
     
     Blocks
   </h2></div>
-  
-  
 
-<div class='permalink'>
+  <div class='permalink'>
 <a name='p11' class='permalink'></a><p>
+    
+    
     Blocks are parsed as follows:    
-	
+    
 	  \begin{eqnarray*}
 	  \ll \texttt{\{}\ \textit{statements}\ \texttt{\}} \gg
 	  & = &
@@ -2512,11 +2513,11 @@ function is_last_statement(stmts) {
     
     Return statements
   </h2></div>
-  
-  
 
   <div class='permalink'>
 <a name='p12' class='permalink'></a><p>
+    
+    
     Return statements are parsed as follows:
     
     
@@ -2542,11 +2543,11 @@ function is_last_statement(stmts) {
     
     Assignments
   </h2></div>
-  
-  
 
   <div class='permalink'>
 <a name='p13' class='permalink'></a><p>
+    
+    
     Assignments are parsed as follows:
 	
 	  \begin{eqnarray*}
@@ -2576,13 +2577,13 @@ function is_last_statement(stmts) {
     
     Constant, variable, and function declarations
   </h2></div>
-  
-  
-  
-  
 
     <div class='permalink'>
 <a name='p14' class='permalink'></a><p>
+      
+      
+      
+      
       Constant and variable declarations are parsed as follows:
       
       
@@ -2620,8 +2621,8 @@ function declaration_value_expression(component) {
     </p></div>
     <div class='permalink'>
 <a name='p15' class='permalink'></a><p>
-  
-  
+      
+      
       Function declarations are parsed as follows:
 	<blockquote class='blockquote'>
 	  
@@ -2907,6 +2908,8 @@ $\ll \textbf{function}\ \textit{name} \texttt{(}\textit{name}_1\texttt{, }\ldots
     
       
       
+	
+	
 	
 	
 	
@@ -3412,14 +3415,14 @@ display(1);
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1'>[1] </a>
     <FOOTNOTE>
     These
-	    selectors for a list of statements are not intended
-	    as a data abstraction.
-	    They are introduced as mnemonic names for the
-	    basic list operations in order to make it easier to understand the
-	    explicit-control evaluator in
-	    section&nbsp;<REF NAME="sec:eceval"><a class="superscript" id="4.1.2-sec-link-5.4" href="./5.4.html">5.4</a></REF>.
-	    
-            
+    selectors for a list of statements are not intended
+    as a data abstraction.
+    They are introduced as mnemonic names for the
+    basic list operations in order to make it easier to understand the
+    explicit-control evaluator in
+    section&nbsp;<REF NAME="sec:eceval"><a class="superscript" id="4.1.2-sec-link-5.4" href="./5.4.html">5.4</a></REF>.
+    
+  
     </FOOTNOTE></div>
 
     
