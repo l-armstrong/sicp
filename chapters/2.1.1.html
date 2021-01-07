@@ -2385,6 +2385,7 @@ const one_third = make_rat(1, 3);</pre></div></div>
     <kbd>gcd</kbd> to reduce the numerator and the
     denominator to lowest terms before constructing the pair:
     
+    
     <div class='snippet' id='javascript_28_15_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEZMChsDMBXAOwGMAXASwHsjQiCBbAUwCcAKADwEpQBvbUINAsmZAi1oALJgEMAJpy4BubAF98xctVpymRKg0V8BQkWImgyMigBtFK9RtKUaoAOYkFMgDSgARjz8QsKi4rR+oAC80aAADKAA-KAyoABc7p5sfr4pAKT+ymq4hM7aoAwyANZMAPosMmRsRL5ygSaCJDQAzmTuURkKzaCtKsFmYaAADtbstGBuLaDzhY4V1XUNbAAsvgBsykA')">function make_rat(n, d) {
     const g = gcd(n, d);
     return pair(n / g, d / g);
