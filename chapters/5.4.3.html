@@ -2040,7 +2040,7 @@ Acknowledgments
     
       
       
-	conditional.
+	      conditional.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
       
     
      
@@ -2090,15 +2090,15 @@ Acknowledgments
       restore("continue"),
       restore("env"),
       restore("comp"),
-      test(list(op("is_truthy"), reg("val"))),
-      branch(label("ev_conditional_consequent")),
-      
-"ev_conditional_alternative",
-      assign("comp", list(op("conditional_alternative"), reg("comp"))),
-      go_to(label("eval_dispatch")),
+      test(list(op("is_falsy"), reg("val"))),
+      branch(label("ev_conditional_alternative")),
       
 "ev_conditional_consequent",
       assign("comp", list(op("conditional_consequent"), reg("comp"))),
+      go_to(label("eval_dispatch")),
+      
+"ev_conditional_alternative",
+      assign("comp", list(op("conditional_alternative"), reg("comp"))),
       go_to(label("eval_dispatch")),</pre></div></div>
   </p></div>
 
@@ -2239,7 +2239,7 @@ Acknowledgments
 	<kbd>while_loop</kbd> in front of user programs.
 	You may <QUOTE>cheat</QUOTE> and assume that the syntax transformer
 	<kbd>while_to_application</kbd> is available
-	as a machine operation.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a> Refer to
+	as a machine operation.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a> Refer to
 	exercise&nbsp;<REF NAME="ex:while_loop"><a class="superscript" id="5.4.3-ex-link-4.7" href="./4.1.2.html#ex_4.7">4.7</a></REF> to discuss whether
 	this approach works if return, break and continue statements are allowed
 	inside the while loop. If not,
@@ -2333,6 +2333,21 @@ Acknowledgments
 
     <div class='footnote'>
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1'>[1] </a>
+    <FOOTNOTE>
+    In this chapter, we will use the function
+        <kbd>is_falsy</kbd> to test the value of
+        the predicate. This allows us to write the consequent and the
+        alternate branches in the same order as they appear in a conditional,
+        and simply fall through to the consequent branch when the predicate
+        holds. The function can be defined as the negation of the
+        <kbd>is_truthy</kbd> function used to
+        test predicates of conditionals in section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="5.4.3-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>.
+      
+    </FOOTNOTE></div>
+
+    
+    <div class='footnote'>
+      <a class='footnote-number' id='footnote-2' href='#footnote-link-2'>[2] </a>
     <FOOTNOTE>
     This isn't really cheating.  In an
 	actual implementation built from scratch, we would use our explicit-control
