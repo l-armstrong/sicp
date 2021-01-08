@@ -2066,6 +2066,7 @@ function query_driver_loop() {
 	  <kbd>assertion_body</kbd>. 
 	  The function <kbd>add_rule_or_assertion</kbd>
 	  is declared in section&nbsp;<REF NAME="sec:query-db"><a class="superscript" id="4.4.4-sec-link-4.4.4.5" href="./4.4.4.html#sec4.4.4.5">4.4.4.5</a></REF>.
+	  
 	  The frames resulting from query evaluation are used to instantiate
 	  the syntax representation, and the result is unparsed into a string for
 	  display. The functions
@@ -3933,11 +3934,12 @@ list("application",
 	  as exercise&nbsp;<REF NAME="ex:parse"><a class="superscript" id="4.4.4-ex-link-4.2" href="./4.1.2.html#ex_4.2">4.2</a></REF>. A literal is transformed by
 	  <kbd>stringify</kbd>ing its value, and
 	  a name is transformed into its symbol.
+	  
 	  An application is formatted by unparsing the function expression,
 	  which we can assume to be a name here, followed by the comma-separated 
 	  argument expression strings enclosed in parentheses.
 	  Binary operator combinations are formatted using infix notation.
-	   
+	  
 	  <kbd class='snippet'>function unparse(exp) {
     return is_literal(exp)
            ? stringify(literal_value(exp))
