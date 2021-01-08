@@ -2719,18 +2719,18 @@ $\ll \textbf{function}\ \textit{name} \texttt{(}\textit{name}_1\texttt{, }\ldots
 	      \begin{eqnarray*}
 	      & \ll \textit{unary-operator}\ \ \textit{expression} \gg \\
 	      & = \\
-	      & \texttt{list("unary_op_comb", "}\textit{unary-operator}\texttt{"},\ 
+	      & \texttt{list("unary_operator_combination", "}\textit{unary-operator}\texttt{"},\ 
               \texttt{list(}\ll \textit{expression} \gg \texttt{))}
 	      \end{eqnarray*}
 	    
     where $\textit{unary-operator}$ is 
     <kbd>!</kbd> (for logical negation) or
-    <kbd>-unary</kbd> (for unary minus), and
+    <kbd>-unary</kbd> (for numeric negation), and
 	    
 	      \begin{eqnarray*}
 	      & \ll \textit{expression}_1\ \textit{binary-operator}\ \ \textit{expression}_2 \gg \\
 	      & = \\
-	      & \texttt{list("binary_op_comb", "}\textit{binary-operator}\texttt{"},\ 
+	      & \texttt{list("binary_operator_combination", "}\textit{binary-operator}\texttt{"},\ 
               \texttt{list(}\ll \textit{expression}_1\texttt{,}\ \textit{expression}_2 \gg \texttt{))}
 	      \end{eqnarray*}
 	    
