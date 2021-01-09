@@ -2167,12 +2167,12 @@ function divides(a, b) {
     $a$ is chosen using the
     
       
-      function
-    
-    <kbd>random</kbd>, which we assume 
-    
       
-      is included as a primitive in JavaScript.
+	primitive function
+	<kbd>math_random</kbd>, 
+      
+    
+    
       
     
     
@@ -2182,12 +2182,11 @@ function divides(a, b) {
 	
 	
 	
-        The primitive function <kbd>math_random</kbd>
-	returns a nonnegative number less than 1.  Hence, to obtain
+	which returns a nonnegative number less than 1.  Hence, to obtain
 	a random number between 1 and $n-1$, we multiply
-	the return value of <kbd>math_random</kbd> with
+	the return value of <kbd>math_random</kbd> by
 	$n-1$, round down the result with the
-	primitive function <kbd>math_floor</kbd>
+	primitive function <kbd>math_floor</kbd>,
 	and add 1:
       
     
