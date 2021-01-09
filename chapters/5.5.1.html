@@ -2022,7 +2022,7 @@ Acknowledgments
       function
     
     <kbd>compile</kbd> is the top-level dispatch in the
-    compiler. It corresponds to the <kbd>eval</kbd>
+    compiler. It corresponds to the <kbd>evaluate</kbd>
     
       
       function
@@ -2055,7 +2055,7 @@ Acknowledgments
      performs a case analysis on the
     syntactic type of the expression to be compiled.  For
     each type of expression, it dispatches to a
-    specialized<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+    specialized
     
     <EM>code generator</EM>:
      
@@ -2210,8 +2210,6 @@ assign("val", constant(5));</pre></div></div>
     should produce the instructions
     <div class='snippet' id='javascript_118_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 assign("val", constant(5)),
-restore_marker(),
-restore("continue"),
 go_to(reg("continue")),</pre></div></div>
 
     In the first case, execution will continue with the next instruction
@@ -2424,14 +2422,15 @@ function make_instruction_sequence(needs, modifies, instructions) {
 
   <div class='permalink'>
 <a name='p11' class='permalink'></a><p>
-    For example, the two-instruction sequence that looks up the value of
-    the
+    For example, the two-instruction
+    sequence that looks up the value of the
     
       
       name
     
     <kbd>x</kbd> in the current environment,
-    assigns the result to <kbd>val</kbd>, and then returns,
+    assigns the result to <kbd>val</kbd>,
+    and then proceeds with the continuation,
     requires registers <kbd>env</kbd> and
     <kbd>continue</kbd> to have been initialized, and
     modifies register <kbd>val</kbd>.
@@ -2440,8 +2439,7 @@ function make_instruction_sequence(needs, modifies, instructions) {
 make_instruction_sequence(
     list("env", "continue"),
     list("val"),
-    list(assign("val", list(op("lookup_symbol_value"),
-                            constant("x"), reg("env"))),
+    list(assign("val", list(op("lookup_symbol_value"), constant(symbol_of_name("x")), reg("env")))
          go_to(reg("continue"))));</pre></div></div>
   </p></div>
 
@@ -2644,16 +2642,6 @@ f(g("x"), "y")</pre></div></div>
       JavaScript functions
     
     in our register machine simulation.)
-    </FOOTNOTE></div>
-
-    
-    <div class='footnote'>
-      <a class='footnote-number' id='footnote-2' href='#footnote-link-2'>[2] </a>
-    <FOOTNOTE>
-    Just like in
-    the register machine evaluator, operator combinations are
-    turned into applications and function declarations are turned
-    into constant declaration with a lambda expression.
     </FOOTNOTE></div>
 
     

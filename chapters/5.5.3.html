@@ -2530,8 +2530,7 @@ function compile_function_call(target, linkage) {
       
       function
     
-    application is the most subtle part of the compiler, even though the
-    instruction sequences it generates are very short.  A compiled
+    application is the most subtle part of the compiler.  A compiled
     
       
       function
@@ -2584,8 +2583,7 @@ function compile_function_call(target, linkage) {
 	<kbd>"return"</kbd>
       
     
-    <kbd class='snippet'>$$  save("continue"),
-  assign("continue", label("fun_return")),
+    <kbd class='snippet'>$$  assign("continue", label("fun_return")),
   save("continue"),
   save_marker(),
   assign("val", list(op("compiled_function_entry"), reg("fun"))),
@@ -2599,8 +2597,7 @@ function compile_function_call(target, linkage) {
     
       
         of, finally, if the linkage is <kbd>"return_undefined"</kbd>.
-        <kbd class='snippet'>$$  save("continue"),
-  assign("continue", label("return_undefined")),
+        <kbd class='snippet'>$$  assign("continue", label("return_undefined")),
   save("continue"),
   save_marker(),
   assign("val", list(op("compiled_function_entry"), reg("fun"))),
@@ -2682,7 +2679,7 @@ function compile_function_call(target, linkage) {
         <kbd>save_marker()</kbd> when calling
         a function. This marker is removed as the function is returning 
         as part of  evaluating <kbd>return</kbd> statements. 
-        To remove the marker also when there is no explicit return, we place an additional 
+        To remove the marker also when there is no explicit <kbd>return</kbd>, we place an additional 
         <kbd>restore_marker()</kbd> in 
         <kbd>return_undefined</kbd>. 
 
@@ -2713,14 +2710,15 @@ function compile_function_call(target, linkage) {
       function
     
     result is put directly into
-    the target register and there is no need to return to a special
+    the target register and there is no need to jump to a special
     location that copies it. Instead, unless linkage is <kbd>"return_undefined"</kbd>, we simplify the code by
     setting up <kbd>continue</kbd> so that the
     
       
       function
     
-    will <QUOTE>return</QUOTE>
+    will 
+    jump
     directly to the place specified by the caller's linkage:
     <kbd class='snippet'>$\langle \text{\it set up continue for linkage}\rangle$
 assign("val", list(op("compiled_function_entry"), reg("fun"))),
@@ -2732,7 +2730,7 @@ go_to(reg("val")),</kbd>
       
       function
     
-    will return to
+    will continue at
     that label.  (That is, the
     
       
@@ -2761,6 +2759,7 @@ go_to(reg("val")),</kbd>
       
     
     above.)
+
     <kbd class='snippet'>assign("continue", label($\ensuremath{\text{\textrm{\sl linkage}}}$)),
 save("continue"),
 save_marker(),
@@ -2776,7 +2775,8 @@ go_to(reg("val")),</kbd>
     
     we don't need
     to set up <kbd>continue</kbd>
-    at all: It already holds the desired location.  (That is, the
+    at all: It already holds the desired location.  
+(That is, the
     
       
       
@@ -2803,6 +2803,7 @@ go_to(reg("val")),</kbd>
       
     
     would have gone.)
+    In this case, it suffices to save the register and the marker.
     <div class='snippet' id='javascript_120_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 assign("val", list(op("compiled_function_entry"), reg("fun"))),
 go_to(reg("val")),</pre></div></div>
@@ -2840,9 +2841,10 @@ go_to(reg("val")),</pre></div></div>
       
         This is not the case for 
         function calls with linkage <kbd>"return_undefined"</kbd>.
-        In this case we must save <kbd>continue</kbd> and
-        return after the call to store <kbd>undefined</kbd> 
-        in target. These extra saves accumulate during a nest of procedure calls which
+        In this case, a function call always jumps to a continuation that 
+        stores <kbd>undefined</kbd> 
+        in target, before moving on to the next continuation. The extra saves needed to remember 
+        these continuations  accumulate during a nest of procedure calls and 
         destroys tail recursion.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
   </p></div>
 

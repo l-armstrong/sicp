@@ -2108,9 +2108,9 @@ Acknowledgments
     
       <div class='permalink'>
 <a name='p7' class='permalink'></a><p>
-        For performance, JavaScript interpreters typically operate
+        For efficiency, JavaScript interpreters typically operate
         on an intermediate representation of the program called
-        bytecode, rather than directly on the sources. Bytecode
+        <EM>bytecode</EM>, rather than directly on the sources. Bytecode
         instructions are compiled to machine instructions while
         the program is running. To ensure that the additional time
         spent compiling leads to a net performance gain, only
@@ -2285,7 +2285,7 @@ Acknowledgments
     
       
       
-	function expression of the application
+	function expression of the application,
       
     
     it prepares
@@ -2338,7 +2338,7 @@ Acknowledgments
     
       using the instruction
     <div class='snippet' id='javascript_117_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-assign("fun", op("lookup_symbol_value"), constant("f"), reg("env"));</pre></div></div>
+assign("fun", op("lookup_symbol_value"), constant(symbol_of_name("f"), reg("env")))</pre></div></div>
     This code not only avoids the unnecessary saves and
     restores but also assigns the value of the lookup directly to
     
