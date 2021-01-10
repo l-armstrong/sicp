@@ -2464,19 +2464,19 @@ Acknowledgments
 	Evaluating the statement
 	$\textit{name}$
 	<kbd>=</kbd>
-	$\textit{value}$
-	<kbd>;</kbd>	
+	$\textit{value}$<kbd>;</kbd>	
 	in some environment
 	locates the binding of the name in the environment.
 	That is, one finds the first frame in the environment that contains a
 	binding for the name.
-	If the binding is a variable binding—indicated in the frame with
-	a colon with no equal sign after the name—that binding is changed to reflect the new
+	If the binding is a variable binding—indicated in the frame by
+	just <kbd>:</kbd>
+	after the name—that binding is changed to reflect the new
 	value of the variable. 
 	Otherwise, if the binding in the frame is a constant
 	binding—indicated
-	in the frame with an equal sign after the colon that follows the
-	name—the assignment signals an
+	in the frame by <kbd>:=</kbd>
+	after the name—the assignment signals an
 	<kbd>"assignment to constant"</kbd> error.
 	If the name is unbound in the environment, then
 	the assignment signals a
