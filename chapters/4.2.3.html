@@ -2057,7 +2057,10 @@ Acknowledgments
     
     
     
-    <div class='snippet' id='javascript_87_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&variant=lazy&prgrm=PTAEGUEkGEAVQFLlAFgHQCY0GYBQuAzAVwDsBjAFwEsB7E0ABwEMqAnACgA8AaUATwCUoAN4BIXKEmhWAUwpFW9ALagAvAD5QSrr0EBuXAF9CpSrXoALGUwAm7AF5DhU0BKmz5i0Pfah2DXgBHIQ1GUAEDY2JyajpQChYAGwcnN0kPBXofPwDQYLVNQPDI-CtbdgSqZOY2dgBGXhqObF4MAXaIoA')">function pair(x, y) {	
+    
+    
+    <div class='snippet' id='javascript_87_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+function pair(x, y) {	
     return m => m(x, y);
 }
 function head(z) {    
@@ -2065,8 +2068,7 @@ function head(z) {
 }
 function tail(z) {
     return z( (p, q) => q );
-}
-</pre></div></div>
+}</pre></div></div>
   </p></div>
 
   <div class='permalink'>
@@ -2081,7 +2083,11 @@ function tail(z) {
      
     
     
-    <div class='snippet' id='javascript_87_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&variant=lazy&prgrm=PTAEGUEkGEAVQFLlAFgHQCY0GYBQuAzAVwDsBjAFwEsB7E0ABwEMqAnACgA8AaUATwCUoAN4BIXKEmhWAUwpFW9ALagAvAD5QSrr0EBuXAF9CpSrXoALGUwAm7AF5DhU0BKmz5i0Pfah2DXgBHIQ1GUAEDY2JyajpQChYAGwcnN0kPBXofPwDQYLVNQPDI-GizOMSqAGcKAH1ZAnYqChklKt4SJ3EXDK96VQHQAAY0lxcAflArWyaWtoFRsckALlBKmvqZRoSqZObWqoEO0ABaUABGCKMTGPMtJgZ2aN59+ZFRKVHe+mrakiJEns5odFktJv9AaCxqtmGwnqR2NM7K9DkcoUsxkoHvCSLwdkCDgIiSUyrF6FUyExEjJausKLMDrwCExKDRWKkenJMvdHpwCqA+QAqUDM1msF7Aq5RUxk0C2Gy06oUKrsOnnXh0jAc9xcry-CHJNULDETNZKjDoqSrfUAw3moSfE1SSZqy0rRgsDhI1VKy6gADUU2sdk1aKdTvlipqKvxPpqlzxSTjFC1xOuZDoNVAdBkVTUHrh6uzJFzVwzJCzVBILQA5jJWHnVAWOEXI3SVTn2qAq7X66i9EA')">function list_ref(items, n) {	
+    
+    
+    
+    <div class='snippet' id='javascript_87_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+function list_ref(items, n) {	
     return n === 0
            ? head(items)
            : list_ref(tail(items), n - 1);
@@ -2104,8 +2110,7 @@ function add_lists(list1, list2) {
                   add_lists(tail(list1), tail(list2)));
 }
 const ones = pair(1, ones);
-const integers = pair(1, add_lists(ones, integers));
-</pre></div></div>
+const integers = pair(1, add_lists(ones, integers));</pre></div></div>
     <div class='snippet' id='javascript_87_3_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
 L-evaluate input:</pre><pre class='prettyprint no-eval'>
 list_ref(integers, 17);</pre><pre class='prettyprintoutput'>
@@ -2171,7 +2176,11 @@ L-evaluate value:
     intended in section&nbsp;<REF NAME="sec:streams-and-delayed-evaluation"><a class="superscript" id="4.2.3-sec-link-3.5.4" href="./3.5.4.html">3.5.4</a></REF>:
     
     
-    <div class='snippet' id='javascript_87_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&variant=lazy&prgrm=PTAEGUEkGEAVQFLlAFgHQCY0GYBQuAzAVwDsBjAFwEsB7E0ABwEMqAnACgA8AaUATwCUoAN4BIXKEmhWAUwpFW9ALagAvAD5QSrr0EBuXAF9CpSrXoALGUwAm7AF5DhU0BKmz5i0Pfah2DXgBHIQ1GUAEDY2JyajpQChYAGwcnN0kPBXofPwDQYLVNQPDI-GizOMSqAGcKAH1ZAnYqChklKt4SJ3EXDK96VQHQAAY0lxcAflArWyaWtoFRsckALlBKmvqZRoSqZObWqoEO0ABaUABGCKMTGPMtJgZ2aN59+ZFRKVHe+mrakiJEns5odFktJv9AaCxqtmGwnqR2NM7K9DkcoUsxkoHvCSLwdkCDgIiSUyrF6FUyExEjJausKLMDrwCExKDRWKkenJMvdHpwCqA+QAqUDM1msF7Aq5RUxk0C2Gy06oUKrsOnnXh0jAc9xcry-CHJNULDETNZKjDoqSrfUAw3moSfE1SSZqy0rRgsDhI1VKy6gADUU2sdk1aKdTvlipqKvxPpqlzxSTjFC1xOuZDoNVAdBkVTUHrh6uzJFzVwzJCzVBILQA5jJWHnVAWOEXI3SVTn2qAq7X66iDDdyj9qzIa6wqU0R2OmCQbC8SM0qFTagA3KlEGS8GwULqjcuV6tqdGwjhVxfLteJDfcN1SNtKlUUqk0umT2vj2dbnc38O-yQ9tNOU8YcKBJGU7iqGhEhXGQnl0IYv21SR9wofh8x7Udx2SGw+HgxCDBcFDQBw-MsUeAhdCuIDuT4Eo6U2RpIOg2C+VCHgLl4IY0CGIYtV4ABWHiIiAA')">function integral(integrand, initial_value, dt) {	
+    
+    
+    
+    <div class='snippet' id='javascript_87_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+function integral(integrand, initial_value, dt) {	
     const int =
         pair(initial_value,
              add_lists(scale_list(integrand, dt),
@@ -2182,8 +2191,7 @@ function solve(f, y0, dt) {
     const y = integral(dy, y0, dt);
     const dy = map(f, y);
     return y;
-}
-</pre></div></div>
+}</pre></div></div>
     <div class='snippet' id='javascript_87_5_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
 L-evaluate input:</pre><pre class='prettyprint no-eval'>
 list_ref(solve(x => x, 1, 0.001), 1000);</pre><pre class='prettyprintoutput'>
@@ -2280,9 +2288,6 @@ head(list("a", "b", "c"));</pre></div></div>
   
   
   
-  
-
-
   
 <hr>
 
