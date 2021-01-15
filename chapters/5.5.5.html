@@ -2569,7 +2569,60 @@ function factorial(n) {
 </EXERCISE></div>
 
 
-  <FIGURE><div class='snippet' id='javascript_122_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+  
+    <div class='snippet' id='javascript_122_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+// construct the function and skip over code for the function body
+  assign("val",
+    list(op("make_compiled_function"), label("entry2"), reg("env"))),
+  go_to(label("after_lambda1")),
+
+"entry2",     // calls to factorial will enter here
+  assign("env", list(op("compiled_function_env"), reg("fun"))),
+  assign("env",
+    list(op("extend_environment"), constant(list("n")),
+         reg("argl"), reg("env"))),
+// begin actual procedure body
+  restore_marker(),
+  restore("continue"),
+  save("continue"),
+  save("env"),
+
+// compute n === 1
+  assign("fun", list(op("lookup_symbol_value"), 
+                     constant("==="), reg("env"))),
+  assign("val", constant(1)),
+  assign("argl", list(op("list","), reg("val"))),
+  assign("val", list(op("lookup_symbol_value"), 
+                     constant(n), reg("env"))),
+  assign("argl, list(op("pair"), reg("val"), reg("argl"))),
+  test(list(op("is_primitive_function"), reg("fun"))),
+  branch(label("primitive_branch17")),
+"compiled_branch16",
+  assign("continue", label("after_call15")),
+  save("continue"),
+  save_marker(),
+  assign(val, list(op("compiled_function_entry"), 
+                   reg("fun"))),
+  go_to(reg("val")),
+"primitive_branch17",
+  assign("val",
+    list(op("apply_primitive_function"), 
+         reg("fun"), reg("argl"))),
+"after_call15",            // val now contains result of n === 1
+  restore("env"),
+  restore("continue"),
+  test(list(op("is_falsy"), reg("val"))),
+  branch(label("false_branch4")),
+"true_branch5",            // return 1
+  assign("val", constant(1)),
+  go_to(reg("continue")),
+"false_branch4",
+// compute & return factorial(n - 1) * n
+  assign("fun", list(op("lookup_symbol_value"),
+                     constant("*"), reg("env"))),</pre></div></div>
+  
+  
+    <FIGURE><div class='snippet' id='javascript_122_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 // construct the function and skip over code for the function body
   assign("val",
     list(op("make_compiled_function"), label("entry2"), reg("env"))),
@@ -2633,6 +2686,56 @@ function factorial(n) {
   
 
 
+    
+  <kbd class='snippet'>$$  save("continue"),
+  save("fun"),            // save * function
+  assign("val", list(op("lookup_symbol_value"), 
+                     constant(n), reg("env"))),
+  assign("argl", list(op("list"), reg("val"))),
+  save("argl"),            // save partial argument list for *
+
+// compute factorial(n - 1), which is the other argument for *
+  assign("fun",
+    list(op("lookup_symbol_value"), constant("factorial"), reg("env"))),
+  save("fun"),            // factorial function
+
+// compute n - 1, which is the argument for factorial
+  assign("fun", list(op("lookup_symbol_value"), 
+                     constant("-"), reg("env"))),
+  assign("val", constant(1)),
+  assign("argl", list(op("list","), reg("val"))),
+  assign("val", list(op("lookup_symbol_value"), constant(n), 
+                     reg("env"))),
+  assign("argl", list(op("pair"), reg("val"), reg("argl"))),
+  test(list(op("is_primitive_function"), reg("fun"))),
+  branch(label("primitive_branch8")),
+"compiled_branch7"
+  assign("continue", label("after_call6")),
+  save("continue"),
+  save_marker(),
+  assign(val, list(op("compiled_function_entry"), reg("fun"))),
+  go_to(reg("val")),
+"primitive_branch8",
+  assign("val", list(op("apply_primitive_function"), 
+                     reg("fun"), reg("argl"))),
+  
+"after_call6",            // val now contains result of n - 1
+  assign("argl", list(op("list"), reg("val"))),
+  restore("fun"),         // restore factorial
+                          // apply factorial
+  test(list(op("is_primitive_function"), reg("fun"))),
+  branch(label("primitive_branch11")),
+"compiled_branch10",
+  assign("continue", label("after_call9")),
+  save("continue"),
+  save_marker(),
+  assign(val, list(op("compiled_function_entry"), reg("fun"))),
+  go_to(reg("val")),
+"primitive_branch11",
+  assign("val", list(op("apply_primitive_function"), 
+                     reg("fun"), reg("argl"))),</kbd>
+  
+    
     <FIGURE><kbd class='snippet'>$$  save("continue"),
   save("fun"),            // save * function
   assign("val", list(op("lookup_symbol_value"), 
@@ -2685,7 +2788,35 @@ function factorial(n) {
     </FIGURE>
   
 
-    <FIGURE><div class='snippet' id='javascript_122_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    
+      <div class='snippet' id='javascript_122_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"after_call9",            // val now has result of factorial(n - 1)
+  restore("argl"),        // restore partial argument list for *
+  assign("argl", list(op("pair"), reg("val"), reg("argl"))),
+  restore("fun"),         // restore *
+  restore("continue"),    
+
+// apply * and return its value
+  test(list(op("is_primitive_function"), reg("fun"))),
+  branch(label("primitive_branch14")),
+"compiled_branch13",
+// note that compound function here is called tail-recursively
+  assign("val", list(op("compiled_function_entry"), reg("fun"))),
+  go_to(reg("val")),
+"primitive_branch14",
+  assign("val", list(op("apply_primitive_function"), 
+                     reg("fun"), reg("argl"))),
+  go_to(reg("continue")),
+"after_call12",
+"after_cond3",
+"after_lambda1",
+// assign the function to the name factorial
+  perform(list(op("assign_symbol_value"), 
+               constant("factorial"), reg("val"), reg("env"))),
+  assign("val", constant(undefined))</pre></div></div>
+  
+    
+    <FIGURE><div class='snippet' id='javascript_122_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "after_call9",            // val now has result of factorial(n - 1)
   restore("argl"),        // restore partial argument list for *
   assign("argl", list(op("pair"), reg("val"), reg("argl"))),
@@ -2731,6 +2862,57 @@ function factorial(n) {
 </EXERCISE></div>
 
       
+  
+  <kbd class='snippet'>$$  assign("val", list(op("make_compiled_function"),
+                     label("entry16")),
+        reg env)),
+  go_to(label("after_lambda15")),
+"entry16",
+  assign(env, list(op("compiled_function_env"), 
+                   reg("fun"))),
+  assign("env", list(op("extend_environment","), 
+                     constant("x"), reg("argl"), reg("env"))),
+  assign("fun", list(op("lookup_symbol_value"), 
+                     constant("+"), reg("env"))),
+  save("continue"),
+  save("fun"),
+  save("env"),
+  assign("fun", list(op("lookup_symbol_value"),
+                     constant("g"), reg("env"))),
+  save("fun"),
+  assign("fun", list(op("lookup_symbol_value"),
+                     constant("+"), reg("env"))),
+  assign("val", constant(2)),
+  assign("argl", list(op("list"), reg("val"))),
+  assign("val", list(op("lookup_symbol_value"),
+                     constant("x"), reg("env"))),
+  assign("argl, list(op("pair"), reg("val"), reg("argl"))),
+  test(list(op("is_primitive_function"), reg("fun"))),
+  branch(label("primitive_branch19")),
+"compiled_branch18",
+  assign("continue", label("after_call17")),
+  save("continue"),
+  save_marker(),
+  assign(val, list(op("compiled_function_entry"), 
+                   reg("fun"))),
+  go_to(reg("val")),
+"primitive_branch19",
+  assign("val", list(op("apply_primitive_function"), 
+                     reg("fun"), reg("argl"))),
+"after_call17",
+  assign("argl", list(op("list"), reg("val"))),
+  restore("fun"),
+  test(list(op("is_primitive_function"), reg("fun"))),
+  branch(label("primitive_branch22")),
+"compiled_branch21",
+  assign("continue", label("after_call20")),
+  save("continue"),
+  save_marker(),
+  assign(val, list(op("compiled_function_entry"), 
+                   reg("fun"))),
+  go_to(reg("val")),</kbd>
+  
+  
   <FIGURE><kbd class='snippet'>$$  assign("val", list(op("make_compiled_function"),
                      label("entry16")),
         reg env)),
@@ -2787,7 +2969,39 @@ function factorial(n) {
   
 
 
-  <FIGURE><div class='snippet' id='javascript_122_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+  
+  <div class='snippet' id='javascript_122_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"primitive_branch22",
+  assign("val", list(op("apply_primitive_function"),
+                     reg("fun"), reg("argl"))),
+"after_call20",
+  assign("argl", list(op("list"), reg("val"))),
+  restore("env"),
+  assign("val", list(op("lookup_symbol_value"),
+                   constant("x"), reg("env"))),
+  assign("argl", list(op("pair"), reg("val"), reg("argl"))),
+  restore("fun"),
+  restore("continue"),
+  test(list(op("is_primitive_function"), reg("fun"))),
+  branch(label("primitive_branch25")),
+"compiled_branch24",
+  save("continue"),
+  save_marker(),
+  assign("val", list(op("compiled_function_entry"), 
+                     reg("fun"))),
+  go_to(reg("val")),
+"primitive_branch25",
+  assign("val", list(op("apply_primitive_function"), 
+                     reg("fun"), reg("argl"))),
+  go_to(reg("continue")),
+"after_call23",
+"after_lambda15",
+  perform(list(op("assign_symbol_value"), 
+               constant("f"), reg("val"), reg("env"))),
+  assign("val", constant(undefined))</pre></div></div>
+    
+    
+  <FIGURE><div class='snippet' id='javascript_122_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "primitive_branch22",
   assign("val", list(op("apply_primitive_function"),
                      reg("fun"), reg("argl"))),
@@ -2939,7 +3153,7 @@ function factorial(n) {
       <kbd>a + 1</kbd>
     
     might be compiled into something as simple as<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
-    <div class='snippet' id='javascript_122_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_122_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 assign("val", list(op("lookup_symbol_value"), 
                    constant("a"), reg("env")),
 assign("val", list(op("+"), reg("val"), constant(1))</pre></div></div>
@@ -3123,7 +3337,7 @@ assign("val", list(op("+"), reg("val"), constant(1))</pre></div></div>
     <div class='footnote'>
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1'>[1] </a>
     <FOOTNOTE>
-    The \ character is not part of the strings, but simply tells the parser that the string literal continues on the next line. The string <div class='snippet' id='javascript_122_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAVgHTpQKCwIgIagA6WoARrkA')">"a \
+    The \ character is not part of the strings, but simply tells the parser that the string literal continues on the next line. The string <div class='snippet' id='javascript_122_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAVgHTpQKCwIgIagA6WoARrkA')">"a \
  b"
 </pre></div></div>parses exactly like the string <kbd>"a  b"</kbd>.
     </FOOTNOTE></div>

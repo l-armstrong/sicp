@@ -2620,17 +2620,23 @@ function union_set(set1, set2) {
     of two other (possibly empty) nodes.  The <QUOTE>left</QUOTE> link points to
     elements smaller than the one at the node, and the <QUOTE>right</QUOTE>
     link to elements greater than the one at the node.
-    Figure&nbsp;<REF NAME="fig:binary-tree"><a class="superscript" id="2.3.3-fig-link-2.15" href="./2.3.3.html#fig_2.15">2.15</a></REF> shows some trees that represent
+    Figure&nbsp;<REF NAME="fig:binary-tree"><a class="superscript" id="2.3.3-fig-link-2.16" href="./2.3.3.html#fig_2.16">2.16</a></REF> shows some trees that represent
     the set $\{1,3,5,7,9,11\}$.  The same set may be
     represented by a tree in a number of different ways.  The only thing we
     require for a valid representation is that all elements in the left subtree
     be smaller than the node entry and that all elements in the right subtree be
     larger.
     
+      
+        <img class="scale_factor_" src="../img_original/ch2-Z-G-51.svg">
+      
+      
+      
+    
     <FIGURE>
-      <img class="scale_factor_" id="fig_2.15" src="../img_original/ch2-Z-G-51.svg">
+      <img class="scale_factor_" id="fig_2.16" src="../img_original/ch2-Z-G-51.svg">
       <div class="chapter-text-CAPTION">
-      <b><a class="caption" href="./2.3.3.html#fig_2.15">Figure 2.15 </a></b>Various binary trees that represent the set
+      <b><a class="caption" href="./2.3.3.html#fig_2.16">Figure 2.16 </a></b>Various binary trees that represent the set
       $\{ 1,3,5,7,9,11 \}$.</div>
     </FIGURE>
   
@@ -2766,7 +2772,7 @@ function make_tree(entry,left,right) {
     will tend to be balanced on the average.  But this is not a guarantee.  For
     example, if we start with an empty set and adjoin the numbers 1 through 7
     in sequence we end up with the highly unbalanced tree shown in
-    figure&nbsp;<REF NAME="fig:unbalanced-tree"><a class="superscript" id="2.3.3-fig-link-2.16" href="./2.3.3.html#fig_2.16">2.16</a></REF>.  In this tree all the left
+    figure&nbsp;<REF NAME="fig:unbalanced-tree"><a class="superscript" id="2.3.3-fig-link-2.17" href="./2.3.3.html#fig_2.17">2.17</a></REF>.  In this tree all the left
     subtrees are empty, so it has no advantage over a simple ordered list.  One
     way to solve this problem is to define an operation that transforms an
     arbitrary tree into a balanced tree with the same elements.  Then we can perform this transformation after every few
@@ -2780,10 +2786,16 @@ function make_tree(entry,left,right) {
     $\Theta(\log n)$
     steps.<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
     
+      
+        <img class="scale_factor_" src="../img_original/ch2-Z-G-52.svg">
+      
+      
+      
+    
     <FIGURE>
-      <img class="scale_factor_" id="fig_2.16" src="../img_original/ch2-Z-G-52.svg">
+      <img class="scale_factor_" id="fig_2.17" src="../img_original/ch2-Z-G-52.svg">
       <div class="chapter-text-CAPTION">
-      <b><a class="caption" href="./2.3.3.html#fig_2.16">Figure 2.16 </a></b>
+      <b><a class="caption" href="./2.3.3.html#fig_2.17">Figure 2.17 </a></b>
 	Unbalanced tree produced by adjoining 1 through 7 in sequence.
       </div>
     </FIGURE>
@@ -2839,7 +2851,7 @@ function make_tree(entry,left,right) {
 	  
 	  functions
 	
-        produce for the trees in figure&nbsp;<REF NAME="fig:binary-tree"><a class="superscript" id="2.3.3-fig-link-2.15" href="./2.3.3.html#fig_2.15">2.15</a></REF>?
+        produce for the trees in figure&nbsp;<REF NAME="fig:binary-tree"><a class="superscript" id="2.3.3-fig-link-2.16" href="./2.3.3.html#fig_2.16">2.16</a></REF>?
         
       </LI>
       <LI>
@@ -2862,7 +2874,7 @@ function make_tree(entry,left,right) {
       <OL type="a">
 	<LI>
 	  The two procedures produce the same results. For the trees in
-	  figure&nbsp;<REF NAME="fig:binary-tree"><a class="superscript" id="2.3.3-fig-link-2.15" href="./2.3.3.html#fig_2.15">2.15</a></REF>, the result will always
+	  figure&nbsp;<REF NAME="fig:binary-tree"><a class="superscript" id="2.3.3-fig-link-2.16" href="./2.3.3.html#fig_2.16">2.16</a></REF>, the result will always
 	  be <kbd>list(1, 3, 5, 7, 9, 11)</kbd>.
 	</LI>
 	<LI>
@@ -3025,7 +3037,7 @@ function partial_tree(elts, n) {
 	  The tree for
 	  <kbd>list(1, 3, 5, 7, 9, 11)</kbd>
 	  is the tree on the right in
-	  figure&nbsp;<REF NAME="fig:binary-tree"><a class="superscript" id="2.3.3-fig-link-2.15" href="./2.3.3.html#fig_2.15">2.15</a></REF>.
+	  figure&nbsp;<REF NAME="fig:binary-tree"><a class="superscript" id="2.3.3-fig-link-2.16" href="./2.3.3.html#fig_2.16">2.16</a></REF>.
 	</LI>
 	<LI>
 	  The order of growth for the run time of function
