@@ -2058,77 +2058,32 @@ function sqrt_iter(guess, x) {
           <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
         </tr>
         <tr><td><span style="color:green">
-        The metacircular implementation of the evaluator in chapter&nbsp;4 does
-        not specify whether the evaluator is tail-recursive, because that evaluator
-        inherits its mechanism for saving state from the underlying Scheme.
+        The metacircular implementation of the evaluator in chapter&nbsp;4
+        does not specify whether the evaluator is tail-recursive, because that
+        evaluator inherits its mechanism for saving state from the underlying
+        Scheme. With the explicit-control evaluator, however, we can trace
+        through the evaluation process to see when procedure calls cause a net
+        accumulation of information on the stack.
       </span>    </td>
           <td></td>
           <td><span style="color:blue">
-        The metacircular implementation of the evaluator in chapter&nbsp;4 is
-        not tail-recursive, because of the need to check whether the
-        evaluation of the function body returns explicitly or not.
+        The implementation of the metacircular evaluator in chapter&nbsp;4 is
+        not tail-recursive. The reason for this is found in the handling of
+        sequences and relates to returning from functions. After the evaluation
+        of a statement, we inspect the result to see if the function is
+        returning or not. If it is, we return the result. If it is not, we
+        continue evaluating the next statement or return
+        <kbd>undefined</kbd> if there are no more
+        statements to evaluate. In a process that computes a value through a
+        nested sequence of function calls, such as
+        <kbd>sqrt_iter</kbd> above, this causes a
+        build-up of deferred checking operations, which leads to an accumulation
+        of information on the stack.
       </span></td></tr></table>
-    With
-    the explicit-control evaluator, however, we can trace through the evaluation
-    process to see when
-    
-      <span style="color:green">procedure</span>
-      <span style="color:blue">function</span>
-    
-    calls cause a net accumulation of information on the stack.
   </p></div>
 
   <div class='permalink'>
 <a name='p2' class='permalink'></a><p>
-    Our evaluator is tail-recursive, because in order to evaluate 
-    
-      <span style="color:green">
-	      the final expression of a sequence 
-      </span>
-      <span style="color:blue">
-	      a return statement in a function body
-      </span>
-    
-    we transfer directly to
-    
-      <span style="color:green">
-        <kbd>eval-dispatch</kbd> without saving any information on the stack. 
-        Hence, evaluating the final expression in a sequence—even if it is a
-      </span>
-      <span style="color:blue">
-        <kbd>eval_dispatch</kbd> after having restored the stack using the marker introduced
-        by <kbd>save_marker</kbd>.
-        Hence, evaluating a return statement in a function body—even if it contains a
-      </span>
-    
-    
-      <span style="color:green">procedure</span>
-      <span style="color:blue">function</span>
-    
-    call (as in
-    
-      <span style="color:green"><kbd>sqrt-iter</kbd>,</span>
-      <span style="color:blue"><kbd>sqrt_iter</kbd>,</span>
-    
-    where the
-    
-      <span style="color:green"><kbd>if</kbd></span>
-      <span style="color:blue">conditional</span>
-    
-     expression, which is the last 
-    
-      <span style="color:green">expression in the procedure</span>
-      <span style="color:blue">component in the function</span>
-    
-    body, reduces to a call to
-    
-      <span style="color:green"><kbd>sqrt-iter</kbd>)—will </span>
-      <span style="color:blue">
-	<kbd>sqrt_iter</kbd>)—will
-      </span>
-    
-    not cause any information to be accumulated on the stack.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a> 
-
     <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
         <tr>
@@ -2137,8 +2092,42 @@ function sqrt_iter(guess, x) {
           <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
         </tr>
         <tr><td><span style="color:green">
-        <div class='permalink'>
+        Our evaluator is tail-recursive, because in order to evaluate the final
+        expression of a sequence we transfer directly to
+        <kbd>eval-dispatch</kbd> without saving any
+        information on the stack. Hence, evaluating the final expression in a
+        sequence—even if it is a procedure call (as in
+        <kbd>sqrt-iter</kbd>, where the
+        <kbd>if</kbd> expression, which is the last expression
+        in the procedure body, reduces to a call to
+        <kbd>sqrt-iter</kbd>)—will not cause any
+        information to be accumulated on the stack.
+      </span>    </td>
+          <td></td>
+          <td><span style="color:blue">
+        Because our explicit-control evaluator is tail-recursive, accumulation
+        of information such as in the metacircular evaluator is avoided. When we
+        evaluate a <kbd>return</kbd> statement, we
+        first remove anything saved by the current function on the stack, and
+        restore <kbd>continue</kbd>. Thus, right before 
+        proceeding to evaluate the return expression, the information 
+        on the stack is the same as at the start of
+        <kbd>ev_application</kbd>, just before the
+        call to the function whose return value we are about to compute. We then
+        place the return expression in <kbd>comp</kbd>
+        and transfer directly to
+        <kbd>eval_dispatch</kbd> without any additional saves.</span></td></tr></table><a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+
+      <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
+        <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr><td><span style="color:green">
           If we did not think to take advantage of the fact that it was unnecessary to
           save information in this case, we might have implemented
           <kbd>eval-sequence</kbd>
@@ -2164,17 +2153,26 @@ ev-sequence
             ev-sequence-end
             (restore continue)
             (goto (reg continue))</pre></div></div>
-        </p></div>
-      </span>    </td>
+
+        This may seem like a minor change to our previous code for evaluation of
+        a sequence: The only difference is that we go through the save-restore
+        cycle for the last expression in a sequence as well as for the others.
+        The interpreter will still give the same value for any expression. But
+        this change is fatal to the tail-recursive implementation, because we
+        must now return after evaluating the final expression in a sequence in
+        order to undo the (useless) register saves. These extra saves will
+        accumulate during a nest of procedure calls. Consequently, processes
+        such as <kbd>sqrt-iter</kbd> will require space
+        proportional to the number of iterations rather than requiring constant
+        space.
+          </span>    </td>
           <td></td>
           <td><span style="color:blue">
-        <div class='permalink'>
-<a name='p4' class='permalink'></a><p>
-          If we did not think to take advantage of the fact that it was
-          unnecessary to save information in this case, we might have
-          implemented <kbd>ev_return</kbd> in a more
-          intuitive way, by first evaluating the return expression before
-          popping the stack (down to the marker):
+If we think of <kbd>return</kbd> as an operator and the return expression as
+its operand, we might consider it more intuitive to evaluate
+<kbd>return</kbd> statements by first computing the return value, and then restore the
+stack:
+          
 	        
           <div class='snippet' id='javascript_114_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_return",
@@ -2187,60 +2185,32 @@ ev-sequence
       restore_marker("continue"),
       restore("continue"),
       go_to(reg("continue")),</pre></div></div>
-        </p></div>
+
+        This may seem like a minor change to our previous code for evaluation of
+        <kbd>return</kbd> statements.  However, 
+        this not only keeps the useless information on the stack
+        during the evaluation of the return expression, but additionally saves
+        <kbd>continue</kbd> to ensure an eventual
+        jump back to <kbd>ev_restore_stack</kbd> to
+        restore the stack and jumping to the continuation of the function
+        call. Even if there are never any saves by the current
+        function<a class='superscript' id='footnote-link-4' href='#footnote-4'style="color:blue">[4]</a>,
+        the last save of <kbd>continue</kbd> will
+        accumulate during a nest of function calls. In this design, processes
+        such as <kbd>sqrt_iter</kbd> would require
+        space proportional to the number of iterations rather than requiring
+        constant space.
       </span></td></tr></table>
-    
+  </p></div>
   <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
-    
-      <span style="color:green">
-        This may seem like a minor change to our previous code for
-        evaluation of a sequence: The only difference is that we go through
-        the save-restore cycle for the last expression in a sequence as well
-        as for the others.
-      </span>
-      <span style="color:blue">
-        This may seem like a minor change to <kbd>ev_return</kbd> as defined in section&nbsp;<REF NAME="sec:eceval-core"><a class="superscript" id="5.4.2-sec-link-5.4.1" href="./5.4.1.html">5.4.1</a></REF>.
-      </span>
-    
-    The interpreter will still give the same value for any
-    
-      <span style="color:green">
-        expression.
-      </span>
-      <span style="color:blue">
-        statement.
-      </span>
-    
-    But this change is fatal to the tail-recursive implementation, because we
-    must now return after evaluating the 
-    
-      <span style="color:green">
-        final expression in a sequence in order to undo the (useless) register saves. These extra saves 
-      </span>
-      <span style="color:blue">
-        expression inside the return statement in order to undo the (useless) register save. These extra saves 
-      </span>
-    
-    will accumulate during a nest of
-    
-      <span style="color:green">procedure</span>
-      <span style="color:blue">function</span>
-    
-    calls.  Consequently, processes such as
-    
-      <span style="color:green"><kbd>sqrt-iter</kbd></span>
-      <span style="color:blue"><kbd>sqrt_iter</kbd></span>
-    
-    will require space proportional to the number of iterations rather than
-    requiring constant space.  This difference can be significant. For example,
+<a name='p4' class='permalink'></a><p>
+    This difference can be significant. For example,
     
     with tail recursion, an infinite loop can be expressed using only the
     
-      <span style="color:green">procedure-call</span>
-      <span style="color:blue">function-call</span>
+      <span style="color:green">procedure-call mechanism:</span>
+      <span style="color:blue">function-call and <kbd>return</kbd> mechanisms:</span>
     
-    mechanism:
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -2280,13 +2250,17 @@ function count(n) {
           <td></td>
           <td><span style="color:blue">
       <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
-        Note that our JavaScript implementation is tail-recursive only in the presence of an
-        explicit return statement. A function that ends without an explicit return statement will 
-        go to the implicit return handler <kbd>return_undefined</kbd>, which stores
-        <kbd>undefined</kbd> in the <kbd>val</kbd> register.
-        Thus, removing <kbd>return</kbd> from the above count function will
-        eventually run out of stack space.
+<a name='p5' class='permalink'></a><p>
+        Note that our JavaScript implementation is tail-recursive only in the
+        presence of an explicit <kbd>return</kbd>
+        statement. A function that ends without an explicit
+        <kbd>return</kbd> statement will go to the
+        implicit return handler
+        <kbd>return_undefined</kbd>, which stores
+        <kbd>undefined</kbd> in the
+        <kbd>val</kbd> register. Thus, removing
+        <kbd>return</kbd> from the above count
+        function will cause it to eventually run out of stack space.
       </p></div>
     </span></td></tr></table>
 
@@ -2294,7 +2268,6 @@ function count(n) {
     
     
   </p></div>
-
 <hr>
 
     <div class='footnote'>
@@ -2310,30 +2283,14 @@ function count(n) {
     <div class='footnote'>
       <a class='footnote-number' id='footnote-2' href='#footnote-link-2' >[2] </a>
     <FOOTNOTE>
-    This
-    implementation of tail recursion 
-    
-      <span style="color:green">in <kbd>ev-sequence</kbd></span>
-    
-    is one variety of a well-known optimization technique used
-    by many compilers.  In compiling a
-    
-      <span style="color:green">procedure</span>
-      <span style="color:blue">function</span>
-    
-    that ends with a
-    
-      <span style="color:green">procedure</span>
-      <span style="color:blue">function</span>
-    
-    call, one can replace the call by a jump to the called
-    
-      <span style="color:green">procedure's</span>
-      <span style="color:blue">function's</span>
-    
-    entry point. Building this strategy into the interpreter, as we have done in
-    this section, provides the optimization uniformly throughout the
-    language.
+    This implementation of tail
+        recursion in <kbd>ev-sequence</kbd> is one variety of
+        a well-known optimization technique used by many compilers. In compiling
+        a procedure that ends with a procedure call, one can replace the call by
+        a jump to the called procedure's entry point. Building this
+        strategy into the interpreter, as we have done in this section, provides
+        the optimization uniformly throughout the language.
+      
     </FOOTNOTE></div>
     
     
@@ -2345,6 +2302,15 @@ function count(n) {
           as follows:
           <div class='snippet' id='javascript_114_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (no-more-exps? seq) (null? seq))</pre></div></div>
+    </FOOTNOTE></span></div>
+    
+    
+    <div class='footnote'><span style="color:blue">
+      <a class='footnote-number' id='footnote-4' href='#footnote-link-4' style="color:blue">[4] </a>
+    <FOOTNOTE>
+    With our current design, there will always be at
+        least one: a save of <kbd>continue</kbd> in
+        <kbd>ev_sequence_start</kbd>.
     </FOOTNOTE></span></div>
     
     
