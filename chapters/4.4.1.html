@@ -2453,7 +2453,9 @@ and(job(list("Fect", "Cy", "D"), list("computer", "programmer")),
       
       
 	In general,
-	<kbd class='snippet'>and($query_{1}$, $query_{2}$, $\ldots$, $query_{n})$</kbd>
+	<kbd class='snippet'>
+and($query_{1}$, $query_{2}$, $\ldots$, $query_{n})$
+	  </kbd>
 	is satisfied by all sets of values for the pattern variables that
 	simultaneously satisfy
 	$\textit{query}_{1}, \ldots, \textit{query}_{n}$.
@@ -2503,7 +2505,9 @@ or(supervisor(list("Reasoner", "Louis"),
       
       
 	In general,
-	<kbd class='snippet'>or($query_{1}$, $query_{2}$, $\ldots$, $query_{n}$)</kbd>
+	<kbd class='snippet'>
+or($query_{1}$, $query_{2}$, $\ldots$, $query_{n}$)
+	  </kbd>
 	is satisfied by all sets of values for the pattern variables that
 	satisfy at least one of
 	$\textit{query}_{1} \ldots \textit{query}_{n}$.
@@ -2525,7 +2529,9 @@ or(supervisor(list("Reasoner", "Louis"),
     
       
       
-	<kbd class='snippet'>not($query_{1}$)</kbd>
+	<kbd class='snippet'>
+not($query_{1}$)
+	  </kbd>
       
     
     is satisfied by all assignments to the pattern variables that do not
@@ -2542,7 +2548,9 @@ or(supervisor(list("Reasoner", "Louis"),
 	The final combining form starts with the symbol
 	<kbd>javascript_value</kbd>, and
 	the argument is a JavaScript predicate. In general,
-	<kbd class='snippet'>javascript_value($predicate$)</kbd>
+	<kbd class='snippet'>
+javascript_value($predicate$)
+	  </kbd>
 	will be satisfied by assignments to the pattern variables
 	in the $\textit{predicate}$ for which the
 	instantiated 
@@ -2635,7 +2643,9 @@ or(supervisor(list("Reasoner", "Louis"),
       
       
 	The general form of a rule is
-	<kbd class='snippet'>rule($conclusion$, $body$)</kbd>
+	<kbd class='snippet'>
+rule($conclusion$, $body$)
+	  </kbd>
 	where $\textit{conclusion}$ is a pattern and
 	$\textit{body}$ is any query.<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
       
@@ -2771,8 +2781,10 @@ meeting("whole-company", list("Wednesday", "4pm"))</pre></div></div>
 	
 	  
 	  
-	    <kbd class='snippet'>rule(meeting_time($\texttt{\$}$person, $\texttt{\$}$day_and_time),
-     $rule$-$body$)</kbd>
+	    <kbd class='snippet'>
+rule(meeting_time($\texttt{\$}$person, $\texttt{\$}$day_and_time),
+     $rule$-$body$)
+	      </kbd>
 	  
 	
       </LI>

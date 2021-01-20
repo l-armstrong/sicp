@@ -2099,9 +2099,13 @@ Acknowledgments
       
     
     In general, 
-    <kbd class='snippet'>list(a$_{1}$, a$_{2}$, $\ldots$, a$_{n}$)</kbd>
+    <kbd class='snippet'>
+list(a$_{1}$, a$_{2}$, $\ldots$, a$_{n}$)
+      </kbd>
     is equivalent to
-    <kbd class='snippet'>pair(a$_{1}$, pair(a$_{2}$, pair($\ldots$, pair(a$_{n}$, null)$\ldots$)))</kbd>
+    <kbd class='snippet'>
+pair(a$_{1}$, pair(a$_{2}$, pair($\ldots$, pair(a$_{n}$, null)$\ldots$)))
+      </kbd>
     
       
       
@@ -2931,14 +2935,18 @@ function no_more(coin_values) {
       <kbd>square_list</kbd>.
     
     Complete both of them by filling in the missing expressions:
-    <kbd class='snippet'>function square_list(items) {
+    <kbd class='snippet'>
+function square_list(items) {
     return is_null(items) 
            ? null
            : pair($\langle ??\rangle$, $\langle ??\rangle$);
-}</kbd>
-    <kbd class='snippet'>function square_list(items) {
+}
+      </kbd>
+    <kbd class='snippet'>
+function square_list(items) {
    return map($\langle ??\rangle$, $\langle ??\rangle$);
-}</kbd>
+}
+      </kbd>
     
   
       <div class="Solution">

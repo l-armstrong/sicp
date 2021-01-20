@@ -3883,7 +3883,9 @@ list("and",
 	  $[\texttt{"Bitdiddle"}, \texttt{\$y}]$ and 
 	  the variable <kbd>$y</kbd> to the pair
 	  [\texttt{"Ben"}, \texttt{null}]. Then
-	  <kbd class='snippet'>instantiate_term(list("name", "$\$$x"), $g$)</kbd>
+	  <kbd class='snippet'>
+instantiate_term(list("name", "$\$$x"), $g$)
+	    </kbd>
 	  returns the list
 	  <div class='snippet' id='javascript_96_44_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
 list("Bitdiddle", "Ben")</pre></div></div>
@@ -3946,7 +3948,8 @@ list("application",
 	  argument expression strings enclosed in parentheses.
 	  Binary operator combinations are formatted using infix notation.
 	  
-	  <kbd class='snippet'>function unparse(exp) {
+	  <kbd class='snippet'>
+function unparse(exp) {
     return is_literal(exp)
            ? stringify(literal_value(exp))
            : is_name(exp)
@@ -3970,7 +3973,8 @@ list("application",
 function comma_separated(strings) {
     return accumulate((s, acc) => s + (acc === "" ? "" : ", " + acc),
                       "", strings);
-}</kbd>
+}
+	    </kbd>
 	  The function
 	  <kbd>unparse</kbd>
 	  would work fine without the clause
@@ -4323,13 +4327,15 @@ function flatten_stream(stream) {
       <OL type="a">
 	<LI>
           Fill in the missing expressions in Alyssa's program.
-          <kbd class='snippet'>function simple_stream_flatmap(fun, s) {
+          <kbd class='snippet'>
+function simple_stream_flatmap(fun, s) {
     return simple_flatten(stream_map(fun, s));
 }
 function simple_flatten(stream) {
     return stream_map($\langle ?? \rangle$,
                       stream_filter($\langle ?? \rangle$, stream));
-}</kbd>
+}
+	    </kbd>
 	</LI>
 	<LI>
           Does the query system's behavior change if we change it in this

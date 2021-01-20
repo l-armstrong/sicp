@@ -2165,13 +2165,15 @@ function set_global_environment(env) {
     we can create an evaluator machine model that we can run using the
     register-machine simulator of section&nbsp;<REF NAME="sec:simulator"><a class="superscript" id="5.4.4-sec-link-5.2" href="./5.2.html">5.2</a></REF>.
 
-    <kbd class='snippet'>const eceval = 
+    <kbd class='snippet'>
+const eceval = 
     make_machine(list("comp", "env", "val", "fun",
                       "argl", "continue", "unev"),
                  eceval_operations,
                  list("read_evaluate_print_loop",
                       $\langle\text{\it entire machine controller as given above}\rangle$);
-                     ));</kbd>
+                     ));
+      </kbd>
     
     
 
@@ -2189,9 +2191,11 @@ function set_global_environment(env) {
     we used for the metacircular evaluator in
     section&nbsp;<REF NAME="sec:mc-eval"><a class="superscript" id="5.4.4-sec-link-4.1" href="./4.1.html">4.1</a></REF>, together with the few additional
     ones defined in footnotes throughout section&nbsp;<REF NAME="sec:eceval"><a class="superscript" id="5.4.4-sec-link-5.4" href="./5.4.html">5.4</a></REF>.
-    <kbd class='snippet'>const eceval_operations = 
+    <kbd class='snippet'>
+const eceval_operations = 
     list(list("is_literal", is_literal),
-         $\langle\text{\it complete list of operations for eceval machine}\rangle$);</kbd>
+         $\langle\text{\it complete list of operations for eceval machine}\rangle$);
+      </kbd>
     
     
     
@@ -2260,10 +2264,12 @@ EC-evaluate value:
     
     entry point to print the statistics:
     
-    <kbd class='snippet'>"print_result",
+    <kbd class='snippet'>
+"print_result",
     perform(op("print_stack_statistics")), // added instruction
     perform(op("announce_output"), constant("EC-evaluate value:")),
-    $\ldots$  // same as before</kbd>
+    $\ldots$  // same as before
+      </kbd>
   </p></div>
 
   <div class='permalink'>

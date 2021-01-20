@@ -2148,16 +2148,19 @@ list("sequence",
 	tag <kbd>"literal"</kbd> and
 	the actual value.
 	
-	  \begin{eqnarray*}
-	  \ll \textit{literal-expression} \gg & = &
-	  \texttt{list("literal", }\textit{value}\texttt{)}
-	  \end{eqnarray*}
+	  
+	    \begin{eqnarray*}
+	    \ll \textit{literal-expression} \gg & = &
+	    \texttt{list("literal", }\textit{value}\texttt{)}
+	    \end{eqnarray*}
+	  
+	  where $\textit{value}$ is
+	  the JavaScript value represented by the
+	  $\textit{literal-expression}$ string.
+	  Here $\ll\textit{literal-expression}\gg$ denotes the
+	  result of parsing the string $\textit{literal-expression}$.
 	
-	where $\textit{value}$ is
-	the JavaScript value represented by the
-	$\textit{literal-expression}$ string.
-	Here $\ll\textit{literal-expression}\gg$ denotes the
-	result of parsing the string $\textit{literal-expression}$.
+	
 	<div class='snippet' id='javascript_78_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAHAQwCcBnAUwAoAiDAbhoEp6g')">parse("1;");
 </pre><pre class='prettyprintoutput'>
 list("literal", 1)</pre></div></div>
@@ -2333,10 +2336,12 @@ null</pre></div></div>
 $\ll \textit{predicate}\ \texttt{?}\ \textit{consequent-expression}\ \texttt{:}\ \textit{alternative-expression}   \gg\ \ = $
 	
 	
-	<kbd class='snippet'>list("conditional_expression", 
+	<kbd class='snippet'>
+list("conditional_expression", 
      $\ll predicate \gg$,
      $\ll consequent$-$expression \gg$,
-     $\ll alternative$-$expression \gg$)</kbd>
+     $\ll alternative$-$expression \gg$)
+	  </kbd>
     </blockquote>
 
     Similarly, conditional statements are parsed as follows:
@@ -2347,10 +2352,12 @@ $\ll \textit{predicate}\ \texttt{?}\ \textit{consequent-expression}\ \texttt{:}\
 $\ll \textbf{if}\ \texttt{(} \textit{predicate} \texttt{)}\ \textit{consequent-block}\ \textbf{else}\ \textit{alternative-block} \gg\ \ =$
 	
       
-	<kbd class='snippet'>list("conditional_statement", 
+	<kbd class='snippet'>
+list("conditional_statement", 
      $\ll predicate \gg$,
      $\ll consequent$-$block \gg$,
-     $\ll alternative$-$block \gg$)</kbd>
+     $\ll alternative$-$block \gg$)
+	  </kbd>
     </blockquote>
 
 	
@@ -2401,9 +2408,11 @@ $\ll \textbf{if}\ \texttt{(} \textit{predicate} \texttt{)}\ \textit{consequent-b
 $\ll \texttt{(}\textit{name}_1\texttt{, }\ldots\texttt{, } \textit{name}_n \texttt{) =>}\ \textit{block} \gg\ \ =$
 	
 		
-	<kbd class='snippet'>list("lambda_expression",
+	<kbd class='snippet'>
+list("lambda_expression",
      list($\ll name_1 \gg$, $\ldots$, $\ll name_n \gg$),
-     $\ll block \gg$)</kbd>
+     $\ll block \gg$)
+	  </kbd>
 	      </blockquote>
 
 	
@@ -2638,10 +2647,12 @@ function declaration_value_expression(component) {
 $\ll \textbf{function}\ \textit{name} \texttt{(}\textit{name}_1\texttt{, }\ldots\texttt{, } \textit{name}_n \texttt{)} \ \textit{block} \ \gg\ \ =$ 
 	
 	  
-	<kbd class='snippet'>list("function_declaration",
+	<kbd class='snippet'>
+list("function_declaration",
      $\ll \textit{name} \gg$,
      list($\ll name_1 \gg$, $\ldots$, $\ll name_n\gg$),
-     $\ll \textit{block} \gg$)</kbd>
+     $\ll \textit{block} \gg$)
+	  </kbd>
 	</blockquote>
 
       
@@ -2929,9 +2940,11 @@ $\ll \textbf{function}\ \textit{name} \texttt{(}\textit{name}_1\texttt{, }\ldots
 	  $\ll \textit{expression}_1\ \ \textit{logical-operation}\ \ \textit{expression}_2 \gg \ \ = $
 	
 	  
-	<kbd class='snippet'>list("logical_composition",
+	<kbd class='snippet'>
+list("logical_composition",
      "$logical$-$operation$",
-     list($\ll \textit{expression}_1 \gg$, $\ll \textit{expression}_2 \gg$))</kbd>
+     list($\ll \textit{expression}_1 \gg$, $\ll \textit{expression}_2 \gg$))
+	  </kbd>
     </blockquote>
 
     where $\textit{logical-operation}$ is 
@@ -3117,7 +3130,9 @@ display(1);
 	
 	
 	
-	<kbd class='snippet'>while ($predicate$) { $body$ }</kbd>
+	<kbd class='snippet'>
+while ($predicate$) { $body$ }
+	  </kbd>
 	evaluates the $\textit{predicate}$, and
 	if the result is true, evaluates the
 	$\textit{body}$
@@ -3148,7 +3163,9 @@ display(1);
 	  $\ll \textbf{while} \ \texttt{(}\ \textit{predicate}\ \texttt{)}\ \textit{block}  \gg \ \ =$ 
 	
 	  
-	  <kbd class='snippet'>list("while_loop", $\ll \textit{predicate} \gg$, $\ll \textit{block} \gg$)</kbd>
+	  <kbd class='snippet'>
+list("while_loop", $\ll \textit{predicate} \gg$, $\ll \textit{block} \gg$)
+	  </kbd>
     </blockquote>
 
     <OL type="a">
@@ -3271,7 +3288,9 @@ display(1);
 	  $\ll \textbf{for} \ \texttt{(}\ \textit{init-statement}\texttt{; } \textit{predicate}\texttt{; }\textit{update-statement}\texttt{)}\ \textit{block}  \gg \ \ =$ 
 	
 	  
-	  <kbd class='snippet'>list("for_loop", $\ll \textit{init-statement} \gg$, $\ll \textit{predicate} \gg$, $\ll \textit{update-statement}\gg$, $\ll \textit{block} \gg$)</kbd>
+	  <kbd class='snippet'>
+list("for_loop", $\ll \textit{init-statement} \gg$, $\ll \textit{predicate} \gg$, $\ll \textit{update-statement}\gg$, $\ll \textit{block} \gg$)
+	  </kbd>
     </blockquote>
 
     where $\textit{init-statement}$ is either an assignment or a

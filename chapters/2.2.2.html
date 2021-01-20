@@ -2918,14 +2918,16 @@ list(null, list(3), list(2), list(2, 3),
     that generates the set of subsets of a set and give a clear explanation of
     why it works:
     
-    <kbd class='snippet'>function subsets(s) {
+    <kbd class='snippet'>
+function subsets(s) {
     if (is_null(s)) {
         return list(null);
     } else {
         const rest = subsets(tail(s));
         return append(rest, map($\langle ??\rangle$, rest));
     }
-}</kbd>
+}
+      </kbd>
     
   
       <div class="Solution">

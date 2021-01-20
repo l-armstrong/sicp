@@ -2141,7 +2141,8 @@ function primitive_implementation(fun) {
     from a list:<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
     
     
-    <kbd class='snippet'>const primitive_functions = list(
+    <kbd class='snippet'>
+const primitive_functions = list(
        list("head",    head             ),
        list("tail",    tail             ),
        list("pair",    pair             ),
@@ -2153,7 +2154,8 @@ const primitive_function_symbols =
         map(f => head(f), primitive_functions);
 const primitive_function_objects =
         map(f => list("primitive", head(tail(f))),
-            primitive_functions);</kbd>
+            primitive_functions);
+      </kbd>
     
   </p></div>
 
@@ -2165,14 +2167,16 @@ const primitive_function_objects =
 	Similar to primitive functions, we define primitive values that are
 	installed in the global environment by the function
 	<kbd>setup_environment</kbd>.
-	<kbd class='snippet'>const primitive_constants = list(list("undefined", undefined),
+	<kbd class='snippet'>
+const primitive_constants = list(list("undefined", undefined),
                                  list("math_PI",   math_PI)
                                  $ \langle more$ $primitive$ $constants \rangle$
                                 );
 const primitive_constant_symbols =
         map(c => head(c), primitive_constants);
 const primitive_constant_values =
-        map(c => head(tail(c)), primitive_constants);</kbd>
+        map(c => head(tail(c)), primitive_constants);
+	  </kbd>
 
 	
       </p></div>

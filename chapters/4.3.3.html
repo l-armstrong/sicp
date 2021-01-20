@@ -2399,11 +2399,13 @@ function amb_choices(component) {
       function
     
     is
-    <kbd class='snippet'>(env, succeed, fail) => {      
+    <kbd class='snippet'>
+(env, succeed, fail) => {      
     // succeed $is$ (value, fail) => $\ldots$
     // fail $is$ () => $\ldots$
     $\ldots$
-}</kbd>
+}
+      </kbd>
   </p></div>
   <div class='permalink'>
 <a name='p15' class='permalink'></a><p>
@@ -2411,10 +2413,12 @@ function amb_choices(component) {
     
       
       
-	<kbd class='snippet'>ambeval($\textit{component}$,      
+	<kbd class='snippet'>
+ambeval($\textit{component}$,      
     the_global_environment,
     (value, fail) => value,
-    () => "failed");</kbd>
+    () => "failed");
+	  </kbd>
       
     
     will attempt to evaluate the given
@@ -3337,7 +3341,9 @@ amb-evaluate value:
 	
 	We shall horribly abuse the syntax for conditional statements, by
 	implementing a construct of the following form: 
-	<kbd class='snippet'>if (evaluation_succeeds_take) { $statement$ } else { $alternative$ }</kbd>
+	<kbd class='snippet'>
+if (evaluation_succeeds_take) { $statement$ } else { $alternative$ }
+	  </kbd>
 	The construct permits the user to catch the failure of a
 	statement. It evaluates the statement as usual and returns
 	as usual if the evaluation succeeds. If the evaluation fails,
@@ -3402,7 +3408,9 @@ amb-evaluate value:
       
       
 	the construct
-	<kbd class='snippet'>if (evaluation_succeeds_take) { $\ldots$ } else { $\ldots$ }</kbd>
+	<kbd class='snippet'>
+if (evaluation_succeeds_take) { $\ldots$ } else { $\ldots$ }
+      </kbd>
       
     
     as in exercise&nbsp;<REF NAME="ex:if-fail"><a class="superscript" id="4.3.3-ex-link-4.51" href="./4.3.3.html#ex_4.51">4.51</a></REF>, what will be the result of
@@ -3479,7 +3487,8 @@ function require_predicate(component) {
 	<kbd>analyze_require</kbd>.
       
     
-    <kbd class='snippet'>function analyze_require(component) {
+    <kbd class='snippet'>
+function analyze_require(component) {
     const pfun = analyze(require_predicate(component));
     return (env, succeed, fail) =>
                pfun(env,
@@ -3488,7 +3497,8 @@ function require_predicate(component) {
                         ? $\langle ?? \rangle$
                         : succeed("ok", fail2),
                     fail);
-}</kbd>
+}
+      </kbd>
   
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_91_5_div" data-toggle="collapse">Add solution</button></div>

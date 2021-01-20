@@ -2111,10 +2111,12 @@ EC-evaluate value:
     the beginning of the evaluator machine, which causes the machine to
     go to a new entry point if the <kbd>flag</kbd> register 
     is set.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
-    <kbd class='snippet'>$$  branch(label("external_entry")), // branches if flag is set
+    <kbd class='snippet'>
+$$  branch(label("external_entry")), // branches if flag is set
 "read_evaluate_print_loop",
   perform(op("initialize_stack")),
-  $\langle\ldots\rangle$</kbd>
+  $\langle\ldots\rangle$
+      </kbd>
   </p></div>
 
   <div class='permalink'>
@@ -2537,10 +2539,12 @@ EC-evaluate value:
     code it is assembling be defined there), so we will add a register
     called <kbd>compapp</kbd> to the evaluator machine to
     hold this entry point, and add an instruction to initialize it:
-    <kbd class='snippet'>$$  assign("compapp", label("compound_apply")),
+    <kbd class='snippet'>
+$$  assign("compapp", label("compound_apply")),
   branch(label("external_entry")),     // branches if flag is set
 "read_evaluate_print_loop"
-  $\ldots$</kbd>
+  $\ldots$
+      </kbd>
     
       
       

@@ -2277,10 +2277,14 @@ go_to(reg("continue")),</pre></div></div>
     That is, if $seq_1$ and
     $seq_2$ are sequences of instructions, then
     evaluating
-    <kbd class='snippet'>      append_instruction_sequences($seq_1$, $seq_2$)</kbd>
+    <kbd class='snippet'>
+      append_instruction_sequences($seq_1$, $seq_2$)
+      </kbd>
     produces the sequence
-    <kbd class='snippet'>$seq_1$
-$seq_2$</kbd>
+    <kbd class='snippet'>
+$seq_1$
+$seq_2$
+      </kbd>
   </p></div>
 
   <div class='permalink'>
@@ -2308,7 +2312,9 @@ $seq_2$</kbd>
     of the register around the first sequence before appending the sequences.
     Otherwise, <kbd>preserving</kbd> simply returns the
     appended instruction sequences.  Thus, for example,
-    <kbd class='snippet'>      preserving(list($reg_1$, $reg_2$), $seq_1$, $seq_2$);</kbd>
+    <kbd class='snippet'>
+      preserving(list($reg_1$, $reg_2$), $seq_1$, $seq_2$);
+      </kbd>
     produces one of the following four sequences of instructions, depending on
     how $\textit{seq}_1$ and
     $\textit{seq}_2$ use

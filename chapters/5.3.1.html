@@ -2379,20 +2379,28 @@ Acknowledgments
     For example, we can make a register machine support the instructions
     
     
-    <kbd class='snippet'>assign($\ensuremath{\text{\textrm{\sl reg}}_{1}}$, list(op("head"), reg($\ensuremath{\text{\textrm{\sl reg}}_{2}}$)))
-assign($\ensuremath{\text{\textrm{\sl reg}}_{1}}$, list(op("tail"), reg($\ensuremath{\text{\textrm{\sl reg}}_{2}}$)))</kbd>
+    <kbd class='snippet'>
+assign($\OptionalPar[1]{reg}$, list(op("head"), reg($\OptionalPar[2]{reg}$)))
+assign($\OptionalPar[1]{reg}$, list(op("tail"), reg($\OptionalPar[2]{reg}$)))
+      </kbd>
     if we implement these, respectively, as
-    <kbd class='snippet'>assign($\ensuremath{\text{\textrm{\sl reg}}_{1}}$, list(op("vector_ref"), reg("the_heads"), reg($\ensuremath{\text{\textrm{\sl reg}}_{2}}$)))
-assign($\ensuremath{\text{\textrm{\sl reg}}_{1}}$, list(op("vector_ref"), reg("the_tails"), reg($\ensuremath{\text{\textrm{\sl reg}}_{2}}$)))</kbd>
+    <kbd class='snippet'>
+assign($\OptionalPar[1]{reg}$, list(op("vector_ref"), reg("the_heads"), reg($\OptionalPar[2]{reg}$)))
+assign($\OptionalPar[1]{reg}$, list(op("vector_ref"), reg("the_tails"), reg($\OptionalPar[2]{reg}$)))
+      </kbd>
 
     The instructions
     
     
-    <kbd class='snippet'>perform(list(op("set_head"), reg($\ensuremath{\text{\textrm{\sl reg}}_{1}}$), reg($\ensuremath{\text{\textrm{\sl reg}}_{2}}$)))
-perform(list(op("set_tail"), reg($\ensuremath{\text{\textrm{\sl reg}}_{1}}$), reg($\ensuremath{\text{\textrm{\sl reg}}_{2}}$)))</kbd>
+    <kbd class='snippet'>
+perform(list(op("set_head"), reg($\OptionalPar[1]{reg}$), reg($\OptionalPar[2]{reg}$)))
+perform(list(op("set_tail"), reg($\OptionalPar[1]{reg}$), reg($\OptionalPar[2]{reg}$)))
+      </kbd>
     are implemented as
-    <kbd class='snippet'>perform(op("vector_set"), list(reg("the_heads"), reg($\ensuremath{\text{\textrm{\sl reg}}_{1}}$), reg($\ensuremath{\text{\textrm{\sl reg}}_{2}}$)))
-perform(op("vector_set"), list((reg("the_tails"), reg($\ensuremath{\text{\textrm{\sl reg}}_{1}}$), reg($\ensuremath{\text{\textrm{\sl reg}}_{2}}$)))</kbd>
+    <kbd class='snippet'>
+perform(op("vector_set"), list(reg("the_heads"), reg($\OptionalPar[1]{reg}$), reg($\OptionalPar[2]{reg}$)))
+perform(op("vector_set"), list((reg("the_tails"), reg($\OptionalPar[1]{reg}$), reg($\OptionalPar[2]{reg}$)))
+      </kbd>
   </p></div>
 
   <div class='permalink'>
@@ -2425,13 +2433,17 @@ perform(op("vector_set"), list((reg("the_tails"), reg($\ensuremath{\text{\textrm
     containing the next available index, and that we can increment the index
     part of that pointer to find the next free location.<a class='superscript' id='footnote-link-8' href='#footnote-8'>[8]</a>
     For example, the instruction
-    <kbd class='snippet'>assign($\ensuremath{\text{\textrm{\sl reg}}_{1}}$, list(op("pair"), reg($\ensuremath{\text{\textrm{\sl reg}}_{2}}$), reg($\ensuremath{\text{\textrm{\sl reg}}_{3}}$)))</kbd>
+    <kbd class='snippet'>
+assign($\OptionalPar[1]{reg}$, list(op("pair"), reg($\OptionalPar[2]{reg}$), reg($\OptionalPar[3]{reg}$)))
+      </kbd>
     is implemented as the following sequence of vector
     operations:<a class='superscript' id='footnote-link-9' href='#footnote-9'>[9]</a>
-    <kbd class='snippet'>perform(op("vector_set"), list(reg("the_heads"), reg("free"), reg($\ensuremath{\text{\textrm{\sl reg}}_{2}}$))),
-perform(op("vector_set"), list(reg("the_tails"), reg("free"), reg($\ensuremath{\text{\textrm{\sl reg}}_{3}}$))),
-assign($\ensuremath{\text{\textrm{\sl reg}}_{1}}$, reg("free")),
-assign("free", list(op("+"), reg("free"), constant(1)))</kbd>
+    <kbd class='snippet'>
+perform(op("vector_set"), list(reg("the_heads"), reg("free"), reg($\OptionalPar[2]{reg}$))),
+perform(op("vector_set"), list(reg("the_tails"), reg("free"), reg($\OptionalPar[3]{reg}$))),
+assign($\OptionalPar[1]{reg}$, reg("free")),
+assign("free", list(op("+"), reg("free"), constant(1)))
+      </kbd>
   </p></div>
 
   <div class='permalink'>
@@ -2442,7 +2454,9 @@ assign("free", list(op("+"), reg("free"), constant(1)))</kbd>
       <kbd>===</kbd>
     
     operation
-    <kbd class='snippet'>list(op("==="), reg($\ensuremath{\text{\textrm{\sl reg}}_{1}}$), reg($\ensuremath{\text{\textrm{\sl reg}}_{2}}$))</kbd>
+    <kbd class='snippet'>
+list(op("==="), reg($\OptionalPar[1]{reg}$), reg($\OptionalPar[2]{reg}$))
+      </kbd>
     simply tests the equality of all fields in the registers, and
     
     
@@ -2493,7 +2507,9 @@ assign("free", list(op("+"), reg("free"), constant(1)))</kbd>
     
     can be implemented as
     
-    <kbd class='snippet'>assign("the_stack", list(op("pair"), reg($\ensuremath{\text{\textrm{\sl reg}}}$), reg("the_stack")))</kbd>
+    <kbd class='snippet'>
+assign("the_stack", list(op("pair"), reg($\OptionalPar{reg}$), reg("the_stack")))
+      </kbd>
     
     Similarly,
     
@@ -2504,8 +2520,10 @@ assign("free", list(op("+"), reg("free"), constant(1)))</kbd>
       <kbd>)</kbd>
     
     can be implemented as
-    <kbd class='snippet'>assign($\ensuremath{\text{\textrm{\sl reg}}}$, list(op("head"), reg("the_stack")))
-assign("the_stack", list(op("tail"), reg("the_stack")))</kbd>
+    <kbd class='snippet'>
+assign($\OptionalPar{reg}$, list(op("head"), reg("the_stack")))
+assign("the_stack", list(op("tail"), reg("the_stack")))
+      </kbd>
     and
     
       
@@ -2514,7 +2532,9 @@ assign("the_stack", list(op("tail"), reg("the_stack")))</kbd>
       
     
     can be implemented as
-    <kbd class='snippet'>assign("the_stack", constant(null))</kbd>
+    <kbd class='snippet'>
+assign("the_stack", constant(null))
+      </kbd>
 
     These operations can be further expanded in terms of the vector
     operations given above.  In conventional computer architectures,

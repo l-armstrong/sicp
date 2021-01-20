@@ -2162,14 +2162,16 @@ const pi_stream =
     Thus, if the original sequence is represented as a stream of values,
     the transformed sequence is given by
      
-    <kbd class='snippet'>function euler_transform(s) {
+    <kbd class='snippet'>
+function euler_transform(s) {
     const s0 = stream_ref(s, 0);     // $S_{n-1}$
     const s1 = stream_ref(s, 1);     // $S_{n}$
     const s2 = stream_ref(s, 2);     // $S_{n+1}$
     return pair(
              s2 - square(s2 - s1) / (s0 + (-2) * s1 + s2),
              memo(() => euler_transform(stream_tail(s))));
-}</kbd>
+}
+      </kbd>
     
       
 	  Note that we make use of the memoization optimization of
@@ -2484,14 +2486,16 @@ function sqrt(x, tolerance) {
 stream_map(x => list(head(s), x),
            stream_tail(t));</pre></div></div>
     Thus we can form our stream of pairs as follows:
-    <kbd class='snippet'>function pairs(s, t) {
+    <kbd class='snippet'>
+function pairs(s, t) {
     return pair(list(head(s), head(t)), 
                 () => $combine$-$in$-$some$-$way$(
                          stream_map(x => list(head(s), x),
                                     stream_tail(t)),
                          pairs(stream_tail(s), stream_tail(t)))
                );
-}</kbd>
+}
+      </kbd>
   </p></div>
 
   <div class='permalink'>
@@ -3045,9 +3049,11 @@ const zero_crossings = make_zero_crossings(sense_data, 0);</pre></div></div>
 	from exercise&nbsp;<REF NAME="ex:combine-streams"><a class="superscript" id="3.5.3-ex-link-3.50" href="./3.5.1.html#ex_3.50">3.50</a></REF>:
       
     
-    <kbd class='snippet'>const zero_crossings = stream_map_2(sign_change_detector,
+    <kbd class='snippet'>
+const zero_crossings = stream_map_2(sign_change_detector,
                                     sense_data,
-                                    $expression$);</kbd>
+                                    $expression$);
+      </kbd>
     Complete the program by supplying the indicated
     $\textit{expression}$.
     

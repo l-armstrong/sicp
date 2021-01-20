@@ -2361,17 +2361,32 @@ list("sequence",
 	Literal expressions are parsed into tagged lists with
 	tag <kbd>"literal"</kbd> and
 	the actual value.
-	
-	  \begin{eqnarray*}
-	  \ll \textit{literal-expression} \gg & = &
-	  \texttt{list("literal", }\textit{value}\texttt{)}
-	  \end{eqnarray*}
-	
-	where $\textit{value}$ is
-	the JavaScript value represented by the
-	$\textit{literal-expression}$ string.
-	Here $\ll\textit{literal-expression}\gg$ denotes the
-	result of parsing the string $\textit{literal-expression}$.
+	<div class='webonly'>
+	  
+	    \begin{eqnarray*}
+	    \ll \textit{literal-expression} \gg & = &
+	    \texttt{list("literal", }\textit{value}\texttt{)}
+	    \end{eqnarray*}
+	  
+	  where $\textit{value}$ is
+	  the JavaScript value represented by the
+	  $\textit{literal-expression}$ string.
+	  Here $\ll\textit{literal-expression}\gg$ denotes the
+	  result of parsing the string $\textit{literal-expression}$.
+	</div>
+	<div class='pdfonly'>
+	  
+	    \begin{eqnarray*}
+	    \ll \mathit{literal}\mhyphen\mathit{expression} \gg & = &
+	    \texttt{list("literal", }\mathit{value}\texttt{)}
+	    \end{eqnarray*}
+	  
+	  where $value$ is
+	  the JavaScript value represented by the
+	  $literal$-$expression$ string.
+	  Here $\ll\mathit{literal}\mhyphen\mathit{expression}\gg$ denotes the
+	  result of parsing the string $literal$-$expression$.
+	</div>
 	<div class='snippet' id='javascript_78_19_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAHAQwCcBnAUwAoAiDAbhoEp6g')">parse("1;");
 </pre><pre class='prettyprintoutput'>
 list("literal", 1)</pre></div></div>

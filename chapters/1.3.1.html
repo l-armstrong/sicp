@@ -2065,11 +2065,13 @@ Acknowledgments
     
     by filling in slots in the same template:
 
-    <kbd class='snippet'>function $name$(a, b) {
+    <kbd class='snippet'>
+function $name$(a, b) {
     return a > b
            ? 0
            : $term$(a) + $name$($next$(a), b);
-}</kbd>
+}
+      </kbd>
   </p></div>
 
   <div class='permalink'>
@@ -2375,14 +2377,16 @@ function simpsons_rule_integral(f, a, b, n) {
       
       declaration:
     
-    <kbd class='snippet'>function sum(term, a, next, b) {
+    <kbd class='snippet'>
+function sum(term, a, next, b) {
     function iter(a, result) {
         return $\langle ??\rangle$
                ? $\langle ??\rangle$
                : iter($\langle ??\rangle$, $\langle ??\rangle$);
     }
     return iter($\langle ??\rangle$, $\langle ??\rangle$);
-}</kbd>
+}
+      </kbd>
     
   
       <div class="Solution">

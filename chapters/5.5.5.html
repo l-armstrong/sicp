@@ -2098,14 +2098,16 @@ compile(parse("                                \
     
     there is no linkage code
     in this case.  The skeleton of the compiled code is thus
-    <kbd class='snippet'>$\langle\text{\it save {\tt env} if modified by code to compute value}\rangle$
+    <kbd class='snippet'>
+$\langle\text{\it save {\tt env} if modified by code to compute value}\rangle$
 $\langle\text{\it compilation of declaration value, target {\tt val}, linkage {\tt next}}\rangle$
 $\langle\text{\it restore {\tt env} if saved above}\rangle$
 perform(list(op("assign_symbol_value"),
              constant("factorial"),
              reg("val"),
              reg("env")),
-assign("val", constant(undefined))</kbd>
+assign("val", constant(undefined))
+      </kbd>
   </p></div>
 
   <div class='permalink'>
@@ -2197,7 +2199,8 @@ assign("val", constant(undefined))</kbd>
     <kbd>entry2</kbd> isn't executed at this point,
     so its use of <kbd>env</kbd> is irrelevant.)
     Therefore, the skeleton for the compiled code becomes
-    <kbd class='snippet'>$$  assign("val", list(op("make_compiled_function"),
+    <kbd class='snippet'>
+$$  assign("val", list(op("make_compiled_function"),
                      label(entry2), 
                      reg("env"))),
   go_to(label("after_lambda1")),
@@ -2213,7 +2216,8 @@ assign("val", constant(undefined))</kbd>
                constant("factorial"), 
                reg("val"), 
                reg("env"))),
-  assign("val", constant(undefined))</kbd>
+  assign("val", constant(undefined))
+      </kbd>
   </p></div>
 
   <div class='permalink'>
@@ -2325,7 +2329,8 @@ return n === 1
       
       function.)
     
-    <kbd class='snippet'>$$  $\langle\text{\it save {\tt continue}, {\tt env} if modified by predicate and needed by branches}\rangle$
+    <kbd class='snippet'>
+$$  $\langle\text{\it save {\tt continue}, {\tt env} if modified by predicate and needed by branches}\rangle$
   $\langle\text{\it compilation of predicate, target {\tt val}, linkage {\tt next}}\rangle$
   $\langle\text{\it restore {\tt continue}, {\tt env} if saved above}\rangle$
   test(list(op("is_falsy"), reg("val"))),
@@ -2334,7 +2339,8 @@ return n === 1
   $\langle\text{\it compilation of true branch, target {\tt val}, linkage {\tt return}}\rangle$
 "false_branch5",
   $\langle\text{\it compilation of false branch, target {\tt val}, linkage {\tt return}}\rangle$
-"after_cond3",</kbd>
+"after_cond3",
+      </kbd>
   </p></div>
 
   <div class='permalink'>
@@ -2392,7 +2398,8 @@ return n === 1
     any saving of registers, because in this case those evaluations don't
     modify the registers in question.
 
-    <kbd class='snippet'>$$  assign("fun", list(op("lookup_symbol_value"), constant("==="), 
+    <kbd class='snippet'>
+$$  assign("fun", list(op("lookup_symbol_value"), constant("==="), 
                      reg("env"))),
   assign("val", constant(1)),
   assign("argl", list(op("list"), reg("val"))),
@@ -2410,7 +2417,8 @@ return n === 1
 "primitive_branch17",
   assign("val", list(op("apply_primitive_function"), reg("fun"), 
                      reg("argl"))),
-"after_call15"</kbd>
+"after_call15"
+      </kbd>
   </p></div>
 
   <div class='permalink'>
@@ -2687,7 +2695,8 @@ function factorial(n) {
 
 
     
-  <kbd class='snippet'>$$  save("continue"),
+  <kbd class='snippet'>
+$$  save("continue"),
   save("fun"),            // save * function
   assign("val", list(op("lookup_symbol_value"), 
                      constant(n), reg("env"))),
@@ -2733,10 +2742,12 @@ function factorial(n) {
   go_to(reg("val")),
 "primitive_branch11",
   assign("val", list(op("apply_primitive_function"), 
-                     reg("fun"), reg("argl"))),</kbd>
+                     reg("fun"), reg("argl"))),
+    </kbd>
   
     
-    <FIGURE><kbd class='snippet'>$$  save("continue"),
+    <FIGURE><kbd class='snippet'>
+$$  save("continue"),
   save("fun"),            // save * function
   assign("val", list(op("lookup_symbol_value"), 
                      constant(n), reg("env"))),
@@ -2782,7 +2793,8 @@ function factorial(n) {
   go_to(reg("val")),
 "primitive_branch11",
   assign("val", list(op("apply_primitive_function"), 
-                     reg("fun"), reg("argl"))),</kbd>
+                     reg("fun"), reg("argl"))),
+    </kbd>
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./5.5.5.html#fig_5.18">Figure 5.18 </a></b>(continued)</div>
     </FIGURE>
@@ -2863,7 +2875,8 @@ function factorial(n) {
 
       
   
-  <kbd class='snippet'>$$  assign("val", list(op("make_compiled_function"),
+  <kbd class='snippet'>
+$$  assign("val", list(op("make_compiled_function"),
                      label("entry16")),
         reg env)),
   go_to(label("after_lambda15")),
@@ -2910,10 +2923,12 @@ function factorial(n) {
   save_marker(),
   assign(val, list(op("compiled_function_entry"), 
                    reg("fun"))),
-  go_to(reg("val")),</kbd>
+  go_to(reg("val")),
+    </kbd>
   
   
-  <FIGURE><kbd class='snippet'>$$  assign("val", list(op("make_compiled_function"),
+  <FIGURE><kbd class='snippet'>
+$$  assign("val", list(op("make_compiled_function"),
                      label("entry16")),
         reg env)),
   go_to(label("after_lambda15")),
@@ -2960,7 +2975,8 @@ function factorial(n) {
   save_marker(),
   assign(val, list(op("compiled_function_entry"), 
                    reg("fun"))),
-  go_to(reg("val")),</kbd>
+  go_to(reg("val")),
+    </kbd>
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./5.5.5.html#fig_5.20">Figure 5.20 </a></b>An example of compiler output (continued on next page).
   See exercise&nbsp;<REF NAME="ex:compiled-code"><a class="superscript" id="5.5.5-ex-link-5.35" href="./5.5.5.html#ex_5.35">5.35</a></REF>.
