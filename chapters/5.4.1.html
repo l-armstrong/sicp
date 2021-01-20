@@ -2579,7 +2579,7 @@ component
     
       
       
-        As we use <kbd>head</kbd> and
+        Because we use <kbd>head</kbd> and
         <kbd>tail</kbd> to extract successive operands
         from <kbd>unev</kbd> the explicit-control
         evaluator will evaluate the argument expressions of a combination in
@@ -2840,7 +2840,7 @@ The sequence of instructions labeled
 <a name='p17' class='permalink'></a><p>
         Returning from a compound function should jump to the value of
         <kbd>continue</kbd> at the time of the
-        function call, which was stored on the stack in
+        function call, which was stored on the stack at
         <kbd>ev_application</kbd>. Doing so requires
         that we restore the stack to its state at that moment in time by popping
         all subsequently saved values which are no longer needed. Such values
@@ -2872,11 +2872,10 @@ The sequence of instructions labeled
       
         <div class='permalink'>
 <a name='p18' class='permalink'></a><p>
-        When a return statement is evaluated in <kbd>ev_return</kbd>,
-        we immediately restore the stack to its state at the beginning of the
+        When a return statement is evaluated at <kbd>ev_return</kbd>,
+        we use the <kbd>restore_marker</kbd> instruction to restore the stack to its state at the beginning of the
         function call by popping all values from the stack down to and including
-        the marker. For simplicity, this is handled by the
-        <kbd>restore_marker</kbd> instruction.
+        the marker. 
         As a consequence, <kbd>restore("continue")</kbd>
         will restore the continuation of the function call. We can then proceed to
         evaluate the return expression whose result will be placed in <kbd>val</kbd>
@@ -2901,7 +2900,7 @@ The sequence of instructions labeled
         <kbd>save_marker</kbd>, it will not execute
         these instructions, and keep its return value. To get rid of the marker
         on the stack, there is a <kbd>restore_marker</kbd> command
-        also in <kbd>return_undefined</kbd>.<a class='superscript' id='footnote-link-7' href='#footnote-7'>[7]</a>
+        also in <kbd>return_undefined</kbd>.
       </p></div>
 
     <div class='snippet' id='javascript_113_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
@@ -3003,7 +3002,7 @@ The sequence of instructions labeled
     
       
       
-	      in <kbd>ev_sequence_start</kbd> by placing the sequence of statements
+	      at <kbd>ev_sequence_start</kbd> by placing the sequence of statements
       
     
     to be evaluated in
@@ -3121,7 +3120,7 @@ The sequence of instructions labeled
     
       
       
-	<kbd>ev_sequence_last_comp</kbd>.
+	<kbd>ev_sequence_last_statement</kbd>.
       
     
     Since there are no more
@@ -3230,11 +3229,11 @@ may overwrite the saved registers as part of its evaluation.
 With the exception of <kbd>return</kbd> statements, which we shall soon address, after
 evaluating an instruction, the stack will hold at its top precisely what is
 about to be restored by its continuation. For example, when we construct the
-list of arguments to a function in
+list of arguments to a function at
 <kbd>ev_appl_argument_expression_loop</kbd>, we push
 <kbd>env</kbd> and
 <kbd>unev</kbd> to the stack before evaluating the
-current argument expression, and when we continue in
+current argument expression, and when we continue at
 <kbd>ev_appl_accumulate_arg</kbd>, we pop the stack to
 restore the environment and the remainder of the argument list. Each instruction
 only stores to the stack what is needed by the continuation and as a result, at
@@ -3252,10 +3251,10 @@ x = 42;
 if (x > 0) { return x; } else { ... }; 
 x = x + 1;</pre></div></div>
 
-The evaluation of this code starts in
+The evaluation of this code starts at
 <kbd>ev_sequence_start</kbd> by saving the current
 continuation, which is the label
-<kbd>return_undefined</kbd> which was setup in
+<kbd>return_undefined</kbd> which was setup at
 <kbd>compound_apply</kbd> and then jumping to
 <kbd>ev_sequence</kbd>. We then evaluate each
 statement in the sequence in a loop. Each turn of the loop, we place the first
@@ -3271,8 +3270,8 @@ before jumping to the dispatcher to evaluate the statement in
 <a name='p28' class='permalink'></a><p>
 If the <kbd>return</kbd> statement did not exist, we would do two saves before and two
 restores after each statement, except the last which needs neither, and at the evaluation of the
-last statement, in <kbd>ev_sequence_last_statement</kbd>,
-restore the continuation saved in <kbd>ev_sequence_start</kbd>.
+last statement, at <kbd>ev_sequence_last_statement</kbd>,
+restore the continuation saved at <kbd>ev_sequence_start</kbd>.
 Consequently, we would have restored the stack to its state right 
 when we jumped to <kbd>ev_sequence_start</kbd>.
       </p></div>
@@ -3303,7 +3302,7 @@ many values from the stack depending on the structure of the program where they 
 Our solution to this problem which was introduced in
 <kbd>compound_apply</kbd> is to insert a marker in the
 stack during a function call that marks the place to which a return in the
-function body must restore the stack (which is done in
+function body must restore the stack (which is done at
 <kbd>ev_return</kbd>). The instructions
 <kbd>save_marker</kbd> and <kbd>restore_marker</kbd> were defined
 to simplify this stack management.
@@ -3386,7 +3385,7 @@ to simplify this stack management.
      
      
     <div class='snippet' id='javascript_113_17_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-const empty_arglist = list();
+function empty_arglist() { return null; }
 
 function adjoin_arg(arg, arglist) {
     return append(arglist, list(arg));
@@ -3488,16 +3487,6 @@ function is_last_argument_expression(arg_expression) {
         marker value to and off the stack. Any value that could not be confused
         for a value in the program can be used as a marker value. See exercises
         <REF NAME="ex:save_marker1"><a class="superscript" id="5.4.1-ex-link-5.23" href="./5.4.3.html#ex_5.23">5.23</a></REF> and <REF NAME="ex:save_marker2"><a class="superscript" id="5.4.1-ex-link-5.24" href="./5.4.3.html#ex_5.24">5.24</a></REF>.
-      
-    </FOOTNOTE></div>
-
-    
-    <div class='footnote'>
-      <a class='footnote-number' id='footnote-7' href='#footnote-link-7'>[7] </a>
-    <FOOTNOTE>
-    
-        Because the marker will be on the top of the stack in this case, we could
-        simply have used <kbd>restore</kbd> twice.
       
     </FOOTNOTE></div>
 

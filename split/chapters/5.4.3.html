@@ -2150,22 +2150,6 @@ ev-if-consequent
       assign("comp", list(op("conditional_alternative"), reg("comp"))),
       go_to(label("eval_dispatch")),</pre></div></div></td></tr></table>
   </p></div>
-
-  <table width="100%">
-        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
-        <tr>
-          <td class="meta" style = "color:grey; text-align: center">Original</td>
-          <td></td>
-          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
-        </tr>
-        <tr><td>    </td>
-          <td></td>
-          <td><span style="color:blue">
-      The instructions above handle both conditional expressions and conditional statements by
-      jumping to the dispatcher to handle the component in <kbd>comp</kbd>.
-      In the case of conditional statements, <kbd>comp</kbd> will always be a block
-      and the dispatcher will therefore always jump to <kbd>ev_block</kbd>.
-    </span></td></tr></table>
   
   
       <div class='permalink'>
@@ -2266,7 +2250,7 @@ ev-assignment-1
         setting <kbd>val</kbd> to
         <kbd>undefined</kbd> before continuing. 
         As in the metacircular evaluator, we transform a function declaration
-        into a constant declaration whose value expression is a lambda expression. This happens in
+        into a constant declaration whose value expression is a lambda expression. This happens at
         <kbd>ev_function_declaration</kbd> which makes the
         transformation in place in <kbd>comp</kbd> and
         falls through to <kbd>ev_declaration</kbd>.
@@ -2429,11 +2413,11 @@ ev-definition-1
         
         Implement <kbd>save_marker</kbd> and
         <kbd>restore_marker</kbd> by extending the evaluator
-        with two new instructions implemented as the nullary functions
+        with two new instructions, similar to <kbd>save</kbd> and <kbd>restore</kbd>, implemented by
+        no-argument functions
         <kbd>save_marker</kbd> and
-        <kbd>restore_marker</kbd>, similar to
-        <kbd>save</kbd> and
-        <kbd>restore</kbd>. You will have
+        <kbd>restore_marker</kbd>.
+        You will have
         to add cases to the stack's dispatch function as well. Note
         that you do not need to actually insert a marker in the stack, but can keep
         a parallel structure that keeps track of the position of the last
