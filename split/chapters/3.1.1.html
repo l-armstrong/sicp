@@ -2212,7 +2212,9 @@ balance = balance - amount;</pre></div></div></td></tr></table>
           <td></td>
           <td><span style="color:blue">
         The syntax of <EM>assignment</EM> expressions is
-    <kbd class='snippet'>$name$ = $new$-$value$</kbd>
+    <kbd class='snippet'>
+$name$ = $new$-$value$
+      </kbd>
       </span></td></tr></table>
     Here
     
@@ -2303,7 +2305,9 @@ balance = balance - amount;</pre></div></div></td></tr></table>
 	and then returning the value of
 	<kbd>balance</kbd>.  
 	In general, executing a sequence
-	<kbd class='snippet'>$\textit{stmt}_{1}\ \textit{stmt}_{2}\ \ldots \textit{stmt}_{n}$</kbd>
+	<kbd class='snippet'>
+$\textit{stmt}_{1}\ \textit{stmt}_{2}\ \ldots \textit{stmt}_{n}$
+          </kbd>
         causes the statements $\textit{stmt}_{1}$
 	through
 	$\textit{stmt}_{n}$ to be evaluated in
@@ -3268,14 +3272,20 @@ function make_account(balance, p) {
 	The value of an assignment is the value being assigned to the name.
 	Assignment expression statements look similar to and should not be
 	confused with constant and variable declarations of the form
-	<kbd class='snippet'>const $name$ = $value$;</kbd>
+	<kbd class='snippet'>
+const $name$ = $value$;
+          </kbd>
 	and
-	<kbd class='snippet'>let $name$ = $value$;</kbd>
+	<kbd class='snippet'>
+let $name$ = $value$;
+          </kbd>
 	in which a newly declared $\textit{name}$
 	is associated with a $\textit{value}$. 
 	Assignment expressions look similar to and should not be confused with
 	expressions of the form 
-	<kbd class='snippet'>$expression_1$ === $expression_2$</kbd>
+	<kbd class='snippet'>
+$expression_1$ === $expression_2$
+          </kbd>
 	which evaluate to <kbd>true</kbd>
 	if $\textit{expression}_1$ evaluates to the
 	same value as $\textit{expression}_2$ and to

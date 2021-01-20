@@ -2305,7 +2305,9 @@ list(list("initialize_stack",
       <span style="color:green">procedure</span>
       <span style="color:blue">function</span>
     
-    <kbd class='snippet'>set_breakpoint($machine$, $label$, $n$)</kbd>
+    <kbd class='snippet'>
+set_breakpoint($machine$, $label$, $n$)
+      </kbd>
     that sets a breakpoint just before the $n$th
     instruction after the given label.  For example,
     <table width="100%">
@@ -2342,11 +2344,17 @@ set_breakpoint(gcd_machine, "test_b", 4)</pre></div></div></td></tr></table>
     
     to manipulate the state of the simulated machine.  She should then be able
     to continue execution by saying
-    <kbd class='snippet'>proceed_machine($machine$)</kbd>
+    <kbd class='snippet'>
+proceed_machine($machine$)
+      </kbd>
     She should also be able to remove a specific breakpoint by means of
-    <kbd class='snippet'>cancel_breakpoint($machine$, $label$, $n$)</kbd>
+    <kbd class='snippet'>
+cancel_breakpoint($machine$, $label$, $n$)
+      </kbd>
     or to remove all breakpoints by means of
-    <kbd class='snippet'>cancel_all_breakpoints($machine$)</kbd>
+    <kbd class='snippet'>
+cancel_all_breakpoints($machine$)
+      </kbd>
   
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_108_6_div" data-toggle="collapse">Add solution</button></div>

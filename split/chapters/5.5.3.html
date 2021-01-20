@@ -2031,9 +2031,11 @@ Acknowledgments
     
     compiled with a given target and
     linkage has the form
-    <kbd class='snippet'>$\langle \text{\it compilation of function expression, target \texttt{fun}, linkage \texttt{next}}\rangle$
+    <kbd class='snippet'>
+$\langle \text{\it compilation of function expression, target \texttt{fun}, linkage \texttt{next}}\rangle$
 $\langle \text{\it evaluate arg expressions and construct arg list in}\ argl\rangle$
-$\langle \text{\it compilation of function call with given target and linkage}\rangle$</kbd>
+$\langle \text{\it compilation of function call with given target and linkage}\rangle$
+      </kbd>
 
     The registers <kbd>env</kbd>,
     
@@ -2265,13 +2267,15 @@ function compile_application(exp, target, linkage) {
     we make the first code sequence construct the initial
     <kbd>argl</kbd>.
     The general form of the argument-list construction is thus as follows:
-    <kbd class='snippet'>$\langle \text{\it compilation of last argument, targeted to}\ val\rangle$
+    <kbd class='snippet'>
+$\langle \text{\it compilation of last argument, targeted to}\ val\rangle$
 assign("argl", list(op("list"), reg("val")));
 $\langle \text{\it compilation of next argument, targeted to}\ val\rangle$
 assign("argl", list(op("pair"), reg("val"), reg("argl")));
 $\ldots$
 $\langle \text{\it compilation of first argument, targeted to}\ val\rangle$
-assign("argl", list(op("pair"), reg("val"), reg("argl")));</kbd>
+assign("argl", list(op("pair"), reg("val"), reg("argl")));
+      </kbd>
 
     
       <span style="color:green">
@@ -2516,17 +2520,19 @@ function code_to_get_rest_args(arg_codes) {
       <span style="color:blue">function-application</span>
     
     code has the following form:
-    <kbd class='snippet'>$$  test(op("primitive_function"), reg("fun")),
+    <kbd class='snippet'>
+$$  test(op("primitive_function"), reg("fun")),
   branch(label("primitive_branch")),
 "compiled_branch",
   $\langle\text{\it code to apply compiled function with given target and appropriate linkage} \rangle$
 "primitive_branch",
-  assign($\ensuremath{\text{\textrm{\sl target}}}$,
+  assign($\OptionalPar{target}$,
          list(op("apply_primitive_function"),
          reg("fun"),
          reg("argl")))
-$\ensuremath{\text{\textrm{\sl linkage}}}$
-"after_call"</kbd>
+$\OptionalPar{linkage}$
+"after_call"
+      </kbd>
 
     Observe that the compiled branch must skip around the primitive
     branch.  Therefore, if the linkage for the original
@@ -2695,14 +2701,16 @@ function compile_function_call(target, linkage) {
       </span>
     
     with a given target and linkage to look like this if the linkage is a label
-    <kbd class='snippet'>$$  assign("continue", label("fun_return")),
+    <kbd class='snippet'>
+$$  assign("continue", label("fun_return")),
   save("continue"),
   save_marker(),
   assign("val", list(op("compiled_function_entry"), reg("fun"))),
   go_to(reg("val")),
 "fun_return",
-  assign($\ensuremath{\text{\textrm{\sl target}}}$, reg("val")),   // included if target is not val
-  go_to(label($\ensuremath{\text{\textrm{\sl linkage}}}$)),        // linkage code</kbd>
+  assign($\OptionalPar{target}$, reg("val")),   // included if target is not val
+  go_to(label($\OptionalPar{linkage}$)),        // linkage code
+      </kbd>
 
     or like this if the linkage is
     
@@ -2713,15 +2721,17 @@ function compile_function_call(target, linkage) {
 	<kbd>"return"</kbd>
       </span>
     
-    <kbd class='snippet'>$$  assign("continue", label("fun_return")),
+    <kbd class='snippet'>
+$$  assign("continue", label("fun_return")),
   save("continue"),
   save_marker(),
   assign("val", list(op("compiled_function_entry"), reg("fun"))),
   go_to(reg("val")),
 "fun_return",
-  assign($\ensuremath{\text{\textrm{\sl target}}}$, reg("val")),   // included if target is not val
+  assign($\OptionalPar{target}$, reg("val")),   // included if target is not val
   restore("continue"),
-  go_to(reg("continue")),         // linkage code</kbd>
+  go_to(reg("continue")),         // linkage code
+      </kbd>
  
     
     <table width="100%">
@@ -2735,16 +2745,18 @@ function compile_function_call(target, linkage) {
           <td></td>
           <td><span style="color:blue">
         of, finally, if the linkage is <kbd>"return_undefined"</kbd>.
-        <kbd class='snippet'>$$  assign("continue", label("return_undefined")),
+        <kbd class='snippet'>
+$$  assign("continue", label("return_undefined")),
   save("continue"),
   save_marker(),
   assign("val", list(op("compiled_function_entry"), reg("fun"))),
   go_to(reg("val")),
 "return_undefined",
-  assign($\ensuremath{\text{\textrm{\sl target}}}$, constant(undefined)),   // included even if target is val
+  assign($\OptionalPar{target}$, constant(undefined)),   // included even if target is val
   restore_marker(),
   restore("continue"),
-  go_to(reg("continue")),         // linkage code</kbd>
+  go_to(reg("continue")),         // linkage code
+</kbd>
 </span></td></tr></table>
 
     This code sets up <kbd>continue</kbd> so that the
@@ -2874,9 +2886,11 @@ function compile_function_call(target, linkage) {
     will 
     <span style="color:green"><QUOTE>return</QUOTE></span><span style="color:blue">jump</span>
     directly to the place specified by the caller's linkage:
-    <kbd class='snippet'>$\langle \text{\it set up continue for linkage}\rangle$
+    <kbd class='snippet'>
+$\langle \text{\it set up continue for linkage}\rangle$
 assign("val", list(op("compiled_function_entry"), reg("fun"))),
-go_to(reg("val")),</kbd>
+go_to(reg("val")),
+      </kbd>
 
     If the linkage is a label, we set up <kbd>continue</kbd>
     so that the
@@ -2914,11 +2928,13 @@ go_to(reg("val")),</kbd>
     
     above.)
 
-    <kbd class='snippet'>assign("continue", label($\ensuremath{\text{\textrm{\sl linkage}}}$)),
+    <kbd class='snippet'>
+assign("continue", label($\OptionalPar{linkage}$)),
 save("continue"),
 save_marker(),
 assign("val", list(op("compiled_function_entry"), reg("fun"))),
-go_to(reg("val")),</kbd>
+go_to(reg("val")),
+      </kbd>
 
     If the linkage is
     

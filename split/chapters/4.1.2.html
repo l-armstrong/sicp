@@ -2604,10 +2604,12 @@ $\ll \mathit{predicate}\ \texttt{?}\ \mathit{consequent}\mhyphen{}\mathit{expres
 \newline
 \vspace{-8mm}
 	</div>
-	<kbd class='snippet'>list("conditional_expression", 
-     $\ll$ $\gg$,
-     $\ll$ $\gg$,
-     $\ll$ $\gg$)</kbd>
+	<kbd class='snippet'>
+list("conditional_expression", 
+     $\ll$ $predicate$ $\gg$,
+     $\ll$ $consequent$-$expression$ $\gg$,
+     $\ll$ $alternative$-$expression$ $\gg$)
+	  </kbd>
     </blockquote>
 
     Similarly, conditional statements are parsed as follows:
@@ -2623,10 +2625,12 @@ $\ll \textbf{\texttt{if}}\ \texttt{(} \mathit{predicate} \texttt{)}\ \mathit{con
 \vspace{-8mm}
 	
       </div>
-	<kbd class='snippet'>list("conditional_statement", 
-     $\ll$ $\gg$,
-     $\ll$ $\gg$,
-     $\ll$ $\gg$)</kbd>
+	<kbd class='snippet'>
+list("conditional_statement", 
+     $\ll$ $predicate$ $\gg$,
+     $\ll$ $consequent$-$block$ $\gg$,
+     $\ll$ $alternative$-$block$ $\gg$)
+	  </kbd>
     </blockquote>
 
 	
@@ -2690,9 +2694,11 @@ $\ll \texttt{(}\mathit{name}_1\texttt{, }\ldots\texttt{, } \mathit{name}_n \text
 \vspace{-8mm}
 	
 		</div>
-	<kbd class='snippet'>list("lambda_expression",
+	<kbd class='snippet'>
+list("lambda_expression",
      list($\ll name_1 \gg$, $\ldots$, $\ll name_n \gg$),
-     $\ll block \gg$)</kbd>
+     $\ll block \gg$)
+	  </kbd>
 	      </blockquote>
 
 	
@@ -2964,10 +2970,12 @@ $\ll \textbf{\texttt{function}}\ \mathit{name} \texttt{(}\mathit{name}_1\texttt{
 \vspace{-8mm}
 	
 	  </div>
-	<kbd class='snippet'>list("function_declaration",
-     $\ll$ $\gg$,
-     list($\ll$$_1 \gg$, $\ldots$, $\ll$$_n \gg$),
-     $\ll$ $\gg$)</kbd>
+	<kbd class='snippet'>
+list("function_declaration",
+     $\ll$ $name$ $\gg$,
+     list($\ll$ $name$$_1 \gg$, $\ldots$, $\ll$ $name$$_n \gg$),
+     $\ll$ $block$ $\gg$)
+	  </kbd>
 	</blockquote>
 
       
@@ -3175,7 +3183,7 @@ $\ll \textbf{\texttt{function}}\ \mathit{name} \texttt{(}\mathit{name}_1\texttt{
 	      & \ll \textit{expression}_1\ \textit{binary-operator}\ \ \textit{expression}_2 \gg \\
 	      & = \\
 	      & \texttt{list("binary_operator_combination", "}\textit{binary-operator}\texttt{"},\ 
-              \texttt{list(}\ll \textit{expression}_1 \gg \texttt{,}\ \ll \textit{expression}_2 \gg \texttt{))}
+              \texttt{list(}\ll \textit{expression}_1 \gg\texttt{,}\ \ll \textit{expression}_2 \gg \texttt{))}
 	      \end{eqnarray*}
 	    
     </div>
@@ -3509,9 +3517,11 @@ $\ll \textbf{\texttt{function}}\ \mathit{name} \texttt{(}\mathit{name}_1\texttt{
 	  $\ll \textit{expression}_1\ \ \textit{logical-operation}\ \ \textit{expression}_2 \gg \ \ = $
 	
 	  </div>
-	<kbd class='snippet'>list("logical_composition",
+	<kbd class='snippet'>
+list("logical_composition",
      "$logical$-$operation$",
-     list($\ll$$_1 \gg$, $\ll$$_2 \gg$))</kbd>
+     list($\ll$ $expression$$_1 \gg$, $\ll$ $expression$$_2 \gg$))
+	  </kbd>
     </blockquote>
 
     where $logical$-$operation$ is 
@@ -3840,7 +3850,9 @@ display(1);
 	
 	
 	
-	<kbd class='snippet'>while () { }</kbd>
+	<kbd class='snippet'>
+while ($predicate$) { $body$ }
+	  </kbd>
 	evaluates the $predicate$, and
 	if the result is true, evaluates the
 	$body$
@@ -3876,7 +3888,9 @@ display(1);
 	  \vspace{-8mm}
 	
 	  </div>
-	  <kbd class='snippet'>list("while_loop", $\ll$ $\gg$, $\ll$ $\gg$)</kbd>
+	  <kbd class='snippet'>
+list("while_loop", $\ll$ $predicate$ $\gg$, $\ll$ $block$ $\gg$)
+	  </kbd>
     </blockquote>
 
     <OL type="a">
@@ -4022,7 +4036,9 @@ display(1);
 	  \vspace{-8mm}
 	
 	  </div>
-	  <kbd class='snippet'>list("for_loop", $\ll$ $\gg$, $\ll$ $\gg$, $\ll$ $\gg$, $\ll$ $\gg$)</kbd>
+	  <kbd class='snippet'>
+list("for_loop", $\ll$ $init$-$statement$ $\gg$, $\ll$ $predicate$ $\gg$, $\ll$ $update$-$statement$ $\gg$, $\ll$ $block$ $\gg$)
+	  </kbd>
     </blockquote>
 
     where $init$-$statement$ is either an assignment or a

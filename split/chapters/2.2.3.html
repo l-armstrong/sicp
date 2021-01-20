@@ -2726,7 +2726,8 @@ list(0, 1, 1, 4, 9, 25, 64, 169, 441, 1156, 3025)</pre></div></div></td></tr></t
     
     
     
-    <kbd class='snippet'>function map(f, sequence) {
+    <kbd class='snippet'>
+function map(f, sequence) {
     return accumulate((x, y) => $\langle ??\rangle$, 
                       null, sequence);
 }
@@ -2737,7 +2738,8 @@ function append(seq1, seq2) {
 
 function length(sequence) {
     return accumulate($\langle ??\rangle$, 0, sequence);
-}</kbd>
+}
+      </kbd>
     
   
       <div class="Solution">
@@ -2801,11 +2803,13 @@ function length(sequence) {
     coefficients of the polynomial are arranged in a sequence, from
     $a_{0}$ through
     $a_{n}$.
-    <kbd class='snippet'>function horner_eval(x, coefficient_sequence) {
+    <kbd class='snippet'>
+function horner_eval(x, coefficient_sequence) {
     return accumulate((this_coeff, higher_terms) => $\langle ??\rangle$,
                       0, 
                       coefficient_sequence);
-}</kbd>
+}
+      </kbd>
     For example, to compute $1+3x+5x^3+x^5$ at
     $x=2$ you would evaluate
     <table width="100%">
@@ -2853,9 +2857,11 @@ function length(sequence) {
     
     from section&nbsp;<REF NAME="sec:trees"><a class="superscript" id="2.2.3-sec-link-2.2.2" href="./2.2.2.html">2.2.2</a></REF> as an accumulation:
     
-    <kbd class='snippet'>function count_leaves(t) {
+    <kbd class='snippet'>
+function count_leaves(t) {
     return accumulate($\langle ??\rangle$, $\langle ??\rangle$, map($\langle ??\rangle$, $\langle ??\rangle$));
-}</kbd>
+}
+          </kbd>
     
   
       <div class="Solution">
@@ -2945,12 +2951,14 @@ list(list( 1,  2,  3),
       </span>
     
      
-    <kbd class='snippet'>function accumulate_n(op, init, seqs) {
+    <kbd class='snippet'>
+function accumulate_n(op, init, seqs) {
     return is_null(head(seqs))
            ? null
            : pair(accumulate(op, init, $\langle ??\rangle$), 
                   accumulate_n(op, init, $\langle ??\rangle$));
-}</kbd>
+}
+      </kbd>
     
     
   
@@ -3097,7 +3105,8 @@ list(list(1, 2, 3, 4),
      
      
     
-    <kbd class='snippet'>function matrix_times_vector(m, v) {
+    <kbd class='snippet'>
+function matrix_times_vector(m, v) {
     return map($\langle ??\rangle$, m);
 }
 
@@ -3108,7 +3117,8 @@ function transpose(mat) {
 function matrix_times_matrix(n, m) {
     const cols = transpose(n);
     return map($\langle ??\rangle$, m);
-}</kbd>
+}
+      </kbd>
     
     
   
@@ -3328,12 +3338,16 @@ function matrix_times_matrix(n, m) {
       <span style="color:blue"><kbd>fold_left</kbd></span>
     
     from exercise&nbsp;<REF NAME="ex:fold-right-left"><a class="superscript" id="2.2.3-ex-link-2.39" href="./2.2.3.html#ex_2.39">2.39</a></REF>:
-    <kbd class='snippet'>function reverse(sequence) {
+    <kbd class='snippet'>
+function reverse(sequence) {
     return fold_right((x, y) => $\langle ??\rangle$, null, sequence);
-}</kbd>
-    <kbd class='snippet'>function reverse(sequence) {
+}
+      </kbd>
+    <kbd class='snippet'>
+function reverse(sequence) {
     return fold_left((x, y) => $\langle ??\rangle$, null, sequence);
-}</kbd>
+}
+      </kbd>
     
   
       <div class="Solution">

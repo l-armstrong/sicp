@@ -2605,7 +2605,9 @@ const primes = sieve(integers_starting_from(2));
     $n$th element (counting from 0) is
     $n+1$ factorial:
     
-    <kbd class='snippet'>const factorials = pair(1, () => mul_streams($\langle ??\rangle$, $\langle ??\rangle$));</kbd>
+    <kbd class='snippet'>
+const factorials = pair(1, () => mul_streams($\langle ??\rangle$, $\langle ??\rangle$));
+      </kbd>
   
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_71_2_div" data-toggle="collapse">Add solution</button></div>
@@ -2764,7 +2766,9 @@ function partial_sums(s) {
 </pre></div></div></td></tr></table>
     Then the required stream may be constructed with
     <kbd>merge</kbd>, as follows:
-    <kbd class='snippet'>const S = pair(1, () => merge($\langle ??\rangle$, $\langle ??\rangle$));</kbd>
+    <kbd class='snippet'>
+const S = pair(1, () => merge($\langle ??\rangle$, $\langle ??\rangle$));
+      </kbd>
     Fill in the missing expressions in the places marked
     $\langle ??\rangle$ above.
   
@@ -2986,8 +2990,10 @@ const exp_series =
       Show how to generate the series for sine and cosine, starting from the
       facts that the derivative of sine is cosine and the derivative of cosine
       is the negative of sine:
-      <kbd class='snippet'>const cosine_series = pair(1, $\langle ??\rangle$);
-const sine_series = pair(0, $\langle ??\rangle$);</kbd>
+      <kbd class='snippet'>
+const cosine_series = pair(1, $\langle ??\rangle$);
+const sine_series = pair(0, $\langle ??\rangle$);
+	</kbd>
     </LI>
   </OL>
   
@@ -3017,9 +3023,11 @@ const sine_series = pair(0, $\langle ??\rangle$);</kbd>
       <span style="color:blue">function</span>
     
     for multiplying series:
-    <kbd class='snippet'>function mul_series(s1, s2) {
+    <kbd class='snippet'>
+function mul_series(s1, s2) {
     pair($\langle ??\rangle$, add_streams($\langle ??\rangle$, $\langle ??\rangle$));
-}</kbd>
+}
+      </kbd>
 
     You can test your
     

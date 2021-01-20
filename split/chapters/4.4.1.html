@@ -2751,7 +2751,9 @@ and(job(list("Fect", "Cy", "D"), list("computer", "programmer")),
           <td></td>
           <td><span style="color:blue">
 	In general,
-	<kbd class='snippet'>and($query_{1}$, $query_{2}$, $\ldots$, $query_{n})$</kbd>
+	<kbd class='snippet'>
+and($query_{1}$, $query_{2}$, $\ldots$, $query_{n})$
+	  </kbd>
 	is satisfied by all sets of values for the pattern variables that
 	simultaneously satisfy
 	$\textit{query}_{1}, \ldots, \textit{query}_{n}$.
@@ -2835,7 +2837,9 @@ or(supervisor(list("Reasoner", "Louis"),
           <td></td>
           <td><span style="color:blue">
 	In general,
-	<kbd class='snippet'>or($query_{1}$, $query_{2}$, $\ldots$, $query_{n}$)</kbd>
+	<kbd class='snippet'>
+or($query_{1}$, $query_{2}$, $\ldots$, $query_{n}$)
+	  </kbd>
 	is satisfied by all sets of values for the pattern variables that
 	satisfy at least one of
 	$\textit{query}_{1} \ldots \textit{query}_{n}$.
@@ -2876,7 +2880,9 @@ or(supervisor(list("Reasoner", "Louis"),
       </span>    </td>
           <td></td>
           <td><span style="color:blue">
-	<kbd class='snippet'>not($query_{1}$)</kbd>
+	<kbd class='snippet'>
+not($query_{1}$)
+	  </kbd>
       </span></td></tr></table>
     is satisfied by all assignments to the pattern variables that do not
     satisfy
@@ -2925,7 +2931,9 @@ or(supervisor(list("Reasoner", "Louis"),
 	The final combining form starts with the symbol
 	<kbd>javascript_value</kbd>, and
 	the argument is a JavaScript predicate. In general,
-	<kbd class='snippet'>javascript_value($predicate$)</kbd>
+	<kbd class='snippet'>
+javascript_value($predicate$)
+	  </kbd>
 	will be satisfied by assignments to the pattern variables
 	in the $\textit{predicate}$ for which the
 	instantiated 
@@ -3057,7 +3065,9 @@ or(supervisor(list("Reasoner", "Louis"),
           <td></td>
           <td><span style="color:blue">
 	The general form of a rule is
-	<kbd class='snippet'>rule($conclusion$, $body$)</kbd>
+	<kbd class='snippet'>
+rule($conclusion$, $body$)
+	  </kbd>
 	where $\textit{conclusion}$ is a pattern and
 	$\textit{body}$ is any query.<a class='superscript' id='footnote-link-7' href='#footnote-7'style="color:blue">[7]</a>
       </span></td></tr></table>
@@ -3247,8 +3257,10 @@ meeting("whole-company", list("Wednesday", "4pm"))</pre></div></div></td></tr></
 	  </span>    </td>
           <td></td>
           <td><span style="color:blue">
-	    <kbd class='snippet'>rule(meeting_time($\texttt{\$}$person, $\texttt{\$}$day_and_time),
-     $rule$-$body$)</kbd>
+	    <kbd class='snippet'>
+rule(meeting_time($\texttt{\$}$person, $\texttt{\$}$day_and_time),
+     $rule$-$body$)
+	      </kbd>
 	  </span></td></tr></table>
       </LI>
       <LI>

@@ -2158,7 +2158,8 @@ Acknowledgments
 	<kbd>is_odd</kbd>
 	declared locally
 	in the body of a function&nbsp;<kbd>f</kbd>.
-	<kbd class='snippet'>function f(x) {
+	<kbd class='snippet'>
+function f(x) {
     function is_even(n) {
         return n === 0
                ? true
@@ -2170,7 +2171,8 @@ Acknowledgments
                : is_even(n - 1);
     }
     $\langle rest$ $of$ $body$ $of$ f$\rangle$
-}</kbd>
+}    
+	  </kbd>
 	Our intention here is that the name
 	 <kbd>is_odd</kbd>
 	in the body of the function <kbd>is_even</kbd>
@@ -2359,7 +2361,8 @@ function f_3(x, y) {
 	    Fill in the missing expressions to complete an alternative
 	    declaration of <kbd>f</kbd>, which has
 	    no internal function declarations:
-	    <kbd class='snippet'>function f(x) {
+	    <kbd class='snippet'>
+function f(x) {
     return (
         (is_even, is_odd) => 
            is_even(is_even, is_odd, x)
@@ -2369,7 +2372,8 @@ function f_3(x, y) {
         (is_ev, is_od, n) =>
            n === 0 ? false : is_ev($\langle ??\rangle$, $\langle ??\rangle$, $\langle ??\rangle$) 
       );
-}</kbd>
+}
+	      </kbd>
 	  </LI>
 	</OL>
       
