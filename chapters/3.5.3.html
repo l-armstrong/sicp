@@ -2998,9 +2998,10 @@ function pairs(s, t) {
     positive to negative, and 0 otherwise.  (Assume that the sign of a 0 input
     is positive.)  For example, a typical input signal with its associated
     zero-crossing signal would be
-    <div class='snippet' id='javascript_72_21_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-... 1  2  1.5  1  0.5  -0.1  -2  -3  -2  -0.5  0.2  3  4 ...
-...  0  0    0  0    0     -1  0   0   0     0    1  0  0 ...</pre></div></div>
+    <kbd class='snippet'>
+$\ldots$ 1  2  1.5  1  0.5  -0.1  -2  -3  -2  -0.5  0.2  3  4 $\ldots$
+$\ldots$  0  0    0  0    0     -1  0   0   0     0    1  0  0 $\ldots$
+      </kbd>
 
     In Alyssa's system, the signal from the sensor is represented as a
     stream
@@ -3029,7 +3030,7 @@ function pairs(s, t) {
     $1$, or $-1$.  She
     then constructs her zero-crossing stream as follows:
 
-    <div class='snippet' id='javascript_72_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_72_21_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function make_zero_crossings(input_stream, last_value) {
     return pair(sign_change_detector(head(input_stream),
                                      last_value),
@@ -3084,7 +3085,7 @@ const zero_crossings = stream_map_2(sign_change_detector,
     the previous value.  She explains the problem to her assistant, Louis
     Reasoner, who attempts to implement the idea, altering Alyssa's
     program as follows:
-    <div class='snippet' id='javascript_72_23_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_72_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function make_zero_crossings(input_stream, last_value) {
     const avpt = (head(input_stream) + last_value) / 2;
     return pair(sign_change_detector(avpt, last_value),

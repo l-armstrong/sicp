@@ -2098,9 +2098,7 @@ function is_falsy(x) { return ! is_truthy(x); }
 	    proc args<kbd>)</kbd>
 	  </span>
 	  <span style="color:blue">
-	    <kbd>apply_primitive_function(</kbd>
-	    $\textit{fun}$, $\textit{args}$
-	    <kbd>)</kbd>
+	    <kbd>apply_primitive_function(</kbd>$fun$<kbd>, </kbd>$args$<kbd>)</kbd>
 	  </span>
 	
 	
@@ -2110,8 +2108,7 @@ function is_falsy(x) { return ! is_truthy(x); }
 	  <span style="color:green">procedure</span>
 	  <span style="color:blue">function</span>
 	
-	to the argument values in the list
-	$\textit{args}$ and returns the result of
+	to the argument values in the list $args$ and returns the result of
 	the application.
       </LI>
       <LI>
@@ -2120,7 +2117,7 @@ function is_falsy(x) { return ! is_truthy(x); }
 	  <span style="color:green"><kbd>(primitive-procedure?</kbd>
 	  proc<kbd>)</kbd></span>
 	  <span style="color:blue">
-	    <kbd>is_primitive_function(</kbd>$\textit{fun}$<kbd>)</kbd>
+	    <kbd>is_primitive_function(</kbd>$fun$<kbd>)</kbd>
 	  </span>
 	
 	
@@ -2128,7 +2125,7 @@ function is_falsy(x) { return ! is_truthy(x); }
 	tests whether
 	
 	  <span style="color:green">proc</span>
-          <span style="color:blue">$\textit{fun}$</span>
+          <span style="color:blue">$fun$</span>
 	
         is a primitive
         
@@ -2329,49 +2326,40 @@ function return_value_content(value) {
 	<UL>
 	  <LI>
 	     
-	    <kbd>lookup_symbol_value(</kbd>
-	    $\textit{symbol}$,
-	    $\textit{env}$
-	    <kbd>)</kbd>
+	    <kbd>lookup_symbol_value(</kbd>$symbol$<kbd>, </kbd>$env$<kbd>)</kbd>
 	  
 
 	  returns the value that is bound to
-	  $\textit{symbol}$ in the environment
-	  \textit{env}, or signals an error if
-	  $\textit{symbol}$ is unbound.
+	  $symbol$ in the environment
+	  $env$, or signals an error if
+	  $symbol$ is unbound.
 	  </LI>
 	  <LI>
 	     
-	    <kbd>extend_environment(</kbd>
-	    $\textit{symbols}$, $\textit{values}$,
-	    $\textit{base-env}$
-	    <kbd>)</kbd>
+	    <kbd>extend_environment(</kbd>$symbols$<kbd>, </kbd>$values$<kbd>, </kbd>$base$-$env$<kbd>)</kbd>
 	    
 
 	    returns a new environment, consisting of a new frame in which the
-	    symbols in the list $\textit{symbols}$
+	    symbols in the list $symbols$
 	    are bound to the corresponding elements in the list
-	    $\textit{values}$, where the enclosing
+	    $values$, where the enclosing
 	    environment is the environment
-	    $\textit{base-env}$.
+	    $base$-$env$.
 	  </LI>
 	  <LI>
 	     
-	    <kbd>assign_symbol_value(</kbd>
-	    $\textit{symbol}$, $\textit{value}$,
-	    $\textit{env}$
-	    <kbd>)</kbd>
+	    <kbd>assign_symbol_value(</kbd>$symbol$<kbd>, </kbd>$value$<kbd>, </kbd>$env$<kbd>)</kbd>
 	    
 
 	    finds the innermost frame of
-	    $\textit{env}$
-	    in which $\textit{symbol}$
+	    $env$
+	    in which $symbol$
 	    is bound, and changes that frame
 	    so that
-	    $\textit{symbol}$
+	    $symbol$
 	    is now bound to 
-	    $\textit{value}$, or signals an
-	    error if $\textit{symbol}$ is
+	    $value$, or signals an
+	    error if $symbol$ is
 	    unbound.
 	  </LI>
 	</UL>

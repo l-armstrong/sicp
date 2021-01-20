@@ -2227,6 +2227,7 @@ null</pre></div></div>
     The tagged-list representation for names
     includes the tag <kbd>"name"</kbd> as first
     element and the string representing the name as second element.
+    
 	
 	  \begin{eqnarray*}
 	  \ll \textit{name} \gg & = &
@@ -2236,6 +2237,8 @@ null</pre></div></div>
 	where $\textit{symbol}$ is a string
 	that contains the characters that make up the
 	$\textit{name}$ as written in the program.
+    
+    
 	The syntax predicate for names is 
 	<kbd>is_name</kbd>.
 	
@@ -2269,12 +2272,15 @@ null</pre></div></div>
     Consequently, 
     <kbd>parse</kbd> can ignore the difference
     between the two kinds of components:
+    
 	
 	  \begin{eqnarray*}
 	  \ll \textit{expression}\texttt{;} \gg & = &
 	  \ll \textit{expression} \gg
 	  \end{eqnarray*}
 	
+    
+    
   </p></div>
 
 
@@ -2289,7 +2295,8 @@ null</pre></div></div>
 <a name='p7' class='permalink'></a><p>
     
     
-	Function applications are parsed as follows:
+    Function applications are parsed as follows:
+    
 	
 	  \begin{eqnarray*}
 &	  \ll \textit{fun-expr}\texttt{(}\textit{arg-expr}_1\texttt{, }\ldots\texttt{, } \textit{arg-expr}_n \texttt{)} \gg \\
@@ -2297,6 +2304,8 @@ null</pre></div></div>
 &	  \texttt{list("application",}\ \ll \textit{fun-expr} \gg \texttt{, list(} \ll \textit{arg-expr}_1 \gg \texttt{, }\ldots\texttt{, } \ll \textit{arg-expr}_n \gg \texttt{))}
 	  \end{eqnarray*}
 	
+    
+    
 	The syntax predicate is
 	<kbd>is_application</kbd>
 	and the selectors are
@@ -2332,31 +2341,33 @@ null</pre></div></div>
     
     Conditional expressions are parsed as follows:
     <blockquote class='blockquote'>
+      
 	
 $\ll \textit{predicate}\ \texttt{?}\ \textit{consequent-expression}\ \texttt{:}\ \textit{alternative-expression}   \gg\ \ = $
 	
+      
 	
 	<kbd class='snippet'>
 list("conditional_expression", 
-     $\ll predicate \gg$,
-     $\ll consequent$-$expression \gg$,
-     $\ll alternative$-$expression \gg$)
+     $\ll$ $predicate$ $\gg$,
+     $\ll$ $consequent$-$expression$ $\gg$,
+     $\ll$ $alternative$-$expression$ $\gg$)
 	  </kbd>
     </blockquote>
 
     Similarly, conditional statements are parsed as follows:
     <blockquote class='blockquote'>
       
-      
 	
 $\ll \textbf{if}\ \texttt{(} \textit{predicate} \texttt{)}\ \textit{consequent-block}\ \textbf{else}\ \textit{alternative-block} \gg\ \ =$
 	
       
+      
 	<kbd class='snippet'>
 list("conditional_statement", 
-     $\ll predicate \gg$,
-     $\ll consequent$-$block \gg$,
-     $\ll alternative$-$block \gg$)
+     $\ll$ $predicate$ $\gg$,
+     $\ll$ $consequent$-$block$ $\gg$,
+     $\ll$ $alternative$-$block$ $\gg$)
 	  </kbd>
     </blockquote>
 
@@ -2392,7 +2403,6 @@ list("conditional_statement",
     return expression is the body of the lambda expression.
     
     
-    
 \begin{eqnarray*}      
 & \ll \texttt{(}\textit{name}_1\texttt{, }\ldots\texttt{, } \textit{name}_n \texttt{) =>}\ \textit{expression} \gg \\
 & = \\
@@ -2400,13 +2410,14 @@ list("conditional_statement",
 \end{eqnarray*}
 	
     
+    
 	      A lambda expression whose body is a block is parsed as follows:
 	      <blockquote class='blockquote'>
-		
 		
 	      
 $\ll \texttt{(}\textit{name}_1\texttt{, }\ldots\texttt{, } \textit{name}_n \texttt{) =>}\ \textit{block} \gg\ \ =$
 	
+		
 		
 	<kbd class='snippet'>
 list("lambda_expression",
@@ -2454,6 +2465,7 @@ list("lambda_expression",
     A sequence statement packages a sequence of statements into a
     single statement. A sequence of statements is parsed as follows:
     
+    
 	  \begin{eqnarray*}
 &	  \ll \textit{statement}_1 \cdots \textit{statement}_n   \gg \\
 &	  = \\
@@ -2461,6 +2473,8 @@ list("lambda_expression",
 \ll \textit{statement}_1 \gg \texttt{, } \ldots \texttt{, }
 \ll \textit{statement}_n \gg \texttt{))}
 	  \end{eqnarray*}
+    
+    
     
     
     The syntax predicate is <kbd>is_sequence</kbd> and
@@ -2508,12 +2522,12 @@ function is_last_statement(stmts) {
     Blocks are parsed as follows:    
     
 	  \begin{eqnarray*}
-	  \ll \texttt{\{}\ \textit{statements}\ \texttt{\}} \gg
+	  \ll \texttt{\{}\ \mathit{statements}\ \texttt{\}} \gg
 	  & = &
-	  \texttt{list("block",}\ \ll \textit{statements} \gg \texttt{)}
+	  \texttt{list("block",}\ \ll \mathit{statements} \gg \texttt{)}
 	  \end{eqnarray*}
 	
-	Here \textit{statements} refers to a sequence of
+	Here $statements$ refers to a sequence of
 	statements.
 	The syntax predicate is <kbd>is_block</kbd>
 	and the selector is <kbd>block_body</kbd>.
@@ -2536,7 +2550,6 @@ function is_last_statement(stmts) {
     
     Return statements are parsed as follows:
     
-    
 	
 	  \begin{eqnarray*}
 	  \ll \textbf{return}\ \textit{expression} \texttt{;} \gg
@@ -2544,6 +2557,7 @@ function is_last_statement(stmts) {
 	  \texttt{list("return_statement",}\ \ll \textit{expression} \gg \texttt{)}
 	  \end{eqnarray*}
 	
+    
     
     The syntax predicate is <kbd>is_return_statement</kbd>
 	and the selector is <kbd>return_expression</kbd>.
@@ -2567,8 +2581,8 @@ function is_last_statement(stmts) {
     Assignments are parsed as follows:
 	
 	  \begin{eqnarray*}
-	  \ll \textit{name}\ \ \texttt{=}\ \ \textit{expression} \gg & = &
-	  \texttt{list("assignment", }\ll \textit{name}\gg \texttt{, }\ll \textit{expression} \gg \texttt{)}
+	  \ll \mathit{name}\ \ \texttt{=}\ \ \mathit{expression} \gg & = &
+	  \texttt{list("assignment", }\ll \mathit{name}\gg \texttt{, }\ll \mathit{expression} \gg \texttt{)}
 	  \end{eqnarray*}
 	
 	The syntax predicate is <kbd>is_assignment</kbd>
@@ -2602,7 +2616,6 @@ function is_last_statement(stmts) {
       
       Constant and variable declarations are parsed as follows:
       
-      
 	
 	  \begin{eqnarray*}
 &  \ll \textbf{const}\ \textit{name}\ \ \texttt{=}\ \ \textit{expression}\texttt{;} \gg \\
@@ -2613,6 +2626,7 @@ function is_last_statement(stmts) {
 & \texttt{list("variable_declaration", } \ll \textit{name} \gg \texttt{, }\ll \textit{expression} \gg \texttt{)}
 	  \end{eqnarray*}
 	
+      
       
 	The selectors 
 	<kbd>declaration_symbol</kbd> and
@@ -2642,16 +2656,16 @@ function declaration_value_expression(component) {
       Function declarations are parsed as follows:
 	<blockquote class='blockquote'>
 	  
-	  
 	      
 $\ll \textbf{function}\ \textit{name} \texttt{(}\textit{name}_1\texttt{, }\ldots\texttt{, } \textit{name}_n \texttt{)} \ \textit{block} \ \gg\ \ =$ 
 	
 	  
+	  
 	<kbd class='snippet'>
 list("function_declaration",
-     $\ll \textit{name} \gg$,
-     list($\ll name_1 \gg$, $\ldots$, $\ll name_n\gg$),
-     $\ll \textit{block} \gg$)
+     $\ll$ $name$ $\gg$,
+     list($\ll$ $name$$_1 \gg$, $\ldots$, $\ll$ $name$$_n \gg$),
+     $\ll$ $block$ $\gg$)
 	  </kbd>
 	</blockquote>
 
@@ -2732,6 +2746,7 @@ list("function_declaration",
 	function applications. 
 	Operator combinations are unary or binary and carry their operator symbol as second element
 	in the tagged-list representation:
+	
 	    
 	      \begin{eqnarray*}
 	      & \ll \textit{unary-operator}\ \ \textit{expression} \gg \\
@@ -2740,18 +2755,23 @@ list("function_declaration",
               \texttt{list(}\ll \textit{expression} \gg \texttt{))}
 	      \end{eqnarray*}
 	    
-    where $\textit{unary-operator}$ is 
+	
+	
+	where $unary$-$operator$ is 
     <kbd>!</kbd> (for logical negation) or
     <kbd>-unary</kbd> (for numeric negation), and
+    
 	    
 	      \begin{eqnarray*}
 	      & \ll \textit{expression}_1\ \textit{binary-operator}\ \ \textit{expression}_2 \gg \\
 	      & = \\
 	      & \texttt{list("binary_operator_combination", "}\textit{binary-operator}\texttt{"},\ 
-              \texttt{list(}\ll \textit{expression}_1\texttt{,}\ \textit{expression}_2 \gg \texttt{))}
+              \texttt{list(}\ll \textit{expression}_1 \gg \texttt{,}\ \ll \textit{expression}_2 \gg \texttt{))}
 	      \end{eqnarray*}
 	    
-    where $\textit{binary-operator}$ is 
+    
+    
+    where $binary$-$operator$ is 
     <kbd>+</kbd>,
     <kbd>-</kbd>,
     <kbd>*</kbd>,
@@ -2910,19 +2930,19 @@ list("function_declaration",
 	and
 	<kbd>||</kbd>
 	are syntactic sugar for conditional expressions:
-	    $ \textit{expression}_1$ <kbd>&&</kbd>
-	    $\textit{expression}_2$
+	    $\mathit{expression}_1$ <kbd>&&</kbd>
+	    $\mathit{expression}_2$
 	    is syntactic sugar for
-	    $ \textit{expression}_1$ <kbd>?</kbd>
-	    $\textit{expression}_2$ <kbd>:</kbd>
+	    $ \mathit{expression}_1$ <kbd>?</kbd>
+	    $\mathit{expression}_2$ <kbd>:</kbd>
 	    <kbd>false</kbd>, and
-            $\textit{expression}_1$ 
+            $\mathit{expression}_1$ 
             <kbd>||</kbd> 
-            $\textit{expression}_2$
+            $\mathit{expression}_2$
 	    is syntactic sugar for
-	    $ \textit{expression}_1$ <kbd>?</kbd>
+	    $ \mathit{expression}_1$ <kbd>?</kbd>
 	    <kbd>true</kbd> <kbd>:</kbd>
-	    $\textit{expression}_2$.
+	    $\mathit{expression}_2$.
       
     
     
@@ -2943,11 +2963,11 @@ list("function_declaration",
 	<kbd class='snippet'>
 list("logical_composition",
      "$logical$-$operation$",
-     list($\ll \textit{expression}_1 \gg$, $\ll \textit{expression}_2 \gg$))
+     list($\ll$ $expression$$_1 \gg$, $\ll$ $expression$$_2 \gg$))
 	  </kbd>
     </blockquote>
 
-    where $\textit{logical-operation}$ is 
+    where $logical$-$operation$ is 
     <kbd>&&</kbd> or
     <kbd>||</kbd>.
     Install
@@ -3133,12 +3153,12 @@ display(1);
 	<kbd class='snippet'>
 while ($predicate$) { $body$ }
 	  </kbd>
-	evaluates the $\textit{predicate}$, and
+	evaluates the $predicate$, and
 	if the result is true, evaluates the
-	$\textit{body}$
+	$body$
 	and then evaluates
 	the whole while loop again.
-	Once the $\textit{predicate}$ evaluates
+	Once the $predicate$ evaluates
 	to false, the
 	while loop terminates. Using
 	this syntax, we can compute the greatest common divisor
@@ -3158,13 +3178,13 @@ while ($predicate$) { $body$ }
 	while loops are parsed as follows:
 	<blockquote class='blockquote'>
 	  
-	  
 	
 	  $\ll \textbf{while} \ \texttt{(}\ \textit{predicate}\ \texttt{)}\ \textit{block}  \gg \ \ =$ 
 	
 	  
+	  
 	  <kbd class='snippet'>
-list("while_loop", $\ll \textit{predicate} \gg$, $\ll \textit{block} \gg$)
+list("while_loop", $\ll$ $predicate$ $\gg$, $\ll$ $block$ $\gg$)
 	  </kbd>
     </blockquote>
 
@@ -3283,18 +3303,18 @@ list("while_loop", $\ll \textit{predicate} \gg$, $\ll \textit{block} \gg$)
 	for loops are parsed as follows:
 	<blockquote class='blockquote'>
 	  
-	  
 	
 	  $\ll \textbf{for} \ \texttt{(}\ \textit{init-statement}\texttt{; } \textit{predicate}\texttt{; }\textit{update-statement}\texttt{)}\ \textit{block}  \gg \ \ =$ 
 	
 	  
+	  
 	  <kbd class='snippet'>
-list("for_loop", $\ll \textit{init-statement} \gg$, $\ll \textit{predicate} \gg$, $\ll \textit{update-statement}\gg$, $\ll \textit{block} \gg$)
+list("for_loop", $\ll$ $init$-$statement$ $\gg$, $\ll$ $predicate$ $\gg$, $\ll$ $update$-$statement$ $\gg$, $\ll$ $block$ $\gg$)
 	  </kbd>
     </blockquote>
 
-    where $\textit{init-statement}$ is either an assignment or a
-    variable declaration and $\textit{update-statement}$ is an assignment.
+    where $init$-$statement$ is either an assignment or a
+    variable declaration and $update$-$statement$ is an assignment.
 	<OL type="a">
 	  <LI>
 	    Declare a syntax predicate and selectors to handle for loops.

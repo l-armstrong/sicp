@@ -3244,16 +3244,8 @@ function pairs(s, t) {
     positive to negative, and 0 otherwise.  (Assume that the sign of a 0 input
     is positive.)  For example, a typical input signal with its associated
     zero-crossing signal would be
-    <table width="100%">
-          <colgroup><col width="48%"><col width="52%"></colgroup>
-          
-          <tr>
-            <td><div class='snippet' id='javascript_72_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-^$\ldots$^ 1  2  1.5  1  0.5  -0.1  -2  -3  -2  -0.5  0.2  3  4 ^$\ldots$^
-^$\ldots$^  0  0    0  0    0     -1  0   0   0     0    1  0  0 ^$\ldots$^</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_72_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-... 1  2  1.5  1  0.5  -0.1  -2  -3  -2  -0.5  0.2  3  4 ...
-...  0  0    0  0    0     -1  0   0   0     0    1  0  0 ...</pre></div></div></td></tr></table>
+    <kbd class='snippet'>$\ldots$ 1  2  1.5  1  0.5  -0.1  -2  -3  -2  -0.5  0.2  3  4 $\ldots$
+$\ldots$  0  0    0  0    0     -1  0   0   0     0    1  0  0 $\ldots$</kbd>
 
     In Alyssa's system, the signal from the sensor is represented as a
     stream
@@ -3286,7 +3278,7 @@ function pairs(s, t) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_72_23_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_72_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (make-zero-crossings input-stream last-value)
   (cons-stream
    (sign-change-detector (stream-car input-stream) last-value)
@@ -3294,7 +3286,7 @@ function pairs(s, t) {
                         (stream-car input-stream))))
 
 (define zero-crossings (make-zero-crossings sense-data 0))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_72_23_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_72_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function make_zero_crossings(input_stream, last_value) {
     return pair(sign_change_detector(head(input_stream),
                                      last_value),
@@ -3355,13 +3347,13 @@ const zero_crossings = make_zero_crossings(sense_data, 0);</pre></div></div></td
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_72_24_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_72_23_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (make-zero-crossings input-stream last-value)
   (let ((avpt (/ (+ (stream-car input-stream) last-value) 2)))
     (cons-stream (sign-change-detector avpt last-value)
                  (make-zero-crossings (stream-cdr input-stream)
                                       avpt))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_72_24_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_72_23_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function make_zero_crossings(input_stream, last_value) {
     const avpt = (head(input_stream) + last_value) / 2;
     return pair(sign_change_detector(avpt, last_value),

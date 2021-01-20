@@ -2453,6 +2453,7 @@ null</pre></div></div>
     The tagged-list representation for names
     includes the tag <kbd>"name"</kbd> as first
     element and the string representing the name as second element.
+    <div class='webonly'>
 	
 	  \begin{eqnarray*}
 	  \ll \textit{name} \gg & = &
@@ -2462,6 +2463,18 @@ null</pre></div></div>
 	where $\textit{symbol}$ is a string
 	that contains the characters that make up the
 	$\textit{name}$ as written in the program.
+    </div>
+    <div class='pdfonly'>
+	
+	  \begin{eqnarray*}
+	  \ll \mathit{name} \gg & = &
+	  \texttt{list("name", }\mathit{symbol}\texttt{)}
+	  \end{eqnarray*}
+	
+	where $symbol$ is a string
+	that contains the characters that make up the
+	$name$ as written in the program.
+    </div>
 	The syntax predicate for names is 
 	<kbd>is_name</kbd>.
 	
@@ -2495,12 +2508,22 @@ null</pre></div></div>
     Consequently, 
     <kbd>parse</kbd> can ignore the difference
     between the two kinds of components:
+    <div class='webonly'>
 	
 	  \begin{eqnarray*}
 	  \ll \textit{expression}\texttt{;} \gg & = &
 	  \ll \textit{expression} \gg
 	  \end{eqnarray*}
 	
+    </div>
+    <div class='pdfonly'>
+	
+	  \begin{eqnarray*}
+	  \ll \mathit{expression}\texttt{;} \gg & = &
+	  \ll \mathit{expression} \gg
+	  \end{eqnarray*}
+	
+    </div>
   </p></div>
 
 
@@ -2515,7 +2538,8 @@ null</pre></div></div>
 <a name='p8' class='permalink'></a><p>
     
     
-	Function applications are parsed as follows:
+    Function applications are parsed as follows:
+    <div class='webonly'>
 	
 	  \begin{eqnarray*}
 &	  \ll \textit{fun-expr}\texttt{(}\textit{arg-expr}_1\texttt{, }\ldots\texttt{, } \textit{arg-expr}_n \texttt{)} \gg \\
@@ -2523,6 +2547,16 @@ null</pre></div></div>
 &	  \texttt{list("application",}\ \ll \textit{fun-expr} \gg \texttt{, list(} \ll \textit{arg-expr}_1 \gg \texttt{, }\ldots\texttt{, } \ll \textit{arg-expr}_n \gg \texttt{))}
 	  \end{eqnarray*}
 	
+    </div>
+    <div class='pdfonly'>
+	
+	  \begin{eqnarray*}
+&	  \ll \mathit{fun}\mhyphen{}\mathit{expr}\texttt{(}\mathit{arg}\mhyphen{}\mathit{expr}_1\texttt{, }\ldots\texttt{, } \mathit{arg}\mhyphen{}\mathit{expr}_n \texttt{)} \gg \\
+&	  = \\
+&	  \texttt{list("application",}\ \ll \mathit{fun}\mhyphen{}\mathit{expr} \gg \texttt{, list(} \ll \mathit{arg}\mhyphen{}\mathit{expr}_1 \gg \texttt{, }\ldots\texttt{, } \ll \mathit{arg}\mhyphen{}\mathit{expr}_n \gg \texttt{))}
+	  \end{eqnarray*}
+	
+    </div>
 	The syntax predicate is
 	<kbd>is_application</kbd>
 	and the selectors are
@@ -2558,36 +2592,41 @@ null</pre></div></div>
     
     Conditional expressions are parsed as follows:
     <blockquote class='blockquote'>
+      <div class='webonly'>
 	
 $\ll \textit{predicate}\ \texttt{?}\ \textit{consequent-expression}\ \texttt{:}\ \textit{alternative-expression}   \gg\ \ = $
 	
+      </div>
 	<div class='pdfonly'>
+	
+$\ll \mathit{predicate}\ \texttt{?}\ \mathit{consequent}\mhyphen{}\mathit{expression}\ \texttt{:}\ \mathit{alternative}\mhyphen{}\mathit{expression}   \gg\ \ = $
+	
 \newline
 \vspace{-8mm}
 	</div>
 	<kbd class='snippet'>list("conditional_expression", 
-     $\ll predicate \gg$,
-     $\ll consequent$-$expression \gg$,
-     $\ll alternative$-$expression \gg$)</kbd>
+     $\ll$ $\gg$,
+     $\ll$ $\gg$,
+     $\ll$ $\gg$)</kbd>
     </blockquote>
 
     Similarly, conditional statements are parsed as follows:
     <blockquote class='blockquote'>
-      <div class='pdfonly'>
-	
-$\ll \textbf{\texttt{if}}\ \texttt{(} \textit{predicate} \texttt{)}\ \textit{consequent-block}\ \textbf{\texttt{else}}\ \textit{alternative-block} \gg\ \ =$\newline
-\vspace{-8mm}
-	
-      </div>
       <div class='webonly'>
 	
 $\ll \textbf{if}\ \texttt{(} \textit{predicate} \texttt{)}\ \textit{consequent-block}\ \textbf{else}\ \textit{alternative-block} \gg\ \ =$
 	
       </div>
+      <div class='pdfonly'>
+	
+$\ll \textbf{\texttt{if}}\ \texttt{(} \mathit{predicate} \texttt{)}\ \mathit{consequent}\mhyphen{}\mathit{block}\ \textbf{\texttt{else}}\ \mathit{alternative}\mhyphen\mathit{block} \gg\ \ =$\newline
+\vspace{-8mm}
+	
+      </div>
 	<kbd class='snippet'>list("conditional_statement", 
-     $\ll predicate \gg$,
-     $\ll consequent$-$block \gg$,
-     $\ll alternative$-$block \gg$)</kbd>
+     $\ll$ $\gg$,
+     $\ll$ $\gg$,
+     $\ll$ $\gg$)</kbd>
     </blockquote>
 
 	
@@ -2620,15 +2659,6 @@ $\ll \textbf{if}\ \texttt{(} \textit{predicate} \texttt{)}\ \textit{consequent-b
     A lambda expression whose body is an expression is parsed as if the
     body consisted of a block containing a single return statement whose
     return expression is the body of the lambda expression.
-    <div class='pdfonly'>
-    
-\begin{eqnarray*}      
-& \ll \texttt{(}\textit{name}_1\texttt{, }\ldots\texttt{, } \textit{name}_n \texttt{) =>}\ \textit{expression} \gg \\
-& = \\
-& \ll \texttt{(}\textit{name}_1\texttt{, }\ldots\texttt{, } \textit{name}_n \texttt{) => \{}\ \textbf{\texttt{return}} \ \textit{expression}\texttt{;}\ \texttt{\}} \gg
-\end{eqnarray*}
-	
-    </div>
     <div class='webonly'>
     
 \begin{eqnarray*}      
@@ -2638,17 +2668,26 @@ $\ll \textbf{if}\ \texttt{(} \textit{predicate} \texttt{)}\ \textit{consequent-b
 \end{eqnarray*}
 	
     </div>
+    <div class='pdfonly'>
+    
+\begin{eqnarray*}      
+& \ll \texttt{(}\mathit{name}_1\texttt{, }\ldots\texttt{, } \mathit{name}_n \texttt{) =>}\ \mathit{expression} \gg \\
+& = \\
+& \ll \texttt{(}\mathit{name}_1\texttt{, }\ldots\texttt{, } \mathit{name}_n \texttt{) => \{}\ \textbf{\texttt{return}} \ \mathit{expression}\texttt{;}\ \texttt{\}} \gg
+\end{eqnarray*}
+	
+    </div>
 	      A lambda expression whose body is a block is parsed as follows:
 	      <blockquote class='blockquote'>
-		<div class='pdfonly'>
-	      
-$\ll \texttt{(}\textit{name}_1\texttt{, }\ldots\texttt{, } \textit{name}_n \texttt{) =>}\ \textit{block} \gg\ \ =$ \newline
-\vspace{-8mm}
-	
-		</div>
 		<div class='webonly'>
 	      
 $\ll \texttt{(}\textit{name}_1\texttt{, }\ldots\texttt{, } \textit{name}_n \texttt{) =>}\ \textit{block} \gg\ \ =$
+	
+		</div>
+		<div class='pdfonly'>
+	      
+$\ll \texttt{(}\mathit{name}_1\texttt{, }\ldots\texttt{, } \mathit{name}_n \texttt{) =>}\ \mathit{block} \gg\ \ =$ \newline
+\vspace{-8mm}
 	
 		</div>
 	<kbd class='snippet'>list("lambda_expression",
@@ -2694,6 +2733,7 @@ $\ll \texttt{(}\textit{name}_1\texttt{, }\ldots\texttt{, } \textit{name}_n \text
     
     A sequence statement packages a sequence of statements into a
     single statement. A sequence of statements is parsed as follows:
+    <div class='webonly'>
     
 	  \begin{eqnarray*}
 &	  \ll \textit{statement}_1 \cdots \textit{statement}_n   \gg \\
@@ -2703,6 +2743,18 @@ $\ll \texttt{(}\textit{name}_1\texttt{, }\ldots\texttt{, } \textit{name}_n \text
 \ll \textit{statement}_n \gg \texttt{))}
 	  \end{eqnarray*}
     
+    </div>
+    <div class='pdfonly'>
+          
+	  \begin{eqnarray*}
+&	  \ll \mathit{statement}_1 \cdots \mathit{statement}_n   \gg \\
+&	  = \\
+&	  \texttt{list("sequence", list(}
+\ll \mathit{statement}_1 \gg \texttt{, } \ldots \texttt{, }
+\ll \mathit{statement}_n \gg \texttt{))}
+	  \end{eqnarray*}
+    
+    </div>
     
     The syntax predicate is <kbd>is_sequence</kbd> and
     the selector is <kbd>sequence_statements</kbd>.
@@ -2749,12 +2801,12 @@ function is_last_statement(stmts) {
     Blocks are parsed as follows:    
     
 	  \begin{eqnarray*}
-	  \ll \texttt{\{}\ \textit{statements}\ \texttt{\}} \gg
+	  \ll \texttt{\{}\ \mathit{statements}\ \texttt{\}} \gg
 	  & = &
-	  \texttt{list("block",}\ \ll \textit{statements} \gg \texttt{)}
+	  \texttt{list("block",}\ \ll \mathit{statements} \gg \texttt{)}
 	  \end{eqnarray*}
 	
-	Here \textit{statements} refers to a sequence of
+	Here $statements$ refers to a sequence of
 	statements.
 	The syntax predicate is <kbd>is_block</kbd>
 	and the selector is <kbd>block_body</kbd>.
@@ -2776,21 +2828,21 @@ function is_last_statement(stmts) {
     
     
     Return statements are parsed as follows:
-    <div class='pdfonly'>
-	
-	  \begin{eqnarray*}
-	  \ll \textbf{\texttt{return}}\ \textit{expression} \texttt{;} \gg
-	  & = &
-	  \texttt{list("return_statement",}\ \ll \textit{expression} \gg \texttt{)}
-	  \end{eqnarray*}
-	
-    </div>
     <div class='webonly'>
 	
 	  \begin{eqnarray*}
 	  \ll \textbf{return}\ \textit{expression} \texttt{;} \gg
 	  & = &
 	  \texttt{list("return_statement",}\ \ll \textit{expression} \gg \texttt{)}
+	  \end{eqnarray*}
+	
+    </div>
+    <div class='pdfonly'>
+	
+	  \begin{eqnarray*}
+	  \ll \textbf{\texttt{return}}\ \mathit{expression} \texttt{;} \gg
+	  & = &
+	  \texttt{list("return_statement",}\ \ll \mathit{expression} \gg \texttt{)}
 	  \end{eqnarray*}
 	
     </div>
@@ -2816,8 +2868,8 @@ function is_last_statement(stmts) {
     Assignments are parsed as follows:
 	
 	  \begin{eqnarray*}
-	  \ll \textit{name}\ \ \texttt{=}\ \ \textit{expression} \gg & = &
-	  \texttt{list("assignment", }\ll \textit{name}\gg \texttt{, }\ll \textit{expression} \gg \texttt{)}
+	  \ll \mathit{name}\ \ \texttt{=}\ \ \mathit{expression} \gg & = &
+	  \texttt{list("assignment", }\ll \mathit{name}\gg \texttt{, }\ll \mathit{expression} \gg \texttt{)}
 	  \end{eqnarray*}
 	
 	The syntax predicate is <kbd>is_assignment</kbd>
@@ -2850,18 +2902,6 @@ function is_last_statement(stmts) {
       
       
       Constant and variable declarations are parsed as follows:
-      <div class='pdfonly'>
-	
-	  \begin{eqnarray*}
-&  \ll \textbf{\texttt{const}}\ \textit{name}\ \ \texttt{=}\ \ \textit{expression}\texttt{;} \gg \\
-& = \\
-& \texttt{list("constant_declaration", } \ll \textit{name} \gg \texttt{, }\ll \textit{expression} \gg \texttt{)}\\[3mm]
-&  \ll \textbf{\texttt{let}}\ \textit{name} \ \ \texttt{=}\ \ \textit{expression}\texttt{;} \gg \\
-& = \\
-& \texttt{list("variable_declaration", } \ll \textit{name} \gg \texttt{, }\ll \textit{expression} \gg \texttt{)}
-	  \end{eqnarray*}
-	
-      </div>
       <div class='webonly'>
 	
 	  \begin{eqnarray*}
@@ -2871,6 +2911,18 @@ function is_last_statement(stmts) {
 &  \ll \textbf{let}\ \textit{name} \ \ \texttt{=}\ \ \textit{expression}\texttt{;} \gg \\
 & = \\
 & \texttt{list("variable_declaration", } \ll \textit{name} \gg \texttt{, }\ll \textit{expression} \gg \texttt{)}
+	  \end{eqnarray*}
+	
+      </div>
+      <div class='pdfonly'>
+	
+	  \begin{eqnarray*}
+&  \ll \textbf{\texttt{const}}\ \mathit{name}\ \ \texttt{=}\ \ \mathit{expression}\texttt{;} \gg \\
+& = \\
+& \texttt{list("constant_declaration", } \ll \mathit{name} \gg \texttt{, }\ll \mathit{expression} \gg \texttt{)}\\[3mm]
+&  \ll \textbf{\texttt{let}}\ \mathit{name} \ \ \texttt{=}\ \ \mathit{expression}\texttt{;} \gg \\
+& = \\
+& \texttt{list("variable_declaration", } \ll \mathit{name} \gg \texttt{, }\ll \mathit{expression} \gg \texttt{)}
 	  \end{eqnarray*}
 	
       </div>
@@ -2901,21 +2953,21 @@ function declaration_value_expression(component) {
       
       Function declarations are parsed as follows:
 	<blockquote class='blockquote'>
-	  <div class='pdfonly'>
-	      
-$\ll \textbf{\texttt{function}}\ \textit{name} \texttt{(}\textit{name}_1\texttt{, }\ldots\texttt{, } \textit{name}_n \texttt{)} \ \textit{block} \ \gg\ \ =$ \newline
-\vspace{-8mm}
-	
-	  </div>
 	  <div class='webonly'>
 	      
 $\ll \textbf{function}\ \textit{name} \texttt{(}\textit{name}_1\texttt{, }\ldots\texttt{, } \textit{name}_n \texttt{)} \ \textit{block} \ \gg\ \ =$ 
 	
 	  </div>
+	  <div class='pdfonly'>
+	      
+$\ll \textbf{\texttt{function}}\ \mathit{name} \texttt{(}\mathit{name}_1\texttt{, }\ldots\texttt{, } \mathit{name}_n \texttt{)} \ \mathit{block} \ \gg\ \ =$ \newline
+\vspace{-8mm}
+	
+	  </div>
 	<kbd class='snippet'>list("function_declaration",
-     $\ll \textit{name} \gg$,
-     list($\ll name_1 \gg$, $\ldots$, $\ll name_n\gg$),
-     $\ll \textit{block} \gg$)</kbd>
+     $\ll$ $\gg$,
+     list($\ll$$_1 \gg$, $\ldots$, $\ll$$_n \gg$),
+     $\ll$ $\gg$)</kbd>
 	</blockquote>
 
       
@@ -3094,6 +3146,7 @@ $\ll \textbf{function}\ \textit{name} \texttt{(}\textit{name}_1\texttt{, }\ldots
 	function applications. 
 	Operator combinations are unary or binary and carry their operator symbol as second element
 	in the tagged-list representation:
+	<div class='webonly'>
 	    
 	      \begin{eqnarray*}
 	      & \ll \textit{unary-operator}\ \ \textit{expression} \gg \\
@@ -3102,18 +3155,41 @@ $\ll \textbf{function}\ \textit{name} \texttt{(}\textit{name}_1\texttt{, }\ldots
               \texttt{list(}\ll \textit{expression} \gg \texttt{))}
 	      \end{eqnarray*}
 	    
-    where $\textit{unary-operator}$ is 
+	</div>
+	<div class='pdfonly'>
+	    
+	      \begin{eqnarray*}
+	      & \ll \mathit{unary}\mhyphen{}\mathit{operator}\ \ \mathit{expression} \gg \\
+	      & = \\
+	      & \texttt{list("unary_operator_combination", "}\mathit{unary}\mhyphen{}\mathit{operator}\texttt{"},\ 
+              \texttt{list(}\ll \mathit{expression} \gg \texttt{))}
+	      \end{eqnarray*}
+	    
+	</div>
+	where $unary$-$operator$ is 
     <kbd>!</kbd> (for logical negation) or
     <kbd>-unary</kbd> (for numeric negation), and
+    <div class='webonly'>
 	    
 	      \begin{eqnarray*}
 	      & \ll \textit{expression}_1\ \textit{binary-operator}\ \ \textit{expression}_2 \gg \\
 	      & = \\
 	      & \texttt{list("binary_operator_combination", "}\textit{binary-operator}\texttt{"},\ 
-              \texttt{list(}\ll \textit{expression}_1\texttt{,}\ \textit{expression}_2 \gg \texttt{))}
+              \texttt{list(}\ll \textit{expression}_1 \gg \texttt{,}\ \ll \textit{expression}_2 \gg \texttt{))}
 	      \end{eqnarray*}
 	    
-    where $\textit{binary-operator}$ is 
+    </div>
+    <div class='pdfonly'>
+	    
+	      \begin{eqnarray*}
+	      & \ll \mathit{expression}_1\ \mathit{binary}\mhyphen{}\mathit{operator}\ \ \mathit{expression}_2 \gg \\
+	      & = \\
+	      & \texttt{list("binary_operator_combination", "}\mathit{binary}\mhyphen{}\mathit{operator}\texttt{"},\ 
+              \texttt{list(}\ll \mathit{expression}_1\texttt{,}\ \mathit{expression}_2 \gg \texttt{))}
+	      \end{eqnarray*}
+	    
+    </div>
+    where $binary$-$operator$ is 
     <kbd>+</kbd>,
     <kbd>-</kbd>,
     <kbd>*</kbd>,
@@ -3367,19 +3443,19 @@ $\ll \textbf{function}\ \textit{name} \texttt{(}\textit{name}_1\texttt{, }\ldots
 	and
 	<kbd>||</kbd>
 	are syntactic sugar for conditional expressions:
-	    $ \textit{expression}_1$ <kbd>&&</kbd>
-	    $\textit{expression}_2$
+	    $\mathit{expression}_1$ <kbd>&&</kbd>
+	    $\mathit{expression}_2$
 	    is syntactic sugar for
-	    $ \textit{expression}_1$ <kbd>?</kbd>
-	    $\textit{expression}_2$ <kbd>:</kbd>
+	    $ \mathit{expression}_1$ <kbd>?</kbd>
+	    $\mathit{expression}_2$ <kbd>:</kbd>
 	    <kbd>false</kbd>, and
-            $\textit{expression}_1$ 
+            $\mathit{expression}_1$ 
             <kbd>||</kbd> 
-            $\textit{expression}_2$
+            $\mathit{expression}_2$
 	    is syntactic sugar for
-	    $ \textit{expression}_1$ <kbd>?</kbd>
+	    $ \mathit{expression}_1$ <kbd>?</kbd>
 	    <kbd>true</kbd> <kbd>:</kbd>
-	    $\textit{expression}_2$.
+	    $\mathit{expression}_2$.
       </span></td></tr></table>
     <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
@@ -3424,7 +3500,7 @@ $\ll \textbf{function}\ \textit{name} \texttt{(}\textit{name}_1\texttt{, }\ldots
 	<blockquote class='blockquote'>
 	  <div class='pdfonly'>
 	
-	  $\ll \textit{expression}_1\ \ \textit{logical-operation}\ \ \textit{expression}_2 \gg \ \ = $\newline
+	  $\ll \mathit{expression}_1\ \ \mathit{logical}\mhyphen{}\mathit{operation}\ \ \mathit{expression}_2 \gg \ \ = $\newline
 \vspace{-8mm}
 	
 	  </div>
@@ -3435,10 +3511,10 @@ $\ll \textbf{function}\ \textit{name} \texttt{(}\textit{name}_1\texttt{, }\ldots
 	  </div>
 	<kbd class='snippet'>list("logical_composition",
      "$logical$-$operation$",
-     list($\ll \textit{expression}_1 \gg$, $\ll \textit{expression}_2 \gg$))</kbd>
+     list($\ll$$_1 \gg$, $\ll$$_2 \gg$))</kbd>
     </blockquote>
 
-    where $\textit{logical-operation}$ is 
+    where $logical$-$operation$ is 
     <kbd>&&</kbd> or
     <kbd>||</kbd>.
     Install
@@ -3764,13 +3840,13 @@ display(1);
 	
 	
 	
-	<kbd class='snippet'>while ($predicate$) { $body$ }</kbd>
-	evaluates the $\textit{predicate}$, and
+	<kbd class='snippet'>while () { }</kbd>
+	evaluates the $predicate$, and
 	if the result is true, evaluates the
-	$\textit{body}$
+	$body$
 	and then evaluates
 	the whole while loop again.
-	Once the $\textit{predicate}$ evaluates
+	Once the $predicate$ evaluates
 	to false, the
 	while loop terminates. Using
 	this syntax, we can compute the greatest common divisor
@@ -3789,18 +3865,18 @@ display(1);
 </pre></div></div>
 	while loops are parsed as follows:
 	<blockquote class='blockquote'>
-	  <div class='pdfonly'>
-	
-	  $\ll \textbf{\texttt{while}} \ \texttt{(}\ \textit{predicate}\ \texttt{)}\ \textit{block}  \gg \ \ =$ \newline
-	  \vspace{-8mm}
-	
-	  </div>
 	  <div class='webonly'>
 	
 	  $\ll \textbf{while} \ \texttt{(}\ \textit{predicate}\ \texttt{)}\ \textit{block}  \gg \ \ =$ 
 	
 	  </div>
-	  <kbd class='snippet'>list("while_loop", $\ll \textit{predicate} \gg$, $\ll \textit{block} \gg$)</kbd>
+	  <div class='pdfonly'>
+	
+	  $\ll \textbf{\texttt{while}} \ \texttt{(}\ \mathit{predicate}\ \texttt{)}\ \mathit{block}  \gg \ \ =$ \newline
+	  \vspace{-8mm}
+	
+	  </div>
+	  <kbd class='snippet'>list("while_loop", $\ll$ $\gg$, $\ll$ $\gg$)</kbd>
     </blockquote>
 
     <OL type="a">
@@ -3935,22 +4011,22 @@ display(1);
 </pre></div></div>
 	for loops are parsed as follows:
 	<blockquote class='blockquote'>
-	  <div class='pdfonly'>
-	
-	  $\ll \textbf{\texttt{for}} \ \texttt{(}\ \textit{init-statement}\texttt{; } \textit{predicate}\texttt{; }\textit{update-statement}\texttt{)}\ \textit{block}  \gg \ \ =$ \newline
-	  \vspace{-8mm}
-	
-	  </div>
 	  <div class='webonly'>
 	
 	  $\ll \textbf{for} \ \texttt{(}\ \textit{init-statement}\texttt{; } \textit{predicate}\texttt{; }\textit{update-statement}\texttt{)}\ \textit{block}  \gg \ \ =$ 
 	
 	  </div>
-	  <kbd class='snippet'>list("for_loop", $\ll \textit{init-statement} \gg$, $\ll \textit{predicate} \gg$, $\ll \textit{update-statement}\gg$, $\ll \textit{block} \gg$)</kbd>
+	  <div class='pdfonly'>
+	
+	  $\ll \textbf{\texttt{for}} \ \texttt{(}\ \mathit{init}\mhyphen{}\mathit{statement}\texttt{; } \mathit{predicate}\texttt{; }\mathit{update}\mhyphen{}\mathit{statement}\texttt{)}\ \mathit{block}  \gg \ \ =$ \newline
+	  \vspace{-8mm}
+	
+	  </div>
+	  <kbd class='snippet'>list("for_loop", $\ll$ $\gg$, $\ll$ $\gg$, $\ll$ $\gg$, $\ll$ $\gg$)</kbd>
     </blockquote>
 
-    where $\textit{init-statement}$ is either an assignment or a
-    variable declaration and $\textit{update-statement}$ is an assignment.
+    where $init$-$statement$ is either an assignment or a
+    variable declaration and $update$-$statement$ is an assignment.
 	<OL type="a">
 	  <LI>
 	    Declare a syntax predicate and selectors to handle for loops.
