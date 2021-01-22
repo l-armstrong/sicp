@@ -2039,15 +2039,13 @@ function sqrt_iter(guess, x) {
       
         The implementation of the metacircular evaluator in chapter&nbsp;4 is
         not tail-recursive. The reason for this is found in the handling of
-        sequences and relates to returning from functions. After the evaluation
-        of a statement, we inspect the result to see if the function is
-        returning or not. If it is, we return the result. If it is not, we
-        continue evaluating the next statement or return
-        <kbd>undefined</kbd> if there are no more
-        statements to evaluate. In a process that computes a value through a
-        nested sequence of function calls, such as
-        <kbd>sqrt_iter</kbd> above, this causes a
-        build-up of deferred checking operations, which leads to an accumulation
+        <kbd>return</kbd> as an operator that creates
+        a return value object and inspecting the result of a function call to
+        see if it is such an object or not.
+        If the result of a function is a return value object, its contents
+        is the return value of the function. 
+        Otherwise, the return value is <kbd>undefined</kbd>.
+        This check is a deferred operation, which leads to an accumulation
         of information on the stack.
       
     
@@ -2076,38 +2074,71 @@ function sqrt_iter(guess, x) {
         
           
       
-If we think of <kbd>return</kbd> as an operator and the return expression as
-its operand, we might consider it more intuitive to evaluate
-<kbd>return</kbd> statements by first computing the return value, and then restore the
-stack:
-          
-	        
+        Let us consider an implementation of the handling of
+        <kbd>return</kbd> statements in the spirit of
+        the metacircular evaluator. In this design, a function that returns
+        explicitly wraps its return value in a return value object, making it
+        possible to determine if a result placed in
+        <kbd>val</kbd> is due to an explicit
+        <kbd>return</kbd> statement. For simplicity,
+        assume that a function body does not continue once a
+        <kbd>return</kbd> statement has been
+        evaluated, and that all saves to the stack in the function body have
+        been restored when the body is fully evaluated, meaning there is no
+        need to use our marker trick.
+
+        In this design <kbd>compound_apply</kbd> will
+        invariantly continue to
+        <kbd>check_return_value</kbd>. At
+        <kbd>check_return_value</kbd>, we check
+        whether the <kbd>val</kbd> register contains a
+        return value object or not. If it does, we extract the contents from the
+        object and place it in <kbd>val</kbd>. If it
+        does not, we assign <kbd>undefined</kbd> to
+        <kbd>val</kbd>. We then restore
+        <kbd>continue</kbd> and jump to the
+        <QUOTE>final</QUOTE> continuation, set up in
+        <kbd>ev_application</kbd>.
           <div class='snippet' id='javascript_114_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-"ev_return",
+"ev_return", 
       assign("comp", list(op("return_expression"), reg("comp"))),
-      assign("continue", label("ev_restore_stack")),
-      save("continue"),
+      assign("continue", label("ev_make_return_value")),
+      go_to(label("eval_dispatch")), // evaluate the return expression
+
+"ev_make_return_value",
+      // wrap contents of val in return value object 
+      assign("val", list(op("make_return_value"), reg("val"))), 
+      restore("continue"),
+      go_to(reg("continue")), 
+
+"compound_apply",
+      ... // as before (first 4 lines)
+      assign("continue", label("check_for_explicit_return")), // install return handler
       go_to(label("eval_dispatch")),
 
-"ev_restore_stack",
-      restore_marker("continue"),
-      restore("continue"),
-      go_to(reg("continue")),</pre></div></div>
+"check_for_explicit_return",
+      test(list(op("is_return_value"), reg("val"))),
+      branch(label("explicit_return")),
+      assign("val", constant(undefined)),
+      go_to(label("ev_return_from_function")),
 
-        This may seem like a minor change to our previous code for evaluation of
-        <kbd>return</kbd> statements.  However, 
-        this not only keeps the useless information on the stack
-        during the evaluation of the return expression, but additionally saves
-        <kbd>continue</kbd> to ensure an eventual
-        jump back to <kbd>ev_restore_stack</kbd> to
-        restore the stack and jumping to the continuation of the function
-        call. Even if there are never any saves by the current
-        function<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>,
-        the last save of <kbd>continue</kbd> will
-        accumulate during a nest of function calls. In this design, processes
-        such as <kbd>sqrt_iter</kbd> would require
-        space proportional to the number of iterations rather than requiring
-        constant space.
+"explicit_return",
+      // extract return value from wrapper
+      assign("val", list(op("return_value_content"), reg("val"))), 
+      
+"ev_return_from_function",
+      restore("continue"),
+      go_to(reg("continue")), // jump to final continuation</pre></div></div>
+
+          This design is not tail-recursive. Assigning
+          <kbd>check_for_explicit_return</kbd> to
+          <kbd>continue</kbd> requires us to store the
+          final continuation of a function call on the stack during the
+          evaluation of its body. These stores will accumulate during a nest of
+          function calls. Consequently, processes such as
+          <kbd>sqrt_iter</kbd> would require space
+          proportional to the number of iterations rather than requiring
+          constant space.
       
     
   </p></div>
@@ -2177,22 +2208,15 @@ function count(n) {
       <a class='footnote-number' id='footnote-2' href='#footnote-link-2'>[2] </a>
     <FOOTNOTE>
     This implementation of tail
-        recursion in <kbd>ev-sequence</kbd> is one variety of
+        recursion in  is one variety of
         a well-known optimization technique used by many compilers. In compiling
-        a procedure that ends with a procedure call, one can replace the call by
-        a jump to the called procedure's entry point. Building this
-        strategy into the interpreter, as we have done in this section, provides
-        the optimization uniformly throughout the language.
+        a function
+        that ends with a function
+        call, one can replace the call by a jump to the called
+        function's
+        entry point.
+        
       
-    </FOOTNOTE></div>
-
-    
-    <div class='footnote'>
-      <a class='footnote-number' id='footnote-3' href='#footnote-link-3'>[3] </a>
-    <FOOTNOTE>
-    With our current design, there will always be at
-        least one: a save of <kbd>continue</kbd> at
-        <kbd>ev_sequence_start</kbd>.
     </FOOTNOTE></div>
 
     
