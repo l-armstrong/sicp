@@ -2045,8 +2045,9 @@ function sqrt_iter(guess, x) {
         If the result of a function is a return value object, its content
         is the return value of the function. 
         Otherwise, the return value is <kbd>undefined</kbd>.
-        This check is a deferred operation, which leads to an accumulation
-        of information on the stack.
+        Both the construction of the return value object, and the eventual inspection of
+        the result of the function call are deferred operations, which lead to an
+        accumulation of information on the stack.
       
     
   </p></div>
@@ -2058,13 +2059,16 @@ function sqrt_iter(guess, x) {
       
         Our explicit-control evaluator is tail-recursive, because it avoids the accumulation
         of information such as in the metacircular evaluator. When we
-        evaluate a <kbd>return</kbd> statement at <kbd>ev_return</kbd>, we
+        evaluate a return statement at <kbd>ev_return</kbd>, we
         first remove anything saved by the current function on the stack, and
-        restore <kbd>continue</kbd>. Thus, right before 
-        proceeding to evaluate the return expression, the information 
-        on the stack is the same as at the start of
-        <kbd>ev_application</kbd>, just before the
-        call to the function whose return value we are about to compute. We then
+        restore <kbd>continue</kbd> to the value saved
+        at <kbd>ev_application</kbd> in the beginning
+        of the function call. 
+        Thus, when we 
+        proceed to evaluate the return expression, the information 
+        accumulated on the stack is the same as just before the
+        call to the function whose return value we are about to compute.
+        We then
         place the return expression in <kbd>comp</kbd>
         and transfer directly to
         <kbd>eval_dispatch</kbd> without any additional saves.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
@@ -2075,14 +2079,14 @@ function sqrt_iter(guess, x) {
           
       
         Let us consider an implementation of the handling of
-        <kbd>return</kbd> statements in the spirit of
+        return statements in the spirit of
         the metacircular evaluator. In ev_return, we evaluate the return
         expression, place the result in <kbd>val</kbd>, and then continue at
         <kbd>ev_make_return_value</kbd> where a return
         value object is created. 
         
         For simplicity, assume that a function body does not continue once a
-        <kbd>return</kbd> statement has been
+        return statement has been
         evaluated, and that all saves to the stack in the function body have
         been restored when the body is fully evaluated, meaning there is no need
         to use our marker trick. 
@@ -2132,12 +2136,25 @@ function sqrt_iter(guess, x) {
       restore("continue"),
       go_to(reg("continue")), // jump to final continuation</pre></div></div>
 
-          This design is not tail-recursive. Assigning
+          This design is not tail-recursive as it introduces two deferred
+          operations:
+          <kbd>ev_make_return_value</kbd> and
+          <kbd>check_for_explicit_return</kbd>.
+          The cost of these deferred operations will materialise on the stack through
+          saves of <kbd>continue</kbd>.
+          For example, assigning
           <kbd>check_for_explicit_return</kbd> to
           <kbd>continue</kbd> requires us to store its
           previous value, the 
           final continuation of the function call, on the stack during the
-          evaluation of its body. These stores will accumulate during a nest of
+          evaluation of its body. This save took place in <kbd>ev_application</kbd>.
+          Without <kbd>check_for_explicit_return</kbd>, this value
+          could have been restored in <kbd>compound_apply</kbd>.
+          Similar reasoning applies to the assignment of <kbd>ev_make_return_value</kbd>
+          to <kbd>continue</kbd> in <kbd>ev_return</kbd>.
+          
+
+          These stores will accumulate during a nest of
           function calls. Consequently, processes such as
           <kbd>sqrt_iter</kbd> would require space
           proportional to the number of iterations rather than requiring
@@ -2152,7 +2169,7 @@ function sqrt_iter(guess, x) {
     with tail recursion, an infinite loop can be expressed using only the
     
       
-      function-call and <kbd>return</kbd> mechanisms:
+      function-call and return mechanisms:
     
     <div class='snippet' id='javascript_114_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function count(n) {
@@ -2189,7 +2206,7 @@ function count(n) {
         Because the <kbd>restore_marker</kbd> is part
         of <kbd>ev_return</kbd>, our JavaScript
         implementation is tail-recursive only in the presence of an explicit
-        <kbd>return</kbd> statement. Without it,
+        return statement. Without it,
         one save of <kbd>continue</kbd> 
         is needed per function call to ensure its eventual arrival at
         <kbd>return_undefined</kbd> to store 
