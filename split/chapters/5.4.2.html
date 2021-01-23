@@ -2105,7 +2105,7 @@ function sqrt_iter(guess, x) {
           <td><span style="color:blue">
         Our explicit-control evaluator is tail-recursive, because it avoids the accumulation
         of information such as in the metacircular evaluator. When we
-        evaluate a <kbd>return</kbd> statement, we
+        evaluate a <kbd>return</kbd> statement at <kbd>ev_return</kbd>, we
         first remove anything saved by the current function on the stack, and
         restore <kbd>continue</kbd>. Thus, right before 
         proceeding to evaluate the return expression, the information 
