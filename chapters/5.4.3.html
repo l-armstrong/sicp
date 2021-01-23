@@ -2007,7 +2007,7 @@ Acknowledgments
     
       
       
-	conditionals,
+	a conditional,
       
     
     we must evaluate the predicate and decide, based on the
@@ -2257,10 +2257,11 @@ Acknowledgments
         Implement the equivalent of
         <kbd>save_marker</kbd> and
         <kbd>restore_marker</kbd> by using <kbd>save</kbd> to
-        store a special marker value on the stack. Use a restoring loop for
+        store a special marker value on the stack<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>. Use a restoring loop for
         implicit and explicit returns that restores from the stack until it hits
-        the marker. (Note that this may require restoring a value to another
-        register than it was saved from.)
+        the marker. Note that this will require restoring a value to another
+        register than it was saved from. This is necessary because the only
+        way to pop from the stack is by restoring to a register. 
       
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_115_2_div" data-toggle="collapse">Add solution</button></div>
@@ -2349,6 +2350,14 @@ Acknowledgments
 	transformations like
 	<kbd>while_to_application</kbd>
 	in a syntax phase that runs before execution.
+    </FOOTNOTE></div>
+
+    
+    <div class='footnote'>
+      <a class='footnote-number' id='footnote-3' href='#footnote-link-3'>[3] </a>
+    <FOOTNOTE>
+    If you implement save and restore using a dedicated
+        stack per register, you will need to insert and remove the marker across all stacks.
     </FOOTNOTE></div>
 
     

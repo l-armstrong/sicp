@@ -2042,7 +2042,7 @@ function sqrt_iter(guess, x) {
         <kbd>return</kbd> as an operator that creates
         a return value object and inspecting the result of a function call to
         see if it is such an object or not.
-        If the result of a function is a return value object, its contents
+        If the result of a function is a return value object, its content
         is the return value of the function. 
         Otherwise, the return value is <kbd>undefined</kbd>.
         This check is a deferred operation, which leads to an accumulation
@@ -2056,8 +2056,8 @@ function sqrt_iter(guess, x) {
     
       
       
-        Because our explicit-control evaluator is tail-recursive, accumulation
-        of information such as in the metacircular evaluator is avoided. When we
+        Our explicit-control evaluator is tail-recursive, because it avoids the accumulation
+        of information such as in the metacircular evaluator. When we
         evaluate a <kbd>return</kbd> statement, we
         first remove anything saved by the current function on the stack, and
         restore <kbd>continue</kbd>. Thus, right before 
@@ -2195,8 +2195,8 @@ function count(n) {
         <kbd>return_undefined</kbd> to store 
         <kbd>undefined</kbd> in the
         <kbd>val</kbd> register. Thus, removing
-        <kbd>return</kbd> from the above count
-        function will cause it to eventually run out of stack space.
+        <kbd>return</kbd> from the <kbd>count</kbd>
+        function above will cause it to eventually run out of stack space.
       </p></div>
     
   
@@ -2221,14 +2221,14 @@ function count(n) {
       <a class='footnote-number' id='footnote-2' href='#footnote-link-2'>[2] </a>
     <FOOTNOTE>
     This implementation of tail
-        recursion in  is one variety of
+        recursion  is one variety of
         a well-known optimization technique used by many compilers. In compiling
         a function
         that ends with a function
         call, one can replace the call by a jump to the called
         function's
         entry point.
-        
+        Building this strategy into the interpreter, as we have done in this section, provides the optimization uniformly throughout the language.
       
     </FOOTNOTE></div>
 

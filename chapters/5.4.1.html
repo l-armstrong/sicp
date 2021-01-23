@@ -2985,7 +2985,7 @@ The sequence of instructions labeled
         The handling of returns in the explicit-control evaluator deviates from
         the metacircular evaluator in order to support tail recursion. Because a
         return statement will ensure that it continues to the proper place in
-        the program by manipulating the stack, the sequence does not need to be
+        the program by manipulating the stack, sequence evaluation does not need to be
         concerned with returns, or even be aware of the existence of explicit
         returns in the language.
       
@@ -3242,8 +3242,8 @@ the end of a program, the stack will be empty.
       <div class='permalink'>
 <a name='p27' class='permalink'></a><p>
 The ability to return from a function in the middle of a sequence of statements
-destroys this property and thus necessitates additional stack management which
-we shall now explain. Consider the following body of a function
+destroys this property and thus necessitates the additional stack management for function application 
+that we recently introduced. Consider the following body of a function
 <kbd>f</kbd>:
 
     <div class='snippet' id='javascript_113_16_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
@@ -3251,7 +3251,7 @@ x = 42;
 if (x > 0) { return x; } else { ... }; 
 x = x + 1;</pre></div></div>
 
-The evaluation of this code starts at
+The evaluation of this program starts at
 <kbd>ev_sequence_start</kbd> by saving the current
 continuation, which is the label
 <kbd>return_undefined</kbd> which was setup at
