@@ -2168,28 +2168,30 @@ ev-sequence
           <td><span style="color:blue">
         Let us consider an implementation of the handling of
         <kbd>return</kbd> statements in the spirit of
-        the metacircular evaluator. In this design, a function that returns
-        explicitly wraps its return value in a return value object, making it
-        possible to determine if a result placed in
-        <kbd>val</kbd> is due to an explicit
-        <kbd>return</kbd> statement. For simplicity,
-        assume that a function body does not continue once a
+        the metacircular evaluator. In ev_return, we evaluate the return
+        expression, place the result in <kbd>val</kbd>, and then continue at
+        <kbd>ev_make_return_value</kbd> where a return
+        value object is created. 
+        
+        For simplicity, assume that a function body does not continue once a
         <kbd>return</kbd> statement has been
         evaluated, and that all saves to the stack in the function body have
-        been restored when the body is fully evaluated, meaning there is no
-        need to use our marker trick.
+        been restored when the body is fully evaluated, meaning there is no need
+        to use our marker trick. 
 
-        In this design <kbd>compound_apply</kbd> will
-        invariantly continue to
-        <kbd>check_return_value</kbd>. At
-        <kbd>check_return_value</kbd>, we check
-        whether the <kbd>val</kbd> register contains a
-        return value object or not. If it does, we extract the contents from the
-        object and place it in <kbd>val</kbd>. If it
-        does not, we assign <kbd>undefined</kbd> to
+        In this design <kbd>compound_apply</kbd> installs
+        a continuation
+        <kbd>check_return_value</kbd>, and every function
+        call will eventually arrive here after its complete evaluation.
+        At <kbd>check_return_value</kbd>, we check
+        whether the function's return value stored in <kbd>val</kbd> 
+        is a return value object or not. If it is, we extract the contents from the
+        object and place it in <kbd>val</kbd>. Otherwise,
+        the function did not return explicitly so we must assign
+        <kbd>undefined</kbd> to
         <kbd>val</kbd>. We then restore
         <kbd>continue</kbd> and jump to the
-        <QUOTE>final</QUOTE> continuation, set up in
+        <QUOTE>final</QUOTE> continuation, which was saved in
         <kbd>ev_application</kbd>.
           <div class='snippet' id='javascript_114_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_return", 
@@ -2224,13 +2226,14 @@ ev-sequence
 
           This design is not tail-recursive. Assigning
           <kbd>check_for_explicit_return</kbd> to
-          <kbd>continue</kbd> requires us to store the
-          final continuation of a function call on the stack during the
+          <kbd>continue</kbd> requires us to store its
+          previous value, the 
+          final continuation of the function call, on the stack during the
           evaluation of its body. These stores will accumulate during a nest of
           function calls. Consequently, processes such as
           <kbd>sqrt_iter</kbd> would require space
           proportional to the number of iterations rather than requiring
-          constant space.
+          constant space. 
       </span></td></tr></table>
   </p></div>
   <div class='permalink'>
@@ -2282,12 +2285,22 @@ function count(n) {
           <td><span style="color:blue">
       <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
-        Note that our JavaScript implementation is tail-recursive only in the
-        presence of an explicit <kbd>return</kbd>
-        statement. A function that ends without an explicit
-        <kbd>return</kbd> statement will go to the
-        implicit return handler
-        <kbd>return_undefined</kbd>, which stores
+        The reason why the <kbd>return_undefined</kbd>
+        continuation from section&nbsp;5.4.1 does not lead to an accumulation
+        of space is because it was placed on the stack <EM>after</EM> the
+        marker. This means that the
+        <kbd>restore_marker</kbd> instruction will
+        remove this continuation from the stack before evaluating the return
+        expression. In other words: when we know that the check is not needed,
+        we remove it along with the stack space it occupied. 
+        
+        Because the <kbd>restore_marker</kbd> is part
+        of <kbd>ev_return</kbd>, our JavaScript
+        implementation is tail-recursive only in the presence of an explicit
+        <kbd>return</kbd> statement. Without it,
+        one save of <kbd>continue</kbd> 
+        is needed per function call to ensure its eventual arrival at
+        <kbd>return_undefined</kbd> to store 
         <kbd>undefined</kbd> in the
         <kbd>val</kbd> register. Thus, removing
         <kbd>return</kbd> from the above count
