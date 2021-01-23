@@ -2037,8 +2037,7 @@ Acknowledgments
 	    vector n<kbd>)</kbd>
 	  </span>
 	  <span style="color:blue">
-	    <kbd>vector_ref(</kbd>$\ensuremath{\text{\textrm{\sl vector}}}$,
-	    $\ensuremath{\text{\textrm{\sl n}}}$<kbd>)</kbd>
+	    <kbd>vector_ref(</kbd>$vector$<kbd>, </kbd>$n$<kbd>)</kbd>
 	  </span>
 	
 	returns the $n$th element of the vector.
@@ -2053,9 +2052,7 @@ Acknowledgments
 	    <kbd>)</kbd>
 	  </span>
 	  <span style="color:blue">
-	    <kbd>vector_set(</kbd>$\ensuremath{\text{\textrm{\sl vector}}}$,
-	    $\ensuremath{\text{\textrm{\sl n}}}$,
-	    $\ensuremath{\text{\textrm{\sl value}}}$<kbd>)</kbd>
+	    <kbd>vector_set(</kbd>$vector$<kbd>, </kbd>$n$<kbd>, </kbd>$value$<kbd>)</kbd>
 	  </span>
 	
 	sets the $n$th element of the vector to the
@@ -2415,26 +2412,26 @@ Acknowledgments
     
     
     <kbd class='snippet'>
-assign($\OptionalPar[1]{reg}$, list(op("head"), reg($\OptionalPar[2]{reg}$)))
-assign($\OptionalPar[1]{reg}$, list(op("tail"), reg($\OptionalPar[2]{reg}$)))
+assign($reg$$_1$, list(op("head"), reg($reg$$_2$)))
+assign($reg$$_1$, list(op("tail"), reg($reg$$_2$)))
       </kbd>
     if we implement these, respectively, as
     <kbd class='snippet'>
-assign($\OptionalPar[1]{reg}$, list(op("vector_ref"), reg("the_heads"), reg($\OptionalPar[2]{reg}$)))
-assign($\OptionalPar[1]{reg}$, list(op("vector_ref"), reg("the_tails"), reg($\OptionalPar[2]{reg}$)))
+assign($reg$$_1$, list(op("vector_ref"), reg("the_heads"), reg($reg$$_2$)))
+assign($reg$$_1$, list(op("vector_ref"), reg("the_tails"), reg($reg$$_2$)))
       </kbd>
 
     The instructions
     
     
     <kbd class='snippet'>
-perform(list(op("set_head"), reg($\OptionalPar[1]{reg}$), reg($\OptionalPar[2]{reg}$)))
-perform(list(op("set_tail"), reg($\OptionalPar[1]{reg}$), reg($\OptionalPar[2]{reg}$)))
+perform(list(op("set_head"), reg($reg$$_1$), reg($reg$$_2$)))
+perform(list(op("set_tail"), reg($reg$$_1$), reg($reg$$_2$)))
       </kbd>
     are implemented as
     <kbd class='snippet'>
-perform(op("vector_set"), list(reg("the_heads"), reg($\OptionalPar[1]{reg}$), reg($\OptionalPar[2]{reg}$)))
-perform(op("vector_set"), list((reg("the_tails"), reg($\OptionalPar[1]{reg}$), reg($\OptionalPar[2]{reg}$)))
+perform(op("vector_set"), list(reg("the_heads"), reg($reg$$_1$), reg($reg$$_2$)))
+perform(op("vector_set"), list(reg("the_tails"), reg($reg$$_1$), reg($reg$$_2$)))
       </kbd>
   </p></div>
 
@@ -2469,14 +2466,14 @@ perform(op("vector_set"), list((reg("the_tails"), reg($\OptionalPar[1]{reg}$), r
     part of that pointer to find the next free location.<a class='superscript' id='footnote-link-8' href='#footnote-8'>[8]</a>
     For example, the instruction
     <kbd class='snippet'>
-assign($\OptionalPar[1]{reg}$, list(op("pair"), reg($\OptionalPar[2]{reg}$), reg($\OptionalPar[3]{reg}$)))
+assign($reg$$_1$, list(op("pair"), reg($reg$$_2$), reg($reg$$_3$)))
       </kbd>
     is implemented as the following sequence of vector
     operations:<a class='superscript' id='footnote-link-9' href='#footnote-9'>[9]</a>
     <kbd class='snippet'>
-perform(op("vector_set"), list(reg("the_heads"), reg("free"), reg($\OptionalPar[2]{reg}$))),
-perform(op("vector_set"), list(reg("the_tails"), reg("free"), reg($\OptionalPar[3]{reg}$))),
-assign($\OptionalPar[1]{reg}$, reg("free")),
+perform(op("vector_set"), list(reg("the_heads"), reg("free"), reg($reg$$_2$))),
+perform(op("vector_set"), list(reg("the_tails"), reg("free"), reg($reg$$_3$))),
+assign($reg$$_1$, reg("free")),
 assign("free", list(op("+"), reg("free"), constant(1)))
       </kbd>
   </p></div>
@@ -2490,7 +2487,7 @@ assign("free", list(op("+"), reg("free"), constant(1)))
     
     operation
     <kbd class='snippet'>
-list(op("==="), reg($\OptionalPar[1]{reg}$), reg($\OptionalPar[2]{reg}$))
+list(op("==="), reg($reg$$_1$), reg($reg$$_2$))
       </kbd>
     simply tests the equality of all fields in the registers, and
     
@@ -2538,25 +2535,23 @@ list(op("==="), reg($\OptionalPar[1]{reg}$), reg($\OptionalPar[2]{reg}$))
     Thus,
     
       <span style="color:green"><kbd>(save ^reg^)</kbd></span>
-      <span style="color:blue"><kbd>save(</kbd>$\ensuremath{\text{\textrm{\sl reg}}}$<kbd>)</kbd></span>
+      <span style="color:blue"><kbd>save(</kbd>$reg$<kbd>)</kbd></span>
     
     can be implemented as
     
     <kbd class='snippet'>
-assign("the_stack", list(op("pair"), reg($\OptionalPar{reg}$), reg("the_stack")))
+assign("the_stack", list(op("pair"), reg($reg$), reg("the_stack")))
       </kbd>
     
     Similarly,
     
       <span style="color:green"><kbd>(restore ^reg^)</kbd></span>
       <span style="color:blue">
-	<kbd>restore(</kbd>
-	$\ensuremath{\text{\textrm{\sl reg}}}$
-      <kbd>)</kbd></span>
+	<kbd>restore(</kbd>$reg$<kbd>)</kbd></span>
     
     can be implemented as
     <kbd class='snippet'>
-assign($\OptionalPar{reg}$, list(op("head"), reg("the_stack")))
+assign($reg$, list(op("head"), reg("the_stack")))
 assign("the_stack", list(op("tail"), reg("the_stack")))
       </kbd>
     and

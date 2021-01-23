@@ -2109,6 +2109,8 @@ Acknowledgments
     be constructed and added to the system during debugging.
   </p></div>
 
+  <div class='permalink'>
+<a name='p7' class='permalink'></a><p>
   <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
         <tr>
@@ -2117,42 +2119,18 @@ Acknowledgments
           <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
         </tr>
         <tr><td><span style="color:green">
-  <div class='permalink'>
-<a name='p7' class='permalink'></a><p>
     In view of the complementary advantages of compilation and
     interpretation, modern program-development environments pursue a mixed
-    strategy.
-    
-      <span style="color:green">Lisp</span>
-      <span style="color:blue">JavaScript</span>
-    
-    interpreters are generally organized so that interpreted
-    
-      <span style="color:green">procedures</span>
-      <span style="color:blue">functions</span>
-    
-    and compiled
-    
-      <span style="color:green">procedures</span>
-      <span style="color:blue">functions</span>
-    
+    strategy. Lisp interpreters are generally organized so that interpreted
+    procedures and compiled procedures
     can call each other. This enables a programmer to compile those parts of a
     program that are assumed to be debugged, thus gaining the efficiency
     advantage of compilation, while retaining the interpretive mode of execution
     for those parts of the program that are in the flux of interactive
-    development and debugging.  In
-    section&nbsp;<REF NAME="sec:interfacing-compiled-code"><a class="superscript" id="5.5-sec-link-5.5.7" href="./5.5.7.html">5.5.7</a></REF>, after we have
-    implemented the compiler, we will show how to interface it with our
-    interpreter to produce an integrated interpreter-compiler development system.
-    
-    
-    
-  </p></div>
+    development and debugging.  
     </span>    </td>
           <td></td>
           <td><span style="color:blue">
-      <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
         For efficiency, JavaScript interpreters typically operate
         on an intermediate representation of the program called
         <EM>bytecode</EM>, rather than directly on the sources. Bytecode
@@ -2162,16 +2140,15 @@ Acknowledgments
         frequently executed parts of a program (for example a
         single function or an entire call chain) will be compiled.
         As a consequence of this design, interpreted functions and
-        compiled functions must be able to call each other. In
-        section&nbsp;<REF NAME="sec:interfacing-compiled-code"><a class="superscript" id="5.5-sec-link-5.5.7" href="./5.5.7.html">5.5.7</a></REF>, after we have
-        implemented the compiler, we will show how to interface it
-        with our interpreter to produce an integrated
-        interpreter-compiler development system.
-        
-        
-	
-      </p></div>
+        compiled functions must be able to call each other. 
     </span></td></tr></table>
+  In section&nbsp;<REF NAME="sec:interfacing-compiled-code"><a class="superscript" id="5.5-sec-link-5.5.7" href="./5.5.7.html">5.5.7</a></REF>, after we have
+    implemented the compiler, we will show how to interface it with our
+    interpreter to produce an integrated interpreter-compiler development system.
+    
+    
+      
+  </p></div>
 
   
       <div class='permalink'>
@@ -2184,7 +2161,7 @@ Acknowledgments
   
 
   <div class='permalink'>
-<a name='p9' class='permalink'></a><p>
+<a name='p8' class='permalink'></a><p>
     Our compiler is much like our interpreter, both in its structure and in
     the function it performs.  Accordingly, the mechanisms used by the
     compiler for analyzing expressions will be similar to those used by
@@ -2226,7 +2203,7 @@ Acknowledgments
   </p></div>
 
   <div class='permalink'>
-<a name='p10' class='permalink'></a><p>
+<a name='p9' class='permalink'></a><p>
     This description suggests a strategy for implementing a rudimentary
     compiler: We traverse the expression in the same way the
     interpreter does.  When we encounter a register instruction that the
@@ -2281,7 +2258,7 @@ Acknowledgments
   </p></div>
 
   <div class='permalink'>
-<a name='p11' class='permalink'></a><p>
+<a name='p10' class='permalink'></a><p>
     
     This is the same kind of optimization we implemented in the
     analyzing evaluator of section&nbsp;<REF NAME="sec:separating-analysis"><a class="superscript" id="5.5-sec-link-4.1.7" href="./4.1.7.html">4.1.7</a></REF>.
@@ -2335,7 +2312,7 @@ Acknowledgments
   </p></div>
 
   <div class='permalink'>
-<a name='p12' class='permalink'></a><p>
+<a name='p11' class='permalink'></a><p>
     As a case in point, consider the combination
     <span style="color:green"><kbd>(f 84 96)</kbd>.</span>
     <span style="color:blue"><kbd>f(96, 21)</kbd>.</span>
@@ -2429,7 +2406,7 @@ assign("fun", op("lookup_symbol_value"), constant(symbol_of_name("f"), reg("env"
   </p></div>
 
   <div class='permalink'>
-<a name='p13' class='permalink'></a><p>
+<a name='p12' class='permalink'></a><p>
     A compiler can also optimize access to the environment.  Having
     analyzed the code, the compiler can in many cases know in which frame
     a particular

@@ -2130,9 +2130,9 @@ compile(parse("                                \
     there is no linkage code
     in this case.  The skeleton of the compiled code is thus
     <kbd class='snippet'>
-$\langle\text{\it save {\tt env} if modified by code to compute value}\rangle$
-$\langle\text{\it compilation of declaration value, target {\tt val}, linkage {\tt next}}\rangle$
-$\langle\text{\it restore {\tt env} if saved above}\rangle$
+$\langle{}$<EM>save <kbd>env</kbd> if modified by code to compute value</EM>$\rangle$
+$\langle{}$<EM>compilation of declaration value, target <kbd>val</kbd>, linkage <kbd>"next"</kbd></EM>$\rangle$
+$\langle{}$<EM>restore <kbd>env</kbd> if saved above</EM>$\rangle$
 perform(list(op("assign_symbol_value"),
              constant("factorial"),
              reg("val"),
@@ -2243,7 +2243,7 @@ $$  assign("val", list(op("make_compiled_function"),
                      constant("n"), 
                      reg("argl"), 
                      reg("env"))),
-  $\langle compilation$ $of$ $function$ $body\rangle$
+  $\langle{}$<EM>compilation of function body</EM>$\rangle$
 "after_lambda1",
   perform(list(op("assign_symbol_value"), 
                constant("factorial"), 
@@ -2275,7 +2275,7 @@ $$  assign("val", list(op("make_compiled_function"),
 	<kbd>return</kbd>.
       </span>
       <span style="color:blue">
-	<kbd>return_undefined</kbd>.
+	<kbd>"return_undefined"</kbd>.
       </span>
     
     The
@@ -2324,7 +2324,7 @@ return n === 1
 	<kbd>compile_return_statement</kbd>
 	compiles the return expression with the same target
 	<kbd>val</kbd> but with linkage
-	<kbd>return</kbd>, because the return
+	<kbd>"return"</kbd>, because the return
 	expression is the last
   
     <span style="color:green">
@@ -2396,7 +2396,7 @@ return n === 1
 	<kbd>return</kbd>.
       </span>
       <span style="color:blue">
-	<kbd>return</kbd>.
+	<kbd>"return"</kbd>.
       </span>
     
     (That is, the value of the conditional,
@@ -2406,15 +2406,15 @@ return n === 1
       <span style="color:blue">function.)</span>
     
     <kbd class='snippet'>
-$$  $\langle\text{\it save {\tt continue}, {\tt env} if modified by predicate and needed by branches}\rangle$
-  $\langle\text{\it compilation of predicate, target {\tt val}, linkage {\tt next}}\rangle$
-  $\langle\text{\it restore {\tt continue}, {\tt env} if saved above}\rangle$
+$$  $\langle{}$<EM>save <kbd>continue</kbd>, <kbd>env</kbd> if modified by predicate and needed by branches</EM>$\rangle$
+  $\langle{}$<EM>compilation of predicate, target <kbd>val</kbd>, linkage <kbd>"next"</kbd></EM>$\rangle$
+  $\langle{}$<EM>restore <kbd>continue</kbd>, <kbd>env</kbd> if saved above</EM>$\rangle$
   test(list(op("is_falsy"), reg("val"))),
   branch(label("false_branch5")),
 "true_branch4",
-  $\langle\text{\it compilation of true branch, target {\tt val}, linkage {\tt return}}\rangle$
+  $\langle{}$<EM>compilation of true branch, target <kbd>val</kbd>, linkage <kbd>"return"</kbd></EM>$\rangle$
 "false_branch5",
-  $\langle\text{\it compilation of false branch, target {\tt val}, linkage {\tt return}}\rangle$
+  $\langle{}$<EM>compilation of false branch, target <kbd>val</kbd>, linkage <kbd>"return"</kbd></EM>$\rangle$
 "after_cond3",
       </kbd>
   </p></div>
@@ -2511,7 +2511,7 @@ $$  assign("fun", list(op("lookup_symbol_value"), constant("==="),
 	<kbd>return</kbd>)
       </span>
       <span style="color:blue">
-	<kbd>return</kbd>)
+	<kbd>"return"</kbd>)
       </span>
     
     to

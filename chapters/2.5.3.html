@@ -2185,15 +2185,15 @@ function install_polynomial_package() {
     }
     function variable(p) { return head(p); }
     function term_list(p) { return tail(p); }
-    $\langle functions$ is_same_variable $and$ is_variable $from$ $section$ $2.3.2 \rangle$
+    $\langle{}$<EM>functions <kbd>is_same_variable</kbd> and <kbd>is_variable</kbd> from section 2.3.2</EM>$\rangle$
 
     // representation of terms and term lists
-    $\langle functions$ adjoin_term ... coeff $from$ $text$ $below \rangle$
+    $\langle{}$<EM>functions <kbd>adjoin_term...coeff</kbd> from text below</EM>$\rangle$
 
     function add_poly(p1, p2) { ... }
-    $\langle functions$ $used$ $by$ add_poly$\rangle$
+    $\langle{}$<EM>functions used by <kbd>add_poly</kbd></EM>$\rangle$
     function mul_poly(p1, p2) { ... }
-    $\langle functions$ $used$ $by$ mul_poly$\rangle$
+    $\langle{}$<EM>functions used by <kbd>mul_poly</kbd></EM>$\rangle$
 
     // interface to rest of the system
     function tag(p) {
@@ -2785,8 +2785,8 @@ function div_terms(L1, L2) {
             const new_c = div(coeff(t1), coeff(t2));
             const new_o = order(t1) - order(t2);
             const rest_of_result = 
-                $\langle compute$ $rest$ $of$ $result$ $recursively \rangle$;
-            $\langle form$ $complete$ $result \rangle$
+                $\langle{}$<EM>compute rest of result recursively</EM>$\rangle$;
+            $\langle{}$<EM>form complete result</EM>$\rangle$
         }
     }
 }

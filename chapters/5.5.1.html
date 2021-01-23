@@ -2278,12 +2278,12 @@ go_to(reg("continue")),</pre></div></div>
     $seq_2$ are sequences of instructions, then
     evaluating
     <kbd class='snippet'>
-      append_instruction_sequences($seq_1$, $seq_2$)
+      append_instruction_sequences($seq$$_1$, $seq$$_2$)
       </kbd>
     produces the sequence
     <kbd class='snippet'>
-$seq_1$
-$seq_2$
+$seq$$_1$
+$seq$$_2$
       </kbd>
   </p></div>
 
@@ -2316,11 +2316,13 @@ $seq_2$
       preserving(list($reg_1$, $reg_2$), $seq_1$, $seq_2$);
       </kbd>
     produces one of the following four sequences of instructions, depending on
-    how $\textit{seq}_1$ and
-    $\textit{seq}_2$ use
-    $\textit{reg}_1$ and
-    $\textit{reg}_2$:
+    how
+    $seq$$_1$ and
+    $seq$$_2$ use
+    $reg$$_1$ and
+    $reg$$_2$:
   </p></div>
+  
   
   
     

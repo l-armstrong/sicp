@@ -2297,13 +2297,13 @@ function compile_assignment_returning(symbol, value_code, target,
     
     compiled with a given target and linkage has the form
     <kbd class='snippet'>
-  $\langle compilation$ $of$ $predicate,$ $target$ val, $linkage$ next$\rangle$
+$\langle{}$<EM>compilation of predicate, target <kbd>val</kbd>, linkage <kbd>next</kbd></EM>$\rangle$
   test(list(op("is_falsy"), reg("val"))),
   branch(label("false_branch")),
 "true_branch",
-  $\langle compilation$ $of$ $consequent$ $with$ $given$ $target$ $and$ $given$ $linkage$ $or$ after_cond$\rangle$
+  $\langle{}$<EM>compilation of consequent with given target and given linkage or <kbd>after_cond</kbd></EM>$\rangle$
 "false_branch",
-  $\langle compilation$ $of$ $alternative$ $with$ $given$ $target$ $and$ $linkage\rangle$
+  $\langle{}$<EM>compilation of alternative with given target and linkage</EM>$\rangle$
 "after_cond"
       </kbd>
   </p></div>
@@ -2497,8 +2497,8 @@ function compile_sequence(seq, target, linkage) {
     
     The object code for a lambda expression must have the form
     <kbd class='snippet'>
-$\langle construct$ $function$ $object$ $and$ $assign$ $it$ $to$ $target$ $register \rangle$
-$\langle linkage \rangle$
+$\langle{}$<EM>construct function object and assign it to target register</EM>$\rangle$
+$\langle{}$<EM>linkage</EM>$\rangle$
       </kbd>
 
     When we compile the lambda expression, we also generate the code for the
@@ -2540,9 +2540,9 @@ $\langle linkage \rangle$
     body by using a linkage that jumps to a label that is inserted after the
     body.  The object code thus has the form
     <kbd class='snippet'>
-$\langle construct$ $function$ $object$ $and$ $assign$ $it$ $to$ $target$ $register\rangle$
-$\langle code$ $for$ $given$ $linkage\rangle$ $or$ go_to(label("after_lambda"))
-$\langle compilation$ $of$ $function$ $body \rangle$
+$\langle{}$<EM>construct function object and assign it to target register</EM>$\rangle$
+$\langle{}$<EM>code for given linkage</EM>$\rangle$ $or$ go_to(label("after_lambda"))
+$\langle{}$<EM>compilation of function body</EM>$\rangle$
 "after_lambda",
       </kbd>
   </p></div>

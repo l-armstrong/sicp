@@ -2520,16 +2520,16 @@ list(0, 1, 1, 4, 9, 25, 64, 169, 441, 1156, 3025)</pre></div></div>
     
     <kbd class='snippet'>
 function map(f, sequence) {
-    return accumulate((x, y) => $\langle ??\rangle$, 
+    return accumulate((x, y) => $\langle{}$<EM>??</EM>$\rangle$, 
                       null, sequence);
 }
 
 function append(seq1, seq2) {
-    return accumulate(pair, $\langle ??\rangle$, $\langle ??\rangle$);
+    return accumulate(pair, $\langle{}$<EM>??</EM>$\rangle$, $\langle{}$<EM>??</EM>$\rangle$);
 }
 
 function length(sequence) {
-    return accumulate($\langle ??\rangle$, 0, sequence);
+    return accumulate($\langle{}$<EM>??</EM>$\rangle$, 0, sequence);
 }
       </kbd>
     
@@ -2591,14 +2591,14 @@ function length(sequence) {
     $a_{n}$.
     <kbd class='snippet'>
 function horner_eval(x, coefficient_sequence) {
-    return accumulate((this_coeff, higher_terms) => $\langle ??\rangle$,
+    return accumulate((this_coeff, higher_terms) => $\langle{}$<EM>??</EM>$\rangle$,
                       0, 
                       coefficient_sequence);
 }
       </kbd>
     For example, to compute $1+3x+5x^3+x^5$ at
     $x=2$ you would evaluate
-    <div class='snippet' id='javascript_35_22_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQALKgJyIFNGB9FgNwEMAbABQAPADSgSVFnjwUSFFkTLsAziwCOBBSRYBKUAG9soY6EYsyBZqB4kSBALYE+PMiwECydCsvYSpeMS8Aczo2dldGe2U9AF4APlAAEgAdZyIgvhZQAH5s5MYedMzEkSMTcorKkwAGMTKqhoq-aVl5RRV1TVJdAG5sAF9cBmYw7n4BFDE+bzIBAEYxTDFa0ABWZbE5nR0eoA')">horner_eval(2, list(1, 3, 0, 5, 0, 1));
+    <div class='snippet' id='javascript_35_22_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQALKgJyIFNGB9FgNwEMAbABQAPADSgSVFnjwUSFFkTLsAziwCOBBSRYBKUAG9soY6EYsyBZqB4kSBALYE+PMiwECydCsvYSpeMS8Aczo2dldGe2U9AF4APlARIxMU1LSTAAYxZPTc1L9pWXlFFXVNUl0AbmwAX1wGZjDufgEUMT5vMgEARjFMMSzQAFYBsW6dHUqgA')">horner_eval(2, list(1, 3, 0, 5, 0, 1));
 </pre></div></div>
     
   
@@ -2633,7 +2633,7 @@ function horner_eval(x, coefficient_sequence) {
     
     <kbd class='snippet'>
 function count_leaves(t) {
-    return accumulate($\langle ??\rangle$, $\langle ??\rangle$, map($\langle ??\rangle$, $\langle ??\rangle$));
+    return accumulate($\langle{}$<EM>??</EM>$\rangle$, $\langle{}$<EM>??</EM>$\rangle$, map($\langle{}$<EM>??</EM>$\rangle$, $\langle{}$<EM>??</EM>$\rangle$));
 }
           </kbd>
     
@@ -2714,8 +2714,8 @@ list(list( 1,  2,  3),
 function accumulate_n(op, init, seqs) {
     return is_null(head(seqs))
            ? null
-           : pair(accumulate(op, init, $\langle ??\rangle$), 
-                  accumulate_n(op, init, $\langle ??\rangle$));
+           : pair(accumulate(op, init, $\langle{}$<EM>??</EM>$\rangle$), 
+                  accumulate_n(op, init, $\langle{}$<EM>??</EM>$\rangle$));
 }
       </kbd>
     
@@ -2833,16 +2833,16 @@ list(list(1, 2, 3, 4),
     
     <kbd class='snippet'>
 function matrix_times_vector(m, v) {
-    return map($\langle ??\rangle$, m);
+    return map($\langle{}$<EM>??</EM>$\rangle$, m);
 }
 
 function transpose(mat) {
-    return accumulate_n($\langle ??\rangle$, $\langle ??\rangle$, mat);
+    return accumulate_n($\langle{}$<EM>??</EM>$\rangle$, $\langle{}$<EM>??</EM>$\rangle$, mat);
 }
 
 function matrix_times_matrix(n, m) {
     const cols = transpose(n);
-    return map($\langle ??\rangle$, m);
+    return map($\langle{}$<EM>??</EM>$\rangle$, m);
 }
       </kbd>
     
@@ -2999,12 +2999,12 @@ function matrix_times_matrix(n, m) {
     from exercise&nbsp;<REF NAME="ex:fold-right-left"><a class="superscript" id="2.2.3-ex-link-2.38" href="./2.2.3.html#ex_2.38">2.38</a></REF>:
     <kbd class='snippet'>
 function reverse(sequence) {
-    return fold_right((x, y) => $\langle ??\rangle$, null, sequence);
+    return fold_right((x, y) => $\langle{}$<EM>??</EM>$\rangle$, null, sequence);
 }
       </kbd>
     <kbd class='snippet'>
 function reverse(sequence) {
-    return fold_left((x, y) => $\langle ??\rangle$, null, sequence);
+    return fold_left((x, y) => $\langle{}$<EM>??</EM>$\rangle$, null, sequence);
 }
       </kbd>
     

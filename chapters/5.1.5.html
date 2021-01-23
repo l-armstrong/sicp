@@ -1997,14 +1997,14 @@ Acknowledgments
     
       
       
-	<kbd>reg(</kbd>$\ensuremath{\text{\textrm{\sl register-name}}}$<kbd>)</kbd>
+	<kbd>reg(</kbd>$register$-$name$<kbd>)</kbd>
       
     
     or
     
       
       
-	<kbd>constant(</kbd>$\ensuremath{\text{\textrm{\sl constant-value}}}$<kbd>)</kbd>.
+	<kbd>constant(</kbd>$constant$-$value$<kbd>)</kbd>.
       
       
   </p></div>
@@ -2026,19 +2026,19 @@ Acknowledgments
       
     
     <kbd class='snippet'>
-assign($\OptionalPar{register-name}$, reg($\OptionalPar{register-name}$))
+assign($register$-$name$, reg($register$-$name$))
 
-assign($\OptionalPar{register-name}$, constant($\OptionalPar{constant-value}$))
+assign($register$-$name$, constant($constant$-$value$))
 
-assign($\OptionalPar{register-name}$, list(op($\OptionalPar{operation-name}$), $\OptionalPar[1]{input}$, $\ldots$, $\OptionalPar[n]{input}$))
+assign($register$-$name$, list(op($operation$-$name$), $input$$_1$, $\ldots$, $input$$_n$))
 
-perform(list(op($\OptionalPar{operation-name}$), $\OptionalPar[1]{input}$, $\ldots$, $\OptionalPar[n]{input}$))
+perform(list(op($operation$-$name$), $input$$_1$, $\ldots$, $input$$_n$))
 
-test(list(op($\OptionalPar{operation-name}$), $\OptionalPar[1]{input}$, $\ldots$, $\OptionalPar[n]{input}$))
+test(list(op($operation$-$name$), $input$$_1$, $\ldots$, $input$$_n$))
 
-branch(label($\OptionalPar{label-name}$))
+branch(label($label$-$name$))
 
-go_to(label($\OptionalPar{label-name}$))
+go_to(label($label$-$name$))
       </kbd>
   </p></div>
 
@@ -2047,9 +2047,9 @@ go_to(label($\OptionalPar{label-name}$))
     The use of registers to hold labels was introduced in
     section&nbsp;<REF NAME="sec:subroutines"><a class="superscript" id="5.1.5-sec-link-5.1.3" href="./5.1.3.html">5.1.3</a></REF>:
     <kbd class='snippet'>
-assign($\OptionalPar{register-name}$, label($\OptionalPar{label-name}$))
+assign($register$-$name$, label($label$-$name$))
 
-go_to(reg($\OptionalPar{register-name}$))
+go_to(reg($register$-$name$))
       </kbd>
   </p></div>
 
@@ -2060,9 +2060,9 @@ go_to(reg($\OptionalPar{register-name}$))
     
     
     <kbd class='snippet'>
-save($\OptionalPar{register-name}$)
+save($register$-$name$)
 
-restore($\OptionalPar{register-name}$)
+restore($register$-$name$)
       </kbd>
   </p></div>
 
@@ -2075,7 +2075,7 @@ restore($\OptionalPar{register-name}$)
     
       
       
-	$\ensuremath{\text{\textrm{\sl constant-value}}}$
+	$constant$-$value$
       
     
     we have seen so far is a number, but later we will use

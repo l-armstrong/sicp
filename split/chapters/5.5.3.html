@@ -2032,9 +2032,9 @@ Acknowledgments
     compiled with a given target and
     linkage has the form
     <kbd class='snippet'>
-$\langle \text{\it compilation of function expression, target \texttt{fun}, linkage \texttt{next}}\rangle$
-$\langle \text{\it evaluate arg expressions and construct arg list in}\ argl\rangle$
-$\langle \text{\it compilation of function call with given target and linkage}\rangle$
+$\langle{}$<EM>compilation of function expression, target <kbd>fun</kbd>, linkage <kbd>"next"</kbd></EM>$\rangle$
+$\langle{}$<EM>evaluate arg expressions and construct arg list in <kbd>argl</kbd></EM>$\rangle$
+$\langle{}$<EM>compilation of function call with given target and linkage</EM>$\rangle$
       </kbd>
 
     The registers <kbd>env</kbd>,
@@ -2268,12 +2268,12 @@ function compile_application(exp, target, linkage) {
     <kbd>argl</kbd>.
     The general form of the argument-list construction is thus as follows:
     <kbd class='snippet'>
-$\langle \text{\it compilation of last argument, targeted to}\ val\rangle$
+$\langle{}$<EM>compilation of last argument, targeted to <kbd>val</kbd></EM>$\rangle$
 assign("argl", list(op("list"), reg("val")));
-$\langle \text{\it compilation of next argument, targeted to}\ val\rangle$
+$\langle{}$<EM>compilation of next argument, targeted to <kbd>val</kbd></EM>$\rangle$
 assign("argl", list(op("pair"), reg("val"), reg("argl")));
 $\ldots$
-$\langle \text{\it compilation of first argument, targeted to}\ val\rangle$
+$\langle{}$<EM>compilation of first argument, targeted to <kbd>val</kbd></EM>$\rangle$
 assign("argl", list(op("pair"), reg("val"), reg("argl")));
       </kbd>
 
@@ -2524,16 +2524,15 @@ function code_to_get_rest_args(arg_codes) {
 $$  test(op("primitive_function"), reg("fun")),
   branch(label("primitive_branch")),
 "compiled_branch",
-  $\langle\text{\it code to apply compiled function with given target and appropriate linkage} \rangle$
+  $\langle{}$<EM>code to apply compiled function with given target and appropriate linkage</EM>$\rangle$
 "primitive_branch",
-  assign($\OptionalPar{target}$,
+  assign($target$,
          list(op("apply_primitive_function"),
          reg("fun"),
          reg("argl")))
-$\OptionalPar{linkage}$
+  $linkage$
 "after_call"
       </kbd>
-
     Observe that the compiled branch must skip around the primitive
     branch.  Therefore, if the linkage for the original
     
@@ -2708,8 +2707,8 @@ $$  assign("continue", label("fun_return")),
   assign("val", list(op("compiled_function_entry"), reg("fun"))),
   go_to(reg("val")),
 "fun_return",
-  assign($\OptionalPar{target}$, reg("val")),   // included if target is not val
-  go_to(label($\OptionalPar{linkage}$)),        // linkage code
+  assign($target$, reg("val")),   // included if target is not val
+  go_to(label($linkage$)),        // linkage code
       </kbd>
 
     or like this if the linkage is
@@ -2718,7 +2717,7 @@ $$  assign("continue", label("fun_return")),
 	<kbd>return.</kbd>
       </span>
       <span style="color:blue">
-	<kbd>"return"</kbd>
+	<kbd>"return"</kbd>.
       </span>
     
     <kbd class='snippet'>
@@ -2728,7 +2727,7 @@ $$  assign("continue", label("fun_return")),
   assign("val", list(op("compiled_function_entry"), reg("fun"))),
   go_to(reg("val")),
 "fun_return",
-  assign($\OptionalPar{target}$, reg("val")),   // included if target is not val
+  assign($target$, reg("val")),   // included if target is not val
   restore("continue"),
   go_to(reg("continue")),         // linkage code
       </kbd>
@@ -2752,7 +2751,7 @@ $$  assign("continue", label("return_undefined")),
   assign("val", list(op("compiled_function_entry"), reg("fun"))),
   go_to(reg("val")),
 "return_undefined",
-  assign($\OptionalPar{target}$, constant(undefined)),   // included even if target is val
+  assign($target$, constant(undefined)),   // included even if target is val
   restore_marker(),
   restore("continue"),
   go_to(reg("continue")),         // linkage code
@@ -2798,7 +2797,7 @@ $$  assign("continue", label("return_undefined")),
       </span>
       <span style="color:blue">
 	<kbd>"return"</kbd>,
-	<kbd>"return_undefined"</kbd>
+	<kbd>"return_undefined"</kbd>,
       </span>
     
     or a label,
@@ -2887,7 +2886,7 @@ $$  assign("continue", label("return_undefined")),
     <span style="color:green"><QUOTE>return</QUOTE></span><span style="color:blue">jump</span>
     directly to the place specified by the caller's linkage:
     <kbd class='snippet'>
-$\langle \text{\it set up continue for linkage}\rangle$
+$\langle{}$<EM>set up continue for linkage</EM>$\rangle$
 assign("val", list(op("compiled_function_entry"), reg("fun"))),
 go_to(reg("val")),
       </kbd>
@@ -2915,9 +2914,7 @@ go_to(reg("val")),
     
       <span style="color:green"><kbd>(goto (label ^linkage^))</kbd></span>
       <span style="color:blue">
-	<kbd>go_to(label(</kbd>
-	$\ensuremath{\text{\textrm{\sl linkage}}}$
-	<kbd>))</kbd>
+	<kbd>go_to(label(</kbd>$linkage$<kbd>))</kbd>
       </span>
     
     at
@@ -2929,7 +2926,7 @@ go_to(reg("val")),
     above.)
 
     <kbd class='snippet'>
-assign("continue", label($\OptionalPar{linkage}$)),
+assign("continue", label($linkage$)),
 save("continue"),
 save_marker(),
 assign("val", list(op("compiled_function_entry"), reg("fun"))),

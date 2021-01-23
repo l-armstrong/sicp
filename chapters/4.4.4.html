@@ -3054,8 +3054,7 @@ put("always_true", "evaluate_query", always_true);
 	
 	
 	  <kbd>list($y,</kbd>
-	  $\langle\textit{expression involving}$
-	  <kbd>$y</kbd>$\rangle$<kbd>)</kbd>
+	  $\langle$$expression$ $involving$ <kbd>$y</kbd>$\rangle$<kbd>)</kbd>
 	
       
       in a frame where both
@@ -3967,7 +3966,7 @@ function unparse(exp) {
              " " + operator_symbol(exp) +
              " " + unparse(second_operand(exp)) +
              ")"
-           $\langle unparsing$ $other$ $kinds$ $of$ $JavaScript$ $components \rangle$
+           $\langle{}$<EM>unparsing other kinds of JavaScript components</EM>$\rangle$
            : error(exp, "unknown syntax -- unparse");
 }
 function comma_separated(strings) {
@@ -4332,8 +4331,8 @@ function simple_stream_flatmap(fun, s) {
     return simple_flatten(stream_map(fun, s));
 }
 function simple_flatten(stream) {
-    return stream_map($\langle ?? \rangle$,
-                      stream_filter($\langle ?? \rangle$, stream));
+    return stream_map($\langle{}$<EM>??</EM>$\rangle$,
+                      stream_filter($\langle{}$<EM>??</EM>$\rangle$, stream));
 }
 	    </kbd>
 	</LI>
@@ -4736,7 +4735,7 @@ sum_of_squares(3, 4);
 	
 	
 	  <kbd>$y</kbd>
-	  $ = \langle \textit{expression involving}\ \texttt{\$y}\rangle$.
+	  $ = \langle$$expression$ $involving$ <kbd>$y</kbd>$\rangle$.
 	
       
 	  
