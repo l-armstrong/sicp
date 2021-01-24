@@ -2194,9 +2194,14 @@ function count(n) {
     
       <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
-        The reason why the <kbd>return_undefined</kbd>
-        continuation from section&nbsp;5.4.1 does not lead to an accumulation
-        of space is because it was placed on the stack <EM>after</EM> the
+        Because our explicit-control evaluator does not use a special return value
+        object, we do not introduce any associated deferred operations.
+        Our <kbd>return_undefined</kbd> continuation from section&nbsp;5.4.1 is very
+        similar to <kbd>check_for_explicit_return</kbd> in
+        the alternative design explored above.
+        The reason why <kbd>return_undefined</kbd>
+        does not lead to an accumulation
+        of space is because it stored on the stack <EM>after</EM> the
         marker. This means that the
         <kbd>restore_marker</kbd> instruction will
         remove this continuation from the stack before evaluating the return
