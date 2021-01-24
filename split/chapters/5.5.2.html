@@ -2589,7 +2589,7 @@ function compile_conditional(component, target, linkage) {
         expression
       </span>
       <span style="color:blue">
-        statement (or a <kbd>return</kbd> statement)
+        statement (or a return statement)
       </span>
     
     with
@@ -2923,7 +2923,7 @@ function compile_lambda_expression(exp, target, linkage) {
 	<kbd>"return_undefined"</kbd>
 	so that it will end by returning from the function
 	with the return value <kbd>undefined</kbd>
-	unless a <kbd>return</kbd> statement is executed
+	unless a return statement is executed
   before reaching the end of the function.
 	The target is <kbd>val</kbd>
 	so that the return value (or
@@ -3172,7 +3172,7 @@ function make_label(name) {
       <a class='footnote-number' id='footnote-3' href='#footnote-link-3' style="color:blue">[3] </a>
     <FOOTNOTE>
     Our compiler does not detect all dead code. For example,
-    one or more conditionals that guarantee the execution of a <kbd>return</kbd>
+    one or more conditionals that guarantee the execution of a return
     statement will not prevent subsequent statements from being compiled. See exercise&nbsp;<REF NAME="ex:dead-code"><a class="superscript" id="5.5.2-ex-link-5.40" href="./5.5.5.html#ex_5.40">5.40</a></REF>.
     
     </FOOTNOTE></span></div>
