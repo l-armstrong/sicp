@@ -2254,14 +2254,17 @@ Acknowledgments
     <a name="ex_5.23" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.23">Exercise 5.23 </a></b> 
   
         
-        Implement the equivalent of
-        <kbd>save_marker</kbd> and
-        <kbd>restore_marker</kbd> by using <kbd>save</kbd> to
-        store a special marker value on the stack<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>. Use a restoring loop for
-        implicit and explicit returns that restores from the stack until it hits
-        the marker. Note that this will require restoring a value to a 
-        register other than the one it was saved from. This is necessary because the only
-        way to pop from the stack is by restoring to a register. 
+        Implement the equivalent of <kbd>save_marker</kbd> and
+        <kbd>restore_marker</kbd> by using
+        <kbd>save</kbd> to store a special marker value on the
+        stack.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a> You can implement
+        <kbd>restore_marker</kbd> using a loop that repeatedly
+        performs a <kbd>restore</kbd> until it hits the marker.
+        Note that this will require restoring a value to a register other than the one it
+        was saved from. (Although we are careful to avoid that in our evaluator, our stack
+        implementation actually allows this. See exercise <REF NAME="ex:stack-behavior"><a class="superscript" id="5.4.3-ex-link-5.10" href="./5.2.3.html#ex_5.10">5.10</a></REF>.)
+        This is necessary because the only way to pop from the stack is by
+        restoring to a register.
       
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_115_2_div" data-toggle="collapse">Add solution</button></div>
@@ -2283,17 +2286,20 @@ Acknowledgments
       
         
         Implement <kbd>save_marker</kbd> and
-        <kbd>restore_marker</kbd> by extending the evaluator
-        with two new instructions, similar to <kbd>save</kbd> and <kbd>restore</kbd>, implemented by
-        no-argument functions
-        <kbd>save_marker</kbd> and
-        <kbd>restore_marker</kbd>.
-        You will have
-        to add cases to the stack's dispatch function as well. Note
-        that you do not need to actually insert a marker in the stack.
-        Instead, you can add a local state variable to the stack to keep track
-        of the position of the last
-        <kbd>save</kbd> before a call to <kbd>save_marker</kbd>.
+        <kbd>restore_marker</kbd>. To do this, extend the
+        evaluator with two new instructions, following the implementation of
+        <kbd>save</kbd> and
+        <kbd>restore</kbd>.<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a> Add two functions
+        <kbd>push_marker</kbd> and
+        <kbd>pop_marker</kbd> to access stacks mirroring the
+        implementation of <kbd>push</kbd> and
+        <kbd>pop</kbd>. Note that you do not need to actually
+        insert a marker into the stack. Instead, you can add a local state variable to the
+        stack to keep track of the position of the last
+        <kbd>save</kbd> before a call to
+        <kbd>save_marker</kbd>. This can be done by extending
+        <kbd>make_stack</kbd> with two new functions used by
+        your new access functions.
       
     
       
@@ -2356,8 +2362,30 @@ Acknowledgments
     <div class='footnote'>
       <a class='footnote-number' id='footnote-3' href='#footnote-link-3'>[3] </a>
     <FOOTNOTE>
-    If you implement save and restore using a dedicated
-        stack per register, you will need to insert and remove the marker across all stacks.
+     In exercise <REF NAME="ex:stack-behavior"><a class="superscript" id="5.4.3-ex-link-5.10" href="./5.2.3.html#ex_5.10">5.10</a></REF>, different ways to
+        implement the stack were introduced that changes the semantics of
+        <kbd>save</kbd> and
+        <kbd>restore</kbd>.
+
+        An implementation where a <kbd>restore</kbd> to a
+        register is matched with the last <kbd>save</kbd> of the
+        same register, as in alternative&nbsp;(b), will need to remove all values saved
+        after the marker.
+
+        An implementation that uses a dedicated stack per register, as in
+        alternative&nbsp;(c), will need to insert and remove the marker across all
+        stacks.
+
+        
+    </FOOTNOTE></div>
+
+    
+    <div class='footnote'>
+      <a class='footnote-number' id='footnote-4' href='#footnote-link-4'>[4] </a>
+    <FOOTNOTE>
+     In exercise <REF NAME="ex:stack-behavior"><a class="superscript" id="5.4.3-ex-link-5.10" href="./5.2.3.html#ex_5.10">5.10</a></REF>, different ways to implement the stack were introduced.
+        See footnote&nbsp;<REF NAME="foot:save_marker1"><a class="superscript" id="5.4.3-foot-link-4" href="./5.4.3.html#footnote-4">4</a></REF> for details of how to adapt
+        this exercise accordingly.
     </FOOTNOTE></div>
 
     
