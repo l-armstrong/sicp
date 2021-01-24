@@ -2150,15 +2150,15 @@ list("sequence",
 	
 	  
 	    \begin{eqnarray*}
-	    \ll \textit{literal-expression} \gg & = &
-	    \texttt{list("literal", }\textit{value}\texttt{)}
+	    \ll \mathit{literal}\textit{-}\mathit{expression} \gg & = &
+	    \texttt{list("literal", }\mathit{value}\texttt{)}
 	    \end{eqnarray*}
 	  
-	  where $\textit{value}$ is
+	  where $value$ is
 	  the JavaScript value represented by the
-	  $\textit{literal-expression}$ string.
-	  Here $\ll\textit{literal-expression}\gg$ denotes the
-	  result of parsing the string $\textit{literal-expression}$.
+	  $literal$-$expression$ string.
+	  Here $\ll$$literal$-$expression$$\gg$ denotes the
+	  result of parsing the string $literal$-$expression$.
 	
 	
 	<div class='snippet' id='javascript_78_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAHAQwCcBnAUwAoAiDAbhoEp6g')">parse("1;");
@@ -2230,13 +2230,13 @@ null</pre></div></div>
     
 	
 	  \begin{eqnarray*}
-	  \ll \textit{name} \gg & = &
-	  \texttt{list("name", }\textit{symbol}\texttt{)}
+	  \ll \mathit{name} \gg & = &
+	  \texttt{list("name", }\mathit{symbol}\texttt{)}
 	  \end{eqnarray*}
 	
-	where $\textit{symbol}$ is a string
+	where $symbol$ is a string
 	that contains the characters that make up the
-	$\textit{name}$ as written in the program.
+	$name$ as written in the program.
     
     
 	The syntax predicate for names is 
@@ -2275,8 +2275,8 @@ null</pre></div></div>
     
 	
 	  \begin{eqnarray*}
-	  \ll \textit{expression}\texttt{;} \gg & = &
-	  \ll \textit{expression} \gg
+	  \ll \mathit{expression}\texttt{;} \gg & = &
+	  \ll \mathit{expression} \gg
 	  \end{eqnarray*}
 	
     
@@ -2299,9 +2299,9 @@ null</pre></div></div>
     
 	
 	  \begin{eqnarray*}
-&	  \ll \textit{fun-expr}\texttt{(}\textit{arg-expr}_1\texttt{, }\ldots\texttt{, } \textit{arg-expr}_n \texttt{)} \gg \\
+&	  \ll \mathit{fun}\textit{-}\mathit{expr}\texttt{(}\mathit{arg}\textit{-}\mathit{expr}_1\texttt{, }\ldots\texttt{, } \mathit{arg}\textit{-}\mathit{expr}_n \texttt{)} \gg \\
 &	  = \\
-&	  \texttt{list("application",}\ \ll \textit{fun-expr} \gg \texttt{, list(} \ll \textit{arg-expr}_1 \gg \texttt{, }\ldots\texttt{, } \ll \textit{arg-expr}_n \gg \texttt{))}
+&	  \texttt{list("application",}\ \ll \mathit{fun}\textit{-}\mathit{expr} \gg \texttt{, list(} \ll \mathit{arg}\textit{-}\mathit{expr}_1 \gg \texttt{, }\ldots\texttt{, } \ll \mathit{arg}\textit{-}\mathit{expr}_n \gg \texttt{))}
 	  \end{eqnarray*}
 	
     
@@ -2343,7 +2343,7 @@ null</pre></div></div>
     <blockquote class='blockquote'>
       
 	
-$\ll \textit{predicate}\ \texttt{?}\ \textit{consequent-expression}\ \texttt{:}\ \textit{alternative-expression}   \gg\ \ = $
+$\ll \mathit{predicate}\ \texttt{?}\ \mathit{consequent}\textit{-}\mathit{expression}\ \texttt{:}\ \mathit{alternative}\textit{-}\mathit{expression}   \gg\ \ = $
 	
       
 	
@@ -2359,7 +2359,7 @@ list("conditional_expression",
     <blockquote class='blockquote'>
       
 	
-$\ll \textbf{if}\ \texttt{(} \textit{predicate} \texttt{)}\ \textit{consequent-block}\ \textbf{else}\ \textit{alternative-block} \gg\ \ =$
+$\ll \textbf{if}\ \texttt{(} \mathit{predicate} \texttt{)}\ \mathit{consequent}\textit{-}\mathit{block}\ \textbf{else}\ \mathit{alternative}\textit{-}\mathit{block} \gg\ \ =$
 	
       
       
@@ -2404,9 +2404,9 @@ list("conditional_statement",
     
     
 \begin{eqnarray*}      
-& \ll \texttt{(}\textit{name}_1\texttt{, }\ldots\texttt{, } \textit{name}_n \texttt{) =>}\ \textit{expression} \gg \\
+& \ll \texttt{(}\mathit{name}_1\texttt{, }\ldots\texttt{, } \mathit{name}_n \texttt{) =>}\ \mathit{expression} \gg \\
 & = \\
-& \ll \texttt{(}\textit{name}_1\texttt{, }\ldots\texttt{, } \textit{name}_n \texttt{) => \{}\ \textbf{return} \ \textit{expression}\texttt{;}\ \texttt{\}} \gg
+& \ll \texttt{(}\mathit{name}_1\texttt{, }\ldots\texttt{, } \mathit{name}_n \texttt{) => \{}\ \textbf{return} \ \mathit{expression}\texttt{;}\ \texttt{\}} \gg
 \end{eqnarray*}
 	
     
@@ -2415,7 +2415,7 @@ list("conditional_statement",
 	      <blockquote class='blockquote'>
 		
 	      
-$\ll \texttt{(}\textit{name}_1\texttt{, }\ldots\texttt{, } \textit{name}_n \texttt{) =>}\ \textit{block} \gg\ \ =$
+$\ll \texttt{(}\mathit{name}_1\texttt{, }\ldots\texttt{, } \mathit{name}_n \texttt{) =>}\ \mathit{block} \gg\ \ =$
 	
 		
 		
@@ -2467,11 +2467,11 @@ list("lambda_expression",
     
     
 	  \begin{eqnarray*}
-&	  \ll \textit{statement}_1 \cdots \textit{statement}_n   \gg \\
+&	  \ll \mathit{statement}_1 \cdots \mathit{statement}_n   \gg \\
 &	  = \\
 &	  \texttt{list("sequence", list(}
-\ll \textit{statement}_1 \gg \texttt{, } \ldots \texttt{, }
-\ll \textit{statement}_n \gg \texttt{))}
+\ll \mathit{statement}_1 \gg \texttt{, } \ldots \texttt{, }
+\ll \mathit{statement}_n \gg \texttt{))}
 	  \end{eqnarray*}
     
     
@@ -2552,9 +2552,9 @@ function is_last_statement(stmts) {
     
 	
 	  \begin{eqnarray*}
-	  \ll \textbf{return}\ \textit{expression} \texttt{;} \gg
+	  \ll \textbf{return}\ \mathit{expression} \texttt{;} \gg
 	  & = &
-	  \texttt{list("return_statement",}\ \ll \textit{expression} \gg \texttt{)}
+	  \texttt{list("return_statement",}\ \ll \mathit{expression} \gg \texttt{)}
 	  \end{eqnarray*}
 	
     
@@ -2618,12 +2618,12 @@ function is_last_statement(stmts) {
       
 	
 	  \begin{eqnarray*}
-&  \ll \textbf{const}\ \textit{name}\ \ \texttt{=}\ \ \textit{expression}\texttt{;} \gg \\
+&  \ll \textbf{const}\ \mathit{name}\ \ \texttt{=}\ \ \mathit{expression}\texttt{;} \gg \\
 & = \\
-& \texttt{list("constant_declaration", } \ll \textit{name} \gg \texttt{, }\ll \textit{expression} \gg \texttt{)}\\[3mm]
-&  \ll \textbf{let}\ \textit{name} \ \ \texttt{=}\ \ \textit{expression}\texttt{;} \gg \\
+& \texttt{list("constant_declaration", } \ll \mathit{name} \gg \texttt{, }\ll \mathit{expression} \gg \texttt{)}\\[3mm]
+&  \ll \textbf{let}\ \mathit{name} \ \ \texttt{=}\ \ \mathit{expression}\texttt{;} \gg \\
 & = \\
-& \texttt{list("variable_declaration", } \ll \textit{name} \gg \texttt{, }\ll \textit{expression} \gg \texttt{)}
+& \texttt{list("variable_declaration", } \ll \mathit{name} \gg \texttt{, }\ll \mathit{expression} \gg \texttt{)}
 	  \end{eqnarray*}
 	
       
@@ -2657,7 +2657,7 @@ function declaration_value_expression(component) {
 	<blockquote class='blockquote'>
 	  
 	      
-$\ll \textbf{function}\ \textit{name} \texttt{(}\textit{name}_1\texttt{, }\ldots\texttt{, } \textit{name}_n \texttt{)} \ \textit{block} \ \gg\ \ =$ 
+$\ll \textbf{function}\ \mathit{name} \texttt{(}\mathit{name}_1\texttt{, }\ldots\texttt{, } \mathit{name}_n \texttt{)} \ \mathit{block} \ \gg\ \ =$ 
 	
 	  
 	  
@@ -2749,10 +2749,10 @@ list("function_declaration",
 	
 	    
 	      \begin{eqnarray*}
-	      & \ll \textit{unary-operator}\ \ \textit{expression} \gg \\
+	      & \ll \mathit{unary}\textit{-}\mathit{operator}\ \ \mathit{expression} \gg \\
 	      & = \\
-	      & \texttt{list("unary_operator_combination", "}\textit{unary-operator}\texttt{"},\ 
-              \texttt{list(}\ll \textit{expression} \gg \texttt{))}
+	      & \texttt{list("unary_operator_combination", "}\mathit{unary}\textit{-}\mathit{operator}\texttt{"},\ 
+              \texttt{list(}\ll \mathit{expression} \gg \texttt{))}
 	      \end{eqnarray*}
 	    
 	
@@ -2763,10 +2763,10 @@ list("function_declaration",
     
 	    
 	      \begin{eqnarray*}
-	      & \ll \textit{expression}_1\ \textit{binary-operator}\ \ \textit{expression}_2 \gg \\
+	      & \ll \mathit{expression}_1\ \mathit{binary}\textit{-}\mathit{operator}\ \ \mathit{expression}_2 \gg \\
 	      & = \\
-	      & \texttt{list("binary_operator_combination", "}\textit{binary-operator}\texttt{"},\ 
-              \texttt{list(}\ll \textit{expression}_1 \gg\texttt{,}\ \ll \textit{expression}_2 \gg \texttt{))}
+	      & \texttt{list("binary_operator_combination", "}\mathit{binary}\textit{-}\mathit{operator}\texttt{"},\ 
+              \texttt{list(}\ll \mathit{expression}_1 \gg\texttt{,}\ \ll \mathit{expression}_2 \gg \texttt{))}
 	      \end{eqnarray*}
 	    
     
@@ -2957,7 +2957,7 @@ list("function_declaration",
 	  
 	  
 	
-	  $\ll \textit{expression}_1\ \ \textit{logical-operation}\ \ \textit{expression}_2 \gg \ \ = $
+	  $\ll \mathit{expression}_1\ \ \mathit{logical}\textit{-}\mathit{operation}\ \ \mathit{expression}_2 \gg \ \ = $
 	
 	  
 	<kbd class='snippet'>
@@ -3179,7 +3179,7 @@ while ($predicate$) { $body$ }
 	<blockquote class='blockquote'>
 	  
 	
-	  $\ll \textbf{while} \ \texttt{(}\ \textit{predicate}\ \texttt{)}\ \textit{block}  \gg \ \ =$ 
+	  $\ll \textbf{while} \ \texttt{(}\ \mathit{predicate}\ \texttt{)}\ \mathit{block}  \gg \ \ =$ 
 	
 	  
 	  
@@ -3304,7 +3304,7 @@ list("while_loop", $\ll$ $predicate$ $\gg$, $\ll$ $block$ $\gg$)
 	<blockquote class='blockquote'>
 	  
 	
-	  $\ll \textbf{for} \ \texttt{(}\ \textit{init-statement}\texttt{; } \textit{predicate}\texttt{; }\textit{update-statement}\texttt{)}\ \textit{block}  \gg \ \ =$ 
+	  $\ll \textbf{for} \ \texttt{(}\ \mathit{init}\textit{-}\mathit{statement}\texttt{; } \mathit{predicate}\texttt{; }\mathit{update}\textit{-}\mathit{statement}\texttt{)}\ \mathit{block}  \gg \ \ =$ 
 	
 	  
 	  

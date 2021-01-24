@@ -2116,7 +2116,7 @@ $predicate$ ? $consequent$-$expression$ : $alternative$-$expression$
 	
 	
         Conditional expressions begin with a
-        $\textit{predicate}$—that is, 
+        $predicate$—that is, 
         an expression whose value is either
 	<EM>true</EM> or <EM>false</EM>, two distinguished
 	<EM>boolean</EM> values in JavaScript.
@@ -2124,11 +2124,11 @@ $predicate$ ? $consequent$-$expression$ : $alternative$-$expression$
 	<kbd>true</kbd> and
 	<kbd>false</kbd> trivially evaluate
 	to the boolean values true and false, respectively.
-	The $\textit{predicate}$ 
+	The $predicate$ 
         is followed by a question mark, the 
-        $\textit{consequent-expression}$, 
+        $consequent$-$expression$, 
         a colon, and finally the
-        $\textit{alternative-expression}$.
+        $alternative$-$expression$.
       </span></td></tr></table>
   </p></div>
   <table width="100%">
@@ -2169,16 +2169,16 @@ $predicate$ ? $consequent$-$expression$ : $alternative$-$expression$
 	
         To evaluate a conditional expression,
 	the interpreter starts by evaluating the 
-        $\textit{predicate}$ 
+        $predicate$ 
         of the expression. If the
-	$\textit{predicate}$ 
+	$predicate$ 
         evaluates to true, the interpreter evaluates the
         
         
-        $\textit{consequent-expression}$.
-        If the $\textit{predicate}$
+        $consequent$-$expression$.
+        If the $predicate$
 	evaluates to false, it evaluates the
-        $\textit{alternative-expression}$.<a class='superscript' id='footnote-link-2' href='#footnote-2'style="color:blue">[2]</a>
+        $alternative$-$expression$.<a class='superscript' id='footnote-link-2' href='#footnote-2'style="color:blue">[2]</a>
       </p></div>
     </span></td></tr></table>
   <table width="100%">
@@ -2425,15 +2425,15 @@ $predicate$ ? $consequent$-$expression$ : $alternative$-$expression$
 	    
 	    
             
-	    $ \textit{expression}_1$ <kbd>&&</kbd>
-	    $\textit{expression}_2$<br>
+	    $expression$$_1$ <kbd>&&</kbd>
+	    $expression$$_2$<br>
 	    This operation expresses <EM>logical
 	    conjunction</EM>, meaning roughly 
 	    the same as the English word <QUOTE>and.</QUOTE>
 	    
 	    This syntactic form is syntactic sugar<a class='superscript' id='footnote-link-6' href='#footnote-6'style="color:blue">[6]</a> for
-	    $ \textit{expression}_1$ <kbd>?</kbd>
-	    $\textit{expression}_2$ <kbd>:</kbd>
+	    $expression$$_1$ <kbd>?</kbd>
+	    $expression$$_2$ <kbd>:</kbd>
 	    <kbd>false</kbd>.
           </LI>
           <LI>
@@ -2441,17 +2441,17 @@ $predicate$ ? $consequent$-$expression$ : $alternative$-$expression$
 	    
 	    
             
-            $\textit{expression}_1$
+            $expression$$_1$
             <kbd>||</kbd>
-            $\textit{expression}_2$<br>
+            $expression$$_2$<br>
 	    
 	    This operation expresses <EM>logical
 	    disjunction</EM>, meaning roughly
 	    the same as the English word <QUOTE>or.</QUOTE>
 	    This syntactic form is syntactic sugar for
-	    $ \textit{expression}_1$ <kbd>?</kbd>
+	    $expression$$_1$ <kbd>?</kbd>
 	    <kbd>true</kbd> <kbd>:</kbd>
-	    $\textit{expression}_2$.
+	    $expression$$_2$.
 
           </LI>
           <LI>
@@ -2459,11 +2459,11 @@ $predicate$ ? $consequent$-$expression$ : $alternative$-$expression$
 	    
 	    
             <kbd>!</kbd>
-	    $\textit{expression}$<br>
+	    $expression$<br>
 	    This operation expresses <EM>logical negation</EM>, meaning
 	    roughly the same as the English word <QUOTE>not.</QUOTE>
             The value of the expression is true when
-	    $\textit{expression}$
+	    $expression$
 	    evaluates to false, and false otherwise.
           </LI>
         </UL>
