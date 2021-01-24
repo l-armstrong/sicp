@@ -2648,15 +2648,25 @@ function compile_sequence(seq, target, linkage) {
                compile(first_statement(seq), target, "next"),
                compile_sequence(rest_statements(seq), target, linkage));
 }</pre></div></div></td></tr></table>
-
+    <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr><td>    </td>
+          <td></td>
+          <td><span style="color:blue">
     Treating return statements as if they always appear as the last statement in a sequence
     avoids compiling the
     <QUOTE>dead code</QUOTE> after the return statement that can
-    never be executed. Not compiling dead<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a> code is good for
+    never be executed. Not compiling dead<a class='superscript' id='footnote-link-3' href='#footnote-3'style="color:blue">[3]</a> code is good for
     several reasons: it shortens the compilation time, it reduces the size of
     the object code, and it removes possible
     security hazards if a malicious user could trick the program into executing the
     dead code. Removing the check does not change the semantics of the program.
+      </span></td></tr></table>
   </p></div>
 
   
@@ -2819,7 +2829,7 @@ function compile_lambda_expression(exp, target, linkage) {
     
     uses the special combiner
     
-      <span style="color:green"><kbd>tack-on-instruction\?sequence</kbd></span>
+      <span style="color:green"><kbd>tack-on-instruction-sequence</kbd></span>
       <span style="color:blue">
 	<kbd>tack_on_instruction_sequence</kbd>
       </span>
@@ -3158,14 +3168,14 @@ function make_label(name) {
     </FOOTNOTE></div>
     
     
-    <div class='footnote'>
-      <a class='footnote-number' id='footnote-3' href='#footnote-link-3' >[3] </a>
+    <div class='footnote'><span style="color:blue">
+      <a class='footnote-number' id='footnote-3' href='#footnote-link-3' style="color:blue">[3] </a>
     <FOOTNOTE>
     Our compiler does not detect all dead code. For example,
     one or more conditionals that guarantee the execution of a <kbd>return</kbd>
     statement will not prevent subsequent statements from being compiled. See exercise&nbsp;<REF NAME="ex:dead-code"><a class="superscript" id="5.5.2-ex-link-5.40" href="./5.5.5.html#ex_5.40">5.40</a></REF>.
     
-    </FOOTNOTE></div>
+    </FOOTNOTE></span></div>
     
     
     <div class='footnote'>
