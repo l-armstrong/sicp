@@ -2118,8 +2118,7 @@ function compile_linkage(target, linkage) {
                                             go_to(reg("continue"))))
            : linkage === "next"
            ? empty_instruction_sequence()
-           : make_instruction_sequence(null, null, 
-                 list(go_to(label(linkage))));</pre></div></div></td></tr></table>
+           : make_instruction_sequence(null, null, list(go_to(label(linkage))));</pre></div></div></td></tr></table>
 
     The linkage code is appended to an instruction sequence by
     <kbd>preserving</kbd> the
@@ -2493,19 +2492,19 @@ function compile_conditional(component, target, linkage) {
     const a_code = compile(conditional_alternative(component),
                          target, linkage);
     return preserving(
-             list("env", "continue"),
+               list("env", "continue"),
                p_code,
                append_instruction_sequences(
-                 make_instruction_sequence(
-                   list("val"),
-                     null,
-                     list(test(list(op("is_falsy"), reg("val"))),
-                          branch(label(f_branch)))),
-                 append_instruction_sequences(
-                   parallel_instruction_sequences(
-                     append_instruction_sequences(t_branch, c_code),
-                     append_instruction_sequences(f_branch, a_code)),
-                   after_cond)));
+                   make_instruction_sequence(
+                       list("val"),
+                       null,
+                       list(test(list(op("is_falsy"), reg("val"))),
+                            branch(label(f_branch)))),
+                   append_instruction_sequences(
+                       parallel_instruction_sequences(
+                           append_instruction_sequences(t_branch, c_code),
+                           append_instruction_sequences(f_branch, a_code)),
+                       after_cond)));
 }</pre></div></div></td></tr></table>
 
     
@@ -2644,9 +2643,9 @@ function compile_sequence(seq, target, linkage) {
     return is_last_statement(seq) || is_return_statement(first_statement(seq))
            ? compile(first_statement(seq), target, linkage)
            : preserving(
-               list("env", "continue"),
-               compile(first_statement(seq), target, "next"),
-               compile_sequence(rest_statements(seq), target, linkage));
+                 list("env", "continue"),
+                 compile(first_statement(seq), target, "next"),
+                 compile_sequence(rest_statements(seq), target, linkage));
 }</pre></div></div></td></tr></table>
     <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
@@ -2661,7 +2660,7 @@ function compile_sequence(seq, target, linkage) {
     Treating return statements as if they always appear as the last statement in a sequence
     avoids compiling the
     <QUOTE>dead code</QUOTE> after the return statement that can
-    never be executed. Not compiling dead<a class='superscript' id='footnote-link-3' href='#footnote-3'style="color:blue">[3]</a> code is good for
+    never be executed. Not compiling dead<a class='superscript' id='footnote-link-3' href='#footnote-3'style="color:blue">[3]</a> is good for
     several reasons: it shortens the compilation time, it reduces the size of
     the object code, and it removes possible
     security hazards if a malicious user could trick the program into executing the
@@ -2745,7 +2744,7 @@ $\langle{}$<EM>linkage</EM>$\rangle$
 $\langle{}$<EM>construct function object and assign it to target register</EM>$\rangle$
 $\langle{}$<EM>code for given linkage</EM>$\rangle$ $or$ go_to(label("after_lambda"))
 $\langle{}$<EM>compilation of function body</EM>$\rangle$
-"after_lambda",
+"after_lambda"
       </kbd>
   </p></div>
 
@@ -2810,14 +2809,14 @@ function compile_lambda_expression(exp, target, linkage) {
     const lambda_linkage =
             linkage === "next" ? after_lambda : linkage;
     return append_instruction_sequences(
-        tack_on_instruction_sequence(
-          end_with_linkage(target, lambda_linkage,
-            make_instruction_sequence(list("env"), list(target),
-              list(assign(target, 
-                          list(op("make_compiled_function"),
-                               label(fun_entry), reg("env")))))),
-          compile_lambda_body(exp, fun_entry)),
-         after_lambda);
+               tack_on_instruction_sequence(
+                   end_with_linkage(target, lambda_linkage,
+                       make_instruction_sequence(list("env"), list(target),
+                           list(assign(target, 
+                                       list(op("make_compiled_function"),
+                                            label(fun_entry), reg("env")))))),
+                   compile_lambda_body(exp, fun_entry)),
+               after_lambda);
 }</pre></div></div></td></tr></table>
 
     

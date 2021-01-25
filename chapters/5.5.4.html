@@ -2104,12 +2104,12 @@ function modifies_register(seq, reg) {
     <div class='snippet' id='javascript_121_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function append_instruction_sequences(seq1, seq2) {
     return make_instruction_sequence(
-              list_union(registers_needed(seq1),
-                  list_difference(registers_needed(seq2),
-                      registers_modified(seq1))),
-              list_union(registers_modified(seq1),
-                      registers_modified(seq2)),
-              append(instructions(seq1), instructions(seq2)));
+               list_union(registers_needed(seq1),
+                   list_difference(registers_needed(seq2),
+                       registers_modified(seq1))),
+               list_union(registers_modified(seq1),
+                       registers_modified(seq2)),
+               append(instructions(seq1), instructions(seq2)));
 }</pre></div></div>
 
     This
@@ -2209,22 +2209,20 @@ function preserving(regs, seq1, seq2) {
         return append_instruction_sequences(seq1, seq2);
     } else {
         const first_reg = head(regs);
-        if (needs_register(seq2, first_reg) &&
-            modifies_register(seq1, first_reg)) {
-            return preserving(
-                tail(regs),
-                make_instruction_sequence(
-                    list_union(list(first_reg),
-                               registers_needed(seq1)),
-                    list_difference(registers_modified(seq1),
-                                    list(first_reg)),
-                    append(list(save(first_reg)),
-                           append(instructions(seq1),
-                                  list(restore(first_reg))))),
-                seq2);
-        } else {
-            return preserving(tail(regs), seq1, seq2);
-        }
+        return needs_register(seq2, first_reg) &&
+               modifies_register(seq1, first_reg)
+               ? preserving(
+                     tail(regs),
+                     make_instruction_sequence(
+                         list_union(list(first_reg),
+                                    registers_needed(seq1)),
+                         list_difference(registers_modified(seq1),
+                                         list(first_reg)),
+                         append(list(save(first_reg)),
+                                append(instructions(seq1),
+                                       list(restore(first_reg))))),
+                     seq2)
+               : preserving(tail(regs), seq1, seq2);
     }
 }</pre></div></div>
   </p></div>
@@ -2267,9 +2265,9 @@ function preserving(regs, seq1, seq2) {
     <div class='snippet' id='javascript_121_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function tack_on_instruction_sequence(seq, body_seq) {
     return make_instruction_sequence(
-        registers_needed(seq),
-        registers_modified(seq),
-        append(instructions(seq), instructions(body_seq)));
+               registers_needed(seq),
+               registers_modified(seq),
+               append(instructions(seq), instructions(body_seq)));
 }</pre></div></div>
   </p></div>
 
@@ -2303,15 +2301,12 @@ function tack_on_instruction_sequence(seq, body_seq) {
     <div class='snippet' id='javascript_121_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function parallel_instruction_sequences(seq1, seq2) {
     return make_instruction_sequence(
-        list_union(
-            registers_needed(seq1),
-            registers_needed(seq2)),
-        list_union(
-            registers_modified(seq1),
-            registers_modified(seq2)),
-        append(
-            instructions(seq1),
-            instructions(seq2)));
+               list_union(registers_needed(seq1),
+                          registers_needed(seq2)),
+               list_union(registers_modified(seq1),
+                          registers_modified(seq2)),
+               append(instructions(seq1),
+                      instructions(seq2)));
 }</pre></div></div>
     
   </p></div>

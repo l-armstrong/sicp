@@ -2253,7 +2253,7 @@ function compile(component, target, linkage) {
             <td><div class='snippet' id='javascript_118_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (assign val (const 5))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_118_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-assign("val", constant(5));</pre></div></div></td></tr></table>
+assign("val", constant(5)),</pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
@@ -2277,7 +2277,7 @@ assign("val", constant(5));</pre></div></div></td></tr></table>
 (goto (reg continue))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_118_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 assign("val", constant(5)),
-go_to(reg("continue")),</pre></div></div></td></tr></table>
+go_to(reg("continue"))</pre></div></div></td></tr></table>
 
     In the first case, execution will continue with the next instruction
     in the sequence. In the second case, we will return from a
@@ -2386,7 +2386,7 @@ $seq$$_2$
     Otherwise, <kbd>preserving</kbd> simply returns the
     appended instruction sequences.  Thus, for example,
     <kbd class='snippet'>
-      preserving(list($reg_1$, $reg_2$), $seq_1$, $seq_2$);
+      preserving(list($reg_1$, $reg_2$), $seq_1$, $seq_2$)
       </kbd>
     produces one of the following four sequences of instructions, depending on
     how
@@ -2415,11 +2415,11 @@ $seq$$_2$
       \[
       {
       \begin{array}{l|l|l|l}
-\textit{seq}_1 & \texttt{save(}\textit{reg}_1\texttt{)}    & \texttt{save(}\textit{reg}_2\texttt{)}      & \texttt{save(}\textit{reg}_2\texttt{)}    \\
-\textit{seq}_2 & \textit{seq}_1                            & \textit{seq}_1                              & \texttt{save(}\textit{reg}_1\texttt{)}    \\
-               & \texttt{restore(}\textit{reg}_1\texttt{)} & \texttt{restore(}\textit{reg}_2\texttt{)}   & \textit{seq}_1                            \\
-               & \textit{seq}_2                            & \textit{seq}_2                              & \texttt{restore(}\textit{reg}_1\texttt{)} \\
-               &                                           &                                             & \texttt{restore(}\textit{reg}_2\texttt{)} \\
+\textit{seq}_1 & \texttt{save(}\textit{reg}_1\texttt{),}    & \texttt{save(}\textit{reg}_2\texttt{),}      & \texttt{save(}\textit{reg}_2\texttt{),}    \\
+\textit{seq}_2 & \textit{seq}_1                            & \textit{seq}_1                              & \texttt{save(}\textit{reg}_1\texttt{),}    \\
+               & \texttt{restore(}\textit{reg}_1\texttt{),} & \texttt{restore(}\textit{reg}_2\texttt{),}   & \textit{seq}_1                            \\
+               & \textit{seq}_2                            & \textit{seq}_2                              & \texttt{restore(}\textit{reg}_1\texttt{),} \\
+               &                                           &                                             & \texttt{restore(}\textit{reg}_2\texttt{),} \\
                &                                           &                                             & \textit{seq}_2                            
 \end{array}}
       \]
@@ -2551,7 +2551,8 @@ function make_instruction_sequence(needs, modifies, instructions) {
 make_instruction_sequence(
     list("env", "continue"),
     list("val"),
-    list(assign("val", list(op("lookup_symbol_value"), constant(symbol_of_name("x")), reg("env")))
+    list(assign("val",
+                list(op("lookup_symbol_value"), constant(symbol_of_name("x")), reg("env"))),
          go_to(reg("continue"))));</pre></div></div></td></tr></table>
   </p></div>
 
@@ -2647,7 +2648,11 @@ function empty_instruction_sequence() {
       <span style="color:green">operand</span>
       <span style="color:blue">argument expression</span>
     
-    sequence.  For each of the following combinations,
+    sequence.  For each of the following
+    
+      <span style="color:green">combinations,</span>
+      <span style="color:blue">applications,</span>
+    
     say which of these <kbd>save</kbd> and
     <kbd>restore</kbd> operations are superfluous and
     thus could be eliminated by the compiler's
@@ -2729,7 +2734,7 @@ f(g("x"), "y")</pre></div></div></td></tr></table>
 	expressions combinations whose operator is a symbol,
 	  </span>
 	  <span style="color:blue">
-	    component applications whose function expression is a name,
+	    components applications whose function expression is a name,
 	  </span>
 	
 	and to take
