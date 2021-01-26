@@ -2372,15 +2372,18 @@ ev-definition-1
     <a name="ex_5.24" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.24">Exercise 5.24 </a></b> 
   
         
-        Implement the equivalent of <kbd>save_marker</kbd> and
-        <kbd>restore_marker</kbd> by using
-        <kbd>save</kbd> to store a special marker value on the
-        stack.<a class='superscript' id='footnote-link-4' href='#footnote-4'style="color:blue">[4]</a> You can implement
-        <kbd>restore_marker</kbd> using a loop that repeatedly
-        performs a <kbd>restore</kbd> until it hits the marker.
+        Implement the equivalent of <kbd>save_marker</kbd> by
+        using <kbd>save</kbd> at
+        <kbd>compound_apply</kbd> to store a special marker
+        value on the stack. Implement the equivalent of
+        <kbd>restore_marker</kbd> at
+        <kbd>ev_return</kbd> and
+        <kbd>return_undefined</kbd> as a loop that repeatedly
+        performs a <kbd>restore</kbd> until it hits the
+        marker.<a class='superscript' id='footnote-link-4' href='#footnote-4'style="color:blue">[4]</a> 
         Note that this will require restoring a value to a register other than the one it
         was saved from. (Although we are careful to avoid that in our evaluator, our stack
-        implementation actually allows this. See exercise <REF NAME="ex:stack-behavior"><a class="superscript" id="5.4.3-ex-link-5.11" href="./5.2.3.html#ex_5.11">5.11</a></REF>.)
+        implementation actually allows it. See exercise <REF NAME="ex:stack-behavior"><a class="superscript" id="5.4.3-ex-link-5.11" href="./5.2.3.html#ex_5.11">5.11</a></REF>.)
         This is necessary because the only way to pop from the stack is by
         restoring to a register.
       
@@ -2417,20 +2420,17 @@ ev-definition-1
           <td><span style="color:blue">
         
         Implement <kbd>save_marker</kbd> and
-        <kbd>restore_marker</kbd>. To do this, extend the
-        evaluator with two new instructions, following the implementation of
+        <kbd>restore_marker</kbd> as new register-machine
+        instructions, following the implementation of
         <kbd>save</kbd> and
-        <kbd>restore</kbd>.<a class='superscript' id='footnote-link-5' href='#footnote-5'style="color:blue">[5]</a> Add two functions
+        <kbd>restore</kbd> in section 5.2.3. Add functions
         <kbd>push_marker</kbd> and
-        <kbd>pop_marker</kbd> to access stacks mirroring the
+        <kbd>pop_marker</kbd> to access stacks, mirroring the
         implementation of <kbd>push</kbd> and
-        <kbd>pop</kbd>. Note that you do not need to actually
-        insert a marker into the stack. Instead, you can add a local state variable to the
-        stack to keep track of the position of the last
-        <kbd>save</kbd> before a call to
-        <kbd>save_marker</kbd>. This can be done by extending
-        <kbd>make_stack</kbd> with two new functions used by
-        your new access functions.
+        <kbd>pop</kbd> in section 5.2.1. Note that you do not
+        need to actually insert a marker into the stack. Instead, you can add a local
+        state variable to the stack model to keep track of the position of the last save
+        before each <kbd>save_marker</kbd>.
       </span></td></tr></table>
       
   
@@ -2513,23 +2513,14 @@ ev-definition-1
 
         An implementation where a <kbd>restore</kbd> to a
         register is matched with the last <kbd>save</kbd> of the
-        same register, as in alternative&nbsp;(b), will need to remove all values saved
-        after the marker.
+        same register, as in alternative&nbsp;(b), will need a way to remove a value saved
+        after the marker without knowing what register it was saved from.
 
         An implementation that uses a dedicated stack per register, as in
         alternative&nbsp;(c), will need to insert and remove the marker across all
         stacks.
 
         
-    </FOOTNOTE></span></div>
-    
-    
-    <div class='footnote'><span style="color:blue">
-      <a class='footnote-number' id='footnote-5' href='#footnote-link-5' style="color:blue">[5] </a>
-    <FOOTNOTE>
-     In exercise <REF NAME="ex:stack-behavior"><a class="superscript" id="5.4.3-ex-link-5.11" href="./5.2.3.html#ex_5.11">5.11</a></REF>, different ways to implement the stack were introduced.
-        See footnote&nbsp;<REF NAME="foot:save_marker1"><a class="superscript" id="5.4.3-foot-link-4" href="./5.4.3.html#footnote-4">4</a></REF> for details of how to adapt
-        this exercise accordingly.
     </FOOTNOTE></span></div>
     
     

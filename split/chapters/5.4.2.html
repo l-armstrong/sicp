@@ -2070,12 +2070,12 @@ function sqrt_iter(guess, x) {
         The implementation of the metacircular evaluator in chapter&nbsp;4 is
         not tail-recursive. The reason for this is found in the handling of
         <kbd>return</kbd> as an operator that creates
-        a return value object and inspecting the result of a function call to
-        see if it is such an object or not.
-        If the result of a function is a return value object, its content
+        a return value object containing the value to be returned and inspecting the result of a function call to
+        see whether it is such an object.
+        If the evaluation of a function body produces a return value object, its content
         is the return value of the function. 
         Otherwise, the return value is <kbd>undefined</kbd>.
-        Both the construction of the return value object, and the eventual inspection of
+        Both the construction of the return value object and the eventual inspection of
         the result of the function call are deferred operations, which lead to an
         accumulation of information on the stack.
       </span></td></tr></table>
@@ -2104,21 +2104,24 @@ function sqrt_iter(guess, x) {
       </span>    </td>
           <td></td>
           <td><span style="color:blue">
-        Our explicit-control evaluator is tail-recursive, because it avoids the accumulation
-        of information such as in the metacircular evaluator. When we
-        evaluate a return statement at <kbd>ev_return</kbd>, we
-        first remove anything saved by the current function on the stack, and
-        restore <kbd>continue</kbd> to the value saved
-        at <kbd>ev_application</kbd> in the beginning
-        of the function call. 
-        Thus, when we 
-        proceed to evaluate the return expression, the information 
-        accumulated on the stack is the same as just before the
-        call to the function whose return value we are about to compute.
-        We then
-        place the return expression in <kbd>comp</kbd>
-        and transfer directly to
-        <kbd>eval_dispatch</kbd> without any additional saves.</span></td></tr></table><a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+        Our explicit-control evaluator is tail-recursive, because it does not
+        need to wrap up return values for inspection and avoids the buildup of
+        stack from deferred operations. When we evaluate a return statement at
+        <kbd>ev_return</kbd>, we first remove anything
+        saved by the current function on the stack and restore
+        <kbd>continue</kbd> to the value saved at
+        <kbd>ev_application</kbd> in the beginning of
+        the function call. Thus, when we proceed to evaluate the return
+        expression, the stack is the same as just before the call to the
+        function whose return value we are about to compute. We then place the
+        return expression in <kbd>comp</kbd> and
+        transfer directly to <kbd>eval_dispatch</kbd>
+        without saving any information on the stack. Hence, evaluating a return
+        expression—even if it is a function call (as in
+        <kbd>sqrt_iter</kbd>, where the conditional
+        expression reduces to a call to
+        <kbd>sqrt_iter</kbd>)—will not cause
+        any information to be accumulated on the stack.</span></td></tr></table><a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
 
       <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
@@ -2170,38 +2173,43 @@ ev-sequence
           </span>    </td>
           <td></td>
           <td><span style="color:blue">
-If we think of <kbd>return</kbd> as an operator and the return expression as
-its operand, we might consider it more intuitive to evaluate
-return statements by first computing the return value, and then restore the
-stack:
-          
-	        
-          <div class='snippet' id='javascript_114_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-"ev_return",
-      assign("comp", list(op("return_expression"), reg("comp"))),
-      assign("continue", label("ev_restore_stack")),
-      save("continue"),
-      go_to(label("eval_dispatch")),
 
-"ev_restore_stack",
-      restore_marker("continue"),
-      restore("continue"),
-      go_to(reg("continue")),</pre></div></div>
 
-        This may seem like a minor change to our previous code for evaluation of
-        return statements.  However, 
-        this not only keeps the useless information on the stack
-        during the evaluation of the return expression, but additionally saves
-        <kbd>continue</kbd> to ensure an eventual
-        jump back to <kbd>ev_restore_stack</kbd> to
-        restore the stack and jumping to the continuation of the function
-        call. Even if there are never any saves by the current
-        function<a class='superscript' id='footnote-link-4' href='#footnote-4'style="color:blue">[4]</a>,
-        the last save of <kbd>continue</kbd> will
-        accumulate during a nest of function calls. In this design, processes
-        such as <kbd>sqrt_iter</kbd> would require
-        space proportional to the number of iterations rather than requiring
-        constant space.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         Let us consider an implementation of the handling of
         return statements in the spirit of
@@ -2230,7 +2238,7 @@ stack:
         <kbd>continue</kbd> and jump to the
         <QUOTE>final</QUOTE> continuation, which was saved in
         <kbd>ev_application</kbd>.
-          <div class='snippet' id='javascript_114_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+          <div class='snippet' id='javascript_114_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_return", 
       assign("comp", list(op("return_expression"), reg("comp"))),
       assign("continue", label("ev_make_return_value")),
@@ -2299,12 +2307,12 @@ stack:
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_114_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_114_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (count n)
       (newline)
       (display n)
       (count (+ n 1)))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_114_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_114_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function count(n) {
     display(n);
     return count(n + 1);
@@ -2401,17 +2409,8 @@ function count(n) {
     We can define
           <kbd>no-more-exps?</kbd>
           as follows:
-          <div class='snippet' id='javascript_114_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+          <div class='snippet' id='javascript_114_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (no-more-exps? seq) (null? seq))</pre></div></div>
-    </FOOTNOTE></span></div>
-    
-    
-    <div class='footnote'><span style="color:blue">
-      <a class='footnote-number' id='footnote-4' href='#footnote-link-4' style="color:blue">[4] </a>
-    <FOOTNOTE>
-    With our current design, there will always be at
-        least one: a save of <kbd>continue</kbd> in
-        <kbd>ev_sequence_start</kbd>.
     </FOOTNOTE></span></div>
     
     

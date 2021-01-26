@@ -2848,8 +2848,8 @@ The sequence of instructions labeled
         introduced in the evaluation of sequences of statements (explained
         shortly) which need temporary storage to process statements in a loop.
         To address this unknown variable,
-        <kbd>compound_apply</kbd> pushes a special
-        marker on the stack to indicate the top-value of the stack after
+        <kbd>compound_apply</kbd> pushes a 
+        <EM>marker value</EM> on the stack to indicate the top-value of the stack after
         function returns. For simplicity, we introduce a new instruction for pushing
         the marker: <kbd>save_marker</kbd>.<a class='superscript' id='footnote-link-6' href='#footnote-6'>[6]</a>
       </p></div>
@@ -2877,9 +2877,11 @@ The sequence of instructions labeled
         function call by popping all values from the stack down to and including
         the marker. 
         As a consequence, <kbd>restore("continue")</kbd>
-        will restore the continuation of the function call. We can then proceed to
+        will restore the continuation of the function call, which was saved at
+        <kbd>ev_application</kbd>. We can then proceed to
         evaluate the return expression, whose result will be placed in <kbd>val</kbd>
-        and thus be the value returned from the function when we continue after the dispatcher.
+        and thus be the value returned from the function when we continue after the
+        evaluation of the return expression.
       </p></div>
 
     <div class='snippet' id='javascript_113_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
@@ -2889,18 +2891,17 @@ The sequence of instructions labeled
       assign("comp", list(op("return_expression"), reg("comp"))),
       go_to(label("eval_dispatch")),</pre></div></div>
       
-      <div class='permalink'>
+    <div class='permalink'>
 <a name='p19' class='permalink'></a><p>
-        To ensure the undefined return value of a function that does not
-        explicitly return via a return statement, we instruct <kbd>compound_apply</kbd>
-        to continue to <kbd>return_undefined</kbd> where
-        <kbd>val</kbd> will be assigned to <kbd>undefined</kbd>.
-        Because a function that ends with an explicit return will continue to
-        the value of <kbd>continue</kbd> <EM>before</EM> the
-        <kbd>save_marker</kbd>, it will not execute
-        these instructions, and keep its return value. To get rid of the marker
-        on the stack, there is a <kbd>restore_marker</kbd> command
-        also in <kbd>return_undefined</kbd>.
+      If no return statement is encountered during evaluation of the function body,
+      evaluation continues at <kbd>return_undefined</kbd>, the
+      continuation that was set up at <kbd>compound_apply</kbd>.
+      To return <kbd>undefined</kbd> from the function, we put
+      <kbd>undefined</kbd> into
+      <kbd>val</kbd> and continue to the entry point that was
+      put onto the stack at <kbd>ev_application</kbd>. Before we
+      can restore that continuation from the stack, however, we must remove the marker
+      that was saved at <kbd>compound_apply</kbd>.
       </p></div>
 
     <div class='snippet' id='javascript_113_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
@@ -3481,12 +3482,13 @@ function is_last_argument_expression(arg_expression) {
       <a class='footnote-number' id='footnote-6' href='#footnote-link-6'>[6] </a>
     <FOOTNOTE>
     
-        This special instruction, and its counterpart
+        The special instruction <kbd>save_marker</kbd> and its counterpart,
         <kbd>restore_marker</kbd>, are not strictly
         necessary and could be implemented by explicitly pushing and popping a
-        marker value to and off the stack. Any value that could not be confused
-        for a value in the program can be used as a marker value. See exercises
-        <REF NAME="ex:save_marker1"><a class="superscript" id="5.4.1-ex-link-5.23" href="./5.4.3.html#ex_5.23">5.23</a></REF> and <REF NAME="ex:save_marker2"><a class="superscript" id="5.4.1-ex-link-5.24" href="./5.4.3.html#ex_5.24">5.24</a></REF>.
+        special marker value onto and off the stack. Any value that could not be confused
+        for a value in the program can be used as a marker value, such as the
+        identity of a list or function object.
+        See exercise <REF NAME="ex:save_marker1"><a class="superscript" id="5.4.1-ex-link-5.23" href="./5.4.3.html#ex_5.23">5.23</a></REF>.
       
     </FOOTNOTE></div>
 
