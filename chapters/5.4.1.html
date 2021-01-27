@@ -2418,8 +2418,7 @@ component
       restore("env"),
       assign("argl", list(op("empty_arglist"))),
       assign("fun", reg("val")), // the function
-      test(list(op("is_null"),
-                reg("unev"))),
+      test(list(op("is_null"), reg("unev"))),
       branch(label("apply_dispatch")),
       save("fun"),</pre></div></div>
   </p></div>
@@ -2502,7 +2501,7 @@ component
     argument expressions
   
     in <kbd>unev</kbd>, and
-    the argument-evaluation continues.
+    the argument-evaluation loop continues.
     <div class='snippet' id='javascript_113_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_appl_accumulate_arg",
       restore("unev"),
@@ -2762,14 +2761,11 @@ The sequence of instructions labeled
       
       function,
     
-    and evaluate in this extended environment the sequence of
+    and evaluate in this extended environment 
     
       
-      
-	statements
-      
     
-    that forms the body of the
+    the body of the
     
       
       function. 
@@ -2790,7 +2786,13 @@ The sequence of instructions labeled
       
     
     
-    Just as in the metacircular evaluator, the new environment is constructed
+    Just as in the metacircular evaluator, the new environment
+    
+      
+        for evaluation of a function body
+      
+    
+    is constructed
     from the environment carried by the
     
       
@@ -2815,12 +2817,12 @@ The sequence of instructions labeled
         <div class='permalink'>
 <a name='p15' class='permalink'></a><p>
           Unlike primitive functions, compound
-          functions use our stack as a temporary storage for register values.
+          functions use the stack as a temporary storage for register values.
           Careful management of the stack is essential for our explicit-control
-          evaluator to be tail recursive, and to correctly implement return
+          evaluator to be tail recursive, and to implement return
           statements. Last, compound functions must also handle the implicit
           returning of <kbd>undefined</kbd> in lieu of
-          a return through an explicit return statement. For primitive
+          a return through a return statement. For primitive
           functions, these aspects were all handled for us by the underlying
           JavaScript engine.
       </p></div>
@@ -2830,10 +2832,10 @@ The sequence of instructions labeled
         instructions for stack management, and two sequences of instructions labeled
         <kbd>ev_return</kbd> for handing explicit
         returns and <kbd>return_undefined</kbd> for
-        handling implicit returning of undefined. First, we explain the need 
+        handling implicit returning of <kbd>undefined</kbd>. First, we explain the need 
         for the additional stack management
         instructions and how they are used during function calls and returns. 
-        Then, we will explain implicit returning of undefined.
+        Then, we will explain implicit returning of <kbd>undefined</kbd>.
         The interaction with tail recursion will be explained in section&nbsp;<REF NAME="sec:tail-recursion-return"><a class="superscript" id="5.4.1-sec-link-5.4.2" href="./5.4.2.html">5.4.2</a></REF>.
       </p></div>
       <div class='permalink'>
@@ -2934,7 +2936,7 @@ The sequence of instructions labeled
         respect to the current environment extended by a binding
         of all local names to the value
         <kbd>"*unassigned*"</kbd>.
-        We temporarily make use of the <kbd>comp</kbd>
+        We temporarily make use of the <kbd>val</kbd>
         register to hold the list of all variables declared in the block,
         which is obtained by the function <kbd>scan_out_declarations</kbd>
         from section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="5.4.1-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>.
@@ -2961,10 +2963,10 @@ The sequence of instructions labeled
       using a fixed label, we open up for more flexible parsing, such as
       foregoing blocks when there are no variable declarations (so no need to
       scan out declarations), or foregoing sequences where there is only a
-      single statement. Assuming the parser follows the specification in
+      single statement. Assuming that the parser follows the specification in
       section&nbsp;<REF NAME="sec:representing-expressions"><a class="superscript" id="5.4.1-sec-link-4.1.2" href="./4.1.2.html">4.1.2</a></REF>,
-      <kbd>compound_apply</kbd> and will always jump
-      (via the dispatcher) to <kbd>ev_block</kbd> and
+      <kbd>compound_apply</kbd> will always jump
+      (via the dispatcher) to <kbd>ev_block</kbd>, and
       <kbd>ev_block</kbd> will always jump (via the dispatcher)
       to <kbd>ev_sequence_start</kbd>.
     </p></div>
@@ -2977,18 +2979,18 @@ The sequence of instructions labeled
     
       
       
-        The portions of the explicit-control evaluator whose labels begin with
-        <kbd>ev_sequence</kbd> are similar to the
+        The portion of the explicit-control evaluator beginning at
+        <kbd>ev_sequence_start</kbd> is similar to the
         metacircular evaluator's
-        <kbd>eval_sequence</kbd> function. They handle
+        <kbd>eval_sequence</kbd> function. It handles
         sequences of statements in function bodies or at the top level.
 
         The handling of returns in the explicit-control evaluator deviates from
         the metacircular evaluator in order to support tail recursion. Because a
         return statement will ensure that it continues to the proper place in
         the program by manipulating the stack, sequence evaluation does not need to be
-        concerned with returns, or even be aware of the existence of explicit
-        returns in the language.
+        concerned with returns, or even be aware of the existence of 
+        return statements in the language.
       
     
   </p></div>
@@ -3017,8 +3019,8 @@ The sequence of instructions labeled
      
     <div class='snippet' id='javascript_113_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_sequence_start",
-      save("continue"),
       assign("unev", list(op("sequence_statements"), reg("comp"))),
+      save("continue"),
       go_to(label("ev_sequence")),</pre></div></div>
     
     
@@ -3027,7 +3029,7 @@ The sequence of instructions labeled
         Saving <kbd>continue</kbd> allows
         the register to be used in the iteration over the statements in the
         sequence and contributes to values on the stack that will be removed
-        during the evaluation of an explicit return statement. 
+        during the evaluation of a return statement. 
       
     
   </p></div>
@@ -3102,7 +3104,7 @@ The sequence of instructions labeled
     the return from this evaluation, at
     
       
-      <kbd>ev_sequence_continue</kbd> (or removed by an explicit return statement, as this terminates the function instead of returning to <kbd>ev_sequence_continue</kbd>).
+      <kbd>ev_sequence_continue</kbd> (or removed by a return statement, as this terminates the function instead of returning to <kbd>ev_sequence_continue</kbd>).
       
     
   </p></div>
@@ -3158,8 +3160,7 @@ The sequence of instructions labeled
     saved by
     
       
-      <kbd>ev_application</kbd>, <kbd>ev_sequence_start</kbd> or
-      <kbd>ev_conditional</kbd>.)
+      <kbd>ev_application</kbd> or <kbd>ev_sequence_start</kbd>.)
     
     Rather than setting up <kbd>continue</kbd> to arrange for
     
@@ -3399,9 +3400,8 @@ function adjoin_arg(arg, arglist) {
     to test for the last
   
     
-    argument expression
+    argument expression in an application:
   
-    in a combination:
      
     <div class='snippet' id='javascript_113_18_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function is_last_argument_expression(arg_expression) {
@@ -3462,7 +3462,7 @@ function is_last_argument_expression(arg_expression) {
     
       
       
-        The order of argument-expression evaluation by the
+        The order of argument-expression evaluation by the function
         <kbd>list_of_values</kbd> in the metacircular
         evaluator is determined by the order of evaluation of the arguments to
         <kbd>pair</kbd>, which is used to construct the
@@ -3472,6 +3472,7 @@ function is_last_argument_expression(arg_expression) {
         directly; the version in the text uses
         <kbd>map</kbd>, which calls
         <kbd>pair</kbd>.
+        (See exercise&nbsp;<REF NAME="ex:arg-eval-order"><a class="superscript" id="5.4.1-ex-link-4.1" href="./4.1.1.html#ex_4.1">4.1</a></REF>.)
       
     
     
