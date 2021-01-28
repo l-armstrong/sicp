@@ -2262,8 +2262,7 @@ Acknowledgments
         <kbd>ev_return</kbd> and
         <kbd>return_undefined</kbd> as a loop that repeatedly
         performs a <kbd>restore</kbd> until it hits the
-        marker.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a> 
-        Note that this will require restoring a value to a register other than the one it
+        marker. Note that this will require restoring a value to a register other than the one it
         was saved from. (Although we are careful to avoid that in our evaluator, our stack
         implementation actually allows it. See exercise <REF NAME="ex:stack-behavior"><a class="superscript" id="5.4.3-ex-link-5.10" href="./5.2.3.html#ex_5.10">5.10</a></REF>.)
         This is necessary because the only way to pop from the stack is by
@@ -2356,29 +2355,6 @@ Acknowledgments
 	transformations like
 	<kbd>while_to_application</kbd>
 	in a syntax phase that runs before execution.
-    </FOOTNOTE></div>
-
-    
-    <div class='footnote'>
-      <a class='footnote-number' id='footnote-3' href='#footnote-link-3'>[3] </a>
-    <FOOTNOTE>
-     In exercise <REF NAME="ex:stack-behavior"><a class="superscript" id="5.4.3-ex-link-5.10" href="./5.2.3.html#ex_5.10">5.10</a></REF>, alternative ways to
-        implement the stack were introduced that changes the semantics of
-        <kbd>save</kbd> and
-        <kbd>restore</kbd>.
-
-        This exercise assumes that you are using alternative (a) or (c). 
-
-        
-        
-        
-        
-
-        An implementation that uses a dedicated stack per register, as in
-        alternative&nbsp;(c), will need to insert and remove the marker across all
-        stacks.
-
-        
     </FOOTNOTE></div>
 
     
