@@ -2173,125 +2173,120 @@ ev-sequence
           </span>    </td>
           <td></td>
           <td><span style="color:blue">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        Let us consider an implementation of the handling of
-        return statements in the spirit of
-        the metacircular evaluator. In ev_return, we evaluate the return
-        expression, place the result in <kbd>val</kbd>, and then continue at
-        <kbd>ev_make_return_value</kbd> where a return
-        value object is created. 
-        
-        For simplicity, assume that a function body does not continue once a
-        return statement has been
-        evaluated, and that all saves to the stack in the function body have
-        been restored when the body is fully evaluated, meaning there is no need
-        to use our marker trick. 
-
-        In this design <kbd>compound_apply</kbd> installs
-        a continuation
-        <kbd>check_return_value</kbd>, and every function
-        call will eventually arrive here after its complete evaluation.
-        At <kbd>check_return_value</kbd>, we check
-        whether the function's return value stored in <kbd>val</kbd> 
-        is a return value object or not. If it is, we extract the contents from the
-        object and place it in <kbd>val</kbd>. Otherwise,
-        the function did not return explicitly so we must assign
-        <kbd>undefined</kbd> to
-        <kbd>val</kbd>. We then restore
-        <kbd>continue</kbd> and jump to the
-        <QUOTE>final</QUOTE> continuation, which was saved in
-        <kbd>ev_application</kbd>.
+        If we, like the metacircular evaluator, treat
+        <kbd>return</kbd> as an operator and the
+        return expression as its operand, we might consider it more intuitive to
+        evaluate return statements by first computing the return value, and then
+        restore the stack:
+          
+	        
           <div class='snippet' id='javascript_114_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-"ev_return", 
+"ev_return",
       assign("comp", list(op("return_expression"), reg("comp"))),
-      assign("continue", label("ev_make_return_value")),
-      go_to(label("eval_dispatch")), // evaluate the return expression
-
-"ev_make_return_value",
-      // wrap contents of val in return value object 
-      assign("val", list(op("ev_make_return_value"), reg("val"))), 
-      restore("continue"),
-      go_to(reg("continue")), 
-
-"compound_apply",
-      ... // as before (first 4 lines)
-      assign("continue", label("check_for_explicit_return")), // install return handler
+      assign("continue", label("ev_restore_stack")),
       go_to(label("eval_dispatch")),
 
-"check_for_explicit_return",
-      test(list(op("is_return_value"), reg("val"))),
-      branch(label("explicit_return")),
-      assign("val", constant(undefined)),
-      go_to(label("return_from_function")),
+"ev_restore_stack",
+      restore_marker(),
+      restore("continue"), // restore save at ev_application
+      go_to(reg("continue")),</pre></div></div>
 
-"explicit_return",
-      // extract return value from wrapper
-      assign("val", list(op("return_value_content"), reg("val"))), 
+        This may seem like a minor change to our previous code for evaluation of
+        return statements. However, this change leads to useless information
+        being kept on the stack during the evaluation of the return expression.
+        In particular, the continuation to
+        <kbd>return_undefined</kbd> saved in
+        <kbd>ev_sequence_start</kbd> which is no
+        longer necessary as we are returning via a return statement. These extra
+        saves will accumulate during a nest of function calls. Consequently,
+        processes such as <kbd>sqrt_iter</kbd> would
+        require space proportional to the number of iterations rather than
+        requiring constant space.
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       
-"return_from_function",
-      restore("continue"),
-      go_to(reg("continue")), // jump to final continuation</pre></div></div>
 
-          This design is not tail-recursive as it introduces two deferred
-          operations:
-          <kbd>ev_make_return_value</kbd> and
-          <kbd>check_for_explicit_return</kbd>.
-          The cost of these deferred operations will materialise on the stack through
-          saves of <kbd>continue</kbd>.
-          For example, assigning
-          <kbd>check_for_explicit_return</kbd> to
-          <kbd>continue</kbd> requires us to store its
-          previous value, the 
-          final continuation of the function call, on the stack during the
-          evaluation of its body. This save took place in <kbd>ev_application</kbd>.
-          Without <kbd>check_for_explicit_return</kbd>, this value
-          could have been restored in <kbd>compound_apply</kbd>.
-          Similar reasoning applies to the assignment of <kbd>ev_make_return_value</kbd>
-          to <kbd>continue</kbd> in <kbd>ev_return</kbd>.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           
 
-          These stores will accumulate during a nest of
-          function calls. Consequently, processes such as
-          <kbd>sqrt_iter</kbd> would require space
-          proportional to the number of iterations rather than requiring
-          constant space. 
+
+
+
+
+
       </span></td></tr></table>
   </p></div>
   <div class='permalink'>
@@ -2343,31 +2338,27 @@ function count(n) {
           <td><span style="color:blue">
       <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
-        Because our explicit-control evaluator does not use a special return value
-        object, we do not introduce any associated deferred operations.
-        Our <kbd>return_undefined</kbd> continuation from section&nbsp;5.4.1 is very
-        similar to <kbd>check_for_explicit_return</kbd> in
-        the alternative design explored above.
-        The reason why <kbd>return_undefined</kbd>
-        does not lead to an accumulation
-        of space is because it stored on the stack <EM>after</EM> the
-        marker. This means that the
-        <kbd>restore_marker</kbd> instruction will
-        remove this continuation from the stack before evaluating the return
-        expression. In other words: when we know that the check is not needed,
-        we remove it along with the stack space it occupied. 
         
-        Because the <kbd>restore_marker</kbd> is part
+        
+        Because <kbd>ev_return</kbd> in
+        section&nbsp;5.4.1 starts by removing anything saved on the stack by
+        the current function using
+        <kbd>restore_marker</kbd> any stack space used
+        to ensure the arrival of the current function at
+        <kbd>return_undefined</kbd> is removed before
+        evaluating the return expression. In other words: when we know that the
+        check is not needed, we remove it along with the stack space it occupied
+        (along with any other saves by the current function which are not needed
+        since it is returning).
+
+        Notably, because the <kbd>restore_marker</kbd> is part
         of <kbd>ev_return</kbd>, our JavaScript
-        implementation is tail-recursive only in the presence of an explicit
-        return statement. Without it,
-        one save of <kbd>continue</kbd> 
-        is needed per function call to ensure its eventual arrival at
-        <kbd>return_undefined</kbd> to store 
-        <kbd>undefined</kbd> in the
-        <kbd>val</kbd> register. Thus, removing
+        implementation requires use of <kbd>return</kbd> to be tail-recursive.
+        Removing
         <kbd>return</kbd> from the <kbd>count</kbd>
-        function above will cause it to eventually run out of stack space.
+        function above will cause it to eventually run out of stack space. This explains
+        the use of <kbd>return</kbd> in the infinite driver loops
+        in section&nbsp;4.1.4 and elsewhere.
       </p></div>
     </span></td></tr></table>
 

@@ -2362,15 +2362,17 @@ Acknowledgments
     <div class='footnote'>
       <a class='footnote-number' id='footnote-3' href='#footnote-link-3'>[3] </a>
     <FOOTNOTE>
-     In exercise <REF NAME="ex:stack-behavior"><a class="superscript" id="5.4.3-ex-link-5.10" href="./5.2.3.html#ex_5.10">5.10</a></REF>, different ways to
+     In exercise <REF NAME="ex:stack-behavior"><a class="superscript" id="5.4.3-ex-link-5.10" href="./5.2.3.html#ex_5.10">5.10</a></REF>, alternative ways to
         implement the stack were introduced that changes the semantics of
         <kbd>save</kbd> and
         <kbd>restore</kbd>.
 
-        An implementation where a <kbd>restore</kbd> to a
-        register is matched with the last <kbd>save</kbd> of the
-        same register, as in alternative&nbsp;(b), will need a way to remove a value saved
-        after the marker without knowing what register it was saved from.
+        This exercise assumes that you are using alternative (a) or (c). 
+
+        
+        
+        
+        
 
         An implementation that uses a dedicated stack per register, as in
         alternative&nbsp;(c), will need to insert and remove the marker across all
