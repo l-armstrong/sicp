@@ -3016,6 +3016,7 @@ The sequence of instructions labeled
           <td><span style="color:blue">
         <div class='permalink'>
 <a name='p14' class='permalink'></a><p>
+	  
           Unlike primitive functions, compound
           functions use the stack as a temporary storage for register values.
           Careful management of the stack is essential for our explicit-control
@@ -3093,6 +3094,7 @@ compound-apply
           <td><span style="color:blue">
         <div class='permalink'>
 <a name='p17' class='permalink'></a><p>
+	  
         When a return statement is evaluated at <kbd>ev_return</kbd>,
         we use the <kbd>restore_marker</kbd> instruction to restore the stack to its state at the beginning of the
         function call by popping all values from the stack down to and including
@@ -3104,7 +3106,6 @@ compound-apply
         and thus be the value returned from the function when we continue after the
         evaluation of the return expression.
       </p></div>
-
     <div class='snippet' id='javascript_113_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_return",
       restore_marker(),
@@ -3157,7 +3158,7 @@ compound-apply
       <div class='permalink'>
 <a name='p19' class='permalink'></a><p>
         
-
+        
         The body of a block is evaluated with
         respect to the current environment extended by a binding
         of all local names to the value
@@ -3180,7 +3181,7 @@ compound-apply
                          reg("env"))),
       restore("comp"),
       go_to(label("eval_dispatch")),</pre></div></div>
-
+      
       According to section&nbsp;<REF NAME="sec:representing-expressions"><a class="superscript" id="5.4.1-sec-link-4.1.2" href="./4.1.2.html">4.1.2</a></REF>,
       all lambda expressions and functions have a block as their body. However,
       <kbd>compound_apply</kbd> does not jump to
@@ -3620,6 +3621,8 @@ function body must restore the stack (which is done at
 <kbd>ev_return</kbd>). The instructions
 <kbd>save_marker</kbd> and <kbd>restore_marker</kbd> were defined
 to simplify this stack management.
+
+	  
       </p></div>
     </span></td></tr></table>
 
