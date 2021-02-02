@@ -2252,7 +2252,10 @@ Acknowledgments
 <a name='p7' class='permalink'></a><p>
         The entries at <kbd>ev_sequence_next</kbd> and
         <kbd>ev_sequence_continue</kbd> form a loop that
-        successively evaluates each statement in a sequence. The list of unevaluated
+        successively evaluates each statement in a sequence.
+        (Empty sequences avoid the loop and jump straight to <kbd>continue</kbd> via
+        <kbd>ev_sequence_empty</kbd>.)
+        The list of unevaluated
         statements is kept in <kbd>unev</kbd>. At
         <kbd>ev_sequence</kbd>, before starting the loop, we
         place the sequence of statements to be evaluated in
@@ -2301,6 +2304,8 @@ Acknowledgments
       <div class='snippet' id='javascript_113_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_sequence",
   assign("unev", list(op("sequence_statements"), reg("comp"))),
+  test(list(op("is_empty_sequence"), reg("unev"))), 
+  branch(label("ev_sequence_empty")),
   save("continue"),
 "ev_sequence_next",
   assign("comp", list(op("first_statement"), reg("unev"))),
@@ -2317,7 +2322,9 @@ Acknowledgments
   go_to(label("ev_sequence_next")),
 "ev_sequence_last_statement",
   restore("continue"),
-  go_to(label("eval_dispatch")),</pre></div></div>
+  go_to(label("eval_dispatch")),
+"ev_sequence_empty",
+  go_to(reg("continue")),</pre></div></div>
 
       <div class='permalink'>
 <a name='p9' class='permalink'></a><p>

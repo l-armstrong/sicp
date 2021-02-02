@@ -2282,8 +2282,8 @@ Acknowledgments
       encountered is not necessarily the stack that is needed for a return from the
       function. One way to make it possible to adjust the stack for the return is to put a
       \emph{marker} on the stack that can be found by the return code. This is implemented
-      by the <kbd>push_mark_to_stack</kbd> instruction. The return code
-      can then use the <kbd>revert_stack_to_mark</kbd> instruction to
+      by the <kbd>push_marker_to_stack</kbd> instruction. The return code
+      can then use the <kbd>revert_stack_to_marker</kbd> instruction to
       restore the stack to the place indicated by the marker before evaluating the return
       expression.<a class='superscript' id='footnote-link-5' href='#footnote-5'style="color:blue">[5]</a>
     </p></div>
@@ -2304,7 +2304,7 @@ Acknowledgments
   assign("env", list(op("extend_environment"), 
                      reg("unev"), reg("argl"), reg("env"))),
   assign("comp", list(op("function_body"), reg("fun"))),
-  push_mark_to_stack(),
+  push_marker_to_stack(),
   assign("continue", label("return_undefined")),
   go_to(label("eval_dispatch")),</pre></div></div>
     </p></div>
@@ -2327,7 +2327,7 @@ Acknowledgments
 <a name='p16' class='permalink'></a><p>
       When a return statement is evaluated at
       <kbd>ev_return</kbd>, we use the
-      <kbd>revert_stack_to_mark</kbd> instruction to restore the stack
+      <kbd>revert_stack_to_marker</kbd> instruction to restore the stack
       to its state at the beginning of the function call by removing all values from the
       stack down to and including the marker. As a consequence,
       <kbd>restore("continue")</kbd> will restore the
@@ -2338,7 +2338,7 @@ Acknowledgments
       function when we continue after the evaluation of the return expression.
     <div class='snippet' id='javascript_114_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_return",
-  revert_stack_to_mark(),
+  revert_stack_to_marker(),
   restore("continue"),
   assign("comp", list(op("return_expression"), reg("comp"))),
   go_to(label("eval_dispatch")),</pre></div></div>
@@ -2357,7 +2357,7 @@ Acknowledgments
     saved at <kbd>compound_apply</kbd>.
     <div class='snippet' id='javascript_114_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "return_undefined",
-  revert_stack_to_mark(),
+  revert_stack_to_marker(),
   restore("continue"),
   assign("val", constant(undefined)),
   go_to(reg("continue")),</pre></div></div>
@@ -2492,7 +2492,7 @@ function sqrt_iter(guess, x) {
         <kbd>eval_dispatch</kbd> with nothing more on the stack
         than right before the function call. We accomplish this by undoing any saves to
         the stack by the function (which are useless because we are returning) using
-        <kbd>revert_stack_to_mark</kbd>. Then, rather than arranging
+        <kbd>revert_stack_to_marker</kbd>. Then, rather than arranging
         for <kbd>eval_dispatch</kbd> to come back here and then
         restore <kbd>continue</kbd> from the stack and
         continuing at that entry point, we restore
@@ -2574,7 +2574,7 @@ ev-sequence
   go_to(label("eval_dispatch")),
 
 "ev_restore_stack",
-  revert_stack_to_mark(),    // undo saves in current function
+  revert_stack_to_marker(),    // undo saves in current function
   restore("continue"), // undo save at ev_application
   go_to(reg("continue")),</pre></div></div>
           This may seem like a minor change to our previous code for evaluation of return
@@ -2773,11 +2773,11 @@ function count(n) {
     <a name="ex_5.24" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.24">Exercise 5.24 </a></b> 
   
         
-        Implement the equivalent of <kbd>push_mark_to_stack</kbd> by
+        Implement the equivalent of <kbd>push_marker_to_stack</kbd> by
         using <kbd>save</kbd> at
         <kbd>compound_apply</kbd> to store a special marker
         value on the stack. Implement the equivalent of
-        <kbd>revert_stack_to_mark</kbd> at
+        <kbd>revert_stack_to_marker</kbd> at
         <kbd>ev_return</kbd> and
         <kbd>return_undefined</kbd> as a loop that repeatedly
         performs a <kbd>restore</kbd> until it hits the
@@ -2808,8 +2808,8 @@ function count(n) {
         
         
         
-        Implement <kbd>push_mark_to_stack</kbd> and
-        <kbd>revert_stack_to_mark</kbd> as new register-machine
+        Implement <kbd>push_marker_to_stack</kbd> and
+        <kbd>revert_stack_to_marker</kbd> as new register-machine
         instructions, following the implementation of
         <kbd>save</kbd> and
         <kbd>restore</kbd> in section&nbsp;<REF NAME="sec:ex-proc"><a class="superscript" id="5.4.2-sec-link-5.2.3" href="./5.2.3.html">5.2.3</a></REF>. Add functions
@@ -2819,34 +2819,13 @@ function count(n) {
         <kbd>pop</kbd> in section&nbsp;<REF NAME="sec:machine-model"><a class="superscript" id="5.4.2-sec-link-5.2.1" href="./5.2.1.html">5.2.1</a></REF>. Note that you do not
         need to actually insert a marker into the stack. Instead, you can add a local
         state variable to the stack model to keep track of the position of the last <kbd>save</kbd>
-        before each <kbd>push_mark_to_stack</kbd>.
+        before each <kbd>push_marker_to_stack</kbd>.
         If you choose to put a marker on the stack, see the hint in
-        exercise&nbsp;<REF NAME="ex:push_mark_to_stack1"><a class="superscript" id="5.4.2-ex-link-5.24" href="./5.4.2.html#ex_5.24">5.24</a></REF>.
+        exercise&nbsp;<REF NAME="ex:push_marker_to_stack1"><a class="superscript" id="5.4.2-ex-link-5.24" href="./5.4.2.html#ex_5.24">5.24</a></REF>.
       
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_114_3_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_114_3_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
-      </div>
-    
-</EXERCISE></div>
-
-
-
-      
-    <div class="permalink">
-    <a name="ex_5.26" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.26">Exercise 5.26 </a></b> 
-  
-        
-        Currently, the explicit-control evaluator expects sequences to contain
-        at least one statement. Modify the sequence handling to support empty sequences by
-        adding a check for empty sequences in
-        <kbd>ev_sequence</kbd> and jump to
-        <kbd>continue</kbd> if true.
-        
-      
-      <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_114_4_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_114_4_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
       </div>
     
 </EXERCISE></div>

@@ -3067,7 +3067,7 @@ The sequence of instructions labeled
         <kbd>compound_apply</kbd> pushes a 
         <EM>marker</EM> value on the stack to indicate the top-value of the stack after
         function returns. For simplicity, we introduce a new instruction for pushing
-        the marker: <kbd>push_mark_to_stack</kbd>.<a class='superscript' id='footnote-link-6' href='#footnote-6'style="color:green">[6]</a>
+        the marker: <kbd>push_marker_to_stack</kbd>.<a class='superscript' id='footnote-link-6' href='#footnote-6'style="color:green">[6]</a>
       </p></div>
       </span></td></tr></table>
      
@@ -3090,7 +3090,7 @@ compound-apply
       assign("env", list(op("extend_environment"), 
                          reg("unev"), reg("argl"), reg("env"))),
       assign("comp", list(op("function_body"), reg("fun"))),
-      push_mark_to_stack(),
+      push_marker_to_stack(),
       assign("continue", label("return_undefined")),
       go_to(label("eval_dispatch")),</pre></div></div></td></tr></table>
   </p></div>
@@ -3109,7 +3109,7 @@ compound-apply
 <a name='p17' class='permalink'></a><p>
 	  
         When a return statement is evaluated at <kbd>ev_return</kbd>,
-        we use the <kbd>revert_stack_to_mark</kbd> instruction to restore the stack to its state at the beginning of the
+        we use the <kbd>revert_stack_to_marker</kbd> instruction to restore the stack to its state at the beginning of the
         function call by popping all values from the stack down to and including
         the marker. 
         As a consequence, <kbd>restore("continue")</kbd>
@@ -3121,7 +3121,7 @@ compound-apply
       </p></div>
     <div class='snippet' id='javascript_113_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_return",
-      revert_stack_to_mark(),
+      revert_stack_to_marker(),
       restore("continue"),
       assign("comp", list(op("return_expression"), reg("comp"))),
       go_to(label("eval_dispatch")),</pre></div></div>
@@ -3141,7 +3141,7 @@ compound-apply
 
     <div class='snippet' id='javascript_113_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "return_undefined",
-      revert_stack_to_mark(),
+      revert_stack_to_marker(),
       restore("continue"),
       assign("val", constant(undefined)),
       go_to(reg("continue")),</pre></div></div>
@@ -3614,7 +3614,10 @@ ev-sequence-last-exp
 <a name='p28' class='permalink'></a><p>
         The entries at <kbd>ev_sequence_next</kbd> and
         <kbd>ev_sequence_continue</kbd> form a loop that
-        successively evaluates each statement in a sequence. The list of unevaluated
+        successively evaluates each statement in a sequence.
+        (Empty sequences avoid the loop and jump straight to <kbd>continue</kbd> via
+        <kbd>ev_sequence_empty</kbd>.)
+        The list of unevaluated
         statements is kept in <kbd>unev</kbd>. At
         <kbd>ev_sequence</kbd>, before starting the loop, we
         place the sequence of statements to be evaluated in
@@ -3663,6 +3666,8 @@ ev-sequence-last-exp
       <div class='snippet' id='javascript_113_18_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_sequence",
   assign("unev", list(op("sequence_statements"), reg("comp"))),
+  test(list(op("is_empty_sequence"), reg("unev"))), 
+  branch(label("ev_sequence_empty")),
   save("continue"),
 "ev_sequence_next",
   assign("comp", list(op("first_statement"), reg("unev"))),
@@ -3679,7 +3684,9 @@ ev-sequence-last-exp
   go_to(label("ev_sequence_next")),
 "ev_sequence_last_statement",
   restore("continue"),
-  go_to(label("eval_dispatch")),</pre></div></div>
+  go_to(label("eval_dispatch")),
+"ev_sequence_empty",
+  go_to(reg("continue")),</pre></div></div>
 
       <div class='permalink'>
 <a name='p30' class='permalink'></a><p>
@@ -3899,13 +3906,13 @@ function is_last_argument_expression(arg_expression) {
       <a class='footnote-number' id='footnote-6' href='#footnote-link-6' style="color:green">[6] </a>
     <FOOTNOTE>
     
-        The special instruction <kbd>push_mark_to_stack</kbd> and its counterpart,
-        <kbd>revert_stack_to_mark</kbd>, are not strictly
+        The special instruction <kbd>push_marker_to_stack</kbd> and its counterpart,
+        <kbd>revert_stack_to_marker</kbd>, are not strictly
         necessary and could be implemented by explicitly pushing and popping a
         marker value onto and off the stack. Anything that could not be confused
         for a value in the program can be used as a marker, for example
         a pointer to a specific list or function object.
-        See exercise <REF NAME="ex:push_mark_to_stack1"><a class="superscript" id="5.4.1-ex-link-5.24" href="./5.4.2.html#ex_5.24">5.24</a></REF>.
+        See exercise <REF NAME="ex:push_marker_to_stack1"><a class="superscript" id="5.4.1-ex-link-5.24" href="./5.4.2.html#ex_5.24">5.24</a></REF>.
       
     </FOOTNOTE></span></div>
     
