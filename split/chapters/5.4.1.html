@@ -2233,12 +2233,1307 @@ ev-lambda
           <td></td>
           <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
         </tr>
+        <tr><td><span style="color:green">
+  
+      <div class='permalink'>
+        <a name='h2' class='permalink'></a><h2>
+     
+    
+      
+        <span style="color:green">Evaluating procedure applications</span>
+        <span style="color:blue">Evaluating function applications and operator combinations</span>
+      
+    
+  </h2></div>
+
+  
+    <span style="color:green">
+      
+      
+    </span>
+    <span style="color:blue">
+      
+      
+    </span>
+  
+
+  <div class='permalink'>
+<a name='p3' class='permalink'></a><p>
+    <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr><td><span style="color:green">
+	A procedure application is specified by a combination containing an
+  
+    <span style="color:green">operator</span>
+    <span style="color:blue">function expression</span>
+  
+  and
+  
+    <span style="color:green">operands</span>
+    <span style="color:blue">argument expressions</span>
+  .
+	The
+  
+    <span style="color:green">operator</span>
+    <span style="color:blue">function expression</span>
+  
+  is a subexpression whose value is a
+	procedure, and the 
+  
+    <span style="color:green">operands</span>
+    <span style="color:blue">argument expressions</span>
+  
+  are subexpressions whose values are the
+	arguments to which the procedure
+	should be applied.
+      </span>    </td>
+          <td></td>
+          <td><span style="color:blue">
+	A function application is specified by a combination containing
+	a function expression and argument expressions.
+	The function expression is a subexpression whose value is a function,
+	and the argument expressions are subexpressions whose values are the
+	arguments to which the function
+	should be applied.
+      </span></td></tr></table>
+    The metacircular
+    
+      <span style="color:green"><kbd>eval</kbd></span>
+      <span style="color:blue"><kbd>evaluate</kbd></span>
+    
+    handles applications by calling itself recursively to
+    evaluate each element of the combination, and then passing the results
+    to <kbd>apply</kbd>, which performs the actual
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    application.  The
+    explicit-control evaluator does the same thing; these recursive calls
+    are implemented by
+    
+      <span style="color:green">
+	<kbd>goto</kbd>
+      </span>
+      <span style="color:blue">
+	<kbd>go_to</kbd>
+      </span>
+    
+    instructions, together with 
+    
+    use of the stack to save registers that will be restored after the recursive
+    call returns.  Before each call we will be careful to identify which
+    registers must be saved (because their values will be needed
+    later).<a class='superscript' id='footnote-link-2' href='#footnote-2'style="color:green">[2]</a>
+  </p></div>
+
+  <div class='permalink'>
+<a name='p4' class='permalink'></a><p>
+    As in the metacircular evaluator, operator combinations
+    are transformed into applications of primitive functions
+    corresponding to the operators. This takes place at <kbd>ev_operator_combination</kbd>,
+    which performs this transformation in place in <kbd>comp</kbd> and falls through to
+    <kbd>ev_application</kbd>. 
+  </p></div>
+
+  <div class='permalink'>
+<a name='p5' class='permalink'></a><p>
+    We begin the evaluation of an application by evaluating the
+    
+      <span style="color:green">
+	operator
+      </span>
+      <span style="color:blue">
+	function expression
+      </span>
+    
+    to produce a
+    
+      <span style="color:green">procedure,</span>
+      <span style="color:blue">function,</span>
+    
+    which will later be applied to the evaluated
+    
+      <span style="color:green">
+	operands.
+      </span>
+      <span style="color:blue">
+	argument expressions.
+      </span>
+    
+    To evaluate the
+    
+      <span style="color:green">
+	operator,
+      </span>
+      <span style="color:blue">
+	function expression,
+      </span>
+    
+    we move it to the 
+    
+      <span style="color:green"><kbd>exp</kbd></span>
+      <span style="color:blue"><kbd>comp</kbd></span>
+    
+    register and go to
+    
+      <span style="color:green"><kbd>eval-dispatch</kbd>.</span>
+      <span style="color:blue"><kbd>eval_dispatch</kbd>.
+      </span>
+    
+    The environment in the <kbd>env</kbd> register is already
+    the correct one in which to evaluate the
+    
+      <span style="color:green">operator.</span>
+      <span style="color:blue">function expression.</span>
+    
+    However, we save <kbd>env</kbd> because we will need it
+    later to evaluate the
+    
+      <span style="color:green">
+	operands.
+      </span>
+      <span style="color:blue">
+	argument expressions.
+      </span>
+    
+    We also extract the
+    
+      <span style="color:green">
+	operands
+      </span>
+      <span style="color:blue">
+	argument expressions
+      </span>
+    
+    into <kbd>unev</kbd> and save this on the stack.  We set
+    up <kbd>continue</kbd> so that
+    
+      <span style="color:green"><kbd>eval-dispatch</kbd></span>
+      <span style="color:blue">
+	<kbd>eval_dispatch</kbd>
+      </span>
+    
+    will resume at
+    
+      <span style="color:green"><kbd>ev-appl-did-operator</kbd></span>
+      <span style="color:blue">
+	<kbd>ev_appl_did_function_expression</kbd>
+      </span>
+    
+    after the
+    
+      <span style="color:green">
+	operator
+      </span>
+      <span style="color:blue">
+	function expression
+      </span>
+    
+    has been evaluated.  First, however, we save the old value of
+    <kbd>continue</kbd>, which tells the controller where to
+    continue after the application.
+     
+     
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_113_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+ev-application
+(save continue)
+(save env)
+(assign unev (op operands) (reg exp))
+(save unev)
+(assign exp (op operator) (reg exp))
+(assign continue (label ev-appl-did-operator))
+(goto (label eval-dispatch))</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_113_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"ev_operator_combination",
+      assign("comp", list(op("operator_combination_to_application"),
+                          reg("comp"), reg("env"))),
+"ev_application",
+      save("continue"),
+      save("env"),
+      assign("unev", list(op("arg_expressions"), reg("comp"))),
+      save("unev"),
+      assign("comp", list(op("function_expression"), reg("comp"))),
+      assign("continue", label("ev_appl_did_function_expression")),
+      go_to(label("eval_dispatch")),</pre></div></div></td></tr></table>
+  </p></div>
+
+  <div class='permalink'>
+<a name='p6' class='permalink'></a><p>
+    
+      <span style="color:green">
+	
+      </span>
+      <span style="color:blue">
+	
+      </span>
+    
+    Upon returning from evaluating the
+    
+      <span style="color:green">
+	operator subexpression,
+      </span>
+      <span style="color:blue">
+	function expression,
+      </span>
+    
+    we proceed
+    to evaluate the
+    
+      <span style="color:green">
+	operands
+      </span>
+      <span style="color:blue">
+	argument expressions
+      </span>
+    
+    of the
+    
+      <span style="color:green">combination</span>
+      <span style="color:blue">application</span>
+    
+    and to accumulate the
+    resulting arguments in a list, held in <kbd>argl</kbd>.
+    First we restore the unevaluated
+    
+      <span style="color:green">
+	operands
+      </span>
+      <span style="color:blue">
+	argument expressions
+      </span>
+    
+    and the environment.  We
+    initialize <kbd>argl</kbd> to an empty list.  Then we
+    assign to the
+    
+      <span style="color:green">
+	<kbd>proc</kbd>
+      </span>
+      <span style="color:blue">
+	<kbd>fun</kbd>
+      </span>
+    
+    register the
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    that was produced by evaluating the
+    
+      <span style="color:green">
+	operator.
+      </span>
+      <span style="color:blue">
+	function expression.
+      </span>
+    
+    If there are
+    no
+    
+      <span style="color:green">
+	operands,
+      </span>
+      <span style="color:blue">
+	argument expressions,
+      </span>
+    
+    we go directly to
+    
+      <span style="color:green"><kbd>apply-dispatch</kbd>.</span>
+      <span style="color:blue"><kbd>apply_dispatch</kbd>.
+      </span>
+    
+    Otherwise we save
+    
+      <span style="color:green">
+	<kbd>proc</kbd>
+      </span>
+      <span style="color:blue">
+	<kbd>fun</kbd>
+      </span>
+    
+    on the stack and start the argument-evaluation
+    loop:<a class='superscript' id='footnote-link-3' href='#footnote-3'style="color:green">[3]</a>
+  <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_113_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+ev-appl-did-operator
+(restore unev)                  ; the operands
+(restore env)
+(assign argl (op empty-arglist))
+(assign proc (reg val))         ; the operator
+(test (op no-operands?) (reg unev))
+(branch (label apply-dispatch))
+(save proc)</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_113_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"ev_appl_did_function_expression",
+      restore("unev"), // the argument expressions
+      restore("env"),
+      assign("argl", list(op("empty_arglist"))),
+      assign("fun", reg("val")), // the function
+      test(list(op("is_null"), reg("unev"))),
+      branch(label("apply_dispatch")),
+      save("fun"),</pre></div></div></td></tr></table>
+  </p></div>
+
+  <div class='permalink'>
+<a name='p7' class='permalink'></a><p>
+    Each cycle of the argument-evaluation loop evaluates an 
+  
+    <span style="color:green">operand</span>
+    <span style="color:blue">argument expression</span>
+  
+    from the list in <kbd>unev</kbd> and accumulates the
+    result into <kbd>argl</kbd>. To evaluate an
+  
+    <span style="color:green">operand,</span>
+    <span style="color:blue">argument expression,</span>
+  
+    we place it in the 
+    
+      <span style="color:green"><kbd>exp</kbd></span>
+      <span style="color:blue"><kbd>comp</kbd></span>
+    
+    register and go to
+    
+      <span style="color:green"><kbd>eval-dispatch</kbd>,</span>
+      <span style="color:blue"><kbd>eval_dispatch</kbd>,
+      </span>
+    
+    after setting <kbd>continue</kbd> so that execution will
+    resume with the argument-accumulation phase.  But first we save the
+    arguments accumulated so far (held in <kbd>argl</kbd>), the
+    environment (held in <kbd>env</kbd>), and the remaining
+    
+      <span style="color:green">operands</span>
+      <span style="color:blue">argument expressions
+      </span>
+    
+    to be evaluated (held in <kbd>unev</kbd>).  A special case
+    is made for the evaluation of the last
+    
+      <span style="color:green">operand</span>
+      <span style="color:blue">argument expression,</span>
+    
+    which is handled at
+    
+      <span style="color:green"><kbd>ev-appl-last-arg</kbd>.</span>
+      <span style="color:blue"><kbd>ev_appl_last_arg</kbd>.
+      </span>
+    
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_113_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+ev-appl-operand-loop
+(save argl)
+(assign exp (op first-operand) (reg unev))
+(test (op last-operand?) (reg unev))
+(branch (label ev-appl-last-arg))
+(save env)
+(save unev)
+(assign continue (label ev-appl-accumulate-arg))
+(goto (label eval-dispatch))</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_113_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"ev_appl_argument_expression_loop",
+      save("argl"),
+      assign("comp", list(op("head"), reg("unev"))),
+      test(list(op("is_last_argument_expression"),
+                reg("unev"))),
+      branch(label("ev_appl_last_arg")),
+      save("env"),
+      save("unev"),
+      assign("continue", label("ev_appl_accumulate_arg")),
+      go_to(label("eval_dispatch")),</pre></div></div></td></tr></table>
+  </p></div>
+
+  <div class='permalink'>
+<a name='p8' class='permalink'></a><p>
+    When an
+  
+    <span style="color:green">operand</span>
+    <span style="color:blue">argument expression</span>
+  
+    has been evaluated, the value is accumulated into the list
+    held in <kbd>argl</kbd>.  The
+  
+    <span style="color:green">operand</span>
+    <span style="color:blue">argument expression</span>
+  
+    is then removed from
+    the list of unevaluated
+  
+    <span style="color:green">operands</span>
+    <span style="color:blue">argument expressions</span>
+  
+    in <kbd>unev</kbd>, and
+    the argument-evaluation loop continues.
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_113_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+ev-appl-accumulate-arg
+(restore unev)
+(restore env)
+(restore argl)
+(assign argl (op adjoin-arg) (reg val) (reg argl))
+(assign unev (op rest-operands) (reg unev))
+(goto (label ev-appl-operand-loop))</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_113_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"ev_appl_accumulate_arg",
+      restore("unev"),
+      restore("env"),
+      restore("argl"),
+      assign("argl", list(op("adjoin_arg"),
+                          reg("val"), reg("argl"))),
+      assign("unev", list(op("tail"), reg("unev"))),
+      go_to(label("ev_appl_argument_expression_loop")),</pre></div></div></td></tr></table>
+  </p></div>
+
+  <div class='permalink'>
+<a name='p9' class='permalink'></a><p>
+    Evaluation of the last argument <span style="color:blue">expression</span> is handled differently.  There is no
+    need to save the environment or the list of unevaluated 
+  
+    <span style="color:green">operands</span>
+    <span style="color:blue">argument expressions</span>
+  
+    before going to
+    
+      <span style="color:green"><kbd>eval-dispatch</kbd>,</span>
+      <span style="color:blue"><kbd>eval_dispatch</kbd>,
+      </span>
+    
+    since they will not be required after the last
+  
+    <span style="color:green">operand</span>
+    <span style="color:blue">argument expression</span>
+  
+    is evaluated.
+    Thus, we return from the evaluation to a special entry point
+    
+      <span style="color:green"><kbd>ev-appl-accum-last-arg</kbd>,</span>
+      <span style="color:blue"><kbd>ev_appl_accum_last_arg</kbd>,
+      </span>
+    
+    which restores the argument list, accumulates the new argument, restores the
+    saved
+    
+      <span style="color:green">procedure,</span>
+      <span style="color:blue">function,</span>
+    
+    and goes off to perform the application.<a class='superscript' id='footnote-link-4' href='#footnote-4'style="color:green">[4]</a>
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_113_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+ev-appl-last-arg
+(assign continue (label ev-appl-accum-last-arg))
+(goto (label eval-dispatch))
+ev-appl-accum-last-arg
+(restore argl)
+(assign argl (op adjoin-arg) (reg val) (reg argl))
+(restore proc)
+(goto (label apply-dispatch))</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_113_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"ev_appl_last_arg",
+      assign("continue", label("ev_appl_accum_last_arg")),
+      go_to(label("eval_dispatch")),
+      
+"ev_appl_accum_last_arg",
+      restore("argl"),
+      assign("argl", list(op("adjoin_arg"),
+                          reg("val"), reg("argl"))),
+      restore("fun"),
+      go_to(label("apply_dispatch")),</pre></div></div></td></tr></table>
+  </p></div>
+
+  <div class='permalink'>
+<a name='p10' class='permalink'></a><p>
+    
+    The details of the argument-evaluation loop determine the order in
+    which the interpreter evaluates the
+  
+    <span style="color:green">operands</span>
+    <span style="color:blue">argument expressions</span>
+  
+    of a combination (e.g.,
+    left to right or right to left—see
+    exercise&nbsp;<REF NAME="ex:order-of-evaluation"><a class="superscript" id="5.4.1-ex-link-3.8" href="./3.1.3.html#ex_3.8">3.8</a></REF>).  This order is not
+    determined by the metacircular evaluator, which inherits its control
+    structure from the underlying <span style="color:green">Scheme</span><span style="color:blue">JavaScript</span> in which it
+    is implemented.<a class='superscript' id='footnote-link-5' href='#footnote-5'style="color:green">[5]</a>
+    
+    
+      <span style="color:green">
+        Because the <kbd>first-operand</kbd> selector (used in
+        <kbd>ev-appl-operand-loop</kbd> to extract successive
+        operands from <kbd>unev</kbd>) is implemented as
+        <kbd>car</kbd> and the
+        <kbd>rest-operands</kbd> selector is implemented as
+        <kbd>cdr</kbd>, the explicit-control evaluator will
+        evaluate the operands of a combination in left-to-right order.
+      </span>
+      <span style="color:blue">
+        Because we use <kbd>head</kbd> and
+        <kbd>tail</kbd> to extract successive operands
+        from <kbd>unev</kbd> the explicit-control
+        evaluator will evaluate the argument expressions of a combination in
+        left-to-right order. 
+      </span>
+    
+    
+      <span style="color:green">
+	
+      </span>
+      <span style="color:blue">
+	
+      </span>
+    
+  </p></div>
+
+  
+      <div class='permalink'>
+        <a name='h3' class='permalink'></a><h2>
+     
+    
+      
+	<span style="color:green">Procedure</span>
+	<span style="color:blue">Function</span>
+      
+    application
+  </h2></div>
+
+  
+  <div class='permalink'>
+<a name='p11' class='permalink'></a><p>
+    The entry point
+    
+      <span style="color:green">
+      <kbd>apply-dispatch</kbd></span>
+      <span style="color:blue"><kbd>apply_dispatch</kbd>
+      </span>
+    
+    corresponds to the <kbd>apply</kbd>
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    of the metacircular evaluator.  By the time we get to
+    
+      <span style="color:green"><kbd>apply-dispatch</kbd>,</span>
+      <span style="color:blue"><kbd>apply_dispatch</kbd>,
+      </span>
+    
+    the
+    
+      <span style="color:green">
+	<kbd>proc</kbd>
+      </span>
+      <span style="color:blue">
+	<kbd>fun</kbd>
+      </span>
+    
+    register contains the
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    to apply and <kbd>argl</kbd> contains the list of
+    evaluated arguments to which it must be applied.  The saved value of
+    <kbd>continue</kbd> (originally passed to
+    
+      <span style="color:green"><kbd>eval-dispatch</kbd></span>
+      <span style="color:blue"><kbd>eval_dispatch</kbd>
+      </span>
+    
+    and saved at
+    
+      <span style="color:green"><kbd>ev-application</kbd>),</span>
+      <span style="color:blue"><kbd>ev_application</kbd>),
+      </span>
+    
+    which tells where to return with the result of the
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    application, is on the stack.  When the application is complete, the
+    controller transfers to the entry point specified by the saved
+    <kbd>continue</kbd>, with the result of the application in
+    <kbd>val</kbd>.  As with the metacircular
+    <kbd>apply</kbd>, there are two cases to consider.  Either
+    the
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    to be applied is a primitive or it is a compound
+    
+      <span style="color:green">procedure.</span>
+      <span style="color:blue">function.</span>
+    
+     
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_113_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+apply-dispatch
+(test (op primitive-procedure?) (reg proc))
+(branch (label primitive-apply))
+(test (op compound-procedure?) (reg proc))  
+(branch (label compound-apply))
+(goto (label unknown-procedure-type))</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_113_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"apply_dispatch",
+      test(list(op("is_primitive_function"), reg("fun"))),
+      branch(label("primitive_apply")),
+      test(list(op("is_compound_function"), reg("fun"))),
+      branch(label("compound_apply")),
+      go_to(label("unknown_function_type")),</pre></div></div></td></tr></table>
+  </p></div>
+
+  <div class='permalink'>
+<a name='p12' class='permalink'></a><p>
+    
+    We assume that each primitive is implemented so as to obtain its
+    arguments from <kbd>argl</kbd> and place its result in
+    <kbd>val</kbd>.  To specify how the machine handles
+    primitives, we would have to provide a sequence of controller instructions
+    to implement each primitive and arrange for
+    
+      <span style="color:green"><kbd>primitive-apply</kbd>
+      </span>
+      <span style="color:blue"><kbd>primitive_apply</kbd>
+      </span>
+    
+    to dispatch to the
+    instructions for the primitive identified by the
+    contents of
+    
+      <span style="color:green"><kbd>proc</kbd>.
+      </span>
+      <span style="color:blue"><kbd>fun</kbd>.</span>
+    
+    Since we are interested in the structure of the evaluation process rather
+    than the details of the primitives, we will instead just use an
+    
+      <span style="color:green"><kbd>apply-primitive-procedure</kbd></span>
+      <span style="color:blue"><kbd>apply_primitive_function</kbd></span> operation
+    that applies the
+    <span style="color:green">procedure</span><span style="color:blue">function</span>
+    in 
+    <span style="color:green">proc</span><span style="color:blue">fun</span>
+    to the arguments in <kbd>argl</kbd>.  For the purpose of simulating the evaluator with the simulator
+    of section&nbsp;<REF NAME="sec:simulator"><a class="superscript" id="5.4.1-sec-link-5.2" href="./5.2.html">5.2</a></REF> we use the
+    <span style="color:green">procedure</span><span style="color:blue">function</span>
+    
+      <span style="color:green"><kbd>apply-primitive-procedure</kbd>,</span>
+      <span style="color:blue"><kbd>apply_primitive_function</kbd>,
+      </span>
+    
+    which calls on the underlying
+    
+      <span style="color:green">Scheme</span>
+      <span style="color:blue">JavaScript</span>
+    
+    system to perform the application, just as we did for the metacircular
+    evaluator in section&nbsp;<REF NAME="sec:running-eval"><a class="superscript" id="5.4.1-sec-link-4.1.4" href="./4.1.4.html">4.1.4</a></REF>.  After computing
+    the value of the primitive application, we restore
+    <kbd>continue</kbd> and go
+    to the designated entry point.
+     
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_113_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+primitive-apply
+(assign val (op apply-primitive-procedure)
+      (reg proc)
+      (reg argl))
+(restore continue)
+(goto (reg continue))</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_113_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"primitive_apply",
+      assign("val", list(op("apply_primitive_function"), 
+                         reg("fun"), 
+                         reg("argl"))),
+      restore("continue"),
+      go_to(reg("continue")),</pre></div></div></td></tr></table>
+  </p></div>
+
+  <div class='permalink'>
+<a name='p13' class='permalink'></a><p>
+    
+    
+      <span style="color:green">To apply a compound procedure, we proceed just as with</span>
+      <span style="color:blue">
+The sequence of instructions labeled
+          <kbd>compound_apply</kbd> specifies the
+          application of compound functions. To apply a compound
+      function, we proceed in a way similar to what we did in</span>
+    
+    the metacircular evaluator.  We construct a frame
+    that binds the
+    
+      <span style="color:green">procedure's</span>
+      <span style="color:blue">function's</span>
+    
+    parameters to the arguments, use this frame to extend the environment
+    carried by the
+    
+      <span style="color:green">procedure,</span>
+      <span style="color:blue">function,</span>
+    
+    and evaluate in this extended environment 
+    
+      <span style="color:green">
+	the sequence of expressions that forms 
+      </span>
+    
+    the body of the
+    
+      <span style="color:green">procedure.</span>
+      <span style="color:blue">function. </span>
+    
+    <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr><td><span style="color:green">
+        <kbd>Ev-sequence</kbd>, described below
+        in section&nbsp;<REF NAME="sec:sequence-evaluation"><a class="superscript" id="5.4.1-sec-link-5.4.1" href="./5.4.1.html">5.4.1</a></REF>,
+        handles the evaluation of the sequence.
+      </span>    </td>
+          <td></td>
+          <td><span style="color:blue">
+        <div class='permalink'>
+<a name='p14' class='permalink'></a><p>
+	  
+          Unlike primitive functions, compound
+          functions use the stack as a temporary storage for register values.
+          Careful management of the stack is essential for our explicit-control
+          evaluator to be tail recursive, and to implement return
+          statements. Last, compound functions must also handle the implicit
+          returning of <kbd>undefined</kbd> in lieu of
+          a return through a return statement. For primitive
+          functions, these aspects were all handled for us by the underlying
+          JavaScript engine.
+      </p></div>
+      <div class='permalink'>
+<a name='p15' class='permalink'></a><p>
+        We will address these three problems together by introducing two new
+        instructions for stack management, and two sequences of instructions labeled
+        <kbd>ev_return</kbd> for handing explicit
+        returns and <kbd>return_undefined</kbd> for
+        handling implicit returning of <kbd>undefined</kbd>. First, we explain the need 
+        for the additional stack management
+        instructions and how they are used during function calls and returns. 
+        Then, we will explain implicit returning of <kbd>undefined</kbd>.
+        The interaction with tail recursion will be explained in section&nbsp;<REF NAME="sec:tail-recursion-return"><a class="superscript" id="5.4.1-sec-link-5.4.2" href="./5.4.2.html">5.4.2</a></REF>.
+      </p></div>
+      <div class='permalink'>
+<a name='p16' class='permalink'></a><p>
+        Returning from a compound function should jump to the value of
+        <kbd>continue</kbd> at the time of the
+        function call, which was stored on the stack at
+        <kbd>ev_application</kbd>. Doing so requires
+        that we restore the stack to its state at that moment in time by popping
+        all subsequently saved values which are no longer needed. Such values
+        may differ in number for different return statements and may be
+        introduced in the evaluation of sequences of statements (explained
+        shortly) which need temporary storage to process statements in a loop.
+        To address this unknown variable,
+        <kbd>compound_apply</kbd> pushes a 
+        <EM>marker</EM> value on the stack to indicate the top-value of the stack after
+        function returns. For simplicity, we introduce a new instruction for pushing
+        the marker: <kbd>push_mark_to_stack</kbd>.<a class='superscript' id='footnote-link-6' href='#footnote-6'style="color:green">[6]</a>
+      </p></div>
+      </span></td></tr></table>
+     
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_113_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+compound-apply
+(assign unev (op procedure-parameters) (reg proc))
+(assign env (op procedure-environment) (reg proc))
+(assign env (op extend-environment)
+      (reg unev) (reg argl) (reg env))
+(assign unev (op procedure-body) (reg proc))
+(goto (label ev-sequence))</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_113_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"compound_apply",
+      assign("unev", list(op("function_parameters"), reg("fun"))),
+      assign("env", list(op("function_environment"), reg("fun"))),
+      assign("env", list(op("extend_environment"), 
+                         reg("unev"), reg("argl"), reg("env"))),
+      assign("comp", list(op("function_body"), reg("fun"))),
+      push_mark_to_stack(),
+      assign("continue", label("return_undefined")),
+      go_to(label("eval_dispatch")),</pre></div></div></td></tr></table>
+  </p></div>
+
+    <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
         <tr><td>    </td>
+          <td></td>
+          <td><span style="color:blue">
+        <div class='permalink'>
+<a name='p17' class='permalink'></a><p>
+	  
+        When a return statement is evaluated at <kbd>ev_return</kbd>,
+        we use the <kbd>revert_stack_to_mark</kbd> instruction to restore the stack to its state at the beginning of the
+        function call by popping all values from the stack down to and including
+        the marker. 
+        As a consequence, <kbd>restore("continue")</kbd>
+        will restore the continuation of the function call, which was saved at
+        <kbd>ev_application</kbd>. We then proceed to
+        evaluate the return expression, whose result will be placed in <kbd>val</kbd>
+        and thus be the value returned from the function when we continue after the
+        evaluation of the return expression.
+      </p></div>
+    <div class='snippet' id='javascript_113_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"ev_return",
+      revert_stack_to_mark(),
+      restore("continue"),
+      assign("comp", list(op("return_expression"), reg("comp"))),
+      go_to(label("eval_dispatch")),</pre></div></div>
+      
+    <div class='permalink'>
+<a name='p18' class='permalink'></a><p>
+      If no return statement is encountered during evaluation of the function body,
+      evaluation continues at <kbd>return_undefined</kbd>, the
+      continuation that was set up at <kbd>compound_apply</kbd>.
+      To return <kbd>undefined</kbd> from the function, we put
+      <kbd>undefined</kbd> into
+      <kbd>val</kbd> and continue to the entry point that was
+      put onto the stack at <kbd>ev_application</kbd>. Before we
+      can restore that continuation from the stack, however, we must remove the marker
+      that was saved at <kbd>compound_apply</kbd>.
+      </p></div>
+
+    <div class='snippet' id='javascript_113_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"return_undefined",
+      revert_stack_to_mark(),
+      restore("continue"),
+      assign("val", constant(undefined)),
+      go_to(reg("continue")),</pre></div></div>
+   
+      </span></td></tr></table>
+  
+  
+      <div class='permalink'>
+        <a name='h4' class='permalink'></a><h2>
+     
+    <span style="color:blue">Blocks and </span>Sequence Evaluation
+  </h2></div>
+
+  
+  
+
+  <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr><td>    </td>
+          <td></td>
+          <td><span style="color:blue">
+      <div class='permalink'>
+<a name='p19' class='permalink'></a><p>
+        
+        
+        The body of a block is evaluated with
+        respect to the current environment extended by a binding
+        of all local names to the value
+        <kbd>"*unassigned*"</kbd>.
+        We temporarily make use of the <kbd>val</kbd>
+        register to hold the list of all variables declared in the block,
+        which is obtained by the function <kbd>scan_out_declarations</kbd>
+        from section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="5.4.1-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>.
+        
+    <div class='snippet' id='javascript_113_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"ev_block",
+      assign("comp", list(op("block_body"), reg("comp"))),
+      assign("val", list(op("scan_out_declarations"), reg("comp"))),
+
+      save("comp"), // temporarily use for *unassigned* values
+      assign("comp", list(op("list_of_unassigned"), reg("val"))),
+      assign("env", list(op("extend_environment"), 
+                         reg("val"), 
+                         reg("comp"), 
+                         reg("env"))),
+      restore("comp"),
+      go_to(label("eval_dispatch")),</pre></div></div>
+      
+      According to section&nbsp;<REF NAME="sec:representing-expressions"><a class="superscript" id="5.4.1-sec-link-4.1.2" href="./4.1.2.html">4.1.2</a></REF>,
+      all lambda expressions and functions have a block as their body. However,
+      <kbd>compound_apply</kbd> does not jump to
+      <kbd>ev_block</kbd> but to the dispatcher,
+      seemingly an additional hoop. By deferring to the dispatcher rather than
+      using a fixed label, we open up for more flexible parsing, such as
+      foregoing blocks when there are no variable declarations (so no need to
+      scan out declarations), or foregoing sequences where there is only a
+      single statement. Assuming that the parser follows the specification in
+      section&nbsp;<REF NAME="sec:representing-expressions"><a class="superscript" id="5.4.1-sec-link-4.1.2" href="./4.1.2.html">4.1.2</a></REF>,
+      <kbd>compound_apply</kbd> will always jump
+      (via the dispatcher) to <kbd>ev_block</kbd>, and
+      <kbd>ev_block</kbd> will always jump (via the dispatcher)
+      to <kbd>ev_sequence_start</kbd>.
+    </p></div>
+      
+    </span></td></tr></table>
+  
+  <div class='permalink'>
+<a name='p20' class='permalink'></a><p>
+    <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr><td><span style="color:green">
+        The portion of the explicit-control evaluator at
+        <kbd>ev-sequence</kbd> is analogous to the
+        metacircular evaluator's
+        <kbd>eval-sequence</kbd> procedure. It handles
+        sequences of expressions in procedure bodies or in explicit
+        <kbd>begin</kbd> expressions.
+      </span>    </td>
+          <td></td>
+          <td><span style="color:blue">
+        The portion of the explicit-control evaluator beginning at
+        <kbd>ev_sequence_start</kbd> is similar to the
+        metacircular evaluator's
+        <kbd>eval_sequence</kbd> function. It handles
+        sequences of statements in function bodies or at the top level.
+
+        The handling of returns in the explicit-control evaluator deviates from
+        the metacircular evaluator in order to support tail recursion. Because a
+        return statement will ensure that it continues to the proper place in
+        the program by manipulating the stack, sequence evaluation does not need to be
+        concerned with returns, or even be aware of the existence of 
+        return statements in the language.
+      </span></td></tr></table>
+  </p></div>
+
+  <div class='permalink'>
+<a name='p21' class='permalink'></a><p>
+    
+      <span style="color:green">explicit<kbd>begin</kbd> expressions</span>
+      <span style="color:blue">Sequences of statements</span>
+    
+    are evaluated 
+    
+      <span style="color:green">
+	      by placing the sequence of expressions
+      </span>
+      <span style="color:blue">
+	      at <kbd>ev_sequence_start</kbd> by placing the sequence of statements
+      </span>
+    
+    to be evaluated in
+    <kbd>unev</kbd>, saving
+    <kbd>continue</kbd> on the
+    stack, and jumping to 
+    
+      <span style="color:green"><kbd>ev-sequence</kbd>.</span>
+      <span style="color:blue"><kbd>ev_sequence</kbd>.</span>
+    
+     
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_113_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+ev-begin
+(assign unev (op begin-actions) (reg exp))
+(save continue)
+(goto (label ev-sequence))</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_113_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"ev_sequence_start",
+      assign("unev", list(op("sequence_statements"), reg("comp"))),
+      save("continue"),
+      go_to(label("ev_sequence")),</pre></div></div></td></tr></table>
+    
+    <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr><td><span style="color:green">
+        The implicit sequences in procedure bodies are handled by jumping to
+        <kbd>ev-sequence</kbd> from
+        <kbd>compound-apply</kbd>, at which point
+        <kbd>continue</kbd> is already on the stack, having
+        been saved at <kbd>ev-application</kbd>.
+      </span>    </td>
+          <td></td>
+          <td><span style="color:blue">
+        Saving <kbd>continue</kbd> allows
+        the register to be used in the iteration over the statements in the
+        sequence and contributes to values on the stack that will be removed
+        during the evaluation of a return statement. 
+      </span></td></tr></table>
+  </p></div>
+
+  <div class='permalink'>
+<a name='p22' class='permalink'></a><p>
+    The entries at
+    
+      <span style="color:green"><kbd>ev-sequence</kbd></span>
+      <span style="color:blue"><kbd>ev_sequence</kbd></span>
+    
+    and
+    
+      <span style="color:green"><kbd>ev-sequence-continue</kbd></span>
+      <span style="color:blue"><kbd>ev_sequence_continue</kbd>
+      </span>
+    
+    form a loop that successively evaluates each
+    
+      <span style="color:green">
+	expression
+      </span>
+      <span style="color:blue">
+	statement
+      </span>
+    
+    in a sequence.  The
+    list of unevaluated
+    
+      <span style="color:green">
+	expressions
+      </span>
+      <span style="color:blue">
+	statements
+      </span>
+    
+    is kept in <kbd>unev</kbd>.
+    Before evaluating each
+    
+      <span style="color:green">
+	expression,
+      </span>
+      <span style="color:blue">
+	statement,
+      </span>
+    
+    we check to see if there are additional
+    
+      <span style="color:green">
+	expressions
+      </span>
+      <span style="color:blue">
+	statements
+      </span>
+    
+    to be evaluated in the sequence.  If so, we save the rest of the
+    unevaluated
+    
+      <span style="color:green">
+	expressions
+      </span>
+      <span style="color:blue">
+	statements
+      </span>
+    
+    (held in <kbd>unev</kbd>) and the
+    environment in which these must be evaluated (held in
+    <kbd>env</kbd>) and call
+    
+      <span style="color:green"><kbd>eval-dispatch</kbd></span>
+      <span style="color:blue"><kbd>eval_dispatch</kbd>
+      </span>
+    
+    to evaluate the
+    
+      <span style="color:green">
+	expression.
+      </span>
+      <span style="color:blue">
+	statement.
+      </span>
+    
+    The two saved registers are restored upon
+    the return from this evaluation, at
+    
+      <span style="color:green"><kbd>ev-sequence-continue</kbd>.</span>
+      <span style="color:blue"><kbd>ev_sequence_continue</kbd> (or removed by a return statement, as this terminates the function instead of returning to <kbd>ev_sequence_continue</kbd>).
+      </span>
+    
+  </p></div>
+
+  <div class='permalink'>
+<a name='p23' class='permalink'></a><p>
+    The final
+    
+      <span style="color:green">
+	expression
+      </span>
+      <span style="color:blue">
+	statement
+      </span>
+    
+    in the sequence is handled differently, at the
+    entry point
+    
+      <span style="color:green"><kbd>ev-sequence-last-exp</kbd>.</span>
+      <span style="color:blue">
+	<kbd>ev_sequence_last_statement</kbd>.
+      </span>
+    
+    Since there are no more
+    
+      <span style="color:green">
+	expressions
+      </span>
+      <span style="color:blue">
+	statements
+      </span>
+    
+    to be evaluated after this one, we need
+    not save <kbd>unev</kbd> or
+    <kbd>env</kbd> before going to
+    
+      <span style="color:green"><kbd>eval-dispatch</kbd>.</span>
+      <span style="color:blue"><kbd>eval_dispatch</kbd>.
+    </span>
+    The value of the whole sequence is the value of the last
+    
+      <span style="color:green">
+	expression,
+      </span>
+      <span style="color:blue">
+	statement,
+      </span>
+    
+    so
+    after the evaluation of the last
+    
+      <span style="color:green">
+	expression
+      </span>
+      <span style="color:blue">
+	statement
+      </span>
+    
+    there is nothing left to do
+    except continue at the entry point currently held on the stack (which was
+    saved by
+    
+      <span style="color:green"><kbd>ev-application</kbd> or <kbd>ev-begin</kbd>.)</span>
+      <span style="color:blue"><kbd>ev_application</kbd> or <kbd>ev_sequence_start</kbd>.)</span>
+    
+    Rather than setting up <kbd>continue</kbd> to arrange for
+    
+      <span style="color:green"><kbd>eval-dispatch</kbd></span>
+      <span style="color:blue"><kbd>eval_dispatch</kbd>
+      </span>
+    
+    to return here and then restoring <kbd>continue</kbd> from
+    the stack and continuing at that entry point, we restore
+    <kbd>continue</kbd> from the stack before going to
+    
+      <span style="color:green"><kbd>eval-dispatch</kbd>,</span>
+      <span style="color:blue"><kbd>eval_dispatch</kbd>,
+      </span>
+    
+    so that
+    
+      <span style="color:green"><kbd>eval-dispatch</kbd></span>
+      <span style="color:blue"><kbd>eval_dispatch</kbd>
+      </span>
+    
+    will continue at that entry point after evaluating the
+    
+      <span style="color:green">
+	expression.
+      </span>
+      <span style="color:blue">
+	statement.
+      </span>
+    
+    
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_113_15_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+ev-sequence
+(assign exp (op first-exp) (reg unev))
+(test (op last-exp?) (reg unev))
+(branch (label ev-sequence-last-exp))
+(save unev)
+(save env)
+(assign continue (label ev-sequence-continue))
+(goto (label eval-dispatch))
+ev-sequence-continue
+(restore env)
+(restore unev)
+(assign unev (op rest-exps) (reg unev))
+(goto (label ev-sequence))
+ev-sequence-last-exp
+(restore continue)
+(goto (label eval-dispatch))</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_113_15_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"ev_sequence",
+      assign("comp", list(op("first_statement"), reg("unev"))),
+      test(list(op("is_last_statement"), reg("unev"))),
+      branch(label("ev_sequence_last_statement")),
+      save("unev"),
+      save("env"),
+      assign("continue", label("ev_sequence_continue")),
+      go_to(label("eval_dispatch")),
+      
+"ev_sequence_continue",
+      restore("env"),
+      restore("unev"),
+      assign("unev", list(op("rest_statements"), reg("unev"))),
+      go_to(label("ev_sequence")),
+
+"ev_sequence_last_statement",
+      restore("continue"),
+      go_to(label("eval_dispatch")),</pre></div></div></td></tr></table>
+  </p></div>
+    </span>    </td>
           <td></td>
           <td><span style="color:blue">
       
       <div class='permalink'>
-        <a name='h2' class='permalink'></a><h2>
+        <a name='h5' class='permalink'></a><h2>
      
         
           Conditionals
@@ -2247,7 +3542,7 @@ ev-lambda
 
       
       <div class='permalink'>
-<a name='p3' class='permalink'></a><p>
+<a name='p24' class='permalink'></a><p>
         
         As with the metacircular evaluator, syntactic forms are handled by selectively
         evaluating fragments of the component. For a conditional, we must evaluate the
@@ -2256,15 +3551,15 @@ ev-lambda
       </p></div>
 
       <div class='permalink'>
-<a name='p4' class='permalink'></a><p>
+<a name='p25' class='permalink'></a><p>
         Before evaluating the predicate, we save the conditional itself so that we can
         later extract the consequent or alternative. We also save the environment, which
         we will need later in order to evaluate the consequent or the alternative, and we
         save <kbd>continue</kbd>, which we will need later in
         order to return to the evaluation of the statement that is waiting for the value
-        of the conditional.<a class='superscript' id='footnote-link-2' href='#footnote-2'style="color:blue">[2]</a>
+        of the conditional.<a class='superscript' id='footnote-link-7' href='#footnote-7'style="color:blue">[7]</a>
          
-        <div class='snippet' id='javascript_113_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+        <div class='snippet' id='javascript_113_16_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_conditional",
   save("comp"), // save conditional for later
   save("env"),
@@ -2275,7 +3570,7 @@ ev-lambda
       </p></div>
 
       <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
+<a name='p26' class='permalink'></a><p>
         When we return from evaluating the predicate, we test whether it was true or false
         and, depending on the result, place either the consequent or the alternative in
         <kbd>comp</kbd> before going to
@@ -2284,7 +3579,7 @@ ev-lambda
         <kbd>continue</kbd> here sets up
         <kbd>eval_dispatch</kbd> to have the correct environment
         and to continue at the right place to receive the value of the conditional.
-        <div class='snippet' id='javascript_113_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+        <div class='snippet' id='javascript_113_17_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_conditional_decide",
   restore("continue"),
   restore("env"),
@@ -2301,7 +3596,7 @@ ev-lambda
 
       
       <div class='permalink'>
-        <a name='h3' class='permalink'></a><h2>
+        <a name='h6' class='permalink'></a><h2>
      
         
           Sequence Evaluation
@@ -2309,15 +3604,100 @@ ev-lambda
       </h2></div>
 
       <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
+<a name='p27' class='permalink'></a><p>
         The portion of the explicit-control evaluator beginning at
         <kbd>ev_sequence</kbd>, which handles sequences of
         statements. is analogous to the metacircular evaluator's
         <kbd>eval_sequence</kbd> function.  
       </p></div>
       <div class='permalink'>
-<a name='p7' class='permalink'></a><p>
-        The entries at <kbd>ev_sequence_next and          form a loop that         successively evaluates each statement in a sequence. The list of unevaluated         statements is kept in . At         , before starting the loop, we         place the sequence of statements to be evaluated in          and save          on the stack,                  because it will be used for local flow of control in the loop, and the original         value is needed for continuing after the statement sequence. Before evaluating         each statement, we check to see if there are additional statements to be evaluated         in the sequence. If so, we save the rest of the unevaluated statements (held in         ) and the environment in which these must         be evaluated (held in ) and call          to evaluate the statement. The         two saved registers are restored after this evaluation, at         .                                                 </kbd></p></div></span></td></tr></table><hr>
+<a name='p28' class='permalink'></a><p>
+        The entries at <kbd>ev_sequence_next</kbd> and
+        <kbd>ev_sequence_continue</kbd> form a loop that
+        successively evaluates each statement in a sequence. The list of unevaluated
+        statements is kept in <kbd>unev</kbd>. At
+        <kbd>ev_sequence</kbd>, before starting the loop, we
+        place the sequence of statements to be evaluated in
+        <kbd>unev</kbd> and save
+        <kbd>continue</kbd> on the stack,
+        
+        because it will be used for local flow of control in the loop, and the original
+        value is needed for continuing after the statement sequence. Before evaluating
+        each statement, we check to see if there are additional statements to be evaluated
+        in the sequence. If so, we save the rest of the unevaluated statements (held in
+        <kbd>unev</kbd>) and the environment in which these must
+        be evaluated (held in <kbd>env</kbd>) and call
+        <kbd>eval_dispatch</kbd> to evaluate the statement. The
+        two saved registers are restored after this evaluation, at
+        <kbd>ev_sequence_continue</kbd>.
+      </p></div>
+      <div class='permalink'>
+<a name='p29' class='permalink'></a><p>
+        The final statement in the sequence is handled differently, at the entry point
+        <kbd>ev_sequence_last_statement</kbd>. Since there are
+        no more statements to be evaluated after this one, we need not save
+        <kbd>unev</kbd> or
+        <kbd>env</kbd> before going to
+        <kbd>eval_dispatch</kbd>. The value of the whole
+        sequence is the value of the last statement, so after the evaluation of the last
+        statement there is nothing left to do except continue at the entry point that was
+        saved at <kbd>ev_sequence</kbd>.
+        Rather than setting up <kbd>continue</kbd> to arrange
+        for <kbd>eval_dispatch</kbd> to return here and then
+        restoring <kbd>continue</kbd> from the stack and
+        continuing at that entry point, we restore
+        <kbd>continue</kbd> from the stack before going to
+        <kbd>eval_dispatch</kbd>, so that
+        <kbd>eval_dispatch</kbd> will continue at that entry
+        point after evaluating the statement.
+        
+        
+        
+        
+        
+        
+        
+        
+      </p></div>
+
+      <div class='snippet' id='javascript_113_18_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"ev_sequence",
+  assign("unev", list(op("sequence_statements"), reg("comp"))),
+  save("continue"),
+"ev_sequence_next",
+  assign("comp", list(op("first_statement"), reg("unev"))),
+  test(list(op("is_last_statement"), reg("unev"))),
+  branch(label("ev_sequence_last_statement")),
+  save("unev"),
+  save("env"),
+  assign("continue", label("ev_sequence_continue")),
+  go_to(label("eval_dispatch")),
+"ev_sequence_continue",
+  restore("env"),
+  restore("unev"),
+  assign("unev", list(op("rest_statements"), reg("unev"))),
+  go_to(label("ev_sequence_next")),
+"ev_sequence_last_statement",
+  restore("continue"),
+  go_to(label("eval_dispatch")),</pre></div></div>
+
+      <div class='permalink'>
+<a name='p30' class='permalink'></a><p>
+        Unlike <kbd>eval_sequence</kbd> in the metacircular
+        evaluator, <kbd>ev_sequence</kbd> does not need to check whether a return statement was
+        evaluated so as to terminate the sequence evaluation. The <QUOTE>explicit
+        control</QUOTE> in this evaluator allows a return statement to jump directly to
+        the continuation of the current function application without resuming the
+        sequence evaluation. Thus sequence evaluation does not need to be concerned
+        with returns, or even be aware of the existence of return statements in the
+        language. Because a return statement jumps out of the sequence-evaluation code,
+        the restores of saved registers won't be executed. We will see how the
+        return statement removes these from the stack.
+        
+      </p></div>
+      
+    </span></td></tr></table>
+<hr>
 
     <div class='footnote'>
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1' >[1] </a>
@@ -2353,8 +3733,185 @@ ev-lambda
     </FOOTNOTE></div>
     
     
+    <div class='footnote'><span style="color:green">
+      <a class='footnote-number' id='footnote-2' href='#footnote-link-2' style="color:green">[2] </a>
+    <FOOTNOTE>
+    This is an important but subtle point in translating
+    algorithms from a procedural language, such as
+    
+      <span style="color:green">Lisp,</span>
+      <span style="color:blue">JavaScript,</span>
+    
+    to a register-machine language.  As an alternative to saving only what is
+    needed, we could save all the registers (except
+    <kbd>val</kbd>) before each recursive call.
+    This is called a 
+    
+    
+    <EM>framed-stack</EM> discipline.  This
+    would work but might save more registers than necessary; this could be
+    an important consideration in a system where stack operations are
+    expensive.  Saving registers whose contents will not be needed later
+    may also hold on to useless data that could otherwise be
+    garbage-collected, freeing space to be reused.
+    </FOOTNOTE></span></div>
+    
+    
+    <div class='footnote'><span style="color:green">
+      <a class='footnote-number' id='footnote-3' href='#footnote-link-3' style="color:green">[3] </a>
+    <FOOTNOTE>
+    We add to the evaluator data-structure
+    
+      <span style="color:green">procedures</span>
+      <span style="color:blue">functions</span>
+    
+    in section&nbsp;<REF NAME="sec:eval-data-structures"><a class="superscript" id="5.4.1-sec-link-4.1.3" href="./4.1.3.html">4.1.3</a></REF> the following two
+    
+      <span style="color:green">procedures</span>
+      <span style="color:blue">functions</span>
+    
+    for manipulating argument lists:
+     
+     
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_113_19_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+(define (empty-arglist) '())
+
+(define (adjoin-arg arg arglist)
+  (append arglist (list arg)))</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_113_19_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+function empty_arglist() { return null; }
+
+function adjoin_arg(arg, arglist) {
+    return append(arglist, list(arg));
+}</pre></div></div></td></tr></table>
+    We also use an additional syntax
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    to test for the last
+  
+    <span style="color:green">operand in a combination:</span>
+    <span style="color:blue">argument expression in an application:</span>
+  
+     
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_113_20_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+(define (last-operand? ops)
+(null? (cdr ops)))</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_113_20_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+function is_last_argument_expression(arg_expression) {
+    return is_null(tail(arg_expression));
+}</pre></div></div></td></tr></table>
+  
+    </FOOTNOTE></span></div>
+    
+    
+    <div class='footnote'><span style="color:green">
+      <a class='footnote-number' id='footnote-4' href='#footnote-link-4' style="color:green">[4] </a>
+    <FOOTNOTE>
+    The optimization of
+    treating the last 
+  
+    <span style="color:green">operand</span>
+    <span style="color:blue">argument expression</span>
+  
+    
+    specially is known as <EM>evlis tail recursion</EM> (see 
+    
+    <CITATION>Wand 1980</CITATION>). We could be somewhat more efficient
+    in the argument evaluation loop if we made evaluation of the first
+  
+    <span style="color:green">operand</span>
+    <span style="color:blue">argument expression</span>
+  
+    a special case too.  This would permit us to postpone
+    initializing <kbd>argl</kbd> until after evaluating the
+    first
+    
+      <span style="color:green">
+	operand,
+      </span>
+      <span style="color:blue">
+	argument expression,
+      </span>
+    
+    so
+    as to avoid saving <kbd>argl</kbd> in this case.  The
+    compiler in section&nbsp;<REF NAME="sec:compilation"><a class="superscript" id="5.4.1-sec-link-5.5" href="./5.5.html">5.5</a></REF> performs this
+    optimization.  (Compare the
+    
+      <span style="color:green"><kbd>construct-arglist</kbd></span>
+      <span style="color:blue"><kbd>construct_arglist</kbd>
+      </span>
+    
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    of section&nbsp;<REF NAME="sec:compiling-combinations"><a class="superscript" id="5.4.1-sec-link-5.5.3" href="./5.5.3.html">5.5.3</a></REF>.)
+    </FOOTNOTE></span></div>
+    
+    
+    <div class='footnote'><span style="color:green">
+      <a class='footnote-number' id='footnote-5' href='#footnote-link-5' style="color:green">[5] </a>
+    <FOOTNOTE>
+    
+    <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr><td><span style="color:green">
+        The order of operand evaluation in the metacircular evaluator is
+        determined by the order of evaluation of the arguments to
+        <kbd>cons</kbd> in the procedure
+        <kbd>list-of-values</kbd> of section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="5.4.1-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> (see exercise&nbsp;<REF NAME="ex:arg-eval-order"><a class="superscript" id="5.4.1-ex-link-4.2" href="./4.1.1.html#ex_4.2">4.2</a></REF>).
+      </span>    </td>
+          <td></td>
+          <td><span style="color:blue">
+        The order of argument-expression evaluation by the function
+        <kbd>list_of_values</kbd> in the metacircular
+        evaluator is determined by the order of evaluation of the arguments to
+        <kbd>pair</kbd>, which is used to construct the
+        argument list. The version of
+        <kbd>list_of_values</kbd>
+        in footnote&nbsp;<REF NAME="foot:mceval-higher-order"><a class="superscript" id="5.4.1-foot-link-3" href="./4.1.1.html#footnote-3">3</a></REF> of section&nbsp;<REF NAME="sec:mc-eval"><a class="superscript" id="5.4.1-sec-link-4.1" href="./4.1.html">4.1</a></REF> calls <kbd>pair</kbd>
+        directly; the version in the text uses
+        <kbd>map</kbd>, which calls
+        <kbd>pair</kbd>.
+        (See exercise&nbsp;<REF NAME="ex:arg-eval-order"><a class="superscript" id="5.4.1-ex-link-4.2" href="./4.1.1.html#ex_4.2">4.2</a></REF>.)
+      </span></td></tr></table>
+    
+    </FOOTNOTE></span></div>
+    
+    
+    <div class='footnote'><span style="color:green">
+      <a class='footnote-number' id='footnote-6' href='#footnote-link-6' style="color:green">[6] </a>
+    <FOOTNOTE>
+    
+        The special instruction <kbd>push_mark_to_stack</kbd> and its counterpart,
+        <kbd>revert_stack_to_mark</kbd>, are not strictly
+        necessary and could be implemented by explicitly pushing and popping a
+        marker value onto and off the stack. Anything that could not be confused
+        for a value in the program can be used as a marker, for example
+        a pointer to a specific list or function object.
+        See exercise <REF NAME="ex:push_mark_to_stack1"><a class="superscript" id="5.4.1-ex-link-5.24" href="./5.4.2.html#ex_5.24">5.24</a></REF>.
+      
+    </FOOTNOTE></span></div>
+    
+    
     <div class='footnote'><span style="color:blue">
-      <a class='footnote-number' id='footnote-2' href='#footnote-link-2' style="color:blue">[2] </a>
+      <a class='footnote-number' id='footnote-7' href='#footnote-link-7' style="color:blue">[7] </a>
     <FOOTNOTE>
     
 

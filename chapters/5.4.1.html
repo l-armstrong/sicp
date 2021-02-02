@@ -2250,7 +2250,94 @@ Acknowledgments
       </p></div>
       <div class='permalink'>
 <a name='p7' class='permalink'></a><p>
-        The entries at <kbd>ev_sequence_next and          form a loop that         successively evaluates each statement in a sequence. The list of unevaluated         statements is kept in . At         , before starting the loop, we         place the sequence of statements to be evaluated in          and save          on the stack,                  because it will be used for local flow of control in the loop, and the original         value is needed for continuing after the statement sequence. Before evaluating         each statement, we check to see if there are additional statements to be evaluated         in the sequence. If so, we save the rest of the unevaluated statements (held in         ) and the environment in which these must         be evaluated (held in ) and call          to evaluate the statement. The         two saved registers are restored after this evaluation, at         .                                                 </kbd></p></div><hr>
+        The entries at <kbd>ev_sequence_next</kbd> and
+        <kbd>ev_sequence_continue</kbd> form a loop that
+        successively evaluates each statement in a sequence. The list of unevaluated
+        statements is kept in <kbd>unev</kbd>. At
+        <kbd>ev_sequence</kbd>, before starting the loop, we
+        place the sequence of statements to be evaluated in
+        <kbd>unev</kbd> and save
+        <kbd>continue</kbd> on the stack,
+        
+        because it will be used for local flow of control in the loop, and the original
+        value is needed for continuing after the statement sequence. Before evaluating
+        each statement, we check to see if there are additional statements to be evaluated
+        in the sequence. If so, we save the rest of the unevaluated statements (held in
+        <kbd>unev</kbd>) and the environment in which these must
+        be evaluated (held in <kbd>env</kbd>) and call
+        <kbd>eval_dispatch</kbd> to evaluate the statement. The
+        two saved registers are restored after this evaluation, at
+        <kbd>ev_sequence_continue</kbd>.
+      </p></div>
+      <div class='permalink'>
+<a name='p8' class='permalink'></a><p>
+        The final statement in the sequence is handled differently, at the entry point
+        <kbd>ev_sequence_last_statement</kbd>. Since there are
+        no more statements to be evaluated after this one, we need not save
+        <kbd>unev</kbd> or
+        <kbd>env</kbd> before going to
+        <kbd>eval_dispatch</kbd>. The value of the whole
+        sequence is the value of the last statement, so after the evaluation of the last
+        statement there is nothing left to do except continue at the entry point that was
+        saved at <kbd>ev_sequence</kbd>.
+        Rather than setting up <kbd>continue</kbd> to arrange
+        for <kbd>eval_dispatch</kbd> to return here and then
+        restoring <kbd>continue</kbd> from the stack and
+        continuing at that entry point, we restore
+        <kbd>continue</kbd> from the stack before going to
+        <kbd>eval_dispatch</kbd>, so that
+        <kbd>eval_dispatch</kbd> will continue at that entry
+        point after evaluating the statement.
+        
+        
+        
+        
+        
+        
+        
+        
+      </p></div>
+
+      <div class='snippet' id='javascript_113_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"ev_sequence",
+  assign("unev", list(op("sequence_statements"), reg("comp"))),
+  save("continue"),
+"ev_sequence_next",
+  assign("comp", list(op("first_statement"), reg("unev"))),
+  test(list(op("is_last_statement"), reg("unev"))),
+  branch(label("ev_sequence_last_statement")),
+  save("unev"),
+  save("env"),
+  assign("continue", label("ev_sequence_continue")),
+  go_to(label("eval_dispatch")),
+"ev_sequence_continue",
+  restore("env"),
+  restore("unev"),
+  assign("unev", list(op("rest_statements"), reg("unev"))),
+  go_to(label("ev_sequence_next")),
+"ev_sequence_last_statement",
+  restore("continue"),
+  go_to(label("eval_dispatch")),</pre></div></div>
+
+      <div class='permalink'>
+<a name='p9' class='permalink'></a><p>
+        Unlike <kbd>eval_sequence</kbd> in the metacircular
+        evaluator, <kbd>ev_sequence</kbd> does not need to check whether a return statement was
+        evaluated so as to terminate the sequence evaluation. The <QUOTE>explicit
+        control</QUOTE> in this evaluator allows a return statement to jump directly to
+        the continuation of the current function application without resuming the
+        sequence evaluation. Thus sequence evaluation does not need to be concerned
+        with returns, or even be aware of the existence of return statements in the
+        language. Because a return statement jumps out of the sequence-evaluation code,
+        the restores of saved registers won't be executed. We will see how the
+        return statement removes these from the stack.
+        
+      </p></div>
+      
+    
+    
+  
+<hr>
 
     <div class='footnote'>
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1'>[1] </a>
