@@ -15,11 +15,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <meta name="description" content="5.4.3&nbsp;&nbsp;
-    Conditionals, Assignments<span style="color:green">, and Definitions</span><span style="color:blue">, and Declarations</span>
+    
+      <span style="color:green">
+        Conditionals, Assignments and Definitions
+      </span>
+      <span style="color:blue">
+        Blocks, Assignments, and Declarations
+      </span>
+    
   " />
     <title>
       5.4.3&nbsp;&nbsp;
-    Conditionals, Assignments<span style="color:green">, and Definitions</span><span style="color:blue">, and Declarations</span>
+    
+      <span style="color:green">
+        Conditionals, Assignments and Definitions
+      </span>
+      <span style="color:blue">
+        Blocks, Assignments, and Declarations
+      </span>
+    
   
     </title>
     
@@ -1781,7 +1795,10 @@ Acknowledgments
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-114" aria-expanded="false" aria-controls="sidebar-collapse-114">
                 <a href="./5.4.1.html"> 5.4.1 
-    The Core of the Explicit-Control Evaluator
+    
+      <span style="color:green">The Core of the Explicit-Control Evaluator</span>
+      <span style="color:blue">The Dispatcher and Basic Evaluation</span>
+    
   </a>
               </span>
             </h5>
@@ -1793,8 +1810,8 @@ Acknowledgments
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-115" aria-expanded="false" aria-controls="sidebar-collapse-115">
                 <a href="./5.4.2.html"> 5.4.2 
-    Return Statements and Tail Recursion
-  </a>
+        Evaluating function applications
+      </a>
               </span>
             </h5>
           </div>
@@ -1805,7 +1822,14 @@ Acknowledgments
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-116" aria-expanded="false" aria-controls="sidebar-collapse-116">
                 <a href="./5.4.3.html"> 5.4.3 
-    Conditionals, Assignments<span style="color:green">, and Definitions</span><span style="color:blue">, and Declarations</span>
+    
+      <span style="color:green">
+        Conditionals, Assignments and Definitions
+      </span>
+      <span style="color:blue">
+        Blocks, Assignments, and Declarations
+      </span>
+    
   </a>
               </span>
             </h5>
@@ -1981,7 +2005,14 @@ Acknowledgments
         <div class='permalink'>
         <a name='top' class='permalink'> 
     5.4.3&nbsp;&nbsp;
-    Conditionals, Assignments<span style="color:green">, and Definitions</span><span style="color:blue">, and Declarations</span>
+    
+      <span style="color:green">
+        Conditionals, Assignments and Definitions
+      </span>
+      <span style="color:blue">
+        Blocks, Assignments, and Declarations
+      </span>
+    
   
         </a>
         </div>
@@ -1991,137 +2022,54 @@ Acknowledgments
     
 
   
+  
+  <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr><td><span style="color:green">
+  
+  
   <div class='permalink'>
 <a name='p1' class='permalink'></a><p>
-    
-    As with the metacircular evaluator,
-    
-      <span style="color:green">
-        special
-      </span>
-      <span style="color:blue">
-        syntactic
-      </span>
-    
-    forms are handled by
-    selectively evaluating fragments of the
-    
-      <span style="color:green">
-        expression.
-      </span>
-      <span style="color:blue">
-        component.
-      </span>
-    
-    For
-    
-      <span style="color:green">
-	an <kbd>if</kbd> expression, 
-      </span>
-      <span style="color:blue">
-	a conditional,
-      </span>
-    
-    we must evaluate the predicate and decide, based on the
-    value of predicate, whether to evaluate the consequent or the
-    alternative.
+    As with the metacircular evaluator, special syntactic forms are handled by selectively
+    evaluating fragments of the expression. For an <kbd>if</kbd>
+    expression, we must evaluate the predicate and decide, based on the value of
+    predicate, whether to evaluate the consequent or the alternative.
   </p></div>
 
   <div class='permalink'>
 <a name='p2' class='permalink'></a><p>
-    Before evaluating the predicate, we save the
-    
-      <span style="color:green">
-	<kbd>if</kbd> expression 
-      </span>
-      <span style="color:blue">
-	conditional
-      </span>
-    
-    itself so that we can later extract the consequent or
-    alternative.  We also save the environment, which we will need later in
-    order to evaluate the consequent or the alternative, and we save
-    <kbd>continue</kbd>, which we will need later in order to
-    return to the evaluation of the
-    
-      <span style="color:green">
-        expression
-      </span>
-      <span style="color:blue">
-        statement
-      </span>
-    
-    that is waiting for the value of
-    the
-    
-      <span style="color:green">
-	<kbd>if</kbd>.
-      </span>
-      <span style="color:blue">
-	      conditional.<a class='superscript' id='footnote-link-1' href='#footnote-1'style="color:blue">[1]</a>
-      </span>
-    
-     
-    <table width="100%">
-          <colgroup><col width="48%"><col width="52%"></colgroup>
-          
-          <tr>
-            <td><div class='snippet' id='javascript_115_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    Before evaluating the predicate, we save the <kbd>if</kbd>
+    expression itself so that we can later extract the consequent or alternative. We also
+    save the environment, which we will need later in order to evaluate the consequent or
+    the alternative, and we save <kbd>continue</kbd>, which we will need
+    later in order to return to the evaluation of the expression that is waiting for the
+    value of the <kbd>if</kbd>.
+    <div class='snippet' id='javascript_115_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 ev-if
 (save exp)                    
 (save env)
 (save continue)
 (assign continue (label ev-if-decide))
 (assign exp (op if-predicate) (reg exp))
-(goto (label eval-dispatch))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_115_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-"ev_conditional",
-      save("comp"), // save conditional for later
-      save("env"),
-      save("continue"),
-      assign("continue", label("ev_conditional_decide")),
-      assign("comp", list(op("conditional_predicate"), reg("comp"))),
-      go_to(label("eval_dispatch")), // evaluate the predicate</pre></div></div></td></tr></table>
+(goto (label eval-dispatch))</pre></div></div>
   </p></div>
 
   <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
-    When we return from evaluating the predicate, we test whether it was
-    true or false and, depending on the result, place either the
-    consequent or the alternative in
-    
-      <span style="color:green"><kbd>exp</kbd></span>
-      <span style="color:blue"><kbd>comp</kbd></span>
-    
-    before
-    going to
-    
-      <span style="color:green"><kbd>eval-dispatch</kbd>.</span>
-      <span style="color:blue"><kbd>eval_dispatch</kbd>.
-      </span>
-    
-    Notice that restoring <kbd>env</kbd> and
-    <kbd>continue</kbd> here sets up
-    
-      <span style="color:green"><kbd>eval-dispatch</kbd></span>
-      <span style="color:blue"><kbd>eval_dispatch</kbd>
-      </span>
-    
-    to have the correct environment and
-    to continue at the right place to receive the value of the
-    
-      <span style="color:green">
-	<kbd>if</kbd> expression. 
-      </span>
-      <span style="color:blue">
-	conditional.
-      </span>
-    
-    <table width="100%">
-          <colgroup><col width="48%"><col width="52%"></colgroup>
-          
-          <tr>
-            <td><div class='snippet' id='javascript_115_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    When we return from evaluating the predicate, we test whether it was true or false
+    and, depending on the result, place either the consequent or the alternative in
+    <kbd>exp</kbd> before going to
+    <kbd>eval-dispatch</kbd>. Notice that restoring
+    <kbd>env</kbd> and <kbd>continue</kbd> here sets
+    up <kbd>eval-dispatch</kbd> to have the correct environment and to
+    continue at the right place to receive the value of the
+    <kbd>if</kbd> expression.
+    <div class='snippet' id='javascript_115_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 ev-if-decide
 (restore continue)
 (restore env)
@@ -2133,35 +2081,71 @@ ev-if-alternative
 (goto (label eval-dispatch))
 ev-if-consequent
 (assign exp (op if-consequent) (reg exp))
-(goto (label eval-dispatch))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_115_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-"ev_conditional_decide",
-      restore("continue"),
-      restore("env"),
-      restore("comp"),
-      test(list(op("is_falsy"), reg("val"))),
-      branch(label("ev_conditional_alternative")),
-      
-"ev_conditional_consequent",
-      assign("comp", list(op("conditional_consequent"), reg("comp"))),
-      go_to(label("eval_dispatch")),
-      
-"ev_conditional_alternative",
-      assign("comp", list(op("conditional_alternative"), reg("comp"))),
-      go_to(label("eval_dispatch")),</pre></div></div></td></tr></table>
+(goto (label eval-dispatch))</pre></div></div>
   </p></div>
+    </span>    </td>
+          <td></td>
+          <td><span style="color:blue">
+      
+      <div class='permalink'>
+        <a name='h1' class='permalink'></a><h2>
+     
+        Blocks
+      </h2></div>
+      
+      
+      <div class='permalink'>
+<a name='p4' class='permalink'></a><p>
+        The body of a block is evaluated with respect to the current environment extended
+        by a binding of all local names to the value <kbd>"*unassigned*"</kbd>. We temporarily
+        make use of the <kbd>val</kbd> register to hold the list of all variables declared in
+        the block, which is obtained by the function <kbd>scan_out_declarations</kbd> from
+        section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="5.4.3-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>.
+      
+
+    <div class='snippet' id='javascript_115_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"ev_block",
+  assign("comp", list(op("block_body"), reg("comp"))),
+  assign("val", list(op("scan_out_declarations"), reg("comp"))),
+
+  save("comp"), // temporarily use for *unassigned* values
+  assign("comp", list(op("list_of_unassigned"), reg("val"))),
+  assign("env", list(op("extend_environment"), 
+                     reg("val"), 
+                     reg("comp"), 
+                     reg("env"))),
+  restore("comp"),
+  go_to(label("eval_dispatch")),</pre></div></div>
+      </p></div>
+      <div class='permalink'>
+<a name='p5' class='permalink'></a><p>
+    According to section&nbsp;<REF NAME="sec:representing-expressions"><a class="superscript" id="5.4.3-sec-link-4.1.2" href="./4.1.2.html">4.1.2</a></REF>, all lambda
+    expressions and functions have a block as their body. However,
+    <kbd>compound_apply</kbd> does not jump to
+    <kbd>ev_block</kbd> but to the dispatcher, seemingly an
+    additional hoop. By deferring to the dispatcher rather than using a fixed label, we
+    open up for more flexible parsing, such as forgoing blocks when there are no variable
+    declarations (so no need to scan out declarations), or forgoing sequences where there
+    is only a single statement. If the parser follows the specification in
+    section&nbsp;<REF NAME="sec:representing-expressions"><a class="superscript" id="5.4.3-sec-link-4.1.2" href="./4.1.2.html">4.1.2</a></REF>,
+    <kbd>compound_apply</kbd> will always jump (via the
+    dispatcher) to <kbd>ev_block</kbd>, and
+    <kbd>ev_block</kbd> will always jump (via the dispatcher) to
+    <kbd>ev_sequence</kbd>.
+      </p></div>
+    </span></td></tr></table>
   
   
       <div class='permalink'>
-        <a name='h1' class='permalink'></a><h2>
+        <a name='h2' class='permalink'></a><h2>
      
     Assignments and <span style="color:green">definitions</span><span style="color:blue">declarations</span>
   </h2></div>
 
   <div class='permalink'>
-<a name='p4' class='permalink'></a><p>
-    
+<a name='p6' class='permalink'></a><p>
     Assignments are handled by
+    
     
       <span style="color:green"><kbd>ev-assignment</kbd>,</span>
       <span style="color:blue"><kbd>ev_assignment</kbd>,
@@ -2199,7 +2183,7 @@ ev-if-consequent
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_115_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_115_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 ev-assignment
 (assign unev (op assignment-variable) (reg exp))
 (save unev)                   
@@ -2216,27 +2200,26 @@ ev-assignment-1
 (op set-variable-value!) (reg unev) (reg val) (reg env))
 (assign val (const ok))
 (goto (reg continue))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_115_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_115_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_assignment",
-      assign("unev", list(op("assignment_symbol"), reg("comp"))),
-      save("unev"), // save variable for later
-      assign("comp", list(op("assignment_value_expression"), reg("comp"))),
-      save("env"),
-      save("continue"),
-      assign("continue", label("ev_assignment_1")),
-      go_to(label("eval_dispatch")), // evaluate assignment value
-      
-"ev_assignment_1",
-      restore("continue"),
-      restore("env"),
-      restore("unev"),
-      perform(list(op("assign_symbol_value"),
-                   reg("unev"), reg("val"), reg("env"))),
-      go_to(reg("continue")),</pre></div></div></td></tr></table>
+  assign("unev", list(op("assignment_symbol"), reg("comp"))),
+  save("unev"), // save variable for later
+  assign("comp", list(op("assignment_value_expression"), reg("comp"))),
+  save("env"),
+  save("continue"),
+  assign("continue", label("ev_assignment_install")),
+  go_to(label("eval_dispatch")), // evaluate assignment value
+"ev_assignment_install",
+  restore("continue"),
+  restore("env"),
+  restore("unev"),
+  perform(list(op("assign_symbol_value"),
+               reg("unev"), reg("val"), reg("env"))),
+  go_to(reg("continue")),</pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
+<a name='p7' class='permalink'></a><p>
     
     
       <span style="color:green">
@@ -2262,7 +2245,7 @@ ev-assignment-1
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_115_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_115_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 ev-definition
 (assign unev (op definition-variable) (reg exp))
 (save unev)                   
@@ -2279,34 +2262,30 @@ ev-definition-1
 (op define-variable!) (reg unev) (reg val) (reg env))
 (assign val (const ok))
 (goto (reg continue))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_115_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_115_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_function_declaration",
-      assign("comp", list(op("function_decl_to_constant_decl"), reg("comp"))),
-
+  assign("comp", list(op("function_decl_to_constant_decl"), reg("comp"))),
 "ev_declaration",
-      assign("unev", list(op("declaration_symbol"),
-                          reg("comp"))),
-      save("unev"), // save declared name
-      assign("comp", list(op("declaration_value_expression"),
-                          reg("comp"))),
-      save("env"),
-      save("continue"),
-      assign("continue", label("ev_declaration_assign")),
-      go_to(label("eval_dispatch")), // evaluate declaration value
-      
+  assign("unev", list(op("declaration_symbol"), reg("comp"))),
+  save("unev"), // save declared name
+  assign("comp", list(op("declaration_value_expression"), reg("comp"))),
+  save("env"),
+  save("continue"),
+  assign("continue", label("ev_declaration_assign")),
+  go_to(label("eval_dispatch")), // evaluate declaration value
 "ev_declaration_assign",
-      restore("continue"),
-      restore("env"),
-      restore("unev"),
-      perform(list(op("assign_symbol_value"),
-                   reg("unev"), reg("val"), reg("env"))),
-      assign("val", constant(undefined)),
-      go_to(reg("continue")),</pre></div></div></td></tr></table>
+  restore("continue"),
+  restore("env"),
+  restore("unev"),
+  perform(list(op("assign_symbol_value"),
+               reg("unev"), reg("val"), reg("env"))),
+  assign("val", constant(undefined)),
+  go_to(reg("continue")),</pre></div></div></td></tr></table>
   </p></div>
   
   
     <div class="permalink">
-    <a name="ex_5.23" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.23">Exercise 5.23 </a></b> 
+    <a name="ex_5.27" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.27">Exercise 5.27 </a></b> 
   
     
     
@@ -2326,7 +2305,7 @@ ev-definition-1
 	(section&nbsp;<REF NAME="sec:representing-expressions"><a class="superscript" id="5.4.3-sec-link-4.1.2" href="./4.1.2.html">4.1.2</a></REF>).
 	You may <QUOTE>cheat</QUOTE> and assume that the syntax
 	transformers such as <kbd>cond->if</kbd> are available
-	as machine operations.<a class='superscript' id='footnote-link-2' href='#footnote-2'style="color:green">[2]</a>
+	as machine operations.<a class='superscript' id='footnote-link-1' href='#footnote-1'style="color:green">[1]</a>
       </span>    </td>
           <td></td>
           <td><span style="color:blue">
@@ -2340,7 +2319,7 @@ ev-definition-1
 	<kbd>while_loop</kbd> in front of user programs.
 	You may <QUOTE>cheat</QUOTE> and assume that the syntax transformer
 	<kbd>while_to_application</kbd> is available
-	as a machine operation.<a class='superscript' id='footnote-link-3' href='#footnote-3'style="color:blue">[3]</a> Refer to
+	as a machine operation.<a class='superscript' id='footnote-link-2' href='#footnote-2'style="color:blue">[2]</a> Refer to
 	exercise&nbsp;<REF NAME="ex:while_loop"><a class="superscript" id="5.4.3-ex-link-4.11" href="./4.1.2.html#ex_4.11">4.11</a></REF> to discuss whether
 	this approach works if return, break and continue statements are allowed
 	inside the while loop. If not,
@@ -2363,27 +2342,19 @@ ev-definition-1
           <td></td>
           <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
         </tr>
-        <tr><td>    </td>
-          <td></td>
-          <td><span style="color:blue">
+        <tr><td><span style="color:green">
       
     <div class="permalink">
-    <a name="ex_5.24" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.24">Exercise 5.24 </a></b> 
+    <a name="ex_5.28" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.28">Exercise 5.28 </a></b> 
   
         
-        Implement the equivalent of <kbd>save_marker</kbd> by
-        using <kbd>save</kbd> at
-        <kbd>compound_apply</kbd> to store a special marker
-        value on the stack. Implement the equivalent of
-        <kbd>restore_marker</kbd> at
-        <kbd>ev_return</kbd> and
-        <kbd>return_undefined</kbd> as a loop that repeatedly
-        performs a <kbd>restore</kbd> until it hits the
-        marker. Note that this will require restoring a value to a register other than the one it
-        was saved from. (Although we are careful to avoid that in our evaluator, our stack
-        implementation actually allows it. See exercise <REF NAME="ex:stack-behavior"><a class="superscript" id="5.4.3-ex-link-5.11" href="./5.2.3.html#ex_5.11">5.11</a></REF>.)
-        This is necessary because the only way to pop from the stack is by
-        restoring to a register.
+	      Implement <kbd>cond</kbd> as a new basic special form
+	      without reducing it to <kbd>if</kbd>. You will have to
+	      construct a loop that tests the predicates of successive
+	      <kbd>cond</kbd> clauses until you find one that is
+	      true, and then use <kbd>ev-sequence</kbd> to evaluate
+	      the actions of the clause.
+        
       
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_115_2_div" data-toggle="collapse">Add solution</button></div>
@@ -2392,53 +2363,9 @@ ev-definition-1
     
 </EXERCISE></div>
 
-    </span></td></tr></table>
-  
-  
-    <div class="permalink">
-    <a name="ex_5.25" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.25">Exercise 5.25 </a></b> 
-  
-    
-    <table width="100%">
-        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
-        <tr>
-          <td class="meta" style = "color:grey; text-align: center">Original</td>
+    </span>    </td>
           <td></td>
-          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
-        </tr>
-        <tr><td><span style="color:green">
-	      Implement <kbd>cond</kbd> as a new basic special form
-	      without reducing it to <kbd>if</kbd>. You will have to
-	      construct a loop that tests the predicates of successive
-	      <kbd>cond</kbd> clauses until you find one that is
-	      true, and then use <kbd>ev-sequence</kbd> to evaluate
-	      the actions of the clause.
-      </span>    </td>
-          <td></td>
-          <td><span style="color:blue">
-        
-        Implement <kbd>save_marker</kbd> and
-        <kbd>restore_marker</kbd> as new register-machine
-        instructions, following the implementation of
-        <kbd>save</kbd> and
-        <kbd>restore</kbd> in section 5.2.3. Add functions
-        <kbd>push_marker</kbd> and
-        <kbd>pop_marker</kbd> to access stacks, mirroring the
-        implementation of <kbd>push</kbd> and
-        <kbd>pop</kbd> in section 5.2.1. Note that you do not
-        need to actually insert a marker into the stack. Instead, you can add a local
-        state variable to the stack model to keep track of the position of the last save
-        before each <kbd>save_marker</kbd>.
-      </span></td></tr></table>
-      
-  
-      <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_115_3_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_115_3_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
-      </div>
-    
-</EXERCISE></div>
-
+          <td></td></tr></table>
 
   
     <div class="permalink">
@@ -2451,32 +2378,16 @@ ev-definition-1
     section&nbsp;<REF NAME="sec:lazy-evaluation"><a class="superscript" id="5.4.3-sec-link-4.2" href="./4.2.html">4.2</a></REF>.
   
       <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_115_4_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_115_4_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_115_3_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_115_3_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
       </div>
     
 </EXERCISE></div>
 
 <hr>
 
-    <div class='footnote'><span style="color:blue">
-      <a class='footnote-number' id='footnote-1' href='#footnote-link-1' style="color:blue">[1] </a>
-    <FOOTNOTE>
-    In this chapter, we will use the function
-        <kbd>is_falsy</kbd> to test the value of
-        the predicate. This allows us to write the consequent and the
-        alternate branches in the same order as they appear in a conditional,
-        and simply fall through to the consequent branch when the predicate
-        holds. The function is declared as the opposite of the
-        <kbd>is_truthy</kbd> function used to
-        test predicates of conditionals in section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="5.4.3-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>.
-	
-      
-    </FOOTNOTE></span></div>
-    
-    
     <div class='footnote'><span style="color:green">
-      <a class='footnote-number' id='footnote-2' href='#footnote-link-2' style="color:green">[2] </a>
+      <a class='footnote-number' id='footnote-1' href='#footnote-link-1' style="color:green">[1] </a>
     <FOOTNOTE>
     This isn't really cheating.  In an
 	actual implementation built from scratch, we would use our explicit-control
@@ -2490,7 +2401,7 @@ ev-definition-1
     
     
     <div class='footnote'><span style="color:blue">
-      <a class='footnote-number' id='footnote-3' href='#footnote-link-3' style="color:blue">[3] </a>
+      <a class='footnote-number' id='footnote-2' href='#footnote-link-2' style="color:blue">[2] </a>
     <FOOTNOTE>
     This isn't really cheating.  In an
 	actual implementation built from scratch, we would use our explicit-control
@@ -2513,7 +2424,14 @@ ev-definition-1
       </div>
     <div class='chapter_sign'>
       5.4.3&nbsp;&nbsp;
-    Conditionals, Assignments<span style="color:green">, and Definitions</span><span style="color:blue">, and Declarations</span>
+    
+      <span style="color:green">
+        Conditionals, Assignments and Definitions
+      </span>
+      <span style="color:blue">
+        Blocks, Assignments, and Declarations
+      </span>
+    
   
     </div>
     <script> var chapter_id = 116; </script>

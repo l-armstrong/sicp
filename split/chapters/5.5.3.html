@@ -1797,7 +1797,10 @@ Acknowledgments
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-114" aria-expanded="false" aria-controls="sidebar-collapse-114">
                 <a href="./5.4.1.html"> 5.4.1 
-    The Core of the Explicit-Control Evaluator
+    
+      <span style="color:green">The Core of the Explicit-Control Evaluator</span>
+      <span style="color:blue">The Dispatcher and Basic Evaluation</span>
+    
   </a>
               </span>
             </h5>
@@ -1809,8 +1812,8 @@ Acknowledgments
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-115" aria-expanded="false" aria-controls="sidebar-collapse-115">
                 <a href="./5.4.2.html"> 5.4.2 
-    Return Statements and Tail Recursion
-  </a>
+        Evaluating function applications
+      </a>
               </span>
             </h5>
           </div>
@@ -1821,7 +1824,14 @@ Acknowledgments
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-116" aria-expanded="false" aria-controls="sidebar-collapse-116">
                 <a href="./5.4.3.html"> 5.4.3 
-    Conditionals, Assignments<span style="color:green">, and Definitions</span><span style="color:blue">, and Declarations</span>
+    
+      <span style="color:green">
+        Conditionals, Assignments and Definitions
+      </span>
+      <span style="color:blue">
+        Blocks, Assignments, and Declarations
+      </span>
+    
   </a>
               </span>
             </h5>
@@ -2033,7 +2043,7 @@ Acknowledgments
     linkage has the form
     <kbd class='snippet'>
 $\langle{}$<EM>compilation of function expression, target <kbd>fun</kbd>, linkage <kbd>"next"</kbd></EM>$\rangle$
-$\langle{}$<EM>evaluate arg expressions and construct arg list in <kbd>argl</kbd></EM>$\rangle$
+$\langle{}$<EM>evaluate argument expressions and construct argument list in <kbd>argl</kbd></EM>$\rangle$
 $\langle{}$<EM>compilation of function call with given target and linkage</EM>$\rangle$
       </kbd>
 
@@ -2156,7 +2166,7 @@ $\langle{}$<EM>compilation of function call with given target and linkage</EM>$\
     construction of the argument list (since evaluating the
     
       <span style="color:green">operands</span>
-      <span style="color:blue">arguments</span>
+      <span style="color:blue">argument expressions</span>
     
     might
     modify
@@ -2209,19 +2219,16 @@ $\langle{}$<EM>compilation of function call with given target and linkage</EM>$\
             <td><div class='snippet' id='javascript_120_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_application(exp, target, linkage) {
     const fun_code = compile(function_expression(exp), "fun", "next"); 
-    const arguments_codes =
+    const argument_codes =
               map(arg => compile(arg, "val", "next"),
                   arg_expressions(exp));
     return preserving(list("env", "continue"), 
                fun_code,
                preserving(list("fun", "continue"), 
-                   construct_arglist(arguments_codes),
+                   construct_arglist(argument_codes),
                        compile_function_call(target, linkage)));
 }</pre></div></div></td></tr></table>
-  </p></div>
 
-  <div class='permalink'>
-<a name='p3' class='permalink'></a><p>
     The code to construct the argument list will evaluate each
     
       <span style="color:green">
@@ -2302,7 +2309,7 @@ assign("argl", list(op("pair"), reg("val"), reg("argl"))),
   </p></div>
 
   <div class='permalink'>
-<a name='p4' class='permalink'></a><p>
+<a name='p3' class='permalink'></a><p>
     Compiling this argument code is a bit tricky, because of the special
     treatment of the first
     
@@ -2454,7 +2461,7 @@ function code_to_get_rest_args(arg_codes) {
   </h2></div>
 
   <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
+<a name='p4' class='permalink'></a><p>
     
     After evaluating the elements of a combination, the compiled code must
     apply the
@@ -2615,7 +2622,7 @@ function compile_function_call(target, linkage) {
   </p></div>
 
   <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
+<a name='p5' class='permalink'></a><p>
     The primitive and compound branches, like the true
     and false branches in
     
@@ -2655,7 +2662,7 @@ function compile_function_call(target, linkage) {
   </h2></div>
 
   <div class='permalink'>
-<a name='p7' class='permalink'></a><p>
+<a name='p6' class='permalink'></a><p>
     The code that handles
     
       <span style="color:green">procedure</span>
@@ -2848,7 +2855,7 @@ $$  assign("continue", label("return_undefined")),
   
 
   <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
+<a name='p7' class='permalink'></a><p>
     In fact, if the target is not <kbd>val</kbd>, that is
     exactly the code our compiler will generate.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
     Usually, however, the target is <kbd>val</kbd> (the only
@@ -2985,7 +2992,7 @@ go_to(reg("val")),</pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
-<a name='p9' class='permalink'></a><p>
+<a name='p8' class='permalink'></a><p>
     
     
     With this implementation of the
@@ -3012,7 +3019,7 @@ go_to(reg("val")),</pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
-<a name='p10' class='permalink'></a><p>
+<a name='p9' class='permalink'></a><p>
     
       <span style="color:green">
         Suppose instead that we had handled the case of a procedure call with a
@@ -3035,7 +3042,7 @@ go_to(reg("val")),</pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
-<a name='p11' class='permalink'></a><p>
+<a name='p10' class='permalink'></a><p>
     
       <span style="color:green"><kbd>Compile-proc-appl</kbd></span>
       <span style="color:blue">The function <kbd>compile_fun_appl</kbd>

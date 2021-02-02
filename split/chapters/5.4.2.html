@@ -15,12 +15,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <meta name="description" content="5.4.2&nbsp;&nbsp;
-    Return Statements and Tail Recursion
-  " />
+        Evaluating function applications
+      " />
     <title>
       5.4.2&nbsp;&nbsp;
-    Return Statements and Tail Recursion
-  
+        Evaluating function applications
+      
     </title>
     
   <meta name="csrf-param" content="authenticity_token" />
@@ -1781,7 +1781,10 @@ Acknowledgments
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-114" aria-expanded="false" aria-controls="sidebar-collapse-114">
                 <a href="./5.4.1.html"> 5.4.1 
-    The Core of the Explicit-Control Evaluator
+    
+      <span style="color:green">The Core of the Explicit-Control Evaluator</span>
+      <span style="color:blue">The Dispatcher and Basic Evaluation</span>
+    
   </a>
               </span>
             </h5>
@@ -1793,8 +1796,8 @@ Acknowledgments
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-115" aria-expanded="false" aria-controls="sidebar-collapse-115">
                 <a href="./5.4.2.html"> 5.4.2 
-    Return Statements and Tail Recursion
-  </a>
+        Evaluating function applications
+      </a>
               </span>
             </h5>
           </div>
@@ -1805,7 +1808,14 @@ Acknowledgments
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-116" aria-expanded="false" aria-controls="sidebar-collapse-116">
                 <a href="./5.4.3.html"> 5.4.3 
-    Conditionals, Assignments<span style="color:green">, and Definitions</span><span style="color:blue">, and Declarations</span>
+    
+      <span style="color:green">
+        Conditionals, Assignments and Definitions
+      </span>
+      <span style="color:blue">
+        Blocks, Assignments, and Declarations
+      </span>
+    
   </a>
               </span>
             </h5>
@@ -1976,13 +1986,23 @@ Acknowledgments
 </div>
 </div>
 <div class='chapter-content'>
-
+<table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr><td>    </td>
+          <td></td>
+          <td><span style="color:blue">
+    
       <div class='chapter-title'>
         <div class='permalink'>
         <a name='top' class='permalink'> 
     5.4.2&nbsp;&nbsp;
-    Return Statements and Tail Recursion
-  
+        Evaluating function applications
+      
         </a>
         </div>
       </div>
@@ -1990,12 +2010,373 @@ Acknowledgments
         <div class='SECTION'>
     
 
+      
+      
+
+      <div class='permalink'>
+<a name='p1' class='permalink'></a><p>
+        A function application is specified by a combination containing a function
+        expression and argument expressions. The function expression is a subexpression
+        whose value is a function, and the argument expressions are subexpressions whose
+        values are the arguments to which the function should be applied. The metacircular
+        <kbd>evaluate</kbd> handles applications by calling
+        itself recursively to evaluate each element of the combination, and then passing
+        the results to <kbd>apply</kbd>, which performs the
+        actual function application. The explicit-control evaluator does the same thing;
+        these recursive calls are implemented by
+        <kbd>go_to</kbd> instructions, together with
+        
+        use of the stack to save registers that will be restored after the recursive call
+        returns. Before each call we will be careful to identify which registers must be
+        saved (because their values will be needed later).<a class='superscript' id='footnote-link-1' href='#footnote-1'style="color:blue">[1]</a>
+      </p></div>
+      <div class='permalink'>
+<a name='p2' class='permalink'></a><p>
+        As in the metacircular evaluator, operator combinations are transformed into
+        applications of primitive functions corresponding to the operators. This takes
+        place at <kbd>ev_operator_combination</kbd>, which
+        performs this transformation in place in <kbd>comp</kbd>
+        and falls through to <kbd>ev_application</kbd>.
+      </p></div>
+      <div class='permalink'>
+<a name='p3' class='permalink'></a><p>
+        We begin the evaluation of an application by evaluating the function expression to
+        produce a function, which will later be applied to the evaluated argument
+        expressions. To evaluate the function expression, we move it to the
+        <kbd>comp</kbd> register and go to
+        <kbd>eval_dispatch</kbd>. The environment in the
+        <kbd>env</kbd> register is already the correct one in
+        which to evaluate the function expression. However, we save
+        <kbd>env</kbd> because we will need it later to evaluate
+        the argument expressions. We also extract the argument expressions into
+        <kbd>unev</kbd> and save this on the stack. We set up
+        <kbd>continue</kbd> so that
+        <kbd>eval_dispatch</kbd> will resume at
+        <kbd>ev_appl_did_function_expression</kbd> after the
+        function expression has been evaluated. First, however, we save the old value of
+        <kbd>continue</kbd>, which tells the controller where to
+        continue after the application.
+      </p></div>
+
+      <div class='snippet' id='javascript_114_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"ev_operator_combination",
+  assign("comp", list(op("operator_combination_to_application"),
+                          reg("comp"), reg("env"))),
+"ev_application",
+  save("continue"),
+  save("env"),
+  assign("unev", list(op("arg_expressions"), reg("comp"))),
+  save("unev"),
+  assign("comp", list(op("function_expression"), reg("comp"))),
+  assign("continue", label("ev_appl_did_function_expression")),
+  go_to(label("eval_dispatch")),</pre></div></div>
+
+      <div class='permalink'>
+<a name='p4' class='permalink'></a><p>
+        
+        Upon returning from evaluating the function expression, we proceed to evaluate the
+        argument expressions of the application and to accumulate the resulting arguments
+        in a list, held in <kbd>argl</kbd>. First we restore the
+        unevaluated argument expressions and the environment. We initialize
+        <kbd>argl</kbd> to an empty list. Then we assign to the
+        <kbd>fun</kbd> register the function that was produced
+        by evaluating the function expression. If there are no argument expressions, we go
+        directly to <kbd>apply_dispatch</kbd>. Otherwise we save
+        <kbd>fun</kbd> on the stack and start the
+        argument-evaluation loop:<a class='superscript' id='footnote-link-2' href='#footnote-2'style="color:blue">[2]</a>
+      <div class='snippet' id='javascript_114_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"ev_appl_did_function_expression",
+  restore("unev"), // the argument expressions
+  restore("env"),
+  assign("argl", list(op("empty_arglist"))),
+  assign("fun", reg("val")), // the function
+  test(list(op("is_null"), reg("unev"))),
+  branch(label("apply_dispatch")),
+  save("fun"),</pre></div></div>
+      </p></div>
+      <div class='permalink'>
+<a name='p5' class='permalink'></a><p>
+        Each cycle of the argument-evaluation loop evaluates an argument expression from
+        the list in <kbd>unev</kbd> and accumulates the result
+        into <kbd>argl</kbd>. To evaluate an argument
+        expression, we place it in the <kbd>comp</kbd> register
+        and go to <kbd>eval_dispatch</kbd>, after setting
+        <kbd>continue</kbd> so that execution will resume with
+        the argument-accumulation phase. But first we save the arguments accumulated so
+        far (held in <kbd>argl</kbd>), the environment (held in
+        <kbd>env</kbd>), and the remaining argument expressions
+        to be evaluated (held in <kbd>unev</kbd>). A special
+        case is made for the evaluation of the last argument expression, which is handled
+        at <kbd>ev_appl_last_arg</kbd>.
+        <div class='snippet' id='javascript_114_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"ev_appl_argument_expression_loop",
+  save("argl"),
+  assign("comp", list(op("head"), reg("unev"))),
+  test(list(op("is_last_argument_expression"), reg("unev"))),
+  branch(label("ev_appl_last_arg")),
+  save("env"),
+  save("unev"),
+  assign("continue", label("ev_appl_accumulate_arg")),
+  go_to(label("eval_dispatch")),</pre></div></div>
+      </p></div>
+      <div class='permalink'>
+<a name='p6' class='permalink'></a><p>
+        When an argument expression has been evaluated, the value is accumulated into the
+        list held in <kbd>argl</kbd>. The argument expression is
+        then removed from the list of unevaluated argument expressions in
+        <kbd>unev</kbd>, and the argument-evaluation loop
+        continues.
+        <div class='snippet' id='javascript_114_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"ev_appl_accumulate_arg",
+  restore("unev"),
+  restore("env"),
+  restore("argl"),
+  assign("argl", list(op("adjoin_arg"), reg("val"), reg("argl"))),
+  assign("unev", list(op("tail"), reg("unev"))),
+  go_to(label("ev_appl_argument_expression_loop")),</pre></div></div>
+      </p></div>
+      <div class='permalink'>
+<a name='p7' class='permalink'></a><p>
+        Evaluation of the last argument expression is handled differently, as is the last
+        statement in a sequence. There is no need to save the environment or the list of
+        unevaluated argument expressions before going to
+        <kbd>eval_dispatch</kbd>, since they will not be
+        required after the last argument expression is evaluated. Thus, we return from the
+        evaluation to a special entry point
+        <kbd>ev_appl_accum_last_arg</kbd>, which restores the
+        argument list, accumulates the new argument, restores the saved function, and goes
+        off to perform the application.<a class='superscript' id='footnote-link-3' href='#footnote-3'style="color:blue">[3]</a>
+        <div class='snippet' id='javascript_114_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"ev_appl_last_arg",
+  assign("continue", label("ev_appl_accum_last_arg")),
+  go_to(label("eval_dispatch")),
+"ev_appl_accum_last_arg",
+  restore("argl"),
+  assign("argl", list(op("adjoin_arg"), reg("val"), reg("argl"))),
+  restore("fun"),
+  go_to(label("apply_dispatch")),</pre></div></div>
+      </p></div>
+
+      <div class='permalink'>
+<a name='p8' class='permalink'></a><p>
+        
+
+        The details of the argument-evaluation loop determine the order in which the
+        interpreter evaluates the argument expressions of a combination (e.g., left to
+        right or right to left—see exercise&nbsp;<REF NAME="ex:order-of-evaluation"><a class="superscript" id="5.4.2-ex-link-3.8" href="./3.1.3.html#ex_3.8">3.8</a></REF>).
+        This order is not determined by the metacircular evaluator, which inherits its
+        control structure from the underlying JavaScript in which it is
+        implemented.<a class='superscript' id='footnote-link-4' href='#footnote-4'style="color:blue">[4]</a>
+        Because we use <kbd>head</kbd> and
+        <kbd>tail</kbd> to extract successive operands from
+        <kbd>unev</kbd> the explicit-control evaluator will
+        evaluate the argument expressions of a combination in left-to-right order.
+      </p></div>
+
+      
+      <div class='permalink'>
+        <a name='h1' class='permalink'></a><h2>
+     
+        
+          Function Application
+        
+      </h2></div>
+      
+
+      <div class='permalink'>
+<a name='p9' class='permalink'></a><p>
+        The entry point <kbd>apply_dispatch</kbd> corresponds to
+        the <kbd>apply</kbd> function of the metacircular
+        evaluator. By the time we get to
+        <kbd>apply_dispatch</kbd>, the
+        <kbd>fun</kbd> register contains the function to apply
+        and <kbd>argl</kbd> contains the list of evaluated
+        arguments to which it must be applied. The saved value of
+        <kbd>continue</kbd> (originally passed to
+        <kbd>eval_dispatch</kbd> and saved at
+        <kbd>ev_application</kbd>), which tells where to return
+        with the result of the function application, is on the stack. When the application
+        is complete, the controller transfers to the entry point specified by the saved
+        <kbd>continue</kbd>, with the result of the application
+        in <kbd>val</kbd>. As with the metacircular
+        <kbd>apply</kbd>, there are two cases to consider.
+        Either the function to be applied is a primitive or it is a compound function.
+      </p></div>
+      
+
+      <div class='snippet' id='javascript_114_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"apply_dispatch",
+  test(list(op("is_primitive_function"), reg("fun"))),
+  branch(label("primitive_apply")),
+  test(list(op("is_compound_function"), reg("fun"))),
+  branch(label("compound_apply")),
+  go_to(label("unknown_function_type")),</pre></div></div>
+      
+      <div class='permalink'>
+<a name='p10' class='permalink'></a><p>
+        
+        We assume that each primitive is implemented so as to obtain its arguments from
+        <kbd>argl</kbd> and place its result in
+        <kbd>val</kbd>. To specify how the machine handles
+        primitives, we would have to provide a sequence of controller instructions to
+        implement each primitive and arrange for
+        <kbd>primitive_apply</kbd> to dispatch to the
+        instructions for the primitive identified by the contents of
+        <kbd>fun</kbd>. Since we are interested in the structure
+        of the evaluation process rather than the details of the primitives, we will
+        instead just use an <kbd>apply_primitive_function</kbd>
+        operation that applies the function in fun to the arguments in
+        <kbd>argl</kbd>. For the purpose of simulating the
+        evaluator with the simulator of section&nbsp;<REF NAME="sec:simulator"><a class="superscript" id="5.4.2-sec-link-5.2" href="./5.2.html">5.2</a></REF> we use the function
+        <kbd>apply_primitive_function</kbd>, which calls on the
+        underlying JavaScript system to perform the application, just as we did for the
+        metacircular evaluator in section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="5.4.2-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>. After computing the
+        value of the primitive application, we restore
+        <kbd>continue</kbd> and go to the designated entry
+        point.
+      </p></div>
+
+     
+    <div class='snippet' id='javascript_114_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"primitive_apply",
+  assign("val", list(op("apply_primitive_function"), reg("fun"), reg("argl"))),
+  restore("continue"),
+  go_to(reg("continue")),</pre></div></div>
+    <div class='permalink'>
+<a name='p11' class='permalink'></a><p>
+      
+
+      The sequence of instructions labeled
+      <kbd>compound_apply</kbd> specifies the application of
+      compound functions. To apply a compound function, we proceed in a way similar to
+      what we did in the metacircular evaluator. We construct a frame that binds the
+      function's parameters to the arguments, use this frame to extend the environment
+      carried by the function, and evaluate in this extended environment the body of the
+      function.
+    </p></div>
+
+    <div class='permalink'>
+<a name='p12' class='permalink'></a><p>
+      At this point the compound function is in register
+      <kbd>fun</kbd> and its arguments are in
+      <kbd>argl</kbd>. We extract the function's parameters into
+      <kbd>unev</kbd> and its environment into
+      <kbd>env</kbd>. We then replace the environment in
+      <kbd>env</kbd> with the environment constructed by
+      extending it with bindings of the parameters to the given arguments. We then extract
+      the body of the function into <kbd>comp</kbd>. The natural
+      next step would be to restore the saved
+      <kbd>continue</kbd> and proceed to
+      <kbd>eval_dispatch</kbd> to evaluate the body and go to
+      the restored continuation with the result in
+      <kbd>val</kbd>, as is done for the last statement of a
+      sequence. But there is a complication!
+    </p></div>
+
+    <div class='permalink'>
+<a name='p13' class='permalink'></a><p>
+      The complication has two aspects. One is that at any point in the evaluation of the
+      body a return statement may require the function to return the value of the return
+      expression as the value of the body. But a return statement may be nested
+      arbitrarily deeply in the body; so the stack at the moment the return statement is
+      encountered is not necessarily the stack that is needed for a return from the
+      function. One way to make it possible to adjust the stack for the return is to put a
+      \emph{marker} on the stack that can be found by the return code. This is implemented
+      by the <kbd>push_mark_to_stack</kbd> instruction. The return code
+      can then use the <kbd>revert_stack_to_mark</kbd> instruction to
+      restore the stack to the place indicated by the marker before evaluating the return
+      expression.<a class='superscript' id='footnote-link-5' href='#footnote-5'style="color:blue">[5]</a>
+    </p></div>
+
+    <div class='permalink'>
+<a name='p14' class='permalink'></a><p>
+      The other aspect of the complication is that if the evaluation of the body terminates without
+      executing a return statement, the value of the body must be
+      <kbd>undefined</kbd>. To handle this, we set up the
+      <kbd>continue</kbd> register to point at the code labeled
+      <kbd>return_undefined</kbd> before going off to
+      <kbd>eval_dispatch</kbd> to evaluate the body.
+     
+    <div class='snippet' id='javascript_114_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"compound_apply",
+  assign("unev", list(op("function_parameters"), reg("fun"))),
+  assign("env", list(op("function_environment"), reg("fun"))),
+  assign("env", list(op("extend_environment"), 
+                     reg("unev"), reg("argl"), reg("env"))),
+  assign("comp", list(op("function_body"), reg("fun"))),
+  push_mark_to_stack(),
+  assign("continue", label("return_undefined")),
+  go_to(label("eval_dispatch")),</pre></div></div>
+    </p></div>
+
+    <div class='permalink'>
+<a name='p15' class='permalink'></a><p>
+      The only places in the interpreter where the
+      <kbd>env</kbd> register is assigned a new value are
+      <kbd>compound_apply</kbd> and
+      <kbd>ev_block</kbd>
+      (section&nbsp;<REF NAME="sec:block-assign-def-evaluation"><a class="superscript" id="5.4.2-sec-link-5.4.3" href="./5.4.3.html">5.4.3</a></REF>). Just as in the metacircular
+      evaluator, the new environment for evaluation of a function body is constructed from
+      the environment carried by the function, together with the argument list and the
+      corresponding list of names to be bound.
+	    
+	    
+    </p></div>
+
+    <div class='permalink'>
+<a name='p16' class='permalink'></a><p>
+      When a return statement is evaluated at
+      <kbd>ev_return</kbd>, we use the
+      <kbd>revert_stack_to_mark</kbd> instruction to restore the stack
+      to its state at the beginning of the function call by removing all values from the
+      stack down to and including the marker. As a consequence,
+      <kbd>restore("continue")</kbd> will restore the
+      continuation of the function call, which was saved at
+      <kbd>ev_application</kbd>. We then proceed to evaluate the
+      return expression, whose result will be placed in
+      <kbd>val</kbd> and thus be the value returned from the
+      function when we continue after the evaluation of the return expression.
+    <div class='snippet' id='javascript_114_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"ev_return",
+  revert_stack_to_mark(),
+  restore("continue"),
+  assign("comp", list(op("return_expression"), reg("comp"))),
+  go_to(label("eval_dispatch")),</pre></div></div>
+    </p></div>
+
+    <div class='permalink'>
+<a name='p17' class='permalink'></a><p>
+    If no return statement is encountered during evaluation of the function body,
+    evaluation continues at <kbd>return_undefined</kbd>, the
+    continuation that was set up at <kbd>compound_apply</kbd>.
+    To return <kbd>undefined</kbd> from the function, we put
+    <kbd>undefined</kbd> into
+    <kbd>val</kbd> and continue to the entry point that was put
+    onto the stack at <kbd>ev_application</kbd>. Before we can
+    restore that continuation from the stack, however, we must remove the marker that was
+    saved at <kbd>compound_apply</kbd>.
+    <div class='snippet' id='javascript_114_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"return_undefined",
+  revert_stack_to_mark(),
+  restore("continue"),
+  assign("val", constant(undefined)),
+  go_to(reg("continue")),</pre></div></div>
+    </p></div>
+  
+      <div class='permalink'>
+        <a name='h2' class='permalink'></a><h2>
+     
+    
+      Return Statements and Tail Recursion
+    
+  </h2></div>
+
   
 
   
   
   <div class='permalink'>
-<a name='p1' class='permalink'></a><p>
+<a name='p18' class='permalink'></a><p>
     In chapter&nbsp;1 we said that the process described by a
     
       <span style="color:green">procedure</span>
@@ -2006,13 +2387,13 @@ Acknowledgments
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_114_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_114_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (sqrt-iter guess x)
 (if (good-enough? guess x)
 guess
 (sqrt-iter (improve guess x)
       x)))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_114_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_114_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function sqrt_iter(guess, x) {
     return is_good_enough(guess, x)
            ? guess
@@ -2029,7 +2410,7 @@ function sqrt_iter(guess, x) {
       <span style="color:green"><kbd>sqrt-iter</kbd></span>
       <span style="color:blue"><kbd>sqrt_iter</kbd></span>
     
-    to the next.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a> An
+    to the next.<a class='superscript' id='footnote-link-6' href='#footnote-6'style="color:blue">[6]</a> An
     evaluator that can execute a
     
       <span style="color:green">procedure</span>
@@ -2073,8 +2454,8 @@ function sqrt_iter(guess, x) {
         a return value object containing the value to be returned and inspecting the result of a function call to
         see whether it is such an object.
         If the evaluation of a function body produces a return value object, its content
-        is the return value of the function. 
-        Otherwise, the return value is <kbd>undefined</kbd>.
+        is the return value of the function;
+        otherwise, the return value is <kbd>undefined</kbd>.
         Both the construction of the return value object and the eventual inspection of
         the result of the function call are deferred operations, which lead to an
         accumulation of information on the stack.
@@ -2082,7 +2463,7 @@ function sqrt_iter(guess, x) {
   </p></div>
 
   <div class='permalink'>
-<a name='p2' class='permalink'></a><p>
+<a name='p19' class='permalink'></a><p>
     <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
         <tr>
@@ -2103,37 +2484,33 @@ function sqrt_iter(guess, x) {
         information to be accumulated on the stack.
       </span>    </td>
           <td></td>
-          <td><span style="color:blue"> 
-        Our evaluator is tail-recursive, because in order to evaluate the expression that
-        computes the return value of a function, we transfer directly to
+          <td><span style="color:blue">
+        Our explicit-control evaluator is tail-recursive, because it does not need to wrap
+        up return values for inspection and avoids the buildup of stack from deferred
+        operations. At <kbd>ev_return</kbd>, in order to evaluate the expression that computes the return value of
+        a function, we transfer directly to
         <kbd>eval_dispatch</kbd> with nothing more on the stack
-        than right before the function call. 
-        
-
-        We accomplish this by undoing any saves to the stack by the function (which are
-        useless as we are returning) using
-        <kbd>restore_marker</kbd>.
-
-        Then, rather than arranging for <kbd>eval_dispatch</kbd>
-        to return here and then restore <kbd>continue</kbd>
-        from the stack and continuing at that entry point, we restore
+        than right before the function call. We accomplish this by undoing any saves to
+        the stack by the function (which are useless because we are returning) using
+        <kbd>revert_stack_to_mark</kbd>. Then, rather than arranging
+        for <kbd>eval_dispatch</kbd> to come back here and then
+        restore <kbd>continue</kbd> from the stack and
+        continuing at that entry point, we restore
         <kbd>continue</kbd> from the stack before going to
         <kbd>eval_dispatch</kbd> so that
         <kbd>eval_dispatch</kbd> will continue at that entry
-        point after evaluating the expression. 
-
-        Finally, we transfer to <kbd>eval_dispatch</kbd> without
-        saving any information on the stack. Thus, when we proceed to evaluate a return
-        expression, the stack is the same as just before the call to the function whose
-        return value we are about to compute.
-
-        Hence, evaluating a return expression—even if it is a function call (as in
-        <kbd>sqrt_iter</kbd>, where the conditional expression
-        reduces to a call to <kbd>sqrt_iter</kbd>)—will
-        not cause any information to be accumulated on the stack.</span></td></tr></table><a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+        point after evaluating the expression. Finally, we transfer to
+        <kbd>eval_dispatch</kbd> without saving any information
+        on the stack. Thus, when we proceed to evaluate a return expression, the stack is
+        the same as just before the call to the function whose return value we are about
+        to compute. Hence, evaluating a return expression—even if it is a function call
+        (as in <kbd>sqrt_iter</kbd>, where the conditional
+        expression reduces to a call to
+        <kbd>sqrt_iter</kbd>)—will not cause any information to
+        be accumulated on the stack.<a class='superscript' id='footnote-link-7' href='#footnote-7'style="color:blue">[7]</a>
 
       <div class='permalink'>
-<a name='p3' class='permalink'></a><p>
+<a name='p20' class='permalink'></a><p>
         <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
         <tr>
@@ -2148,9 +2525,9 @@ function sqrt_iter(guess, x) {
           by treating all the expressions in a sequence in the same way—saving
           the registers, evaluating the expression, returning to restore the registers,
           and repeating this until all the expressions have been
-          evaluated:<a class='superscript' id='footnote-link-3' href='#footnote-3'style="color:green">[3]</a>
+          evaluated:<a class='superscript' id='footnote-link-8' href='#footnote-8'style="color:green">[8]</a>
           
-          <div class='snippet' id='javascript_114_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+          <div class='snippet' id='javascript_114_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 ev-sequence
             (test (op no-more-exps?) (reg unev))
             (branch (label ev-sequence-end))
@@ -2173,7 +2550,7 @@ ev-sequence
         cycle for the last expression in a sequence as well as for the others.
         The interpreter will still give the same value for any expression. But
         this change is fatal to the tail-recursive implementation, because we
-        must now return after evaluating the final expression in a sequence in
+        must now come back after evaluating the final expression in a sequence in
         order to undo the (useless) register saves. These extra saves will
         accumulate during a nest of procedure calls. Consequently, processes
         such as <kbd>sqrt-iter</kbd> will require space
@@ -2182,25 +2559,24 @@ ev-sequence
           </span>    </td>
           <td></td>
           <td><span style="color:blue">
-        If we did not think to take advantage of the fact that it is unnecessary to
-        hold on to the useless information on the stack when evaluating a return expression,
-        we might have implemented
-        <kbd>return</kbd> as an operator, with the
-        return expression as its operand
-        (like in the metacircular evaluator). 
-        A straightforward implementation would evaluate the return expression,
-        come back to restore the registers,
-        and finally continue at the entry point of the function call:
-          <div class='snippet' id='javascript_114_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            If we did not think to take advantage of the fact that it is unnecessary to
+            hold on to the useless information on the stack when evaluating a return
+            expression, we might have implemented
+            <kbd>return</kbd> as an operator, with the return
+            expression as its operand (as in the metacircular evaluator). A
+            straightforward implementation would evaluate the return expression, come back
+            to restore the registers, and finally continue at the entry point of the
+            function call:
+          <div class='snippet' id='javascript_114_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_return_alternative", 
-      assign("comp", list(op("return_expression"), reg("comp"))),
-      assign("continue", label("ev_restore_stack")),
-      go_to(label("eval_dispatch")),
+  assign("comp", list(op("return_expression"), reg("comp"))),
+  assign("continue", label("ev_restore_stack")),
+  go_to(label("eval_dispatch")),
 
 "ev_restore_stack",
-      restore_marker(),    // undo saves in current function
-      restore("continue"), // undo save at ev_application
-      go_to(reg("continue")),</pre></div></div>
+  revert_stack_to_mark(),    // undo saves in current function
+  restore("continue"), // undo save at ev_application
+  go_to(reg("continue")),</pre></div></div>
           This may seem like a minor change to our previous code for evaluation of return
           statements: The only difference is that we delay undoing any register saves to
           the stack until after the evaluation of the return expression. The interpreter
@@ -2299,7 +2675,7 @@ ev-sequence
       </span></td></tr></table>
   </p></div>
   <div class='permalink'>
-<a name='p4' class='permalink'></a><p>
+<a name='p21' class='permalink'></a><p>
     This difference can be significant. For example,
     
     with tail recursion, an infinite loop can be expressed using only the
@@ -2311,12 +2687,12 @@ ev-sequence
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_114_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_114_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (count n)
       (newline)
       (display n)
       (count (+ n 1)))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_114_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_114_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function count(n) {
     display(n);
     return count(n + 1);
@@ -2346,65 +2722,147 @@ function count(n) {
           <td></td>
           <td><span style="color:blue">
       <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
+<a name='p22' class='permalink'></a><p>
         
         
-        Notably, because the the undoing of the register saves takes place at
+        Note that because the undoing of the register saves takes place at
         <kbd>ev_return</kbd>, our JavaScript implementation
-        requires use of <kbd>return</kbd> to be tail-recursive.
+        requires the use of <kbd>return</kbd> in order to be tail-recursive.
         Removing <kbd>return</kbd> from the
         <kbd>count</kbd> function above will cause it to
         eventually run out of stack space. This explains the use of
         <kbd>return</kbd> in the infinite driver loops in
-        section&nbsp;4.1.4 and elsewhere.
+        chapter&nbsp;4.
       </p></div>
     </span></td></tr></table>
 
-    
-    
-  </p></div>
-<hr>
-
-    <div class='footnote'>
-      <a class='footnote-number' id='footnote-1' href='#footnote-link-1' >[1] </a>
-    <FOOTNOTE>
-    We saw in
-    section&nbsp;<REF NAME="sec:designing-register-machines"><a class="superscript" id="5.4.2-sec-link-5.1" href="./5.1.html">5.1</a></REF> how to
-    implement such a process with a register machine that had no stack; the
-    state of the process was stored in a fixed set of registers.
-    </FOOTNOTE></div>
-    
-    
-    <div class='footnote'>
-      <a class='footnote-number' id='footnote-2' href='#footnote-link-2' >[2] </a>
-    <FOOTNOTE>
-    This implementation of tail recursion <span style="color:green">in
-        <kbd>ev-sequence</kbd></span> is one variety of
-        a well-known optimization technique used by many compilers. In compiling a
-        <span style="color:green">procedure</span><span style="color:blue">function</span>
-        that ends with a
-        <span style="color:green">procedure</span><span style="color:blue">function</span>
-        call, one can replace the call by a jump to the called
-        <span style="color:green">procedure</span><span style="color:blue">function</span>'s
-        entry point. Building this strategy into the interpreter, as we have done in this
-        section, provides the optimization uniformly throughout the language.
+  <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr><td>    </td>
+          <td></td>
+          <td><span style="color:blue">
       
-    </FOOTNOTE></div>
+    <div class="permalink">
+    <a name="ex_5.23" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.23">Exercise 5.23 </a></b> 
+  
+        
+        Explain how the stack builds up if <kbd>return</kbd> is
+        removed from <kbd>count</kbd>:
+        <div class='snippet' id='javascript_114_15_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+function count(n) {
+     display(n);
+     count(n + 1);
+}</pre></div></div>
+        
+      
+      <div class="Solution">
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_114_1_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_114_1_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      </div>
     
-    
-    <div class='footnote'><span style="color:green">
-      <a class='footnote-number' id='footnote-3' href='#footnote-link-3' style="color:green">[3] </a>
-    <FOOTNOTE>
-    We can define
-          <kbd>no-more-exps?</kbd>
-          as follows:
-          <div class='snippet' id='javascript_114_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define (no-more-exps? seq) (null? seq))</pre></div></div>
-    </FOOTNOTE></span></div>
-    
-    
-</div></div>
+</EXERCISE></div>
 
+
+      
+    <div class="permalink">
+    <a name="ex_5.24" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.24">Exercise 5.24 </a></b> 
+  
+        
+        Implement the equivalent of <kbd>push_mark_to_stack</kbd> by
+        using <kbd>save</kbd> at
+        <kbd>compound_apply</kbd> to store a special marker
+        value on the stack. Implement the equivalent of
+        <kbd>revert_stack_to_mark</kbd> at
+        <kbd>ev_return</kbd> and
+        <kbd>return_undefined</kbd> as a loop that repeatedly
+        performs a <kbd>restore</kbd> until it hits the
+        marker. Note that this will require restoring a value to a register other than the one it
+        was saved from. (Although we are careful to avoid that in our evaluator, our stack
+        implementation actually allows it. See exercise <REF NAME="ex:stack-behavior"><a class="superscript" id="5.4.2-ex-link-5.11" href="./5.2.3.html#ex_5.11">5.11</a></REF>.)
+        This is necessary because the only way to pop from the stack is by
+        restoring to a register.
+
+        Hint: You will need to create a unique constant to serve as the marker, for
+        example with <kbd>const marker = list("marker")</kbd>.
+        Because <kbd>list</kbd> creates a new pair, it cannot be
+        <kbd>===</kbd> to anything else on the stack.
+      
+      <div class="Solution">
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_114_2_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_114_2_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      </div>
+    
+</EXERCISE></div>
+
+
+
+      
+    <div class="permalink">
+    <a name="ex_5.25" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.25">Exercise 5.25 </a></b> 
+  
+        
+        
+        
+        Implement <kbd>push_mark_to_stack</kbd> and
+        <kbd>revert_stack_to_mark</kbd> as new register-machine
+        instructions, following the implementation of
+        <kbd>save</kbd> and
+        <kbd>restore</kbd> in section&nbsp;<REF NAME="sec:ex-proc"><a class="superscript" id="5.4.2-sec-link-5.2.3" href="./5.2.3.html">5.2.3</a></REF>. Add functions
+        <kbd>push_marker</kbd> and
+        <kbd>pop_marker</kbd> to access stacks, mirroring the
+        implementation of <kbd>push</kbd> and
+        <kbd>pop</kbd> in section&nbsp;<REF NAME="sec:machine-model"><a class="superscript" id="5.4.2-sec-link-5.2.1" href="./5.2.1.html">5.2.1</a></REF>. Note that you do not
+        need to actually insert a marker into the stack. Instead, you can add a local
+        state variable to the stack model to keep track of the position of the last <kbd>save</kbd>
+        before each <kbd>push_mark_to_stack</kbd>.
+        If you choose to put a marker on the stack, see the hint in
+        exercise&nbsp;<REF NAME="ex:push_mark_to_stack1"><a class="superscript" id="5.4.2-ex-link-5.24" href="./5.4.2.html#ex_5.24">5.24</a></REF>.
+      
+      <div class="Solution">
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_114_3_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_114_3_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      </div>
+    
+</EXERCISE></div>
+
+
+
+      
+    <div class="permalink">
+    <a name="ex_5.26" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.26">Exercise 5.26 </a></b> 
+  
+        
+        Currently, the explicit-control evaluator expects sequences to contain
+        at least one statement. Modify the sequence handling to support empty sequences by
+        adding a check for empty sequences in
+        <kbd>ev_sequence</kbd> and jump to
+        <kbd>continue</kbd> if true.
+        
+      
+      <div class="Solution">
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_114_4_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_114_4_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      </div>
+    
+</EXERCISE></div>
+
+
+    </span></td></tr></table>
+  
+  
+  
+  
+
+
+
+</span></td></tr></table></p></div>
+</div></div>
+</span></td></tr></table>
     <div class='nav'>
   
         <a class='btn btn-secondary btn-nav' href='./5.4.1.html'>&lt; Previous</a>
@@ -2415,8 +2873,8 @@ function count(n) {
       </div>
     <div class='chapter_sign'>
       5.4.2&nbsp;&nbsp;
-    Return Statements and Tail Recursion
-  
+        Evaluating function applications
+      
     </div>
     <script> var chapter_id = 115; </script>
     <script> var chapter_path = "chapters/5.4.2.html"; </script>
