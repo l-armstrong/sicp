@@ -2344,6 +2344,14 @@ x > 5 && x < 10</pre></div></div>
 : 25;
 </pre></div></div>
 	
+	Conditional expressions nested as alternative expressions inside of other conditional
+	expressions will appear frequently in our JavaScript programs. We will call a
+	predicate together with its consequent expression a <EM>clause</EM>. Conditional expressions
+	that are nested this way can be seen as a sequence of clauses, followed by a final
+	alternative expression. The predicates of the clauses are evaluated sequentially
+	until one is found whose predicate evaluates to true.
+	<div class='permalink'>
+<a name='p7' class='permalink'></a><p>
 	
 	Conditional expressions can appear inside operator combinations. The
 	parentheses in the following examples are necessary because the
@@ -2353,8 +2361,6 @@ x > 5 && x < 10</pre></div></div>
 	<kbd>*</kbd>.
 	
 	
-      
-    
     <div class='snippet' id='javascript_11_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsGMB7AOwGcAXUAQ1AF5QBmAbl0NIoCNarQBqVZ7ACZeoABScAfNwD8oTgC4qASkZA')">2 + (b > a ? b : a);
 </pre></div></div>
     <div class='snippet' id='javascript_11_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsGMB7AOwGcAXUAQ1AF5QBmAbl0NIoCNarQBqVZ7AApqAPlDtsoAPxVJALm4AecZJkTQCgLQoAlNgBUQ6n12MgA')">(a > b
@@ -2365,6 +2371,9 @@ x > 5 && x < 10</pre></div></div>
 *
 (a + 1);
 </pre></div></div>
+	</p></div>
+      
+    
   
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_11_1_div" data-toggle="collapse">Add solution</button></div>
