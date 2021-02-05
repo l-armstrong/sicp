@@ -2247,7 +2247,7 @@ $$ assign("val", list(op("make_compiled_function"), label("entry1"), reg("env"))
   go_to(label("after_lambda2")),
 "entry1",
   assign("env", list(op("compiled_function_env"), reg("fun"))),
-  assign("env", list(op("extend_environment"), constant("n"), reg("argl"), reg("env"))),
+  assign("env", list(op("extend_environment"), constant(list("n")), reg("argl"), reg("env"))),
   $\langle{}$<EM>compilation of function body</EM>$\rangle$
 "after_lambda1",
   perform(list(op("assign_symbol_value"), constant("factorial"), reg("val"), reg("env"))),
@@ -2793,7 +2793,7 @@ function factorial(n) {
 // calls to factorial will enter here
 "entry1",
   assign("env", list(op("compiled_function_env"), reg("fun"))),
-  assign("env", list(op("extend_environment"), constant("n"), reg("argl"), reg("env"))),
+  assign("env", list(op("extend_environment"), constant(list("n")), reg("argl"), reg("env"))),
 
 // begin actual function body
   revert_stack_to_marker(),
@@ -2890,7 +2890,7 @@ function factorial(n) {
 // calls to factorial will enter here
 "entry1",
   assign("env", list(op("compiled_function_env"), reg("fun"))),
-  assign("env", list(op("extend_environment"), constant("n"), reg("argl"), reg("env"))),
+  assign("env", list(op("extend_environment"), constant(list("n")), reg("argl"), reg("env"))),
 
 // begin actual function body
   revert_stack_to_marker(),
@@ -3106,7 +3106,7 @@ $$  assign("val", list(op("make_compiled_function"), label("entry1"), reg("env")
   go_to(label("after_lambda2")),
 "entry1",
   assign("env", list(op("compiled_function_env"), reg("fun"))),
-  assign("env", list(op("extend_environment"), constant("x"), reg("argl"), reg("env"))),
+  assign("env", list(op("extend_environment"), constant(list("x")), reg("argl"), reg("env"))),
   revert_stack_to_marker(),
   restore("continue"),
   assign("fun", list(op("lookup_symbol_value"), constant("+"), reg("env"))),
@@ -3160,7 +3160,7 @@ $$  assign("val", list(op("make_compiled_function"), label("entry1"), reg("env")
   go_to(label("after_lambda2")),
 "entry1",
   assign("env", list(op("compiled_function_env"), reg("fun"))),
-  assign("env", list(op("extend_environment"), constant("x"), reg("argl"), reg("env"))),
+  assign("env", list(op("extend_environment"), constant(list("x")), reg("argl"), reg("env"))),
   revert_stack_to_marker(),
   restore("continue"),
   assign("fun", list(op("lookup_symbol_value"), constant("+"), reg("env"))),
