@@ -2243,22 +2243,14 @@ assign("val", constant(undefined))
     so its use of <kbd>env</kbd> is irrelevant.)
     Therefore, the skeleton for the compiled code becomes
     <kbd class='snippet'>
-$$  assign("val", list(op("make_compiled_function"),
-                     label(entry2), 
-                     reg("env"))),
-  go_to(label("after_lambda1")),
-"entry2",
+$$ assign("val", list(op("make_compiled_function"), label("entry1"), reg("env"))),
+  go_to(label("after_lambda2")),
+"entry1",
   assign("env", list(op("compiled_function_env"), reg("fun"))),
-  assign("env", list(op("extend_environment"), 
-                     constant("n"), 
-                     reg("argl"), 
-                     reg("env"))),
+  assign("env", list(op("extend_environment"), constant("n"), reg("argl"), reg("env"))),
   $\langle{}$<EM>compilation of function body</EM>$\rangle$
 "after_lambda1",
-  perform(list(op("assign_symbol_value"), 
-               constant("factorial"), 
-               reg("val"), 
-               reg("env"))),
+  perform(list(op("assign_symbol_value"), constant("factorial"), reg("val"), reg("env"))),
   assign("val", constant(undefined))
       </kbd>
   </p></div>
@@ -2285,7 +2277,7 @@ $$  assign("val", list(op("make_compiled_function"),
 	<kbd>return</kbd>.
       </span>
       <span style="color:blue">
-	<kbd>"return_undefined"</kbd>.
+	<kbd>"return"</kbd>.
       </span>
     
     The
@@ -2304,7 +2296,7 @@ $$  assign("val", list(op("make_compiled_function"),
 	<kbd>if</kbd> expression:
       </span>
       <span style="color:blue">
-	return statement:
+	return statement:<a class='superscript' id='footnote-link-2' href='#footnote-2'style="color:blue">[2]</a>
       </span>
     
     <table width="100%">
@@ -2420,12 +2412,12 @@ $$  $\langle{}$<EM>save <kbd>continue</kbd>, <kbd>env</kbd> if modified by predi
   $\langle{}$<EM>compilation of predicate, target <kbd>val</kbd>, linkage <kbd>"next"</kbd></EM>$\rangle$
   $\langle{}$<EM>restore <kbd>continue</kbd>, <kbd>env</kbd> if saved above</EM>$\rangle$
   test(list(op("is_falsy"), reg("val"))),
-  branch(label("false_branch5")),
-"true_branch4",
+  branch(label("false_branch4")),
+"true_branch3",
   $\langle{}$<EM>compilation of true branch, target <kbd>val</kbd>, linkage <kbd>"return"</kbd></EM>$\rangle$
-"false_branch5",
+"false_branch4",
   $\langle{}$<EM>compilation of false branch, target <kbd>val</kbd>, linkage <kbd>"return"</kbd></EM>$\rangle$
-"after_cond3",
+"after_cond5",
       </kbd>
   </p></div>
 
@@ -2490,25 +2482,22 @@ $$  $\langle{}$<EM>save <kbd>continue</kbd>, <kbd>env</kbd> if modified by predi
     modify the registers in question.
 
     <kbd class='snippet'>
-$$  assign("fun", list(op("lookup_symbol_value"), constant("==="), 
-                     reg("env"))),
+$$  assign("fun", list(op("lookup_symbol_value"), constant("==="), reg("env"))),
   assign("val", constant(1)),
   assign("argl", list(op("list"), reg("val"))),
-  assign("val", list(op("lookup_symbol_value"), constant(n), 
-                     reg("env"))),
+  assign("val", list(op("lookup_symbol_value"), constant("n"), reg("env"))),
   assign("argl", list(op("pair"), reg("val"), reg("argl"))),
-  test(list(op("primitive_function"), reg("fun"))),
-  branch(label("primitive_branch17")),
-"compiled_branch16",
-  assign("continue", label("after_call15")),
+  test(list(op("is_primitive_function"), reg("fun"))),
+  branch(label("primitive_branch6")),
+"compiled_branch7",
+  assign("continue", label("after_call8")),
   save("continue"),
-  save_marker(),
+  push_marker_to_stack(),
   assign("val", list(op("compiled_function_entry"), reg("fun"))),
   go_to(reg("val")),
-"primitive_branch17",
-  assign("val", list(op("apply_primitive_function"), reg("fun"), 
-                     reg("argl"))),
-"after_call15"
+"primitive_branch6",
+  assign("val", list(op("apply_primitive_function"), reg("fun"), reg("argl"))),
+"after_call8",
       </kbd>
   </p></div>
 
@@ -2534,9 +2523,7 @@ $$  assign("fun", list(op("lookup_symbol_value"), constant("==="),
       (goto (reg continue))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_122_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 assign("val", constant(1)),
-restore_marker(),
-restore("continue"),
-go_to(reg("continue"))</pre></div></div></td></tr></table>
+  go_to(reg("continue")),</pre></div></div></td></tr></table>
 
     The code for the false branch is another a
     
@@ -2601,7 +2588,7 @@ go_to(reg("continue"))</pre></div></div></td></tr></table>
 	<kbd>return</kbd>
       </span>
       <span style="color:blue">
-	<kbd>return</kbd>
+	<kbd>"return"</kbd>
       </span>
     
     linkage in the branches.
@@ -2614,6 +2601,44 @@ go_to(reg("continue"))</pre></div></div></td></tr></table>
       </span>
     
   </p></div>
+
+  <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr><td>    </td>
+          <td></td>
+          <td><span style="color:blue">
+      
+    <div class="permalink">
+    <a name="ex_5.36" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.36">Exercise 5.36 </a></b> 
+  
+        The current design of <kbd>append_return_undefined</kbd>
+        is very simplistic: it always appends a
+        <kbd>return</kbd> <kbd>undefined</kbd> statement to all sequences, even if the sequence
+        already contains a return statement. Change
+        <kbd>append_return_undefined</kbd> to omit the
+        <kbd>return</kbd> <kbd>undefined</kbd> on all paths where you can
+        decide that the function will always encounter a return statement. Test your
+        solution with a conditional as the last statement of a function body, and set it
+        up to test the following three cases: both the consequent and alternative branches contain return statements; just one of
+        the branches contains a return statement; neither branch contains a return statement. In the first case, no return statement should be appended.
+        In the second case, only the branch missing a return statement should have one added.
+        In the last case, either both branches should have return statements added, or a
+        return statement can be added after the conditional. (Note that conditionals can be nested!)
+        
+      
+      <div class="Solution">
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_122_1_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_122_1_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      </div>
+    
+</EXERCISE></div>
+
+    </span></td></tr></table>
 
   
     <div class="permalink">
@@ -2638,7 +2663,7 @@ go_to(reg("continue"))</pre></div></div></td></tr></table>
 function factorial_alt(n) {
     return n === 1  
            ? 1
-           : n * factorial_alt(n - 1);
+           : factorial_alt(n - 1) * n;
 }</pre></div></div></td></tr></table>
     Compile this
     
@@ -2650,8 +2675,8 @@ function factorial_alt(n) {
     Does either program execute more efficiently than the other?
   
       <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_122_1_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_122_1_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_122_2_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_122_2_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
       </div>
     
 </EXERCISE></div>
@@ -2659,7 +2684,7 @@ function factorial_alt(n) {
 
   
     <div class="permalink">
-    <a name="ex_5.37" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.37">Exercise 5.37 </a></b> 
+    <a name="ex_5.38" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.38">Exercise 5.38 </a></b> 
   
     
     
@@ -2697,8 +2722,8 @@ function factorial(n) {
     
   
       <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_122_2_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_122_2_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_122_3_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_122_3_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
       </div>
     
 </EXERCISE></div>
@@ -2768,10 +2793,10 @@ function factorial(n) {
 // calls to factorial will enter here
 "entry1",
   assign("env", list(op("compiled_function_env"), reg("fun"))),
-  assign("env", list(op("extend_environment"), constant(list("n")), reg("argl"), reg("env"))),
+  assign("env", list(op("extend_environment"), constant("n"), reg("argl"), reg("env"))),
 
 // begin actual function body
-  restore_marker(),
+  revert_stack_to_marker(),
   restore("continue"),
   save("continue"),
   save("env"),
@@ -2787,7 +2812,7 @@ function factorial(n) {
 "compiled_branch7",
   assign("continue", label("after_call8")),
   save("continue"),
-  save_marker(),
+  push_marker_to_stack(),
   assign("val", list(op("compiled_function_entry"), reg("fun"))),
   go_to(reg("val")),
 "primitive_branch6",
@@ -2865,10 +2890,10 @@ function factorial(n) {
 // calls to factorial will enter here
 "entry1",
   assign("env", list(op("compiled_function_env"), reg("fun"))),
-  assign("env", list(op("extend_environment"), constant(list("n")), reg("argl"), reg("env"))),
+  assign("env", list(op("extend_environment"), constant("n"), reg("argl"), reg("env"))),
 
 // begin actual function body
-  restore_marker(),
+  revert_stack_to_marker(),
   restore("continue"),
   save("continue"),
   save("env"),
@@ -2884,7 +2909,7 @@ function factorial(n) {
 "compiled_branch7",
   assign("continue", label("after_call8")),
   save("continue"),
-  save_marker(),
+  push_marker_to_stack(),
   assign("val", list(op("compiled_function_entry"), reg("fun"))),
   go_to(reg("val")),
 "primitive_branch6",
@@ -2928,29 +2953,29 @@ function factorial(n) {
   assign("val", list(op("lookup_symbol_value"), constant("n"), reg("env"))),
   assign("argl", list(op("pair"), reg("val"), reg("argl"))),
   test(list(op("is_primitive_function"), reg("fun"))),
-  branch(label("primitive_branch9")),
-"compiled_branch10",
-  assign("continue", label("after_call11")),
+  branch(label("primitive_branch10")),
+"compiled_branch11",
+  assign("continue", label("after_call12")),
   save("continue"),
-  save_marker(),
+  push_marker_to_stack(),
   assign("val", list(op("compiled_function_entry"), reg("fun"))),
   go_to(reg("val")),
-"primitive_branch9",
+"primitive_branch10",
   assign("val", list(op("apply_primitive_function"), reg("fun"), reg("argl"))),
-"after_call11",
+"after_call12",
   assign("argl", list(op("list"), reg("val"))),
   restore("fun"),
-  test(list(op("is_primitive_function"), reg("fun")))),
-  branch(label("primitive_branch12")),
-"compiled_branch13",
-  assign("continue", label("after_call14")),
+  test(list(op("is_primitive_function"), reg("fun"))),
+  branch(label("primitive_branch14")),
+"compiled_branch15",
+  assign("continue", label("after_call16")),
   save("continue"),
-  save_marker(),
+  push_marker_to_stack(),
   assign("val", list(op("compiled_function_entry"), reg("fun"))),
   go_to(reg("val")),
-"primitive_branch12",
+"primitive_branch14",
   assign("val", list(op("apply_primitive_function"), reg("fun"), reg("argl"))),
-"after_call14",                     // val now has result of factorial(n - 1)
+"after_call16",                     // val now has result of factorial(n - 1)
   assign("argl", list(op("list"), reg("val"))),
   restore("env"),
   assign("val", list(op("lookup_symbol_value"), constant("n"), reg("env"))),
@@ -2959,7 +2984,7 @@ function factorial(n) {
   restore("continue"),
   // apply factorial
   test(list(op("is_primitive_function"), reg("fun"))),
-  branch(label("primitive_branch15")),
+  branch(label("primitive_branch18")),
     </kbd>
   
     
@@ -2979,29 +3004,29 @@ function factorial(n) {
   assign("val", list(op("lookup_symbol_value"), constant("n"), reg("env"))),
   assign("argl", list(op("pair"), reg("val"), reg("argl"))),
   test(list(op("is_primitive_function"), reg("fun"))),
-  branch(label("primitive_branch9")),
-"compiled_branch10",
-  assign("continue", label("after_call11")),
+  branch(label("primitive_branch10")),
+"compiled_branch11",
+  assign("continue", label("after_call12")),
   save("continue"),
-  save_marker(),
+  push_marker_to_stack(),
   assign("val", list(op("compiled_function_entry"), reg("fun"))),
   go_to(reg("val")),
-"primitive_branch9",
+"primitive_branch10",
   assign("val", list(op("apply_primitive_function"), reg("fun"), reg("argl"))),
-"after_call11",
+"after_call12",
   assign("argl", list(op("list"), reg("val"))),
   restore("fun"),
-  test(list(op("is_primitive_function"), reg("fun")))),
-  branch(label("primitive_branch12")),
-"compiled_branch13",
-  assign("continue", label("after_call14")),
+  test(list(op("is_primitive_function"), reg("fun"))),
+  branch(label("primitive_branch14")),
+"compiled_branch15",
+  assign("continue", label("after_call16")),
   save("continue"),
-  save_marker(),
+  push_marker_to_stack(),
   assign("val", list(op("compiled_function_entry"), reg("fun"))),
   go_to(reg("val")),
-"primitive_branch12",
+"primitive_branch14",
   assign("val", list(op("apply_primitive_function"), reg("fun"), reg("argl"))),
-"after_call14",                     // val now has result of factorial(n - 1)
+"after_call16",                     // val now has result of factorial(n - 1)
   assign("argl", list(op("list"), reg("val"))),
   restore("env"),
   assign("val", list(op("lookup_symbol_value"), constant("n"), reg("env"))),
@@ -3010,7 +3035,7 @@ function factorial(n) {
   restore("continue"),
   // apply factorial
   test(list(op("is_primitive_function"), reg("fun"))),
-  branch(label("primitive_branch15")),
+  branch(label("primitive_branch18")),
     </kbd>
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./5.5.5.html#fig_5.23">Figure 5.23 </a></b>(continued)</div>
@@ -3019,16 +3044,16 @@ function factorial(n) {
 
     
       <div class='snippet' id='javascript_122_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-"compiled_branch16",
+"compiled_branch19",
 // note the compound function here is called tail-recursively 
   save("continue"),
-  save_marker(),
+  push_marker_to_stack(),
   assign("val", list(op("compiled_function_entry"), reg("fun"))),
   go_to(reg("val")),
-"primitive_branch15",
+"primitive_branch18",
   assign("val", list(op("apply_primitive_function"), reg("fun"), reg("argl"))),
   go_to(reg("continue")),
-"after_call17",
+"after_call20",
 "after_cond5",
 "after_lambda2",
   // assign the function to the name factorial 
@@ -3038,16 +3063,16 @@ function factorial(n) {
   
     
     <FIGURE><div class='snippet' id='javascript_122_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-"compiled_branch16",
+"compiled_branch19",
 // note the compound function here is called tail-recursively 
   save("continue"),
-  save_marker(),
+  push_marker_to_stack(),
   assign("val", list(op("compiled_function_entry"), reg("fun"))),
   go_to(reg("val")),
-"primitive_branch15",
+"primitive_branch18",
   assign("val", list(op("apply_primitive_function"), reg("fun"), reg("argl"))),
   go_to(reg("continue")),
-"after_call17",
+"after_call20",
 "after_cond5",
 "after_lambda2",
   // assign the function to the name factorial 
@@ -3061,15 +3086,15 @@ function factorial(n) {
 
       
     <div class="permalink">
-    <a name="ex_5.38" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.38">Exercise 5.38 </a></b> 
+    <a name="ex_5.39" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.39">Exercise 5.39 </a></b> 
   
 	
   What expression was compiled to produce the code shown in
   figure&nbsp;<REF NAME="fig:compilation-example1"><a class="superscript" id="5.5.5-fig-link-5.25" href="./5.5.5.html#fig_5.25">5.25</a></REF>?
       
       <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_122_3_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_122_3_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_122_4_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_122_4_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
       </div>
     
 </EXERCISE></div>
@@ -3081,8 +3106,11 @@ $$  assign("val", list(op("make_compiled_function"), label("entry1"), reg("env")
   go_to(label("after_lambda2")),
 "entry1",
   assign("env", list(op("compiled_function_env"), reg("fun"))),
-  assign("env", list(op("extend_environment"), constant(list("x")), reg("argl"), reg("env"))),
+  assign("env", list(op("extend_environment"), constant("x"), reg("argl"), reg("env"))),
+  revert_stack_to_marker(),
+  restore("continue"),
   assign("fun", list(op("lookup_symbol_value"), constant("+"), reg("env"))),
+  save("continue"),
   save("fun"),
   save("env"),
   assign("fun", list(op("lookup_symbol_value"), constant("g"), reg("env"))),
@@ -3097,7 +3125,7 @@ $$  assign("val", list(op("make_compiled_function"), label("entry1"), reg("env")
 "compiled_branch4",
   assign("continue", label("after_call5")),
   save("continue"),
-  save_marker(),
+  push_marker_to_stack(),
   assign("val", list(op("compiled_function_entry"), reg("fun"))),
   go_to(reg("val")),
 "primitive_branch3",
@@ -3106,23 +3134,24 @@ $$  assign("val", list(op("make_compiled_function"), label("entry1"), reg("env")
   assign("argl", list(op("list"), reg("val"))),
   restore("fun"),
   test(list(op("is_primitive_function"), reg("fun"))),
-  branch(label("primitive_branch6")),
-"compiled_branch7",
-  assign("continue", label("after_call8")),
+  branch(label("primitive_branch7")),
+"compiled_branch8",
+  assign("continue", label("after_call9")),
   save("continue"),
-  save_marker(),
+  push_marker_to_stack(),
   assign("val", list(op("compiled_function_entry"), reg("fun"))),
   go_to(reg("val")),
-"primitive_branch6",
+"primitive_branch7",
   assign("val", list(op("apply_primitive_function"), reg("fun"), reg("argl"))),
-"after_call8",
+"after_call9",
   assign("argl", list(op("list"), reg("val"))),
   restore("env"),
   assign("val", list(op("lookup_symbol_value"), constant("x"), reg("env"))),
   assign("argl", list(op("pair"), reg("val"), reg("argl"))),
   restore("fun"),
+  restore("continue"),
   test(list(op("is_primitive_function"), reg("fun"))),
-  branch(label("primitive_branch9")),
+  branch(label("primitive_branch11")),
     </kbd>
   
   
@@ -3131,8 +3160,11 @@ $$  assign("val", list(op("make_compiled_function"), label("entry1"), reg("env")
   go_to(label("after_lambda2")),
 "entry1",
   assign("env", list(op("compiled_function_env"), reg("fun"))),
-  assign("env", list(op("extend_environment"), constant(list("x")), reg("argl"), reg("env"))),
+  assign("env", list(op("extend_environment"), constant("x"), reg("argl"), reg("env"))),
+  revert_stack_to_marker(),
+  restore("continue"),
   assign("fun", list(op("lookup_symbol_value"), constant("+"), reg("env"))),
+  save("continue"),
   save("fun"),
   save("env"),
   assign("fun", list(op("lookup_symbol_value"), constant("g"), reg("env"))),
@@ -3147,7 +3179,7 @@ $$  assign("val", list(op("make_compiled_function"), label("entry1"), reg("env")
 "compiled_branch4",
   assign("continue", label("after_call5")),
   save("continue"),
-  save_marker(),
+  push_marker_to_stack(),
   assign("val", list(op("compiled_function_entry"), reg("fun"))),
   go_to(reg("val")),
 "primitive_branch3",
@@ -3156,27 +3188,28 @@ $$  assign("val", list(op("make_compiled_function"), label("entry1"), reg("env")
   assign("argl", list(op("list"), reg("val"))),
   restore("fun"),
   test(list(op("is_primitive_function"), reg("fun"))),
-  branch(label("primitive_branch6")),
-"compiled_branch7",
-  assign("continue", label("after_call8")),
+  branch(label("primitive_branch7")),
+"compiled_branch8",
+  assign("continue", label("after_call9")),
   save("continue"),
-  save_marker(),
+  push_marker_to_stack(),
   assign("val", list(op("compiled_function_entry"), reg("fun"))),
   go_to(reg("val")),
-"primitive_branch6",
+"primitive_branch7",
   assign("val", list(op("apply_primitive_function"), reg("fun"), reg("argl"))),
-"after_call8",
+"after_call9",
   assign("argl", list(op("list"), reg("val"))),
   restore("env"),
   assign("val", list(op("lookup_symbol_value"), constant("x"), reg("env"))),
   assign("argl", list(op("pair"), reg("val"), reg("argl"))),
   restore("fun"),
+  restore("continue"),
   test(list(op("is_primitive_function"), reg("fun"))),
-  branch(label("primitive_branch9")),
+  branch(label("primitive_branch11")),
     </kbd>
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./5.5.5.html#fig_5.25">Figure 5.25 </a></b>An example of compiler output (continued on next page).
-  See exercise&nbsp;<REF NAME="ex:compiled-code"><a class="superscript" id="5.5.5-ex-link-5.38" href="./5.5.5.html#ex_5.38">5.38</a></REF>.
+  See exercise&nbsp;<REF NAME="ex:compiled-code"><a class="superscript" id="5.5.5-ex-link-5.39" href="./5.5.5.html#ex_5.39">5.39</a></REF>.
   </div>
     </FIGURE>
   
@@ -3208,26 +3241,19 @@ after-call20
       (perform (op define-variable!) (const f) (reg val) (reg env))
       (assign val (const ok))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_122_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-"compiled_branch10",
-  assign("continue", label("return_undefined12")),
+"compiled_branch12",
   save("continue"),
-  save_marker(),
+  push_marker_to_stack(),
   assign("val", list(op("compiled_function_entry"), reg("fun"))),
   go_to(reg("val")),
-"return_undefined12",
-  assign("val", constant(undefined)),
-  go_to(reg("continue")),
-"primitive_branch9",
+"primitive_branch11",
   assign("val", list(op("apply_primitive_function"), reg("fun"), reg("argl"))),
-  assign("val", constant(undefined)),
-  restore_marker(),
-  restore("continue"),
   go_to(reg("continue")),
-"after_call11",
+"after_call13",
 "after_lambda2",
   perform(list(op("assign_symbol_value"), constant("f"), reg("val"), reg("env"))),
   assign("val", constant(undefined)),
-  go_to(reg("continue"))</pre></div></div></td></tr></table>
+  go_to(reg("continue")),</pre></div></div></td></tr></table>
     
     
   <FIGURE><table width="100%">
@@ -3255,26 +3281,19 @@ after-call20
       (perform (op define-variable!) (const f) (reg val) (reg env))
       (assign val (const ok))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_122_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-"compiled_branch10",
-  assign("continue", label("return_undefined12")),
+"compiled_branch12",
   save("continue"),
-  save_marker(),
+  push_marker_to_stack(),
   assign("val", list(op("compiled_function_entry"), reg("fun"))),
   go_to(reg("val")),
-"return_undefined12",
-  assign("val", constant(undefined)),
-  go_to(reg("continue")),
-"primitive_branch9",
+"primitive_branch11",
   assign("val", list(op("apply_primitive_function"), reg("fun"), reg("argl"))),
-  assign("val", constant(undefined)),
-  restore_marker(),
-  restore("continue"),
   go_to(reg("continue")),
-"after_call11",
+"after_call13",
 "after_lambda2",
   perform(list(op("assign_symbol_value"), constant("f"), reg("val"), reg("env"))),
   assign("val", constant(undefined)),
-  go_to(reg("continue"))</pre></div></div></td></tr></table>
+  go_to(reg("continue")),</pre></div></div></td></tr></table>
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./5.5.5.html#fig_5.26">Figure 5.26 </a></b>(continued)</div>
     </FIGURE>
@@ -3312,8 +3331,8 @@ after-call20
     constructs the argument list?
   
       <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_122_4_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_122_4_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_122_5_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_122_5_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
       </div>
     
 </EXERCISE></div>
@@ -3321,7 +3340,7 @@ after-call20
 
   
     <div class="permalink">
-    <a name="ex_5.36" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.36">Exercise 5.36 </a></b> 
+    <a name="ex_5.37" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.37">Exercise 5.37 </a></b> 
   
     
      
@@ -3338,8 +3357,8 @@ after-call20
     <kbd>preserving</kbd> mechanism intact.
   
       <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_122_5_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_122_5_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_122_6_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_122_6_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
       </div>
     
 </EXERCISE></div>
@@ -3347,7 +3366,7 @@ after-call20
 
   
     <div class="permalink">
-    <a name="ex_5.41" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.41">Exercise 5.41 </a></b> 
+    <a name="ex_5.42" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.42">Exercise 5.42 </a></b> 
   
     
     
@@ -3399,7 +3418,7 @@ after-call20
       <span style="color:green"><kbd>(+ a 1)</kbd></span>
       <span style="color:blue"><kbd>a + 1</kbd></span>
     
-    might be compiled into something as simple as<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+    might be compiled into something as simple as<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -3443,7 +3462,7 @@ assign("val", list(op("+"), reg("val"), constant(1))</pre></div></div></td></tr>
       <span style="color:green">
 	
 	reserved words (the special forms)
-	it currently recognizes.<a class='superscript' id='footnote-link-3' href='#footnote-3'style="color:green">[3]</a>
+	it currently recognizes.<a class='superscript' id='footnote-link-4' href='#footnote-4'style="color:green">[4]</a>
       </span>
       <span style="color:blue">
 	syntactic forms it currently recognizes.
@@ -3589,26 +3608,26 @@ assign("val", list(op("+"), reg("val"), constant(1))</pre></div></div></td></tr>
     </OL>
   
       <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_122_6_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_122_6_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_122_7_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_122_7_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
       </div>
     
 </EXERCISE></div>
 
   
     <div class="permalink">
-    <a name="ex_5.42" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.42">Exercise 5.42 </a></b> 
+    <a name="ex_5.43" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.43">Exercise 5.43 </a></b> 
   
     
     
 
-    Footnote&nbsp;<REF NAME="foot:dead-code"><a class="superscript" id="5.5.5-foot-link-3" href="./5.5.2.html#footnote-3">3</a></REF> shows that the compiler does not
+    Footnote&nbsp;<REF NAME="foot:dead-code"><a class="superscript" id="5.5.5-foot-link-3" href="./5.5.2.html#footnote-3">3</a></REF> explained that the compiler does not
     identify all instances of dead code. What would be required of a compiler to
     properly detect all instances of dead code? 
   
       <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_122_7_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_122_7_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_122_8_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_122_8_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
       </div>
     
 </EXERCISE></div>
@@ -3624,8 +3643,25 @@ assign("val", list(op("+"), reg("val"), constant(1))</pre></div></div></td></tr>
     </FOOTNOTE></div>
     
     
+    <div class='footnote'><span style="color:blue">
+      <a class='footnote-number' id='footnote-2' href='#footnote-link-2' style="color:blue">[2] </a>
+    <FOOTNOTE>
+    
+  If a function body that consists of a single return statement does not give rise to a
+  sequence (a parse which is handled both by the explicit-control evaluator and the
+  compiler), the <kbd>append_return_undefined</kbd> function
+  defined in section&nbsp;<REF NAME="sec:append_return_undefined"><a class="superscript" id="5.5.5-sec-link-5.5.2" href="./5.5.2.html">5.5.2</a></REF> will not append an
+  additional <kbd>return</kbd>
+  <kbd>undefined</kbd> when compiling the body. Note that even
+  if such a return statement was appended, the
+  <kbd>compile_sequence</kbd> function will not compile it as it
+  is <QUOTE>dead code</QUOTE>.
+
+    </FOOTNOTE></span></div>
+    
+    
     <div class='footnote'>
-      <a class='footnote-number' id='footnote-2' href='#footnote-link-2' >[2] </a>
+      <a class='footnote-number' id='footnote-3' href='#footnote-link-3' >[3] </a>
     <FOOTNOTE>
     We have used
     the same symbol <kbd>+</kbd> here to denote both the
@@ -3641,7 +3677,7 @@ assign("val", list(op("+"), reg("val"), constant(1))</pre></div></div></td></tr>
     
     
     <div class='footnote'><span style="color:green">
-      <a class='footnote-number' id='footnote-3' href='#footnote-link-3' style="color:green">[3] </a>
+      <a class='footnote-number' id='footnote-4' href='#footnote-link-4' style="color:green">[4] </a>
     <FOOTNOTE>
     Making
 	the primitives into reserved words is in general a bad idea, since a user
@@ -3657,7 +3693,7 @@ assign("val", list(op("+"), reg("val"), constant(1))</pre></div></div></td></tr>
 	  <span style="color:blue">functions</span>
 	
 	with these names will stop working.  See
-	exercise&nbsp;<REF NAME="ex:cte-open-code"><a class="superscript" id="5.5.5-ex-link-5.49" href="./5.5.6.html#ex_5.49">5.49</a></REF> for ideas on how to avoid
+	exercise&nbsp;<REF NAME="ex:cte-open-code"><a class="superscript" id="5.5.5-ex-link-5.50" href="./5.5.6.html#ex_5.50">5.50</a></REF> for ideas on how to avoid
 	this problem.
     </FOOTNOTE></span></div>
     

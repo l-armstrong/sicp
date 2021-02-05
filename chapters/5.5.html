@@ -2351,7 +2351,7 @@ Acknowledgments
     
       using the instruction
     <div class='snippet' id='javascript_117_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-assign("fun", op("lookup_symbol_value"), constant(symbol_of_name("f"), reg("env")))</pre></div></div>
+assign("fun", list(op("lookup_symbol_value"), constant(symbol_of_name("f")), reg("env"))),</pre></div></div>
     This code not only avoids the unnecessary saves and
     restores but also assigns the value of the lookup directly to
     
@@ -2393,7 +2393,7 @@ assign("fun", op("lookup_symbol_value"), constant(symbol_of_name("f"), reg("env"
     above. There are many other optimizations that can be performed by a
     compiler, such as coding primitive operations <QUOTE>in line</QUOTE> instead
     of using a general <kbd>apply</kbd> mechanism (see
-    exercise&nbsp;<REF NAME="ex:open-code"><a class="superscript" id="5.5-ex-link-5.39" href="./5.5.5.html#ex_5.39">5.39</a></REF>); but we will not emphasize these
+    exercise&nbsp;<REF NAME="ex:open-code"><a class="superscript" id="5.5-ex-link-5.40" href="./5.5.5.html#ex_5.40">5.40</a></REF>); but we will not emphasize these
     here. Our main goal in this section is to illustrate the compilation process
     in a simplified (but still interesting) context.
     

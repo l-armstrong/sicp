@@ -2709,10 +2709,11 @@ function compile_function_call(target, linkage) {
     
       <span style="color:green">label</span>
       <span style="color:blue">label:</span>
+    
     <kbd class='snippet'>
 $$  assign("continue", label("fun_return")),
   save("continue"),
-  save_marker(),
+  push_marker_to_stack(),
   assign("val", list(op("compiled_function_entry"), reg("fun"))),
   go_to(reg("val")),
 "fun_return",
@@ -2731,7 +2732,7 @@ $$  assign("continue", label("fun_return")),
     <kbd class='snippet'>
 $$  assign("continue", label("fun_return")),
   save("continue"),
-  save_marker(),
+  push_marker_to_stack(),
   assign("val", list(op("compiled_function_entry"), reg("fun"))),
   go_to(reg("val")),
 "fun_return",
@@ -2739,30 +2740,6 @@ $$  assign("continue", label("fun_return")),
   restore("continue"),
   go_to(reg("continue")),         // linkage code
       </kbd>
-    <table width="100%">
-        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
-        <tr>
-          <td class="meta" style = "color:grey; text-align: center">Original</td>
-          <td></td>
-          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
-        </tr>
-        <tr><td>    </td>
-          <td></td>
-          <td><span style="color:blue">
-        or, finally, like this if the linkage is <kbd>"return_undefined"</kbd>:
-        <kbd class='snippet'>
-$$  assign("continue", label("return_undefined")),
-  save("continue"),
-  save_marker(),
-  assign("val", list(op("compiled_function_entry"), reg("fun"))),
-  go_to(reg("val")),
-"return_undefined",
-  assign($target$, constant(undefined)),   // included even if target is val
-  restore_marker(),
-  restore("continue"),
-  go_to(reg("continue")),         // linkage code
-	  </kbd>
-      </span></td></tr></table>
     This code sets up <kbd>continue</kbd> so that the
     
       <span style="color:green">procedure</span>
@@ -2771,11 +2748,10 @@ $$  assign("continue", label("return_undefined")),
     will return to a label
     
       <span style="color:green">
-      <kbd>proc-return</kbd></span>
+        <kbd>proc-return</kbd>
+      </span>
       <span style="color:blue">
-	<kbd>fun_return</kbd>
-  or
-	<kbd>return_undefined</kbd>
+        <kbd>fun_return</kbd>
       </span>
     
     and jumps to the
@@ -2793,7 +2769,7 @@ $$  assign("continue", label("return_undefined")),
       <span style="color:green">procedure's</span>
       <span style="color:blue">function's</span>
     
-    result from <kbd>val</kbd> <span style="color:blue">(or undefined)</span> to the target register (if
+    result from <kbd>val</kbd> to the target register (if
     necessary) and then jumps to the location specified by the linkage.
     (The linkage is always
     
@@ -2801,8 +2777,7 @@ $$  assign("continue", label("return_undefined")),
 	<kbd>return</kbd>
       </span>
       <span style="color:blue">
-	<kbd>"return"</kbd>,
-	<kbd>"return_undefined"</kbd>,
+	<kbd>"return"</kbd>
       </span>
     
     or a label,
@@ -2845,18 +2820,21 @@ $$  assign("continue", label("return_undefined")),
           <td><span style="color:blue">
         As we did for the explicit-control evaluator, we save 
         <kbd>continue</kbd> before using 
-        <kbd>save_marker()</kbd> when calling
+        <kbd>push_marker_to_stack()</kbd> when calling
         a function. This marker is removed as the function is returning 
-        as part of evaluating return statements. 
-        To remove the marker also when there is no explicit <kbd>return</kbd>, we place an additional 
-        <kbd>restore_marker()</kbd> in 
-        <kbd>return_undefined</kbd>. 
-</span></td></tr></table>
-  
+        as part of evaluating return statements. Note the absence of the 
+        <kbd>return_undefined</kbd> entry point from chapter&nbsp;<REF NAME="sec:eceval"><a class="superscript" id="5.5.3-sec-link-5.4" href="./5.4.html">5.4</a></REF>.
+        It is no longer needed as function bodies that do not end with a return statement are
+        appended with a <kbd>return</kbd> 
+        <kbd>undefined</kbd> during compilation.
+     </span></td></tr></table>
+  </p></div>
 
   <div class='permalink'>
 <a name='p7' class='permalink'></a><p>
-    In fact, if the target is not <kbd>val</kbd>, that is
+    <span style="color:green">In fact, if</span><span style="color:blue">If</span>
+    the target is not <kbd>val</kbd>, 
+    <span style="color:green">that is</span><span style="color:blue">the above is</span>
     exactly the code our compiler will generate.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
     Usually, however, the target is <kbd>val</kbd> (the only
     time the compiler specifies a different register is when targeting the
@@ -2881,7 +2859,7 @@ $$  assign("continue", label("return_undefined")),
     
     result is put directly into
     the target register and there is no need to <span style="color:green">return</span><span style="color:blue">jump</span> to a special
-    location that copies it. Instead, <span style="color:blue">unless linkage is <kbd>"return_undefined"</kbd>,</span> we simplify the code by
+    location that copies it. Instead we simplify the code by
     setting up <kbd>continue</kbd> so that the
     
       <span style="color:green">procedure</span>
@@ -2933,7 +2911,7 @@ go_to(reg("val")),
     <kbd class='snippet'>
 assign("continue", label($linkage$)),
 save("continue"),
-save_marker(),
+push_marker_to_stack(),
 assign("val", list(op("compiled_function_entry"), reg("fun"))),
 go_to(reg("val")),
       </kbd>
@@ -3016,29 +2994,29 @@ go_to(reg("val")),</pre></div></div></td></tr></table>
       <span style="color:blue">return expression in a function</span>
     
     body does a direct transfer, without saving any information on the stack.
+    
+      <span style="color:blue">
+        Just like the explicit-control evaluator, an explicit return is needed for tail
+        recursion. Due to our simple compile-time transformation of function bodies, a
+        function call without a <kbd>return</kbd> at the end of
+        a function body will no longer be body's last statement as a
+        <kbd>return</kbd>
+        <kbd>undefined</kbd> has been added after it.
+      </span>
+    
   </p></div>
 
   <div class='permalink'>
 <a name='p9' class='permalink'></a><p>
-    
-      <span style="color:green">
-        Suppose instead that we had handled the case of a procedure call with a
-        linkage of <kbd>return</kbd> and a target of
-        <kbd>val</kbd> as shown above for a
-        non-<kbd>val</kbd> target. This would destroy tail
-        recursion. Our system would still give the same value for any
-        expression. But each time we called a procedure, we would save
-        <kbd>continue</kbd> and return after the call to undo
-        the (useless) save. These extra saves would accumulate during a nest of
-        procedure calls.</span>
-      <span style="color:blue">
-        This is not the case for 
-        function calls with linkage <kbd>"return_undefined"</kbd>.
-        In this case, a function call always jumps to a continuation that 
-        stores <kbd>undefined</kbd> 
-        in target, before moving on to the next continuation. The extra saves needed to remember 
-        these continuations  accumulate during a nest of procedure calls and 
-        destroys tail recursion.</span><a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+    Suppose instead that we had handled the case of a procedure call with a
+    linkage of <kbd>return</kbd> and a target of
+    <kbd>val</kbd> as shown above for a
+    non-<kbd>val</kbd> target. This would destroy tail
+    recursion. Our system would still give the same value for any
+    expression. But each time we called a procedure, we would save
+    <kbd>continue</kbd> and return after the call to undo
+    the (useless) save. These extra saves would accumulate during a nest of
+    procedure calls.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
   </p></div>
 
   <div class='permalink'>
@@ -3060,8 +3038,7 @@ go_to(reg("val")),</pre></div></div></td></tr></table>
 	<kbd>return</kbd>.
       </span>
       <span style="color:blue">
-	<kbd>"return"</kbd> or
-	<kbd>"return_undefined"</kbd> (in which case both targets can be handled by a single case).
+	<kbd>"return"</kbd>.
       </span>
     
     Observe that the instruction sequences
@@ -3137,27 +3114,14 @@ go_to(reg("val")),</pre></div></div></td></tr></table>
             target))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_120_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_fun_appl(target, linkage) {
-    const return_undefined = make_label("return_undefined");
     const fun_return = make_label("fun_return");
-    return linkage === "return_undefined"
-           ? make_instruction_sequence(
-                 list("fun"),
-                 all_regs,
-                 list(assign("continue", label(return_undefined)),
-                      save("continue"),
-                      save_marker(),
-                      assign("val", list(op("compiled_function_entry"), reg("fun"))),
-                      go_to(reg("val")),
-                      return_undefined,
-                      assign(target, constant(undefined)),
-                      go_to(reg("continue"))))
-           : target === "val" && linkage !== "return"
+    return target === "val" && linkage !== "return"
            ? make_instruction_sequence(
                  list("fun"),
                  all_regs,
                  list(assign("continue", label(linkage)),
                       save("continue"),
-                      save_marker(),
+                      push_marker_to_stack(),
                       assign("val", list(op("compiled_function_entry"), reg("fun"))),
                       go_to(reg("val"))))
            : target !== "val" && linkage !== "return"
@@ -3166,7 +3130,7 @@ function compile_fun_appl(target, linkage) {
                  all_regs,
                  list(assign("continue", label(fun_return)),
                       save("continue"),
-                      save_marker(),
+                      push_marker_to_stack(),
                       assign("val", list(op("compiled_function_entry"), reg("fun"))),
                       go_to(reg("val")),
                       fun_return,
@@ -3177,7 +3141,7 @@ function compile_fun_appl(target, linkage) {
                  list("fun"),
                  all_regs,
                  list(save("continue"),
-                      save_marker(),
+                      push_marker_to_stack(),
                       assign("val", list(op("compiled_function_entry"), reg("fun"))),
                       go_to(reg("val"))))
            : // target !== "val" && linkage === "return"
@@ -3186,7 +3150,7 @@ function compile_fun_appl(target, linkage) {
     
     
   </p></div>
-</p></div><hr>
+<hr>
 
     <div class='footnote'>
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1' >[1] </a>

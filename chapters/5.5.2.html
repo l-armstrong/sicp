@@ -2054,16 +2054,6 @@ Acknowledgments
     
     This needs the <kbd>continue</kbd> register and does not
     modify any registers.
-    
-      
-	If the linkage is <kbd>"return_undefined"</kbd>,
-	we insert an assignment instruction before the
-	<kbd>go_to</kbd>, which assigns the
-  the constant <kbd>undefined</kbd> to
-	the current target register. The target register
-	must be treated as modified in this case.
-      
-    
     If the linkage is
     
       
@@ -2086,16 +2076,10 @@ function compile_linkage(target, linkage) {
            ? make_instruction_sequence(list("continue"), 
                                        null,
                                        list(go_to(reg("continue"))))
-           : linkage === "return_undefined"
-           ? make_instruction_sequence(null, 
-                                       list(target),
-                                       list(assign(target, constant(undefined)),
-                                            restore_marker(),
-                                            restore("continue"),
-                                            go_to(reg("continue"))))
            : linkage === "next"
            ? empty_instruction_sequence()
-           : make_instruction_sequence(null, null, list(go_to(label(linkage))));</pre></div></div>
+           : make_instruction_sequence(null, null, list(go_to(label(linkage))));
+}</pre></div></div>
 
     The linkage code is appended to an instruction sequence by
     <kbd>preserving</kbd> the
@@ -2681,24 +2665,18 @@ function compile_lambda_expression(exp, target, linkage) {
     
     
       
-      function
-    
-    body.
-    
       
-      
-	The body is compiled with linkage
-	<kbd>"return_undefined"</kbd>
-	so that it will end by returning from the function
-	with the return value <kbd>undefined</kbd>
-	unless a return statement is executed
-  before reaching the end of the function.
-	The target is <kbd>val</kbd>
-	so that the return value (or
-	<kbd>undefined</kbd>)
-	will be in <kbd>val</kbd>.
+        function body, wrapped in a call to
+        <kbd>append_return_undefined</kbd>, which will be explained shortly.
       
     
+	  The sequence is compiled with linkage
+    "return"
+	and target <kbd>val</kbd>
+	so that it will end by returning from the
+	procedure with the
+	procedure 
+	result in <kbd>val</kbd>.
     <div class='snippet' id='javascript_119_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_lambda_body(exp, fun_entry) {
     const params  = lambda_parameter_symbols(exp);
@@ -2713,10 +2691,47 @@ function compile_lambda_body(exp, fun_entry) {
                                     constant(params),
                                     reg("argl"), 
                                     reg("env"))))),
-        compile(lambda_body(exp), "val", "return_undefined"));
+        compile(append_return_undefined(lambda_body(exp)), "val", "return"));
 }</pre></div></div>
   </p></div>
 
+  <div class='permalink'>
+<a name='p11' class='permalink'></a><p>
+    The function <kbd>append_return_undefined</kbd> appends
+    a <kbd>return undefined</kbd> to the lambda body.
+    <div class='snippet' id='javascript_119_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+function append_return_undefined(body) {
+    const return_stmt = list("return_statement", list("name", "undefined"));
+    return is_return_statement(body)
+        ? body
+        : is_sequence(body)
+        ? list("sequence", append(sequence_statements(body), list(return_stmt)))
+        : list("sequence", list(body, return_stmt));
+}</pre></div></div>
+    This simple transformation of lambda bodies ensures that all functions end with a
+    return statement (inserted by the programmer or by
+    <kbd>append_return_undefined</kbd>) that returns the
+    appropriate value. Thus, this represents a third way to ensure that a function that did not
+    return explicitly has the return value <kbd>undefined</kbd>.
+    
+    In the meta-circular evaluator, we used a return value object which also played a
+    role in stopping the sequence evaluation.
+
+    In the explicit-control evaluator, functions that did not return explicitly continued
+    to a specific entry point that stored <kbd>undefined</kbd>
+    in <kbd>val</kbd>.
+
+    Since a compiler is operating on the source of a program before it is executed, and
+    only once for any number of runs, it is less sensitive to overheads of performing
+    program analysis and program transformations than an interpreter. Therefore we opt for
+    this source-level transformation in the compiler.
+
+    (See exercise&nbsp;<REF NAME="ex:append_return_undefined"><a class="superscript" id="5.5.2-ex-link-5.34" href="./5.5.5.html#ex_5.34">5.34</a></REF> for a more elegant way
+    to handle insertion of a return statement.)
+    
+  </p></div>
+
+  
   
     
       
@@ -2729,20 +2744,23 @@ function compile_lambda_body(exp, fun_entry) {
       </h2></div>
 
       <div class='permalink'>
-<a name='p11' class='permalink'></a><p>
+<a name='p12' class='permalink'></a><p>
 	
 	JavaScript's return statements are compiled such that the compiled code
 	returns  to the caller of the current function the result of running the
 	code of the return expression, ignoring the current linkage. 
-	<div class='snippet' id='javascript_119_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	<div class='snippet' id='javascript_119_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_return_statement(stmt, target, linkage) {
     return append_instruction_sequences(
         make_instruction_sequence(
             null,
             null,
-            list(restore_marker(), restore("continue"))),
+            list(revert_stack_to_marker(), restore("continue"))),
         compile(return_expression(stmt), target, "return"));
 }</pre></div></div>
+  The return statements do not need any register values and from the point
+  of view of the current function does not modify any registers as there are
+  no subsequent statements in the function body.
       </p></div>
 
       
@@ -2755,7 +2773,7 @@ function compile_return_statement(stmt, target, linkage) {
       </h2></div>
 
       <div class='permalink'>
-<a name='p12' class='permalink'></a><p>
+<a name='p13' class='permalink'></a><p>
 	
 	A block is compiled by prepending an assignment instruction to the compiled
 	body of the block. The assignment extends the current environment with bindings
@@ -2763,7 +2781,7 @@ function compile_return_statement(stmt, target, linkage) {
 	<kbd>"*unassigned*"</kbd>. This affects neither
 	the target nor the linkage.
         	
-	<div class='snippet' id='javascript_119_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	<div class='snippet' id='javascript_119_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_block(stmt, target, linkage) {
     const body = block_body(stmt);
     const locals = scan_out_declarations(body);
@@ -2779,7 +2797,6 @@ function compile_block(stmt, target, linkage) {
                compile(body, target, linkage));
 }</pre></div></div>
       </p></div>
-
 
     
   
@@ -2849,7 +2866,7 @@ function compile_block(stmt, target, linkage) {
       
     
      
-    <div class='snippet' id='javascript_119_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_119_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 let label_counter = 0;
 
 function new_label_number() {
@@ -2867,8 +2884,8 @@ function make_label(name) {
       <a class='footnote-number' id='footnote-2' href='#footnote-link-2'>[2] </a>
     <FOOTNOTE>
     Our compiler does not detect all dead code. For example,
-    one or more conditionals that guarantee the execution of a return
-    statement will not prevent subsequent statements from being compiled. See exercise&nbsp;<REF NAME="ex:dead-code"><a class="superscript" id="5.5.2-ex-link-5.40" href="./5.5.5.html#ex_5.40">5.40</a></REF>.
+    a conditional whose consequent and alternative branches both end in a return
+    statement will not prevent subsequent statements from being compiled. See exercise&nbsp;<REF NAME="ex:dead-code"><a class="superscript" id="5.5.2-ex-link-5.41" href="./5.5.5.html#ex_5.41">5.41</a></REF>.
     
     </FOOTNOTE></div>
 
@@ -2892,7 +2909,7 @@ function make_label(name) {
      
      
      
-    <div class='snippet' id='javascript_119_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_119_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function make_compiled_function(entry, env) {
     return list("compiled_function", entry, env);
 }

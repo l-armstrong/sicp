@@ -2218,7 +2218,7 @@ function compile(component, target, linkage) {
 	    <kbd>return</kbd>),
 	  </span>
 	  <span style="color:blue">
-	    <kbd>"return"</kbd> or <kbd>"return_undefined"</kbd>),
+	    <kbd>"return"</kbd>),
 	  </span>
 	
 	or
@@ -2297,6 +2297,12 @@ go_to(reg("continue"))</pre></div></div></td></tr></table>
     
     call.  In both cases, the value of the expression will be placed into
     the target <kbd>val</kbd> register.
+    
+      <span style="color:blue">
+        Later, we shall see how we can ensure that <kbd>val</kbd> always holds the
+        appropriate value, even if a function did not return explicitly.
+      </span>
+    
   </p></div>
 
   
