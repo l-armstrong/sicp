@@ -2102,6 +2102,7 @@ Acknowledgments
 	  We simplify the example so that we can get away with a single
 	  conditional expression.
 	</span>
+	
         This construct is a <EM>case analysis</EM> and can be expressed
 	in JavaScript using a <EM>conditional expression</EM> as follows:
 	
@@ -2327,6 +2328,76 @@ $predicate$ ? $consequent$-$expression$ : $alternative$-$expression$
     </span>    </td>
           <td></td>
           <td><span style="color:blue">
+      If we prefer to handle the zero case separately, we can specify the function
+      that computes the absolute value of a number by writing
+        
+          \[
+          |x| = \left\{ \begin{array}{rl}
+          x   & \mbox{if $x > 0$} \\
+          0   & \mbox{if $x = 0$} \\
+          -x  & \mbox{otherwise}
+          \end{array}
+          \right.
+          \]
+        
+	In JavaScript, we express a case analysis with multiple cases by nesting
+	conditional expressions as alternative expressions inside other conditional expressions:
+        
+        <div class='snippet' id='javascript_11_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD5QABj4ClAgPyg2i5UoBc60AF5D8zVv5qFpnaAC06gNzYAvrkatrAVg52gA')">function abs(x) {
+    return x > 0
+           ? x
+           : x === 0
+           ? 0
+           : - x;
+}
+</pre></div></div>
+	There is no need for parentheses around the alternative expression
+	<kbd>x === 0 ? 0 : - x</kbd> because
+	the conditional expression syntactic form
+	
+	
+	
+	
+	is right-associative.
+	The general form of a case analysis is
+	
+	<kbd class='snippet'>
+$p$$_1$
+? $e$$_1$
+: $p$$_2$
+? $e$$_2$
+$\vdots$
+: $p$$_n$
+? $e$$_n$
+: $final$-$alt$-$exp$
+	  </kbd>
+	
+	
+	We call a predicate $p_i$
+	together with its consequent expression
+	$e_i$
+	a <EM>clause</EM>. A case analysis
+	can be seen as a sequence of clauses, followed by a final
+	alternative expression.
+	
+	According to the evaluation of conditional expressions,
+	a case analysis is evaluated by first evaluating
+	the predicate $p$$_1$.
+	If its value is false, then $p$$_2$
+	is evaluated.
+	If $p$$_2$'s
+	value is also false, then $p$$_3$
+	is evaluated. This process continues until a predicate is
+        found whose value is true, in which case the interpreter returns the
+        value of the corresponding consequent expression
+	$e$
+	of the clause
+	as the value of the case analysis.
+	
+	If none of the
+	$p$'s
+	is found to be true, the value of the case analysis
+	is the value of the final alternative expression.
     </span></td></tr></table>
   <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
@@ -2396,7 +2467,6 @@ $predicate$ ? $consequent$-$expression$ : $alternative$-$expression$
         </UL>
         
         
-        -->
         Notice that <kbd>and</kbd> and
 	<kbd>or</kbd> are special forms, not procedures,
         because the subexpressions are not necessarily all evaluated.
@@ -2517,7 +2587,7 @@ $predicate$ ? $consequent$-$expression$ : $alternative$-$expression$
         As an example of how these are used, the condition that a 
         number $x$ be in the range
 	$5 < x < 10$ may be expressed as
-        <div class='snippet' id='javascript_11_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+        <div class='snippet' id='javascript_11_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (and (> x 5) (< x 10))</pre></div></div>
       </p></div>
     </span>    </td>
@@ -2528,7 +2598,7 @@ $predicate$ ? $consequent$-$expression$ : $alternative$-$expression$
         As an example of how these predicates are used, the condition that a 
         number $x$ be in the range
 	$5 < x < 10$ may be expressed as
-        <div class='snippet' id='javascript_11_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+        <div class='snippet' id='javascript_11_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 x > 5 && x < 10</pre></div></div>
         Note that the syntactic form
 	<kbd>&&</kbd>
@@ -2564,10 +2634,10 @@ x > 5 && x < 10</pre></div></div>
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_11_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_11_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (>= x y)
   (or (> x y) (= x y)))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_11_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsDMBXAOwGMAXASwHsjQBzAJwFMBDMphgfSq6YEcCLADYAKAB4AaUAE8AlKADe2UCtDMyBBrTGgAfDNAAfQ6B0BeCzIDc2AL65Grdlx6d+g0QHYpAFllWgA')">function greater_or_equal(x, y) {
+            <td><div class='snippet' id='javascript_11_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsDMBXAOwGMAXASwHsjQBzAJwFMBDMphgfSq6YEcCLADYAKAB4AaUAE8AlKADe2UCtDMyBBrTGgAfDNAAfQ6B0BeCzIDc2AL65Grdlx6d+g0QHYpAFllWgA')">function greater_or_equal(x, y) {
     return x > y || x === y;
 }
 </pre></div></div></td></tr></table>
@@ -2581,10 +2651,10 @@ x > 5 && x < 10</pre></div></div>
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_11_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_11_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (>= x y)
   (not (< x y)))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_11_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsDMBXAOwGMAXASwHsjQBzAJwFMBDMphgfSq6YEcCLADYAKAB4AaUAE8AlKADe2UCtDMyBBrQCEocaAA8M2QG5sAX1yNW7Lj079BogOxSALKaA')">function greater_or_equal(x, y) {
+            <td><div class='snippet' id='javascript_11_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsDMBXAOwGMAXASwHsjQBzAJwFMBDMphgfSq6YEcCLADYAKAB4AaUAE8AlKADe2UCtDMyBBrQCEocaAA8M2QG5sAX1yNW7Lj079BogOxSALKaA')">function greater_or_equal(x, y) {
     return ! (x < y);
 }
 </pre></div></div></td></tr></table>
@@ -2636,173 +2706,132 @@ x > 5 && x < 10</pre></div></div>
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_11_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-10</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_11_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsoAwDcQA')">10;
-</pre></div></div></td></tr></table>
-    <table width="100%">
-          <colgroup><col width="48%"><col width="52%"></colgroup>
-          
-          <tr>
             <td><div class='snippet' id='javascript_11_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(+ 5 3 4)</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_11_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsFZQBqUAZiNABYBuIA')">5 + 3 + 4;
+10</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_11_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsoAwDcQA')">10;
 </pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_11_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(- 9 1)</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_11_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsE5QBaVAbiA')">9 - 1;
+(+ 5 3 4)</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_11_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsFZQBqUAZiNABYBuIA')">5 + 3 + 4;
 </pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_11_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(/ 6 2)</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_11_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChudGAEwDcQA')">6 / 2;
+(- 9 1)</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_11_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsE5QBaVAbiA')">9 - 1;
 </pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_11_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(+ (* 2 4) (- 4 6))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_11_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsCZQAqUAFlAGpQAKMgWlEwEoBuIA')">2 * 4 + (4 - 6);
+(/ 6 2)</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_11_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChudGAEwDcQA')">6 / 2;
 </pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_11_15_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define a 3)</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_11_15_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsGMB7AOwGcAXUAQ1AF5QBmAbiA')">const a = 3;
+(+ (* 2 4) (- 4 6))</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_11_15_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsCZQAqUAFlAGpQAKMgWlEwEoBuIA')">2 * 4 + (4 - 6);
 </pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_11_16_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define b (+ a 1))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_11_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsGMB7AOwGcAXUAQ1AF5QBmAbl0NIoCNarQBqVRoA')">const b = a + 1;
+(define a 3)</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_11_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsGMB7AOwGcAXUAQ1AF5QBmAbiA')">const a = 3;
 </pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_11_17_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(+ a b (* a b))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_11_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsGMB7AOwGcAXUAQ1AF5QBmAbl0NIoCNarQBqVZ7NT6c+1AFSh2jIA')">a + b + a * b;
+(define b (+ a 1))</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_11_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsGMB7AOwGcAXUAQ1AF5QBmAbl0NIoCNarQBqVRoA')">const b = a + 1;
 </pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_11_18_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(= a b)</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_11_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsGMB7AOwGcAXUAQ1AF5QBmAbl0NIoCNarQBqVZ7NRrDQ7RkA')">a === b;
+(+ a b (* a b))</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_11_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsGMB7AOwGcAXUAQ1AF5QBmAbl0NIoCNarQBqVZ7NT6c+1AFSh2jIA')">a + b + a * b;
 </pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_11_19_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+(= a b)</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_11_19_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsGMB7AOwGcAXUAQ1AF5QBmAbl0NIoCNarQBqVZ7NRrDQ7RkA')">a === b;
+</pre></div></div></td></tr></table>
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_11_20_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (if (and (> b a) (< b (* a b)))
   b
   a)</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_11_19_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsGMB7AOwGcAXUAQ1AF5QBmAbl0NIoCNarQBqVZ7JwB83AGSjQnADzcAVJNAB+BQC4qjIA')">b > a && b < a * b ? b : a;
+            <td><div class='snippet' id='javascript_11_20_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsGMB7AOwGcAXUAQ1AF5QBmAbl0NIoCNarQBqVZ7JwB83AGSjQnADzcAVJNAB+BQC4qjIA')">b > a && b < a * b ? b : a;
 </pre></div></div></td></tr></table>
     <table width="100%">
-        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
-        <tr>
-          <td class="meta" style = "color:grey; text-align: center">Original</td>
-          <td></td>
-          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
-        </tr>
-        <tr><td><span style="color:green">
-    <div class='snippet' id='javascript_11_20_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_11_21_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (cond ((= a 4) 6)
       ((= b 4) (+ 6 7 a))
-      (else 25))</pre></div></div>
-      </span>    </td>
-          <td></td>
-          <td></td></tr></table>
+      (else 25))</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_11_21_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsGMB7AOwGcAXUAQ1AF5QBmAbl0NIoCNarQBqVZ7NRrDQAFmwB+UDgBcoTsLripmXqADsaytjkAmAKyMgA')">a === 4
+? 6
+: b === 4
+? 6 + 7 + a
+: 25;
+</pre></div></div></td></tr></table>
     <table width="100%">
-        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
-        <tr>
-          <td class="meta" style = "color:grey; text-align: center">Original</td>
-          <td></td>
-          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
-        </tr>
-        <tr><td><span style="color:green">
-    <div class='snippet' id='javascript_11_21_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(+ 2 (if (> b a) b a))</pre></div></div>
-    <div class='snippet' id='javascript_11_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_11_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+(+ 2 (if (> b a) b a))</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_11_22_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsGMB7AOwGcAXUAQ1AF5QBmAbl0NIoCNarQBqVZ7ACZeoABScAfNwD8oTgC4qASkZA')">2 + (b > a ? b : a);
+</pre></div></div></td></tr></table>
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_11_23_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (* (cond ((> a b) a)
          ((< a b) b)
          (else -1))
-   (+ a 1))</pre></div></div>
-      </span>    </td>
-          <td></td>
-          <td><span style="color:blue">
-        Note that the statement
-        <div class='snippet' id='javascript_11_23_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsGMB7AOwGcAXUAQ1AF5QBmAbl0NIoCNarQBqVZ7NRrDQAFlAB+UJlAAuUJ2F1xUmXwDsvbvIBMAVkZA')">a === 4 ? 6 : b === 4 ? 6 + 7 + a : 25;
-</pre></div></div>
-        consists of two conditional expressions, where the second one forms the
-	alternative of the first one; we say that the conditional expression syntactic form
-	
-	
-	
-	
-	is <EM>right-associative</EM>. As with long arithmetic expressions, we
-	use line breaks to visually separate the major components of long
-	conditional expressions:
-        <div class='snippet' id='javascript_11_24_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsGMB7AOwGcAXUAQ1AF5QBmAbl0NIoCNarQBqVZ7NRrDQAFmwB+UDgBcoTsLqjQk6b1AB2dZWxyATAFZGQA')">a === 4
-? 6
-: b === 4 
-? 6 + 7 + a
-: 25;
-</pre></div></div>
-	
-	Conditional expressions nested as alternative expressions inside of other conditional
-	expressions will appear frequently in our JavaScript programs. We will call a
-	predicate together with its consequent expression a <EM>clause</EM>. Conditional expressions
-	that are nested this way can be seen as a sequence of clauses, followed by a final
-	alternative expression. According to the evaluation of conditional expressions,
-	the predicate of the first clause is evaluated first.
-	If its value is false, the predicate of the second clause is evaluated.  
-        This process continues until a predicate is
-        found whose value is true, in which case the interpreter returns the
-        value of the corresponding 
-        consequent expression of the
-        clause as the value of the conditional expression.  If none of the
-	predicates is found to be true, the value of the conditional expression
-	is the value of the final alternative expression.
-	<div class='permalink'>
-<a name='p13' class='permalink'></a><p>
-	
-	Conditional expressions can appear inside operator combinations. The
-	parentheses in the following examples are necessary because the
-	conditional expression syntactic form has lower precedence than the arithmetic
-	operators
-	<kbd>+</kbd> and
-	<kbd>*</kbd>.
-	
-	
-    <div class='snippet' id='javascript_11_25_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsGMB7AOwGcAXUAQ1AF5QBmAbl0NIoCNarQBqVZ7ACZeoABScAfNwD8oTgC4qASkZA')">2 + (b > a ? b : a);
-</pre></div></div>
-    <div class='snippet' id='javascript_11_26_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsGMB7AOwGcAXUAQ1AF5QBmAbl0NIoCNarQBqVZ7AApqAPlDtsoAPxVJALm4AecZJkTQCgLQoAlNgBUQ6n12MgA')">(a > b
+   (+ a 1))</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_11_23_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsGMB7AOwGcAXUAQ1AF5QBmAbl0NIoCNarQBqVZ7AApqAPlDtsoAPxVJALm4AecZJkTQCgLQoAlNgBUQ6n12MgA')">(a > b
  ? a
  : a < b
  ? b
  : -1)
 *
 (a + 1);
-</pre></div></div>
-	</p></div>
-      </span></td></tr></table>
+</pre></div></div></td></tr></table>
+	
+	The parentheses around the conditional expressions in the last two statements
+	are necessary because the
+	conditional expression syntactic form has lower precedence than the arithmetic
+	operators
+	<kbd>+</kbd> and
+	<kbd>*</kbd>.
+	
+	
   
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_11_1_div" data-toggle="collapse">Add solution</button></div>
@@ -2836,7 +2865,7 @@ x > 5 && x < 10</pre></div></div>
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#solution_11_2_div" data-toggle="collapse">Solution</button></div>
       <div class="solution_content collapse" id="solution_11_2_div"><SOLUTION>
        
-      <div class='snippet' id='javascript_11_27_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsAoBWUAalABYTQ8AmUAWioGZ6rNKKwCBKHr0bYPmYAqVi2p9RNFgHYeAbiA')">(5 + 4 + (2 - (3 - (6 + 4 / 5)))) 
+      <div class='snippet' id='javascript_11_24_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsAoBWUAalABYTQ8AmUAWioGZ6rNKKwCBKHr0bYPmYAqVi2p9RNFgHYeAbiA')">(5 + 4 + (2 - (3 - (6 + 4 / 5)))) 
 /
 (3 * (6 - 2) * (2 - 7));
 </pre></div></div>
@@ -2868,11 +2897,11 @@ x > 5 && x < 10</pre></div></div>
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_11_28_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_11_25_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (f x y z)
    (let ((smallest (if (> x y) (if (> y z) z y) (if (> x z) z x))))
       (- (+ (square x) (square y) (square z)) (square smallest))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_11_28_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsDMBXAOwGMAXASwHsjQBnARwIEMAnAUwAoAPASlADe2UCNAcyBVrW6gAVKG4BubAF9chUpRqg8PADSgAngYBe-IaPGTajFhx78A1PSZsuhpy7tczoALTCokEiIPQEAEZkrMzkoGQAFuxebqBUeHGJ9AC2zAA2uex0ZIHBorZuPKAAfEagAPygnIbVoCb1raAAXEb83ZU1bQ1t3Xy8ymr4nAAsBgDsBgBMY0A')">function f(x, y, z) {
+            <td><div class='snippet' id='javascript_11_25_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsDMBXAOwGMAXASwHsjQBnARwIEMAnAUwAoAPASlADe2UCNAcyBVrW6gAVKG4BubAF9chUpRqg8PADSgAngYBe-IaPGTajFhx78A1PSZsuhpy7tczoALTCokEiIPQEAEZkrMzkoGQAFuxebqBUeHGJ9AC2zAA2uex0ZIHBorZuPKAAfEagAPygnIbVoCb1raAAXEb83ZU1bQ1t3Xy8ymr4nAAsBgDsBgBMY0A')">function f(x, y, z) {
    return square(x) + square(y) + square(z) -
           // subtract the square of the smallest
           square(x > y ? (y > z ? z : y) : (x > z ? z : x));
@@ -2901,7 +2930,7 @@ x > 5 && x < 10</pre></div></div>
 	Observe that our model of evaluation allows for combinations whose
 	operators are compound expressions.  Use this observation to describe
 	the behavior of the following procedure:
-	<div class='snippet' id='javascript_11_29_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	<div class='snippet' id='javascript_11_26_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (a-plus-abs-b a b)
   ((if (> b 0) + -) a b))</pre></div></div>
       </span>    </td>
@@ -2913,7 +2942,7 @@ x > 5 && x < 10</pre></div></div>
 	Observe that our model of evaluation allows for applications
 	whose function expressions are compound expressions. Use this observation
 	to describe the behavior of the following function:
-	<div class='snippet' id='javascript_11_30_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsDMBXAOwGMAXASwHsjQAHAGwIGcAKAQwBpQAjASlABvUACcApmQIja7UAGpeAblABffMXLVaAWwpEWHbvyGiJUmaAC0S1etKUaodgH1GLZ+x7NnPQ7wGC2KDBppLSoKw8oAB8ALygAAygAPz0TMygAFyguvrMfH78ithq2C5u3p7evgCs3JYALHyKQA')">function plus(a, b) { return a + b; }
+	<div class='snippet' id='javascript_11_27_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsDMBXAOwGMAXASwHsjQAHAGwIGcAKAQwBpQAjASlABvUACcApmQIja7UAGpeAblABffMXLVaAWwpEWHbvyGiJUmaAC0S1etKUaodgH1GLZ+x7NnPQ7wGC2KDBppLSoKw8oAB8ALygAAygAPz0TMygAFyguvrMfH78ithq2C5u3p7evgCs3JYALHyKQA')">function plus(a, b) { return a + b; }
 function minus(a, b) { return a - b; }
 function a_plus_abs_b(a, b) {
     return (b >= 0 ? plus : minus)(a, b);
@@ -2992,14 +3021,14 @@ function a_plus_abs_b(a, b) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_11_31_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_11_28_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (p) (p))
 
 (define (test x y)
   (if (= x 0)
     0
     y))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_11_31_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsDMBXAOwGMAXASwHsjQAHACgEpQBvUAJwFMyCPbGTANygAvrkKlKNUGS4BnMgwAeAGlABPFq2yg9nHn1rLQAXnOgADKAD8V0AC5NQ7KKA')">function p() { return p(); }
+            <td><div class='snippet' id='javascript_11_28_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsDMBXAOwGMAXASwHsjQAHACgEpQBvUAJwFMyCPbGTANygAvrkKlKNUGS4BnMgwAeAGlABPFq2yg9nHn1rLQAXnOgADKAD8V0AC5NQ7KKA')">function p() { return p(); }
 
 function test(x, y) {
     return x === 0 ? 0 : y;
@@ -3014,9 +3043,9 @@ function test(x, y) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_11_32_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_11_29_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (test 0 (p))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_11_32_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsDMBXAOwGMAXASwHsjQAHACgEpQBvUAJwFMyCPbGTANygAvrkKlKNUGS4BnMgwAeAGlABPFq2yg9nHn1rLQAXnOgADKAD8V0AC5NQ7OOxzFDS+sHCgA')">test(0, p());
+            <td><div class='snippet' id='javascript_11_29_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsDMBXAOwGMAXASwHsjQAHACgEpQBvUAJwFMyCPbGTANygAvrkKlKNUGS4BnMgwAeAGlABPFq2yg9nHn1rLQAXnOgADKAD8V0AC5NQ7OOxzFDS+sHCgA')">test(0, p());
 </pre></div></div></td></tr></table>
       What behavior will Ben observe with an interpreter that uses
       applicative-order evaluation?  What behavior will he observe with an
