@@ -2812,7 +2812,7 @@ function is_last_statement(stmts) {
 <a name='p12' class='permalink'></a><p>
     
     
-    Blocks are parsed as follows:    
+    Blocks are parsed as follows:<a class='superscript' id='footnote-link-5' href='#footnote-5'style="color:blue">[5]</a>
     
 	  \begin{eqnarray*}
 	  \ll \texttt{\{}\ \mathit{statements}\ \texttt{\}} \gg
@@ -3070,7 +3070,7 @@ list("function_declaration",
 	<kbd>if</kbd> expressions. A case analysis begins with
 	<kbd>cond</kbd> and has a list of predicate-action
 	clauses.  A clause is an <kbd>else</kbd> clause if its
-	predicate is the symbol	<kbd>else</kbd>.<a class='superscript' id='footnote-link-5' href='#footnote-5'style="color:green">[5]</a>
+	predicate is the symbol	<kbd>else</kbd>.<a class='superscript' id='footnote-link-6' href='#footnote-6'style="color:green">[6]</a>
 	<div class='snippet' id='javascript_78_38_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (cond? exp) (tagged-list? exp \'cond))
 
@@ -3107,7 +3107,7 @@ list("function_declaration",
 	to implement as syntactic transformations are called <EM>derived
 	expressions</EM>. <kbd>Let</kbd> expressions are also
 	derived expressions (see
-	exercise&nbsp;<REF NAME="ex:implement-let"><a class="superscript" id="4.1.2-ex-link-4.9" href="./4.1.2.html#ex_4.9">4.9</a></REF>).<a class='superscript' id='footnote-link-6' href='#footnote-6'style="color:green">[6]</a>
+	exercise&nbsp;<REF NAME="ex:implement-let"><a class="superscript" id="4.1.2-ex-link-4.9" href="./4.1.2.html#ex_4.9">4.9</a></REF>).<a class='superscript' id='footnote-link-7' href='#footnote-7'style="color:green">[7]</a>
 	
 	
 	
@@ -3137,7 +3137,7 @@ list("function_declaration",
 	One example is function declaration, which 
 	<kbd>evaluate</kbd>
 	transforms into a constant declaration whose
-	value expression is a lambda expression.<a class='superscript' id='footnote-link-7' href='#footnote-7'style="color:blue">[7]</a>
+	value expression is a lambda expression.<a class='superscript' id='footnote-link-8' href='#footnote-8'style="color:blue">[8]</a>
 	  
 	  
 	
@@ -4274,8 +4274,20 @@ list("for_loop", $\ll$ $init$-$statement$ $\gg$, $\ll$ $predicate$ $\gg$, $\ll$ 
     </FOOTNOTE></span></div>
     
     
+    <div class='footnote'><span style="color:blue">
+      <a class='footnote-number' id='footnote-5' href='#footnote-link-5' style="color:blue">[5] </a>
+    <FOOTNOTE>
+    A parser implementation may
+    decide to represent a block just by its statement sequence if none
+    of the statements of the sequence are declarations, or to represent
+    a sequence with only one statement by just that statement. The language
+    processors in this chapter and in chapter 5 can handle
+    these optimizations.
+    </FOOTNOTE></span></div>
+    
+    
     <div class='footnote'><span style="color:green">
-      <a class='footnote-number' id='footnote-5' href='#footnote-link-5' style="color:green">[5] </a>
+      <a class='footnote-number' id='footnote-6' href='#footnote-link-6' style="color:green">[6] </a>
     <FOOTNOTE>
     The
 	value of a <kbd>cond</kbd> expression when all the
@@ -4286,7 +4298,7 @@ list("for_loop", $\ll$ $init$-$statement$ $\gg$, $\ll$ $predicate$ $\gg$, $\ll$ 
     
     
     <div class='footnote'><span style="color:green">
-      <a class='footnote-number' id='footnote-6' href='#footnote-link-6' style="color:green">[6] </a>
+      <a class='footnote-number' id='footnote-7' href='#footnote-link-7' style="color:green">[7] </a>
     <FOOTNOTE>
     Practical Lisp
 	systems provide a mechanism that allows a user to add new derived
@@ -4309,7 +4321,7 @@ list("for_loop", $\ll$ $init$-$statement$ $\gg$, $\ll$ $predicate$ $\gg$, $\ll$ 
     
     
     <div class='footnote'><span style="color:blue">
-      <a class='footnote-number' id='footnote-7' href='#footnote-link-7' style="color:blue">[7] </a>
+      <a class='footnote-number' id='footnote-8' href='#footnote-link-8' style="color:blue">[8] </a>
     <FOOTNOTE>
     In 
 	    actual JavaScript, there are two differences between the two
