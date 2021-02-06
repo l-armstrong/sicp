@@ -1680,12 +1680,10 @@ Acknowledgments
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-108" aria-expanded="false" aria-controls="sidebar-collapse-108">
                 <a href="./5.2.3.html"> 5.2.3 
-    Generating Execution
     
       
-      Functions
+      Instructions and their Execution Functions
     
-    for Instructions
   </a>
               </span>
             </h5>
@@ -2346,12 +2344,14 @@ Acknowledgments
     
       
       
-	function expression
+	      function expression
       
     
-      using the instruction
+      using the instruction<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
+
+    
     <div class='snippet' id='javascript_117_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-assign("fun", list(op("lookup_symbol_value"), constant(symbol_of_name("f")), reg("env"))),</pre></div></div>
+assign("fun", list(op("lookup_symbol_value"), constant("f"), reg("env")))</pre></div></div>
     This code not only avoids the unnecessary saves and
     restores but also assigns the value of the lookup directly to
     
@@ -2393,7 +2393,7 @@ assign("fun", list(op("lookup_symbol_value"), constant(symbol_of_name("f")), reg
     above. There are many other optimizations that can be performed by a
     compiler, such as coding primitive operations <QUOTE>in line</QUOTE> instead
     of using a general <kbd>apply</kbd> mechanism (see
-    exercise&nbsp;<REF NAME="ex:open-code"><a class="superscript" id="5.5-ex-link-5.40" href="./5.5.5.html#ex_5.40">5.40</a></REF>); but we will not emphasize these
+    exercise&nbsp;<REF NAME="ex:open-code"><a class="superscript" id="5.5-ex-link-5.41" href="./5.5.5.html#ex_5.41">5.41</a></REF>); but we will not emphasize these
     here. Our main goal in this section is to illustrate the compilation process
     in a simplified (but still interesting) context.
     
@@ -2437,6 +2437,17 @@ assign("fun", list(op("lookup_symbol_value"), constant(symbol_of_name("f")), reg
     
     objects) that didn't
     appear in the explicit-control evaluator machine.
+    </FOOTNOTE></div>
+
+    
+    <div class='footnote'>
+      <a class='footnote-number' id='footnote-3' href='#footnote-link-3'>[3] </a>
+    <FOOTNOTE>
+    
+      The argument to <kbd>lookup_symbol_value</kbd> is obtained
+      at compile-time from the list constructed by the parser when parsing
+      <kbd>f(96, 21)</kbd>.
+    
     </FOOTNOTE></div>
 
     

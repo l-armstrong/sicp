@@ -1688,12 +1688,10 @@ Acknowledgments
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-108" aria-expanded="false" aria-controls="sidebar-collapse-108">
                 <a href="./5.2.3.html"> 5.2.3 
-    Generating Execution
     
-      <span style="color:green">Procedures</span>
-      <span style="color:blue">Functions</span>
+      <span style="color:green">Generating Execution Procedures for Instructions</span>
+      <span style="color:blue">Instructions and their Execution Functions</span>
     
-    for Instructions
   </a>
               </span>
             </h5>
@@ -2010,7 +2008,7 @@ Acknowledgments
     machine or how to run it.  We will assume that the explicit-control-evaluator
     machine has been defined as in
     section&nbsp;<REF NAME="sec:running-evaluator"><a class="superscript" id="5.5.7-sec-link-5.4.4" href="./5.4.4.html">5.4.4</a></REF>, with the additional
-    operations specified in footnote&nbsp;<REF NAME="foot:compiler-ops"><a class="superscript" id="5.5.7-foot-link-4" href="./5.5.2.html#footnote-4">4</a></REF>.
+    operations specified in footnote&nbsp;<REF NAME="foot:compiler-ops"><a class="superscript" id="5.5.7-foot-link-5" href="./5.5.2.html#footnote-5">5</a></REF>.
     We will implement a
     
       <span style="color:green">procedure</span>
@@ -2176,7 +2174,7 @@ apply-dispatch
         <kbd>apply_dispatch</kbd>, the continuation
         would be at the top of the stack. This allows us to save a marker so
         that a subsequent return statement
-        can restore the stack back to this place, and finally restore the
+        can restore the stack to this state, and finally restore the
         continuation to the <kbd>continue</kbd> register.
       </span></td></tr></table>
   </p></div>
@@ -2383,7 +2381,8 @@ compile_and_go(
                     ? 1                       \
                     : factorial(n - 1) * n;   \
                                           }"));</pre><pre class='prettyprintoutput'>
-(total-pushes = 0 maximum-depth = 0)
+total pushes = 0 
+maximum depth = 0
 EC-evaluate value:
 undefined</pre></div></div></td></tr></table>
     <table width="100%">
@@ -2398,7 +2397,8 @@ undefined</pre></div></div></td></tr></table>
             <td><div class='snippet' id='javascript_124_7_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
 EC-evaluate input:</pre><pre class='prettyprint no-eval'>
 factorial(5);</pre><pre class='prettyprintoutput'>
-(total-pushes = 32 maximum-depth = 14)
+total pushes = 36 
+maximum depth = 14
 EC-evaluate value:
 120</pre></div></div></td></tr></table>
 
@@ -2740,7 +2740,7 @@ $$  assign("compapp", label("compound_apply")),
 
   
     <div class="permalink">
-    <a name="ex_5.41" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.41">Exercise 5.41 </a></b> 
+    <a name="ex_5.42" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.42">Exercise 5.42 </a></b> 
   
      
     The
@@ -3015,11 +3015,11 @@ EC-Eval value:
 function user_print(string, object) {
     function prepare(object) {
         return is_compound_function(object)
-               ? "< compound-function >"
+               ? "< compound function >"
                : is_primitive_function(object)
-               ? "< primitive-function >"
+               ? "< primitive function >"
                : is_compiled_function(object)
-               ? "< compiled-function >"
+               ? "< compiled function >"
                : is_pair(object)
                ? pair(prepare(head(object)),
                       prepare(tail(object)))

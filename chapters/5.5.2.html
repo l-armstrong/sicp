@@ -1692,12 +1692,10 @@ Acknowledgments
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-108" aria-expanded="false" aria-controls="sidebar-collapse-108">
                 <a href="./5.2.3.html"> 5.2.3 
-    Generating Execution
     
       
-      Functions
+      Instructions and their Execution Functions
     
-    for Instructions
   </a>
               </span>
             </h5>
@@ -2154,8 +2152,23 @@ function compile_name(component, target, linkage) {
     needs the <kbd>env</kbd> register.
   </p></div>
 
-  <div class='permalink'>
+  
+    <div class='permalink'>
 <a name='p4' class='permalink'></a><p>
+      
+        Note the subtle mix of compile-time and run-time concerns. The generated code is
+        an assignment instruction which
+        causes <kbd>lookup_symbol_value</kbd> to be executed
+        when the program is run to look up the value of a constant in the current environment.
+        The constant is however computed at compile-time: <kbd>constant(symbol_of_name(component))</kbd>
+        is only executed once, when the program is being compiled.
+      
+    </p></div>
+  
+
+
+  <div class='permalink'>
+<a name='p5' class='permalink'></a><p>
     
     
     Assignments and
@@ -2277,7 +2290,7 @@ function compile_assignment_returning(symbol, value_code, target,
   </h2></div>
 
   <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
+<a name='p6' class='permalink'></a><p>
     
     The code for 
     
@@ -2300,7 +2313,7 @@ $\langle{}$<EM>compilation of predicate, target <kbd>val</kbd>, linkage <kbd>nex
   </p></div>
 
   <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
+<a name='p7' class='permalink'></a><p>
     To generate this code, we compile the predicate, consequent,
     and alternative, and combine the resulting code with instructions
     to test the predicate result and with newly generated labels to mark the
@@ -2390,7 +2403,7 @@ function compile_conditional(component, target, linkage) {
   </h2></div>
 
   <div class='permalink'>
-<a name='p7' class='permalink'></a><p>
+<a name='p8' class='permalink'></a><p>
     
     The compilation of 
     
@@ -2458,11 +2471,13 @@ function compile_sequence(seq, target, linkage) {
     Treating return statements as if they always appear as the last statement in a sequence
     avoids compiling the
     <QUOTE>dead code</QUOTE> after the return statement that can
-    never be executed. Not compiling dead<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a> is good for
-    several reasons: it shortens the compilation time, it reduces the size of
-    the object code, and it removes possible
-    security hazards if a malicious user could trick the program into executing the
-    dead code. Removing the check does not change the semantics of the program.
+    never be executed.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+    Removing the check does not change the semantics of the program; however,
+    there are many reasons not to compile dead code, which are beyond the scope of this book: 
+    security, compilation time, size of
+    the object code, etc.,
+    and many compilers give warnings for dead code. In our case, the most important reason to
+    not compile dead code is to keep our generated code simple.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
       
     
   </p></div>
@@ -2482,7 +2497,7 @@ function compile_sequence(seq, target, linkage) {
   </h2></div>
 
   <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
+<a name='p9' class='permalink'></a><p>
     
     Lambda expressions construct
     
@@ -2542,7 +2557,7 @@ $\langle{}$<EM>compilation of function body</EM>$\rangle$
   </p></div>
 
   <div class='permalink'>
-<a name='p9' class='permalink'></a><p>
+<a name='p10' class='permalink'></a><p>
     
       
       
@@ -2571,7 +2586,7 @@ $\langle{}$<EM>compilation of function body</EM>$\rangle$
       
       function
     
-    body (a newly generated label).<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
+    body (a newly generated label).<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
      
     <div class='snippet' id='javascript_119_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_lambda_expression(exp, target, linkage) {
@@ -2624,7 +2639,7 @@ function compile_lambda_expression(exp, target, linkage) {
   </p></div>
 
   <div class='permalink'>
-<a name='p10' class='permalink'></a><p>
+<a name='p11' class='permalink'></a><p>
     
       
       
@@ -2696,7 +2711,7 @@ function compile_lambda_body(exp, fun_entry) {
   </p></div>
 
   <div class='permalink'>
-<a name='p11' class='permalink'></a><p>
+<a name='p12' class='permalink'></a><p>
     The function <kbd>append_return_undefined</kbd> appends
     a <kbd>return undefined</kbd> to the lambda body.
     <div class='snippet' id='javascript_119_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
@@ -2726,7 +2741,7 @@ function append_return_undefined(body) {
     program analysis and program transformations than an interpreter. Therefore we opt for
     this source-level transformation in the compiler.
 
-    (See exercise&nbsp;<REF NAME="ex:append_return_undefined"><a class="superscript" id="5.5.2-ex-link-5.34" href="./5.5.5.html#ex_5.34">5.34</a></REF> for a more elegant way
+    (See exercise&nbsp;<REF NAME="ex:append_return_undefined"><a class="superscript" id="5.5.2-ex-link-5.35" href="./5.5.5.html#ex_5.35">5.35</a></REF> for a more elegant way
     to handle insertion of a return statement.)
     
   </p></div>
@@ -2744,7 +2759,7 @@ function append_return_undefined(body) {
       </h2></div>
 
       <div class='permalink'>
-<a name='p12' class='permalink'></a><p>
+<a name='p13' class='permalink'></a><p>
 	
 	JavaScript's return statements are compiled such that the compiled code
 	returns  to the caller of the current function the result of running the
@@ -2773,7 +2788,7 @@ function compile_return_statement(stmt, target, linkage) {
       </h2></div>
 
       <div class='permalink'>
-<a name='p13' class='permalink'></a><p>
+<a name='p14' class='permalink'></a><p>
 	
 	A block is compiled by prepending an assignment instruction to the compiled
 	body of the block. The assignment extends the current environment with bindings
@@ -2798,8 +2813,27 @@ function compile_block(stmt, target, linkage) {
 }</pre></div></div>
       </p></div>
 
+  
+    <div class="permalink">
+    <a name="ex_5.34" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.34">Exercise 5.34 </a></b> 
+  
+    
+    
+
+    Footnote&nbsp;<REF NAME="foot:dead-code"><a class="superscript" id="5.5.2-foot-link-3" href="./5.5.2.html#footnote-3">3</a></REF> explained that the compiler does not
+    identify all instances of dead code. What would be required of a compiler to
+    properly detect all instances of dead code? 
+  
+      <div class="Solution">
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_119_1_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_119_1_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      </div>
+    
+</EXERCISE></div>
+
     
   
+
 <hr>
 
     <div class='footnote'>
@@ -2884,14 +2918,27 @@ function make_label(name) {
       <a class='footnote-number' id='footnote-2' href='#footnote-link-2'>[2] </a>
     <FOOTNOTE>
     Our compiler does not detect all dead code. For example,
-    a conditional whose consequent and alternative branches both end in a return
-    statement will not prevent subsequent statements from being compiled. See exercise&nbsp;<REF NAME="ex:dead-code"><a class="superscript" id="5.5.2-ex-link-5.41" href="./5.5.5.html#ex_5.41">5.41</a></REF>.
+    a conditional statement whose consequent and alternative branches both end in a return
+    statement will not stop subsequent statements from being compiled. See exercise&nbsp;<REF NAME="ex:dead-code"><a class="superscript" id="5.5.2-ex-link-5.34" href="./5.5.2.html#ex_5.34">5.34</a></REF>.
     
     </FOOTNOTE></div>
 
     
     <div class='footnote'>
       <a class='footnote-number' id='footnote-3' href='#footnote-link-3'>[3] </a>
+    <FOOTNOTE>
+    Shortly, we will introduce a program transformation to deal with
+    returning <kbd>undefined</kbd> from functions that do not end
+    with a return statement. Our simplistic transformation will give rise
+    to dead code in all functions that return explicitly. However, because of the check in 
+    <kbd>compile_sequence</kbd>, 
+    this dead code will not appear 
+    in our code listings in figures&nbsp;<REF NAME="fig:comp-factorial1"><a class="superscript" id="5.5.2-fig-link-5.17" href="./5.5.5.html#fig_5.17">5.17</a></REF> and <REF NAME="fig:compilation-example1"><a class="superscript" id="5.5.2-fig-link-5.20" href="./5.5.5.html#fig_5.20">5.20</a></REF>.
+    </FOOTNOTE></div>
+
+    
+    <div class='footnote'>
+      <a class='footnote-number' id='footnote-4' href='#footnote-link-4'>[4] </a>
     <FOOTNOTE>
     We need machine operations to
     implement a data structure for representing compiled

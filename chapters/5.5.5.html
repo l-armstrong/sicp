@@ -1684,12 +1684,10 @@ Acknowledgments
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-108" aria-expanded="false" aria-controls="sidebar-collapse-108">
                 <a href="./5.2.3.html"> 5.2.3 
-    Generating Execution
     
       
-      Functions
+      Instructions and their Execution Functions
     
-    for Instructions
   </a>
               </span>
             </h5>
@@ -2204,17 +2202,18 @@ assign("val", constant(undefined))
       function
     
     code at
-    <kbd>entry2</kbd> isn't executed at this point,
+    <kbd>entry1</kbd>
+     isn't executed at this point,
     so its use of <kbd>env</kbd> is irrelevant.)
     Therefore, the skeleton for the compiled code becomes
     <kbd class='snippet'>
-$$ assign("val", list(op("make_compiled_function"), label("entry1"), reg("env"))),
+$$  assign("val", list(op("make_compiled_function"), label("entry1"), reg("env"))),
   go_to(label("after_lambda2")),
 "entry1",
   assign("env", list(op("compiled_function_env"), reg("fun"))),
   assign("env", list(op("extend_environment"), constant(list("n")), reg("argl"), reg("env"))),
   $\langle{}$<EM>compilation of function body</EM>$\rangle$
-"after_lambda1",
+"after_lambda2",
   perform(list(op("assign_symbol_value"), constant("factorial"), reg("val"), reg("env"))),
   assign("val", constant(undefined))
       </kbd>
@@ -2430,7 +2429,7 @@ $$  assign("fun", list(op("lookup_symbol_value"), constant("==="), reg("env"))),
     
     to
     <div class='snippet' id='javascript_122_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-assign("val", constant(1)),
+$$  assign("val", constant(1)),
   go_to(reg("continue")),</pre></div></div>
 
     The code for the false branch is another a
@@ -2508,7 +2507,7 @@ assign("val", constant(1)),
     
       
     <div class="permalink">
-    <a name="ex_5.34" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.34">Exercise 5.34 </a></b> 
+    <a name="ex_5.35" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.35">Exercise 5.35 </a></b> 
   
         The current design of <kbd>append_return_undefined</kbd>
         is very simplistic: it always appends a
@@ -2537,7 +2536,7 @@ assign("val", constant(1)),
 
   
     <div class="permalink">
-    <a name="ex_5.35" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.35">Exercise 5.35 </a></b> 
+    <a name="ex_5.36" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.36">Exercise 5.36 </a></b> 
   
     Consider the following declaration of a factorial
     
@@ -2570,7 +2569,7 @@ function factorial_alt(n) {
 
   
     <div class="permalink">
-    <a name="ex_5.36" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.36">Exercise 5.36 </a></b> 
+    <a name="ex_5.37" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.37">Exercise 5.37 </a></b> 
   
     
     
@@ -2710,7 +2709,7 @@ function factorial(n) {
   save("env"),
   assign("fun", list(op("lookup_symbol_value"), constant("factorial"), reg("env"))),
   save("fun"),
-// computer n - 1 which is the argument for factorial
+// compute n - 1 which is the argument for factorial
   assign("fun", list(op("lookup_symbol_value"), constant("-"), reg("env"))),
   assign("val", constant(1)),
   assign("argl", list(op("list"), reg("val"))),
@@ -2761,7 +2760,7 @@ function factorial(n) {
   save("env"),
   assign("fun", list(op("lookup_symbol_value"), constant("factorial"), reg("env"))),
   save("fun"),
-// computer n - 1 which is the argument for factorial
+// compute n - 1 which is the argument for factorial
   assign("fun", list(op("lookup_symbol_value"), constant("-"), reg("env"))),
   assign("val", constant(1)),
   assign("argl", list(op("list"), reg("val"))),
@@ -2850,7 +2849,7 @@ function factorial(n) {
 
       
     <div class="permalink">
-    <a name="ex_5.37" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.37">Exercise 5.37 </a></b> 
+    <a name="ex_5.38" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.38">Exercise 5.38 </a></b> 
   
 	
   What expression was compiled to produce the code shown in
@@ -2973,7 +2972,7 @@ $$  assign("val", list(op("make_compiled_function"), label("entry1"), reg("env")
     </kbd>
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./5.5.5.html#fig_5.20">Figure 5.20 </a></b>An example of compiler output (continued on next page).
-  See exercise&nbsp;<REF NAME="ex:compiled-code"><a class="superscript" id="5.5.5-ex-link-5.37" href="./5.5.5.html#ex_5.37">5.37</a></REF>.
+  See exercise&nbsp;<REF NAME="ex:compiled-code"><a class="superscript" id="5.5.5-ex-link-5.38" href="./5.5.5.html#ex_5.38">5.38</a></REF>.
   </div>
     </FIGURE>
   
@@ -3017,7 +3016,7 @@ $$  assign("val", list(op("make_compiled_function"), label("entry1"), reg("env")
 
   
     <div class="permalink">
-    <a name="ex_5.38" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.38">Exercise 5.38 </a></b> 
+    <a name="ex_5.39" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.39">Exercise 5.39 </a></b> 
    
     
     
@@ -3054,7 +3053,7 @@ $$  assign("val", list(op("make_compiled_function"), label("entry1"), reg("env")
 
   
     <div class="permalink">
-    <a name="ex_5.39" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.39">Exercise 5.39 </a></b> 
+    <a name="ex_5.40" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.40">Exercise 5.40 </a></b> 
   
     
      
@@ -3080,7 +3079,7 @@ $$  assign("val", list(op("make_compiled_function"), label("entry1"), reg("env")
 
   
     <div class="permalink">
-    <a name="ex_5.40" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.40">Exercise 5.40 </a></b> 
+    <a name="ex_5.41" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.41">Exercise 5.41 </a></b> 
   
     
     
@@ -3294,30 +3293,12 @@ assign("val", list(op("+"), reg("val"), constant(1))</pre></div></div>
     
 </EXERCISE></div>
 
-  
-    <div class="permalink">
-    <a name="ex_5.41" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.41">Exercise 5.41 </a></b> 
-  
-    
-    
-
-    Footnote&nbsp;<REF NAME="foot:dead-code"><a class="superscript" id="5.5.5-foot-link-3" href="./5.5.2.html#footnote-3">3</a></REF> explained that the compiler does not
-    identify all instances of dead code. What would be required of a compiler to
-    properly detect all instances of dead code? 
-  
-      <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_122_8_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_122_8_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
-      </div>
-    
-</EXERCISE></div>
-
 <hr>
 
     <div class='footnote'>
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1'>[1] </a>
     <FOOTNOTE>
-    The \ character is not part of the strings, but simply tells the parser that the string literal continues on the next line. The string <div class='snippet' id='javascript_122_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAVgHTpQKCwIgIagA6WoARrkA')">"a \
+    The <kbd>\</kbd> character is not part of the string, but simply tells the parser that the string literal continues on the next line. The string <div class='snippet' id='javascript_122_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAVgHTpQKCwIgIagA6WoARrkA')">"a \
  b"
 </pre></div></div>parses exactly like the string <kbd>"a  b"</kbd>.
     </FOOTNOTE></div>

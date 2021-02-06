@@ -1696,12 +1696,10 @@ Acknowledgments
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-108" aria-expanded="false" aria-controls="sidebar-collapse-108">
                 <a href="./5.2.3.html"> 5.2.3 
-    Generating Execution
     
-      <span style="color:green">Procedures</span>
-      <span style="color:blue">Functions</span>
+      <span style="color:green">Generating Execution Procedures for Instructions</span>
+      <span style="color:blue">Instructions and their Execution Functions</span>
     
-    for Instructions
   </a>
               </span>
             </h5>
@@ -2215,6 +2213,18 @@ function compile_name(component, target, linkage) {
     needs the <kbd>env</kbd> register.
   </p></div>
 
+  <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr><td>    </td>
+          <td></td>
+          <td></td></tr></table>
+
+
   <div class='permalink'>
 <a name='p4' class='permalink'></a><p>
     
@@ -2647,11 +2657,13 @@ function compile_sequence(seq, target, linkage) {
     Treating return statements as if they always appear as the last statement in a sequence
     avoids compiling the
     <QUOTE>dead code</QUOTE> after the return statement that can
-    never be executed. Not compiling dead<a class='superscript' id='footnote-link-3' href='#footnote-3'style="color:blue">[3]</a> is good for
-    several reasons: it shortens the compilation time, it reduces the size of
-    the object code, and it removes possible
-    security hazards if a malicious user could trick the program into executing the
-    dead code. Removing the check does not change the semantics of the program.
+    never be executed.<a class='superscript' id='footnote-link-3' href='#footnote-3'style="color:blue">[3]</a>
+    Removing the check does not change the semantics of the program; however,
+    there are many reasons not to compile dead code, which are beyond the scope of this book: 
+    security, compilation time, size of
+    the object code, etc.,
+    and many compilers give warnings for dead code. In our case, the most important reason to
+    not compile dead code is to keep our generated code simple.<a class='superscript' id='footnote-link-4' href='#footnote-4'style="color:blue">[4]</a>
       </span></td></tr></table>
   </p></div>
 
@@ -2767,7 +2779,7 @@ $\langle{}$<EM>compilation of function body</EM>$\rangle$
       <span style="color:green">procedure</span>
       <span style="color:blue">function</span>
     
-    body (a newly generated label).<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
+    body (a newly generated label).<a class='superscript' id='footnote-link-5' href='#footnote-5'>[5]</a>
      
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
@@ -2964,7 +2976,7 @@ function append_return_undefined(body) {
     program analysis and program transformations than an interpreter. Therefore we opt for
     this source-level transformation in the compiler.
 
-    (See exercise&nbsp;<REF NAME="ex:append_return_undefined"><a class="superscript" id="5.5.2-ex-link-5.36" href="./5.5.5.html#ex_5.36">5.36</a></REF> for a more elegant way
+    (See exercise&nbsp;<REF NAME="ex:append_return_undefined"><a class="superscript" id="5.5.2-ex-link-5.37" href="./5.5.5.html#ex_5.37">5.37</a></REF> for a more elegant way
     to handle insertion of a return statement.)
     
   </p></div>
@@ -3044,7 +3056,26 @@ function compile_block(stmt, target, linkage) {
 }</pre></div></div>
       </p></div>
 
+  
+    <div class="permalink">
+    <a name="ex_5.36" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.36">Exercise 5.36 </a></b> 
+  
+    
+    
+
+    Footnote&nbsp;<REF NAME="foot:dead-code"><a class="superscript" id="5.5.2-foot-link-3" href="./5.5.2.html#footnote-3">3</a></REF> explained that the compiler does not
+    identify all instances of dead code. What would be required of a compiler to
+    properly detect all instances of dead code? 
+  
+      <div class="Solution">
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_119_1_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_119_1_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      </div>
+    
+</EXERCISE></div>
+
     </span></td></tr></table>
+
 <hr>
 
     <div class='footnote'><span style="color:green">
@@ -3177,14 +3208,27 @@ function make_label(name) {
       <a class='footnote-number' id='footnote-3' href='#footnote-link-3' style="color:blue">[3] </a>
     <FOOTNOTE>
     Our compiler does not detect all dead code. For example,
-    a conditional whose consequent and alternative branches both end in a return
-    statement will not prevent subsequent statements from being compiled. See exercise&nbsp;<REF NAME="ex:dead-code"><a class="superscript" id="5.5.2-ex-link-5.43" href="./5.5.5.html#ex_5.43">5.43</a></REF>.
+    a conditional statement whose consequent and alternative branches both end in a return
+    statement will not stop subsequent statements from being compiled. See exercise&nbsp;<REF NAME="ex:dead-code"><a class="superscript" id="5.5.2-ex-link-5.36" href="./5.5.2.html#ex_5.36">5.36</a></REF>.
     
     </FOOTNOTE></span></div>
     
     
+    <div class='footnote'><span style="color:blue">
+      <a class='footnote-number' id='footnote-4' href='#footnote-link-4' style="color:blue">[4] </a>
+    <FOOTNOTE>
+    Shortly, we will introduce a program transformation to deal with
+    returning <kbd>undefined</kbd> from functions that do not end
+    with a return statement. Our simplistic transformation will give rise
+    to dead code in all functions that return explicitly. However, because of the check in 
+    <kbd>compile_sequence</kbd>, 
+    this dead code will not appear 
+    in our code listings in figures&nbsp;<REF NAME="fig:comp-factorial1"><a class="superscript" id="5.5.2-fig-link-5.22" href="./5.5.5.html#fig_5.22">5.22</a></REF> and <REF NAME="fig:compilation-example1"><a class="superscript" id="5.5.2-fig-link-5.25" href="./5.5.5.html#fig_5.25">5.25</a></REF>.
+    </FOOTNOTE></span></div>
+    
+    
     <div class='footnote'>
-      <a class='footnote-number' id='footnote-4' href='#footnote-link-4' >[4] </a>
+      <a class='footnote-number' id='footnote-5' href='#footnote-link-5' >[5] </a>
     <FOOTNOTE>
     We need machine operations to
     implement a data structure for representing compiled

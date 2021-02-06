@@ -1684,12 +1684,10 @@ Acknowledgments
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-108" aria-expanded="false" aria-controls="sidebar-collapse-108">
                 <a href="./5.2.3.html"> 5.2.3 
-    Generating Execution
     
-      <span style="color:green">Procedures</span>
-      <span style="color:blue">Functions</span>
+      <span style="color:green">Generating Execution Procedures for Instructions</span>
+      <span style="color:blue">Instructions and their Execution Functions</span>
     
-    for Instructions
   </a>
               </span>
             </h5>
@@ -2392,13 +2390,15 @@ Acknowledgments
     evaluates the
     
       <span style="color:green">
-	operator
+	      operator
       </span>
       <span style="color:blue">
-	function expression
+	      function expression
       </span>
     
-      using the instruction
+      using the instruction<span style="color:blue"><a class='superscript' id='footnote-link-3' href='#footnote-3'style="color:blue">[3]</a>
+
+    </span>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -2406,7 +2406,7 @@ Acknowledgments
             <td><div class='snippet' id='javascript_117_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (assign proc (op lookup-variable-value) (const f) (reg env))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_117_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-assign("fun", list(op("lookup_symbol_value"), constant(symbol_of_name("f")), reg("env"))),</pre></div></div></td></tr></table>
+assign("fun", list(op("lookup_symbol_value"), constant("f"), reg("env")))</pre></div></div></td></tr></table>
     This code not only avoids the unnecessary saves and
     restores but also assigns the value of the lookup directly to
     
@@ -2448,7 +2448,7 @@ assign("fun", list(op("lookup_symbol_value"), constant(symbol_of_name("f")), reg
     above. There are many other optimizations that can be performed by a
     compiler, such as coding primitive operations <QUOTE>in line</QUOTE> instead
     of using a general <kbd>apply</kbd> mechanism (see
-    exercise&nbsp;<REF NAME="ex:open-code"><a class="superscript" id="5.5-ex-link-5.42" href="./5.5.5.html#ex_5.42">5.42</a></REF>); but we will not emphasize these
+    exercise&nbsp;<REF NAME="ex:open-code"><a class="superscript" id="5.5-ex-link-5.43" href="./5.5.5.html#ex_5.43">5.43</a></REF>); but we will not emphasize these
     here. Our main goal in this section is to illustrate the compilation process
     in a simplified (but still interesting) context.
     
@@ -2493,6 +2493,17 @@ assign("fun", list(op("lookup_symbol_value"), constant(symbol_of_name("f")), reg
     objects) that didn't
     appear in the explicit-control evaluator machine.
     </FOOTNOTE></div>
+    
+    
+    <div class='footnote'><span style="color:blue">
+      <a class='footnote-number' id='footnote-3' href='#footnote-link-3' style="color:blue">[3] </a>
+    <FOOTNOTE>
+    
+      The argument to <kbd>lookup_symbol_value</kbd> is obtained
+      at compile-time from the list constructed by the parser when parsing
+      <kbd>f(96, 21)</kbd>.
+    
+    </FOOTNOTE></span></div>
     
     
 </div></div>
