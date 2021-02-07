@@ -2130,7 +2130,7 @@ $predicate$ ? $consequent$-$expression$ : $alternative$-$expression$
         an expression whose value is either
 	<EM>true</EM> or <EM>false</EM>, two distinguished
 	<EM>boolean</EM> values in JavaScript.
-	Note that the primitive boolean expressions
+	The primitive boolean expressions
 	<kbd>true</kbd> and
 	<kbd>false</kbd> trivially evaluate
 	to the boolean values true and false, respectively.
@@ -2185,10 +2185,11 @@ $predicate$ ? $consequent$-$expression$ : $alternative$-$expression$
         evaluates to true, the interpreter evaluates the
         
         
-        $consequent$-$expression$.
+        $consequent$-$expression$ and returns its value as the value of the conditional.
         If the $predicate$
 	evaluates to false, it evaluates the
-        $alternative$-$expression$.<a class='superscript' id='footnote-link-2' href='#footnote-2'style="color:blue">[2]</a>
+        $alternative$-$expression$ and returns its value as the value of the
+	conditional.<a class='superscript' id='footnote-link-2' href='#footnote-2'style="color:blue">[2]</a>
       </p></div>
     </span></td></tr></table>
   <table width="100%">
@@ -2352,13 +2353,18 @@ $predicate$ ? $consequent$-$expression$ : $alternative$-$expression$
 }
 </pre></div></div>
 	There is no need for parentheses around the alternative expression
-	<kbd>x === 0 ? 0 : - x</kbd> because
-	the conditional expression syntactic form
+	<kbd>x === 0 ? 0 : - x</kbd>, because
+	the conditional-expression syntactic form
 	
 	
 	
 	
 	is right-associative.
+	The interpreter ignores lines breaks and spaces, here inserted for readability
+	to align the
+	<kbd>?</kbd>'s
+	and <kbd>:</kbd>'s under the first predicate
+	of the case analysis.
 	The general form of a case analysis is
 	
 	<kbd class='snippet'>
@@ -2369,7 +2375,7 @@ $p$$_1$
 $\vdots$
 : $p$$_n$
 ? $e$$_n$
-: $final$-$alt$-$exp$
+: $final$-$alternative$-$expression$
 	  </kbd>
 	
 	
@@ -2563,8 +2569,7 @@ $\vdots$
 	we call it a <EM>prefix operator</EM>. Another prefix operator is
 	the numeric negation operator, an example of
 	which is the expression <kbd>- x</kbd>
-	in the function <kbd>abs</kbd>
-	at the beginning of this section.
+	in the <kbd>abs</kbd> functions above.
         
         
 	
@@ -2600,16 +2605,16 @@ $\vdots$
 	$5 < x < 10$ may be expressed as
         <div class='snippet' id='javascript_11_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 x > 5 && x < 10</pre></div></div>
-        Note that the syntactic form
+        The syntactic form
 	<kbd>&&</kbd>
         has lower precedence than the comparison operators
         <kbd>></kbd>
-	and&nbsp;<kbd><</kbd>, and that
-	the conditional expression syntactic form
+	and&nbsp;<kbd><</kbd>, and 
+	the conditional-expression syntactic form
 	$\cdots$<kbd>?</kbd>$\cdots$<kbd>:</kbd>$\cdots$
-	has lower precedence than any other operator we encountered so far,
+	has lower precedence than any other operator we have encountered so far,
 	a property we used in
-	the <kbd>abs</kbd> function above.
+	the <kbd>abs</kbd> functions above.
       </p></div>
     </span></td></tr></table>
   <div class='permalink'>
@@ -2826,7 +2831,7 @@ x > 5 && x < 10</pre></div></div>
 	
 	The parentheses around the conditional expressions in the last two statements
 	are necessary because the
-	conditional expression syntactic form has lower precedence than the arithmetic
+	conditional-expression syntactic form has lower precedence than the arithmetic
 	operators
 	<kbd>+</kbd> and
 	<kbd>*</kbd>.
@@ -3200,7 +3205,7 @@ function test(x, y) {
     For now, we restrict these operators to number
 	arguments. In sections&nbsp;<REF NAME="sec:strings"><a class="superscript" id="1.1.6-sec-link-2.3.1" href="./2.3.1.html">2.3.1</a></REF>
 	and&nbsp;<REF NAME="sec:mutable-list-structure"><a class="superscript" id="1.1.6-sec-link-3.3.1" href="./3.3.1.html">3.3.1</a></REF>, we shall
-	successively extend the domains of the predicate
+	generalize the predicate
 	<kbd>===</kbd>.
     </FOOTNOTE></span></div>
     
