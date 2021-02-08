@@ -2204,7 +2204,12 @@ function assign_value_exp(assign_instruction) {
       
       functions
     
-    (shown below) parse the value expression and produce an execution
+    (shown below)
+    
+      
+      analyze
+    
+    the value expression and produce an execution
     
       
       function
@@ -2223,7 +2228,12 @@ function assign_value_exp(assign_instruction) {
     
     which will be evaluated during the simulation to produce the actual
     value to be assigned to the register.  Notice that the work of looking
-    up the register name and parsing the value expression is performed
+    up the register name and
+    
+      
+      analyzing
+    
+    the value expression is performed
     just once, at assembly time, not every time the instruction is
     simulated.  This saving of work is the reason we use execution
     
