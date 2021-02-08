@@ -2459,7 +2459,6 @@ function sqrt_iter(guess, x) {
         Both the construction of the return value object and the eventual inspection of
         the result of the function call are deferred operations, which lead to an
         accumulation of information on the stack.
-	
       </span></td></tr></table>
   </p></div>
 
@@ -2726,6 +2725,7 @@ function count(n) {
 <a name='p22' class='permalink'></a><p>
         
         
+	
         Note that because the undoing of the register saves takes place at
         <kbd>ev_return</kbd>, our JavaScript implementation
         requires the use of <kbd>return</kbd> in order to be tail-recursive.
