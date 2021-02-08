@@ -2981,10 +2981,10 @@ go_to(reg("val")),</pre></div></div></td></tr></table>
       </span>
     
     linkage,
-    the compiler generates tail-recursive code.  Calling a
+    the compiler generates tail-recursive code.  
     
-      <span style="color:green">procedure</span>
-      <span style="color:blue">function</span>
+      <span style="color:green">Calling a procedure</span>
+      <span style="color:blue">A function call</span>
     
     as the 
     
@@ -3006,15 +3006,29 @@ go_to(reg("val")),</pre></div></div></td></tr></table>
 
   <div class='permalink'>
 <a name='p9' class='permalink'></a><p>
-    Suppose instead that we had handled the case of a procedure call with a
-    linkage of <span style="color:green">return</span><span style="color:blue">"return"</span> and a target of
+    Suppose instead that we had handled the case of a 
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    call with a
+    linkage of <span style="color:green">return</span><span style="color:blue"><kbd>"return"</kbd></span> and a target of
     <kbd>val</kbd> as shown above for a
     non-<kbd>val</kbd> target. This would destroy tail
     recursion. Our system would still give the same value for any
-    expression. But each time we called a procedure, we would save
+    expression. But each time we called a
+    
+      <span style="color:green">procedure,</span>
+      <span style="color:blue">function,</span>
+    
+    we would save
     <kbd>continue</kbd> and return after the call to undo
     the (useless) save. These extra saves would accumulate during a nest of
-    procedure calls.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    calls.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
   </p></div>
 
   <div class='permalink'>
@@ -3136,7 +3150,7 @@ function compile_fun_appl(target, linkage) {
                       go_to(label(linkage))))
            : target === "val" && linkage === "return"
            ? make_instruction_sequence(
-                 list("fun"),
+                 list("fun", "continue"),
                  all_regs,
                  list(save("continue"),
                       push_marker_to_stack(),
@@ -3243,7 +3257,7 @@ and therefore these languages
     believed to be more efficient.  Sophisticated
     
       <span style="color:green">Lisp compilers</span>
-      <span style="color:blue">Compilers</span>
+      <span style="color:blue">compilers</span>
     
     can, in fact, use the stack for arguments without destroying tail
     recursion. (See 
