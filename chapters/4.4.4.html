@@ -2775,6 +2775,9 @@ put("always_true", "evaluate_query", always_true);
 	
       
     
+    
+    
+    
   
 
   
@@ -3429,6 +3432,7 @@ function store_rule_in_index(rule) {
       
 	
       
+    
 
   
 
@@ -3660,6 +3664,8 @@ list("job", list("name", "$x"), list("computer", "wizard"))</pre></div></div>
 	
 	
 	
+	
+	
 	We assume there is a function <kbd>char_at</kbd> that
 	returns a string containing only the character of the given string
 	at the given position.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
@@ -3698,8 +3704,6 @@ function make_new_variable(variable, rule_application_id) {
       </h2></div>
       <div class='permalink'>
 <a name='p37' class='permalink'></a><p>
-	  
-	  
 	  The function <kbd>query_syntax_process</kbd>
 	  recursively transforms the JavaScript syntax representation into
 	  the query-language-specific representation by simplifying 
@@ -4144,15 +4148,14 @@ function rule_body(rule) {
            : head(tail(tail(rule)));
 }
 </pre></div></div>
+    
     </p></div>
-
-      
       
     
 
     
       
-      
+    
   
 
   

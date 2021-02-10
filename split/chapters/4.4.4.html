@@ -3163,8 +3163,6 @@ put("always_true", "evaluate_query", always_true);
 	  against <kbd>(computer programmer trainee)</kbd>
 	  will match <kbd>?type</kbd> against the list
 	  <kbd>(programmer trainee)</kbd>.
-	  
-	  
 	</p></div>
       </span>    </td>
           <td></td>
@@ -3178,6 +3176,9 @@ put("always_true", "evaluate_query", always_true);
 	  See also section&nbsp;<REF NAME="sec:query-syntax"><a class="superscript" id="4.4.4-sec-link-4.4.4.7" href="./4.4.4.html#sec4.4.4.7">4.4.4.7</a></REF>.
 	</span>
       </span></td></tr></table>
+    
+    
+    
   
 
   
@@ -4237,10 +4238,10 @@ function store_rule_in_index(rule) {
     
 </EXERCISE></div>
 
-    
 	</span>    </td>
           <td></td>
           <td></td></tr></table>
+    
 
   
 
@@ -4520,6 +4521,8 @@ list("job", list("name", "$x"), list("computer", "wizard"))</pre></div></div>
 	
 	
 	
+	
+	
 	We assume there is a function <kbd>char_at</kbd> that
 	returns a string containing only the character of the given string
 	at the given position.<a class='superscript' id='footnote-link-2' href='#footnote-2'style="color:blue">[2]</a>
@@ -4558,8 +4561,6 @@ function make_new_variable(variable, rule_application_id) {
       </h2></div>
       <div class='permalink'>
 <a name='p42' class='permalink'></a><p>
-	  
-	  
 	  The function <kbd>query_syntax_process</kbd>
 	  recursively transforms the JavaScript syntax representation into
 	  the query-language-specific representation by simplifying 
@@ -5004,9 +5005,8 @@ function rule_body(rule) {
            : head(tail(tail(rule)));
 }
 </pre></div></div>
+    
     </p></div>
-
-      
       </span></td></tr></table>
 
     <table width="100%">
@@ -5161,8 +5161,6 @@ function rule_body(rule) {
 
     <div class='permalink'>
 <a name='p54' class='permalink'></a><p>
-	  
-	  
 	  <kbd>Query-driver-loop</kbd>
 	  (section&nbsp;<REF NAME="sec:query-driver"><a class="superscript" id="4.4.4-sec-link-4.4.4.1" href="./4.4.4.html#sec4.4.4.1">4.4.4.1</a></REF>) calls
 	  <kbd>query-syntax-process</kbd>
@@ -5245,9 +5243,6 @@ function rule_body(rule) {
                                      "-"
                                      (number->string (cadr variable)))
          (symbol->string (cadr variable))))))</pre></div></div>
-	  
-	  
-	  
 	</p></div>
       </span>    </td>
           <td></td>
