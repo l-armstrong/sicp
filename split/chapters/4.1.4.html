@@ -2620,18 +2620,19 @@ M-evaluate value:
 	
 	
 	
+	
 	<div class='snippet' id='javascript_80_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function apply_in_underlying_javascript(prim, arglist) {
    const arg_vector = [];               // empty vector
    let i = 0;
    while (!is_null(arglist)) {
-      arg_vector[i] = head(arglist);    // storing value at index i
+      arg_vector[i] = head(arglist);    // store value at index i
       i = i + 1;
       arglist = tail(arglist);
    }
    return prim.apply(prim, arg_vector); // apply is accessed via prim
 }</pre></div></div>
-	We have made use of
+	We also made use of
 	<kbd>apply_in_underlying_javascript</kbd> to
 	declare the function <kbd>apply_generic</kbd> in
 	section&nbsp;<REF NAME="sec:data-directed"><a class="superscript" id="4.1.4-sec-link-2.4.3" href="./2.4.3.html">2.4.3</a></REF>.

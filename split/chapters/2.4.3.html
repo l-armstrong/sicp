@@ -3570,44 +3570,37 @@ function find_employee_record(employee_name,
       </span>    </td>
           <td></td>
           <td></td></tr></table>
-    
-      <span style="color:green">
-      <kbd>Apply-generic</kbd> also</span>
-      <span style="color:blue">The function
-      <kbd>apply_generic</kbd>
-      </span>
-    
-    uses the 
-    
-      <span style="color:green">
+    <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr><td><span style="color:green">
+	<kbd>Apply-generic</kbd> also
+	uses the 
 	primitive procedure
 	<kbd>apply</kbd>,
-      </span>
-      <span style="color:blue">
-	function
+	which takes two arguments, a procedure
+	and a list.
+	<kbd>Apply</kbd>
+	applies the procedure,
+	using the elements in the list as arguments.
+      </span>    </td>
+          <td></td>
+          <td><span style="color:blue">
+	The function
+	<kbd>apply_generic</kbd>
+	uses the function
 	<kbd>apply_in_underlying_javascript</kbd>
 	given in section&nbsp;<REF NAME="sec:running-eval"><a class="superscript" id="2.4.3-sec-link-4.1.4" href="./4.1.4.html">4.1.4</a></REF>
 	(footnote&nbsp;<REF NAME="foot:vector-array"><a class="superscript" id="2.4.3-foot-link-undefined" href="./4.1.4.html#footnote-undefined">undefined</a></REF>),
-      </span>
-    
-    
-    which takes two arguments, a
-    
-      <span style="color:green">procedure</span>
-      <span style="color:blue">function</span>
-    
-    and a list.
-    
-      <span style="color:green"><kbd>Apply</kbd></span>
-      <span style="color:blue">The function <kbd>apply_in_underlying_javascript</kbd>
-      </span>
-    
-    applies the
-    
-      <span style="color:green">procedure,</span>
-      <span style="color:blue">function,</span>
-    
-    using the elements in the list as arguments. For example,
+	
+	which takes two arguments, a function and a list, and 
+	applies the function, using the elements in the list as arguments.
+      </span></td></tr></table>
+    For example,
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
