@@ -2008,47 +2008,75 @@ Acknowledgments
     <div class='permalink'>
 <a name='p1' class='permalink'></a><p>
 You are reading the book Structure and Interpretation of Computer
-Programs (SICP), second edition, JavaScript adaptation. Like the original
-version, this book aims firstly to establish the notion that
+Programs, second edition, JavaScript adaptation. Like the original
+version (known as SICP), this adaptation
+(SICP JS) aims to establish the notion that
 programming is a medium for communicating ideas about
 methodology. Programs allow their authors to describe complex
 processes to their readers, provided that both share mental models
-that underly the language in which the programs are written. Secondly
-it aims to describe programming as an activity to manage the
+that underly the language in which the programs are written. 
+Both books describe programming as an activity to manage the
 complexity of software systems, by using abstraction techniques
 available in existing programming languages, and by
-inventing new languages whenever the need arises.
+inventing new languages and language processors whenever the need arises.
     </p></div>
     <div class='permalink'>
 <a name='p2' class='permalink'></a><p>
-To succeed in these goals, the original version focuses on a minimal
-set of idioms of the chosen programming language, Scheme. That
-set of idioms is not formally taught but assimilated by students
-as they make progress digesting the underlying mental models and
-abstractions. The book does not aim to teach the language Scheme, but
-rather the ability to express procedural ideas in Scheme is
-a side effect of achieving its main goals.
+At its core, SICP focusses on a small set
+of fundamental characteristics of programming languages, which have
+been adopted by all modern languages in use today.
+Its pedagogical approach and its choice of mental models,
+applications, and language processors passed the test of time.
+SICP employs a minimal set of idioms of the programming language Scheme, which
+is not formally taught but rather assimilated by the readers
+as they make progress digesting the mental models and language
+processors, until they can use Scheme itself for describing them.
     </p></div>
     <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
-Instead of Scheme, this book (SICP JS), uses JavaScript as its
-programming
-language. Just like the original, which it closely follows, the
-JavaScript adaptation focuses on a minimal set of idioms of the chosen
-language.  A reader would be ill-advised to use this book in
-order to learn JavaScript. As a drastic example, the notion of a
+The most commonly used high-level languages of 2021 differ from Scheme
+in two fundamental ways. Firstly, their syntax is statement-oriented, whereas
+Scheme's is expression-oriented, which led the original authors 
+not to cover explicit return statements
+present in the most commonly used languages of
+2021.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
+Secondly, the most commonly used languages of 2021 are heteroiconic, which means they employ a
+complex syntax for the sake of program readability by humans
+and require program parsing prior to any further
+language processing. In contrast, Scheme is homoiconic, which means that
+a program's internal representation can be easily obtained by a simple 
+reading process. 
+Homoiconicity simplifies the discussion of language processing
+in chapters&nbsp;4 and&nbsp;5, but side-steps parsing and makes the programs in 
+SICP appear unfamiliar to readers who have used only heteroiconic languages
+prior to reading the book.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+SICP JS retains SICP's material and at the same time
+addresses these two considerations by replacing Scheme with the
+popular<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
+heteroiconic language JavaScript, whose mainstream
+syntax includes explicit return statements.
+    </p></div>
+    <div class='permalink'>
+<a name='p4' class='permalink'></a><p>
+JavaScript has inherited lexical scoping and lambda expressions
+from Scheme as have most modern high-level languages, and like Scheme, JavaScript is
+dynamically-typed. SICP JS could therefore retain the chacteristics of SICP that
+made the book uniquely suitable as a thorough introduction to programming methodology.
+Like the original, the
+JavaScript adaptation focusses on a minimal set of idioms of the chosen
+language and a reader would be ill-advised to use it 
+to learn JavaScript. As an example, the notion of a
 JavaScript object—considered one of its fundamental
 ingredients by any measure—is not even mentioned!  The
-JavaScript subset used in SICP JS is designed to be just big
-enough to express the ideas presented in SICP with a conciseness and
-precision that matches the original. (The resulting sublanguage is
-described in detail in the web pages that accompany SICP JS.) Just
+JavaScript subset used in SICP JS is designed to be just expressive
+enough for presenting the ideas of SICP with a conciseness and
+precision that matches the original. Just
 like the subset of Scheme used in SICP, the subset of JavaScript used
 in SICP JS does not need to be formally taught; its mastery is a
 side effect of achieving the goals of SICP.
     </p></div>
     <div class='permalink'>
-<a name='p4' class='permalink'></a><p>
+<a name='p5' class='permalink'></a><p>
 We sincerely hope that readers for whom this book is their first
 encounter with programming will use their newly gained
 understanding of the structure and interpretation of computer
@@ -2059,8 +2087,8 @@ insights into the fundamental concepts that underly the language
 and discover how much can be achieved with so little.
 Readers who come to SICP JS with a knowledge of the original SICP
 might enjoy seeing familiar ideas presented in a new
-format—and might appreciate our comparison version, also
-available in the web pages.
+format—and appreciating the structure and interpretation
+of explicit return statements.
     </p></div>
     
     
@@ -2164,7 +2192,7 @@ always see it as a soap bubble?
 </blockquote>
 
 <div class='permalink'>
-<a name='p5' class='permalink'></a><p>    
+<a name='p6' class='permalink'></a><p>    
 The material in this book has been the basis of MIT's entry-level
 computer science subject since 1980.  We had been teaching this
 material for four years when the first edition was published, and
@@ -2177,7 +2205,7 @@ Talmudic pun, our students have become our builders.  We are lucky to
 have such capable students and such accomplished builders.
 </p></div>
 <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
+<a name='p7' class='permalink'></a><p>
 In preparing this edition, we have incorporated hundreds of 
 clarifications suggested by our own teaching experience and the
 comments of colleagues at MIT and elsewhere.  We have redesigned
@@ -2188,7 +2216,7 @@ examples to ensure that any Scheme implementation conforming to
 the IEEE Scheme standard (IEEE 1990) will be able to run the code.
 </p></div>
 <div class='permalink'>
-<a name='p7' class='permalink'></a><p>
+<a name='p8' class='permalink'></a><p>
 This edition emphasizes several new themes.  The most important
 of these is the central role played by different approaches to
 dealing with time in computational models: objects with state,
@@ -2198,7 +2226,7 @@ concurrency and nondeterminism, and we have tried to integrate this
 theme throughout the book.
 </p></div>
 <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
+<a name='p9' class='permalink'></a><p>
 The first edition of the book closely followed the syllabus of our MIT
 one-semester subject.  With all the new material in the second
 edition, it will not be possible to cover everything in a single
@@ -2217,7 +2245,7 @@ three or four chapters, leaving the other material for subsequent
 courses.
 </p></div>
 <div class='permalink'>
-<a name='p9' class='permalink'></a><p>
+<a name='p10' class='permalink'></a><p>
 The World Wide Web site <a address='http://www-mitpress.mit.edu/sicp' href='http://www-mitpress.mit.edu/sicp'>of MIT Press</a>
 provides support for users of this book.
 This includes programs from the book,
@@ -2256,7 +2284,7 @@ Ideas</QUOTE></span>
 
 
     <div class='permalink'>
-<a name='p10' class='permalink'></a><p>    
+<a name='p11' class='permalink'></a><p>    
 <QUOTE>The Structure and Interpretation of Computer Programs</QUOTE> is the
 entry-level subject in computer science at the Massachusetts Institute
 of Technology.  It is required of all students at MIT who major
@@ -2271,7 +2299,7 @@ computation, although many have played with computers a bit and a few
 have had extensive programming or hardware-design experience.
     </p></div>
     <div class='permalink'>
-<a name='p11' class='permalink'></a><p>
+<a name='p12' class='permalink'></a><p>
 Our design of this introductory computer-science subject reflects two
 major concerns.  First, we want to establish the idea that a computer
 language is not just a way of getting a computer to perform operations
@@ -2286,7 +2314,7 @@ computing, but rather the techniques used to control the intellectual
 complexity of large software systems.
     </p></div>
     <div class='permalink'>
-<a name='p12' class='permalink'></a><p>
+<a name='p13' class='permalink'></a><p>
 Our goal is that students who complete this subject should have a good
 feel for the elements of style and the aesthetics of programming.
 They should have command of the major techniques for controlling
@@ -2297,7 +2325,7 @@ moment.  They should feel secure about modifying a program, retaining
 the spirit and style of the original author.
     </p></div>
     <div class='permalink'>
-<a name='p13' class='permalink'></a><p>
+<a name='p14' class='permalink'></a><p>
 These skills are by no means unique to computer programming.  The
 techniques we teach and draw upon are common to all of engineering
 design.  We control complexity by building abstractions that hide
@@ -2309,7 +2337,7 @@ design, each of which emphasizes particular aspects of the design and
 deemphasizes others.
     </p></div>
     <div class='permalink'>
-<a name='p14' class='permalink'></a><p>
+<a name='p15' class='permalink'></a><p>
 Underlying our approach to this subject is our conviction that
 <QUOTE>computer science</QUOTE> is not a science and that its significance has
 little to do with computers.  The computer revolution is a revolution
@@ -2323,7 +2351,7 @@ Mathematics provides a framework for dealing precisely with notions of
 with notions of <QUOTE>how to.</QUOTE>
     </p></div>
     <div class='permalink'>
-<a name='p15' class='permalink'></a><p>
+<a name='p16' class='permalink'></a><p>
 In teaching our material we use a dialect of the programming language
 Lisp.  We never formally teach the language, because we don't have to.
 We just use it, and students pick it up in a few days.  This is one
@@ -2348,7 +2376,7 @@ McCarthy, who have fashioned a fine tool of unprecedented power and
 elegance.
     </p></div>
     <div class='permalink'>
-<a name='p16' class='permalink'></a><p>
+<a name='p17' class='permalink'></a><p>
 Scheme, the dialect of Lisp that we use, is an attempt to bring
 together the power and elegance of Lisp and Algol.  From Lisp we take
 the metalinguistic power that derives from the simple syntax, the
@@ -2370,7 +2398,37 @@ Rosser, Stephen Kleene, and Haskell Curry.
 </div>
 </blockquote>
 
-  
+  <hr>
+
+    <div class='footnote'>
+      <a class='footnote-number' id='footnote-1' href='#footnote-link-1' >[1] </a>
+    <FOOTNOTE>
+    Only one percent of the pull requests in the open
+source platform
+Github in 2020 were written in languages that feature explicit
+return statements, with Elixir, Clojure, Ocaml, Haskell, Emacs Lisp, and Erlang
+being the most popular among these.
+    </FOOTNOTE></div>
+    
+    
+    <div class='footnote'>
+      <a class='footnote-number' id='footnote-2' href='#footnote-link-2' >[2] </a>
+    <FOOTNOTE>
+    Less than 0.5 percent of the pull requests in the
+open source plaform Github in 2020 were written in homoiconic languages, with Emacs Lisp
+being the most popular among these with a share of 0.15 percent.
+    </FOOTNOTE></div>
+    
+    
+    <div class='footnote'>
+      <a class='footnote-number' id='footnote-3' href='#footnote-link-3' >[3] </a>
+    <FOOTNOTE>
+    As of 2021, JavaScript is among the most popular programming
+languages in use. More Github pull requests used JavaScript in 2020 than
+any other language, including Python and Java.
+    </FOOTNOTE></div>
+    
+    
 </MATTER></div></div>
 
     <div class='nav'>
