@@ -2187,12 +2187,21 @@ Acknowledgments
 
       <div class='permalink'>
 <a name='p4' class='permalink'></a><p>
-        Before evaluating the predicate, we save the conditional itself so that we can
-        later extract the consequent or alternative. We also save the environment, which
-        we will need later in order to evaluate the consequent or the alternative, and we
-        save <kbd>continue</kbd>, which we will need later in
-        order to return to the evaluation of the statement that is waiting for the value
-        of the conditional.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+        Before evaluating the predicate, we save the conditional itself, which is in
+        <kbd>comp</kbd>, so that we can later extract the
+        consequent or alternative. To evaluate the predicate expression, we move it to
+        the <kbd>comp</kbd> register and go to
+        <kbd>eval_dispatch</kbd>. The environment in the
+        <kbd>env</kbd> register is already the correct one in
+        which to evaluate the predicate. However, we save
+        <kbd>env</kbd> because we will need it later to
+        evaluate the consequent or the alternative. We set up
+        <kbd>continue</kbd> so that evaluation will resume at
+        <kbd>ev_conditional_decide</kbd> after the predicate
+        has been evaluated. First, however, we save the old value of
+        <kbd>continue</kbd>, which we will need later in order
+        to return to the evaluation of the statement that is waiting for the value of
+        the conditional.
          
         <div class='snippet' id='javascript_113_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_conditional",
@@ -2206,10 +2215,11 @@ Acknowledgments
 
       <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
-        When we return from evaluating the predicate, we test whether it was true or false
+        When we resume at <kbd>ev_conditional_decide</kbd> after evaluating the predicate, we test whether it was true or false
         and, depending on the result, place either the consequent or the alternative in
         <kbd>comp</kbd> before going to
-        <kbd>eval_dispatch</kbd>. Notice that restoring
+        <kbd>eval_dispatch</kbd>.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+      Notice that restoring
         <kbd>env</kbd> and
         <kbd>continue</kbd> here sets up
         <kbd>eval_dispatch</kbd> to have the correct environment
@@ -2251,16 +2261,15 @@ Acknowledgments
         The entries at <kbd>ev_sequence_next</kbd> and
         <kbd>ev_sequence_continue</kbd> form a loop that
         successively evaluates each statement in a sequence.
-        (Empty sequences avoid the loop and jump straight to <kbd>continue</kbd> via
-        <kbd>ev_sequence_empty</kbd>.)
         The list of unevaluated
-        statements is kept in <kbd>unev</kbd>. At
-        <kbd>ev_sequence</kbd>, before starting the loop, we
-        place the sequence of statements to be evaluated in
-        <kbd>unev</kbd> and save
-        <kbd>continue</kbd> on the stack,
-        
-        because it will be used for local flow of control in the loop, and the original
+        statements is kept in <kbd>unev</kbd>.
+        At <kbd>ev_sequence</kbd> we place the sequence of
+        statements to be evaluated in <kbd>unev</kbd>. If the
+        sequence is empty, we jump straight to
+        <kbd>continue</kbd> via
+        <kbd>ev_sequence_empty</kbd>. Otherwise we start the
+        sequence-evaluation loop, first saving continue on the stack, because
+        it will be used for local flow of control in the loop, and the original
         value is needed for continuing after the statement sequence. Before evaluating
         each statement, we check to see if there are additional statements to be evaluated
         in the sequence. If so, we save the rest of the unevaluated statements (held in
@@ -2321,6 +2330,7 @@ Acknowledgments
 "ev_sequence_last_statement",
   restore("continue"),
   go_to(label("eval_dispatch")),
+
 "ev_sequence_empty",
   go_to(reg("continue")),</pre></div></div>
 
@@ -2377,7 +2387,6 @@ Acknowledgments
       <a class='footnote-number' id='footnote-2' href='#footnote-link-2'>[2] </a>
     <FOOTNOTE>
     
-
         In this chapter, we will use the function
         <kbd>is_falsy</kbd> to test the value of the predicate.
         This allows us to write the consequent and the alternate branches in the same
@@ -2386,7 +2395,7 @@ Acknowledgments
         <kbd>is_truthy</kbd> function used to test predicates of
         conditionals in section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="5.4.1-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>.
         
-        
+      
     </FOOTNOTE></div>
 
     

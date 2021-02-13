@@ -1991,6 +1991,7 @@ Acknowledgments
       <div class='chapter-text'>
         <div class='SECTION'>
     
+      
 
       
       
@@ -2018,7 +2019,7 @@ Acknowledgments
         applications of primitive functions corresponding to the operators. This takes
         place at <kbd>ev_operator_combination</kbd>, which
         performs this transformation in place in <kbd>comp</kbd>
-        and falls through to <kbd>ev_application</kbd>.
+        and falls through to <kbd>ev_application</kbd>.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
       </p></div>
       <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
@@ -2058,14 +2059,16 @@ Acknowledgments
         
         Upon returning from evaluating the function expression, we proceed to evaluate the
         argument expressions of the application and to accumulate the resulting arguments
-        in a list, held in <kbd>argl</kbd>. First we restore the
+        in a list, held in <kbd>argl</kbd>. 
+        (This is like the evaluation of sequences of statements, except that we collect the values.)
+        First we restore the
         unevaluated argument expressions and the environment. We initialize
         <kbd>argl</kbd> to an empty list. Then we assign to the
         <kbd>fun</kbd> register the function that was produced
         by evaluating the function expression. If there are no argument expressions, we go
         directly to <kbd>apply_dispatch</kbd>. Otherwise we save
         <kbd>fun</kbd> on the stack and start the
-        argument-evaluation loop:<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+        argument-evaluation loop:<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
       <div class='snippet' id='javascript_114_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_appl_did_function_expression",
   restore("unev"), // the argument expressions
@@ -2127,7 +2130,7 @@ Acknowledgments
         evaluation to a special entry point
         <kbd>ev_appl_accum_last_arg</kbd>, which restores the
         argument list, accumulates the new argument, restores the saved function, and goes
-        off to perform the application.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
+        off to perform the application.<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
         <div class='snippet' id='javascript_114_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_appl_last_arg",
   assign("continue", label("ev_appl_accum_last_arg")),
@@ -2147,7 +2150,7 @@ Acknowledgments
         right or right to left—see exercise&nbsp;<REF NAME="ex:order-of-evaluation"><a class="superscript" id="5.4.2-ex-link-3.8" href="./3.1.3.html#ex_3.8">3.8</a></REF>).
         This order is not determined by the metacircular evaluator, which inherits its
         control structure from the underlying JavaScript in which it is
-        implemented.<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
+        implemented.<a class='superscript' id='footnote-link-5' href='#footnote-5'>[5]</a>
         Because we use <kbd>head</kbd> and
         <kbd>tail</kbd> to extract successive operands from
         <kbd>unev</kbd> the explicit-control evaluator will
@@ -2259,7 +2262,7 @@ Acknowledgments
 <a name='p13' class='permalink'></a><p>
       
       The complication has two aspects. One is that at any point in the evaluation of the
-      body a return statement may require the function to return the value of the return
+      body, a return statement may require the function to return the value of the return
       expression as the value of the body. But a return statement may be nested
       arbitrarily deeply in the body; so the stack at the moment the return statement is
       encountered is not necessarily the stack that is needed for a return from the
@@ -2268,7 +2271,7 @@ Acknowledgments
       by the <kbd>push_marker_to_stack</kbd> instruction. The return code
       can then use the <kbd>revert_stack_to_marker</kbd> instruction to
       restore the stack to the place indicated by the marker before evaluating the return
-      expression.<a class='superscript' id='footnote-link-5' href='#footnote-5'>[5]</a>
+      expression.<a class='superscript' id='footnote-link-6' href='#footnote-6'>[6]</a>
     </p></div>
 
     <div class='permalink'>
@@ -2276,9 +2279,11 @@ Acknowledgments
       The other aspect of the complication is that if the evaluation of the body terminates without
       executing a return statement, the value of the body must be
       <kbd>undefined</kbd>. To handle this, we set up the
-      <kbd>continue</kbd> register to point at the code labeled
+      <kbd>continue</kbd> register to point to the entry point
       <kbd>return_undefined</kbd> before going off to
       <kbd>eval_dispatch</kbd> to evaluate the body.
+      If a return statement is not encountered during evaluation of the body,
+      evaluation of the body will continue at <kbd>return_undefined</kbd>.
      
     <div class='snippet' id='javascript_114_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "compound_apply",
@@ -2334,7 +2339,7 @@ Acknowledgments
     continuation that was set up at <kbd>compound_apply</kbd>.
     To return <kbd>undefined</kbd> from the function, we put
     <kbd>undefined</kbd> into
-    <kbd>val</kbd> and continue to the entry point that was put
+    <kbd>val</kbd> and go to the entry point that was put
     onto the stack at <kbd>ev_application</kbd>. Before we can
     restore that continuation from the stack, however, we must remove the marker that was
     saved at <kbd>compound_apply</kbd>.
@@ -2384,7 +2389,7 @@ function sqrt_iter(guess, x) {
       
       <kbd>sqrt_iter</kbd>
     
-    to the next.<a class='superscript' id='footnote-link-6' href='#footnote-6'>[6]</a> An
+    to the next.<a class='superscript' id='footnote-link-7' href='#footnote-7'>[7]</a> An
     evaluator that can execute a
     
       
@@ -2409,23 +2414,26 @@ function sqrt_iter(guess, x) {
     
       
       
+      <div class='permalink'>
+<a name='p19' class='permalink'></a><p>
         The implementation of the metacircular evaluator in chapter&nbsp;4 is
-        not tail-recursive. The reason for this is found in the handling of
+        not tail-recursive. It treats 
         <kbd>return</kbd> as an operator that creates
-        a return value object containing the value to be returned and inspecting the result of a function call to
+        a return value object containing the value to be returned and inspects the result of a function call to
         see whether it is such an object.
-        If the evaluation of a function body produces a return value object, its content
-        is the return value of the function;
+        If the evaluation of a function body produces a return value object, 
+        the return value of the function is the contents of that object;
         otherwise, the return value is <kbd>undefined</kbd>.
         Both the construction of the return value object and the eventual inspection of
         the result of the function call are deferred operations, which lead to an
         accumulation of information on the stack.
+      </p></div>
       
     
   </p></div>
 
   <div class='permalink'>
-<a name='p19' class='permalink'></a><p>
+<a name='p20' class='permalink'></a><p>
     
       
       
@@ -2438,7 +2446,7 @@ function sqrt_iter(guess, x) {
         the stack by the function (which are useless because we are returning) using
         <kbd>revert_stack_to_marker</kbd>. Then, rather than arranging
         for <kbd>eval_dispatch</kbd> to come back here and then
-        restore <kbd>continue</kbd> from the stack and
+        restoring <kbd>continue</kbd> from the stack and
         continuing at that entry point, we restore
         <kbd>continue</kbd> from the stack before going to
         <kbd>eval_dispatch</kbd> so that
@@ -2451,16 +2459,18 @@ function sqrt_iter(guess, x) {
         (as in <kbd>sqrt_iter</kbd>, where the conditional
         expression reduces to a call to
         <kbd>sqrt_iter</kbd>)—will not cause any information to
-        be accumulated on the stack.<a class='superscript' id='footnote-link-7' href='#footnote-7'>[7]</a>
+        be accumulated on the stack.<a class='superscript' id='footnote-link-8' href='#footnote-8'>[8]</a>
 
       <div class='permalink'>
-<a name='p20' class='permalink'></a><p>
+<a name='p21' class='permalink'></a><p>
         
           
           
+  <div class='permalink'>
+<a name='p22' class='permalink'></a><p>
             If we did not think to take advantage of the fact that it is unnecessary to
-            hold on to the useless information on the stack when evaluating a return
-            expression, we might have implemented
+            hold on to the useless information on the stack while evaluating a return
+            expression, we might have treated
             <kbd>return</kbd> as an operator, with the return
             expression as its operand (as in the metacircular evaluator). A
             straightforward implementation would evaluate the return expression, come back
@@ -2476,16 +2486,16 @@ function sqrt_iter(guess, x) {
   revert_stack_to_marker(),    // undo saves in current function
   restore("continue"), // undo save at ev_application
   go_to(reg("continue")),</pre></div></div>
+  </p></div>
           This may seem like a minor change to our previous code for evaluation of return
           statements: The only difference is that we delay undoing any register saves to
           the stack until after the evaluation of the return expression. The interpreter
           will still give the same value for any expression. But this change is fatal to
-          the tail-recursive implementation, because we must now return after evaluating
+          the tail-recursive implementation, because we must now come back after evaluating
           the return expression in order to undo the (useless) register saves. These extra
           saves will accumulate during a nest of function calls. Consequently, processes
           such as <kbd>sqrt_iter</kbd> would require space
           proportional to the number of iterations rather than requiring constant space.
-
 
 
 
@@ -2573,9 +2583,6 @@ function sqrt_iter(guess, x) {
 
       
     
-  </p></div>
-  <div class='permalink'>
-<a name='p21' class='permalink'></a><p>
     This difference can be significant. For example,
     
     with tail recursion, an infinite loop can be expressed using only the
@@ -2605,15 +2612,16 @@ function count(n) {
   
     
       <div class='permalink'>
-<a name='p22' class='permalink'></a><p>
+<a name='p23' class='permalink'></a><p>
         
         
 	
 		
-        Note that because the undoing of the register saves takes place at
-        <kbd>ev_return</kbd>, our JavaScript implementation
+        Note that our JavaScript implementation
         requires the use of <kbd>return</kbd> in order to be tail-recursive.
-        Removing <kbd>return</kbd> from the
+        Because the undoing of the register saves takes place at
+        <kbd>ev_return</kbd>, 
+        removing <kbd>return</kbd> from the
         <kbd>count</kbd> function above will cause it to
         eventually run out of stack space. This explains the use of
         <kbd>return</kbd> in the infinite driver loops in
@@ -2748,6 +2756,23 @@ function count(n) {
     <div class='footnote'>
       <a class='footnote-number' id='footnote-2' href='#footnote-link-2'>[2] </a>
     <FOOTNOTE>
+    
+    We assume that the syntax transformer <kbd>operator_combination_to_application</kbd>
+    is available as a machine operation.
+    In an actual implementation built from scratch, we would use our
+    explicit-control evaluator to interpret a JavaScript program that
+    performs source-level transformations like
+    <kbd>operator_combination_to_application</kbd>
+    and <kbd>function_decl_to_constant_decl</kbd>
+    in a syntax phase that runs before execution.
+    
+      
+    </FOOTNOTE></div>
+
+    
+    <div class='footnote'>
+      <a class='footnote-number' id='footnote-3' href='#footnote-link-3'>[3] </a>
+    <FOOTNOTE>
     We add to the evaluator data-structure
         functions in section&nbsp;<REF NAME="sec:eval-data-structures"><a class="superscript" id="5.4.2-sec-link-4.1.3" href="./4.1.3.html">4.1.3</a></REF> the following
         two functions for manipulating argument lists:
@@ -2771,7 +2796,7 @@ function is_last_argument_expression(arg_expression) {
 
     
     <div class='footnote'>
-      <a class='footnote-number' id='footnote-3' href='#footnote-link-3'>[3] </a>
+      <a class='footnote-number' id='footnote-4' href='#footnote-link-4'>[4] </a>
     <FOOTNOTE>
     The optimization of treating the
         last argument expression  <EM>evlis tail
@@ -2788,7 +2813,7 @@ function is_last_argument_expression(arg_expression) {
 
     
     <div class='footnote'>
-      <a class='footnote-number' id='footnote-4' href='#footnote-link-4'>[4] </a>
+      <a class='footnote-number' id='footnote-5' href='#footnote-link-5'>[5] </a>
     <FOOTNOTE>
     
           The order of argument-expression evaluation by the function
@@ -2805,19 +2830,19 @@ function is_last_argument_expression(arg_expression) {
 
     
     <div class='footnote'>
-      <a class='footnote-number' id='footnote-5' href='#footnote-link-5'>[5] </a>
+      <a class='footnote-number' id='footnote-6' href='#footnote-link-6'>[6] </a>
     <FOOTNOTE>
     The special instruction
       <kbd>push_marker_to_stack</kbd> and its counterpart,
       <kbd>revert_stack_to_marker</kbd>, are not strictly necessary and
       could be implemented by explicitly pushing and popping a marker value onto and off
-      the stack. Anything that could not be confused for a value in the program can be
+      the stack. Anything that could not be confused with a value in the program can be
       used as a marker. See exercise&nbsp;<REF NAME="ex:push_marker_to_stack1"><a class="superscript" id="5.4.2-ex-link-5.23" href="./5.4.2.html#ex_5.23">5.23</a></REF>.
     </FOOTNOTE></div>
 
     
     <div class='footnote'>
-      <a class='footnote-number' id='footnote-6' href='#footnote-link-6'>[6] </a>
+      <a class='footnote-number' id='footnote-7' href='#footnote-link-7'>[7] </a>
     <FOOTNOTE>
     We saw in
     section&nbsp;<REF NAME="sec:designing-register-machines"><a class="superscript" id="5.4.2-sec-link-5.1" href="./5.1.html">5.1</a></REF> how to
@@ -2827,7 +2852,7 @@ function is_last_argument_expression(arg_expression) {
 
     
     <div class='footnote'>
-      <a class='footnote-number' id='footnote-7' href='#footnote-link-7'>[7] </a>
+      <a class='footnote-number' id='footnote-8' href='#footnote-link-8'>[8] </a>
     <FOOTNOTE>
     This implementation of tail recursion is one
         variety of a well-known optimization technique used by many compilers. In

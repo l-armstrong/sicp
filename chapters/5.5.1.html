@@ -2228,7 +2228,17 @@ go_to(reg("continue"))</pre></div></div>
     the target <kbd>val</kbd> register.
     
       
-        Later, we shall see how we can ensure that <kbd>val</kbd> always holds the
+        The return <EM>linkage</EM> works hand-in-hand with the return <EM>statements</EM>
+        to return from a function. Just like in the explicit-control evaluator, returning from a
+        function has three components:
+        <OL type="1">
+          <LI>reverting the stack to the marker and restoring <kbd>continue</kbd></LI>
+          <LI>calculating the return value and placing it in <kbd>val</kbd></LI>
+          <LI>jumping to <kbd>continue</kbd></LI>
+        </OL>
+        The return statement performs the first two, and the return linkage
+        is responsible for the third. Later, we shall see how we can ensure
+        that <kbd>val</kbd> always holds the
         appropriate value, even if a function did not return explicitly.
       
     
@@ -2369,7 +2379,10 @@ $seq$$_2$
     individual code  generators.
     In fact no <kbd>save</kbd> or
     <kbd>restore</kbd> instructions are explicitly
-    produced by the code generators, except in relation to calling and returning from functions.
+    produced by the code generators, except in relation
+    to calling and returning from functions where the value we wish to save on
+    the stack is produced by the generator and must be saved before the marker.
+    .
   </p></div>
 
   <div class='permalink'>

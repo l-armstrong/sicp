@@ -2054,7 +2054,7 @@ Acknowledgments
       
         If nothing is entered at the prompt, we jump to the label
         <kbd>evaluator_done</kbd>, which is
-        the last entry in the controller. 
+        the last entry point in the controller. 
       
     
     The following instructions form the beginning of the
@@ -2612,13 +2612,16 @@ function fib(n) {
     
       
       
-	<kbd>user_read</kbd>
+	      <kbd>user_read</kbd>,
+	      <kbd>parse</kbd>
       
     
     and the various printing
     operations are available as primitive machine operations, which is useful
     for our simulation, but completely unrealistic in practice.  These are
-    actually extremely complex operations.  In practice, they would be
+    actually extremely complex operations.  In practice,
+    reading and printing
+    would be
     implemented using low-level input-output operations such as transferring
     single characters to and from a device.
     
