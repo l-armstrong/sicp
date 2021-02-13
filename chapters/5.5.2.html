@@ -2478,7 +2478,7 @@ function compile_sequence(seq, target, linkage) {
     avoids compiling the
     <QUOTE>dead code</QUOTE> after the return statement that can
     never be executed.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
-    Removing the <kbd>is_return_statement</kbd> check does not change the semantics of the program; however,
+    Removing the <kbd>is_return_statement</kbd> check does not change the behavior of the program; however,
     there are many reasons not to compile dead code, which are beyond the scope of this book: 
     security, compilation time, size of
     the object code, etc.,
