@@ -2034,7 +2034,8 @@ Acknowledgments
 
   save("comp"), // temporarily use for *unassigned* values
   assign("comp", list(op("list_of_unassigned"), reg("val"))),
-  assign("env", list(op("extend_environment"), reg("val"), reg("comp"), reg("env"))),
+  assign("env", list(op("extend_environment"),
+                     reg("val"), reg("comp"), reg("env"))),
   restore("comp"),
   go_to(label("eval_dispatch")),</pre></div></div>
       </p></div>
