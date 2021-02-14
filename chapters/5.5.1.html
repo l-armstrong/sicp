@@ -2178,7 +2178,9 @@ function compile(component, target, linkage) {
 	designated label as the linkage descriptor).
       </LI>
     </UL>
-
+  </p></div>
+  <div class='permalink'>
+<a name='p4' class='permalink'></a><p>
     For example, compiling the
     
       
@@ -2202,10 +2204,7 @@ function compile(component, target, linkage) {
     the instruction
     <div class='snippet' id='javascript_118_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 assign("val", constant(5)),</pre></div></div>
-  </p></div>
 
-  <div class='permalink'>
-<a name='p4' class='permalink'></a><p>
     Compiling the same expression with a linkage of
     
       
@@ -2239,7 +2238,7 @@ go_to(reg("continue"))</pre></div></div>
         The return statement performs the first two, and the return linkage
         is responsible for the third. Later, we shall see how we can ensure
         that <kbd>val</kbd> always holds the
-        appropriate value, even if a function did not return explicitly.
+        appropriate value, even if a function does not return explicitly.
       
     
   </p></div>
@@ -2262,14 +2261,18 @@ go_to(reg("continue"))</pre></div></div>
     
       
       
-        statement or expression.
+        component.
       
     
-    Code generation
-    for a compound expression is accomplished by combining the output from
-    simpler code generators for component expressions, just as
-    evaluation of a compound expression is accomplished by evaluating the
-    component expressions.
+    Code generation for a compound
+    component
+    is accomplished by combining the output from simpler code
+    generators for 
+    subcomponents,
+    just as evaluation of a compound
+    component
+    is accomplished by evaluating the
+    subcomponents.
   </p></div>
 
   <div class='permalink'>
@@ -2463,7 +2466,7 @@ function make_instruction_sequence(needs, modifies, instructions) {
     
     <kbd>x</kbd> in the current environment,
     assigns the result to <kbd>val</kbd>,
-    and then proceeds with the continuation,
+    and then proceeds to the continuation,
     requires registers <kbd>env</kbd> and
     <kbd>continue</kbd> to have been initialized, and
     modifies register <kbd>val</kbd>.
@@ -2534,7 +2537,7 @@ function empty_instruction_sequence() {
     evaluation of each
     
       
-      argument expression
+      argument-expression
     
     (except the final one), saves and restores
     <kbd>argl</kbd> around the evaluation of each

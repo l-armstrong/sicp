@@ -2069,7 +2069,7 @@ Acknowledgments
     any registers.
      
     <div class='snippet' id='javascript_119_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function compile_linkage(target, linkage) {
+function compile_linkage(linkage) {
     return linkage === "return"
            ? make_instruction_sequence(list("continue"), 
                                        null,
@@ -2095,10 +2095,10 @@ function compile_linkage(target, linkage) {
     <kbd>continue</kbd> will be saved and restored.
      
     <div class='snippet' id='javascript_119_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function end_with_linkage(target, linkage, instruction_sequence) {
+function end_with_linkage(linkage, instruction_sequence) {
     return preserving(list("continue"),
                       instruction_sequence,
-                      compile_linkage(target, linkage));
+                      compile_linkage(linkage));
 }</pre></div></div>
   </p></div>
 
@@ -2125,7 +2125,7 @@ function end_with_linkage(target, linkage, instruction_sequence) {
      
     <div class='snippet' id='javascript_119_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_literal(component, target, linkage) {
-    return end_with_linkage(target, linkage,
+    return end_with_linkage(linkage,
                make_instruction_sequence(
                    null,
                    list(target),
@@ -2133,11 +2133,12 @@ function compile_literal(component, target, linkage) {
 }
 
 function compile_name(component, target, linkage) {
-    return end_with_linkage(target, linkage,
+    const name = symbol_of_name(component);
+    return end_with_linkage(linkage,
                make_instruction_sequence(list("env"), list(target),
                    list(assign(target, 
                         list(op("lookup_symbol_value"), 
-                             constant(symbol_of_name(component)), 
+                             constant(name), 
                              reg("env"))))));
 }</pre></div></div>
 
@@ -2156,12 +2157,13 @@ function compile_name(component, target, linkage) {
     <div class='permalink'>
 <a name='p4' class='permalink'></a><p>
       
-        Note the subtle mix of compile-time and run-time concerns. The generated code is
-        an <kbd>assign</kbd> instruction which
-        causes <kbd>lookup_symbol_value</kbd> to be executed
-        when the program is run to look up the value of a constant in the current environment.
-        The constant is however computed at compile-time: <kbd>constant(symbol_of_name(component))</kbd>
-        is only executed once, when the program is being compiled.
+        The result of compiling a name is
+        an <kbd>assign</kbd> instruction that 
+        causes the operation <kbd>lookup_symbol_value</kbd> to be executed
+        when the computed program is run, to look up the value of a constant in the current environment.
+        The constant is however computed at compile time: <kbd>symbol_of_name(component)</kbd>
+        is executed only once, when the program is being compiled, to extract the string to put into the <kbd>constant</kbd>
+        part of the instruction. 
       
     </p></div>
   
@@ -2174,29 +2176,20 @@ function compile_name(component, target, linkage) {
     Assignments and
     
       
-      the two kinds of declarations
+      declarations
     
     are handled much as they are in the
     interpreter.
-    
-      
-	The two functions use the function
-	<kbd>compile_assignment_returning</kbd>,
-	whose parameter
-	<kbd>return_val</kbd> lets declarations
-	return <kbd>undefined</kbd> and assignments
-	return the assigned value.
-      
-    
     We recursively generate code that computes the value to be assigned to the
     name, and
     use <kbd>compile_assignment_returning</kbd> to
-    append to it a two-instruction sequence that actually sets
+    append to it a two-instruction sequence that 
     
       
+      
+        installs or updates the name in the environment
+      
     
-    the
-    name
     and assigns the
     value of the whole
     
@@ -2217,33 +2210,46 @@ function compile_name(component, target, linkage) {
     so that the code will put its result into
     <kbd>val</kbd> and continue with the code that is appended
     after it.  The appending is done preserving <kbd>env</kbd>,
-    since the environment is needed for setting  the
-    name
-    and the code for the
-    name
+    since the environment is needed for
+    
+      
+      installing or updating the name
+     
+    and the code for 
+    computing the
     value could be the compilation of a complex expression
     that might modify the registers in arbitrary ways.
+    
+      
+	      The parameter <kbd>return_val</kbd>
+        of <kbd>compile_assignment_returning</kbd>
+	      lets declarations return <kbd>undefined</kbd> and assignments
+	      return the assigned value.
+      
+    
+    
      
      
     <div class='snippet' id='javascript_119_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_assignment(component, target, linkage) {
     const symbol = assignment_symbol(component);
-    const value_code =
-              compile(assignment_value_expression(component), "val", "next");
+    const value_code = compile(
+              assignment_value_expression(component), "val", "next");
     return compile_assignment_returning(symbol,
                value_code, target, linkage, reg("val"));
 }
 
 function compile_declaration(component, target, linkage) {
     const symbol = declaration_symbol(component);
-    const value_code = compile(declaration_value_expression(component), "val", "next");
+    const value_code = compile(
+              declaration_value_expression(component), "val", "next");
     return compile_assignment_returning(symbol,
                value_code, target, linkage, constant(undefined));
 }
 
 function compile_assignment_returning(symbol, value_code, target,
                                       linkage, return_val) {
-    return end_with_linkage(target, linkage,
+    return end_with_linkage(linkage,
                preserving(
                    list("env"),
                    value_code,
@@ -2465,7 +2471,9 @@ function compile_conditional(component, target, linkage) {
      
     <div class='snippet' id='javascript_119_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_sequence(seq, target, linkage) {
-    return is_last_statement(seq) || is_return_statement(first_statement(seq))
+    return is_empty_sequence(seq)
+           ? empty_instruction_sequence()
+           : is_last_statement(seq) || is_return_statement(first_statement(seq))
            ? compile(first_statement(seq), target, linkage)
            : preserving(
                  list("env", "continue"),
@@ -2474,14 +2482,13 @@ function compile_sequence(seq, target, linkage) {
 }</pre></div></div>
     
       
-    Treating return statements as if they always appear as the last statement in a sequence
-    avoids compiling the
+    Treating a return statement as if it is the last statement in a sequence
+    avoids compiling any
     <QUOTE>dead code</QUOTE> after the return statement that can
     never be executed.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
     Removing the <kbd>is_return_statement</kbd> check does not change the behavior of the program; however,
-    there are many reasons not to compile dead code, which are beyond the scope of this book: 
-    security, compilation time, size of
-    the object code, etc.,
+    there are many reasons not to compile dead code, which are beyond the scope of this book 
+    (security, compilation time, size of the object code, etc.),
     and many compilers give warnings for dead code. In our case, the most important reason to
     not compile dead code is to keep our generated code simple.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
       
@@ -2568,7 +2575,7 @@ $\langle{}$<EM>compilation of function body</EM>$\rangle$
       
       
 	The function
-      <kbd>compile_lambda</kbd>
+      <kbd>compile_lambda_expression</kbd>
     
     generates the code for constructing the
     
@@ -2586,7 +2593,7 @@ $\langle{}$<EM>compilation of function body</EM>$\rangle$
       function
     
     object will be constructed at run time by combining the current environment
-    (the environment at the point of definition) with the entry point to the
+    (the environment at the point of declaration) with the entry point to the
     compiled
     
       
@@ -2602,7 +2609,7 @@ function compile_lambda_expression(exp, target, linkage) {
             linkage === "next" ? after_lambda : linkage;
     return append_instruction_sequences(
                tack_on_instruction_sequence(
-                   end_with_linkage(target, lambda_linkage,
+                   end_with_linkage(lambda_linkage,
                        make_instruction_sequence(list("env"), list(target),
                            list(assign(target, 
                                        list(op("make_compiled_function"),
@@ -2665,7 +2672,9 @@ function compile_lambda_expression(exp, target, linkage) {
       
       function
     
-    body—namely, the definition environment of the
+    body—namely, the
+    
+    environment of the
     
       
       function,
@@ -2687,11 +2696,12 @@ function compile_lambda_expression(exp, target, linkage) {
     
       
       
-        function body, wrapped in a call to
-        <kbd>append_return_undefined</kbd>, which will be explained shortly.
+        function body.
       
     
-	  The sequence is compiled with linkage
+	  The
+    body
+    is compiled with linkage
     <kbd>"return"</kbd>
 	and target <kbd>val</kbd>
 	so that it will end by returning from the
@@ -2835,7 +2845,7 @@ function compile_block(stmt, target, linkage) {
 
     Footnote&nbsp;<REF NAME="foot:dead-code"><a class="superscript" id="5.5.2-foot-link-3" href="./5.5.2.html#footnote-3">3</a></REF> explained that the compiler does not
     identify all instances of dead code. What would be required of a compiler to
-    properly detect all instances of dead code? 
+    detect all instances of dead code? 
   
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_119_1_div" data-toggle="collapse">Add solution</button></div>
@@ -2855,19 +2865,32 @@ function compile_block(stmt, target, linkage) {
   
         The current design of <kbd>append_return_undefined</kbd>
         is very simplistic: it always appends a
-        <kbd>return</kbd> <kbd>undefined</kbd> statement to all sequences, even if the sequence
+        <kbd>return</kbd> <kbd>undefined</kbd> to a sequence, even if the sequence
         already contains a return statement. Change
-        <kbd>append_return_undefined</kbd> to omit the
-        <kbd>return</kbd> <kbd>undefined</kbd> on all paths where you can
-        decide that the function will always encounter a return statement. Test your
-        solution with a conditional as the last statement of a function body, and set it
-        up to test the following three cases: both the consequent and alternative branches contain return statements; just one of
-        the branches contains a return statement; neither branch contains a return statement. In the first case, no return statement should be appended.
-        In the second case, only the branch missing a return statement should have one added.
-        In the last case, either both branches should have return statements added, or a
-        return statement can be added after the conditional. (Note that conditionals can be nested!)
-        
-      
+        <kbd>append_return_undefined</kbd> to only insert
+        <kbd>return</kbd> <kbd>undefined</kbd> at the end of a path
+        that does not end with an explicit return statement. Test your
+        solution using the functions below.
+
+        In <kbd>t1</kbd>, a return statement should be added either at both <kbd>(*)</kbd>'s or just once at <kbd>(**)</kbd>.
+        In <kbd>t2</kbd> and <kbd>t4</kbd>, a return statement should be added at one of the <kbd>(*)</kbd>'s.
+        In <kbd>t3</kbd>, no return statement should be added.
+	<div class='snippet' id='javascript_119_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+function t1(b) {    function t2(b) {    function t3(b) {      function t4(b) {        
+    if (b) {            if (b) {            if (b) {              if (b) {            
+        42;                 return 42;          return 42;            return 42;      
+        (*)                                                       } else {
+    } else {            } else {            } else {                  if (!b) {       
+        42;                 42;                 return 42;                42;         
+        (*)                 (*)                                           (*)
+    }                   }                   }                         } else {        
+    (**)                (*)                                               return 42;
+}                   }                   }                             }               
+                                                                      (*)             
+                                                                  }                   
+                                                                  (*)                 
+                                                              }</pre></div></div>
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_119_2_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_119_2_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2945,7 +2968,7 @@ function compile_block(stmt, target, linkage) {
       
     
      
-    <div class='snippet' id='javascript_119_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_119_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 let label_counter = 0;
 
 function new_label_number() {
@@ -3001,21 +3024,21 @@ function make_label(name) {
      
      
      
-    <div class='snippet' id='javascript_119_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_119_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function make_compiled_function(entry, env) {
     return list("compiled_function", entry, env);
 }
 
-function is_compiled_function(proc) {
-    return is_tagged_list(proc, "compiled_function");
+function is_compiled_function(fun) {
+    return is_tagged_list(fun, "compiled_function");
 } 
 
-function compiled_function_entry(c_proc) {
-    return head(tail(c_proc));
+function compiled_function_entry(c_fun) {
+    return head(tail(c_fun));
 }
 
-function compiled_function_env(c_proc) {
-    return head(tail(tail(c_proc)));
+function compiled_function_env(c_fun) {
+    return head(tail(tail(c_fun)));
 }</pre></div></div>
     
     </FOOTNOTE></div>
