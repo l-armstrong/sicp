@@ -2125,11 +2125,12 @@ function end_with_linkage(linkage, instruction_sequence) {
      
     <div class='snippet' id='javascript_119_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_literal(component, target, linkage) {
+    const literal = literal_value(component);
     return end_with_linkage(linkage,
                make_instruction_sequence(
                    null,
                    list(target),
-                   list(assign(target, constant(literal_value(component))))));
+                   list(assign(target, constant(literal)))));
 }
 
 function compile_name(component, target, linkage) {
@@ -2160,7 +2161,7 @@ function compile_name(component, target, linkage) {
         The result of compiling a name is
         an <kbd>assign</kbd> instruction that 
         causes the operation <kbd>lookup_symbol_value</kbd> to be executed
-        when the computed program is run, to look up the value of a constant in the current environment.
+        when the compiled program is run, to look up the value of a constant in the current environment.
         The constant is however computed at compile time: <kbd>symbol_of_name(component)</kbd>
         is executed only once, when the program is being compiled, to extract the string to put into the <kbd>constant</kbd>
         part of the instruction. 
@@ -2187,7 +2188,7 @@ function compile_name(component, target, linkage) {
     
       
       
-        installs or updates the name in the environment
+        updates the value associated with the name in the environment
       
     
     and assigns the
@@ -2213,7 +2214,7 @@ function compile_name(component, target, linkage) {
     since the environment is needed for
     
       
-      installing or updating the name
+      updating the name-value association
      
     and the code for 
     computing the
@@ -2735,37 +2736,34 @@ function compile_lambda_body(exp, fun_entry) {
 
   <div class='permalink'>
 <a name='p12' class='permalink'></a><p>
-    The function <kbd>append_return_undefined</kbd> appends
-    a <kbd>return undefined</kbd> to the lambda body.
+    To ensure that every function ends with a return statement, <kbd>compile_lambda_body</kbd>
+    appends a return statement whose return expression is the literal <kbd>undefined</kbd>
+    to the lambda body.
+    
     <div class='snippet' id='javascript_119_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function append_return_undefined(body) {
-    const return_stmt = list("return_statement", list("name", "undefined"));
-    return is_return_statement(body)
-        ? body
-        : is_sequence(body)
-        ? list("sequence", append(sequence_statements(body), list(return_stmt)))
-        : list("sequence", list(body, return_stmt));
+    return list("sequence", list(body, 
+                                 list("return_statement", 
+                                      list("literal", undefined))));
 }</pre></div></div>
-    This simple transformation of lambda bodies ensures that all functions end with a
-    return statement (inserted by the programmer or by
-    <kbd>append_return_undefined</kbd>) that returns the
-    appropriate value. Thus, this represents a third way to ensure that a function that did not
+    This simple transformation of lambda bodies represents a third way to ensure that a function that does not
     return explicitly has the return value <kbd>undefined</kbd>.
     
-    In the meta-circular evaluator, we used a return value object which also played a
+    In the metacircular evaluator, we used a return-value object, which also played a
     role in stopping the sequence evaluation.
 
     In the explicit-control evaluator, functions that did not return explicitly continued
-    to a specific entry point that stored <kbd>undefined</kbd>
+    to an entry point that stored <kbd>undefined</kbd>
     in <kbd>val</kbd>.
 
-    Since a compiler is operating on the source of a program before it is executed, and
-    only once for any number of runs, it is less sensitive to overheads of performing
-    program analysis and program transformations than an interpreter. Therefore we opt for
-    this source-level transformation in the compiler.
+    Source-level transformations like
+    <kbd>append_return_undefined</kbd> are common in
+    compilers, which are fed a complete source to compile to object code, as
+    opposed to interpreters which may be fed their programs line-by-line as they
+    are typed into a read-evaluate-print loop.
 
     (See exercise&nbsp;<REF NAME="ex:append_return_undefined"><a class="superscript" id="5.5.2-ex-link-5.35" href="./5.5.2.html#ex_5.35">5.35</a></REF> for a more elegant way
-    to handle insertion of a return statement.)
+    to handle insertion of return statements.)
     
   </p></div>
 
@@ -2777,41 +2775,12 @@ function append_return_undefined(body) {
         <a name='h6' class='permalink'></a><h2>
     
 	
-	  Compiling return statements
-	
-      </h2></div>
-
-      <div class='permalink'>
-<a name='p13' class='permalink'></a><p>
-	
-	JavaScript's return statements are compiled such that the compiled code
-	returns  to the caller of the current function the result of running the
-	code of the return expression, ignoring the current linkage. 
-	<div class='snippet' id='javascript_119_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function compile_return_statement(stmt, target, linkage) {
-    return append_instruction_sequences(
-        make_instruction_sequence(
-            null,
-            null,
-            list(revert_stack_to_marker(), restore("continue"))),
-        compile(return_expression(stmt), target, "return"));
-}</pre></div></div>
-  The return statements do not need any register values and from the point
-  of view of the current function does not modify any registers as there are
-  no subsequent statements in the function body.
-      </p></div>
-
-      
-      <div class='permalink'>
-        <a name='h7' class='permalink'></a><h2>
-    
-	
 	  Compiling blocks
 	
       </h2></div>
 
       <div class='permalink'>
-<a name='p14' class='permalink'></a><p>
+<a name='p13' class='permalink'></a><p>
 	
 	A block is compiled by prepending an <kbd>assign</kbd> instruction to the compiled
 	body of the block. The assignment extends the current environment with bindings
@@ -2819,7 +2788,7 @@ function compile_return_statement(stmt, target, linkage) {
 	<kbd>"*unassigned*"</kbd>. This affects neither
 	the target nor the linkage.
         	
-	<div class='snippet' id='javascript_119_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	<div class='snippet' id='javascript_119_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_block(stmt, target, linkage) {
     const body = block_body(stmt);
     const locals = scan_out_declarations(body);
@@ -2875,20 +2844,20 @@ function compile_block(stmt, target, linkage) {
         In <kbd>t1</kbd>, a return statement should be added either at both <kbd>(*)</kbd>'s or just once at <kbd>(**)</kbd>.
         In <kbd>t2</kbd> and <kbd>t4</kbd>, a return statement should be added at one of the <kbd>(*)</kbd>'s.
         In <kbd>t3</kbd>, no return statement should be added.
-	<div class='snippet' id='javascript_119_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function t1(b) {    function t2(b) {    function t3(b) {      function t4(b) {        
-    if (b) {            if (b) {            if (b) {              if (b) {            
-        42;                 return 42;          return 42;            return 42;      
+	<div class='snippet' id='javascript_119_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+function t1(b) {    function t2(b) {    function t3(a, b) {   function t4(b1, b2) {
+    if (b) {            if (b) {            if (a < b) {          if (b1) {
+        s1;                 return e1;          return a;             return e1;
         (*)                                                       } else {
-    } else {            } else {            } else {                  if (!b) {       
-        42;                 42;                 return 42;                42;         
+    } else {            } else {            } else {                  if (b2) {
+        s2;                 s1;                 return b;                 s1;
         (*)                 (*)                                           (*)
-    }                   }                   }                         } else {        
-    (**)                (*)                                               return 42;
-}                   }                   }                             }               
-                                                                      (*)             
-                                                                  }                   
-                                                                  (*)                 
+    }                   }                   }                         } else {
+    (**)                (*)                                               return e2;
+}                   }                   }                             }
+                                                                      (*)
+                                                                  }
+                                                                  (*)
                                                               }</pre></div></div>
   
       <div class="Solution">
@@ -2968,7 +2937,7 @@ function t1(b) {    function t2(b) {    function t3(b) {      function t4(b) {
       
     
      
-    <div class='snippet' id='javascript_119_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_119_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 let label_counter = 0;
 
 function new_label_number() {
@@ -2995,13 +2964,12 @@ function make_label(name) {
     <div class='footnote'>
       <a class='footnote-number' id='footnote-3' href='#footnote-link-3'>[3] </a>
     <FOOTNOTE>
-    Shortly, we will introduce a program transformation to deal with
-    returning <kbd>undefined</kbd> from functions that do not end
-    with a return statement. Our simplistic transformation will give rise
+    Shortly, we will introduce a
+    program transformation to ensure that all functions contain a return statement.
+    Our simplistic transformation will give rise
     to dead code in all functions that return explicitly. However, because of the check in 
     <kbd>compile_sequence</kbd>, 
-    this dead code will not appear 
-    in our code listings in figures&nbsp;<REF NAME="fig:comp-factorial1"><a class="superscript" id="5.5.2-fig-link-5.17" href="./5.5.5.html#fig_5.17">5.17</a></REF> and <REF NAME="fig:compilation-example1"><a class="superscript" id="5.5.2-fig-link-5.20" href="./5.5.5.html#fig_5.20">5.20</a></REF>.
+    this dead code will not appear in our generated code.
     </FOOTNOTE></div>
 
     
@@ -3024,7 +2992,7 @@ function make_label(name) {
      
      
      
-    <div class='snippet' id='javascript_119_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_119_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function make_compiled_function(entry, env) {
     return list("compiled_function", entry, env);
 }
